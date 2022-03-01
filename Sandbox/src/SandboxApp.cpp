@@ -50,16 +50,6 @@ class ExampleLayer : public Layer
 	{
 		cControl = new CameraController();
 		ML_LOG_INFO("Example");
-
-		ResourceManager::LoadShader("E:\\Programming\\VisualStudio\\Projects\\Merlin\\Sandbox\\Assets\\Shader\\FlatShader.vert",
-			"E:\\Programming\\VisualStudio\\Projects\\Merlin\\Sandbox\\Assets\\Shader\\FlatShader.frag", nullptr, "FlatShader");
-
-		ResourceManager::LoadTexture("E:\\Programming\\VisualStudio\\Projects\\Merlin\\Sandbox\\Assets\\Texture\\Default.png", true, true, "Default");
-
-		int samplers[32];
-		for (int i = 0; i < 32; i++)
-			samplers[i] = i;
-		ResourceManager::GetShader("FlatShader").SetIntArray("uTextures", 32, samplers);
 	}
 
 	void OnUpdate(Timestep ts) override
@@ -93,6 +83,16 @@ class SandboxApp : public Application
 public:
 	SandboxApp()
 	{
+		ResourceManager::LoadShader("E:\\Programming\\VisualStudio\\Projects\\Merlin\\Sandbox\\Assets\\Shader\\FlatShader.vert",
+			"E:\\Programming\\VisualStudio\\Projects\\Merlin\\Sandbox\\Assets\\Shader\\FlatShader.frag", nullptr, "FlatShader");
+
+		ResourceManager::LoadTexture("E:\\Programming\\VisualStudio\\Projects\\Merlin\\Sandbox\\Assets\\Texture\\Default.png", true, true, "Default");
+
+		int samplers[32];
+		for (int i = 0; i < 32; i++)
+			samplers[i] = i;
+		ResourceManager::GetShader("FlatShader").SetIntArray("uTextures", 32, samplers);
+
 		PushLayer(new ExampleLayer());
 	}
 
