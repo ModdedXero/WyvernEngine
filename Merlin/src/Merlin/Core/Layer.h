@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Merlin/Core/Events/Event.h>
+#include <Merlin/Core/Timestep.h>
 
 #include <string>
 
@@ -14,7 +15,7 @@ namespace Merlin
 
 		virtual void OnAttach() {}
 		virtual void OnDetach() {}
-		virtual void OnUpdate() {}
+		virtual void OnUpdate(Timestep ts) {}
 
 		virtual void OnEvent(Events::Event& event) {}
 

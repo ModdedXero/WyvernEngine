@@ -8,6 +8,7 @@ namespace Merlin
 	static const size_t MaxQuadCount = 1000;
 	static const size_t MaxVertexCount = MaxQuadCount * 4;
 	static const size_t MaxIndexCount = MaxQuadCount * 6;
+	static const size_t MaxTextures = 32;
 
 	struct Vertex
 	{
@@ -27,6 +28,11 @@ namespace Merlin
 		Vertex* QuadBufferPtr = nullptr;
 
 		uint32_t IndexCount = 0;
+
+		std::array<uint32_t, MaxTextures> TextureSlots;
+		uint32_t TextureSlotIndex = 1;
+
+		uint32_t WhiteTexture = 0;
 	};
 
 	static RenderData s_Data;
@@ -72,6 +78,20 @@ namespace Merlin
 		glGenBuffers(1, &s_Data.IBO);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, s_Data.IBO);
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+
+		// Setup default texture
+		glCreateTextures(GL_TEXTURE_2D, 1, &s_Data.WhiteTexture);
+		glBindTexture(GL_TEXTURE_2D, s_Data.WhiteTexture);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+		uint32_t color = 0xffffffff;
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, 1, 1, 0, GL_RGBA, GL_UNSIGNED_BYTE, &color);
+
+		s_Data.TextureSlots[0] = s_Data.WhiteTexture;
+		for (size_t i = 1; i < MaxTextures; i++)
+			s_Data.TextureSlots[i] = 0;
 	}
 
 	void Renderer2D::OnDestroy()
@@ -97,6 +117,9 @@ namespace Merlin
 
 	void Renderer2D::Flush()
 	{
+		for (uint32_t i = 0; i < s_Data.TextureSlotIndex; i++)
+			glBindTextureUnit(i, s_Data.TextureSlots[i]);
+
 		glBindVertexArray(s_Data.VAO);
 		glDrawElements(GL_TRIANGLES, s_Data.IndexCount, GL_UNSIGNED_INT, nullptr);
 
@@ -134,6 +157,61 @@ namespace Merlin
 		s_Data.QuadBufferPtr->Color = color;
 		s_Data.QuadBufferPtr->TexCoords = { 0.0f, 0.0f };
 		s_Data.QuadBufferPtr->TexID = 0.0f;
+		s_Data.QuadBufferPtr++;
+
+		s_Data.IndexCount += 6;
+	}
+
+	void Renderer2D::DrawQuad(const Vector3& pos, const Vector2& size, uint32_t textureID)
+	{
+		if (s_Data.IndexCount >= MaxIndexCount || s_Data.TextureSlotIndex > (MaxTextures - 1))
+		{
+			EndBatch();
+			Flush();
+			BeginBatch();
+		}
+
+		const Vector4 color = { 1.0f, 1.0f, 1.0f, 1.0f };
+
+		float textureIndex = 0.0f;
+		for (uint32_t i = 1; i < s_Data.TextureSlotIndex; i++)
+		{
+			if (s_Data.TextureSlots[i] == textureID)
+			{
+				textureIndex = (float)i;
+				break;
+			}
+		}
+
+		if (textureIndex == 0.0f)
+		{
+			textureIndex = (float)s_Data.TextureSlotIndex;
+			s_Data.TextureSlots[s_Data.TextureSlotIndex] = textureID;
+			s_Data.TextureSlotIndex++;
+		}
+
+		s_Data.QuadBufferPtr->Position = { pos.x - size.x, pos.y - size.y, pos.z };
+		s_Data.QuadBufferPtr->Color = color;
+		s_Data.QuadBufferPtr->TexCoords = { 0.0f, 0.0f };
+		s_Data.QuadBufferPtr->TexID = textureIndex;
+		s_Data.QuadBufferPtr++;
+
+		s_Data.QuadBufferPtr->Position = { pos.x + size.x, pos.y - size.y, pos.z };
+		s_Data.QuadBufferPtr->Color = color;
+		s_Data.QuadBufferPtr->TexCoords = { 1.0f, 0.0f };
+		s_Data.QuadBufferPtr->TexID = textureIndex;
+		s_Data.QuadBufferPtr++;
+
+		s_Data.QuadBufferPtr->Position = { pos.x + size.x, pos.y + size.y, pos.z };
+		s_Data.QuadBufferPtr->Color = color;
+		s_Data.QuadBufferPtr->TexCoords = { 1.0f, 1.0f };
+		s_Data.QuadBufferPtr->TexID = textureIndex;
+		s_Data.QuadBufferPtr++;
+
+		s_Data.QuadBufferPtr->Position = { pos.x - size.x, pos.y + size.y, pos.z };
+		s_Data.QuadBufferPtr->Color = color;
+		s_Data.QuadBufferPtr->TexCoords = { 0.0f, 1.0f };
+		s_Data.QuadBufferPtr->TexID = textureIndex;
 		s_Data.QuadBufferPtr++;
 
 		s_Data.IndexCount += 6;

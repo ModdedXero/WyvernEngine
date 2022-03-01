@@ -83,7 +83,11 @@ namespace Merlin
 		glUniformMatrix4fv(glGetUniformLocation(ID, name), 1, false, glm::value_ptr(matrix));
 	}
 
-
+	void Shader::SetIntArray(const char* name, const int count, const GLint* intArray)
+	{
+		Use();
+		glUniform1iv(glGetUniformLocation(ID, name), count, intArray);
+	}
 
 	void Shader::CheckCompileErrors(unsigned int object, std::string type)
 	{

@@ -25,6 +25,7 @@ namespace Merlin
 			return;
 		}
 
+		glfwSetWindowAspectRatio(m_Window, 16, 9);
 
 		glfwMakeContextCurrent(m_Window);
 		gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
@@ -44,7 +45,7 @@ namespace Merlin
 				}
 		});
 
-		glfwSetFramebufferSizeCallback(m_Window, [](GLFWwindow* window, int width, int height)
+		glfwSetWindowSizeCallback(m_Window, [](GLFWwindow* window, int width, int height)
 			{
 				WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 

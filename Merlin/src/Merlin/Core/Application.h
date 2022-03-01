@@ -7,6 +7,8 @@
 #include <Merlin/Core/Events/Event.h>
 #include <Merlin/Core/Events/WindowEvent.h>
 
+#include <chrono>
+
 namespace Merlin
 {
 	class Application
@@ -34,5 +36,8 @@ namespace Merlin
 		LayerStack m_LayerStack;
 
 		bool m_Minimized = false;
+
+		std::chrono::steady_clock::time_point m_LastFrameTime;
+		std::chrono::steady_clock::time_point m_StartTime;
 	};
 }

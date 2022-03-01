@@ -2,8 +2,10 @@
 #include "Application.h"
 
 #include <Merlin/Renderer/Renderer2D.h>
+#include <Merlin/Core/Timestep.h>
 
 #include <iostream>
+#include <chrono>
 
 using namespace Merlin::Events;
 
@@ -11,6 +13,9 @@ namespace Merlin
 {
 #define BIND_EVENT_FN(fn) [this](auto&&... args) -> decltype(auto) { return this->fn(std::forward<decltype(args)>(args)...); }
 
+	typedef std::chrono::high_resolution_clock Time;
+	typedef std::chrono::duration<float> fsec;
+	
 	Application* Application::s_Instance = nullptr;
 
 	Application::Application()
@@ -21,6 +26,8 @@ namespace Merlin
 		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
 
 		Renderer2D::OnAwake();
+
+		m_StartTime = Time::now();
 
 		ML_LOG_INFO("Merling Engine Started");
 	}
@@ -39,8 +46,18 @@ namespace Merlin
 			// All application logic
 			Renderer2D::BeginBatch();
 
+			// Get time since application start
+			auto cTime = Time::now();
+			fsec fs = cTime - m_StartTime;
+
+			// Get Delta time for Layers
+			fsec deltaTime = cTime - m_LastFrameTime;
+
+			Timestep ts = Timestep(fs.count(), deltaTime.count());
+			m_LastFrameTime = cTime;
+
 			for (Layer* layer : m_LayerStack)
-				layer->OnUpdate();
+				layer->OnUpdate(ts);
 
 			Renderer2D::EndBatch();
 			Renderer2D::Flush();

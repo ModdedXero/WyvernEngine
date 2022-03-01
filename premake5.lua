@@ -38,8 +38,6 @@ project "Merlin"
 		"Merlin/src/**.cpp",
 		"Merlin/vendor/stb_image/**.h",
 		"Merlin/vendor/stb_image/**.cpp",
-		"Merlin/vendor/glm/**.hpp",
-		"Merlin/vendor/glm/**.inl",
 		"Merlin/vendor/glad/**.c"
 	}
 

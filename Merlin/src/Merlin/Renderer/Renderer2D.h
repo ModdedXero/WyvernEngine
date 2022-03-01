@@ -15,5 +15,6 @@ namespace Merlin
 		static void Flush();
 
 		static void DrawQuad(const Vector3& pos, const Vector2& size, const Vector4& color);
+		static void DrawQuad(const Vector3& pos, const Vector2& size, uint32_t textureID);
 	};
 }

@@ -20,9 +20,9 @@ namespace Merlin
 		return Shaders[name];
 	}
 
-	Texture2D ResourceManager::LoadTexture(const char* file, bool alpha, const char* name)
+	Texture2D ResourceManager::LoadTexture(const char* file, bool alpha, bool pixel, const char* name)
 	{
-		Textures[name] = loadTexture2DFromFile(file, alpha);
+		Textures[name] = loadTexture2DFromFile(file, alpha, pixel);
 		return Textures[name];
 	}
 
@@ -80,7 +80,7 @@ namespace Merlin
 		return Shader(vShaderCode, fShaderCode, gShaderPath != nullptr ? gShaderCode : nullptr);
 	}
 
-	Texture2D ResourceManager::loadTexture2DFromFile(const char* texturePath, bool alpha)
+	Texture2D ResourceManager::loadTexture2DFromFile(const char* texturePath, bool alpha, bool pixel)
 	{
 		Texture2D texture;
 
@@ -88,6 +88,12 @@ namespace Merlin
 		{
 			texture.InternalFormat = GL_RGBA;
 			texture.ImageFormat = GL_RGBA;
+		}
+
+		if (pixel)
+		{
+			texture.FilterMin = GL_NEAREST;
+			texture.FilterMax = GL_NEAREST;
 		}
 
 		int width, height, nrChannels;

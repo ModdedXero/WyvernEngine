@@ -9,6 +9,7 @@ class CameraController
 {
 public:
 	Camera camera;
+	float speed = 0.03f;
 
 	CameraController()
 	{
@@ -19,20 +20,20 @@ public:
 	{
 		if (Input::IsKey(KeyCode::A))
 		{
-			camera.transform.x += 0.01f;
+			camera.transform.x += speed;
 		}
 		if (Input::IsKey(KeyCode::D))
 		{
-			camera.transform.x -= 0.01f;
+			camera.transform.x -= speed;
 		}
 
 		if (Input::IsKey(KeyCode::W))
 		{
-			camera.transform.y -= 0.01f;
+			camera.transform.y -= speed;
 		}
 		if (Input::IsKey(KeyCode::S))
 		{
-			camera.transform.y += 0.01f;
+			camera.transform.y += speed;
 		}
 
 		Camera::Main().RecalculateMatrix();
@@ -43,14 +44,25 @@ public:
 class ExampleLayer : public Layer
 {
 	CameraController* cControl;
+	int loopTime = 0;
 
 	void OnAttach() override
 	{
 		cControl = new CameraController();
 		ML_LOG_INFO("Example");
+
+		ResourceManager::LoadShader("E:\\Programming\\VisualStudio\\Projects\\Merlin\\Sandbox\\Assets\\Shader\\FlatShader.vert",
+			"E:\\Programming\\VisualStudio\\Projects\\Merlin\\Sandbox\\Assets\\Shader\\FlatShader.frag", nullptr, "FlatShader");
+
+		ResourceManager::LoadTexture("E:\\Programming\\VisualStudio\\Projects\\Merlin\\Sandbox\\Assets\\Texture\\Default.png", true, true, "Default");
+
+		int samplers[32];
+		for (int i = 0; i < 32; i++)
+			samplers[i] = i;
+		ResourceManager::GetShader("FlatShader").SetIntArray("uTextures", 32, samplers);
 	}
 
-	void OnUpdate() override
+	void OnUpdate(Timestep ts) override
 	{
 		glm::mat4 model = glm::mat4(1.0f);
 
@@ -62,13 +74,12 @@ class ExampleLayer : public Layer
 			for (float y = -10.0f; y < 10.0f; y += 0.25f)
 			{
 				Renderer2D::DrawQuad(Vector3(x, y, 0.0f), Vector2(0.1f, 0.1f),
-					Vector4(0.5f, 0.75f, 0.25f, 1.0f));
+					Vector4(0, 0, 1, 1.0f));
 			}
 		}
 
-		Renderer2D::DrawQuad(Vector3(0.0f, 0.0f, 0.0f), Vector2(1, 1), Vector4(0.7f, 0.4f, 1.0f, 1.0f));
+		Renderer2D::DrawQuad(Vector3(glm::sin(ts.GetSeconds()), -glm::sin(ts.GetSeconds()), 0), Vector2(1, 1), ResourceManager::GetTexture("Default").ID);
 		glUseProgram(ResourceManager::GetShader("FlatShader").ID);
-
 	}
 
 	void OnEvent(Event& event) override
@@ -82,9 +93,6 @@ class SandboxApp : public Application
 public:
 	SandboxApp()
 	{
-		ResourceManager::LoadShader("C:\\Programming\\VisualStudio\\Projects\\Merlin\\Sandbox\\Assets\\Shader\\FlatShader.vert",
-			"C:\\Programming\\VisualStudio\\Projects\\Merlin\\Sandbox\\Assets\\Shader\\FlatShader.frag", nullptr, "FlatShader");
-
 		PushLayer(new ExampleLayer());
 	}
 

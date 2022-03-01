@@ -23,6 +23,7 @@ namespace Merlin
 		void SetVector3f(const char* name, const glm::vec3& value);
 		void SetVector4f(const char* name, const glm::vec4& value);
 		void SetMatrix4(const char* name, const glm::mat4& matrix);
+		void SetIntArray(const char* name, const int count, const GLint* intArray);
 	private:
 		void CheckCompileErrors(unsigned int object, std::string type);
 	};
