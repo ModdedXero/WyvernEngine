@@ -87,6 +87,8 @@
     </ClInclude>
     <ClInclude Include="mlpch.h" />
     <ClInclude Include="Merlin\Core\Timestep.h" />
+    <ClInclude Include="Merlin\Scene\Scene.h" />
+    <ClInclude Include="Merlin\Scene\Entity.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\vendor\glad\glad.c">
@@ -126,5 +128,7 @@
       <Filter>Merlin\Window</Filter>
     </ClCompile>
     <ClCompile Include="mlpch.cpp" />
+    <ClCompile Include="Merlin\Scene\Scene.cpp" />
+    <ClCompile Include="Merlin\Scene\Entity.cpp" />
   </ItemGroup>
 </Project>

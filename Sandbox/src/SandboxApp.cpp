@@ -93,6 +93,12 @@ public:
 			samplers[i] = i;
 		ResourceManager::GetShader("FlatShader").SetIntArray("uTextures", 32, samplers);
 
+		// Test
+
+
+
+		//
+
 		PushLayer(new ExampleLayer());
 	}
 

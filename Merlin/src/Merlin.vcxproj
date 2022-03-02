@@ -138,6 +138,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\vendor\stb_image\stb_image.h" />
+    <ClInclude Include="Merlin\Scene\Entity.h" />
     <ClInclude Include="Merlin.h" />
     <ClInclude Include="Merlin\Core\Application.h" />
     <ClInclude Include="Merlin\Core\Events\Event.h" />
@@ -158,10 +159,12 @@
     <ClInclude Include="Merlin\Renderer\Texture2D.h" />
     <ClInclude Include="Merlin\Window\Window.h" />
     <ClInclude Include="mlpch.h" />
+    <ClInclude Include="Merlin\Scene\Scene.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\vendor\glad\glad.c" />
     <ClCompile Include="..\vendor\stb_image\stb_image.cpp" />
+    <ClCompile Include="Merlin\Scene\Entity.cpp" />
     <ClCompile Include="Merlin\Core\Application.cpp" />
     <ClCompile Include="Merlin\Core\Input.cpp" />
     <ClCompile Include="Merlin\Core\Layer.cpp" />
@@ -173,6 +176,7 @@
     <ClCompile Include="Merlin\Renderer\Texture2D.cpp" />
     <ClCompile Include="Merlin\Window\Window.cpp" />
     <ClCompile Include="mlpch.cpp" />
+    <ClCompile Include="Merlin\Scene\Scene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\vendor\GLFW\GLFW.vcxproj">

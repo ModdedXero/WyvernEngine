@@ -15,7 +15,7 @@ namespace Merlin
 		unsigned int Width = 0;
 		unsigned int Height = 0;
 
-		WindowProps(const char* title = "Thorn Engine",
+		WindowProps(const char* title = "Merlin Engine",
 			unsigned int width = 1280,
 			unsigned int height = 720)
 			: Title(title), Width(width), Height(height)
