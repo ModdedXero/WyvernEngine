@@ -1,27 +1,37 @@
 #pragma once
 
-#include <Merlin/Scene/Scene.h>
-
 #include <bitset>
 
 namespace Merlin
 {
+	const size_t MaxEntities = 1000;
+
 	const size_t MaxComponents = 32;
 	typedef std::bitset<MaxComponents> ComponentMask;
 
-	typedef unsigned int EntityID;
+	typedef unsigned int EntityIndex;
+	typedef unsigned int EntityVersion;
+	typedef unsigned long long EntityID;
 
 	class Entity
 	{
+		friend class Scene;
 	public:
-		EntityID GetID() const { return m_ID; }
+		Entity(EntityID id, ComponentMask components)
+			: m_ID(id), m_Components(components)
+		{}
+
+		EntityID GetID() { return m_ID; }
+		ComponentMask GetMask() { return m_Components; }
+
+		virtual void OnAwake() {}
 
 		template <typename T>
-		static T* AddComponent() { return Scene::AddComponent(m_ID); }
+		T* AddComponent() { return Scene::AddComponent<T>(m_ID); }
 		template <typename T>
-		static T* GetComponent() { return Scene::GetComponent(m_ID); }
+		T* GetComponent() { return Scene::GetComponent<T>(m_ID); }
 		template <typename T>
-		static void RemoveComponent() { Scene::RemoveComponent(m_ID); }
+		void RemoveComponent() { Scene::RemoveComponent<T>(m_ID); }
 	private:
 		EntityID m_ID;
 		ComponentMask m_Components;

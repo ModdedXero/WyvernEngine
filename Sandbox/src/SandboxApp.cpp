@@ -41,6 +41,25 @@ public:
 	}
 };
 
+struct Test
+{
+	int nice = 0;
+
+	void print()
+	{
+		ML_LOG_INFO(nice);
+	}
+};
+
+struct Test2
+{
+	int nice = 1;
+	void print()
+	{
+		ML_LOG_INFO(nice);
+	}
+};
+
 class ExampleLayer : public Layer
 {
 	CameraController* cControl;
@@ -54,6 +73,19 @@ class ExampleLayer : public Layer
 
 	void OnUpdate(Timestep ts) override
 	{
+		for (Entity ent : ComponentList<Test, Test2>())
+		{
+			ent.GetComponent<Test>()->print();
+			ent.GetComponent<Test2>()->print();
+		}
+
+		for (Entity ent : ComponentList<Test2>())
+		{
+			ent.GetComponent<Test2>()->print();
+		}
+
+		//
+
 		glm::mat4 model = glm::mat4(1.0f);
 
 		ResourceManager::GetShader("FlatShader").SetMatrix4("model", model);
@@ -83,10 +115,10 @@ class SandboxApp : public Application
 public:
 	SandboxApp()
 	{
-		ResourceManager::LoadShader("E:\\Programming\\VisualStudio\\Projects\\Merlin\\Sandbox\\Assets\\Shader\\FlatShader.vert",
-			"E:\\Programming\\VisualStudio\\Projects\\Merlin\\Sandbox\\Assets\\Shader\\FlatShader.frag", nullptr, "FlatShader");
+		ResourceManager::LoadShader("C:\\Programming\\VisualStudio\\Projects\\Merlin\\Sandbox\\Assets\\Shader\\FlatShader.vert",
+			"C:\\Programming\\VisualStudio\\Projects\\Merlin\\Sandbox\\Assets\\Shader\\FlatShader.frag", nullptr, "FlatShader");
 
-		ResourceManager::LoadTexture("E:\\Programming\\VisualStudio\\Projects\\Merlin\\Sandbox\\Assets\\Texture\\Default.png", true, true, "Default");
+		ResourceManager::LoadTexture("C:\\Programming\\VisualStudio\\Projects\\Merlin\\Sandbox\\Assets\\Texture\\Default.png", true, true, "Default");
 
 		int samplers[32];
 		for (int i = 0; i < 32; i++)
@@ -95,7 +127,11 @@ public:
 
 		// Test
 
+		Entity tester = Scene::CreateEntity();
+		auto comp1 = Scene::AddComponent<Test>(tester.GetID());
 
+		Entity tester2 = Scene::CreateEntity();
+		tester2.AddComponent<Test2>();
 
 		//
 

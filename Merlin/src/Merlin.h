@@ -6,6 +6,9 @@
 #include <Merlin/Core/Application.h>
 #include <Merlin/Core/Layer.h>
 
+#include <Merlin/Scene/Scene.h>
+#include <Merlin/Scene/Entity.h>
+
 #include <Merlin/Core/Math/Math.h>
 
 #include <Merlin/Renderer/ResourceManager.h>

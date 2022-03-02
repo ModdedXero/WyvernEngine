@@ -66,7 +66,8 @@ project "Merlin"
 		defines
 		{
 			"ML_PLATFORM_WINDOWS",
-			"ML_BUILD_DLL"
+			"ML_BUILD_DLL",
+			"NDEBUG"
 		}
 
 	filter "configurations:Debug"
@@ -120,7 +121,8 @@ project "Sandbox"
 
 		defines
 		{
-			"ML_PLATFORM_WINDOWS"
+			"ML_PLATFORM_WINDOWS",
+			"NDEGUB"
 		}
 
 	filter "configurations:Debug"

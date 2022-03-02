@@ -75,7 +75,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>ML_PLATFORM_WINDOWS;ML_BUILD_DLL;ML_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>ML_PLATFORM_WINDOWS;ML_BUILD_DLL;NDEBUG;ML_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>.;..\vendor\GLFW\include;..\vendor\glad\include;..\vendor\glm;..\vendor\stb_image;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
@@ -94,7 +94,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>ML_PLATFORM_WINDOWS;ML_BUILD_DLL;ML_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>ML_PLATFORM_WINDOWS;ML_BUILD_DLL;NDEBUG;ML_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>.;..\vendor\GLFW\include;..\vendor\glad\include;..\vendor\glm;..\vendor\stb_image;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -117,7 +117,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>ML_PLATFORM_WINDOWS;ML_BUILD_DLL;ML_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>ML_PLATFORM_WINDOWS;ML_BUILD_DLL;NDEBUG;ML_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>.;..\vendor\GLFW\include;..\vendor\glad\include;..\vendor\glm;..\vendor\stb_image;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -138,7 +138,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\vendor\stb_image\stb_image.h" />
-    <ClInclude Include="Merlin\Scene\Entity.h" />
     <ClInclude Include="Merlin.h" />
     <ClInclude Include="Merlin\Core\Application.h" />
     <ClInclude Include="Merlin\Core\Events\Event.h" />
@@ -157,14 +156,15 @@
     <ClInclude Include="Merlin\Renderer\ResourceManager.h" />
     <ClInclude Include="Merlin\Renderer\Shader.h" />
     <ClInclude Include="Merlin\Renderer\Texture2D.h" />
+    <ClInclude Include="Merlin\Scene\ComponentPool.h" />
+    <ClInclude Include="Merlin\Scene\Entity.h" />
+    <ClInclude Include="Merlin\Scene\Scene.h" />
     <ClInclude Include="Merlin\Window\Window.h" />
     <ClInclude Include="mlpch.h" />
-    <ClInclude Include="Merlin\Scene\Scene.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\vendor\glad\glad.c" />
     <ClCompile Include="..\vendor\stb_image\stb_image.cpp" />
-    <ClCompile Include="Merlin\Scene\Entity.cpp" />
     <ClCompile Include="Merlin\Core\Application.cpp" />
     <ClCompile Include="Merlin\Core\Input.cpp" />
     <ClCompile Include="Merlin\Core\Layer.cpp" />
@@ -174,9 +174,9 @@
     <ClCompile Include="Merlin\Renderer\ResourceManager.cpp" />
     <ClCompile Include="Merlin\Renderer\Shader.cpp" />
     <ClCompile Include="Merlin\Renderer\Texture2D.cpp" />
+    <ClCompile Include="Merlin\Scene\Entity.cpp" />
     <ClCompile Include="Merlin\Window\Window.cpp" />
     <ClCompile Include="mlpch.cpp" />
-    <ClCompile Include="Merlin\Scene\Scene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\vendor\GLFW\GLFW.vcxproj">

@@ -16,6 +16,9 @@
     <Filter Include="Merlin\Renderer">
       <UniqueIdentifier>{D28911FB-3E15-7FBF-4726-02B4B330DBBF}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Merlin\Scene">
+      <UniqueIdentifier>{C982DC0E-B5E5-6BB3-5E6B-A4694AAD3736}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Merlin\Window">
       <UniqueIdentifier>{13D832F4-7F98-AE2A-48D3-F7A7B452F306}</UniqueIdentifier>
     </Filter>
@@ -67,6 +70,9 @@
     <ClInclude Include="Merlin\Core\Math\Vector.h">
       <Filter>Merlin\Core\Math</Filter>
     </ClInclude>
+    <ClInclude Include="Merlin\Core\Timestep.h">
+      <Filter>Merlin\Core</Filter>
+    </ClInclude>
     <ClInclude Include="Merlin\Renderer\Camera.h">
       <Filter>Merlin\Renderer</Filter>
     </ClInclude>
@@ -82,13 +88,19 @@
     <ClInclude Include="Merlin\Renderer\Texture2D.h">
       <Filter>Merlin\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="Merlin\Scene\ComponentPool.h">
+      <Filter>Merlin\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Merlin\Scene\Entity.h">
+      <Filter>Merlin\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Merlin\Scene\Scene.h">
+      <Filter>Merlin\Scene</Filter>
+    </ClInclude>
     <ClInclude Include="Merlin\Window\Window.h">
       <Filter>Merlin\Window</Filter>
     </ClInclude>
     <ClInclude Include="mlpch.h" />
-    <ClInclude Include="Merlin\Core\Timestep.h" />
-    <ClInclude Include="Merlin\Scene\Scene.h" />
-    <ClInclude Include="Merlin\Scene\Entity.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\vendor\glad\glad.c">
@@ -124,11 +136,12 @@
     <ClCompile Include="Merlin\Renderer\Texture2D.cpp">
       <Filter>Merlin\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="Merlin\Scene\Entity.cpp">
+      <Filter>Merlin\Scene</Filter>
+    </ClCompile>
     <ClCompile Include="Merlin\Window\Window.cpp">
       <Filter>Merlin\Window</Filter>
     </ClCompile>
     <ClCompile Include="mlpch.cpp" />
-    <ClCompile Include="Merlin\Scene\Scene.cpp" />
-    <ClCompile Include="Merlin\Scene\Entity.cpp" />
   </ItemGroup>
 </Project>
