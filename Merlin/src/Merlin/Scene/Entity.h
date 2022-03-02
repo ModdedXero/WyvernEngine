@@ -19,12 +19,11 @@ namespace Merlin
 	public:
 		Entity(EntityID id, ComponentMask components)
 			: m_ID(id), m_Components(components)
-		{}
+		{
+		}
 
 		EntityID GetID() { return m_ID; }
 		ComponentMask GetMask() { return m_Components; }
-
-		virtual void OnAwake() {}
 
 		template <typename T>
 		T* AddComponent() { return Scene::AddComponent<T>(m_ID); }

@@ -81,7 +81,9 @@ class ExampleLayer : public Layer
 
 		for (Entity ent : ComponentList<Test2>())
 		{
-			ent.GetComponent<Test2>()->print();
+			auto vari = ent.GetComponent<Test2>();
+			vari->nice++;
+			vari->print();
 		}
 
 		//

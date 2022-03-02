@@ -1,8 +1,8 @@
 #pragma once
 
 #include <Merlin/Scene/ComponentPool.h>
+#include <Merlin/Scene/Components.h>
 #include <Merlin/Scene/Entity.h>
-#include <Merlin/Core/Log.h>
 
 #include <vector>
 
@@ -27,7 +27,8 @@ namespace Merlin
 			Entity entity = { CreateEntityID(s_Entities.size(), 0), ComponentMask() };
 			s_Entities.push_back(entity);
 			s_Entities.back().m_Components.reset();
-			s_Entities.back().OnAwake();
+			// s_Entities.back().AddComponent<Transform>();
+			s_Entities.back().DefaultComponents();
 			return s_Entities.back();
 		}
 
@@ -47,7 +48,6 @@ namespace Merlin
 
 			int componentID = GetComponentID<T>();
 
-			ML_LOG_INFO(componentID, "||", s_ComponentPools.size());
 			if (s_ComponentPools.size() <= componentID)
 			{
 				s_ComponentPools.resize(componentID + 1, nullptr);

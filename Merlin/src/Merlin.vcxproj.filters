@@ -101,6 +101,7 @@
       <Filter>Merlin\Window</Filter>
     </ClInclude>
     <ClInclude Include="mlpch.h" />
+    <ClInclude Include="Merlin\Scene\Components.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\vendor\glad\glad.c">
@@ -135,9 +136,6 @@
     </ClCompile>
     <ClCompile Include="Merlin\Renderer\Texture2D.cpp">
       <Filter>Merlin\Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="Merlin\Scene\Entity.cpp">
-      <Filter>Merlin\Scene</Filter>
     </ClCompile>
     <ClCompile Include="Merlin\Window\Window.cpp">
       <Filter>Merlin\Window</Filter>
