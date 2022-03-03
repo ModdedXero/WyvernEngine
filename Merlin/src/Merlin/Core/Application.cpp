@@ -1,6 +1,10 @@
 #include "mlpch.h"
 #include "Application.h"
 
+#include <Merlin/Scene/Entity.h>
+#include <Merlin/Scene/Components.h>
+#include <Merlin/Scene/ComponentList.h>
+
 #include <Merlin/Renderer/Renderer2D.h>
 #include <Merlin/Core/Timestep.h>
 
@@ -29,7 +33,7 @@ namespace Merlin
 
 		m_StartTime = Time::now();
 
-		ML_LOG_INFO("Merling Engine Started");
+		ML_LOG_INFO("Merlin Engine Started");
 	}
 
 	Application::~Application()
@@ -58,6 +62,11 @@ namespace Merlin
 
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate(ts);
+
+			for (Entity* ent : ComponentList<Material2D>())
+			{
+				ent->GetComponent<Material2D>()->Render(*ent->GetTransform());
+			}
 
 			Renderer2D::EndBatch();
 			Renderer2D::Flush();

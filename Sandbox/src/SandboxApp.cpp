@@ -41,91 +41,41 @@ public:
 	}
 };
 
-struct Test
-{
-	int nice = 0;
-
-	void print()
-	{
-		ML_LOG_INFO(nice);
-	}
-};
-
-struct Test2
-{
-	int nice = 1;
-	void print()
-	{
-		ML_LOG_INFO(nice);
-	}
-};
-
 class ExampleLayer : public Layer
 {
 	CameraController* cControl;
-	int loopTime = 0;
-	Entity* box;
+
+	Entity* player;
+	Entity* gameFloor;
 
 	void OnAttach() override
 	{
+		// Camera
 		cControl = new CameraController();
-		ML_LOG_INFO("Example");
 
-		box = Scene::CreateEntity();
+		// Player
+		player = Entity::CreateEntity();
+		Transform* playerTs = player->GetTransform();
+		playerTs->scale = { 0.25f, 0.25f, 1.0f };
+		playerTs->position = { -2.5f, 0, 0 };
+		Material2D* playerMat = player->AddComponent<Material2D>();
+		playerMat->shader = ResourceManager::GetShader("FlatShader").ID;
+		playerMat->color = { 0.3f, 0.6f, 0.9f, 1.0f };
 
-		Material2D* mat = box->AddComponent<Material2D>();
-
-		mat->shader = ResourceManager::GetShader("FlatShader").ID;
-		mat->texture = ResourceManager::GetTexture("Default").ID;
-
-		int count = 0;
-		for (float x = -10.0f; x < 10.0f; x += 0.25f)
-		{
-			for (float y = -10.0f; y < 10.0f; y += 0.25f)
-			{
-				count++;
-				Entity* griddss = Scene::CreateEntity();
-				Material2D* gridmat = griddss->AddComponent<Material2D>();
-				Transform* gridTs = griddss->GetTransform();
-
-				gridTs->position = Vector3(x * 2, y * 2, 0.0f);
-				gridTs->scale = Vector3(0.1f, 0.1f, 1.0f);
-
-				gridmat->shader = ResourceManager::GetShader("FlatShader").ID;
-				gridmat->texture = ResourceManager::GetTexture("Default").ID;
-			}
-		}
-		ML_LOG_INFO(count);
+		// Floor
+		gameFloor = Entity::CreateEntity();
+		Transform* floorTs = gameFloor->GetTransform();
+		floorTs->scale = { 4.0f, 0.25f, 1.0f };
+		floorTs->position = { 0, -1.5f, 0 };
+		Material2D* floorMat = gameFloor->AddComponent<Material2D>();
+		floorMat->shader = ResourceManager::GetShader("FlatShader").ID;
+		floorMat->color = { 0.7f, 0.3f, 0.4f, 1.0f };
 	}
 
 	void OnUpdate(Timestep ts) override
 	{
-		//for (float x = -10.0f; x < 10.0f; x += 0.25f)
-		//{
-		//	for (float y = -10.0f; y < 10.0f; y += 0.25f)
-		//	{
-		//		Renderer2D::DrawQuad(Vector3(x, y, 0.0f), Vector2(0.1f, 0.1f),
-		//			Vector4(0, 0, 1, 1.0f));
-		//	}
-		//}
-
-		Transform* boxTs = box->GetTransform();
-		boxTs->position = Vector3(glm::sin(ts.GetSeconds()), -glm::sin(ts.GetSeconds()), 0);
-		boxTs->scale = Vector3(1, 1, 1);
-
-		for (Entity* ent : ComponentList<Material2D>())
-		{
-			ent->GetComponent<Material2D>()->Render(*ent->GetTransform());
-		}
-
-		ML_LOG_INFO(1.0f / ts.GetDeltaTime());
 
 		cControl->MoveCamera();
-	}
-
-	void OnEvent(Event& event) override
-	{
-		// std::cout << event.ToString() << std::endl;
 	}
 };
 
@@ -134,19 +84,15 @@ class SandboxApp : public Application
 public:
 	SandboxApp()
 	{
-		ResourceManager::LoadShader("E:\\Programming\\VisualStudio\\Projects\\Merlin\\Sandbox\\Assets\\Shader\\FlatShader.vert",
-			"E:\\Programming\\VisualStudio\\Projects\\Merlin\\Sandbox\\Assets\\Shader\\FlatShader.frag", nullptr, "FlatShader");
+		ResourceManager::LoadShader("C:\\Programming\\VisualStudio\\Projects\\Merlin\\Sandbox\\Assets\\Shader\\FlatShader.vert",
+			"C:\\Programming\\VisualStudio\\Projects\\Merlin\\Sandbox\\Assets\\Shader\\FlatShader.frag", nullptr, "FlatShader");
 
-		ResourceManager::LoadTexture("E:\\Programming\\VisualStudio\\Projects\\Merlin\\Sandbox\\Assets\\Texture\\Default.png", true, true, "Default");
+		ResourceManager::LoadTexture("C:\\Programming\\VisualStudio\\Projects\\Merlin\\Sandbox\\Assets\\Texture\\Default.png", true, true, "Default");
 
 		int samplers[32];
 		for (int i = 0; i < 32; i++)
 			samplers[i] = i;
 		ResourceManager::GetShader("FlatShader").SetIntArray("uTextures", 32, samplers);
-
-		// Test
-
-		//
 
 		PushLayer(new ExampleLayer());
 	}

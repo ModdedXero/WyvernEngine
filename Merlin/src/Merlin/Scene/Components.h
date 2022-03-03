@@ -30,7 +30,7 @@ namespace Merlin
 			if (texture < 0 || texture == UINT_MAX)
 			{
 				Renderer2D::DrawQuad(transform.position,
-					transform.scale, { 1.0f, 1.0f, 1.0f, 1.0f });
+					transform.scale, this->color);
 			}
 			else
 			{

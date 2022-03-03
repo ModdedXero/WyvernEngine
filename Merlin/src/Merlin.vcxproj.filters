@@ -88,6 +88,9 @@
     <ClInclude Include="Merlin\Renderer\Texture2D.h">
       <Filter>Merlin\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="Merlin\Scene\ComponentList.h">
+      <Filter>Merlin\Scene</Filter>
+    </ClInclude>
     <ClInclude Include="Merlin\Scene\ComponentPool.h">
       <Filter>Merlin\Scene</Filter>
     </ClInclude>
@@ -104,7 +107,6 @@
       <Filter>Merlin\Window</Filter>
     </ClInclude>
     <ClInclude Include="mlpch.h" />
-    <ClInclude Include="Merlin\Scene\ComponentList.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\vendor\glad\glad.c">
