@@ -156,6 +156,7 @@
     <ClInclude Include="Merlin\Renderer\ResourceManager.h" />
     <ClInclude Include="Merlin\Renderer\Shader.h" />
     <ClInclude Include="Merlin\Renderer\Texture2D.h" />
+    <ClInclude Include="Merlin\Scene\ComponentList.h" />
     <ClInclude Include="Merlin\Scene\ComponentPool.h" />
     <ClInclude Include="Merlin\Scene\Components.h" />
     <ClInclude Include="Merlin\Scene\Entity.h" />
@@ -175,6 +176,7 @@
     <ClCompile Include="Merlin\Renderer\ResourceManager.cpp" />
     <ClCompile Include="Merlin\Renderer\Shader.cpp" />
     <ClCompile Include="Merlin\Renderer\Texture2D.cpp" />
+    <ClCompile Include="Merlin\Scene\Entity.cpp" />
     <ClCompile Include="Merlin\Window\Window.cpp" />
     <ClCompile Include="mlpch.cpp" />
   </ItemGroup>

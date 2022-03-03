@@ -9,6 +9,7 @@
 #include <Merlin/Scene/Scene.h>
 #include <Merlin/Scene/Entity.h>
 #include <Merlin/Scene/Components.h>
+#include <Merlin/Scene/ComponentList.h>
 
 #include <Merlin/Core/Math/Math.h>
 

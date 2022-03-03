@@ -12,6 +12,7 @@ namespace Merlin
 	Shader ResourceManager::LoadShader(const char* vShaderFile, const char* fShaderFile, const char* gShaderFile, const char* name)
 	{
 		Shaders[name] = loadShaderFromFile(vShaderFile, fShaderFile, gShaderFile);
+		Shaders[name].Use();
 		return Shaders[name];
 	}
 

@@ -46,6 +46,12 @@ namespace Merlin
 
 		glm::vec3 glmPosition() { return glm::vec3(x, y, z); }
 		glm::mat4 localToWorldMatrix() { return glm::translate(glm::mat4(1.0f), glmPosition()); }
+
+		operator Vector2() const
+		{
+			Vector2 vec2 = Vector2(x, y);
+			return vec2;
+		}
 	};
 
 	struct Vector4

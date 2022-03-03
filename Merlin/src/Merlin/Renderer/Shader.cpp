@@ -53,6 +53,11 @@ namespace Merlin
 		return *this;
 	}
 
+	void Shader::Use(unsigned int id)
+	{
+		glUseProgram(id);
+	}
+
 	void Shader::SetFloat(const char* name, float value)
 	{
 		glUniform1f(glGetUniformLocation(ID, name), value);
@@ -85,8 +90,42 @@ namespace Merlin
 
 	void Shader::SetIntArray(const char* name, const int count, const GLint* intArray)
 	{
-		Use();
 		glUniform1iv(glGetUniformLocation(ID, name), count, intArray);
+	}
+
+	void Shader::SetFloat(const char* name, unsigned int id, float value)
+	{
+		glUniform1f(glGetUniformLocation(id, name), value);
+	}
+
+	void Shader::SetInteger(const char* name, unsigned int id, int value)
+	{
+		glUniform1i(glGetUniformLocation(id, name), value);
+	}
+
+	void Shader::SetVector2f(const char* name, unsigned int id, const glm::vec2& value)
+	{
+		glUniform2f(glGetUniformLocation(id, name), value.x, value.y);
+	}
+
+	void Shader::SetVector3f(const char* name, unsigned int id, const glm::vec3& value)
+	{
+		glUniform3f(glGetUniformLocation(id, name), value.x, value.y, value.z);
+	}
+
+	void Shader::SetVector4f(const char* name, unsigned int id, const glm::vec4& value)
+	{
+		glUniform4f(glGetUniformLocation(id, name), value.x, value.y, value.z, value.w);
+	}
+
+	void Shader::SetMatrix4(const char* name, unsigned int id, const glm::mat4& matrix)
+	{
+		glUniformMatrix4fv(glGetUniformLocation(id, name), 1, false, glm::value_ptr(matrix));
+	}
+
+	void Shader::SetIntArray(const char* name, unsigned int id, const int count, const GLint* intArray)
+	{
+		glUniform1iv(glGetUniformLocation(id, name), count, intArray);
 	}
 
 	void Shader::CheckCompileErrors(unsigned int object, std::string type)
