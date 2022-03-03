@@ -20,27 +20,29 @@ namespace Merlin
 				for (int i = 1; i < (sizeof...(ComponentTypes) + 1); i++)
 					Components.set(componentIDs[i]);
 			}
+
+			EntitySize = Scene::s_Entities.size();
 		}
 
 		struct Iterator
 		{
-			Iterator(EntityIndex index, ComponentMask components, bool all)
-				: index(index), components(components), all(all)
+			Iterator(EntityIndex index, size_t size, ComponentMask components, bool all)
+				: index(index), entitySize(size), components(components), all(all)
 			{}
 
 			Entity* operator*() const
 			{
-				return Scene::GetEntities()[index];
+				return Scene::s_Entities[index];
 			}
 
 			bool operator==(const Iterator& other) const
 			{
-				return index == other.index || index == Scene::GetEntities().size();
+				return index == other.index || index == entitySize;
 			}
 
 			bool operator!=(const Iterator& other) const
 			{
-				return index != other.index && index != Scene::GetEntities().size();
+				return index != other.index && index != entitySize;
 			}
 
 			Iterator& operator++()
@@ -48,16 +50,17 @@ namespace Merlin
 				do
 				{
 					index++;
-				} while (index < Scene::GetEntities().size() && !isValidIndex());
+				} while (index < entitySize && !isValidIndex());
 				return *this;
 			}
 
 			bool isValidIndex()
 			{
-				return Scene::IsEntityValid(Scene::GetEntities()[index]->GetID()) &&
-					(all || components == (components & Scene::GetEntities()[index]->GetMask()));
+				return Scene::IsEntityValid(Scene::s_Entities[index]->GetID()) &&
+					(all || components == (components & Scene::s_Entities[index]->GetMask()));
 			}
 
+			size_t entitySize;
 			EntityIndex index;
 			ComponentMask components;
 			bool all;
@@ -66,21 +69,22 @@ namespace Merlin
 		const Iterator begin() const
 		{
 			int firstIndex = 0;
-			while (firstIndex < Scene::GetEntities().size() &&
-				(Components != (Components & Scene::GetEntities()[firstIndex]->GetMask())
-					|| !Scene::IsEntityValid(Scene::GetEntities()[firstIndex]->GetID())))
+			while (firstIndex < EntitySize &&
+				(Components != (Components & Scene::s_Entities[firstIndex]->GetMask())
+					|| !Scene::IsEntityValid(Scene::s_Entities[firstIndex]->GetID())))
 			{
 				firstIndex++;
 			}
 
-			return Iterator(firstIndex, Components, All);
+			return Iterator(firstIndex, EntitySize, Components, All);
 		}
 
 		const Iterator end() const
 		{
-			return Iterator(EntityIndex(Scene::GetEntities().size()), Components, All);
+			return Iterator(EntityIndex(EntitySize), EntitySize, Components, All);
 		}
 
+		size_t EntitySize = 0;
 		EntityIndex Index = 0;
 		ComponentMask Components = 0;
 		bool All = false;

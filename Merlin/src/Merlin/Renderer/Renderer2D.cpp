@@ -15,7 +15,7 @@ namespace Merlin
 		Vector3 Position;
 		Vector4 Color;
 		Vector2 TexCoords;
-		float TexID;
+		float TexID = 0;
 	};
 
 	struct RenderData

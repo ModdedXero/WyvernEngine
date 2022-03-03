@@ -74,7 +74,6 @@ class ExampleLayer : public Layer
 
 	void OnUpdate(Timestep ts) override
 	{
-
 		cControl->MoveCamera();
 	}
 };
@@ -84,10 +83,10 @@ class SandboxApp : public Application
 public:
 	SandboxApp()
 	{
-		ResourceManager::LoadShader("C:\\Programming\\VisualStudio\\Projects\\Merlin\\Sandbox\\Assets\\Shader\\FlatShader.vert",
-			"C:\\Programming\\VisualStudio\\Projects\\Merlin\\Sandbox\\Assets\\Shader\\FlatShader.frag", nullptr, "FlatShader");
+		ResourceManager::LoadShader("E:\\Programming\\VisualStudio\\Projects\\Merlin\\Sandbox\\Assets\\Shader\\FlatShader.vert",
+			"E:\\Programming\\VisualStudio\\Projects\\Merlin\\Sandbox\\Assets\\Shader\\FlatShader.frag", nullptr, "FlatShader");
 
-		ResourceManager::LoadTexture("C:\\Programming\\VisualStudio\\Projects\\Merlin\\Sandbox\\Assets\\Texture\\Default.png", true, true, "Default");
+		ResourceManager::LoadTexture("E:\\Programming\\VisualStudio\\Projects\\Merlin\\Sandbox\\Assets\\Texture\\Default.png", true, true, "Default");
 
 		int samplers[32];
 		for (int i = 0; i < 32; i++)

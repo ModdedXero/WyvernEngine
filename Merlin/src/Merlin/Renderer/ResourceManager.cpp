@@ -13,6 +13,7 @@ namespace Merlin
 	{
 		Shaders[name] = loadShaderFromFile(vShaderFile, fShaderFile, gShaderFile);
 		Shaders[name].Use();
+		Shaders[name].SetMatrix4("model", glm::mat4(1.0f));
 		return Shaders[name];
 	}
 

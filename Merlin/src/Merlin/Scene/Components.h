@@ -24,9 +24,6 @@ namespace Merlin
 		{
 			if (shader < 0 || shader == UINT_MAX) return;
 
-			Shader::Use(shader);
-			Shader::SetMatrix4("model", shader, glm::mat4(1.0f));
-
 			if (texture < 0 || texture == UINT_MAX)
 			{
 				Renderer2D::DrawQuad(transform.position,

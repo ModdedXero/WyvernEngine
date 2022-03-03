@@ -11,6 +11,9 @@ namespace Merlin
 	class Scene
 	{
 		friend class Entity;
+
+		template <class... ComponentTypes>
+		friend class ComponentList;
 	public:
 		static inline Entity* CreateEntity()
 		{
@@ -59,7 +62,6 @@ namespace Merlin
 			if (s_ComponentPools.size() <= componentID)
 			{
 				s_ComponentPools.resize(componentID + 1, nullptr);
-				ML_LOG_INFO(s_ComponentPools.size());
 			}
 
 			if (s_ComponentPools[componentID] == nullptr)
