@@ -15,30 +15,6 @@ public:
 	{
 		camera.transform.z = -3.0f;
 	}
-
-	void MoveCamera()
-	{
-		if (Input::IsKey(KeyCode::A))
-		{
-			camera.transform.x += speed;
-		}
-		if (Input::IsKey(KeyCode::D))
-		{
-			camera.transform.x -= speed;
-		}
-
-		if (Input::IsKey(KeyCode::W))
-		{
-			camera.transform.y -= speed;
-		}
-		if (Input::IsKey(KeyCode::S))
-		{
-			camera.transform.y += speed;
-		}
-
-		Camera::Main().RecalculateMatrix();
-		Camera::Main().SetShaderMatrix();
-	}
 };
 
 class ExampleLayer : public Layer
@@ -48,6 +24,8 @@ class ExampleLayer : public Layer
 	Entity* player;
 	Entity* gameFloor;
 
+	Transform* playerTs;
+
 	void OnAttach() override
 	{
 		// Camera
@@ -55,7 +33,7 @@ class ExampleLayer : public Layer
 
 		// Player
 		player = Entity::CreateEntity();
-		Transform* playerTs = player->GetTransform();
+		playerTs = player->GetTransform();
 		playerTs->scale = { 0.25f, 0.25f, 1.0f };
 		playerTs->position = { -2.5f, 0, 0 };
 		Material2D* playerMat = player->AddComponent<Material2D>();
@@ -74,7 +52,7 @@ class ExampleLayer : public Layer
 
 	void OnUpdate(Timestep ts) override
 	{
-		cControl->MoveCamera();
+
 	}
 };
 
@@ -83,10 +61,10 @@ class SandboxApp : public Application
 public:
 	SandboxApp()
 	{
-		ResourceManager::LoadShader("E:\\Programming\\VisualStudio\\Projects\\Merlin\\Sandbox\\Assets\\Shader\\FlatShader.vert",
-			"E:\\Programming\\VisualStudio\\Projects\\Merlin\\Sandbox\\Assets\\Shader\\FlatShader.frag", nullptr, "FlatShader");
+		ResourceManager::LoadShader("C:\\Programming\\VisualStudio\\Projects\\Merlin\\Sandbox\\Assets\\Shader\\FlatShader.vert",
+			"C:\\Programming\\VisualStudio\\Projects\\Merlin\\Sandbox\\Assets\\Shader\\FlatShader.frag", nullptr, "FlatShader");
 
-		ResourceManager::LoadTexture("E:\\Programming\\VisualStudio\\Projects\\Merlin\\Sandbox\\Assets\\Texture\\Default.png", true, true, "Default");
+		ResourceManager::LoadTexture("C:\\Programming\\VisualStudio\\Projects\\Merlin\\Sandbox\\Assets\\Texture\\Default.png", true, true, "Default");
 
 		int samplers[32];
 		for (int i = 0; i < 32; i++)

@@ -5,11 +5,17 @@
 
 #include <Merlin/Core/Application.h>
 #include <Merlin/Core/Layer.h>
+#include <Merlin/Core/Timestep.h>
 
 #include <Merlin/Scene/Scene.h>
 #include <Merlin/Scene/Entity.h>
-#include <Merlin/Scene/Components.h>
+#include <Merlin/Scene/Wizard.h>
 #include <Merlin/Scene/ComponentList.h>
+
+// Components
+#include <Merlin/Scene/Transform.h>
+#include <Merlin/Renderer/Material2D.h>
+#include <Merlin/Core/Physics/RigidBody2D.h>
 
 #include <Merlin/Core/Math/Math.h>
 

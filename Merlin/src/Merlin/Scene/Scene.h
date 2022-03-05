@@ -1,10 +1,10 @@
 #pragma once
 
 #include <Merlin/Scene/ComponentPool.h>
-#include <Merlin/Scene/Components.h>
 #include <Merlin/Scene/Entity.h>
 
 #include <vector>
+#include <typeinfo>
 
 namespace Merlin
 {
@@ -13,44 +13,15 @@ namespace Merlin
 		friend class Entity;
 
 		template <class... ComponentTypes>
-		friend class ComponentList;
+		friend struct ComponentList;
 	public:
-		static inline Entity* CreateEntity()
-		{
-			if (s_Entities.size() >= MaxEntities)
-			{
-				ML_LOG_ERROR("Scene: MaxEntity count reached; ", MaxEntities);
-				throw std::invalid_argument("Scene: MaxEntity count reached");
-				return nullptr;
-			}
+		static Entity* CreateEntity();
+		static void DestroyEntity(EntityID id);
 
-			if (!s_FreeEntities.empty())
-			{
-				EntityIndex index = s_FreeEntities.back();
-				s_FreeEntities.pop_back();
-				EntityID id = CreateEntityID(index, GetEntityVersion(s_Entities[index]->m_ID));
-				s_Entities[index]->m_ID = id;
-				s_Entities[index]->m_Components.reset();
-				return s_Entities[index];
-			}
-
-			Entity* entity = new Entity(CreateEntityID(s_Entities.size(), 0), ComponentMask());
-			s_Entities.push_back(entity);
-			s_Entities.back()->m_Components.reset();
-			Transform* ts = AddComponent<Transform>(s_Entities.back()->m_ID);
-			s_Entities.back()->m_Transform = ts;
-			s_Entities.back()->InitDefaultComponents();
-			return s_Entities.back();
-		}
-
-		static inline void DestroyEntity(EntityID id)
-		{
-			EntityID newID = CreateEntityID(EntityIndex(-1), GetEntityVersion(id) + 1);
-			s_Entities[GetEntityIndex(id)]->m_ID = newID;
-			s_Entities[GetEntityIndex(id)]->m_Components.reset();
-			s_FreeEntities.push_back(GetEntityIndex(id));
-		}
-
+		static EntityIndex GetEntityIndex(EntityID id);
+		static EntityVersion GetEntityVersion(EntityID id);
+		static bool IsEntityValid(EntityID id);
+	public:
 		template <typename T>
 		static inline T* AddComponent(EntityID id)
 		{
@@ -101,11 +72,6 @@ namespace Merlin
 			s_Entities[GetEntityIndex(id)]->m_Components.reset(component);
 		}
 
-		static inline std::vector<Entity*> GetEntities()
-		{
-			return s_Entities;
-		}
-
 		template <typename T>
 		static int GetComponentID()
 		{
@@ -116,29 +82,13 @@ namespace Merlin
 			int index = s_ComponentCounter++;
 			return index;
 		}
-
-		static EntityIndex GetEntityIndex(EntityID id)
-		{
-			return id >> 32;
-		}
-		static EntityVersion GetEntityVersion(EntityID id)
-		{
-			return (EntityVersion)id;
-		}
-		static bool IsEntityValid(EntityID id)
-		{
-			return (id >> 32) != EntityIndex(-1);
-		}
 	private:
 		static inline std::vector<Entity*> s_Entities;
-		static inline std::vector<ComponentPool*> s_ComponentPools;
 		static inline std::vector<EntityIndex> s_FreeEntities;
+		static inline std::vector<ComponentPool*> s_ComponentPools;
 
 		static inline int s_ComponentCounter;
 
-		static EntityID CreateEntityID(EntityIndex index, EntityVersion version)
-		{
-			return ((EntityID)index << 32) | ((EntityID)version);
-		}
+		static EntityID CreateEntityID(EntityIndex index, EntityVersion version);
 	};
 }

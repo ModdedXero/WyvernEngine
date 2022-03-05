@@ -40,6 +40,7 @@ namespace Merlin
 
 	void Camera::SetShaderMatrix()
 	{
+		// TODO: Loop through all Shaders and update their Matrices
 		ResourceManager::GetShader("FlatShader").SetMatrix4("view", GetViewMatrix());
 		ResourceManager::GetShader("FlatShader").SetMatrix4("projection", GetProjectionMatrix());
 	}

@@ -2,11 +2,13 @@
 #include "Application.h"
 
 #include <Merlin/Scene/Entity.h>
-#include <Merlin/Scene/Components.h>
 #include <Merlin/Scene/ComponentList.h>
 
 #include <Merlin/Renderer/Renderer2D.h>
 #include <Merlin/Core/Timestep.h>
+
+#include <Merlin/Core/Physics/Physics2DWizard.h>
+#include <Merlin/Renderer/RenderWizard.h>
 
 #include <iostream>
 #include <chrono>
@@ -29,16 +31,24 @@ namespace Merlin
 		m_Window = Window::Create();
 		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
 
+		m_StartTime = Time::now();
+
+		// Initialize Engine and Wizards
 		Renderer2D::OnAwake();
 
-		m_StartTime = Time::now();
+		PushWizard(new RenderWizard());
+		PushWizard(new Physics2DWizard());
 
 		ML_LOG_INFO("Merlin Engine Started");
 	}
 
 	Application::~Application()
 	{
+		for (Layer* layer : m_LayerStack)
+			layer->OnDetach();
 
+		for (Wizard* wizard : m_WizardStack)
+			wizard->OnDetach();
 	}
 
 	void Application::Run()
@@ -47,9 +57,9 @@ namespace Merlin
 		{
 			m_Window->OnUpdate();
 
-			// All application logic
 			Renderer2D::BeginBatch();
 
+			// All application logic
 			// Get time since application start
 			auto cTime = Time::now();
 			fsec fs = cTime - m_StartTime;
@@ -63,10 +73,8 @@ namespace Merlin
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate(ts);
 
-			for (Entity* ent : ComponentList<Material2D>())
-			{
-				ent->GetComponent<Material2D>()->Render(*ent->GetTransform());
-			}
+			for (Wizard* wizard : m_WizardStack)
+				wizard->OnUpdate(ts);
 
 			Renderer2D::EndBatch();
 			Renderer2D::Flush();
@@ -94,6 +102,12 @@ namespace Merlin
 	{
 		m_LayerStack.PushOverlay(overlay);
 		overlay->OnAttach();
+	}
+
+	void Application::PushWizard(Wizard* wizard)
+	{
+		m_WizardStack.PushWizard(wizard);
+		wizard->OnAttach();
 	}
 
 	bool Application::OnWindowResize(WindowResizeEvent& e)

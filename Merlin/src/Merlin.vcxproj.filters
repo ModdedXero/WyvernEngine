@@ -94,9 +94,6 @@
     <ClInclude Include="Merlin\Scene\ComponentPool.h">
       <Filter>Merlin\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Merlin\Scene\Components.h">
-      <Filter>Merlin\Scene</Filter>
-    </ClInclude>
     <ClInclude Include="Merlin\Scene\Entity.h">
       <Filter>Merlin\Scene</Filter>
     </ClInclude>
@@ -107,6 +104,13 @@
       <Filter>Merlin\Window</Filter>
     </ClInclude>
     <ClInclude Include="mlpch.h" />
+    <ClInclude Include="Merlin\Core\Physics\Physics2DWizard.h" />
+    <ClInclude Include="Merlin\Core\Physics\RigidBody2D.h" />
+    <ClInclude Include="Merlin\Scene\Transform.h" />
+    <ClInclude Include="Merlin\Renderer\Material2D.h" />
+    <ClInclude Include="Merlin\Scene\Wizard.h" />
+    <ClInclude Include="Merlin\Renderer\RenderWizard.h" />
+    <ClInclude Include="Merlin\Scene\WizardStack.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\vendor\glad\glad.c">
@@ -149,5 +153,10 @@
       <Filter>Merlin\Window</Filter>
     </ClCompile>
     <ClCompile Include="mlpch.cpp" />
+    <ClCompile Include="Merlin\Scene\Scene.cpp" />
+    <ClCompile Include="Merlin\Core\Physics\Physics2DWizard.cpp" />
+    <ClCompile Include="Merlin\Renderer\RenderWizard.cpp" />
+    <ClCompile Include="Merlin\Scene\Wizard.cpp" />
+    <ClCompile Include="Merlin\Scene\WizardStack.cpp" />
   </ItemGroup>
 </Project>

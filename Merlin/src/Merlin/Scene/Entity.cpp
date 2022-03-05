@@ -2,7 +2,6 @@
 #include "Entity.h"
 
 #include <Merlin/Scene/Scene.h>
-#include <Merlin/Scene/Components.h>
 
 namespace Merlin
 {

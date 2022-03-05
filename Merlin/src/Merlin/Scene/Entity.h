@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Merlin/Scene/Components.h>
+#include <Merlin/Scene/Transform.h>
 
 #include <bitset>
 
