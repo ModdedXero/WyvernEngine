@@ -13,6 +13,9 @@
     <Filter Include="Merlin\Core\Math">
       <UniqueIdentifier>{DD0BE3F6-C904-0249-F236-E7CDDE8EE154}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Merlin\Core\Physics">
+      <UniqueIdentifier>{F67B29AE-62DD-06BC-EB4A-4D6E57AB3D7B}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Merlin\Renderer">
       <UniqueIdentifier>{D28911FB-3E15-7FBF-4726-02B4B330DBBF}</UniqueIdentifier>
     </Filter>
@@ -70,10 +73,22 @@
     <ClInclude Include="Merlin\Core\Math\Vector.h">
       <Filter>Merlin\Core\Math</Filter>
     </ClInclude>
+    <ClInclude Include="Merlin\Core\Physics\Physics2DWizard.h">
+      <Filter>Merlin\Core\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Merlin\Core\Physics\RigidBody2D.h">
+      <Filter>Merlin\Core\Physics</Filter>
+    </ClInclude>
     <ClInclude Include="Merlin\Core\Timestep.h">
       <Filter>Merlin\Core</Filter>
     </ClInclude>
     <ClInclude Include="Merlin\Renderer\Camera.h">
+      <Filter>Merlin\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Merlin\Renderer\Material2D.h">
+      <Filter>Merlin\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Merlin\Renderer\RenderWizard.h">
       <Filter>Merlin\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="Merlin\Renderer\Renderer2D.h">
@@ -88,7 +103,7 @@
     <ClInclude Include="Merlin\Renderer\Texture2D.h">
       <Filter>Merlin\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="Merlin\Scene\ComponentList.h">
+    <ClInclude Include="Merlin\Scene\EntityList.h">
       <Filter>Merlin\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Merlin\Scene\ComponentPool.h">
@@ -100,17 +115,21 @@
     <ClInclude Include="Merlin\Scene\Scene.h">
       <Filter>Merlin\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="Merlin\Scene\Transform.h">
+      <Filter>Merlin\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Merlin\Scene\Wizard.h">
+      <Filter>Merlin\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Merlin\Scene\WizardStack.h">
+      <Filter>Merlin\Scene</Filter>
+    </ClInclude>
     <ClInclude Include="Merlin\Window\Window.h">
       <Filter>Merlin\Window</Filter>
     </ClInclude>
     <ClInclude Include="mlpch.h" />
-    <ClInclude Include="Merlin\Core\Physics\Physics2DWizard.h" />
-    <ClInclude Include="Merlin\Core\Physics\RigidBody2D.h" />
-    <ClInclude Include="Merlin\Scene\Transform.h" />
-    <ClInclude Include="Merlin\Renderer\Material2D.h" />
-    <ClInclude Include="Merlin\Scene\Wizard.h" />
-    <ClInclude Include="Merlin\Renderer\RenderWizard.h" />
-    <ClInclude Include="Merlin\Scene\WizardStack.h" />
+    <ClInclude Include="Merlin\Core\Physics\Collider2D.h" />
+    <ClInclude Include="Merlin\Scene\Tag.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\vendor\glad\glad.c">
@@ -131,7 +150,13 @@
     <ClCompile Include="Merlin\Core\LayerStack.cpp">
       <Filter>Merlin\Core</Filter>
     </ClCompile>
+    <ClCompile Include="Merlin\Core\Physics\Physics2DWizard.cpp">
+      <Filter>Merlin\Core\Physics</Filter>
+    </ClCompile>
     <ClCompile Include="Merlin\Renderer\Camera.cpp">
+      <Filter>Merlin\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Merlin\Renderer\RenderWizard.cpp">
       <Filter>Merlin\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="Merlin\Renderer\Renderer2D.cpp">
@@ -149,14 +174,18 @@
     <ClCompile Include="Merlin\Scene\Entity.cpp">
       <Filter>Merlin\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="Merlin\Scene\Scene.cpp">
+      <Filter>Merlin\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Merlin\Scene\Wizard.cpp">
+      <Filter>Merlin\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Merlin\Scene\WizardStack.cpp">
+      <Filter>Merlin\Scene</Filter>
+    </ClCompile>
     <ClCompile Include="Merlin\Window\Window.cpp">
       <Filter>Merlin\Window</Filter>
     </ClCompile>
     <ClCompile Include="mlpch.cpp" />
-    <ClCompile Include="Merlin\Scene\Scene.cpp" />
-    <ClCompile Include="Merlin\Core\Physics\Physics2DWizard.cpp" />
-    <ClCompile Include="Merlin\Renderer\RenderWizard.cpp" />
-    <ClCompile Include="Merlin\Scene\Wizard.cpp" />
-    <ClCompile Include="Merlin\Scene\WizardStack.cpp" />
   </ItemGroup>
 </Project>

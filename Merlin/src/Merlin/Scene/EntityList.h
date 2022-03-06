@@ -6,9 +6,9 @@
 namespace Merlin
 {
 	template <typename... ComponentTypes>
-	struct ComponentList
+	struct EntityList
 	{
-		ComponentList()
+		EntityList()
 		{
 			if (sizeof...(ComponentTypes) == 0)
 			{

@@ -4,7 +4,7 @@ namespace Merlin
 {
 	Wizard::Wizard()
 	{
-
+		
 	}
 
 	Wizard::~Wizard()

@@ -2,21 +2,12 @@
 #include "Entity.h"
 
 #include <Merlin/Scene/Scene.h>
+#include <Merlin/Core/Physics/Collider2D.h>
 
 namespace Merlin
 {
-	//Transform* Entity::GetTransform()
-	//{
-	//	return Scene::GetComponent<Transform>(m_ID);
-	//}
-
 	Entity* Entity::CreateEntity()
 	{
-		return Scene::CreateEntity();
-	}
-
-	void Entity::InitDefaultComponents()
-	{
-
+		return Scene::CreateEntity<Entity>();
 	}
 }

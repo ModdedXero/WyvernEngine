@@ -2,7 +2,6 @@
 #include "Application.h"
 
 #include <Merlin/Scene/Entity.h>
-#include <Merlin/Scene/ComponentList.h>
 
 #include <Merlin/Renderer/Renderer2D.h>
 #include <Merlin/Core/Timestep.h>
@@ -67,7 +66,12 @@ namespace Merlin
 			// Get Delta time for Layers
 			fsec deltaTime = cTime - m_LastFrameTime;
 
-			Timestep ts = Timestep(fs.count(), deltaTime.count());
+			Timestep ts;
+			if (deltaTime.count() > 10.0f)
+				ts = Timestep(0, 0);
+			else
+				ts = Timestep(fs.count(), deltaTime.count());
+
 			m_LastFrameTime = cTime;
 
 			for (Layer* layer : m_LayerStack)

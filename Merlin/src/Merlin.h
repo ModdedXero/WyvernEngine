@@ -10,11 +10,12 @@
 #include <Merlin/Scene/Scene.h>
 #include <Merlin/Scene/Entity.h>
 #include <Merlin/Scene/Wizard.h>
-#include <Merlin/Scene/ComponentList.h>
+#include <Merlin/Scene/EntityList.h>
 
 // Components
 #include <Merlin/Scene/Transform.h>
 #include <Merlin/Renderer/Material2D.h>
+#include <Merlin/Core/Physics/Collider2D.h>
 #include <Merlin/Core/Physics/RigidBody2D.h>
 
 #include <Merlin/Core/Math/Math.h>

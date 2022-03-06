@@ -150,25 +150,27 @@
     <ClInclude Include="Merlin\Core\Log.h" />
     <ClInclude Include="Merlin\Core\Math\Math.h" />
     <ClInclude Include="Merlin\Core\Math\Vector.h" />
+    <ClInclude Include="Merlin\Core\Physics\Collider2D.h" />
+    <ClInclude Include="Merlin\Core\Physics\Physics2DWizard.h" />
     <ClInclude Include="Merlin\Core\Physics\RigidBody2D.h" />
     <ClInclude Include="Merlin\Core\Timestep.h" />
     <ClInclude Include="Merlin\Renderer\Camera.h" />
     <ClInclude Include="Merlin\Renderer\Material2D.h" />
+    <ClInclude Include="Merlin\Renderer\RenderWizard.h" />
     <ClInclude Include="Merlin\Renderer\Renderer2D.h" />
     <ClInclude Include="Merlin\Renderer\ResourceManager.h" />
     <ClInclude Include="Merlin\Renderer\Shader.h" />
     <ClInclude Include="Merlin\Renderer\Texture2D.h" />
-    <ClInclude Include="Merlin\Scene\ComponentList.h" />
+    <ClInclude Include="Merlin\Scene\EntityList.h" />
     <ClInclude Include="Merlin\Scene\ComponentPool.h" />
     <ClInclude Include="Merlin\Scene\Entity.h" />
     <ClInclude Include="Merlin\Scene\Scene.h" />
+    <ClInclude Include="Merlin\Scene\Tag.h" />
     <ClInclude Include="Merlin\Scene\Transform.h" />
     <ClInclude Include="Merlin\Scene\Wizard.h" />
+    <ClInclude Include="Merlin\Scene\WizardStack.h" />
     <ClInclude Include="Merlin\Window\Window.h" />
     <ClInclude Include="mlpch.h" />
-    <ClInclude Include="Merlin\Core\Physics\Physics2DWizard.h" />
-    <ClInclude Include="Merlin\Renderer\RenderWizard.h" />
-    <ClInclude Include="Merlin\Scene\WizardStack.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\vendor\glad\glad.c" />
@@ -177,7 +179,9 @@
     <ClCompile Include="Merlin\Core\Input.cpp" />
     <ClCompile Include="Merlin\Core\Layer.cpp" />
     <ClCompile Include="Merlin\Core\LayerStack.cpp" />
+    <ClCompile Include="Merlin\Core\Physics\Physics2DWizard.cpp" />
     <ClCompile Include="Merlin\Renderer\Camera.cpp" />
+    <ClCompile Include="Merlin\Renderer\RenderWizard.cpp" />
     <ClCompile Include="Merlin\Renderer\Renderer2D.cpp" />
     <ClCompile Include="Merlin\Renderer\ResourceManager.cpp" />
     <ClCompile Include="Merlin\Renderer\Shader.cpp" />
@@ -185,11 +189,9 @@
     <ClCompile Include="Merlin\Scene\Entity.cpp" />
     <ClCompile Include="Merlin\Scene\Scene.cpp" />
     <ClCompile Include="Merlin\Scene\Wizard.cpp" />
+    <ClCompile Include="Merlin\Scene\WizardStack.cpp" />
     <ClCompile Include="Merlin\Window\Window.cpp" />
     <ClCompile Include="mlpch.cpp" />
-    <ClCompile Include="Merlin\Core\Physics\Physics2DWizard.cpp" />
-    <ClCompile Include="Merlin\Renderer\RenderWizard.cpp" />
-    <ClCompile Include="Merlin\Scene\WizardStack.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\vendor\GLFW\GLFW.vcxproj">

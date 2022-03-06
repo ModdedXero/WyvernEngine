@@ -8,7 +8,7 @@ namespace Merlin
 {
 	void RenderWizard::OnUpdate(Timestep ts) const
 	{
-		for (Entity* ent : ComponentList<Material2D>())
+		for (Entity* ent : EntityList<Material2D>())
 		{
 			Material2D* mat = ent->GetComponent<Material2D>();
 

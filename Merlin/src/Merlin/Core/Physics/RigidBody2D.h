@@ -7,6 +7,8 @@ namespace Merlin
 	struct RigidBody2D
 	{
 		Vector3 velocity;
-		float mass;
+		Vector3 force;
+
+		float mass = 0.04f;
 	};
 }

@@ -2,7 +2,7 @@
 
 #include <Merlin/Core/Timestep.h>
 #include <Merlin/Scene/Entity.h>
-#include <Merlin/Scene/ComponentList.h>
+#include <Merlin/Scene/EntityList.h>
 
 namespace Merlin
 {

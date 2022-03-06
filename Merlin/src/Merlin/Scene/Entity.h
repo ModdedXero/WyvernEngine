@@ -1,6 +1,8 @@
 #pragma once
 
+#include <Merlin/Scene/Tag.h>
 #include <Merlin/Scene/Transform.h>
+#include <Merlin/Core/Physics/Collider2D.h>
 
 #include <bitset>
 
@@ -17,18 +19,19 @@ namespace Merlin
 
 	class Entity
 	{
-
 		friend class Scene;
-	private:
+	protected:
 		Entity(EntityID id, ComponentMask components)
-			: m_ID(id), m_Components(components), m_Transform(nullptr)
+			: m_ID(id), m_Components(components), m_Transform(nullptr), m_Tag(nullptr)
 		{
 		}
 
 	public:
 		EntityID GetID() { return m_ID; }
 		ComponentMask GetMask() { return m_Components; }
+
 		Transform* GetTransform() { return m_Transform; }
+		Tag* GetTag() { return m_Tag; }
 
 		template <typename T>
 		inline T* AddComponent() { return Scene::AddComponent<T>(m_ID); }
@@ -37,12 +40,16 @@ namespace Merlin
 		template <typename T>
 		inline void RemoveComponent() { Scene::RemoveComponent<T>(m_ID); }
 
+		virtual void OnCollision2D(const Collision2D& other) {}
+
 		static Entity* CreateEntity();
-	private:
+	protected:
 		EntityID m_ID;
 		ComponentMask m_Components;
-		Transform* m_Transform;
 
-		virtual void InitDefaultComponents();
+		Transform* m_Transform;
+		Tag* m_Tag;
+
+		virtual void InitDefaultComponents() {}
 	};
 }

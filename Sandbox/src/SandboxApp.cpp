@@ -13,7 +13,41 @@ public:
 
 	CameraController()
 	{
-		camera.transform.z = -3.0f;
+		camera.transform.z = -8.0f;
+	}
+};
+
+class PlayerEntity : public Entity
+{
+public:
+	PlayerEntity(EntityID id, ComponentMask mask)
+		: Entity(id, mask), transform(nullptr), rb(nullptr), collider(nullptr), mat(nullptr)
+	{
+
+	}
+
+	Transform* transform;
+	RigidBody2D* rb;
+	BoxCollider2D* collider;
+	Material2D* mat;
+
+	void InitDefaultComponents() override
+	{
+		transform = GetTransform();
+		transform->scale = { 0.25f, 0.25f, 1.0f };
+		transform->position = { -4.0f, 0, 0 };
+		rb = AddComponent<RigidBody2D>();
+		collider = AddComponent<BoxCollider2D>();
+		collider->size = transform->scale;
+		mat = AddComponent<Material2D>();
+		mat->shader = ResourceManager::GetShader("FlatShader").ID;
+		mat->color = { 0.3f, 0.6f, 0.9f, 1.0f };
+	}
+
+	void OnCollision2D(const Collision2D& collision) override
+	{
+		rb->velocity = Vector3();
+		transform->position = collision.aTransform->position;
 	}
 };
 
@@ -21,7 +55,7 @@ class ExampleLayer : public Layer
 {
 	CameraController* cControl;
 
-	Entity* player;
+	PlayerEntity* player;
 	Entity* gameFloor;
 
 	Transform* playerTs;
@@ -32,19 +66,15 @@ class ExampleLayer : public Layer
 		cControl = new CameraController();
 
 		// Player
-		player = Entity::CreateEntity();
-		playerTs = player->GetTransform();
-		playerTs->scale = { 0.25f, 0.25f, 1.0f };
-		playerTs->position = { -2.5f, 0, 0 };
-		Material2D* playerMat = player->AddComponent<Material2D>();
-		playerMat->shader = ResourceManager::GetShader("FlatShader").ID;
-		playerMat->color = { 0.3f, 0.6f, 0.9f, 1.0f };
+		player = Scene::CreateEntity<PlayerEntity>();
 
 		// Floor
 		gameFloor = Entity::CreateEntity();
 		Transform* floorTs = gameFloor->GetTransform();
-		floorTs->scale = { 4.0f, 0.25f, 1.0f };
-		floorTs->position = { 0, -1.5f, 0 };
+		floorTs->scale = { 6.0f, 0.5f, 1.0f };
+		floorTs->position = { 0, -3.0f, 0 };
+		BoxCollider2D* box2 = gameFloor->AddComponent<BoxCollider2D>();
+		box2->size = floorTs->scale;
 		Material2D* floorMat = gameFloor->AddComponent<Material2D>();
 		floorMat->shader = ResourceManager::GetShader("FlatShader").ID;
 		floorMat->color = { 0.7f, 0.3f, 0.4f, 1.0f };
