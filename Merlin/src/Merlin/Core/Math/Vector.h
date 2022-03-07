@@ -26,6 +26,77 @@ namespace Merlin
 
 		float x = 0.0f;
 		float y = 0.0f;
+
+		Vector2 Normalize()
+		{
+			return *this / Length();
+		}
+
+		float Length()
+		{
+			return sqrt(Dot(*this, *this));
+		}
+
+		static float Dot(const Vector2& vec1, const Vector2& vec2)
+		{
+			return vec1.x * vec2.x + vec1.y * vec2.y;
+		}
+
+		Vector2& operator +=(const Vector2& other)
+		{
+			x = x + other.x;
+			y = y + other.y;
+			return *this;
+		}
+
+		Vector2& operator -=(const Vector2& other)
+		{
+			x = x - other.x;
+			y = y - other.y;
+			return *this;
+		}
+
+		Vector2& operator *=(const Vector2& other)
+		{
+			x = x * other.x;
+			y = y * other.y;
+			return *this;
+		}
+
+		Vector2 operator -() const
+		{
+			return *this * -1;
+		}
+
+		Vector2 operator -(const Vector2& other) const
+		{
+			return Vector2(x - other.x, y - other.y);
+		}
+
+		Vector2 operator *(const Vector2& other) const
+		{
+			return Vector2(x * other.x, y * other.y);
+		}
+
+		Vector2 operator *(const float& other) const
+		{
+			return Vector2(x * other, y * other);
+		}
+
+		Vector2 operator /(const float& other) const
+		{
+			return Vector2(x / other, y / other);
+		}
+
+		bool operator >(const Vector2& other) const
+		{
+			return Dot(*this, *this) > Dot(other, other);
+		}
+
+		bool operator <(const Vector2& other) const
+		{
+			return Dot(*this, *this) < Dot(other, other);
+		}
 	};
 
 	struct Vector3
@@ -59,6 +130,19 @@ namespace Merlin
 			return *this;
 		}
 
+		Vector3& operator -=(const Vector3& other)
+		{
+			x = x - other.x;
+			y = y - other.y;
+			z = z - other.z;
+			return *this;
+		}
+
+		Vector3 operator -(const Vector3& other) const
+		{
+			return Vector3(x - other.x, y - other.y, z - other.z);
+		}
+
 		Vector3 operator *(const Vector3& other) const
 		{
 			return Vector3(x * other.x, y * other.y, z * other.z);
@@ -78,13 +162,31 @@ namespace Merlin
 		{
 			return Vector2(x, y);
 		}
-	};
 
-	inline std::ostream& operator <<(std::ostream& os, const Vector3& vec)
-	{
-		os << "(" << vec.x << ", " << vec.y << ", " << vec.z << ")";
-		return os;
-	}
+		Vector3& operator +=(const Vector2& other)
+		{
+			x = x + other.x;
+			y = y + other.y;
+			return *this;
+		}
+
+		Vector3& operator -=(const Vector2& other)
+		{
+			x = x - other.x;
+			y = y - other.y;
+			return *this;
+		}
+
+		Vector3 operator +(const Vector2& other) const
+		{
+			return Vector3(x + other.x, y + other.y, z);
+		}
+
+		Vector3 operator *(const Vector2& other) const
+		{
+			return Vector3(x * other.x, y * other.y, z);
+		}
+	};
 
 	struct Vector4
 	{
@@ -109,4 +211,16 @@ namespace Merlin
 		float z = 0.0f;
 		float w = 0.0f;
 	};
+
+	inline std::ostream& operator <<(std::ostream& os, const Vector2& vec)
+	{
+		os << "(" << vec.x << ", " << vec.y << ")";
+		return os;
+	}
+
+	inline std::ostream& operator <<(std::ostream& os, const Vector3& vec)
+	{
+		os << "(" << vec.x << ", " << vec.y << ", " << vec.z << ")";
+		return os;
+	}
 }

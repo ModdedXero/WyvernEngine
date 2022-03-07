@@ -130,6 +130,11 @@
     <ClInclude Include="mlpch.h" />
     <ClInclude Include="Merlin\Core\Physics\Collider2D.h" />
     <ClInclude Include="Merlin\Scene\Tag.h" />
+    <ClInclude Include="Merlin\Core\Physics\Physics2DSolver.h" />
+    <ClInclude Include="Merlin\Core\Physics\Impulse2D.h" />
+    <ClInclude Include="Merlin\Core\Physics\SmoothPosition2D.h" />
+    <ClInclude Include="Merlin\Core\Constants.h" />
+    <ClInclude Include="Merlin\Core\Math\Functions.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\vendor\glad\glad.c">
@@ -187,5 +192,7 @@
       <Filter>Merlin\Window</Filter>
     </ClCompile>
     <ClCompile Include="mlpch.cpp" />
+    <ClCompile Include="Merlin\Core\Physics\Impulse2D.cpp" />
+    <ClCompile Include="Merlin\Core\Physics\SmoothPosition2D.cpp" />
   </ItemGroup>
 </Project>

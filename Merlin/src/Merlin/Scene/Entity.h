@@ -40,7 +40,7 @@ namespace Merlin
 		template <typename T>
 		inline void RemoveComponent() { Scene::RemoveComponent<T>(m_ID); }
 
-		virtual void OnCollision2D(const Collision2D& other) {}
+		virtual void OnCollision2D(const Collision2D& collision) {}
 
 		static Entity* CreateEntity();
 	protected:

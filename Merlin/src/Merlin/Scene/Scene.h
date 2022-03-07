@@ -24,6 +24,12 @@ namespace Merlin
 				throw std::invalid_argument("Scene: MaxEntity count reached");
 				return nullptr;
 			}
+			if (!std::is_base_of<Entity, T>())
+			{
+				ML_LOG_ERROR("Scene: Entity or Inherited class required: ", typeid(T).name(), " was provided");
+				throw std::invalid_argument("Scene: Type provided was not Entity");
+				return nullptr;
+			}
 
 			if (!s_FreeEntities.empty())
 			{

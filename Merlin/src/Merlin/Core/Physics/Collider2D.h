@@ -20,10 +20,9 @@ namespace Merlin
 
 	struct Collision2D
 	{
-		Transform* aTransform;
-		Transform* bTransform;
-		Tag* aTag;
-		Tag* bTag;
+		unsigned long long entityA;
+		unsigned long long entityB;
 		Vector2 normal;
+		float penetration;
 	};
 }
