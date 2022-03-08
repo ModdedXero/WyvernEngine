@@ -14,7 +14,6 @@ namespace Merlin
 
 			Vector2 rv = rbB->velocity - rbA->velocity;
 
-			ML_LOG_INFO(collision->normal);
 			float velN = Vector2::Dot(rv, collision->normal);
 
 			if (velN > 0)
