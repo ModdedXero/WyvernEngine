@@ -14,6 +14,10 @@ namespace Merlin::Renderer
 		Shaders[name] = loadShaderFromFile(vShaderFile, fShaderFile, gShaderFile);
 		Shaders[name].Use();
 		Shaders[name].SetMatrix4("model", glm::mat4(1.0f));
+		int samplers[32];
+		for (int i = 0; i < 32; i++)
+			samplers[i] = i;
+		Shaders[name].SetIntArray("uTextures", 32, samplers);
 		return Shaders[name];
 	}
 

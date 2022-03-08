@@ -174,6 +174,7 @@ class ExampleLayer : public Layer
 		floorMat->shader = ResourceManager::GetShader("FlatShader").ID;
 		floorMat->color = { 0.7f, 0.3f, 0.4f, 1.0f };
 
+		// Boxes
 		obs1 = Scene::CreateEntity<ObstacleEntity>();
 		obs1->transform->position = { 0.0f, 0.0f, 0 };
 		obs1->rb->bounce = 0.4f;
@@ -211,11 +212,6 @@ public:
 			"..\\Sandbox\\Assets\\Shader\\FlatShader.frag", nullptr, "FlatShader");
 
 		ResourceManager::LoadTexture("..\\Sandbox\\Assets\\Texture\\Default.png", true, true, "Default");
-
-		int samplers[32];
-		for (int i = 0; i < 32; i++)
-			samplers[i] = i;
-		ResourceManager::GetShader("FlatShader").SetIntArray("uTextures", 32, samplers);
 
 		PushLayer(new ExampleLayer());
 	}

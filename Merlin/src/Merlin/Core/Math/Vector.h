@@ -27,6 +27,8 @@ namespace Merlin
 		float x = 0.0f;
 		float y = 0.0f;
 
+		// Local Functions
+
 		Vector2 Normalize()
 		{
 			return *this / Length();
@@ -37,10 +39,14 @@ namespace Merlin
 			return sqrt(Dot(*this, *this));
 		}
 
+		// Static Functions
+
 		static float Dot(const Vector2& vec1, const Vector2& vec2)
 		{
 			return vec1.x * vec2.x + vec1.y * vec2.y;
 		}
+
+		// Vector2 Operators
 
 		Vector2& operator +=(const Vector2& other)
 		{
@@ -63,7 +69,6 @@ namespace Merlin
 			return *this;
 		}
 
-
 		Vector2 operator -() const
 		{
 			return *this * -1;
@@ -84,6 +89,23 @@ namespace Merlin
 			return Vector2(x * other.x, y * other.y);
 		}
 
+		bool operator ==(const Vector2& other) const
+		{
+			return (x == other.x) && (y == other.y);
+		}
+
+		bool operator >(const Vector2& other) const
+		{
+			return sqrt(Dot(*this, *this)) < sqrt(Dot(other, other));
+		}
+
+		bool operator <(const Vector2& other) const
+		{
+			return sqrt(Dot(*this, *this)) < sqrt(Dot(other, other));
+		}
+
+		// Float Operators
+
 		Vector2 operator +(const float& other) const
 		{
 			return Vector2(x + other, y + other);
@@ -97,21 +119,6 @@ namespace Merlin
 		Vector2 operator /(const float& other) const
 		{
 			return Vector2(x / other, y / other);
-		}
-
-		bool operator ==(const Vector2& other) const
-		{
-			return (x == other.x) && (y == other.y);
-		}
-
-		bool operator >(const Vector2& other) const
-		{
-			return Dot(*this, *this) > Dot(other, other);
-		}
-
-		bool operator <(const Vector2& other) const
-		{
-			return Dot(*this, *this) < Dot(other, other);
 		}
 	};
 
