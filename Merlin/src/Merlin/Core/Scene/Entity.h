@@ -48,6 +48,6 @@ namespace Merlin
 		Transform* m_Transform;
 		Tag* m_Tag;
 
-		virtual void InitDefaultComponents() {}
+		virtual void OnAttach() {}
 	};
 }

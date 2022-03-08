@@ -131,7 +131,7 @@
     <ClInclude Include="Merlin\Core\Physics\CollisionSolver2D.h" />
     <ClInclude Include="Merlin\Core\Physics\Impulse2D.h" />
     <ClInclude Include="Merlin\Core\Physics\PhysicsSolver2D.h" />
-    <ClInclude Include="Merlin\Core\Physics\PushSolver2D.h" />
+    <ClInclude Include="Merlin\Core\Physics\VelocitySolver2D.h" />
     <ClInclude Include="Merlin\Core\Scene\EntityConstants.h" />
     <ClInclude Include="Merlin\Core\Physics\SmoothPosition2D.h" />
   </ItemGroup>
@@ -190,7 +190,7 @@
     <ClCompile Include="mlpch.cpp" />
     <ClCompile Include="Merlin\Core\Physics\Physics2DWizard.cpp" />
     <ClCompile Include="Merlin\Core\Physics\Impulse2D.cpp" />
-    <ClCompile Include="Merlin\Core\Physics\PushSolver2D.cpp" />
+    <ClCompile Include="Merlin\Core\Physics\VelocitySolver2D.cpp" />
     <ClCompile Include="Merlin\Core\Physics\SmoothPosition2D.cpp" />
   </ItemGroup>
 </Project>

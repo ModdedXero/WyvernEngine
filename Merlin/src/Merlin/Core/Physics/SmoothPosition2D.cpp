@@ -21,8 +21,8 @@ namespace Merlin
 				collision->normal * fmax(collision->penetration - slop, 0.0f) /
 				(aMass + bMass) * percent;
 
-			if (!rbA->isStatic) collision->entityA->GetTransform()->position -= correction * aMass;
-			if (!rbB->isStatic) collision->entityB->GetTransform()->position += correction * bMass;
+			if (rbA->bodyType != RigidBody2D::PhysicsBody::Static) collision->entityA->GetTransform()->position -= correction * aMass;
+			if (rbB->bodyType != RigidBody2D::PhysicsBody::Static) collision->entityB->GetTransform()->position += correction * bMass;
 		}
 	}
 }

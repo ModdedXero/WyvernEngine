@@ -177,7 +177,7 @@
     <ClInclude Include="Merlin\Window\Window.h" />
     <ClInclude Include="mlpch.h" />
     <ClInclude Include="Merlin\Core\Physics\Physics2DWizard.h" />
-    <ClInclude Include="Merlin\Core\Physics\PushSolver2D.h" />
+    <ClInclude Include="Merlin\Core\Physics\VelocitySolver2D.h" />
     <ClInclude Include="Merlin\Core\Physics\SmoothPosition2D.h" />
   </ItemGroup>
   <ItemGroup>
@@ -201,7 +201,7 @@
     <ClCompile Include="Merlin\Window\Window.cpp" />
     <ClCompile Include="mlpch.cpp" />
     <ClCompile Include="Merlin\Core\Physics\Physics2DWizard.cpp" />
-    <ClCompile Include="Merlin\Core\Physics\PushSolver2D.cpp" />
+    <ClCompile Include="Merlin\Core\Physics\VelocitySolver2D.cpp" />
     <ClCompile Include="Merlin\Core\Physics\SmoothPosition2D.cpp" />
   </ItemGroup>
   <ItemGroup>

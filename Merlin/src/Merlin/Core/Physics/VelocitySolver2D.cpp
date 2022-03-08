@@ -1,10 +1,10 @@
-#include "PushSolver2D.h"
+#include "VelocitySolver2D.h"
 
 namespace Merlin
 {
-	void PushSolver2D::Solve(RigidBody2D* rb, Timestep& ts, Transform* transform)
+	void VelocitySolver2D::Solve(RigidBody2D* rb, Timestep& ts, Transform* transform)
 	{
-		if (rb->isStatic) return;
+		if (rb->bodyType == RigidBody2D::PhysicsBody::Static) return;
 
 		rb->velocity += (rb->force / rb->mass) * ts.GetDeltaTime() + -rb->velocity * ((1 / rb->mass) * rb->friction);
 

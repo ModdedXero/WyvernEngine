@@ -45,7 +45,7 @@ namespace Merlin
 				Tag* tag = AddComponent<Tag>(s_Entities[index]->m_ID);
 				s_Entities[index]->m_Transform = ts;
 				s_Entities[index]->m_Tag = tag;
-				s_Entities[index]->InitDefaultComponents();
+				s_Entities[index]->OnAttach();
 				return (T*)s_Entities[index];
 			}
 
@@ -56,7 +56,7 @@ namespace Merlin
 			Tag* tag = AddComponent<Tag>(s_Entities.back()->m_ID);
 			s_Entities.back()->m_Transform = ts;
 			s_Entities.back()->m_Tag = tag;
-			s_Entities.back()->InitDefaultComponents();
+			s_Entities.back()->OnAttach();
 			return (T*)s_Entities.back();
 		}
 		static void DestroyEntity(EntityID id);

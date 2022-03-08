@@ -3,7 +3,7 @@
 #include "Physics2DWizard.h"
 
 #include "Impulse2D.h"
-#include "PushSolver2D.h"
+#include "VelocitySolver2D.h"
 #include "SmoothPosition2D.h"
 
 #include <Merlin/Core/Constants.h>
@@ -13,8 +13,11 @@ namespace Merlin
 {
 	Physics2DWizard::Physics2DWizard()
 	{
+		// Physics Solvers
+		AddSolver(new VelocitySolver2D());
+
+		// Collision Solvers
 		AddSolver(new Impulse2D());
-		AddSolver(new PushSolver2D());
 		AddSolver(new SmoothPosition2D());
 	}
 
@@ -86,8 +89,12 @@ namespace Merlin
 
 					ent1->OnCollision2D(*collision);
 
-					if (Scene::IsEntityValid(ent1->GetID()) && Scene::IsEntityValid(ent2->GetID()))
+					if (Scene::IsEntityValid(ent1->GetID()) && Scene::IsEntityValid(ent2->GetID()) &&
+						ent1->GetComponent<RigidBody2D>()->bodyType != RigidBody2D::PhysicsBody::Kinematic &&
+						ent2->GetComponent<RigidBody2D>()->bodyType != RigidBody2D::PhysicsBody::Kinematic)
+					{
 						collisions.push_back(collision);
+					}
 				}
 			}
 
