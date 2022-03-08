@@ -16,11 +16,8 @@ namespace Merlin
 	class Physics2DWizard : public Wizard
 	{
 	public:
-		Physics2DWizard()
-		{
-			AddSolver(new Impulse2D());
-			AddSolver(new PushSolver2D());
-		}
+		Physics2DWizard();
+		~Physics2DWizard();
 
 		void OnUpdate(Timestep ts) const override;
 

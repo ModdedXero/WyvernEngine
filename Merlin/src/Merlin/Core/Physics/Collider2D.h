@@ -21,6 +21,14 @@ namespace Merlin
 
 	struct Collision2D
 	{
+		Collision2D(Entity* a, Entity* b, Vector2 normal, float penetration)
+		{
+			this->entityA = a;
+			this->entityB = b;
+			this->normal = normal;
+			this->penetration = penetration;
+		}
+
 		Entity* entityA;
 		Entity* entityB;
 		Vector2 normal;

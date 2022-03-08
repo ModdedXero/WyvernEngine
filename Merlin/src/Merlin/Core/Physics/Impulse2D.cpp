@@ -5,16 +5,17 @@
 
 namespace Merlin
 {
-	void Impulse2D::Solve(const std::vector<Collision2D> collisions)
+	void Impulse2D::Solve(const std::vector<Collision2D*> collisions)
 	{
-		for (Collision2D collision : collisions)
+		for (Collision2D* collision : collisions)
 		{
-			RigidBody2D* rbA = collision.entityA->GetComponent<RigidBody2D>();
-			RigidBody2D* rbB = collision.entityB->GetComponent<RigidBody2D>();
+			RigidBody2D* rbA = collision->entityA->GetComponent<RigidBody2D>();
+			RigidBody2D* rbB = collision->entityB->GetComponent<RigidBody2D>();
 
 			Vector2 rv = rbB->velocity - rbA->velocity;
 
-			float velN = Vector2::Dot(rv, collision.normal);
+			ML_LOG_INFO(collision->normal);
+			float velN = Vector2::Dot(rv, collision->normal);
 
 			if (velN > 0)
 				return;
@@ -24,7 +25,7 @@ namespace Merlin
 			float j = -(1 + e) * velN;
 			j /= 1 / rbA->mass + 1 / rbB->mass;
 
-			Vector2 impulse = collision.normal * j;
+			Vector2 impulse = collision->normal * j;
 			rbA->velocity -= impulse * (1 / rbA->mass);
 			rbB->velocity += impulse * (1 / rbB->mass);
 		}

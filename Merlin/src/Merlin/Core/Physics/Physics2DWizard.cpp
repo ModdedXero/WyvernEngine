@@ -7,6 +7,21 @@
 
 namespace Merlin
 {
+	Physics2DWizard::Physics2DWizard()
+	{
+		AddSolver(new Impulse2D());
+		AddSolver(new PushSolver2D());
+	}
+
+	Physics2DWizard::~Physics2DWizard()
+	{
+		for (PhysicsSolver2D* solver : m_PhysicsSolvers)
+			delete solver;
+
+		for (CollisionSolver2D* solver : m_CollisionSolvers)
+			delete solver;
+	}
+
 	void Physics2DWizard::OnUpdate(Timestep ts) const
 	{
 		for (Entity* ent : EntityList<RigidBody2D>())
@@ -18,7 +33,7 @@ namespace Merlin
 		for (Entity* ent1 : EntityList<BoxCollider2D>())
 		{
 			BoxCollider2D* col1 = ent1->GetComponent<BoxCollider2D>();
-			std::vector<Collision2D> collisions;
+			std::vector<Collision2D*> collisions;
 
 			for (Entity* ent2 : EntityList<BoxCollider2D>())
 			{
@@ -30,9 +45,9 @@ namespace Merlin
 				{
 					Vector2 normal = ent2->GetTransform()->position - ent1->GetTransform()->position;
 
-					Collision2D collision = { ent1, ent2, normal.Normalize(), 0.0f};
+					Collision2D* collision = new Collision2D(ent1, ent2, normal.Normalize(), 0.0f);
 
-					ent1->OnCollision2D(collision);
+					ent1->OnCollision2D(*collision);
 
 					if (Scene::IsEntityValid(ent1->GetID()) && Scene::IsEntityValid(ent2->GetID()))
 						collisions.push_back(collision);

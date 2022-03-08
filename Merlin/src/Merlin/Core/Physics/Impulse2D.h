@@ -8,6 +8,6 @@ namespace Merlin
 {
 	class Impulse2D : public CollisionSolver2D
 	{
-		void Solve(const std::vector<Collision2D> collisions) override;
+		void Solve(const std::vector<Collision2D*> collisions) override;
 	};
 }

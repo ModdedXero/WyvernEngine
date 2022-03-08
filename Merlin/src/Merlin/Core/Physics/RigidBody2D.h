@@ -11,7 +11,7 @@ namespace Merlin
 
 		float mass = 1.0f;
 		float friction = 0.05f;
-		float bounce = 0.4f;
+		float bounce = 0.8f;
 
 		bool isStatic = false;
 	};

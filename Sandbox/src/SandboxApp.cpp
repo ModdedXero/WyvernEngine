@@ -157,10 +157,10 @@ class SandboxApp : public Application
 public:
 	SandboxApp()
 	{
-		ResourceManager::LoadShader("E:\\Programming\\VisualStudio\\Projects\\Merlin\\Sandbox\\Assets\\Shader\\FlatShader.vert",
-			"E:\\Programming\\VisualStudio\\Projects\\Merlin\\Sandbox\\Assets\\Shader\\FlatShader.frag", nullptr, "FlatShader");
+		ResourceManager::LoadShader("..\\Sandbox\\Assets\\Shader\\FlatShader.vert",
+			"..\\Sandbox\\Assets\\Shader\\FlatShader.frag", nullptr, "FlatShader");
 
-		ResourceManager::LoadTexture("E:\\Programming\\VisualStudio\\Projects\\Merlin\\Sandbox\\Assets\\Texture\\Default.png", true, true, "Default");
+		ResourceManager::LoadTexture("..\\Sandbox\\Assets\\Texture\\Default.png", true, true, "Default");
 
 		int samplers[32];
 		for (int i = 0; i < 32; i++)
