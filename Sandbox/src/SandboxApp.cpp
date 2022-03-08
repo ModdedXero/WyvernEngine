@@ -4,6 +4,7 @@
 
 using namespace Merlin;
 using namespace Merlin::Events;
+using namespace Merlin::Renderer;
 
 class CameraController
 {

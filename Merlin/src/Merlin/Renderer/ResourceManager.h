@@ -2,10 +2,10 @@
 
 #include <glad.h>
 
-#include "Merlin/Renderer/Shader.h"
-#include "Merlin/Renderer/Texture2D.h"
+#include "Shader.h"
+#include "Texture2D.h"
 
-namespace Merlin
+namespace Merlin::Renderer
 {
 	class ResourceManager
 	{

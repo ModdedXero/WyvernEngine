@@ -1,13 +1,13 @@
 #pragma once
 
-#include <Merlin/Core/Events/Event.h>
+#include <Merlin/Events/Event.h>
 
 #include <glad.h>
 #include <GLFW/glfw3.h>
 
 #include <string>
 
-namespace Merlin
+namespace Merlin::Window
 {
 	struct WindowProps
 	{

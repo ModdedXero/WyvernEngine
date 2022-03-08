@@ -1,8 +1,7 @@
 #include "mlpch.h"
 #include "Impulse2D.h"
 
-#include <Merlin/Scene/Scene.h>
-#include <Merlin/Core/Physics/RigidBody2D.h>
+#include "RigidBody2D.h"
 
 namespace Merlin
 {

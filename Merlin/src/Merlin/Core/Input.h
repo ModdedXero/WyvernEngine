@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Merlin/Core/Application.h"
-#include "Merlin/Core/KeyCodes.h"
+#include "Application.h"
+#include "KeyCodes.h"
 
 namespace Merlin
 {

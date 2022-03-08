@@ -4,7 +4,7 @@
 
 #include <glm/glm.hpp>
 
-namespace Merlin
+namespace Merlin::Renderer
 {
 	class Camera
 	{

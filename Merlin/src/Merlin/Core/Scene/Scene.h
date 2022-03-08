@@ -1,17 +1,20 @@
 #pragma once
 
-#include <Merlin/Scene/ComponentPool.h>
-#include <Merlin/Scene/Entity.h>
+#include "Entity.h"
+#include "EntityConstants.h"
+#include "ComponentPool.h"
+#include "Transform.h"
+#include "Tag.h"
 
 #include <vector>
 #include <typeinfo>
 
 namespace Merlin
 {
+	class Entity;
+
 	class Scene
 	{
-		friend class Entity;
-
 		template <class... ComponentTypes>
 		friend struct EntityList;
 	public:

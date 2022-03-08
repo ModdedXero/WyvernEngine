@@ -1,8 +1,8 @@
 #pragma once
 
-#include <Merlin/Scene/Wizard.h>
+#include <Merlin/Core/Scene/Wizard.h>
 
-namespace Merlin
+namespace Merlin::Renderer
 {
 	class RenderWizard : public Wizard
 	{

@@ -1,9 +1,6 @@
 #include "mlpch.h"
 #include "Scene.h"
 
-#include <Merlin/Scene/Transform.h>
-#include <Merlin/Scene/Tag.h>
-
 namespace Merlin
 {
 	std::vector<Entity*> s_Entities;

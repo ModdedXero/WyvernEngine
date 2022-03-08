@@ -1,14 +1,15 @@
 
 #pragma once
 
-#include <Merlin/Scene/Wizard.h>
-#include <Merlin/Core/Physics/RigidBody2D.h>
-#include <Merlin/Core/Physics/Collider2D.h>
-#include <Merlin/Core/Physics/CollisionSolver2D.h>
-#include <Merlin/Core/Physics/PhysicsSolver2D.h>
+#include "RigidBody2D.h"
+#include "Collider2D.h"
+#include "CollisionSolver2D.h"
+#include "PhysicsSolver2D.h"
 
-#include <Merlin/Core/Physics/PushSolver2D.h>
-#include <Merlin/Core/Physics/Impulse2D.h>
+#include "Impulse2D.h"
+#include "PushSolver2D.h"
+
+#include <Merlin/Core/Scene/Wizard.h>
 
 namespace Merlin
 {

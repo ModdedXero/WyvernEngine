@@ -1,13 +1,14 @@
 #include "mlpch.h"
 #include "Camera.h"
 
+#include "ResourceManager.h"
+
 #include <Merlin/Core/Application.h>
-#include <Merlin/Renderer/ResourceManager.h>
 
 #include <glm/ext/matrix_clip_space.hpp>
 #include <glm/ext/matrix_transform.hpp>
 
-namespace Merlin
+namespace Merlin::Renderer
 {
 	Camera* Camera::s_Main = nullptr;
 

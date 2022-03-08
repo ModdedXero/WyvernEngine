@@ -1,10 +1,10 @@
 #include "RenderWizard.h"
 
-#include <Merlin/Renderer/Material2D.h>
-#include <Merlin/Renderer/Renderer2D.h>
-#include <Merlin/Renderer/Camera.h>
+#include "Material2D.h"
+#include "Renderer2D.h"
+#include "Camera.h"
 
-namespace Merlin
+namespace Merlin::Renderer
 {
 	void RenderWizard::OnUpdate(Timestep ts) const
 	{

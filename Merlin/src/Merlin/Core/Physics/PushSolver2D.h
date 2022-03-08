@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Merlin/Core/Physics/PhysicsSolver2D.h>
+#include "PhysicsSolver2D.h"
 
 namespace Merlin
 {

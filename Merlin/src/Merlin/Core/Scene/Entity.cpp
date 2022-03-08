@@ -1,8 +1,7 @@
 #include "mlpch.h"
 #include "Entity.h"
 
-#include <Merlin/Scene/Scene.h>
-#include <Merlin/Core/Physics/Collider2D.h>
+#include "Scene.h"
 
 namespace Merlin
 {

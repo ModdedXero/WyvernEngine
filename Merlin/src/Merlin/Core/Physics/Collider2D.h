@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Merlin/Core/Math/Vector.h>
-#include <Merlin/Scene/Entity.h>
+#include <Merlin/Core/Scene/Entity.h>
 
 namespace Merlin
 {

@@ -1,7 +1,7 @@
 #include "mlpch.h"
 #include "Texture2D.h"
 
-namespace Merlin
+namespace Merlin::Renderer
 {
 	Texture2D::Texture2D()
 		: Width(0), Height(0), InternalFormat(GL_RGB), ImageFormat(GL_RGB), WrapS(GL_REPEAT), WrapT(GL_REPEAT), FilterMin(GL_LINEAR), FilterMax(GL_LINEAR)

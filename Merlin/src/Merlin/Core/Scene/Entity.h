@@ -1,22 +1,18 @@
 #pragma once
 
-#include <Merlin/Scene/Tag.h>
-#include <Merlin/Scene/Transform.h>
+#include "EntityConstants.h"
+
+#include "Tag.h"
+#include "Transform.h"
+#include "Scene.h"
+
 #include <Merlin/Core/Physics/Collider2D.h>
 
 #include <bitset>
 
 namespace Merlin
 {
-	const size_t MaxEntities = 50000;
-
-	const size_t MaxComponents = 32;
-	typedef std::bitset<MaxComponents> ComponentMask;
-
-	typedef unsigned int EntityIndex;
-	typedef unsigned int EntityVersion;
-	typedef unsigned long long EntityID;
-
+	class Scene;
 	struct Collision2D;
 
 	class Entity

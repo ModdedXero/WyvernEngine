@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Merlin/Scene/Wizard.h>
+#include "Wizard.h"
 
 #include <vector>
 

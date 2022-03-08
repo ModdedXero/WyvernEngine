@@ -1,11 +1,10 @@
 #include "mlpch.h"
 #include "Application.h"
 
-#include <Merlin/Scene/Entity.h>
+#include "Timestep.h"
 
+#include <Merlin/Core/Scene/Entity.h>
 #include <Merlin/Renderer/Renderer2D.h>
-#include <Merlin/Core/Timestep.h>
-
 #include <Merlin/Core/Physics/Physics2DWizard.h>
 #include <Merlin/Renderer/RenderWizard.h>
 
@@ -13,6 +12,8 @@
 #include <chrono>
 
 using namespace Merlin::Events;
+using namespace Merlin::Window;
+using namespace Merlin::Renderer;
 
 namespace Merlin
 {
@@ -27,7 +28,7 @@ namespace Merlin
 	{
 		s_Instance = this;
 
-		m_Window = Window::Create();
+		m_Window = Window::Window::Create();
 		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
 
 		m_StartTime = Time::now();

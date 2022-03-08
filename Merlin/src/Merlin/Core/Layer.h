@@ -1,7 +1,8 @@
 #pragma once
 
-#include <Merlin/Core/Events/Event.h>
-#include <Merlin/Core/Timestep.h>
+#include "Timestep.h"
+
+#include <Merlin/Events/Event.h>
 
 #include <string>
 

@@ -1,8 +1,9 @@
 #pragma once
 
+#include "Entity.h"
+#include "EntityList.h"
+
 #include <Merlin/Core/Timestep.h>
-#include <Merlin/Scene/Entity.h>
-#include <Merlin/Scene/EntityList.h>
 
 namespace Merlin
 {

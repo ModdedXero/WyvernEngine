@@ -1,14 +1,15 @@
 #pragma once
 
+#include "Layer.h"
+#include "LayerStack.h"
+
 #include <Merlin/Window/Window.h>
-#include <Merlin/Core/Layer.h>
-#include <Merlin/Core/LayerStack.h>
 
-#include <Merlin/Scene/Wizard.h>
-#include <Merlin/Scene/WizardStack.h>
+#include <Merlin/Events/Event.h>
+#include <Merlin/Events/WindowEvent.h>
 
-#include <Merlin/Core/Events/Event.h>
-#include <Merlin/Core/Events/WindowEvent.h>
+#include <Merlin/Core/Scene/Wizard.h>
+#include <Merlin/Core/Scene/WizardStack.h>
 
 #include <chrono>
 
@@ -31,12 +32,12 @@ namespace Merlin
 
 		virtual bool OnWindowResize(Events::WindowResizeEvent& e);
 
-		Window& GetWindow() { return *m_Window; }
+		Window::Window& GetWindow() { return *m_Window; }
 
 		static Application& Get() { return *s_Instance; }
 	private:
 		static Application* s_Instance;
-		Window* m_Window;
+		Window::Window* m_Window;
 
 		LayerStack m_LayerStack;
 		WizardStack m_WizardStack;

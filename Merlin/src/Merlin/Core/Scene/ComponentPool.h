@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Merlin/Scene/Entity.h>
+#include "Scene.h"
 
 namespace Merlin
 {

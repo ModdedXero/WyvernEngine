@@ -7,7 +7,7 @@
 
 #include <string>
 
-namespace Merlin
+namespace Merlin::Renderer
 {
 	class Shader
 	{

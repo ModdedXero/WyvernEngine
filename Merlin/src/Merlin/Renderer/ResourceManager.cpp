@@ -3,7 +3,7 @@
 
 #include <stb_image.h>
 
-namespace Merlin
+namespace Merlin::Renderer
 {
 	std::unordered_map<const char*, Shader> Shaders;
 	std::unordered_map<const char*, Texture2D> Textures;

@@ -2,7 +2,7 @@
 
 #include <Merlin/Core/Math/Vector.h>
 
-namespace Merlin
+namespace Merlin::Renderer
 {
 	struct Material2D
 	{

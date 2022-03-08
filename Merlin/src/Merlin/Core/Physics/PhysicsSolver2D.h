@@ -1,8 +1,9 @@
 #pragma once
 
+#include "RigidBody2D.h"
+
 #include <Merlin/Core/Timestep.h>
-#include <Merlin/Core/Physics/RigidBody2D.h>
-#include <Merlin/Scene/Transform.h>
+#include <Merlin/Core/Scene/Transform.h>
 
 namespace Merlin
 {

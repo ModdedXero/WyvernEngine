@@ -1,9 +1,9 @@
 #include "Window.h"
 
-#include <Merlin/Core/Events/KeyEvent.h>
-#include <Merlin/Core/Events/WindowEvent.h>
+#include <Merlin/Events/KeyEvent.h>
+#include <Merlin/Events/WindowEvent.h>
 
-namespace Merlin
+namespace Merlin::Window
 {
 	Window::Window(const WindowProps& props)
 	{

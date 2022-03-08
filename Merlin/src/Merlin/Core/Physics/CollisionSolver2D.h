@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Merlin/Core/Physics/Collider2D.h>
+#include "Collider2D.h"
 
 #include <vector>
 

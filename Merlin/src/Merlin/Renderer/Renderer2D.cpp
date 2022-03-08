@@ -3,7 +3,7 @@
 
 #include <glad.h>
 
-namespace Merlin
+namespace Merlin::Renderer
 {
 	static const size_t MaxQuadCount = 1000;
 	static const size_t MaxVertexCount = MaxQuadCount * 4;

@@ -1,7 +1,7 @@
 #pragma once
 
-#include <Merlin/Scene/Scene.h>
-#include <Merlin/Scene/Entity.h>
+#include "Scene.h"
+#include "Entity.h"
 
 namespace Merlin
 {
