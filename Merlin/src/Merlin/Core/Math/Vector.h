@@ -29,7 +29,7 @@ namespace Merlin
 
 		Vector2 Normalize()
 		{
-			return *this * (1 / Length());
+			return *this / Length();
 		}
 
 		float Length()

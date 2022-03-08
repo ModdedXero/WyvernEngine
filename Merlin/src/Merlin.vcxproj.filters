@@ -133,6 +133,7 @@
     <ClInclude Include="Merlin\Core\Physics\PhysicsSolver2D.h" />
     <ClInclude Include="Merlin\Core\Physics\PushSolver2D.h" />
     <ClInclude Include="Merlin\Core\Scene\EntityConstants.h" />
+    <ClInclude Include="Merlin\Core\Physics\SmoothPosition2D.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\vendor\glad\glad.c">
@@ -190,5 +191,6 @@
     <ClCompile Include="Merlin\Core\Physics\Physics2DWizard.cpp" />
     <ClCompile Include="Merlin\Core\Physics\Impulse2D.cpp" />
     <ClCompile Include="Merlin\Core\Physics\PushSolver2D.cpp" />
+    <ClCompile Include="Merlin\Core\Physics\SmoothPosition2D.cpp" />
   </ItemGroup>
 </Project>

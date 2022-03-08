@@ -2,6 +2,10 @@
 #include "mlpch.h"
 #include "Physics2DWizard.h"
 
+#include "Impulse2D.h"
+#include "PushSolver2D.h"
+#include "SmoothPosition2D.h"
+
 #include <Merlin/Core/Constants.h>
 #include <Merlin/Core/Math/Math.h>
 
@@ -11,6 +15,7 @@ namespace Merlin
 	{
 		AddSolver(new Impulse2D());
 		AddSolver(new PushSolver2D());
+		AddSolver(new SmoothPosition2D());
 	}
 
 	Physics2DWizard::~Physics2DWizard()
@@ -43,9 +48,41 @@ namespace Merlin
 
 				if (CheckCollision(col1, ent1->GetTransform(), col2, ent2->GetTransform()))
 				{
-					Vector2 normal = ent2->GetTransform()->position - ent1->GetTransform()->position;
+					static const Vector2 faces[4] =
+					{
+						Vector2(-1, 0),
+						Vector2(1, 0),
+						Vector2(0, -1),
+						Vector2(0, 1)
+					};
 
-					Collision2D* collision = new Collision2D(ent1, ent2, normal.Normalize(), 0.0f);
+					Vector2 maxA = ent1->GetTransform()->position + col1->size;
+					Vector2 minA = ent1->GetTransform()->position - col1->size;
+
+					Vector2 maxB = ent2->GetTransform()->position + col2->size;
+					Vector2 minB = ent2->GetTransform()->position - col2->size;
+
+					float distances[4] =
+					{
+						maxB.x - minA.x,
+						maxA.x - minB.x,
+						maxB.y - minA.y,
+						maxA.y - minB.y
+					};
+
+					float penetration = FLT_MAX;
+					Vector2 bestAxis;
+
+					for (int i = 0; i < 4; i++)
+					{
+						if (distances[i] < penetration)
+						{
+							penetration = distances[i];
+							bestAxis = faces[i];
+						}
+					}
+
+					Collision2D* collision = new Collision2D(ent1, ent2, bestAxis, penetration);
 
 					ent1->OnCollision2D(*collision);
 

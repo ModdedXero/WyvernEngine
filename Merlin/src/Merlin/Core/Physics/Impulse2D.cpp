@@ -21,12 +21,15 @@ namespace Merlin
 
 			float e = fmin(rbA->bounce, rbB->bounce);
 
+			float aInvMass = rbA->mass > 0 ? rbA->invMass : 0;
+			float bInvMass = rbB->mass > 0 ? rbB->invMass : 0;
+
 			float j = -(1 + e) * velN;
-			j /= 1 / rbA->mass + 1 / rbB->mass;
+			j /= aInvMass + bInvMass;
 
 			Vector2 impulse = collision->normal * j;
-			rbA->velocity -= impulse * (1 / rbA->mass);
-			rbB->velocity += impulse * (1 / rbB->mass);
+			rbA->velocity -= impulse * aInvMass;
+			rbB->velocity += impulse * bInvMass;
 		}
 	}
 }

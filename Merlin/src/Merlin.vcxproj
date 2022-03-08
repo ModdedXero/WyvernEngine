@@ -178,6 +178,7 @@
     <ClInclude Include="mlpch.h" />
     <ClInclude Include="Merlin\Core\Physics\Physics2DWizard.h" />
     <ClInclude Include="Merlin\Core\Physics\PushSolver2D.h" />
+    <ClInclude Include="Merlin\Core\Physics\SmoothPosition2D.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\vendor\glad\glad.c" />
@@ -201,6 +202,7 @@
     <ClCompile Include="mlpch.cpp" />
     <ClCompile Include="Merlin\Core\Physics\Physics2DWizard.cpp" />
     <ClCompile Include="Merlin\Core\Physics\PushSolver2D.cpp" />
+    <ClCompile Include="Merlin\Core\Physics\SmoothPosition2D.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\vendor\GLFW\GLFW.vcxproj">

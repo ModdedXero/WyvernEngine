@@ -128,7 +128,9 @@ class ExampleLayer : public Layer
 		Transform* floorTs = gameFloor->GetTransform();
 		floorTs->scale = { 6.0f, 0.5f, 1.0f };
 		floorTs->position = { 0, -3.0f, 0 };
-		gameFloor->AddComponent<RigidBody2D>()->isStatic = true;
+		RigidBody2D* rb = gameFloor->AddComponent<RigidBody2D>();
+		rb->isStatic = true;
+		rb->mass = 0.0f;
 		BoxCollider2D* box2 = gameFloor->AddComponent<BoxCollider2D>();
 		box2->size = floorTs->scale;
 		Material2D* floorMat = gameFloor->AddComponent<Material2D>();
@@ -141,7 +143,7 @@ class ExampleLayer : public Layer
 		obs2 = Scene::CreateEntity<ObstacleEntity>();
 		obs2->transform->position = { 1.0f, 0.0f, 0 };
 		obs3 = Scene::CreateEntity<ObstacleEntity>();
-		obs3->transform->position = { 2.0f, 0.0f, 0 };
+		obs3->transform->position = { 1.0f, 0.0f, 0 };
 		obs4 = Scene::CreateEntity<ObstacleEntity>();
 		obs4->transform->position = { 3.0f, 0.0f, 0 };
 	}

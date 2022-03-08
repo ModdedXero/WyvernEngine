@@ -6,9 +6,6 @@
 #include "CollisionSolver2D.h"
 #include "PhysicsSolver2D.h"
 
-#include "Impulse2D.h"
-#include "PushSolver2D.h"
-
 #include <Merlin/Core/Scene/Wizard.h>
 
 namespace Merlin
