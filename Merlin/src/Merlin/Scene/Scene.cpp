@@ -12,6 +12,8 @@ namespace Merlin
 
 	void Scene::DestroyEntity(EntityID id)
 	{
+		if (!IsEntityValid(id)) return;
+
 		EntityID newID = CreateEntityID(EntityIndex(-1), GetEntityVersion(id) + 1);
 		s_Entities[GetEntityIndex(id)]->m_ID = newID;
 		s_Entities[GetEntityIndex(id)]->m_Components.reset();

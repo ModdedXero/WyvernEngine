@@ -31,13 +31,14 @@ public:
 	BoxCollider2D* collider;
 	Material2D* mat;
 
+	float speed = 20.0f;
+
 	void InitDefaultComponents() override
 	{
 		transform = GetTransform();
 		transform->scale = { 0.25f, 0.25f, 1.0f };
 		transform->position = { -4.0f, 0, 0 };
 		rb = AddComponent<RigidBody2D>();
-		rb->bounce = 0.5f;
 		collider = AddComponent<BoxCollider2D>();
 		collider->size = transform->scale;
 		mat = AddComponent<Material2D>();
@@ -48,6 +49,29 @@ public:
 	void OnCollision2D(const Collision2D& collision) override
 	{
 
+	}
+
+	void MovePlayer(float delta)
+	{
+		if (Input::IsKey(KeyCode::W))
+		{
+			rb->force += Vector2(0, 1) * speed;
+		}
+
+		if (Input::IsKey(KeyCode::S))
+		{
+			rb->force += Vector2(0, -1) * speed;
+		}
+
+		if (Input::IsKey(KeyCode::A))
+		{
+			rb->force += Vector2(-1, 0) * speed;
+		}
+
+		if (Input::IsKey(KeyCode::D))
+		{
+			rb->force += Vector2(1, 0) * speed;
+		}
 	}
 };
 
@@ -110,21 +134,20 @@ class ExampleLayer : public Layer
 		floorMat->shader = ResourceManager::GetShader("FlatShader").ID;
 		floorMat->color = { 0.7f, 0.3f, 0.4f, 1.0f };
 
-		//obs1 = Scene::CreateEntity<ObstacleEntity>();
-		//obs1->transform->position = { 0.0f, 0.0f, 0 };
-		//obs1->rb->bounce = 0.3f;
+		obs1 = Scene::CreateEntity<ObstacleEntity>();
+		obs1->transform->position = { 0.0f, 0.0f, 0 };
 
-		//obs2 = Scene::CreateEntity<ObstacleEntity>();
-		//obs2->transform->position = { 1.0f, 0.0f, 0 };
-		//obs3 = Scene::CreateEntity<ObstacleEntity>();
-		//obs3->transform->position = { 2.0f, 0.0f, 0 };
-		//obs4 = Scene::CreateEntity<ObstacleEntity>();
-		//obs4->transform->position = { 3.0f, 0.0f, 0 };
+		obs2 = Scene::CreateEntity<ObstacleEntity>();
+		obs2->transform->position = { 1.0f, 0.0f, 0 };
+		obs3 = Scene::CreateEntity<ObstacleEntity>();
+		obs3->transform->position = { 2.0f, 0.0f, 0 };
+		obs4 = Scene::CreateEntity<ObstacleEntity>();
+		obs4->transform->position = { 3.0f, 0.0f, 0 };
 	}
 
 	void OnUpdate(Timestep ts) override
 	{
-
+		player->MovePlayer(ts.GetDeltaTime());
 	}
 };
 
@@ -133,10 +156,10 @@ class SandboxApp : public Application
 public:
 	SandboxApp()
 	{
-		ResourceManager::LoadShader("C:\\Programming\\VisualStudio\\Projects\\Merlin\\Sandbox\\Assets\\Shader\\FlatShader.vert",
-			"C:\\Programming\\VisualStudio\\Projects\\Merlin\\Sandbox\\Assets\\Shader\\FlatShader.frag", nullptr, "FlatShader");
+		ResourceManager::LoadShader("E:\\Programming\\VisualStudio\\Projects\\Merlin\\Sandbox\\Assets\\Shader\\FlatShader.vert",
+			"E:\\Programming\\VisualStudio\\Projects\\Merlin\\Sandbox\\Assets\\Shader\\FlatShader.frag", nullptr, "FlatShader");
 
-		ResourceManager::LoadTexture("C:\\Programming\\VisualStudio\\Projects\\Merlin\\Sandbox\\Assets\\Texture\\Default.png", true, true, "Default");
+		ResourceManager::LoadTexture("E:\\Programming\\VisualStudio\\Projects\\Merlin\\Sandbox\\Assets\\Texture\\Default.png", true, true, "Default");
 
 		int samplers[32];
 		for (int i = 0; i < 32; i++)

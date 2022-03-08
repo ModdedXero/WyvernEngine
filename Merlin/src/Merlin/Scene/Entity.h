@@ -17,6 +17,8 @@ namespace Merlin
 	typedef unsigned int EntityVersion;
 	typedef unsigned long long EntityID;
 
+	struct Collision2D;
+
 	class Entity
 	{
 		friend class Scene;

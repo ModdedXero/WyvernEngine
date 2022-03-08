@@ -1,12 +1,12 @@
 #pragma once
 
-#include <Merlin/Core/Physics/Physics2DSolver.h>
+#include <Merlin/Core/Physics/CollisionSolver2D.h>
 
 #include <vector>
 
 namespace Merlin
 {
-	class Impulse2D : public Physics2DSolver
+	class Impulse2D : public CollisionSolver2D
 	{
 		void Solve(const std::vector<Collision2D> collisions) override;
 	};

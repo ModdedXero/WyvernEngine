@@ -6,7 +6,7 @@
 
 namespace Merlin
 {
-	class Physics2DSolver
+	class CollisionSolver2D
 	{
 	public:
 		virtual void Solve(const std::vector<Collision2D> collisions) {}

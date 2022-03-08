@@ -29,7 +29,7 @@ namespace Merlin
 
 		Vector2 Normalize()
 		{
-			return *this / Length();
+			return *this * (1 / Length());
 		}
 
 		float Length()
@@ -63,9 +63,15 @@ namespace Merlin
 			return *this;
 		}
 
+
 		Vector2 operator -() const
 		{
 			return *this * -1;
+		}
+
+		Vector2 operator +(const Vector2& other) const
+		{
+			return Vector2(x + other.x, y + other.y);
 		}
 
 		Vector2 operator -(const Vector2& other) const
@@ -78,6 +84,11 @@ namespace Merlin
 			return Vector2(x * other.x, y * other.y);
 		}
 
+		Vector2 operator +(const float& other) const
+		{
+			return Vector2(x + other, y + other);
+		}
+
 		Vector2 operator *(const float& other) const
 		{
 			return Vector2(x * other, y * other);
@@ -86,6 +97,11 @@ namespace Merlin
 		Vector2 operator /(const float& other) const
 		{
 			return Vector2(x / other, y / other);
+		}
+
+		bool operator ==(const Vector2& other) const
+		{
+			return (x == other.x) && (y == other.y);
 		}
 
 		bool operator >(const Vector2& other) const
@@ -180,6 +196,11 @@ namespace Merlin
 		Vector3 operator +(const Vector2& other) const
 		{
 			return Vector3(x + other.x, y + other.y, z);
+		}
+
+		Vector3 operator -(const Vector2& other) const
+		{
+			return Vector3(x - other.x, y - other.y, z);
 		}
 
 		Vector3 operator *(const Vector2& other) const

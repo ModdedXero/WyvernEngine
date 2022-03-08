@@ -1,11 +1,12 @@
 #pragma once
 
 #include <Merlin/Core/Math/Vector.h>
-#include <Merlin/Scene/Transform.h>
-#include <Merlin/Scene/Tag.h>
+#include <Merlin/Scene/Entity.h>
 
 namespace Merlin
 {
+	class Entity;
+
 	struct BoxCollider2D
 	{
 		Vector2 size;
@@ -20,8 +21,8 @@ namespace Merlin
 
 	struct Collision2D
 	{
-		unsigned long long entityA;
-		unsigned long long entityB;
+		Entity* entityA;
+		Entity* entityB;
 		Vector2 normal;
 		float penetration;
 	};

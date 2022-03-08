@@ -73,12 +73,6 @@
     <ClInclude Include="Merlin\Core\Math\Vector.h">
       <Filter>Merlin\Core\Math</Filter>
     </ClInclude>
-    <ClInclude Include="Merlin\Core\Physics\Physics2DWizard.h">
-      <Filter>Merlin\Core\Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="Merlin\Core\Physics\RigidBody2D.h">
-      <Filter>Merlin\Core\Physics</Filter>
-    </ClInclude>
     <ClInclude Include="Merlin\Core\Timestep.h">
       <Filter>Merlin\Core</Filter>
     </ClInclude>
@@ -128,13 +122,16 @@
       <Filter>Merlin\Window</Filter>
     </ClInclude>
     <ClInclude Include="mlpch.h" />
-    <ClInclude Include="Merlin\Core\Physics\Collider2D.h" />
     <ClInclude Include="Merlin\Scene\Tag.h" />
-    <ClInclude Include="Merlin\Core\Physics\Physics2DSolver.h" />
-    <ClInclude Include="Merlin\Core\Physics\Impulse2D.h" />
-    <ClInclude Include="Merlin\Core\Physics\SmoothPosition2D.h" />
     <ClInclude Include="Merlin\Core\Constants.h" />
     <ClInclude Include="Merlin\Core\Math\Functions.h" />
+    <ClInclude Include="Merlin\Core\Physics\RigidBody2D.h" />
+    <ClInclude Include="Merlin\Core\Physics\Physics2DWizard.h" />
+    <ClInclude Include="Merlin\Core\Physics\Collider2D.h" />
+    <ClInclude Include="Merlin\Core\Physics\CollisionSolver2D.h" />
+    <ClInclude Include="Merlin\Core\Physics\Impulse2D.h" />
+    <ClInclude Include="Merlin\Core\Physics\PhysicsSolver2D.h" />
+    <ClInclude Include="Merlin\Core\Physics\PushSolver2D.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\vendor\glad\glad.c">
@@ -154,9 +151,6 @@
     </ClCompile>
     <ClCompile Include="Merlin\Core\LayerStack.cpp">
       <Filter>Merlin\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Merlin\Core\Physics\Physics2DWizard.cpp">
-      <Filter>Merlin\Core\Physics</Filter>
     </ClCompile>
     <ClCompile Include="Merlin\Renderer\Camera.cpp">
       <Filter>Merlin\Renderer</Filter>
@@ -192,7 +186,8 @@
       <Filter>Merlin\Window</Filter>
     </ClCompile>
     <ClCompile Include="mlpch.cpp" />
+    <ClCompile Include="Merlin\Core\Physics\Physics2DWizard.cpp" />
     <ClCompile Include="Merlin\Core\Physics\Impulse2D.cpp" />
-    <ClCompile Include="Merlin\Core\Physics\SmoothPosition2D.cpp" />
+    <ClCompile Include="Merlin\Core\Physics\PushSolver2D.cpp" />
   </ItemGroup>
 </Project>

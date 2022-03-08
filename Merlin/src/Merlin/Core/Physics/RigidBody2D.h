@@ -9,9 +9,9 @@ namespace Merlin
 		Vector2 velocity;
 		Vector2 force;
 
-		float mass = 0.04f;
-		float invMass = 1 / mass;
-		float bounce = 0.3f;
+		float mass = 1.0f;
+		float friction = 0.05f;
+		float bounce = 0.4f;
 
 		bool isStatic = false;
 	};
