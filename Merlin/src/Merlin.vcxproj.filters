@@ -7,20 +7,20 @@
     <Filter Include="Merlin\Core">
       <UniqueIdentifier>{84345BC2-F0E9-D3B7-79DE-CD8EE592CABB}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Merlin\Core\Events">
-      <UniqueIdentifier>{E823A02A-D407-6180-3D68-5BD3296B4B02}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Merlin\Core\Math">
       <UniqueIdentifier>{DD0BE3F6-C904-0249-F236-E7CDDE8EE154}</UniqueIdentifier>
     </Filter>
     <Filter Include="Merlin\Core\Physics">
       <UniqueIdentifier>{F67B29AE-62DD-06BC-EB4A-4D6E57AB3D7B}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Merlin\Core\Scene">
+      <UniqueIdentifier>{A1F4B1D3-0D0B-B069-5682-3B8BC2D780F1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Merlin\Events">
+      <UniqueIdentifier>{10771CCB-7C37-9801-4572-E17EB1F1DCDD}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Merlin\Renderer">
       <UniqueIdentifier>{D28911FB-3E15-7FBF-4726-02B4B330DBBF}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Merlin\Scene">
-      <UniqueIdentifier>{C982DC0E-B5E5-6BB3-5E6B-A4694AAD3736}</UniqueIdentifier>
     </Filter>
     <Filter Include="Merlin\Window">
       <UniqueIdentifier>{13D832F4-7F98-AE2A-48D3-F7A7B452F306}</UniqueIdentifier>
@@ -43,14 +43,8 @@
     <ClInclude Include="Merlin\Core\Application.h">
       <Filter>Merlin\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Merlin\Events\Event.h">
-      <Filter>Merlin\Core\Events</Filter>
-    </ClInclude>
-    <ClInclude Include="Merlin\Events\KeyEvent.h">
-      <Filter>Merlin\Core\Events</Filter>
-    </ClInclude>
-    <ClInclude Include="Merlin\Events\WindowEvent.h">
-      <Filter>Merlin\Core\Events</Filter>
+    <ClInclude Include="Merlin\Core\Constants.h">
+      <Filter>Merlin\Core</Filter>
     </ClInclude>
     <ClInclude Include="Merlin\Core\Input.h">
       <Filter>Merlin\Core</Filter>
@@ -67,14 +61,77 @@
     <ClInclude Include="Merlin\Core\Log.h">
       <Filter>Merlin\Core</Filter>
     </ClInclude>
+    <ClInclude Include="Merlin\Core\Math\Functions.h">
+      <Filter>Merlin\Core\Math</Filter>
+    </ClInclude>
     <ClInclude Include="Merlin\Core\Math\Math.h">
       <Filter>Merlin\Core\Math</Filter>
     </ClInclude>
     <ClInclude Include="Merlin\Core\Math\Vector.h">
       <Filter>Merlin\Core\Math</Filter>
     </ClInclude>
+    <ClInclude Include="Merlin\Core\Physics\Collider2D.h">
+      <Filter>Merlin\Core\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Merlin\Core\Physics\CollisionSolver2D.h">
+      <Filter>Merlin\Core\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Merlin\Core\Physics\Impulse2D.h">
+      <Filter>Merlin\Core\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Merlin\Core\Physics\Physics2DWizard.h">
+      <Filter>Merlin\Core\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Merlin\Core\Physics\PhysicsSolver2D.h">
+      <Filter>Merlin\Core\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Merlin\Core\Physics\RigidBody2D.h">
+      <Filter>Merlin\Core\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Merlin\Core\Physics\SmoothPosition2D.h">
+      <Filter>Merlin\Core\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Merlin\Core\Physics\VelocitySolver2D.h">
+      <Filter>Merlin\Core\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Merlin\Core\Scene\ComponentPool.h">
+      <Filter>Merlin\Core\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Merlin\Core\Scene\Entity.h">
+      <Filter>Merlin\Core\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Merlin\Core\Scene\EntityConstants.h">
+      <Filter>Merlin\Core\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Merlin\Core\Scene\EntityList.h">
+      <Filter>Merlin\Core\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Merlin\Core\Scene\Scene.h">
+      <Filter>Merlin\Core\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Merlin\Core\Scene\Tag.h">
+      <Filter>Merlin\Core\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Merlin\Core\Scene\Transform.h">
+      <Filter>Merlin\Core\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Merlin\Core\Scene\Wizard.h">
+      <Filter>Merlin\Core\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Merlin\Core\Scene\WizardStack.h">
+      <Filter>Merlin\Core\Scene</Filter>
+    </ClInclude>
     <ClInclude Include="Merlin\Core\Timestep.h">
       <Filter>Merlin\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Merlin\Events\Event.h">
+      <Filter>Merlin\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Merlin\Events\KeyEvent.h">
+      <Filter>Merlin\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Merlin\Events\WindowEvent.h">
+      <Filter>Merlin\Events</Filter>
     </ClInclude>
     <ClInclude Include="Merlin\Renderer\Camera.h">
       <Filter>Merlin\Renderer</Filter>
@@ -97,43 +154,11 @@
     <ClInclude Include="Merlin\Renderer\Texture2D.h">
       <Filter>Merlin\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="Merlin\Core\Scene\EntityList.h">
-      <Filter>Merlin\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Merlin\Core\Scene\ComponentPool.h">
-      <Filter>Merlin\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Merlin\Core\Scene\Entity.h">
-      <Filter>Merlin\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Merlin\Core\Scene\Scene.h">
-      <Filter>Merlin\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Merlin\Core\Scene\Transform.h">
-      <Filter>Merlin\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Merlin\Core\Scene\Wizard.h">
-      <Filter>Merlin\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Merlin\Core\Scene\WizardStack.h">
-      <Filter>Merlin\Scene</Filter>
-    </ClInclude>
     <ClInclude Include="Merlin\Window\Window.h">
       <Filter>Merlin\Window</Filter>
     </ClInclude>
     <ClInclude Include="mlpch.h" />
-    <ClInclude Include="Merlin\Core\Scene\Tag.h" />
-    <ClInclude Include="Merlin\Core\Constants.h" />
-    <ClInclude Include="Merlin\Core\Math\Functions.h" />
-    <ClInclude Include="Merlin\Core\Physics\RigidBody2D.h" />
-    <ClInclude Include="Merlin\Core\Physics\Physics2DWizard.h" />
-    <ClInclude Include="Merlin\Core\Physics\Collider2D.h" />
-    <ClInclude Include="Merlin\Core\Physics\CollisionSolver2D.h" />
-    <ClInclude Include="Merlin\Core\Physics\Impulse2D.h" />
-    <ClInclude Include="Merlin\Core\Physics\PhysicsSolver2D.h" />
-    <ClInclude Include="Merlin\Core\Physics\VelocitySolver2D.h" />
-    <ClInclude Include="Merlin\Core\Scene\EntityConstants.h" />
-    <ClInclude Include="Merlin\Core\Physics\SmoothPosition2D.h" />
+    <ClInclude Include="Merlin\ImGui\ImGuiLayer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\vendor\glad\glad.c">
@@ -154,6 +179,30 @@
     <ClCompile Include="Merlin\Core\LayerStack.cpp">
       <Filter>Merlin\Core</Filter>
     </ClCompile>
+    <ClCompile Include="Merlin\Core\Physics\Impulse2D.cpp">
+      <Filter>Merlin\Core\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Merlin\Core\Physics\Physics2DWizard.cpp">
+      <Filter>Merlin\Core\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Merlin\Core\Physics\SmoothPosition2D.cpp">
+      <Filter>Merlin\Core\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Merlin\Core\Physics\VelocitySolver2D.cpp">
+      <Filter>Merlin\Core\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Merlin\Core\Scene\Entity.cpp">
+      <Filter>Merlin\Core\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Merlin\Core\Scene\Scene.cpp">
+      <Filter>Merlin\Core\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Merlin\Core\Scene\Wizard.cpp">
+      <Filter>Merlin\Core\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Merlin\Core\Scene\WizardStack.cpp">
+      <Filter>Merlin\Core\Scene</Filter>
+    </ClCompile>
     <ClCompile Include="Merlin\Renderer\Camera.cpp">
       <Filter>Merlin\Renderer</Filter>
     </ClCompile>
@@ -172,25 +221,10 @@
     <ClCompile Include="Merlin\Renderer\Texture2D.cpp">
       <Filter>Merlin\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="Merlin\Core\Scene\Entity.cpp">
-      <Filter>Merlin\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Merlin\Core\Scene\Scene.cpp">
-      <Filter>Merlin\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Merlin\Core\Scene\Wizard.cpp">
-      <Filter>Merlin\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Merlin\Core\Scene\WizardStack.cpp">
-      <Filter>Merlin\Scene</Filter>
-    </ClCompile>
     <ClCompile Include="Merlin\Window\Window.cpp">
       <Filter>Merlin\Window</Filter>
     </ClCompile>
     <ClCompile Include="mlpch.cpp" />
-    <ClCompile Include="Merlin\Core\Physics\Physics2DWizard.cpp" />
-    <ClCompile Include="Merlin\Core\Physics\Impulse2D.cpp" />
-    <ClCompile Include="Merlin\Core\Physics\VelocitySolver2D.cpp" />
-    <ClCompile Include="Merlin\Core\Physics\SmoothPosition2D.cpp" />
+    <ClCompile Include="Merlin\ImGui\ImGuiLayer.cpp" />
   </ItemGroup>
 </Project>

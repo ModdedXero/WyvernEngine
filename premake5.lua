@@ -15,9 +15,11 @@ IncludeDir = {}
 IncludeDir["GLFW"] = "Merlin/vendor/GLFW/include"
 IncludeDir["GLAD"] = "Merlin/vendor/glad/include"
 IncludeDir["GLM"] = "Merlin/vendor/glm"
+IncludeDir["ImGUI"] = "Merlin/vendor/imgui"
 IncludeDir["STB"] = "Merlin/vendor/stb_image"
 
 include "Merlin/vendor/GLFW"
+include "Merlin/vendor/ImGui"
 	
 project "Merlin"
 	location "Merlin/src"
@@ -47,12 +49,14 @@ project "Merlin"
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.GLAD}",
 		"%{IncludeDir.GLM}",
+		"%{IncludeDir.ImGUI}",
 		"%{IncludeDir.STB}"
 	}
 
 	links
 	{
 		"GLFW",
+		"ImGui",
 		"opengl32.lib"
 	}
 	
@@ -65,8 +69,7 @@ project "Merlin"
 
 		defines
 		{
-			"ML_PLATFORM_WINDOWS",
-			"ML_BUILD_DLL"
+			"ML_PLATFORM_WINDOWS"
 		}
 
 	filter "configurations:Debug"
