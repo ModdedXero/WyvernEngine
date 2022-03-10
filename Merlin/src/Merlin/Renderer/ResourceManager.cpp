@@ -36,9 +36,9 @@ namespace Merlin::Renderer
 		return s_Textures[name];
 	}
 
-	SubTexture2D* ResourceManager::LoadSubTexture(const char* name, const char* textureName, const Vector2& coords, const Vector2& spriteSize)
+	SubTexture2D* ResourceManager::LoadSubTexture(const char* name, const char* textureName, const Vector2& coords, const Vector2& tileSize, const Vector2& spriteSize)
 	{
-		s_SubTextures[name] = SubTexture2D::CreateFromCoords(GetTexture(textureName), coords, spriteSize);
+		s_SubTextures[name] = SubTexture2D::CreateFromCoords(GetTexture(textureName), coords, tileSize, spriteSize);
 		return s_SubTextures[name];
 	}
 

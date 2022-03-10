@@ -19,7 +19,7 @@ namespace Merlin::Renderer
 		static Texture2D* LoadTexture(const char* file, bool alpha, bool pixel, const char* name);
 		static Texture2D* GetTexture(const char* name);
 
-		static SubTexture2D* LoadSubTexture(const char* name, const char* textureName, const Vector2& coords, const Vector2& spriteSize);
+		static SubTexture2D* LoadSubTexture(const char* name, const char* textureName, const Vector2& coords, const Vector2& tileSize, const Vector2& spriteSize);
 		static SubTexture2D* GetSubTexture(const char* name);
 
 		static std::unordered_map<const char*, Shader*> GetShaders();

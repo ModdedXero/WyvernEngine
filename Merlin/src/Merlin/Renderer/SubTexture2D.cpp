@@ -16,10 +16,10 @@ namespace Merlin::Renderer
         m_TexCoords[3] = { min.x, max.y };
     }
 
-    SubTexture2D* SubTexture2D::CreateFromCoords(Texture2D* texture, const Vector2& coords, const Vector2& spriteSize)
+    SubTexture2D* SubTexture2D::CreateFromCoords(Texture2D* texture, const Vector2& coords, const Vector2& tileSize, const Vector2& spriteSize)
     {
-        Vector2 min = { (coords.x * spriteSize.x) / texture->Width, (coords.y * spriteSize.y) / texture->Height };
-        Vector2 max = { ((coords.x + 1) * spriteSize.x) / texture->Width, ((coords.y + 1) * spriteSize.y) / texture->Height };
+        Vector2 min = { (coords.x * spriteSize.x * tileSize.x) / texture->Width, (coords.y * spriteSize.y * tileSize.y) / texture->Height };
+        Vector2 max = { ((coords.x + 1) * spriteSize.x * tileSize.x) / texture->Width, ((coords.y + 1) * spriteSize.y * tileSize.y) / texture->Height };
         return new SubTexture2D(texture, min, max);
     }
 }

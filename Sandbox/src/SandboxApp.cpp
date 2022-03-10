@@ -16,7 +16,7 @@ public:
 
 		ResourceManager::LoadTexture("..\\Sandbox\\Assets\\Texture\\dungeon_sheet.png", true, true, "Dungeon");
 
-		ResourceManager::LoadSubTexture("WallUpperLeft", "Dungeon", { 0,9 }, { 16,16 });
+		ResourceManager::LoadSubTexture("WallUpperLeft", "Dungeon", { 0,9 }, { 2,2 }, { 16,16 });
 
 		PushLayer(new RelicLayer());
 	}
