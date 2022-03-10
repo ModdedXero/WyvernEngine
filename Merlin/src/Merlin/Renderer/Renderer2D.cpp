@@ -247,25 +247,25 @@ namespace Merlin::Renderer
 
 		s_Data.QuadBufferPtr->Position = { pos.x - size.x, pos.y - size.y, pos.z };
 		s_Data.QuadBufferPtr->Color = color;
-		s_Data.QuadBufferPtr->TexCoords = subTexture.GetTexCoords()[0];
+		s_Data.QuadBufferPtr->TexCoords = subTexture.GetTexCoords()[3];
 		s_Data.QuadBufferPtr->TexID = textureIndex;
 		s_Data.QuadBufferPtr++;
 
 		s_Data.QuadBufferPtr->Position = { pos.x + size.x, pos.y - size.y, pos.z };
 		s_Data.QuadBufferPtr->Color = color;
-		s_Data.QuadBufferPtr->TexCoords = subTexture.GetTexCoords()[1];
+		s_Data.QuadBufferPtr->TexCoords = subTexture.GetTexCoords()[2];
 		s_Data.QuadBufferPtr->TexID = textureIndex;
 		s_Data.QuadBufferPtr++;
 
 		s_Data.QuadBufferPtr->Position = { pos.x + size.x, pos.y + size.y, pos.z };
 		s_Data.QuadBufferPtr->Color = color;
-		s_Data.QuadBufferPtr->TexCoords = subTexture.GetTexCoords()[2];
+		s_Data.QuadBufferPtr->TexCoords = subTexture.GetTexCoords()[1];
 		s_Data.QuadBufferPtr->TexID = textureIndex;
 		s_Data.QuadBufferPtr++;
 
 		s_Data.QuadBufferPtr->Position = { pos.x - size.x, pos.y + size.y, pos.z };
 		s_Data.QuadBufferPtr->Color = color;
-		s_Data.QuadBufferPtr->TexCoords = subTexture.GetTexCoords()[3];
+		s_Data.QuadBufferPtr->TexCoords = subTexture.GetTexCoords()[0];
 		s_Data.QuadBufferPtr->TexID = textureIndex;
 		s_Data.QuadBufferPtr++;
 
