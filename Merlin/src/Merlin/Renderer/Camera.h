@@ -1,31 +1,23 @@
 #pragma once
 
-#include <Merlin/Core/Math/Vector.h>
+#include <Merlin/Core/Scene/Transform.h>
 
 #include <glm/glm.hpp>
 
 namespace Merlin::Renderer
 {
-	class Camera
+	struct Camera
 	{
-	public:
 		Camera();
-		Camera(Vector3 position);
 
 		void RecalculateMatrix();
 		void SetShaderMatrix();
 
-		glm::mat4& GetViewMatrix() { return m_View; }
-		glm::mat4& GetProjectionMatrix() { return m_Projection; }
-		glm::mat4& GetViewProjectionMatrix() { return m_Projection * m_View; }
+		glm::mat4 view;
+		glm::mat4 projection;
 
-		Vector3 transform;
+		Transform* transform;
 
-		static Camera* Main() { return s_Main; }
-	private:
-		static Camera* s_Main;
-
-		glm::mat4 m_View;
-		glm::mat4 m_Projection;
+		static Camera* main;
 	};
 }

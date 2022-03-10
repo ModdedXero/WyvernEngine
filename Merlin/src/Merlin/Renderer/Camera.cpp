@@ -10,39 +10,26 @@
 
 namespace Merlin::Renderer
 {
-	Camera* Camera::s_Main = nullptr;
+	Camera* Camera::main = nullptr;
 
 	Camera::Camera()
-		: m_Projection(1.0f), m_View(1.0f)
+		: projection(1.0f), view(1.0f), transform(nullptr)
 	{
-		s_Main = this;
+		if (main == nullptr) main = this;
 
-		m_Projection = glm::perspective(glm::radians(60.0f),
+		projection = glm::perspective(glm::radians(60.0f),
 			(float)Application::Get().GetWindow().GetWidth() / (float)Application::Get().GetWindow().GetHeight(), 0.1f, 100.0f);
-
-		transform = Vector3(0, 0, 0);
-	}
-
-	Camera::Camera(Vector3 position)
-		: m_Projection(1.0f), m_View(1.0f)
-	{
-		s_Main = this;
-
-		m_Projection = glm::perspective(glm::radians(60.0f),
-			(float)Application::Get().GetWindow().GetWidth() / (float)Application::Get().GetWindow().GetHeight(), 0.1f, 100.0f);
-
-		transform = position;
 	}
 
 	void Camera::RecalculateMatrix()
 	{
-		m_View = transform.localToWorldMatrix();
+		view = transform->position.localToWorldMatrix();
 	}
 
 	void Camera::SetShaderMatrix()
 	{
 		// TODO: Loop through all Shaders and update their Matrices
-		ResourceManager::GetShader("FlatShader").SetMatrix4("view", GetViewMatrix());
-		ResourceManager::GetShader("FlatShader").SetMatrix4("projection", GetProjectionMatrix());
+		ResourceManager::GetShader("FlatShader").SetMatrix4("view", view);
+		ResourceManager::GetShader("FlatShader").SetMatrix4("projection", projection);
 	}
 }

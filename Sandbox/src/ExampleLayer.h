@@ -16,7 +16,7 @@ public:
 
 	CameraController()
 	{
-		camera.transform.z = -8.0f;
+		camera.transform->position.z = -8.0f;
 	}
 };
 
