@@ -164,6 +164,7 @@
       <Filter>Merlin\Window</Filter>
     </ClInclude>
     <ClInclude Include="mlpch.h" />
+    <ClInclude Include="Merlin\Renderer\SubTexture2D.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\vendor\glad\glad.c">
@@ -233,5 +234,6 @@
       <Filter>Merlin\Window</Filter>
     </ClCompile>
     <ClCompile Include="mlpch.cpp" />
+    <ClCompile Include="Merlin\Renderer\SubTexture2D.cpp" />
   </ItemGroup>
 </Project>

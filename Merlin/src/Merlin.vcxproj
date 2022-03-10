@@ -180,6 +180,7 @@
     <ClInclude Include="Merlin\Renderer\Texture2D.h" />
     <ClInclude Include="Merlin\Window\Window.h" />
     <ClInclude Include="mlpch.h" />
+    <ClInclude Include="Merlin\Renderer\SubTexture2D.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\vendor\glad\glad.c" />
@@ -205,6 +206,7 @@
     <ClCompile Include="Merlin\Renderer\Texture2D.cpp" />
     <ClCompile Include="Merlin\Window\Window.cpp" />
     <ClCompile Include="mlpch.cpp" />
+    <ClCompile Include="Merlin\Renderer\SubTexture2D.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\vendor\GLFW\GLFW.vcxproj">

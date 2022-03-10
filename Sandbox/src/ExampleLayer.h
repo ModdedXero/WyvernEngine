@@ -35,7 +35,7 @@ public:
 
 		cam = AddComponent<Camera>();
 		cam->transform = transform;
-		cam->offset = Vector3(0, 0, -8.0f);
+		cam->offset = Vector3(4, 0, 8.0f);
 	}
 
 	void OnCollision2D(const Collision2D& collision) override

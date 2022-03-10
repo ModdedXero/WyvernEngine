@@ -20,6 +20,11 @@ namespace Merlin::Renderer
 				Renderer2D::DrawQuad(ent->GetTransform()->position,
 					ent->GetTransform()->scale, mat->color);
 			}
+			else if (mat->subTexture != nullptr)
+			{
+				Renderer2D::DrawQuad(ent->GetTransform()->position,
+					ent->GetTransform()->scale, *mat->subTexture);
+			}
 			else
 			{
 				Renderer2D::DrawQuad(ent->GetTransform()->position,

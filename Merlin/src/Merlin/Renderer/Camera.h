@@ -10,14 +10,14 @@ namespace Merlin::Renderer
 	{
 		Camera();
 
-		void RecalculateMatrix();
-		void SetShaderMatrix();
-
 		glm::mat4 view;
 		glm::mat4 projection;
 		Vector3 offset;
 
 		Transform* transform;
+
+		void RecalculateMatrix();
+		void SetShaderMatrix();
 
 		static Camera* main;
 	};

@@ -162,7 +162,7 @@ namespace Merlin::Renderer
 		s_Data.IndexCount += 6;
 	}
 
-	void Renderer2D::DrawQuad(const Vector3& pos, const Vector2& size, uint32_t textureID)
+	void Renderer2D::DrawQuad(const Vector3& pos, const Vector2& size, uint32_t& textureID)
 	{
 		if (s_Data.IndexCount >= MaxIndexCount || s_Data.TextureSlotIndex > (MaxTextures - 1))
 		{
@@ -211,6 +211,61 @@ namespace Merlin::Renderer
 		s_Data.QuadBufferPtr->Position = { pos.x - size.x, pos.y + size.y, pos.z };
 		s_Data.QuadBufferPtr->Color = color;
 		s_Data.QuadBufferPtr->TexCoords = { 0.0f, 1.0f };
+		s_Data.QuadBufferPtr->TexID = textureIndex;
+		s_Data.QuadBufferPtr++;
+
+		s_Data.IndexCount += 6;
+	}
+
+	void Renderer2D::DrawQuad(const Vector3& pos, const Vector2& size, SubTexture2D& subTexture)
+	{
+		if (s_Data.IndexCount >= MaxIndexCount || s_Data.TextureSlotIndex > (MaxTextures - 1))
+		{
+			EndBatch();
+			Flush();
+			BeginBatch();
+		}
+
+		const Vector4 color = { 1.0f, 1.0f, 1.0f, 1.0f };
+
+		float textureIndex = 0.0f;
+		for (uint32_t i = 1; i < s_Data.TextureSlotIndex; i++)
+		{
+			if (s_Data.TextureSlots[i] == subTexture.GetTexture().ID)
+			{
+				textureIndex = (float)i;
+				break;
+			}
+		}
+
+		if (textureIndex == 0.0f)
+		{
+			textureIndex = (float)s_Data.TextureSlotIndex;
+			s_Data.TextureSlots[s_Data.TextureSlotIndex] = subTexture.GetTexture().ID;
+			s_Data.TextureSlotIndex++;
+		}
+
+		s_Data.QuadBufferPtr->Position = { pos.x - size.x, pos.y - size.y, pos.z };
+		s_Data.QuadBufferPtr->Color = color;
+		s_Data.QuadBufferPtr->TexCoords = subTexture.GetTexCoords()[0];
+		s_Data.QuadBufferPtr->TexID = textureIndex;
+		s_Data.QuadBufferPtr++;
+
+		s_Data.QuadBufferPtr->Position = { pos.x + size.x, pos.y - size.y, pos.z };
+		s_Data.QuadBufferPtr->Color = color;
+		s_Data.QuadBufferPtr->TexCoords = subTexture.GetTexCoords()[1];
+		s_Data.QuadBufferPtr->TexID = textureIndex;
+		s_Data.QuadBufferPtr++;
+
+		s_Data.QuadBufferPtr->Position = { pos.x + size.x, pos.y + size.y, pos.z };
+		s_Data.QuadBufferPtr->Color = color;
+		s_Data.QuadBufferPtr->TexCoords = subTexture.GetTexCoords()[2];
+		s_Data.QuadBufferPtr->TexID = textureIndex;
+		s_Data.QuadBufferPtr++;
+
+		s_Data.QuadBufferPtr->Position = { pos.x - size.x, pos.y + size.y, pos.z };
+		s_Data.QuadBufferPtr->Color = color;
+		s_Data.QuadBufferPtr->TexCoords = subTexture.GetTexCoords()[3];
 		s_Data.QuadBufferPtr->TexID = textureIndex;
 		s_Data.QuadBufferPtr++;
 

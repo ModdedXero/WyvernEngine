@@ -14,7 +14,11 @@ public:
 		ResourceManager::LoadShader("..\\Sandbox\\Assets\\Shader\\FlatShader.vert",
 			"..\\Sandbox\\Assets\\Shader\\FlatShader.frag", nullptr, "FlatShader");
 
-		PushLayer(new ExampleLayer());
+		ResourceManager::LoadTexture("..\\Sandbox\\Assets\\Texture\\dungeon_sheet.png", true, true, "Dungeon");
+
+		ResourceManager::LoadSubTexture("WallUpperLeft", "Dungeon", { 0,0 }, { 16,16 });
+
+		PushLayer(new RelicLayer());
 	}
 
 	~SandboxApp()
