@@ -15,9 +15,9 @@ public:
 		transform = GetTransform();
 		GetTransform()->scale = { 0.25f, 0.25f, 1.0f };
 		mat = AddComponent<Material2D>();
-		mat->shader = ResourceManager::GetShader("FlatShader").ID;
-		mat->subTexture = "WallUpperLeft";
-		Camera* cam = AddComponent<Camera>();
+		mat->shader = ResourceManager::GetShader("FlatShader");
+		mat->subTexture = ResourceManager::GetSubTexture("WallUpperLeft");
+		mat->color = { 0.5f, 0.3f, 0.2f, 1.0f };
 	}
 };
 
@@ -37,7 +37,6 @@ public:
 			{
 				FloorEntity* ent = Scene::CreateEntity<FloorEntity>();
 				ent->transform->position += {x, y};
-				ML_LOG_INFO(ent->transform->position);
 			}
 		}
 	}

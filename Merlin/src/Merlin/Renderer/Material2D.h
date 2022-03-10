@@ -10,9 +10,10 @@ namespace Merlin::Renderer
 {
 	struct Material2D
 	{
-		unsigned int shader = -1;
-		unsigned int texture = -1;
-		const char* subTexture = nullptr;
+		Shader* shader = nullptr;
+		Texture2D* texture = nullptr;
+		SubTexture2D* subTexture = nullptr;
+
 		Vector4 color = { 1.0f, 1.0f, 1.0f, 1.0f };
 	};
 }

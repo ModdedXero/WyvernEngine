@@ -30,7 +30,7 @@ public:
 		collider = AddComponent<BoxCollider2D>();
 		collider->size = transform->scale;
 		mat = AddComponent<Material2D>();
-		mat->shader = ResourceManager::GetShader("FlatShader").ID;
+		mat->shader = ResourceManager::GetShader("FlatShader");
 		mat->color = { 0.3f, 0.6f, 0.9f, 1.0f };
 
 		cam = AddComponent<Camera>();
@@ -87,7 +87,7 @@ public:
 		collider = AddComponent<BoxCollider2D>();
 		collider->size = transform->scale;
 		mat = AddComponent<Material2D>();
-		mat->shader = ResourceManager::GetShader("FlatShader").ID;
+		mat->shader = ResourceManager::GetShader("FlatShader");
 		mat->color = { 0.3f, 0.2f, 0.4f, 1.0f };
 	}
 
@@ -116,8 +116,7 @@ public:
 		collider = AddComponent<BoxCollider2D>();
 		collider->size = transform->scale;
 		mat = AddComponent<Material2D>();
-		mat->shader = ResourceManager::GetShader("FlatShader").ID;
-		mat->subTexture = "WallUpperLeft";
+		mat->shader = ResourceManager::GetShader("FlatShader");
 	}
 };
 
@@ -147,7 +146,7 @@ class ExampleLayer : public Layer
 		BoxCollider2D* box2 = gameFloor->AddComponent<BoxCollider2D>();
 		box2->size = floorTs->scale;
 		Material2D* floorMat = gameFloor->AddComponent<Material2D>();
-		floorMat->shader = ResourceManager::GetShader("FlatShader").ID;
+		floorMat->shader = ResourceManager::GetShader("FlatShader");
 		floorMat->color = { 0.7f, 0.3f, 0.4f, 1.0f };
 
 		// Boxes

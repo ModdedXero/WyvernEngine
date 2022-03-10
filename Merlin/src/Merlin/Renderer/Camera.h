@@ -16,9 +16,10 @@ namespace Merlin::Renderer
 
 		Transform* transform;
 
-		void RecalculateMatrix();
-		void SetShaderMatrix();
+		void SetShaderMatrices();
 
-		static Camera* main;
+		static Camera* GetMain() { return s_Main; }
+	private:
+		static Camera* s_Main;
 	};
 }

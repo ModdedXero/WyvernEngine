@@ -14,9 +14,9 @@ namespace Merlin::Renderer
 		{
 			Material2D* mat = ent->GetComponent<Material2D>();
 
-			if (mat->shader < 0 || mat->shader == UINT_MAX) return;
+			if (mat->shader == nullptr) return;
 
-			if (mat->texture > -1 && mat->texture != UINT_MAX)
+			if (mat->texture != nullptr)
 			{
 				Renderer2D::DrawQuad(ent->GetTransform()->position,
 					ent->GetTransform()->scale, mat->texture);
@@ -24,7 +24,7 @@ namespace Merlin::Renderer
 			else if (mat->subTexture != nullptr)
 			{
 				Renderer2D::DrawQuad(ent->GetTransform()->position,
-					ent->GetTransform()->scale, ResourceManager::GetSubTexture(mat->subTexture));
+					ent->GetTransform()->scale, mat->subTexture);
 			}
 			else
 			{
@@ -33,9 +33,7 @@ namespace Merlin::Renderer
 			}
 		}
 
-		if (Camera::main == nullptr || Camera::main->transform == nullptr) return;
-
-		Camera::main->RecalculateMatrix();
-		Camera::main->SetShaderMatrix();
+		if (Camera::GetMain() != nullptr && Camera::GetMain()->transform != nullptr)
+			Camera::GetMain()->SetShaderMatrices();
 	}
 }
