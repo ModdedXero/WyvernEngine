@@ -8,31 +8,14 @@ using namespace Merlin;
 using namespace Merlin::Events;
 using namespace Merlin::Renderer;
 
-class CameraController
-{
-public:
-	Camera camera;
-	float speed = 0.03f;
-
-	CameraController()
-	{
-		camera.transform->position.z = -8.0f;
-	}
-};
-
 class PlayerEntity : public Entity
 {
 public:
-	PlayerEntity(EntityID id, ComponentMask mask)
-		: Entity(id, mask), transform(nullptr), rb(nullptr), collider(nullptr), mat(nullptr)
-	{
-
-	}
-
 	Transform* transform;
 	RigidBody2D* rb;
 	BoxCollider2D* collider;
 	Material2D* mat;
+	Camera* cam;
 
 	float speed = 35.0f;
 
@@ -49,6 +32,10 @@ public:
 		mat = AddComponent<Material2D>();
 		mat->shader = ResourceManager::GetShader("FlatShader").ID;
 		mat->color = { 0.3f, 0.6f, 0.9f, 1.0f };
+
+		cam = AddComponent<Camera>();
+		cam->transform = transform;
+		cam->offset = Vector3(0, 0, -8.0f);
 	}
 
 	void OnCollision2D(const Collision2D& collision) override
@@ -83,11 +70,6 @@ public:
 class BulletEntity : public Entity
 {
 public:
-	BulletEntity(EntityID id, ComponentMask mask)
-		: Entity(id, mask), transform(nullptr), rb(nullptr), collider(nullptr), mat(nullptr)
-	{
-	}
-
 	Transform* transform;
 	RigidBody2D* rb;
 	BoxCollider2D* collider;
@@ -118,15 +100,12 @@ public:
 class ObstacleEntity : public Entity
 {
 public:
-	ObstacleEntity(EntityID id, ComponentMask mask)
-		: Entity(id, mask), transform(nullptr), rb(nullptr), collider(nullptr), mat(nullptr)
-	{
-	}
-
 	Transform* transform;
 	RigidBody2D* rb;
 	BoxCollider2D* collider;
 	Material2D* mat;
+
+	float speed = 20.0f;
 
 	void OnAttach() override
 	{
@@ -144,8 +123,6 @@ public:
 
 class ExampleLayer : public Layer
 {
-	CameraController* cControl;
-
 	PlayerEntity* player;
 	Entity* gameFloor;
 
@@ -156,9 +133,6 @@ class ExampleLayer : public Layer
 
 	void OnAttach() override
 	{
-		// Camera
-		cControl = new CameraController();
-
 		// Player
 		player = Scene::CreateEntity<PlayerEntity>();
 

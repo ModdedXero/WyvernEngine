@@ -15,6 +15,7 @@ namespace Merlin::Renderer
 
 		glm::mat4 view;
 		glm::mat4 projection;
+		Vector3 offset;
 
 		Transform* transform;
 

@@ -14,7 +14,7 @@ public:
 		ResourceManager::LoadShader("..\\Sandbox\\Assets\\Shader\\FlatShader.vert",
 			"..\\Sandbox\\Assets\\Shader\\FlatShader.frag", nullptr, "FlatShader");
 
-		PushLayer(new RelicLayer());
+		PushLayer(new ExampleLayer());
 	}
 
 	~SandboxApp()

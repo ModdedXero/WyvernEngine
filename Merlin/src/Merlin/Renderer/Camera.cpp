@@ -23,7 +23,7 @@ namespace Merlin::Renderer
 
 	void Camera::RecalculateMatrix()
 	{
-		view = transform->position.localToWorldMatrix();
+		view = (-transform->position + offset).localToWorldMatrix();
 	}
 
 	void Camera::SetShaderMatrix()

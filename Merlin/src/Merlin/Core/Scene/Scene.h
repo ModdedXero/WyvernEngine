@@ -49,13 +49,18 @@ namespace Merlin
 				return (T*)s_Entities[index];
 			}
 
-			T* entity = new T(CreateEntityID(s_Entities.size(), 0), ComponentMask());
+			T* entity = new T();
+			entity->m_ID = CreateEntityID(s_Entities.size(), 0);
+			entity->m_Components = ComponentMask();
+
 			s_Entities.push_back(entity);
 			s_Entities.back()->m_Components.reset();
+
 			Transform* ts = AddComponent<Transform>(s_Entities.back()->m_ID);
 			Tag* tag = AddComponent<Tag>(s_Entities.back()->m_ID);
 			s_Entities.back()->m_Transform = ts;
 			s_Entities.back()->m_Tag = tag;
+
 			s_Entities.back()->OnAttach();
 			return (T*)s_Entities.back();
 		}

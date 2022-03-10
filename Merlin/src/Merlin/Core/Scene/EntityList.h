@@ -3,8 +3,6 @@
 #include "Scene.h"
 #include "Entity.h"
 
-#include "mlpch.h"
-
 namespace Merlin
 {
 	template <typename... ComponentTypes>
@@ -19,7 +17,6 @@ namespace Merlin
 			else
 			{
 				int componentIDs[] = { 0, Scene::FindComponentID<ComponentTypes>()... };
-				ML_LOG_INFO(sizeof(componentIDs));
 				for (int i = 1; i < (sizeof...(ComponentTypes) + 1); i++)
 				{
 					if (componentIDs[i] == -1)
