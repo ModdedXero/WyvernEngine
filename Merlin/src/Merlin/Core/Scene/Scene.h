@@ -125,6 +125,16 @@ namespace Merlin
 			int index = s_ComponentCounter++;
 			return index;
 		}
+
+		template <typename T>
+		static int FindComponentID()
+		{
+			for (ComponentPool* pool : s_ComponentPools)
+				if (pool->ComponentType == typeid(T).name())
+					return pool->ComponentID;
+
+			return -1;
+		}
 	private:
 		static inline std::vector<Entity*> s_Entities;
 		static inline std::vector<EntityIndex> s_FreeEntities;

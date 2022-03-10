@@ -3,6 +3,8 @@
 #include "Scene.h"
 #include "Entity.h"
 
+#include "mlpch.h"
+
 namespace Merlin
 {
 	template <typename... ComponentTypes>
@@ -16,9 +18,17 @@ namespace Merlin
 			}
 			else
 			{
-				int componentIDs[] = { 0, Scene::GetComponentID<ComponentTypes>()... };
+				int componentIDs[] = { 0, Scene::FindComponentID<ComponentTypes>()... };
+				ML_LOG_INFO(sizeof(componentIDs));
 				for (int i = 1; i < (sizeof...(ComponentTypes) + 1); i++)
+				{
+					if (componentIDs[i] == -1)
+					{
+						Invalid = true;
+						break;
+					}
 					Components.set(componentIDs[i]);
+				}
 			}
 
 			EntitySize = Scene::s_Entities.size();
@@ -68,7 +78,7 @@ namespace Merlin
 
 		const Iterator begin() const
 		{
-			int firstIndex = 0;
+			int firstIndex = Invalid ? EntitySize : 0;
 			while (firstIndex < EntitySize &&
 				(Components != (Components & Scene::s_Entities[firstIndex]->GetMask())
 					|| !Scene::IsEntityValid(Scene::s_Entities[firstIndex]->GetID())))
@@ -88,5 +98,6 @@ namespace Merlin
 		EntityIndex Index = 0;
 		ComponentMask Components = 0;
 		bool All = false;
+		bool Invalid = false;
 	};
 }

@@ -26,7 +26,9 @@ namespace Merlin::Renderer
 			}
 		}
 
-		Camera::Main().RecalculateMatrix();
-		Camera::Main().SetShaderMatrix();
+		if (Camera::Main() == nullptr) return;
+
+		Camera::Main()->RecalculateMatrix();
+		Camera::Main()->SetShaderMatrix();
 	}
 }

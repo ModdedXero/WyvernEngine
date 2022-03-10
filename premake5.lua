@@ -101,6 +101,7 @@ project "Sandbox"
 	includedirs
 	{
 		"Merlin/src",
+		"Sandbox/src",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.GLM}",
 		"%{IncludeDir.GLAD}"

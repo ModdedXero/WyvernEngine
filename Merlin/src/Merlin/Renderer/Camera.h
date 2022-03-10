@@ -21,7 +21,7 @@ namespace Merlin::Renderer
 
 		Vector3 transform;
 
-		static Camera& Main() { return *s_Main; }
+		static Camera* Main() { return s_Main; }
 	private:
 		static Camera* s_Main;
 

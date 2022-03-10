@@ -79,7 +79,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>ML_PLATFORM_WINDOWS;ML_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\Merlin\src;..\Merlin\vendor\GLFW\include;..\Merlin\vendor\glm;..\Merlin\vendor\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Merlin\src;src;..\Merlin\vendor\GLFW\include;..\Merlin\vendor\glm;..\Merlin\vendor\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -98,7 +98,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>ML_PLATFORM_WINDOWS;ML_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\Merlin\src;..\Merlin\vendor\GLFW\include;..\Merlin\vendor\glm;..\Merlin\vendor\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Merlin\src;src;..\Merlin\vendor\GLFW\include;..\Merlin\vendor\glm;..\Merlin\vendor\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -121,7 +121,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>ML_PLATFORM_WINDOWS;ML_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\Merlin\src;..\Merlin\vendor\GLFW\include;..\Merlin\vendor\glm;..\Merlin\vendor\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Merlin\src;src;..\Merlin\vendor\GLFW\include;..\Merlin\vendor\glm;..\Merlin\vendor\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -139,6 +139,10 @@
       <Command>IF EXIST ..\bin\Dist-windows\Merlin\*.dll\ (xcopy /Q /E /Y /I ..\bin\Dist-windows\Merlin\*.dll ..\bin\Dist-windows\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Dist-windows\Merlin\*.dll ..\bin\Dist-windows\Sandbox &gt; nul)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="src\RelicLayer.h" />
+    <ClInclude Include="src\ExampleLayer.h" />
+  </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\SandboxApp.cpp" />
   </ItemGroup>

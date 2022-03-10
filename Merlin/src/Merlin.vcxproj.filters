@@ -19,6 +19,9 @@
     <Filter Include="Merlin\Events">
       <UniqueIdentifier>{10771CCB-7C37-9801-4572-E17EB1F1DCDD}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Merlin\ImGui">
+      <UniqueIdentifier>{D68A2C0E-C2ED-BBB2-6B73-F46857B58735}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Merlin\Renderer">
       <UniqueIdentifier>{D28911FB-3E15-7FBF-4726-02B4B330DBBF}</UniqueIdentifier>
     </Filter>
@@ -133,6 +136,9 @@
     <ClInclude Include="Merlin\Events\WindowEvent.h">
       <Filter>Merlin\Events</Filter>
     </ClInclude>
+    <ClInclude Include="Merlin\ImGui\ImGuiLayer.h">
+      <Filter>Merlin\ImGui</Filter>
+    </ClInclude>
     <ClInclude Include="Merlin\Renderer\Camera.h">
       <Filter>Merlin\Renderer</Filter>
     </ClInclude>
@@ -158,7 +164,6 @@
       <Filter>Merlin\Window</Filter>
     </ClInclude>
     <ClInclude Include="mlpch.h" />
-    <ClInclude Include="Merlin\ImGui\ImGuiLayer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\vendor\glad\glad.c">
@@ -203,6 +208,9 @@
     <ClCompile Include="Merlin\Core\Scene\WizardStack.cpp">
       <Filter>Merlin\Core\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="Merlin\ImGui\ImGuiLayer.cpp">
+      <Filter>Merlin\ImGui</Filter>
+    </ClCompile>
     <ClCompile Include="Merlin\Renderer\Camera.cpp">
       <Filter>Merlin\Renderer</Filter>
     </ClCompile>
@@ -225,6 +233,5 @@
       <Filter>Merlin\Window</Filter>
     </ClCompile>
     <ClCompile Include="mlpch.cpp" />
-    <ClCompile Include="Merlin\ImGui\ImGuiLayer.cpp" />
   </ItemGroup>
 </Project>
