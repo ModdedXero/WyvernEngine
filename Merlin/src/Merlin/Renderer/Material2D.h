@@ -12,7 +12,7 @@ namespace Merlin::Renderer
 	{
 		unsigned int shader = -1;
 		unsigned int texture = -1;
-		SubTexture2D* subTexture = nullptr;
+		const char* subTexture = nullptr;
 		Vector4 color = { 1.0f, 1.0f, 1.0f, 1.0f };
 	};
 }

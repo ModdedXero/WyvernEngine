@@ -9,7 +9,7 @@ namespace Merlin::Renderer
 	std::unordered_map<const char*, Texture2D> Textures;
 	std::unordered_map<const char*, SubTexture2D> SubTextures;
 
-	Shader& ResourceManager::LoadShader(const char* vShaderFile, const char* fShaderFile, const char* gShaderFile, const char* name)
+	Shader ResourceManager::LoadShader(const char* vShaderFile, const char* fShaderFile, const char* gShaderFile, const char* name)
 	{
 		Shaders[name] = loadShaderFromFile(vShaderFile, fShaderFile, gShaderFile);
 		Shaders[name].Use();
@@ -21,29 +21,29 @@ namespace Merlin::Renderer
 		return Shaders[name];
 	}
 
-	Shader& ResourceManager::GetShader(const char* name)
+	Shader ResourceManager::GetShader(const char* name)
 	{
 		return Shaders[name];
 	}
 
-	Texture2D& ResourceManager::LoadTexture(const char* file, bool alpha, bool pixel, const char* name)
+	Texture2D ResourceManager::LoadTexture(const char* file, bool alpha, bool pixel, const char* name)
 	{
 		Textures[name] = loadTexture2DFromFile(file, alpha, pixel);
 		return Textures[name];
 	}
 
-	Texture2D& ResourceManager::GetTexture(const char* name)
+	Texture2D ResourceManager::GetTexture(const char* name)
 	{
 		return Textures[name];
 	}
 
-	SubTexture2D& ResourceManager::LoadSubTexture(const char* name, const char* textureName, const Vector2& coords, const Vector2& spriteSize)
+	SubTexture2D ResourceManager::LoadSubTexture(const char* name, const char* textureName, const Vector2& coords, const Vector2& spriteSize)
 	{
 		SubTextures[name] = SubTexture2D::CreateFromCoords(GetTexture(textureName), coords, spriteSize);
 		return SubTextures[name];
 	}
 
-	SubTexture2D& ResourceManager::GetSubTexture(const char* name)
+	SubTexture2D ResourceManager::GetSubTexture(const char* name)
 	{
 		return SubTextures[name];
 	}

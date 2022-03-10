@@ -18,7 +18,7 @@ public:
 
 		ResourceManager::LoadSubTexture("WallUpperLeft", "Dungeon", { 0,0 }, { 16,16 });
 
-		PushLayer(new RelicLayer());
+		PushLayer(new ExampleLayer());
 	}
 
 	~SandboxApp()

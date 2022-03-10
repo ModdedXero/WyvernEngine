@@ -117,7 +117,7 @@ public:
 		collider->size = transform->scale;
 		mat = AddComponent<Material2D>();
 		mat->shader = ResourceManager::GetShader("FlatShader").ID;
-		mat->color = { 0.3f, 0.6f, 0.2f, 1.0f };
+		mat->subTexture = "WallUpperLeft";
 	}
 };
 

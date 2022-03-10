@@ -4,6 +4,7 @@
 #include "Material2D.h"
 #include "Renderer2D.h"
 #include "Camera.h"
+#include "ResourceManager.h"
 
 namespace Merlin::Renderer
 {
@@ -15,20 +16,20 @@ namespace Merlin::Renderer
 
 			if (mat->shader < 0 || mat->shader == UINT_MAX) return;
 
-			if (mat->texture < 0 || mat->texture == UINT_MAX)
+			if (mat->texture > -1 && mat->texture != UINT_MAX)
 			{
 				Renderer2D::DrawQuad(ent->GetTransform()->position,
-					ent->GetTransform()->scale, mat->color);
+					ent->GetTransform()->scale, mat->texture);
 			}
 			else if (mat->subTexture != nullptr)
 			{
 				Renderer2D::DrawQuad(ent->GetTransform()->position,
-					ent->GetTransform()->scale, *mat->subTexture);
+					ent->GetTransform()->scale, ResourceManager::GetSubTexture(mat->subTexture));
 			}
 			else
 			{
 				Renderer2D::DrawQuad(ent->GetTransform()->position,
-					ent->GetTransform()->scale, mat->texture);
+					ent->GetTransform()->scale, mat->color);
 			}
 		}
 

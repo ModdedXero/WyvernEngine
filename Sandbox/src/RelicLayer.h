@@ -14,7 +14,7 @@ public:
 		testEntity = Entity::CreateEntity();
 		Material2D* testMat = testEntity->AddComponent<Material2D>();
 		testMat->shader = ResourceManager::GetShader("FlatShader").ID;
-		testMat->subTexture = &ResourceManager::GetSubTexture("WallUpperLeft");
+		testMat->subTexture = "WallUpperLeft";
 		Camera* cam = testEntity->AddComponent<Camera>();
 		cam->offset = { 0, 0, 8 };
 	}
