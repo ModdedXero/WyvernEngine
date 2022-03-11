@@ -18,6 +18,7 @@ public:
 
 		ResourceManager::LoadSubTexture("Floor", "Dungeon", { 1,14 }, { 1,1 }, { 32,32 });
 		ResourceManager::LoadSubTexture("Wall", "Dungeon", { 25,13 }, { 1,1 }, { 32,32 });
+		ResourceManager::LoadSubTexture("Player", "Dungeon", { 17,6 }, { 1,1 }, { 32,32 });
 
 		PushLayer(new RelicLayer());
 	}

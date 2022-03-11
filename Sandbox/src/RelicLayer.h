@@ -36,9 +36,10 @@ public:
 		transform->scale = { 0.35f, 0.35f, 1.0f };
 		mat = AddComponent<Material2D>();
 		mat->shader = ResourceManager::GetShader("FlatShader");
+		mat->subTexture = ResourceManager::GetSubTexture("Player");
 		mat->color = { 0.2f, 0.3f, 0.8f, 1.0f };
 		rb = AddComponent<RigidBody2D>();
-		AddComponent<BoxCollider2D>()->size = transform->scale;
+		AddComponent<BoxCollider2D>()->size = transform->scale - Vector2(0.025f, 0.025f);
 		Camera* cam = AddComponent<Camera>();
 		cam->transform = GetTransform();
 		cam->offset = { 0, 0, 8 };
@@ -79,13 +80,13 @@ public:
 
 		int TileMap[10][10] =
 		{
-			{2, 2, 2, 1, 1, 1, 1, 1, 1, 1},
 			{1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-			{1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-			{1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-			{1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-			{1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-			{1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+			{1, 1, 2, 2, 2, 2, 2, 2, 2, 1},
+			{1, 1, 2, 1, 1, 1, 1, 1, 2, 1},
+			{1, 1, 2, 1, 1, 1, 1, 1, 2, 1},
+			{1, 1, 2, 1, 1, 1, 1, 1, 2, 1},
+			{1, 1, 2, 1, 1, 1, 1, 1, 2, 1},
+			{1, 1, 2, 2, 2, 1, 2, 2, 2, 1},
 			{1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
 			{1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
 			{1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
@@ -95,13 +96,13 @@ public:
 		{
 			for (int col = 0; col < 10; col++)
 			{
-				if (TileMap[row][col] == 1)
+				if (TileMap[col][row] == 1)
 				{
 					FloorEntity* tile = Scene::CreateEntity<FloorEntity>();
 					tile->GetTransform()->position += Vector2(row + 5.0f, -col + 5.0f);
 					tile->mat->subTexture = ResourceManager::GetSubTexture("Floor");
 				}
-				else if (TileMap[row][col] == 2)
+				else if (TileMap[col][row] == 2)
 				{
 					FloorEntity* tile = Scene::CreateEntity<FloorEntity>();
 					tile->GetTransform()->position += Vector2(row + 5.0f, -col + 5.0f);
