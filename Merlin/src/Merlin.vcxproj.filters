@@ -157,6 +157,9 @@
     <ClInclude Include="Merlin\Renderer\Shader.h">
       <Filter>Merlin\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="Merlin\Renderer\SubTexture2D.h">
+      <Filter>Merlin\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="Merlin\Renderer\Texture2D.h">
       <Filter>Merlin\Renderer</Filter>
     </ClInclude>
@@ -164,7 +167,8 @@
       <Filter>Merlin\Window</Filter>
     </ClInclude>
     <ClInclude Include="mlpch.h" />
-    <ClInclude Include="Merlin\Renderer\SubTexture2D.h" />
+    <ClInclude Include="Platform\OpenGL\ImGuiOpenGLRenderer.h" />
+    <ClInclude Include="Platform\OpenGL\imgui_impl_opengl3_loader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\vendor\glad\glad.c">
@@ -227,6 +231,9 @@
     <ClCompile Include="Merlin\Renderer\Shader.cpp">
       <Filter>Merlin\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="Merlin\Renderer\SubTexture2D.cpp">
+      <Filter>Merlin\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="Merlin\Renderer\Texture2D.cpp">
       <Filter>Merlin\Renderer</Filter>
     </ClCompile>
@@ -234,6 +241,6 @@
       <Filter>Merlin\Window</Filter>
     </ClCompile>
     <ClCompile Include="mlpch.cpp" />
-    <ClCompile Include="Merlin\Renderer\SubTexture2D.cpp" />
+    <ClCompile Include="Platform\OpenGL\ImGuiOpenGLRenderer.cpp" />
   </ItemGroup>
 </Project>

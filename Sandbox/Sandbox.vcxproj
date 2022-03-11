@@ -140,8 +140,8 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\RelicLayer.h" />
     <ClInclude Include="src\ExampleLayer.h" />
+    <ClInclude Include="src\RelicLayer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\SandboxApp.cpp" />
