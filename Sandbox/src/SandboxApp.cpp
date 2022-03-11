@@ -14,9 +14,10 @@ public:
 		ResourceManager::LoadShader("..\\Sandbox\\Assets\\Shader\\FlatShader.vert",
 			"..\\Sandbox\\Assets\\Shader\\FlatShader.frag", nullptr, "FlatShader");
 
-		ResourceManager::LoadTexture("..\\Sandbox\\Assets\\Texture\\dungeon_sheet.png", true, true, "Dungeon");
+		ResourceManager::LoadTexture("..\\Sandbox\\Assets\\Texture\\tileset.png", true, true, "Dungeon");
 
-		ResourceManager::LoadSubTexture("WallUpperLeft", "Dungeon", { 0,9 }, { 2,2 }, { 16,16 });
+		ResourceManager::LoadSubTexture("Floor", "Dungeon", { 1,14 }, { 1,1 }, { 32,32 });
+		ResourceManager::LoadSubTexture("Wall", "Dungeon", { 25,13 }, { 1,1 }, { 32,32 });
 
 		PushLayer(new RelicLayer());
 	}
