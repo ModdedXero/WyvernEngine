@@ -28,6 +28,12 @@
     <Filter Include="Merlin\Window">
       <UniqueIdentifier>{13D832F4-7F98-AE2A-48D3-F7A7B452F306}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Platform">
+      <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\OpenGL">
+      <UniqueIdentifier>{1E7D2C1D-8A08-9AE1-9319-1DD6FF23F6E1}</UniqueIdentifier>
+    </Filter>
     <Filter Include="vendor">
       <UniqueIdentifier>{B3738122-9F15-ACF8-88D0-BF4C74113349}</UniqueIdentifier>
     </Filter>
@@ -166,9 +172,16 @@
     <ClInclude Include="Merlin\Window\Window.h">
       <Filter>Merlin\Window</Filter>
     </ClInclude>
+    <ClInclude Include="Platform\OpenGL\ImGuiGLFWRenderer.h">
+      <Filter>Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform\OpenGL\ImGuiOpenGLLoader.h">
+      <Filter>Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform\OpenGL\ImGuiOpenGLRenderer.h">
+      <Filter>Platform\OpenGL</Filter>
+    </ClInclude>
     <ClInclude Include="mlpch.h" />
-    <ClInclude Include="Platform\OpenGL\ImGuiOpenGLRenderer.h" />
-    <ClInclude Include="Platform\OpenGL\imgui_impl_opengl3_loader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\vendor\glad\glad.c">
@@ -240,7 +253,12 @@
     <ClCompile Include="Merlin\Window\Window.cpp">
       <Filter>Merlin\Window</Filter>
     </ClCompile>
+    <ClCompile Include="Platform\OpenGL\ImGuiGLFWRenderer.cpp">
+      <Filter>Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="Platform\OpenGL\ImGuiOpenGLRenderer.cpp">
+      <Filter>Platform\OpenGL</Filter>
+    </ClCompile>
     <ClCompile Include="mlpch.cpp" />
-    <ClCompile Include="Platform\OpenGL\ImGuiOpenGLRenderer.cpp" />
   </ItemGroup>
 </Project>

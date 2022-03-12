@@ -13,7 +13,8 @@ namespace Merlin
 
 		void OnAttach() override;
 		void OnDetach() override;
-		void OnUpdate(Timestep ts) override;
-		void OnEvent(Events::Event& event) override;
+
+		void Begin();
+		void End();
 	};
 }

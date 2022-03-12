@@ -11,6 +11,8 @@
 #include <Merlin/Core/Scene/Wizard.h>
 #include <Merlin/Core/Scene/WizardStack.h>
 
+#include <Merlin/ImGui/ImGuiLayer.h>
+
 #include <chrono>
 
 namespace Merlin
@@ -37,7 +39,9 @@ namespace Merlin
 		static Application& Get() { return *s_Instance; }
 	private:
 		static Application* s_Instance;
+
 		Window::Window* m_Window;
+		ImGuiLayer* m_ImGuiLayer;
 
 		LayerStack m_LayerStack;
 		WizardStack m_WizardStack;

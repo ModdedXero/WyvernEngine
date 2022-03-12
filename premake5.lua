@@ -104,6 +104,7 @@ project "Sandbox"
 		"Sandbox/src",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.GLM}",
+		"%{IncludeDir.ImGUI}",
 		"%{IncludeDir.GLAD}"
 	}
 

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Merlin.h>
+#include <imgui.h>
 
 using namespace Merlin;
 
@@ -123,5 +124,12 @@ public:
 	void OnUpdate(Timestep ts) override
 	{
 		player->MovePlayer(ts.GetDeltaTime());
+	}
+
+	void OnImGuiRender() override
+	{
+		ImGui::Begin("Test");
+		ImGui::Text("Hello World");
+		ImGui::End();
 	}
 };

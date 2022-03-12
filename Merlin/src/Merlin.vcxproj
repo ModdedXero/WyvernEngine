@@ -180,9 +180,10 @@
     <ClInclude Include="Merlin\Renderer\SubTexture2D.h" />
     <ClInclude Include="Merlin\Renderer\Texture2D.h" />
     <ClInclude Include="Merlin\Window\Window.h" />
-    <ClInclude Include="mlpch.h" />
+    <ClInclude Include="Platform\OpenGL\ImGuiGLFWRenderer.h" />
+    <ClInclude Include="Platform\OpenGL\ImGuiOpenGLLoader.h" />
     <ClInclude Include="Platform\OpenGL\ImGuiOpenGLRenderer.h" />
-    <ClInclude Include="Platform\OpenGL\imgui_impl_opengl3_loader.h" />
+    <ClInclude Include="mlpch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\vendor\glad\glad.c" />
@@ -208,8 +209,9 @@
     <ClCompile Include="Merlin\Renderer\SubTexture2D.cpp" />
     <ClCompile Include="Merlin\Renderer\Texture2D.cpp" />
     <ClCompile Include="Merlin\Window\Window.cpp" />
-    <ClCompile Include="mlpch.cpp" />
+    <ClCompile Include="Platform\OpenGL\ImGuiGLFWRenderer.cpp" />
     <ClCompile Include="Platform\OpenGL\ImGuiOpenGLRenderer.cpp" />
+    <ClCompile Include="mlpch.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\vendor\GLFW\GLFW.vcxproj">

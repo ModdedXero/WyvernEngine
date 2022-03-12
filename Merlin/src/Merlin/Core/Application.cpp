@@ -35,6 +35,8 @@ namespace Merlin
 
 		// Initialize Engine and Wizards
 		Renderer2D::OnAwake();
+		m_ImGuiLayer = new ImGuiLayer();
+		PushOverlay(m_ImGuiLayer);
 
 		PushWizard(new RenderWizard());
 		PushWizard(new Physics2DWizard());
@@ -77,6 +79,11 @@ namespace Merlin
 
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate(ts);
+
+			m_ImGuiLayer->Begin();
+			for (Layer* layer : m_LayerStack)
+				layer->OnImGuiRender();
+			m_ImGuiLayer->End();
 
 			for (Wizard* wizard : m_WizardStack)
 				wizard->OnUpdate(ts);
