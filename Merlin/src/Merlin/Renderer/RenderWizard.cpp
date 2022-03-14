@@ -8,7 +8,7 @@
 
 namespace Merlin::Renderer
 {
-	void RenderWizard::OnUpdate(Timestep ts) const
+	void RenderWizard::OnUpdate(Timestep ts)
 	{
 		for (Entity* ent : EntityList<Material2D>())
 		{

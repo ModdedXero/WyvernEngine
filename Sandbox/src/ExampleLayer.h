@@ -81,7 +81,7 @@ public:
 		transform->scale = { 0.15f, 0.15f, 1.0f };
 		transform->position = { -4.0f, 0, 0 };
 		rb = AddComponent<RigidBody2D>();
-		rb->friction = 0.0f;
+		rb->drag = 0.0f;
 		rb->bounce = 0.0f;
 		rb->bodyType = RigidBody2D::PhysicsBody::Kinematic;
 		collider = AddComponent<BoxCollider2D>();

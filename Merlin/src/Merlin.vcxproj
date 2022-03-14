@@ -189,6 +189,7 @@
     <ClCompile Include="..\vendor\glad\glad.c" />
     <ClCompile Include="..\vendor\stb_image\stb_image.cpp" />
     <ClCompile Include="Merlin\Core\Application.cpp" />
+    <ClCompile Include="Merlin\Core\Constants.cpp" />
     <ClCompile Include="Merlin\Core\Input.cpp" />
     <ClCompile Include="Merlin\Core\Layer.cpp" />
     <ClCompile Include="Merlin\Core\LayerStack.cpp" />

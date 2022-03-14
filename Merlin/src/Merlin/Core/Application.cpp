@@ -2,6 +2,7 @@
 #include "Application.h"
 
 #include "Timestep.h"
+#include "Constants.h"
 
 #include <Merlin/Core/Scene/Entity.h>
 #include <Merlin/Renderer/Renderer2D.h>
@@ -32,6 +33,7 @@ namespace Merlin
 		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
 
 		m_StartTime = Time::now();
+		m_FixedLoop = Time::now();
 
 		// Initialize Engine and Wizards
 		Renderer2D::OnAwake();
@@ -87,6 +89,18 @@ namespace Merlin
 
 			for (Wizard* wizard : m_WizardStack)
 				wizard->OnUpdate(ts);
+
+			fsec fixed = Time::now() - m_FixedLoop;
+			if (fixed.count() > Constants::FixedUpdateInterval)
+			{
+				for (Layer* layer : m_LayerStack)
+					layer->OnFixedUpdate(ts);
+
+				for (Wizard* wizard : m_WizardStack)
+					wizard->OnFixedUpdate(ts);
+
+				m_FixedLoop = Time::now();
+			}
 
 			Renderer2D::EndBatch();
 			Renderer2D::Flush();

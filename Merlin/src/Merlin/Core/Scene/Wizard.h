@@ -3,18 +3,14 @@
 #include "Entity.h"
 #include "EntityList.h"
 
-#include <Merlin/Core/Timestep.h>
+#include <Merlin/Core/Layer.h>
 
 namespace Merlin
 {
-	class Wizard
+	class Wizard : public Layer
 	{
 	public:
 		Wizard();
 		virtual ~Wizard();
-
-		virtual void OnAttach() {}
-		virtual void OnDetach() {}
-		virtual void OnUpdate(Timestep ts) const = 0;
 	};
 }

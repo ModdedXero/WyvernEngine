@@ -30,7 +30,7 @@ namespace Merlin
 			delete solver;
 	}
 
-	void Physics2DWizard::OnUpdate(Timestep ts) const
+	void Physics2DWizard::OnFixedUpdate(Timestep ts)
 	{
 		for (Entity* ent : EntityList<RigidBody2D>())
 		{

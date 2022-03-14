@@ -32,6 +32,8 @@ namespace Merlin
 		return (id >> 32) != EntityIndex(-1);
 	}
 
+
+
 	EntityID Scene::CreateEntityID(EntityIndex index, EntityVersion version)
 	{
 		return ((EntityID)index << 32) | ((EntityID)version);

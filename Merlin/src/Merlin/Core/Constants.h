@@ -1,8 +1,10 @@
 #pragma once
 
-#include <Merlin/Core/Math/Vector.h>
-
 namespace Merlin
 {
-	
+	class Constants
+	{
+	public:
+		static const float FixedUpdateInterval;
+	};
 }

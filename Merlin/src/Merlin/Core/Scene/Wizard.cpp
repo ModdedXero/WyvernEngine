@@ -3,6 +3,7 @@
 namespace Merlin
 {
 	Wizard::Wizard()
+		: Layer("Wizard")
 	{
 		
 	}

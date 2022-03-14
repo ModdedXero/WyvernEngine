@@ -121,7 +121,7 @@ namespace Merlin
 		}
 
 		template <typename T>
-		static int GetComponentID()
+		static inline int GetComponentID()
 		{
 			for (ComponentPool* pool : s_ComponentPools)
 				if (pool->ComponentType == typeid(T).name())
@@ -132,7 +132,7 @@ namespace Merlin
 		}
 
 		template <typename T>
-		static int FindComponentID()
+		static inline int FindComponentID()
 		{
 			for (ComponentPool* pool : s_ComponentPools)
 				if (pool->ComponentType == typeid(T).name())
@@ -140,6 +140,8 @@ namespace Merlin
 
 			return -1;
 		}
+	public:
+		static int GetEntityCount() { return s_Entities.size(); }
 	private:
 		static inline std::vector<Entity*> s_Entities;
 		static inline std::vector<EntityIndex> s_FreeEntities;

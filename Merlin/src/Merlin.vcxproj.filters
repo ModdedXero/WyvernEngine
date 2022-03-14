@@ -260,5 +260,6 @@
       <Filter>Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="mlpch.cpp" />
+    <ClCompile Include="Merlin\Core\Constants.cpp" />
   </ItemGroup>
 </Project>

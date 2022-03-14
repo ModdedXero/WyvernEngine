@@ -50,5 +50,7 @@ namespace Merlin
 
 		std::chrono::steady_clock::time_point m_LastFrameTime;
 		std::chrono::steady_clock::time_point m_StartTime;
+
+		std::chrono::steady_clock::time_point m_FixedLoop;
 	};
 }

@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Constants.h"
+
 namespace Merlin
 {
 	class Timestep
@@ -15,6 +17,7 @@ namespace Merlin
 		float GetMilliseconds() const { return m_Time * 1000; }
 		float GetDeltaTime() const { return m_DeltaTime; }
 		float GetFPS() const { return 1 / m_DeltaTime; }
+		float GetFixedDeltaTime() const { return Constants::FixedUpdateInterval; }
 	private:
 		float m_Time;
 		float m_DeltaTime;

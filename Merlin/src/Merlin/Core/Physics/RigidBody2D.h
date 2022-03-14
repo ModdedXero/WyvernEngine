@@ -18,7 +18,7 @@ namespace Merlin
 
 		float mass = 1.0f;
 		float invMass = 1.0f / mass;
-		float friction = 0.05f;
+		float drag = 0.05f;
 		float bounce = 0.2f;
 	};
 }
