@@ -140,10 +140,12 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\ExampleLayer.h" />
-    <ClInclude Include="src\RelicLayer.h" />
+    <ClInclude Include="src\ArenaExample\PlayerEntity.h" />
+    <ClInclude Include="src\ArenaExample\ArenaLayer.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\ArenaExample\PlayerEntity.cpp" />
+    <ClCompile Include="src\ArenaExample\ArenaLayer.cpp" />
     <ClCompile Include="src\SandboxApp.cpp" />
   </ItemGroup>
   <ItemGroup>

@@ -28,7 +28,7 @@ namespace Merlin
 				}
 			}
 
-			EntitySize = Scene::s_Entities.size();
+			EntitySize = (EntityIndex)Scene::s_Entities.size();
 		}
 
 		struct Iterator
@@ -75,7 +75,7 @@ namespace Merlin
 
 		const Iterator begin() const
 		{
-			int firstIndex = Invalid ? EntitySize : 0;
+			EntityIndex firstIndex = Invalid ? EntitySize : 0;
 			while (firstIndex < EntitySize &&
 				(Components != (Components & Scene::s_Entities[firstIndex]->GetMask())
 					|| !Scene::IsEntityValid(Scene::s_Entities[firstIndex]->GetID())))
@@ -91,7 +91,7 @@ namespace Merlin
 			return Iterator(EntityIndex(EntitySize), EntitySize, Components, All);
 		}
 
-		size_t EntitySize = 0;
+		EntityIndex EntitySize = 0;
 		EntityIndex Index = 0;
 		ComponentMask Components = 0;
 		bool All = false;

@@ -19,7 +19,9 @@ namespace Merlin
 	{
 		friend class Scene;
 	protected:
-		Entity() {}
+		Entity()
+			: m_ID(0), m_Tag(nullptr), m_Transform(nullptr)
+		{}
 	public:
 		EntityID GetID() { return m_ID; }
 		ComponentMask GetMask() { return m_Components; }

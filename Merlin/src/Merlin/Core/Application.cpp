@@ -82,11 +82,6 @@ namespace Merlin
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate(ts);
 
-			m_ImGuiLayer->Begin();
-			for (Layer* layer : m_LayerStack)
-				layer->OnImGuiRender();
-			m_ImGuiLayer->End();
-
 			for (Wizard* wizard : m_WizardStack)
 				wizard->OnUpdate(ts);
 
@@ -101,6 +96,11 @@ namespace Merlin
 
 				m_FixedLoop = Time::now();
 			}
+
+			m_ImGuiLayer->Begin();
+			for (Layer* layer : m_LayerStack)
+				layer->OnImGuiRender();
+			m_ImGuiLayer->End();
 
 			Renderer2D::EndBatch();
 			Renderer2D::Flush();

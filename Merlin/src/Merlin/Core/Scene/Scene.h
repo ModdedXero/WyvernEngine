@@ -50,7 +50,7 @@ namespace Merlin
 			}
 
 			T* entity = new T();
-			entity->m_ID = CreateEntityID(s_Entities.size(), 0);
+			entity->m_ID = CreateEntityID((EntityIndex)s_Entities.size(), 0);
 			entity->m_Components = ComponentMask();
 
 			s_Entities.push_back(entity);
@@ -141,7 +141,7 @@ namespace Merlin
 			return -1;
 		}
 	public:
-		static int GetEntityCount() { return s_Entities.size(); }
+		static size_t GetEntityCount() { return s_Entities.size(); }
 	private:
 		static inline std::vector<Entity*> s_Entities;
 		static inline std::vector<EntityIndex> s_FreeEntities;
