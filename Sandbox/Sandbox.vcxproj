@@ -140,10 +140,12 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\PongExample\PongLayer.h" />
     <ClInclude Include="src\ArenaExample\PlayerEntity.h" />
     <ClInclude Include="src\ArenaExample\ArenaLayer.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\PongExample\PongLayer.cpp" />
     <ClCompile Include="src\ArenaExample\PlayerEntity.cpp" />
     <ClCompile Include="src\ArenaExample\ArenaLayer.cpp" />
     <ClCompile Include="src\SandboxApp.cpp" />
