@@ -24,6 +24,11 @@ void PlayerEntity::OnAttach()
 	m_Collider->size = GetTransform()->scale;
 }
 
+void PlayerEntity::OnCollision2D(const Collision2D& collision)
+{
+	ML_LOG_INFO("Test1");
+}
+
 void PlayerEntity::MovePlayer(float delta)
 {
 	if (Input::IsKey(KeyCode::W))

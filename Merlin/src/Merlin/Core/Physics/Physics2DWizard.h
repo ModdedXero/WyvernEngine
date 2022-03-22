@@ -1,4 +1,3 @@
-
 #pragma once
 
 #include "RigidBody2D.h"
@@ -25,9 +24,19 @@ namespace Merlin
 		std::vector<PhysicsSolver2D*> m_PhysicsSolvers;
 
 		static bool CheckCollision(
-			const BoxCollider2D* boxCollider,
+			const BoxCollider2D* collider,
 			const Transform* transform,
 			const BoxCollider2D* otherCollider,
 			const Transform* otherTransform);
+
+		static bool CheckCollision(
+			const BoxCollider2D* collider,
+			const Transform* transform,
+			const SphereCollider2D* otherCollider,
+			const Transform* otherTransform);
+
+		static Collision2D* GetCollisionData(Entity* ent1, BoxCollider2D* col1, Entity* ent2, BoxCollider2D* col2);
+		static Collision2D* GetCollisionData(Entity* ent1, BoxCollider2D* col1, Entity* ent2, SphereCollider2D* col2);
+		static Collision2D* GetCollisionData(Entity* ent1, SphereCollider2D* col1, Entity* ent2, BoxCollider2D* col2);
 	};
 }

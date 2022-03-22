@@ -193,6 +193,9 @@
     <ClCompile Include="Merlin\Core\Application.cpp">
       <Filter>Merlin\Core</Filter>
     </ClCompile>
+    <ClCompile Include="Merlin\Core\Constants.cpp">
+      <Filter>Merlin\Core</Filter>
+    </ClCompile>
     <ClCompile Include="Merlin\Core\Input.cpp">
       <Filter>Merlin\Core</Filter>
     </ClCompile>
@@ -260,6 +263,5 @@
       <Filter>Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="mlpch.cpp" />
-    <ClCompile Include="Merlin\Core\Constants.cpp" />
   </ItemGroup>
 </Project>

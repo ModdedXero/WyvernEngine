@@ -13,6 +13,7 @@ public:
 	PlayerEntity();
 
 	void OnAttach() override;
+	void OnCollision2D(const Collision2D& collision) override;
 
 	void MovePlayer(float delta);
 private:

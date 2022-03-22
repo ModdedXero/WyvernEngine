@@ -25,6 +25,27 @@ ArenaLayer::ArenaLayer()
 
 }
 
+class Wall : public Entity
+{
+public:
+	void OnAttach() override
+	{
+		GetTransform()->scale = { 0.5f, 0.5f, 0.5f };
+		Material2D* mat = AddComponent<Material2D>();
+		mat->shader = ResourceManager::GetShader("FlatShader");
+		mat->subTexture = ResourceManager::GetSubTexture("Wall");
+		RigidBody2D* rb = AddComponent<RigidBody2D>();
+		rb->bodyType = RigidBody2D::PhysicsBody::Static;
+		rb->mass = 0.0f;
+		AddComponent<BoxCollider2D>()->size = GetTransform()->scale;
+	}
+
+	void OnCollision2D(const Collision2D& collision) override
+	{
+		ML_LOG_INFO("Test2");
+	}
+};
+
 void ArenaLayer::OnAttach()
 {
 	for (int row = 9; row >= 0; row--)
@@ -42,19 +63,10 @@ void ArenaLayer::OnAttach()
 			}
 			else if (TileMap[col][row] == 2)
 			{
-				Entity* tile = Scene::CreateEntity<Entity>();
-				tile->GetTransform()->scale = { 0.5f, 0.5f, 0.5f };
+				Wall* tile = Scene::CreateEntity<Wall>();
 				tile->GetTransform()->position += Vector2(row - 1, -col + 1);
-				Material2D* mat = tile->AddComponent<Material2D>();
-				mat->shader = ResourceManager::GetShader("FlatShader");
-				mat->subTexture = ResourceManager::GetSubTexture("Wall");
-				RigidBody2D* rb = tile->AddComponent<RigidBody2D>();
-				rb->bodyType = RigidBody2D::PhysicsBody::Static;
-				rb->mass = 0.0f;
-				tile->AddComponent<BoxCollider2D>()->size = tile->GetTransform()->scale;
 			}
 		}
-
 	}
 
 	player = Scene::CreateEntity<PlayerEntity>();
