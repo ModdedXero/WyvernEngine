@@ -1,5 +1,7 @@
 #include "PongLayer.h"
 
+#include "PongWall.h"
+
 #include <imgui.h>
 
 using namespace Merlin;
@@ -20,7 +22,7 @@ void PongLayer::OnAttach()
 	Entity* wall1 = Entity::CreateEntity();
 	Material2D* mat1 = wall1->AddComponent<Material2D>();
 	mat1->shader = ResourceManager::GetShader("FlatShader");
-	mat1->color = { 1,1,1,1 };
+	mat1->color = { 1,0,1,1 };
 	wall1->GetTransform()->position = { 4, 0, 0 };
 	wall1->GetTransform()->scale = { 0.125f, 4, 1 };
 
@@ -45,6 +47,13 @@ void PongLayer::OnAttach()
 	wall4->GetTransform()->position = { 0, -4, 0 };
 	wall4->GetTransform()->scale = { 4.125f, 0.125f, 1 };
 
+	BoxCollider2D* col4 = wall1->AddComponent<BoxCollider2D>();
+	col4->size = wall1->GetTransform()->scale;
+	RigidBody2D* rb4 = wall1->AddComponent<RigidBody2D>();
+	rb4->bodyType = RigidBody2D::PhysicsBody::Static;
+	rb4->bounce = 1.0f;
+	rb4->mass = 0;
+
 	Entity* player1 = Entity::CreateEntity();
 	Material2D* matp1 = player1->AddComponent<Material2D>();
 	matp1->shader = ResourceManager::GetShader("FlatShader");
@@ -57,23 +66,26 @@ void PongLayer::OnAttach()
 	matp2->shader = ResourceManager::GetShader("FlatShader");
 	matp2->color = { 1,1,1,1 };
 	player2->GetTransform()->position = { -3.5f, 0, 0 };
-	player2->GetTransform()->scale = { 0.125f, 0.5f, 1 };
+	player2->GetTransform()->scale = { 0.125f, 2.0f, 1 };
 	BoxCollider2D* player2Col = player2->AddComponent<BoxCollider2D>();
 	player2Col->size = player2->GetTransform()->scale;
 	RigidBody2D* player2Rb = player2->AddComponent<RigidBody2D>();
 	player2Rb->bodyType = RigidBody2D::PhysicsBody::Static;
+	player2Rb->bounce = 0.8f;
 	player2Rb->mass = 0;
 
 	Entity* ball = Entity::CreateEntity();
 	Material2D* matb = ball->AddComponent<Material2D>();
 	matb->shader = ResourceManager::GetShader("FlatShader");
+	matb->texture = ResourceManager::GetTexture("Ball");
 	matb->color = { 1,1,1,1 };
-	ball->GetTransform()->scale = { 0.5f, 0.5f, 1 };
+	ball->GetTransform()->scale = { 0.25f, 0.25f, 1 };
 	SphereCollider2D* ballCol = ball->AddComponent<SphereCollider2D>();
-	ballCol->radius = 0.6f;
+	ballCol->radius = 0.4f;
 	RigidBody2D* ballRb = ball->AddComponent<RigidBody2D>();
+	ballRb->bounce = 0.8f;
 	ballRb->drag = 0;
-	ballRb->force += {-50, 0};
+	ballRb->force += {-90, 0};
 }
 
 void PongLayer::OnUpdate(Merlin::Timestep ts)
