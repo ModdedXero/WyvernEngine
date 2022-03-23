@@ -6,6 +6,8 @@
 #include "Transform.h"
 #include "Tag.h"
 
+#include <Merlin/Core/Debug.h>
+
 #include <vector>
 #include <typeinfo>
 
@@ -23,13 +25,13 @@ namespace Merlin
 		{
 			if (s_Entities.size() >= MaxEntities)
 			{
-				ML_LOG_ERROR("Scene: MaxEntity count reached; ", MaxEntities);
+				DEBUG_LOG_ERROR("Scene: MaxEntity count reached; ", MaxEntities);
 				throw std::invalid_argument("Scene: MaxEntity count reached");
 				return nullptr;
 			}
 			if (!std::is_base_of<Entity, T>())
 			{
-				ML_LOG_ERROR("Scene: Entity or Inherited class required: ", typeid(T).name(), " was provided");
+				DEBUG_LOG_ERROR("Scene: Entity or Inherited class required: ", typeid(T).name(), " was provided");
 				throw std::invalid_argument("Scene: Type provided was not Entity");
 				return nullptr;
 			}

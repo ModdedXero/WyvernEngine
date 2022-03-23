@@ -42,7 +42,7 @@ public:
 
 	void OnCollision2D(const Collision2D& collision) override
 	{
-		ML_LOG_INFO("Test2");
+		DEBUG_LOG("Test2");
 	}
 };
 

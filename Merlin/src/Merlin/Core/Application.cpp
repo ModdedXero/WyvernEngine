@@ -43,7 +43,7 @@ namespace Merlin
 		PushWizard(new RenderWizard());
 		PushWizard(new Physics2DWizard());
 
-		ML_LOG_INFO("Merlin Engine Started");
+		DEBUG_LOG("Merlin Engine Started");
 	}
 
 	Application::~Application()

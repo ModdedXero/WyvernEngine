@@ -138,7 +138,7 @@ namespace Merlin::Renderer
 			if (!success)
 			{
 				glGetShaderInfoLog(object, 1024, NULL, infoLog);
-				ML_LOG_ERROR("Shader: Compile-time error: Type: ", type, "\n", infoLog, "\n");
+				DEBUG_LOG_ERROR("Shader: Compile-time error: Type: ", type, "\n", infoLog, "\n");
 			}
 		}
 		else
@@ -147,7 +147,7 @@ namespace Merlin::Renderer
 			if (!success)
 			{
 				glGetProgramInfoLog(object, 1024, NULL, infoLog);
-				ML_LOG_ERROR("Shader: Link-time error: Type: ", type, "\n", infoLog, "\n");
+				DEBUG_LOG_ERROR("Shader: Link-time error: Type: ", type, "\n", infoLog, "\n");
 			}
 		}
 	}

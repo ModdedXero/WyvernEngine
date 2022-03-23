@@ -22,7 +22,7 @@ void PongLayer::OnAttach()
 	Entity* wall1 = Entity::CreateEntity();
 	Material2D* mat1 = wall1->AddComponent<Material2D>();
 	mat1->shader = ResourceManager::GetShader("FlatShader");
-	mat1->color = { 1,0,1,1 };
+	mat1->color = { 1,1,1,1 };
 	wall1->GetTransform()->position = { 4, 0, 0 };
 	wall1->GetTransform()->scale = { 0.125f, 4, 1 };
 
@@ -66,7 +66,7 @@ void PongLayer::OnAttach()
 	matp2->shader = ResourceManager::GetShader("FlatShader");
 	matp2->color = { 1,1,1,1 };
 	player2->GetTransform()->position = { -3.5f, 0, 0 };
-	player2->GetTransform()->scale = { 0.125f, 2.0f, 1 };
+	player2->GetTransform()->scale = { 0.125f, 0.5f, 1 };
 	BoxCollider2D* player2Col = player2->AddComponent<BoxCollider2D>();
 	player2Col->size = player2->GetTransform()->scale;
 	RigidBody2D* player2Rb = player2->AddComponent<RigidBody2D>();
@@ -81,7 +81,7 @@ void PongLayer::OnAttach()
 	matb->color = { 1,1,1,1 };
 	ball->GetTransform()->scale = { 0.25f, 0.25f, 1 };
 	SphereCollider2D* ballCol = ball->AddComponent<SphereCollider2D>();
-	ballCol->radius = 0.4f;
+	ballCol->radius = 0.25f;
 	RigidBody2D* ballRb = ball->AddComponent<RigidBody2D>();
 	ballRb->bounce = 0.8f;
 	ballRb->drag = 0;

@@ -17,6 +17,6 @@
 #include <unordered_map>
 #include <unordered_set>
 
-#include <Merlin/Core/Log.h>
+#include <Merlin/Core/Debug.h>
 
 #endif

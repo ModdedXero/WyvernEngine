@@ -26,7 +26,7 @@ void PlayerEntity::OnAttach()
 
 void PlayerEntity::OnCollision2D(const Collision2D& collision)
 {
-	ML_LOG_INFO("Test1");
+	DEBUG_LOG("Test1");
 }
 
 void PlayerEntity::MovePlayer(float delta)

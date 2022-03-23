@@ -30,4 +30,4 @@
 #include <Merlin/Events/KeyEvent.h>
 #include <Merlin/Events/WindowEvent.h>
 
-#include <Merlin/Core/Log.h>
+#include <Merlin/Core/Debug.h>

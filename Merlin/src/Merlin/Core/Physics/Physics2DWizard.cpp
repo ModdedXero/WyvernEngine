@@ -114,10 +114,10 @@ namespace Merlin
 	}
 
 	bool Physics2DWizard::CheckCollision(
-		const BoxCollider2D* collider,
-		const Transform* transform,
-		const BoxCollider2D* otherCollider,
-		const Transform* otherTransform)
+		BoxCollider2D* collider,
+		Transform* transform,
+		BoxCollider2D* otherCollider,
+		Transform* otherTransform)
 	{
 		return (transform->position.x - collider->size.x < otherTransform->position.x + otherCollider->size.x &&
 			transform->position.x + collider->size.x > otherTransform->position.x - otherCollider->size.x &&
@@ -126,17 +126,16 @@ namespace Merlin
 	}
 
 	bool Physics2DWizard::CheckCollision(
-		const BoxCollider2D* collider,
-		const Transform* transform,
-		const SphereCollider2D* otherCollider,
-		const Transform* otherTransform)
+		BoxCollider2D* collider,
+		Transform* transform,
+		SphereCollider2D* otherCollider,
+		Transform* otherTransform)
 	{
-		Vector2 delta = otherTransform->position - transform->position;
+		Vector2 delta = otherTransform->GetNormalPosition() - transform->GetNormalPosition();
 		Vector2 clamped = Functions::Clamp(delta, -collider->size, collider->size);
-		Vector2 closest = transform->position + clamped;
-		delta = closest - otherTransform->position;
+		Vector2 closest = transform->GetNormalPosition() + clamped;
 
-		ML_LOG_INFO(delta.Length());
+		delta = closest - otherTransform->GetNormalPosition();
 
 		return delta.Length() < otherCollider->radius;
 	}
@@ -182,9 +181,9 @@ namespace Merlin
 
 	Collision2D* Physics2DWizard::GetCollisionData(Entity* ent1, BoxCollider2D* col1, Entity* ent2, SphereCollider2D* col2)
 	{
-		Vector2 delta = ent2->GetTransform()->position - ent1->GetTransform()->position;
+		Vector2 delta = ent2->GetTransform()->GetNormalPosition() - ent1->GetTransform()->GetNormalPosition();
 		Vector2 clamped = Functions::Clamp(delta, -col1->size / 2, col1->size / 2);
-		Vector2 closest = ent1->GetTransform()->position + clamped;
+		Vector2 closest = ent1->GetTransform()->GetNormalPosition() + clamped;
 		Vector2 localPoint = delta - closest;
 
 		float distance = localPoint.Length();
@@ -197,9 +196,9 @@ namespace Merlin
 
 	Collision2D* Physics2DWizard::GetCollisionData(Entity* ent1, SphereCollider2D* col1, Entity* ent2, BoxCollider2D* col2)
 	{
-		Vector2 delta = ent1->GetTransform()->position - ent2->GetTransform()->position;
+		Vector2 delta = ent1->GetTransform()->GetNormalPosition() - ent2->GetTransform()->GetNormalPosition();
 		Vector2 clamped = Functions::Clamp(delta, -col2->size / 2, col2->size / 2);
-		Vector2 closest = ent1->GetTransform()->position + clamped;
+		Vector2 closest = ent1->GetTransform()->GetNormalPosition() + clamped;
 		Vector2 localPoint = delta - closest;
 
 		float distance = localPoint.Length();

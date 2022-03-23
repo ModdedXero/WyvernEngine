@@ -67,7 +67,7 @@
     <ClInclude Include="Merlin\Core\LayerStack.h">
       <Filter>Merlin\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Merlin\Core\Log.h">
+    <ClInclude Include="Merlin\Core\Debug.h">
       <Filter>Merlin\Core</Filter>
     </ClInclude>
     <ClInclude Include="Merlin\Core\Math\Functions.h">

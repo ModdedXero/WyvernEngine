@@ -145,7 +145,7 @@
     <ClInclude Include="Merlin\Core\KeyCodes.h" />
     <ClInclude Include="Merlin\Core\Layer.h" />
     <ClInclude Include="Merlin\Core\LayerStack.h" />
-    <ClInclude Include="Merlin\Core\Log.h" />
+    <ClInclude Include="Merlin\Core\Debug.h" />
     <ClInclude Include="Merlin\Core\Math\Functions.h" />
     <ClInclude Include="Merlin\Core\Math\Math.h" />
     <ClInclude Include="Merlin\Core\Math\Vector.h" />

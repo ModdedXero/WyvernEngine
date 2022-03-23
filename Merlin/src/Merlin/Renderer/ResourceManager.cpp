@@ -101,7 +101,7 @@ namespace Merlin::Renderer
 		}
 		catch (const std::exception& e)
 		{
-			ML_LOG_ERROR("ResourceManager: ", e.what());
+			DEBUG_LOG_ERROR("ResourceManager: ", e.what());
 		}
 
 		const char* vShaderCode = vertCode.c_str();

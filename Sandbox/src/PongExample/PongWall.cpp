@@ -22,5 +22,5 @@ void PongWall::OnAttach()
 
 void PongWall::OnCollision2D(const Collision2D& collision)
 {
-	ML_LOG_INFO("Collision");
+	DEBUG_LOG("Collision");
 }
