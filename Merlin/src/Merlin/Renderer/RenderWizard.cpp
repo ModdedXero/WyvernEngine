@@ -33,7 +33,7 @@ namespace Merlin::Renderer
 			}
 		}
 
-		if (Camera::GetMain() != nullptr && Camera::GetMain()->transform != nullptr)
+		if (Camera::GetMain() != nullptr)
 			Camera::GetMain()->SetShaderMatrices();
 	}
 }

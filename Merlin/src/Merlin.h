@@ -13,6 +13,7 @@
 #include <Merlin/Core/Scene/EntityList.h>
 
 // Components
+#include <Merlin/Core/Scene/Component.h>
 #include <Merlin/Core/Scene/Transform.h>
 #include <Merlin/Renderer/Material2D.h>
 #include <Merlin/Core/Physics/Collider2D.h>

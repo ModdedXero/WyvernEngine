@@ -6,8 +6,6 @@
 #include "Transform.h"
 #include "Scene.h"
 
-#include <Merlin/Core/Physics/Collider2D.h>
-
 #include <bitset>
 
 namespace Merlin

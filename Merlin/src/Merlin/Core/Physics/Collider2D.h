@@ -1,22 +1,27 @@
 #pragma once
 
 #include <Merlin/Core/Math/Vector.h>
+#include <Merlin/Core/Scene/Component.h>
 #include <Merlin/Core/Scene/Entity.h>
 
 namespace Merlin
 {
 	class Entity;
 
-	struct BoxCollider2D
+	struct BoxCollider2D : public Component
 	{
-		Vector2 size;
-		float distance;
+		BoxCollider2D() {}
+		~BoxCollider2D() {}
+
+		Vector2 size = Vector2(0, 0);
 	};
 
-	struct SphereCollider2D
+	struct SphereCollider2D : public Component
 	{
-		Vector2 center;
-		float radius;
+		SphereCollider2D() {}
+		~SphereCollider2D() {}
+
+		float radius = 0.0f;
 	};
 
 	struct Collision2D

@@ -22,7 +22,6 @@ void PongLayer::OnAttach()
 	Entity* camera = Entity::CreateEntity();
 	Camera* cam = camera->AddComponent<Camera>();
 	cam->offset = { 0,0,8 };
-	cam->transform = camera->GetTransform();
 
 	LeftWall* left = Scene::CreateEntity<LeftWall>();
 	left->SetupWall(state);
@@ -106,8 +105,6 @@ void PongLayer::OnUpdate(Merlin::Timestep ts)
 
 void PongLayer::CheckScore()
 {
-	DEBUG_LOG(state->player1Lives, " | ", state->player2Lives);
-
 	if (state->player1Lives == 2)
 	{
 		Scene::DestroyEntity(p1Score1->GetID());

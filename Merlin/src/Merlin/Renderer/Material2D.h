@@ -4,12 +4,16 @@
 #include "Texture2D.h"
 #include "SubTexture2D.h"
 
+#include <Merlin/Core/Scene/Component.h>
 #include <Merlin/Core/Math/Vector.h>
 
 namespace Merlin::Renderer
 {
-	struct Material2D
+	struct Material2D : public Component
 	{
+		Material2D() {}
+		~Material2D() {}
+
 		Shader* shader = nullptr;
 		Texture2D* texture = nullptr;
 		SubTexture2D* subTexture = nullptr;

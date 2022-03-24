@@ -1,10 +1,11 @@
 #pragma once
 
-#include "Entity.h"
 #include "EntityConstants.h"
 #include "ComponentPool.h"
+
 #include "Transform.h"
 #include "Tag.h"
+#include "Component.h"
 
 #include <Merlin/Core/Debug.h>
 
@@ -78,6 +79,13 @@ namespace Merlin
 			if (s_Entities[GetEntityIndex(id)]->m_ID != id)
 				return nullptr;
 
+			if (!std::is_base_of<Component, T>())
+			{
+				DEBUG_LOG_ERROR("Scene: Component or Inherited class required: ", typeid(T).name(), " was provided");
+				throw std::invalid_argument("Scene: Type provided was not Component");
+				return nullptr;
+			}
+
 			int componentID = GetComponentID<T>();
 
 			if (s_ComponentPools.size() <= componentID)
@@ -91,6 +99,9 @@ namespace Merlin
 			}
 
 			T* component = new (s_ComponentPools[componentID]->Get(GetEntityIndex(id))) T();
+			component->m_Entity = s_Entities[GetEntityIndex(id)];
+			component->m_Transform = s_Entities[GetEntityIndex(id)]->m_Transform;
+			component->m_Tag = s_Entities[GetEntityIndex(id)]->m_Tag;
 
 			s_Entities[GetEntityIndex(id)]->m_Components.set(componentID);
 

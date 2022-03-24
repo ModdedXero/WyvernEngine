@@ -15,7 +15,6 @@ void PlayerEntity::OnAttach()
 
 	GetTransform()->scale = { 0.35f, 0.35f, 1.0f };
 
-	m_Camera->transform = GetTransform();
 	m_Camera->offset = { 0, 0, 8 };
 
 	m_Material->shader = ResourceManager::GetShader("FlatShader");

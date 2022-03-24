@@ -182,6 +182,7 @@
       <Filter>Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="mlpch.h" />
+    <ClInclude Include="Merlin\Core\Scene\Component.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\vendor\glad\glad.c">
@@ -263,5 +264,6 @@
       <Filter>Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="mlpch.cpp" />
+    <ClCompile Include="Merlin\Core\Scene\Component.cpp" />
   </ItemGroup>
 </Project>

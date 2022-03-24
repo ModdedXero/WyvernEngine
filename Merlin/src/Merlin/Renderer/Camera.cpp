@@ -13,7 +13,7 @@ namespace Merlin::Renderer
 	Camera* Camera::s_Main = nullptr;
 
 	Camera::Camera()
-		: projection(1.0f), view(1.0f), transform(nullptr)
+		: projection(1.0f), view(1.0f)
 	{
 		if (s_Main == nullptr) s_Main = this;
 
@@ -23,7 +23,7 @@ namespace Merlin::Renderer
 
 	void Camera::SetShaderMatrices()
 	{
-		view = (-transform->position + -offset).localToWorldMatrix();
+		view = (-GetTransform()->position + -offset).localToWorldMatrix();
 
 		// TODO: Loop through all Shaders and update their Matrices
 		for (auto& iter : ResourceManager::GetShaders())

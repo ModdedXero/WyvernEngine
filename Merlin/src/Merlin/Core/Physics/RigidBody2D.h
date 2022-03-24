@@ -1,11 +1,15 @@
 #pragma once
 
 #include <Merlin/Core/Math/Vector.h>
+#include <Merlin/Core/Scene/Component.h>
 
 namespace Merlin
 {
-	struct RigidBody2D
+	struct RigidBody2D : public Component
 	{
+		RigidBody2D() {}
+		~RigidBody2D() {}
+
 		Vector2 velocity;
 		Vector2 force;
 

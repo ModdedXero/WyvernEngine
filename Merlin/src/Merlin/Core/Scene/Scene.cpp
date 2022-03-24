@@ -1,6 +1,8 @@
 #include "mlpch.h"
 #include "Scene.h"
 
+#include "Entity.h"
+
 namespace Merlin
 {
 	std::vector<Entity*> s_Entities;

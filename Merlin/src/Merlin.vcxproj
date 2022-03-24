@@ -157,6 +157,7 @@
     <ClInclude Include="Merlin\Core\Physics\RigidBody2D.h" />
     <ClInclude Include="Merlin\Core\Physics\SmoothPosition2D.h" />
     <ClInclude Include="Merlin\Core\Physics\VelocitySolver2D.h" />
+    <ClInclude Include="Merlin\Core\Scene\Component.h" />
     <ClInclude Include="Merlin\Core\Scene\ComponentPool.h" />
     <ClInclude Include="Merlin\Core\Scene\Entity.h" />
     <ClInclude Include="Merlin\Core\Scene\EntityConstants.h" />
@@ -197,6 +198,7 @@
     <ClCompile Include="Merlin\Core\Physics\Physics2DWizard.cpp" />
     <ClCompile Include="Merlin\Core\Physics\SmoothPosition2D.cpp" />
     <ClCompile Include="Merlin\Core\Physics\VelocitySolver2D.cpp" />
+    <ClCompile Include="Merlin\Core\Scene\Component.cpp" />
     <ClCompile Include="Merlin\Core\Scene\Entity.cpp" />
     <ClCompile Include="Merlin\Core\Scene\Scene.cpp" />
     <ClCompile Include="Merlin\Core\Scene\Wizard.cpp" />
