@@ -21,6 +21,7 @@
     <ClInclude Include="src\PongExample\PongWall.h">
       <Filter>PongExample</Filter>
     </ClInclude>
+    <ClInclude Include="src\PongExample\LeftWall.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ArenaExample\ArenaLayer.cpp">
@@ -36,5 +37,6 @@
       <Filter>PongExample</Filter>
     </ClCompile>
     <ClCompile Include="src\SandboxApp.cpp" />
+    <ClCompile Include="src\PongExample\LeftWall.cpp" />
   </ItemGroup>
 </Project>

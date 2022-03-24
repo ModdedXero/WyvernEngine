@@ -11,7 +11,6 @@ public:
 	PongWall();
 
 	void OnAttach() override;
-	void OnCollision2D(const Collision2D& collision) override;
 
 	Material2D* mat;
 	RigidBody2D* rb;

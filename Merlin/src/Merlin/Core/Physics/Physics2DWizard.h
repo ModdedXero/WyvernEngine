@@ -35,8 +35,8 @@ namespace Merlin
 			SphereCollider2D* otherCollider,
 			Transform* otherTransform);
 
-		static Collision2D* GetCollisionData(Entity* ent1, BoxCollider2D* col1, Entity* ent2, BoxCollider2D* col2);
-		static Collision2D* GetCollisionData(Entity* ent1, BoxCollider2D* col1, Entity* ent2, SphereCollider2D* col2);
-		static Collision2D* GetCollisionData(Entity* ent1, SphereCollider2D* col1, Entity* ent2, BoxCollider2D* col2);
+		static Collision2D* GetCollisionData(Entity* ent, BoxCollider2D* collider, Entity* otherEnt, BoxCollider2D* otherCollider);
+		static Collision2D* GetCollisionData(Entity* ent, BoxCollider2D* collider, Entity* otherEnt, SphereCollider2D* otherCollider);
+		static Collision2D* GetCollisionData(Entity* ent, SphereCollider2D* collider, Entity* otherEnt, BoxCollider2D* otherCollider);
 	};
 }

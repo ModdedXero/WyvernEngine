@@ -19,8 +19,3 @@ void PongWall::OnAttach()
 
 	col = AddComponent<BoxCollider2D>();
 }
-
-void PongWall::OnCollision2D(const Collision2D& collision)
-{
-	DEBUG_LOG("Collision");
-}

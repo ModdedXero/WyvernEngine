@@ -70,7 +70,7 @@
     <ClInclude Include="Merlin\Core\Debug.h">
       <Filter>Merlin\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Merlin\Core\Math\Functions.h">
+    <ClInclude Include="Merlin\Core\Math\Mathf.h">
       <Filter>Merlin\Core\Math</Filter>
     </ClInclude>
     <ClInclude Include="Merlin\Core\Math\Math.h">

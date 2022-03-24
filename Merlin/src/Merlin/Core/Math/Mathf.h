@@ -4,7 +4,7 @@
 
 namespace Merlin
 {
-	class Functions
+	class Mathf
 	{
 	public:
 		static Vector2 Clamp(Vector2 value, Vector2 min, Vector2 max)
