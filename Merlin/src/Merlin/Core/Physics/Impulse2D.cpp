@@ -12,17 +12,19 @@ namespace Merlin
 			RigidBody2D* rbA = collision->entityA->GetComponent<RigidBody2D>();
 			RigidBody2D* rbB = collision->entityB->GetComponent<RigidBody2D>();
 
+			float aInvMass = rbA->GetInvMass();
+			float bInvMass = rbB->GetInvMass();
+
+			if (aInvMass + bInvMass == 0) continue;
+
 			Vector2 rv = rbB->velocity - rbA->velocity;
 
 			float velN = Vector2::Dot(rv, collision->normal);
 
 			if (velN > 0)
-				return;
+				continue;
 
 			float e = fmin(rbA->bounce, rbB->bounce);
-
-			float aInvMass = rbA->mass > 0 ? rbA->invMass : 0;
-			float bInvMass = rbB->mass > 0 ? rbB->invMass : 0;
 
 			float j = -(1 + e) * velN;
 			j /= aInvMass + bInvMass;

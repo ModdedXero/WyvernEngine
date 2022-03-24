@@ -17,7 +17,8 @@ namespace Merlin
 		} bodyType = PhysicsBody::Dynamic;
 
 		float mass = 1.0f;
-		float invMass = 1.0f / mass;
+		float GetInvMass() { return mass == 0 ? 0 : 1.0f / mass; }
+
 		float drag = 0.05f;
 		float bounce = 0.2f;
 	};

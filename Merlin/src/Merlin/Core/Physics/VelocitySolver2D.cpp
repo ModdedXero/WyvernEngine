@@ -16,7 +16,7 @@ namespace Merlin
 	{
 		if (rb->bodyType != RigidBody2D::PhysicsBody::Dynamic) return;
 
-		rb->velocity = (rb->velocity + rb->force / rb->mass * ts.GetFixedDeltaTime()) - rb->velocity * rb->drag * rb->invMass;
+		rb->velocity = (rb->velocity + rb->force * rb->GetInvMass() * ts.GetFixedDeltaTime()) - rb->velocity * rb->drag * rb->GetInvMass();
 		transform->position = transform->position + rb->velocity * ts.GetFixedDeltaTime();
 
 		rb->force = { 0, 0 };

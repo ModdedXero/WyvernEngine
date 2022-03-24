@@ -2,6 +2,9 @@
 
 #include <Merlin.h>
 
+#include "GameState.h"
+#include "PlayerPaddle.h"
+
 class PongLayer : public Merlin::Layer
 {
 public:
@@ -12,4 +15,11 @@ public:
 	void OnImGuiRender() override;
 private:
 	int fps;
+
+	GameState* state;
+
+	PlayerPaddle* player1;
+	PlayerPaddle* player2;
+
+	Entity* ball;
 };

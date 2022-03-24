@@ -40,8 +40,8 @@ namespace Merlin
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);
 
-		PushWizard(new RenderWizard());
 		PushWizard(new Physics2DWizard());
+		PushWizard(new RenderWizard());
 
 		DEBUG_LOG("Merlin Engine Started");
 	}

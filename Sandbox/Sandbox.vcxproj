@@ -140,19 +140,28 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\PongExample\GameState.h" />
+    <ClInclude Include="src\PongExample\PlayerPaddle.h" />
+    <ClInclude Include="src\PongExample\BottomWall.h" />
+    <ClInclude Include="src\PongExample\RightWall.h" />
     <ClInclude Include="src\PongExample\LeftWall.h" />
     <ClInclude Include="src\ArenaExample\ArenaLayer.h" />
     <ClInclude Include="src\ArenaExample\PlayerEntity.h" />
     <ClInclude Include="src\PongExample\PongLayer.h" />
     <ClInclude Include="src\PongExample\PongWall.h" />
+    <ClInclude Include="src\PongExample\TopWall.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\PongExample\PlayerPaddle.cpp" />
+    <ClCompile Include="src\PongExample\BottomWall.cpp" />
+    <ClCompile Include="src\PongExample\RightWall.cpp" />
     <ClCompile Include="src\PongExample\LeftWall.cpp" />
     <ClCompile Include="src\ArenaExample\ArenaLayer.cpp" />
     <ClCompile Include="src\ArenaExample\PlayerEntity.cpp" />
     <ClCompile Include="src\PongExample\PongLayer.cpp" />
     <ClCompile Include="src\PongExample\PongWall.cpp" />
     <ClCompile Include="src\SandboxApp.cpp" />
+    <ClCompile Include="src\PongExample\TopWall.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Merlin\src\Merlin.vcxproj">

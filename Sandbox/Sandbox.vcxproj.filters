@@ -22,6 +22,11 @@
       <Filter>PongExample</Filter>
     </ClInclude>
     <ClInclude Include="src\PongExample\LeftWall.h" />
+    <ClInclude Include="src\PongExample\RightWall.h" />
+    <ClInclude Include="src\PongExample\TopWall.h" />
+    <ClInclude Include="src\PongExample\BottomWall.h" />
+    <ClInclude Include="src\PongExample\PlayerPaddle.h" />
+    <ClInclude Include="src\PongExample\GameState.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ArenaExample\ArenaLayer.cpp">
@@ -38,5 +43,9 @@
     </ClCompile>
     <ClCompile Include="src\SandboxApp.cpp" />
     <ClCompile Include="src\PongExample\LeftWall.cpp" />
+    <ClCompile Include="src\PongExample\RightWall.cpp" />
+    <ClCompile Include="src\PongExample\TopWall.cpp" />
+    <ClCompile Include="src\PongExample\BottomWall.cpp" />
+    <ClCompile Include="src\PongExample\PlayerPaddle.cpp" />
   </ItemGroup>
 </Project>
