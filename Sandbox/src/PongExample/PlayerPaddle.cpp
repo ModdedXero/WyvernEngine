@@ -10,7 +10,7 @@ void PlayerPaddle::OnAttach()
 {
 	mat = AddComponent<Material2D>();
 	mat->shader = ResourceManager::GetShader("FlatShader");
-	mat->color = { 1,1,1,1 };
+	mat->color = { 0.4f, 0.35f, 1, 1 };
 
 	GetTransform()->scale = { 0.125f, 0.5f, 1 };
 	GetTag()->name = "Player";
@@ -31,11 +31,11 @@ void PlayerPaddle::SetupPlayer(PlayerType type, GameState* state)
 
 	if (type == PlayerType::Player1)
 	{
-		GetTransform()->position = { -3.5f, 0, 0 };
+		GetTransform()->position = { -3.75f, 0, 0 };
 	}
 	else
 	{
-		GetTransform()->position = { 3.5f, 0, 0 };
+		GetTransform()->position = { 3.75f, 0, 0 };
 	}
 }
 

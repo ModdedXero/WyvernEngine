@@ -13,6 +13,8 @@ public:
 	void OnAttach() override;
 	void OnUpdate(Merlin::Timestep ts) override;
 	void OnImGuiRender() override;
+
+	void CheckScore();
 private:
 	int fps;
 
@@ -22,4 +24,12 @@ private:
 	PlayerPaddle* player2;
 
 	Entity* ball;
+
+	Entity* p1Score1;
+	Entity* p1Score2;
+	Entity* p1Score3;
+
+	Entity* p2Score1;
+	Entity* p2Score2;
+	Entity* p2Score3;
 };

@@ -17,5 +17,13 @@ void RightWall::OnAttach()
 
 void RightWall::OnCollision2D(const Collision2D& collision)
 {
+	if (collision.entityB->GetTag()->name == "Ball")
+	{
+		state->player2Lives--;
+	}
+}
 
+void RightWall::SetupWall(GameState* state)
+{
+	this->state = state;
 }
