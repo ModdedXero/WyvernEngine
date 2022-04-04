@@ -18,6 +18,7 @@
 #include <Merlin/Renderer/Material2D.h>
 #include <Merlin/Core/Physics/Collider2D.h>
 #include <Merlin/Core/Physics/RigidBody2D.h>
+#include <Merlin/UI/Button.h>
 
 #include <Merlin/Core/Math/Math.h>
 

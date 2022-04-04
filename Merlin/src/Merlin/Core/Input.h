@@ -1,7 +1,9 @@
 #pragma once
 
-#include "Application.h"
 #include "KeyCodes.h"
+#include "MouseCodes.h"
+
+#include <Merlin/Core/Math/Vector.h>
 
 namespace Merlin
 {
@@ -18,13 +20,15 @@ namespace Merlin
 		static bool IsKeyDown(KeyCode keycode)			{ return IsKeyDownImpl((int)keycode); }
 																 
 		static bool IsMouseButton(int keycode)			{ return IsMouseButtonImpl(keycode); }
-		static bool IsMouseButton(KeyCode keycode)		{ return IsMouseButtonImpl((int)keycode); }
+		static bool IsMouseButton(MouseCode keycode)		{ return IsMouseButtonImpl((int)keycode); }
 
 		static bool IsMouseButtonUp(int keycode)		{ return IsMouseButtonUpImpl(keycode); }
-		static bool IsMouseButtonUp(KeyCode keycode)	{ return IsMouseButtonUpImpl((int)keycode); }
+		static bool IsMouseButtonUp(MouseCode keycode)	{ return IsMouseButtonUpImpl((int)keycode); }
 
 		static bool IsMouseButtonDown(int keycode)		{ return IsMouseButtonDownImpl(keycode); }
-		static bool IsMouseButtonDown(KeyCode keycode)	{ return IsMouseButtonDownImpl((int)keycode); }
+		static bool IsMouseButtonDown(MouseCode keycode)	{ return IsMouseButtonDownImpl((int)keycode); }
+
+		static Vector2 MousePosition()					{ return MousePositionImpl(); }
 	protected:
 		static bool IsKeyImpl(int keycode);
 		static bool IsKeyUpImpl(int keycode);
@@ -33,5 +37,7 @@ namespace Merlin
 		static bool IsMouseButtonImpl(int keycode);
 		static bool IsMouseButtonUpImpl(int keycode);
 		static bool IsMouseButtonDownImpl(int keycode);
+
+		static Vector2 MousePositionImpl();
 	};
 }

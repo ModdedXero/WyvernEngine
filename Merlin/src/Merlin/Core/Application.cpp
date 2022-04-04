@@ -2,12 +2,12 @@
 #include "Application.h"
 
 #include "Timestep.h"
-#include "Constants.h"
 
 #include <Merlin/Core/Scene/Entity.h>
 #include <Merlin/Renderer/Renderer2D.h>
 #include <Merlin/Core/Physics/Physics2DWizard.h>
 #include <Merlin/Renderer/RenderWizard.h>
+#include <Merlin/UI/UIWizard.h>
 
 #include <iostream>
 #include <chrono>
@@ -15,11 +15,10 @@
 using namespace Merlin::Events;
 using namespace Merlin::Window;
 using namespace Merlin::Renderer;
+using namespace Merlin::UI;
 
 namespace Merlin
 {
-#define BIND_EVENT_FN(fn) [this](auto&&... args) -> decltype(auto) { return this->fn(std::forward<decltype(args)>(args)...); }
-
 	typedef std::chrono::high_resolution_clock Time;
 	typedef std::chrono::duration<float> fsec;
 	
@@ -42,6 +41,7 @@ namespace Merlin
 
 		PushWizard(new Physics2DWizard());
 		PushWizard(new RenderWizard());
+		PushWizard(new UIWizard());
 
 		DEBUG_LOG("Merlin Engine Started");
 	}
@@ -116,6 +116,9 @@ namespace Merlin
 
 		for (Layer* layer : m_LayerStack)
 			layer->OnEvent(e);
+
+		for (Wizard* wizard : m_WizardStack)
+			wizard->OnEvent(e);
 	}
 
 	void Application::PushLayer(Layer* layer)
@@ -148,6 +151,6 @@ namespace Merlin
 		glfwSetWindowSize(m_Window->GetNativeWindow(), m_Window->GetWidth(), m_Window->GetHeight());
 		glViewport(0, 0, m_Window->GetWidth(), m_Window->GetHeight());
 
-		return false;
+		return true;
 	}
 }

@@ -19,6 +19,7 @@ namespace Merlin::Renderer
 		void SetShaderMatrices();
 
 		static Camera* GetMain() { return s_Main; }
+		static Vector2 WorldToScreenPoint(Vector3& pos);
 	private:
 		static Camera* s_Main;
 	};

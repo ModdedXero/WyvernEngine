@@ -2,6 +2,7 @@
 
 #include <Merlin/Events/KeyEvent.h>
 #include <Merlin/Events/WindowEvent.h>
+#include <Merlin/Events/MouseEvent.h>
 
 namespace Merlin::Window
 {
@@ -58,6 +59,22 @@ namespace Merlin::Window
 				Events::WindowResizeEvent event(width, height);
 				data.EventCallback(event);
 		});
+
+		glfwSetCursorPosCallback(m_Window, [](GLFWwindow* window, double xpos, double ypos)
+			{
+				WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+
+				Events::MouseMovedEvent event(xpos, ypos);
+				data.EventCallback(event);
+			});
+
+		glfwSetMouseButtonCallback(m_Window, [](GLFWwindow* window, int button, int action, int mods)
+			{
+				WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+
+				Events::MouseButtonPressedEvent event(button, action);
+				data.EventCallback(event);
+			});
 	}
 
 	void Window::OnUpdate()

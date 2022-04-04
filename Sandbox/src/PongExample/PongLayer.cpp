@@ -9,10 +9,16 @@
 
 using namespace Merlin;
 using namespace Merlin::Renderer;
+using namespace Merlin::UI;
 
 PongLayer::PongLayer()
 	: Layer("Arena Layer"), fps(0), state(nullptr), player1(nullptr), player2(nullptr), ball(nullptr)
 {
+}
+
+void TestHover()
+{
+	DEBUG_LOG("Hover Bro");
 }
 
 void PongLayer::OnAttach()
@@ -29,6 +35,8 @@ void PongLayer::OnAttach()
 	right->SetupWall(state);
 	TopWall* top = Scene::CreateEntity<TopWall>();
 	BottomWall* bottom = Scene::CreateEntity<BottomWall>();
+	Button* button = bottom->AddComponent<Button>();
+	button->OnClick = TestHover;
 
 	player1 = Scene::CreateEntity<PlayerPaddle>();
 	player1->SetupPlayer(PlayerType::Player1, state);
@@ -100,6 +108,8 @@ void PongLayer::OnUpdate(Merlin::Timestep ts)
 	player1->MovePlayer(ts.GetDeltaTime());
 	player2->MovePlayer(ts.GetDeltaTime());
 
+	// DEBUG_LOG(Camera::WorldToScreenPoint(player1->GetTransform()->position));
+
 	CheckScore();
 }
 
@@ -145,6 +155,12 @@ void PongLayer::OnImGuiRender()
 	std::string entText("Entity Count: ");
 	entText.append(std::to_string(Scene::GetEntityCount()).c_str());
 	ImGui::Text(entText.c_str());
+
+	std::string mouseText("Mouse Position: ");
+	mouseText.append(std::to_string(Input::MousePosition().x).c_str());
+	mouseText.append(", ");
+	mouseText.append(std::to_string(Input::MousePosition().y).c_str());
+	ImGui::Text(mouseText.c_str());
 
 	ImGui::End();
 }

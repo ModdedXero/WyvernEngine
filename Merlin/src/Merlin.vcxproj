@@ -149,6 +149,7 @@
     <ClInclude Include="Merlin\Core\Math\Mathf.h" />
     <ClInclude Include="Merlin\Core\Math\Math.h" />
     <ClInclude Include="Merlin\Core\Math\Vector.h" />
+    <ClInclude Include="Merlin\Core\MouseCodes.h" />
     <ClInclude Include="Merlin\Core\Physics\Collider2D.h" />
     <ClInclude Include="Merlin\Core\Physics\CollisionSolver2D.h" />
     <ClInclude Include="Merlin\Core\Physics\Impulse2D.h" />
@@ -170,6 +171,7 @@
     <ClInclude Include="Merlin\Core\Timestep.h" />
     <ClInclude Include="Merlin\Events\Event.h" />
     <ClInclude Include="Merlin\Events\KeyEvent.h" />
+    <ClInclude Include="Merlin\Events\MouseEvent.h" />
     <ClInclude Include="Merlin\Events\WindowEvent.h" />
     <ClInclude Include="Merlin\ImGui\ImGuiLayer.h" />
     <ClInclude Include="Merlin\Renderer\Camera.h" />
@@ -180,11 +182,13 @@
     <ClInclude Include="Merlin\Renderer\Shader.h" />
     <ClInclude Include="Merlin\Renderer\SubTexture2D.h" />
     <ClInclude Include="Merlin\Renderer\Texture2D.h" />
+    <ClInclude Include="Merlin\UI\Button.h" />
     <ClInclude Include="Merlin\Window\Window.h" />
     <ClInclude Include="Platform\OpenGL\ImGuiGLFWRenderer.h" />
     <ClInclude Include="Platform\OpenGL\ImGuiOpenGLLoader.h" />
     <ClInclude Include="Platform\OpenGL\ImGuiOpenGLRenderer.h" />
     <ClInclude Include="mlpch.h" />
+    <ClInclude Include="Merlin\UI\UIWizard.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\vendor\glad\glad.c" />
@@ -215,6 +219,7 @@
     <ClCompile Include="Platform\OpenGL\ImGuiGLFWRenderer.cpp" />
     <ClCompile Include="Platform\OpenGL\ImGuiOpenGLRenderer.cpp" />
     <ClCompile Include="mlpch.cpp" />
+    <ClCompile Include="Merlin\UI\UIWizard.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\vendor\GLFW\GLFW.vcxproj">

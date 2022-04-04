@@ -18,5 +18,6 @@
 #include <unordered_set>
 
 #include <Merlin/Core/Debug.h>
+#include <Merlin/Core/Constants.h>
 
 #endif

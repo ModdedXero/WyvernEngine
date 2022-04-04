@@ -23,10 +23,26 @@ namespace Merlin::Renderer
 
 	void Camera::SetShaderMatrices()
 	{
-		view = (-GetTransform()->position + -offset).localToWorldMatrix();
+		view = glm::translate(glm::mat4(1.0f), (-GetTransform()->position + -offset).glmPosition());
 
 		// TODO: Loop through all Shaders and update their Matrices
 		for (auto& iter : ResourceManager::GetShaders())
 			iter.second->SetMatrix4("projectionViewModel", projection * view * glm::mat4(1.0f));
+
+		auto test = projection * view * glm::mat4(1.0f) * glm::vec4(GetTransform()->position.glmPosition(), 1.0f);
+	}
+
+
+	Vector2 Camera::WorldToScreenPoint(Vector3& pos)
+	{
+		Camera* cam = Camera::GetMain();
+		Window::Window& window = Application::Get().GetWindow();
+
+		auto point = cam->projection * cam->view * glm::mat4(1.0f) * glm::vec4(pos.x, pos.y, 1.0f, 1.0f);
+
+		float xPos = ((point.x + 8) / 16) * window.GetWidth();
+		float yPos = window.GetHeight() - (((point.y + 8) / 16) * window.GetHeight());
+
+		return Vector2(xPos, yPos);
 	}
 }

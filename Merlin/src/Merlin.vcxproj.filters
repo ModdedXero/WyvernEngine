@@ -183,6 +183,10 @@
     </ClInclude>
     <ClInclude Include="mlpch.h" />
     <ClInclude Include="Merlin\Core\Scene\Component.h" />
+    <ClInclude Include="Merlin\Core\MouseCodes.h" />
+    <ClInclude Include="Merlin\Events\MouseEvent.h" />
+    <ClInclude Include="Merlin\UI\Button.h" />
+    <ClInclude Include="Merlin\UI\UIWizard.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\vendor\glad\glad.c">
@@ -265,5 +269,6 @@
     </ClCompile>
     <ClCompile Include="mlpch.cpp" />
     <ClCompile Include="Merlin\Core\Scene\Component.cpp" />
+    <ClCompile Include="Merlin\UI\UIWizard.cpp" />
   </ItemGroup>
 </Project>

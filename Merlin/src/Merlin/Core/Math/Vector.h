@@ -141,7 +141,6 @@ namespace Merlin
 		float z = 0.0f;
 
 		glm::vec3 glmPosition() { return glm::vec3(x, y, z); }
-		glm::mat4 localToWorldMatrix() { return glm::translate(glm::mat4(1.0f), glmPosition()); }
 
 		Vector3& operator +=(const Vector3& other)
 		{

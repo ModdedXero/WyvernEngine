@@ -1,14 +1,16 @@
 #include "mlpch.h"
 #include "Input.h"
 
+#include "Application.h"
+
 #include <GLFW/glfw3.h>
 
 namespace Merlin
 {
 	bool Input::IsKeyImpl(int keycode)
 	{
-		auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
-		auto state = glfwGetKey(window, keycode);
+		GLFWwindow* window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
+		int state = glfwGetKey(window, keycode);
 		return state == GLFW_PRESS;
 	}
 
@@ -23,7 +25,9 @@ namespace Merlin
 
 	bool Input::IsMouseButtonImpl(int keycode)
 	{
-		return false;
+		GLFWwindow* window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
+		int state = glfwGetMouseButton(window, keycode);
+		return state == GLFW_PRESS;
 	}
 
 	bool Input::IsMouseButtonUpImpl(int keycode)
@@ -34,5 +38,15 @@ namespace Merlin
 	bool Input::IsMouseButtonDownImpl(int keycode)
 	{
 		return false;
+	}
+
+	Vector2 Input::MousePositionImpl()
+	{
+		double xpos, ypos;
+
+		GLFWwindow* window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
+		glfwGetCursorPos(window, &xpos, &ypos);
+
+		return Vector2(xpos, ypos);
 	}
 }
