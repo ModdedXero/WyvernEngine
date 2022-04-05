@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ImGui", "Merlin\vendor\ImGu
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Merlin", "Merlin\src\Merlin.vcxproj", "{AC44E0C2-98E6-0A99-81A1-1EED6DE291E9}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "freetype", "Merlin\vendor\FreeType\freetype.vcxproj", "{89895BD8-7556-B6E3-9E6F-A48B8A9BEB71}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -40,6 +42,12 @@ Global
 		{AC44E0C2-98E6-0A99-81A1-1EED6DE291E9}.Dist|x64.Build.0 = Dist|x64
 		{AC44E0C2-98E6-0A99-81A1-1EED6DE291E9}.Release|x64.ActiveCfg = Release|x64
 		{AC44E0C2-98E6-0A99-81A1-1EED6DE291E9}.Release|x64.Build.0 = Release|x64
+		{89895BD8-7556-B6E3-9E6F-A48B8A9BEB71}.Debug|x64.ActiveCfg = Debug|x64
+		{89895BD8-7556-B6E3-9E6F-A48B8A9BEB71}.Debug|x64.Build.0 = Debug|x64
+		{89895BD8-7556-B6E3-9E6F-A48B8A9BEB71}.Dist|x64.ActiveCfg = Dist|x64
+		{89895BD8-7556-B6E3-9E6F-A48B8A9BEB71}.Dist|x64.Build.0 = Dist|x64
+		{89895BD8-7556-B6E3-9E6F-A48B8A9BEB71}.Release|x64.ActiveCfg = Release|x64
+		{89895BD8-7556-B6E3-9E6F-A48B8A9BEB71}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

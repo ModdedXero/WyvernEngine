@@ -27,9 +27,10 @@ namespace Merlin::Renderer
 
 		// TODO: Loop through all Shaders and update their Matrices
 		for (auto& iter : ResourceManager::GetShaders())
-			iter.second->SetMatrix4("projectionViewModel", projection * view * glm::mat4(1.0f));
-
-		auto test = projection * view * glm::mat4(1.0f) * glm::vec4(GetTransform()->position.glmPosition(), 1.0f);
+		{
+			iter.second->SetMatrix4("projection", projection);
+			iter.second->SetMatrix4("viewModel", view * glm::mat4(1.0f));
+		}
 	}
 
 

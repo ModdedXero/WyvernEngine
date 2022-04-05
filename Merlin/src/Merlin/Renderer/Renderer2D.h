@@ -20,5 +20,7 @@ namespace Merlin::Renderer
 		static void DrawQuad(const Vector3& pos, const Vector2& size, const Vector4& color);
 		static void DrawQuad(const Vector3& pos, const Vector2& size, Texture2D* texture);
 		static void DrawQuad(const Vector3& pos, const Vector2& size, SubTexture2D* subTexture);
+
+		static void DrawText(Vector2 pos, const Vector2& size, const std::string& text);
 	};
 }

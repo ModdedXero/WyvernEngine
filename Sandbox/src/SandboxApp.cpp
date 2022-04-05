@@ -14,6 +14,9 @@ public:
 		ResourceManager::LoadShader("..\\Sandbox\\Assets\\Shader\\FlatShader.vert",
 			"..\\Sandbox\\Assets\\Shader\\FlatShader.frag", nullptr, "FlatShader");
 
+		ResourceManager::LoadShader("..\\Sandbox\\Assets\\Shader\\TextShader.vert",
+			"..\\Sandbox\\Assets\\Shader\\TextShader.frag", nullptr, "TextShader");
+
 		ResourceManager::LoadTexture("..\\Sandbox\\Assets\\Texture\\tileset.png", true, true, "Dungeon");
 		ResourceManager::LoadTexture("..\\Sandbox\\Assets\\Texture\\ball.png", true, true, "Ball");
 

@@ -25,6 +25,9 @@
     <Filter Include="Merlin\Renderer">
       <UniqueIdentifier>{D28911FB-3E15-7FBF-4726-02B4B330DBBF}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Merlin\UI">
+      <UniqueIdentifier>{59E8887C-C552-3DF3-0E91-EE987A3A1B48}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Merlin\Window">
       <UniqueIdentifier>{13D832F4-7F98-AE2A-48D3-F7A7B452F306}</UniqueIdentifier>
     </Filter>
@@ -55,6 +58,9 @@
     <ClInclude Include="Merlin\Core\Constants.h">
       <Filter>Merlin\Core</Filter>
     </ClInclude>
+    <ClInclude Include="Merlin\Core\Debug.h">
+      <Filter>Merlin\Core</Filter>
+    </ClInclude>
     <ClInclude Include="Merlin\Core\Input.h">
       <Filter>Merlin\Core</Filter>
     </ClInclude>
@@ -67,17 +73,17 @@
     <ClInclude Include="Merlin\Core\LayerStack.h">
       <Filter>Merlin\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Merlin\Core\Debug.h">
-      <Filter>Merlin\Core</Filter>
+    <ClInclude Include="Merlin\Core\Math\Math.h">
+      <Filter>Merlin\Core\Math</Filter>
     </ClInclude>
     <ClInclude Include="Merlin\Core\Math\Mathf.h">
       <Filter>Merlin\Core\Math</Filter>
     </ClInclude>
-    <ClInclude Include="Merlin\Core\Math\Math.h">
-      <Filter>Merlin\Core\Math</Filter>
-    </ClInclude>
     <ClInclude Include="Merlin\Core\Math\Vector.h">
       <Filter>Merlin\Core\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Merlin\Core\MouseCodes.h">
+      <Filter>Merlin\Core</Filter>
     </ClInclude>
     <ClInclude Include="Merlin\Core\Physics\Collider2D.h">
       <Filter>Merlin\Core\Physics</Filter>
@@ -102,6 +108,9 @@
     </ClInclude>
     <ClInclude Include="Merlin\Core\Physics\VelocitySolver2D.h">
       <Filter>Merlin\Core\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Merlin\Core\Scene\Component.h">
+      <Filter>Merlin\Core\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Merlin\Core\Scene\ComponentPool.h">
       <Filter>Merlin\Core\Scene</Filter>
@@ -139,6 +148,9 @@
     <ClInclude Include="Merlin\Events\KeyEvent.h">
       <Filter>Merlin\Events</Filter>
     </ClInclude>
+    <ClInclude Include="Merlin\Events\MouseEvent.h">
+      <Filter>Merlin\Events</Filter>
+    </ClInclude>
     <ClInclude Include="Merlin\Events\WindowEvent.h">
       <Filter>Merlin\Events</Filter>
     </ClInclude>
@@ -169,6 +181,12 @@
     <ClInclude Include="Merlin\Renderer\Texture2D.h">
       <Filter>Merlin\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="Merlin\UI\Button.h">
+      <Filter>Merlin\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Merlin\UI\UIWizard.h">
+      <Filter>Merlin\UI</Filter>
+    </ClInclude>
     <ClInclude Include="Merlin\Window\Window.h">
       <Filter>Merlin\Window</Filter>
     </ClInclude>
@@ -182,11 +200,6 @@
       <Filter>Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="mlpch.h" />
-    <ClInclude Include="Merlin\Core\Scene\Component.h" />
-    <ClInclude Include="Merlin\Core\MouseCodes.h" />
-    <ClInclude Include="Merlin\Events\MouseEvent.h" />
-    <ClInclude Include="Merlin\UI\Button.h" />
-    <ClInclude Include="Merlin\UI\UIWizard.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\vendor\glad\glad.c">
@@ -221,6 +234,9 @@
     </ClCompile>
     <ClCompile Include="Merlin\Core\Physics\VelocitySolver2D.cpp">
       <Filter>Merlin\Core\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Merlin\Core\Scene\Component.cpp">
+      <Filter>Merlin\Core\Scene</Filter>
     </ClCompile>
     <ClCompile Include="Merlin\Core\Scene\Entity.cpp">
       <Filter>Merlin\Core\Scene</Filter>
@@ -258,6 +274,9 @@
     <ClCompile Include="Merlin\Renderer\Texture2D.cpp">
       <Filter>Merlin\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="Merlin\UI\UIWizard.cpp">
+      <Filter>Merlin\UI</Filter>
+    </ClCompile>
     <ClCompile Include="Merlin\Window\Window.cpp">
       <Filter>Merlin\Window</Filter>
     </ClCompile>
@@ -268,7 +287,5 @@
       <Filter>Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="mlpch.cpp" />
-    <ClCompile Include="Merlin\Core\Scene\Component.cpp" />
-    <ClCompile Include="Merlin\UI\UIWizard.cpp" />
   </ItemGroup>
 </Project>

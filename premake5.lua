@@ -17,9 +17,12 @@ IncludeDir["GLAD"] = "Merlin/vendor/glad/include"
 IncludeDir["GLM"] = "Merlin/vendor/glm"
 IncludeDir["ImGUI"] = "Merlin/vendor/imgui"
 IncludeDir["STB"] = "Merlin/vendor/stb_image"
+IncludeDir["FreeType"] = "Merlin/vendor/freetype/include"
+IncludeDir["FreeTypeSub"] = "Merlin/vendor/freetype/include/freetype"
 
 include "Merlin/vendor/GLFW"
 include "Merlin/vendor/ImGui"
+include "Merlin/vendor/FreeType"
 	
 project "Merlin"
 	location "Merlin/src"
@@ -50,13 +53,16 @@ project "Merlin"
 		"%{IncludeDir.GLAD}",
 		"%{IncludeDir.GLM}",
 		"%{IncludeDir.ImGUI}",
-		"%{IncludeDir.STB}"
+		"%{IncludeDir.STB}",
+		"%{IncludeDir.FreeType}",
+		"%{IncludeDir.FreeTypeSub}"
 	}
 
 	links
 	{
 		"GLFW",
 		"ImGui",
+		"FreeType",
 		"opengl32.lib"
 	}
 	
@@ -105,7 +111,9 @@ project "Sandbox"
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.GLM}",
 		"%{IncludeDir.ImGUI}",
-		"%{IncludeDir.GLAD}"
+		"%{IncludeDir.GLAD}",
+		"%{IncludeDir.FreeType}",
+		"%{IncludeDir.FreeTypeSub}"
 	}
 
 	links

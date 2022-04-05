@@ -108,7 +108,7 @@ void PongLayer::OnUpdate(Merlin::Timestep ts)
 	player1->MovePlayer(ts.GetDeltaTime());
 	player2->MovePlayer(ts.GetDeltaTime());
 
-	// DEBUG_LOG(Camera::WorldToScreenPoint(player1->GetTransform()->position));
+	Renderer2D::DrawText({ 0,0 }, { 0.01f, 0.01f }, "I really love Pong!");
 
 	CheckScore();
 }

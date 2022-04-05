@@ -76,7 +76,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>ML_PLATFORM_WINDOWS;ML_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.;..\vendor\GLFW\include;..\vendor\glad\include;..\vendor\glm;..\vendor\imgui;..\vendor\stb_image;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..\vendor\GLFW\include;..\vendor\glad\include;..\vendor\glm;..\vendor\imgui;..\vendor\stb_image;..\vendor\freetype\include;..\vendor\freetype\include\freetype;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -95,7 +95,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>ML_PLATFORM_WINDOWS;ML_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.;..\vendor\GLFW\include;..\vendor\glad\include;..\vendor\glm;..\vendor\imgui;..\vendor\stb_image;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..\vendor\GLFW\include;..\vendor\glad\include;..\vendor\glm;..\vendor\imgui;..\vendor\stb_image;..\vendor\freetype\include;..\vendor\freetype\include\freetype;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -118,7 +118,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>ML_PLATFORM_WINDOWS;ML_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.;..\vendor\GLFW\include;..\vendor\glad\include;..\vendor\glm;..\vendor\imgui;..\vendor\stb_image;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..\vendor\GLFW\include;..\vendor\glad\include;..\vendor\glm;..\vendor\imgui;..\vendor\stb_image;..\vendor\freetype\include;..\vendor\freetype\include\freetype;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -141,13 +141,13 @@
     <ClInclude Include="Merlin.h" />
     <ClInclude Include="Merlin\Core\Application.h" />
     <ClInclude Include="Merlin\Core\Constants.h" />
+    <ClInclude Include="Merlin\Core\Debug.h" />
     <ClInclude Include="Merlin\Core\Input.h" />
     <ClInclude Include="Merlin\Core\KeyCodes.h" />
     <ClInclude Include="Merlin\Core\Layer.h" />
     <ClInclude Include="Merlin\Core\LayerStack.h" />
-    <ClInclude Include="Merlin\Core\Debug.h" />
-    <ClInclude Include="Merlin\Core\Math\Mathf.h" />
     <ClInclude Include="Merlin\Core\Math\Math.h" />
+    <ClInclude Include="Merlin\Core\Math\Mathf.h" />
     <ClInclude Include="Merlin\Core\Math\Vector.h" />
     <ClInclude Include="Merlin\Core\MouseCodes.h" />
     <ClInclude Include="Merlin\Core\Physics\Collider2D.h" />
@@ -183,12 +183,12 @@
     <ClInclude Include="Merlin\Renderer\SubTexture2D.h" />
     <ClInclude Include="Merlin\Renderer\Texture2D.h" />
     <ClInclude Include="Merlin\UI\Button.h" />
+    <ClInclude Include="Merlin\UI\UIWizard.h" />
     <ClInclude Include="Merlin\Window\Window.h" />
     <ClInclude Include="Platform\OpenGL\ImGuiGLFWRenderer.h" />
     <ClInclude Include="Platform\OpenGL\ImGuiOpenGLLoader.h" />
     <ClInclude Include="Platform\OpenGL\ImGuiOpenGLRenderer.h" />
     <ClInclude Include="mlpch.h" />
-    <ClInclude Include="Merlin\UI\UIWizard.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\vendor\glad\glad.c" />
@@ -215,11 +215,11 @@
     <ClCompile Include="Merlin\Renderer\Shader.cpp" />
     <ClCompile Include="Merlin\Renderer\SubTexture2D.cpp" />
     <ClCompile Include="Merlin\Renderer\Texture2D.cpp" />
+    <ClCompile Include="Merlin\UI\UIWizard.cpp" />
     <ClCompile Include="Merlin\Window\Window.cpp" />
     <ClCompile Include="Platform\OpenGL\ImGuiGLFWRenderer.cpp" />
     <ClCompile Include="Platform\OpenGL\ImGuiOpenGLRenderer.cpp" />
     <ClCompile Include="mlpch.cpp" />
-    <ClCompile Include="Merlin\UI\UIWizard.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\vendor\GLFW\GLFW.vcxproj">
@@ -227,6 +227,9 @@
     </ProjectReference>
     <ProjectReference Include="..\vendor\ImGui\ImGui.vcxproj">
       <Project>{C0FF640D-2C14-8DBE-F595-301E616989EF}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\vendor\FreeType\freetype.vcxproj">
+      <Project>{89895BD8-7556-B6E3-9E6F-A48B8A9BEB71}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

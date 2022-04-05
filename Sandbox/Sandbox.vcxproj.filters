@@ -15,18 +15,30 @@
     <ClInclude Include="src\ArenaExample\PlayerEntity.h">
       <Filter>ArenaExample</Filter>
     </ClInclude>
+    <ClInclude Include="src\PongExample\BottomWall.h">
+      <Filter>PongExample</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PongExample\GameState.h">
+      <Filter>PongExample</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PongExample\LeftWall.h">
+      <Filter>PongExample</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PongExample\PlayerPaddle.h">
+      <Filter>PongExample</Filter>
+    </ClInclude>
     <ClInclude Include="src\PongExample\PongLayer.h">
       <Filter>PongExample</Filter>
     </ClInclude>
     <ClInclude Include="src\PongExample\PongWall.h">
       <Filter>PongExample</Filter>
     </ClInclude>
-    <ClInclude Include="src\PongExample\LeftWall.h" />
-    <ClInclude Include="src\PongExample\RightWall.h" />
-    <ClInclude Include="src\PongExample\TopWall.h" />
-    <ClInclude Include="src\PongExample\BottomWall.h" />
-    <ClInclude Include="src\PongExample\PlayerPaddle.h" />
-    <ClInclude Include="src\PongExample\GameState.h" />
+    <ClInclude Include="src\PongExample\RightWall.h">
+      <Filter>PongExample</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PongExample\TopWall.h">
+      <Filter>PongExample</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ArenaExample\ArenaLayer.cpp">
@@ -35,17 +47,27 @@
     <ClCompile Include="src\ArenaExample\PlayerEntity.cpp">
       <Filter>ArenaExample</Filter>
     </ClCompile>
+    <ClCompile Include="src\PongExample\BottomWall.cpp">
+      <Filter>PongExample</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PongExample\LeftWall.cpp">
+      <Filter>PongExample</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PongExample\PlayerPaddle.cpp">
+      <Filter>PongExample</Filter>
+    </ClCompile>
     <ClCompile Include="src\PongExample\PongLayer.cpp">
       <Filter>PongExample</Filter>
     </ClCompile>
     <ClCompile Include="src\PongExample\PongWall.cpp">
       <Filter>PongExample</Filter>
     </ClCompile>
+    <ClCompile Include="src\PongExample\RightWall.cpp">
+      <Filter>PongExample</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PongExample\TopWall.cpp">
+      <Filter>PongExample</Filter>
+    </ClCompile>
     <ClCompile Include="src\SandboxApp.cpp" />
-    <ClCompile Include="src\PongExample\LeftWall.cpp" />
-    <ClCompile Include="src\PongExample\RightWall.cpp" />
-    <ClCompile Include="src\PongExample\TopWall.cpp" />
-    <ClCompile Include="src\PongExample\BottomWall.cpp" />
-    <ClCompile Include="src\PongExample\PlayerPaddle.cpp" />
   </ItemGroup>
 </Project>
