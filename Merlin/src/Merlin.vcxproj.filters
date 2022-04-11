@@ -160,7 +160,7 @@
     <ClInclude Include="Merlin\Renderer\Camera.h">
       <Filter>Merlin\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="Merlin\Renderer\Material2D.h">
+    <ClInclude Include="Merlin\Core\Graphics\Material.h">
       <Filter>Merlin\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="Merlin\Renderer\RenderWizard.h">
@@ -169,16 +169,16 @@
     <ClInclude Include="Merlin\Renderer\Renderer2D.h">
       <Filter>Merlin\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="Merlin\Renderer\ResourceManager.h">
+    <ClInclude Include="Merlin\Core\ResourceManager.h">
       <Filter>Merlin\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="Merlin\Renderer\Shader.h">
+    <ClInclude Include="Merlin\Core\Graphics\Shader.h">
       <Filter>Merlin\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="Merlin\Renderer\SubTexture2D.h">
+    <ClInclude Include="Merlin\Core\Graphics\Sprite.h">
       <Filter>Merlin\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="Merlin\Renderer\Texture2D.h">
+    <ClInclude Include="Merlin\Core\Graphics\Texture2D.h">
       <Filter>Merlin\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="Merlin\UI\Button.h">
@@ -200,6 +200,8 @@
       <Filter>Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="mlpch.h" />
+    <ClInclude Include="Merlin\Core\Graphics\SpriteRenderer.h" />
+    <ClInclude Include="Merlin\Core\Base.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\vendor\glad\glad.c">
@@ -262,16 +264,16 @@
     <ClCompile Include="Merlin\Renderer\Renderer2D.cpp">
       <Filter>Merlin\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="Merlin\Renderer\ResourceManager.cpp">
+    <ClCompile Include="Merlin\Core\ResourceManager.cpp">
       <Filter>Merlin\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="Merlin\Renderer\Shader.cpp">
+    <ClCompile Include="Merlin\Core\Graphics\Shader.cpp">
       <Filter>Merlin\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="Merlin\Renderer\SubTexture2D.cpp">
+    <ClCompile Include="Merlin\Core\Graphics\Sprite.cpp">
       <Filter>Merlin\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="Merlin\Renderer\Texture2D.cpp">
+    <ClCompile Include="Merlin\Core\Graphics\Texture2D.cpp">
       <Filter>Merlin\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="Merlin\UI\UIWizard.cpp">

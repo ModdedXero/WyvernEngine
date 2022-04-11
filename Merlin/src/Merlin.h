@@ -15,14 +15,17 @@
 // Components
 #include <Merlin/Core/Scene/Component.h>
 #include <Merlin/Core/Scene/Transform.h>
-#include <Merlin/Renderer/Material2D.h>
 #include <Merlin/Core/Physics/Collider2D.h>
 #include <Merlin/Core/Physics/RigidBody2D.h>
+#include <Merlin/Core/Graphics/SpriteRenderer.h>
 #include <Merlin/UI/Button.h>
+
 
 #include <Merlin/Core/Math/Math.h>
 
-#include <Merlin/Renderer/ResourceManager.h>
+#include <Merlin/Core/Graphics/Material.h>
+#include <Merlin/Core/ResourceManager.h>
+
 #include <Merlin/Renderer/Renderer2D.h>
 #include <Merlin/Renderer/Camera.h>
 
@@ -33,3 +36,4 @@
 #include <Merlin/Events/WindowEvent.h>
 
 #include <Merlin/Core/Debug.h>
+#include <Merlin/Core/Base.h>

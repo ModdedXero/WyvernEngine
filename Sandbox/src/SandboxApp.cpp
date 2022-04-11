@@ -35,6 +35,6 @@ public:
 
 int main()
 {
-	std::unique_ptr<SandboxApp> app = std::make_unique<SandboxApp>();
+	Scope<SandboxApp> app = std::make_unique<SandboxApp>();
 	app->Run();
 }

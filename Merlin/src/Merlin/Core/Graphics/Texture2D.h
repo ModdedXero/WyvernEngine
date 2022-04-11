@@ -2,7 +2,7 @@
 
 #include <glad.h>
 
-namespace Merlin::Renderer
+namespace Merlin
 {
 	class Texture2D
 	{

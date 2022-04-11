@@ -1,13 +1,13 @@
-#include "SubTexture2D.h"
+#include "Sprite.h"
 
-namespace Merlin::Renderer
+namespace Merlin
 {
-    SubTexture2D::SubTexture2D()
+    Sprite::Sprite()
     {
 
     }
 
-    SubTexture2D::SubTexture2D(Texture2D* texture, const Vector2& min, const Vector2& max)
+    Sprite::Sprite(Texture2D* texture, const Vector2& min, const Vector2& max)
         : m_Texture(texture)
     {
         m_TexCoords[0] = { min.x, min.y };
@@ -16,10 +16,10 @@ namespace Merlin::Renderer
         m_TexCoords[3] = { min.x, max.y };
     }
 
-    SubTexture2D* SubTexture2D::CreateFromCoords(Texture2D* texture, const Vector2& coords, const Vector2& tileSize, const Vector2& spriteSize)
+    Sprite* Sprite::CreateFromCoords(Texture2D* texture, const Vector2& coords, const Vector2& tileSize, const Vector2& spriteSize)
     {
         Vector2 min = { (coords.x * spriteSize.x * tileSize.x) / texture->Width, (coords.y * spriteSize.y * tileSize.y) / texture->Height };
         Vector2 max = { ((coords.x + 1) * spriteSize.x * tileSize.x) / texture->Width, ((coords.y + 1) * spriteSize.y * tileSize.y) / texture->Height };
-        return new SubTexture2D(texture, min, max);
+        return new Sprite(texture, min, max);
     }
 }

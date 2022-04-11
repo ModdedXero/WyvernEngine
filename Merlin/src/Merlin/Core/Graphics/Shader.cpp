@@ -1,7 +1,7 @@
 #include "mlpch.h"
 #include "Shader.h"
 
-namespace Merlin::Renderer
+namespace Merlin
 {
 	Shader::Shader()
 	{

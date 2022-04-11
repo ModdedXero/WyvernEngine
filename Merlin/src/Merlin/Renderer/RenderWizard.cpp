@@ -1,18 +1,19 @@
 #include "mlpch.h"
 #include "RenderWizard.h"
 
-#include "Material2D.h"
-#include "Renderer2D.h"
 #include "Camera.h"
-#include "ResourceManager.h"
+#include "Renderer2D.h"
+
+#include <Merlin/Core/Graphics/Material.h>
+#include <Merlin/Core/ResourceManager.h>
 
 namespace Merlin::Renderer
 {
 	void RenderWizard::OnUpdate(Timestep ts)
 	{
-		for (Entity* ent : EntityList<Material2D>())
+		for (Entity* ent : EntityList<Material>())
 		{
-			Material2D* mat = ent->GetComponent<Material2D>();
+			Material* mat = ent->GetComponent<Material>();
 
 			if (mat->shader == nullptr) return;
 

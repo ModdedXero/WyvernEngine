@@ -1,14 +1,14 @@
 #pragma once
 
-#include "Shader.h"
-#include "Texture2D.h"
-#include "SubTexture2D.h"
+#include <Merlin/Core/Graphics/Shader.h>
+#include <Merlin/Core/Graphics/Texture2D.h>
+#include <Merlin/Core/Graphics/SubTexture2D.h>
 
 #include <Merlin/Core/Math/Vector.h>
 
 #include <glad.h>
 
-namespace Merlin::Renderer
+namespace Merlin
 {
 	class ResourceManager
 	{

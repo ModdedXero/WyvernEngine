@@ -245,6 +245,13 @@ namespace Merlin
 		float y = 0.0f;
 		float z = 0.0f;
 		float w = 0.0f;
+
+		// Vector4 Operators
+
+		Vector4 operator *(const Vector4& other) const
+		{
+			return Vector4(x * other.x, y * other.y, z * other.z, w * other.w);
+		}
 	};
 
 	inline std::ostream& operator <<(std::ostream& os, const Vector2& vec)

@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Texture2D.h"
-#include "SubTexture2D.h"
-
+#include <Merlin/Core/Graphics/Sprite.h>
+#include <Merlin/Core/Graphics/Material.h>
+#include <Merlin/Core/Scene/Transform.h>
 #include <Merlin/Core/Math/Vector.h>
 
 namespace Merlin::Renderer
@@ -17,9 +17,10 @@ namespace Merlin::Renderer
 		static void EndBatch();
 		static void Flush();
 
+		static void DrawQuad(Ref<Transform> transform, Ref<Material> material, Ref<Sprite> sprite, const Vector4& tint);
+
 		static void DrawQuad(const Vector3& pos, const Vector2& size, const Vector4& color);
 		static void DrawQuad(const Vector3& pos, const Vector2& size, Texture2D* texture);
-		static void DrawQuad(const Vector3& pos, const Vector2& size, SubTexture2D* subTexture);
 
 		static void DrawText(Vector2 pos, const Vector2& size, const std::string& text);
 	};
