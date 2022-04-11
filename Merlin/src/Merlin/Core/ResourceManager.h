@@ -2,7 +2,7 @@
 
 #include <Merlin/Core/Graphics/Shader.h>
 #include <Merlin/Core/Graphics/Texture2D.h>
-#include <Merlin/Core/Graphics/SubTexture2D.h>
+#include <Merlin/Core/Graphics/Sprite.h>
 
 #include <Merlin/Core/Math/Vector.h>
 
@@ -19,12 +19,12 @@ namespace Merlin
 		static Texture2D* LoadTexture(const char* file, bool alpha, bool pixel, const char* name);
 		static Texture2D* GetTexture(const char* name);
 
-		static SubTexture2D* LoadSubTexture(const char* name, const char* textureName, const Vector2& coords, const Vector2& tileSize, const Vector2& spriteSize);
-		static SubTexture2D* GetSubTexture(const char* name);
+		static Sprite* LoadSubTexture(const char* name, const char* textureName, const Vector2& coords, const Vector2& tileSize, const Vector2& spriteSize);
+		static Sprite* GetSubTexture(const char* name);
 
 		static std::unordered_map<const char*, Shader*> GetShaders();
 		static std::unordered_map<const char*, Texture2D*> GetTextures();
-		static std::unordered_map<const char*, SubTexture2D*> GetSubTextures();
+		static std::unordered_map<const char*, Sprite*> GetSubTextures();
 
 		static void Clear();
 	private:

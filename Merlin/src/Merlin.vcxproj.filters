@@ -202,6 +202,7 @@
     <ClInclude Include="mlpch.h" />
     <ClInclude Include="Merlin\Core\Graphics\SpriteRenderer.h" />
     <ClInclude Include="Merlin\Core\Base.h" />
+    <ClInclude Include="Merlin\Core\Math\Matrix4.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\vendor\glad\glad.c">

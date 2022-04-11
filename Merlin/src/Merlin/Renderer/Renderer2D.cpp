@@ -15,6 +15,19 @@ namespace Merlin::Renderer
 
 	struct Vertex
 	{
+		Vertex()
+		{
+
+		}
+
+		Vertex(Vector3 pos, Vector4 col, Vector2 coords, float texID)
+		{
+			this->Position = pos;
+			this->Color = col;
+			this->TexCoords = coords;
+			this->TexID = texID;
+		}
+
 		Vector3 Position;
 		Vector4 Color;
 		Vector2 TexCoords;
@@ -29,6 +42,8 @@ namespace Merlin::Renderer
 
 		Vertex* QuadBuffer = nullptr;
 		Vertex* QuadBufferPtr = nullptr;
+
+		std::unordered_map<Shader*, std::vector<Vertex*>> VertexData;
 
 		uint32_t IndexCount = 0;
 
@@ -218,6 +233,35 @@ namespace Merlin::Renderer
 			textureIndex = (float)s_Data.TextureSlotIndex;
 			s_Data.TextureSlots[s_Data.TextureSlotIndex] = sprite->GetTexture()->ID;
 			s_Data.TextureSlotIndex++;
+		}
+
+		if (s_Data.VertexData.count(material->shader))
+		{
+			std::vector<Vertex*> vertices;
+			vertices.push_back(new Vertex(
+				{ transform->position.x - transform->scale.x, transform->position.y - transform->scale.y, transform->position.z },
+				color,
+				sprite->GetTexCoords()[3],
+				textureIndex
+			));
+			vertices.push_back(new Vertex(
+				{ transform->position.x + transform->scale.x, transform->position.y - transform->scale.y, transform->position.z },
+				color,
+				sprite->GetTexCoords()[2],
+				textureIndex
+			));
+			vertices.push_back(new Vertex(
+				{ transform->position.x + transform->scale.x, transform->position.y + transform->scale.y, transform->position.z },
+				color,
+				sprite->GetTexCoords()[1],
+				textureIndex
+			));
+			vertices.push_back(new Vertex(
+				{ transform->position.x - transform->scale.x, transform->position.y + transform->scale.y, transform->position.z },
+				color,
+				sprite->GetTexCoords()[0],
+				textureIndex
+			));
 		}
 
 		s_Data.QuadBufferPtr->Position = { transform->position.x - transform->scale.x, transform->position.y - transform->scale.y, transform->position.z};
