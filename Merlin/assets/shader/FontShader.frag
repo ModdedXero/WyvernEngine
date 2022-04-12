@@ -12,5 +12,5 @@ void main()
 {
 	int index = int(vTexIndex);
 	vec4 sampled = vec4(1.0, 1.0, 1.0, texture(uTextures[index], vTexCoord).r);
-	FragColor = vColor * sampled;
+	FragColor = sampled;
 }

@@ -136,7 +136,7 @@ namespace Merlin::Renderer
 		}
 
 		FT_Face face;
-		if (FT_New_Face(ft, "E:\\Programming\\VisualStudio\\Projects\\Merlin\\Sandbox\\Assets\\Fonts\\Times.TTF", 0, &face))
+		if (FT_New_Face(ft, "..\\Sandbox\\Assets\\Fonts\\Times.TTF", 0, &face))
 		{
 			DEBUG_LOG_ERROR("Error: FreeType failed to load font");
 		}
@@ -449,29 +449,32 @@ namespace Merlin::Renderer
 			float height = (ch.Size.y * size.y) * 0.5f;
 
 			s_Data.VertexData[fontShader].push_back(new Vertex(
-				{ xpos - width, ypos - height, 0.0f },
+				{ xpos - width, ypos - height, -7.0f },
 				{ 1.0f, 1.0f, 1.0f, 1.0f },
 				{ 0.0f, 1.0f },
 				textureIndex
 			));
 			s_Data.VertexData[fontShader].push_back(new Vertex(
-				{ xpos + width, ypos - height, 0.0f },
+				{ xpos + width, ypos - height, -7.0f },
 				{ 1.0f, 1.0f, 1.0f, 1.0f },
 				{ 1.0f, 1.0f },
 				textureIndex
 			));
 			s_Data.VertexData[fontShader].push_back(new Vertex(
-				{ xpos + width, ypos + height, 0.0f },
+				{ xpos + width, ypos + height, -7.0f },
 				{ 1.0f, 1.0f, 1.0f, 1.0f },
 				{ 1.0f, 0.0f },
 				textureIndex
 			));
 			s_Data.VertexData[fontShader].push_back(new Vertex(
-				{ xpos - width, ypos + height, 0.0f },
+				{ xpos - width, ypos + height, -7.0f },
 				{ 1.0f, 1.0f, 1.0f, 1.0f },
 				{ 0.0f, 0.0f },
 				textureIndex
 			));
+
+			DEBUG_LOG((Camera::GetMain()->projection * glm::vec4(Vector3(xpos - width, ypos + height, -7.0f).glmPosition(), 1.0f)).z);
+			//DEBUG_LOG((Camera::GetMain()->projection * Camera::GetMain()->view * glm::mat4(1.0f) * glm::vec4(Vector3(xpos - width, ypos + height, 0.0f).glmPosition(), 1.0f)).z);
 
 			pos.x += (ch.Advance >> 6) * size.x;
 		}
