@@ -12,7 +12,7 @@ public:
 
 	void OnAttach() override;
 
-	Material2D* mat;
+	SpriteRenderer* mat;
 	RigidBody2D* rb;
 	BoxCollider2D* col;
 };

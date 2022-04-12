@@ -31,9 +31,9 @@ public:
 	void OnAttach() override
 	{
 		GetTransform()->scale = { 0.5f, 0.5f, 0.5f };
-		Material2D* mat = AddComponent<Material2D>();
-		mat->shader = ResourceManager::GetShader("FlatShader");
-		mat->subTexture = ResourceManager::GetSubTexture("Wall");
+		SpriteRenderer* mat = AddComponent<SpriteRenderer>();
+		mat->material->shader = ResourceManager::GetShader("StandardShader");
+		mat->sprite = ResourceManager::GetSprite("Wall");
 		RigidBody2D* rb = AddComponent<RigidBody2D>();
 		rb->bodyType = RigidBody2D::PhysicsBody::Static;
 		rb->mass = 0.0f;
@@ -57,9 +57,9 @@ void ArenaLayer::OnAttach()
 				Entity* tile = Scene::CreateEntity<Entity>();
 				tile->GetTransform()->scale = { 0.5f, 0.5f, 0.5f };
 				tile->GetTransform()->position += Vector2(row - 1, -col + 1);
-				Material2D* mat = tile->AddComponent<Material2D>();
-				mat->shader = ResourceManager::GetShader("FlatShader");
-				mat->subTexture = ResourceManager::GetSubTexture("Floor");
+				SpriteRenderer* mat = tile->AddComponent<SpriteRenderer>();
+				mat->material->shader = ResourceManager::GetShader("StandardShader");
+				mat->sprite = ResourceManager::GetSprite("Floor");
 			}
 			else if (TileMap[col][row] == 2)
 			{

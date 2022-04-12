@@ -13,15 +13,17 @@ namespace Merlin::Renderer
 		static void OnAwake();
 		static void OnDestroy();
 
-		static void BeginBatch();
-		static void EndBatch();
-		static void Flush();
+		static void BeginScene();
+		static void EndScene();
 
-		static void DrawQuad(Ref<Transform> transform, Ref<Material> material, Ref<Sprite> sprite, const Vector4& tint);
-
+		static void DrawQuad(Transform* transform, Material* material, Sprite* sprite, const Vector4& color);
 		static void DrawQuad(const Vector3& pos, const Vector2& size, const Vector4& color);
 		static void DrawQuad(const Vector3& pos, const Vector2& size, Texture2D* texture);
 
 		static void DrawText(Vector2 pos, const Vector2& size, const std::string& text);
+	private:
+		static void BeginBatch();
+		static void EndBatch();
+		static void Flush();
 	};
 }

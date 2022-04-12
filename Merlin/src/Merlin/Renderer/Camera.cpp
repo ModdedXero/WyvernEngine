@@ -1,8 +1,6 @@
 #include "mlpch.h"
 #include "Camera.h"
 
-#include "ResourceManager.h"
-
 #include <Merlin/Core/Application.h>
 
 #include <glm/ext/matrix_clip_space.hpp>
@@ -21,16 +19,13 @@ namespace Merlin::Renderer
 			(float)Application::Get().GetWindow().GetWidth() / (float)Application::Get().GetWindow().GetHeight(), 0.1f, 100.0f);
 	}
 
-	void Camera::SetShaderMatrices()
+	void Camera::SetShaderMatrices(Shader* shader)
 	{
 		view = glm::translate(glm::mat4(1.0f), (-GetTransform()->position + -offset).glmPosition());
 
 		// TODO: Loop through all Shaders and update their Matrices
-		for (auto& iter : ResourceManager::GetShaders())
-		{
-			iter.second->SetMatrix4("projection", projection);
-			iter.second->SetMatrix4("viewModel", view * glm::mat4(1.0f));
-		}
+		shader->SetMatrix4("projection", projection);
+		shader->SetMatrix4("viewModel", view * glm::mat4(1.0f));
 	}
 
 

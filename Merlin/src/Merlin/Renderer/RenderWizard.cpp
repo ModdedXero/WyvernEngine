@@ -4,37 +4,27 @@
 #include "Camera.h"
 #include "Renderer2D.h"
 
-#include <Merlin/Core/Graphics/Material.h>
+#include <Merlin/Core/Graphics/SpriteRenderer.h>
 #include <Merlin/Core/ResourceManager.h>
 
 namespace Merlin::Renderer
 {
 	void RenderWizard::OnUpdate(Timestep ts)
 	{
-		for (Entity* ent : EntityList<Material>())
+		for (Entity* ent : EntityList<SpriteRenderer>())
 		{
-			Material* mat = ent->GetComponent<Material>();
+			SpriteRenderer* sRend = ent->GetComponent<SpriteRenderer>();
 
-			if (mat->shader == nullptr) return;
-
-			if (mat->texture != nullptr)
+			if (sRend->material == nullptr || sRend->sprite == nullptr)
 			{
-				Renderer2D::DrawQuad(ent->GetTransform()->position,
-					ent->GetTransform()->scale, mat->texture);
-			}
-			else if (mat->subTexture != nullptr)
-			{
-				Renderer2D::DrawQuad(ent->GetTransform()->position,
-					ent->GetTransform()->scale, mat->subTexture);
+				Renderer2D::DrawQuad(ent->GetTransform()->position, ent->GetTransform()->scale, sRend->color);
 			}
 			else
 			{
-				Renderer2D::DrawQuad(ent->GetTransform()->position,
-					ent->GetTransform()->scale, mat->color);
+				Renderer2D::DrawQuad(ent->GetTransform(), sRend->material, sRend->sprite, sRend->color);
 			}
-		}
 
-		if (Camera::GetMain() != nullptr)
-			Camera::GetMain()->SetShaderMatrices();
+			//Renderer2D::DrawQuad(ent->GetTransform(), sRend->material, sRend->sprite, sRend->color);
+		}
 	}
 }

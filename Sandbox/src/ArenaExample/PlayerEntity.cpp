@@ -1,7 +1,7 @@
 #include "PlayerEntity.h"
 
 PlayerEntity::PlayerEntity()
-	: m_Camera(nullptr), m_Material(nullptr), m_RigidBody(nullptr), m_Collider(nullptr)
+	: m_Camera(nullptr), m_Sprite(nullptr), m_RigidBody(nullptr), m_Collider(nullptr)
 {
 
 }
@@ -9,7 +9,7 @@ PlayerEntity::PlayerEntity()
 void PlayerEntity::OnAttach()
 {
 	m_Camera = AddComponent<Camera>();
-	m_Material = AddComponent<Material2D>();
+	m_Sprite = AddComponent<SpriteRenderer>();
 	m_RigidBody = AddComponent<RigidBody2D>();
 	m_Collider = AddComponent<BoxCollider2D>();
 
@@ -17,8 +17,8 @@ void PlayerEntity::OnAttach()
 
 	m_Camera->offset = { 0, 0, 8 };
 
-	m_Material->shader = ResourceManager::GetShader("FlatShader");
-	m_Material->subTexture = ResourceManager::GetSubTexture("Player");
+	m_Sprite->material->shader = ResourceManager::GetShader("FlatShader");
+	m_Sprite->sprite = ResourceManager::GetSprite("Player");
 
 	m_Collider->size = GetTransform()->scale;
 }

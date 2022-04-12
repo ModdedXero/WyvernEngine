@@ -7,7 +7,8 @@ namespace Merlin
 {
 	std::unordered_map<const char*, Shader*> s_Shaders;
 	std::unordered_map<const char*, Texture2D*> s_Textures;
-	std::unordered_map<const char*, SubTexture2D*> s_SubTextures;
+	std::unordered_map<const char*, Sprite*> s_SubTextures;
+	std::unordered_map<const char*, Material*> s_Materials;
 
 	Shader* ResourceManager::LoadShader(const char* vShaderFile, const char* fShaderFile, const char* gShaderFile, const char* name)
 	{
@@ -36,15 +37,28 @@ namespace Merlin
 		return s_Textures[name];
 	}
 
-	SubTexture2D* ResourceManager::LoadSubTexture(const char* name, const char* textureName, const Vector2& coords, const Vector2& tileSize, const Vector2& spriteSize)
+	Sprite* ResourceManager::LoadSprite(const char* name, const char* textureName, const Vector2& coords, const Vector2& tileSize, const Vector2& spriteSize)
 	{
-		s_SubTextures[name] = SubTexture2D::CreateFromCoords(GetTexture(textureName), coords, tileSize, spriteSize);
+		s_SubTextures[name] = Sprite::CreateFromCoords(GetTexture(textureName), coords, tileSize, spriteSize);
 		return s_SubTextures[name];
 	}
 
-	SubTexture2D* ResourceManager::GetSubTexture(const char* name)
+	Sprite* ResourceManager::GetSprite(const char* name)
 	{
 		return s_SubTextures[name];
+	}
+
+	Material* ResourceManager::LoadMaterial(const char* shader, const char* name)
+	{
+		Material* mat = new Material();
+		mat->shader = GetShader(shader);
+		s_Materials[name] = mat;
+		return s_Materials[name];
+	}
+
+	Material* ResourceManager::GetMaterial(const char* name)
+	{
+		return s_Materials[name];
 	}
 
 	void ResourceManager::Clear()
@@ -54,21 +68,6 @@ namespace Merlin
 
 		for (auto& iter : s_Textures)
 			glDeleteProgram(iter.second->ID);
-	}
-
-	std::unordered_map<const char*, Shader*> ResourceManager::GetShaders()
-	{
-		return s_Shaders;
-	}
-
-	std::unordered_map<const char*, Texture2D*> ResourceManager::GetTextures()
-	{
-		return s_Textures;
-	}
-
-	std::unordered_map<const char*, SubTexture2D*> ResourceManager::GetSubTextures()
-	{
-		return s_SubTextures;
 	}
 
 	Shader* ResourceManager::loadShaderFromFile(const char* vShaderPath, const char* fShaderPath, const char* gShaderPath)

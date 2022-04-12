@@ -1,6 +1,10 @@
 #include "mlpch.h"
 #include "Renderer2D.h"
 
+#include "Camera.h"
+
+#include <Merlin/Core/ResourceManager.h>
+
 #include <glad.h>
 
 #include <ft2build.h>
@@ -186,6 +190,85 @@ namespace Merlin::Renderer
 		delete[] s_Data.QuadBuffer;
 	}
 
+	//void Renderer2D::BeginBatch()
+	//{
+	//	s_Data.QuadBufferPtr = s_Data.QuadBuffer;
+	//}
+
+	//void Renderer2D::EndBatch()
+	//{
+	//	GLsizeiptr size = (uint8_t*)s_Data.QuadBufferPtr - (uint8_t*)s_Data.QuadBuffer;
+	//	glBindBuffer(GL_ARRAY_BUFFER, s_Data.VBO);
+	//	glBufferSubData(GL_ARRAY_BUFFER, 0, size, s_Data.QuadBuffer);
+	//}
+
+	//void Renderer2D::Flush()
+	//{
+	//	for (uint32_t i = 0; i < s_Data.TextureSlotIndex; i++)
+	//		glBindTextureUnit(i, s_Data.TextureSlots[i]);
+
+	//	glBindVertexArray(s_Data.VAO);
+	//	glDrawElements(GL_TRIANGLES, s_Data.IndexCount, GL_UNSIGNED_INT, nullptr);
+
+	//	s_Data.IndexCount = 0;
+	//}
+
+	void Renderer2D::BeginScene()
+	{
+		BeginBatch();
+	}
+
+	void Renderer2D::EndScene()
+	{
+		for (auto& drawData : s_Data.VertexData)
+		{
+			glUseProgram(drawData.first->ID);
+			Camera::GetMain()->SetShaderMatrices(drawData.first);
+
+			for (int i = 0; i < drawData.second.size(); i += 4)
+			{
+				if (s_Data.IndexCount >= MaxIndexCount || s_Data.TextureSlotIndex > (MaxTextures - 1))
+				{
+					EndBatch();
+					Flush();
+					BeginBatch();
+				}
+
+				s_Data.QuadBufferPtr->Position = drawData.second[i]->Position;
+				s_Data.QuadBufferPtr->Color = drawData.second[i]->Color;
+				s_Data.QuadBufferPtr->TexCoords = drawData.second[i]->TexCoords;
+				s_Data.QuadBufferPtr->TexID = drawData.second[i]->TexID;
+				s_Data.QuadBufferPtr++;
+
+				s_Data.QuadBufferPtr->Position = drawData.second[i + 1]->Position;
+				s_Data.QuadBufferPtr->Color = drawData.second[i + 1]->Color;
+				s_Data.QuadBufferPtr->TexCoords = drawData.second[i + 1]->TexCoords;
+				s_Data.QuadBufferPtr->TexID = drawData.second[i + 1]->TexID;
+				s_Data.QuadBufferPtr++;
+
+				s_Data.QuadBufferPtr->Position = drawData.second[i + 2]->Position;
+				s_Data.QuadBufferPtr->Color = drawData.second[i + 2]->Color;
+				s_Data.QuadBufferPtr->TexCoords = drawData.second[i + 2]->TexCoords;
+				s_Data.QuadBufferPtr->TexID = drawData.second[i + 2]->TexID;
+				s_Data.QuadBufferPtr++;
+
+				s_Data.QuadBufferPtr->Position = drawData.second[i + 3]->Position;
+				s_Data.QuadBufferPtr->Color = drawData.second[i + 3]->Color;
+				s_Data.QuadBufferPtr->TexCoords = drawData.second[i + 3]->TexCoords;
+				s_Data.QuadBufferPtr->TexID = drawData.second[i + 3]->TexID;
+				s_Data.QuadBufferPtr++;
+
+				s_Data.IndexCount += 6;
+			}
+
+			EndBatch();
+			Flush();
+			BeginBatch();
+		}
+
+		s_Data.VertexData.clear();
+	}
+
 	void Renderer2D::BeginBatch()
 	{
 		s_Data.QuadBufferPtr = s_Data.QuadBuffer;
@@ -209,15 +292,8 @@ namespace Merlin::Renderer
 		s_Data.IndexCount = 0;
 	}
 
-	void Renderer2D::DrawQuad(Ref<Transform> transform, Ref<Material> material, Ref<Sprite> sprite, const Vector4& color)
+	void Renderer2D::DrawQuad(Transform* transform, Material* material, Sprite* sprite, const Vector4& color)
 	{
-		if (s_Data.IndexCount >= MaxIndexCount || s_Data.TextureSlotIndex > (MaxTextures - 1))
-		{
-			EndBatch();
-			Flush();
-			BeginBatch();
-		}
-
 		float textureIndex = 0.0f;
 		for (uint32_t i = 1; i < s_Data.TextureSlotIndex; i++)
 		{
@@ -235,106 +311,65 @@ namespace Merlin::Renderer
 			s_Data.TextureSlotIndex++;
 		}
 
-		if (s_Data.VertexData.count(material->shader))
-		{
-			std::vector<Vertex*> vertices;
-			vertices.push_back(new Vertex(
-				{ transform->position.x - transform->scale.x, transform->position.y - transform->scale.y, transform->position.z },
-				color,
-				sprite->GetTexCoords()[3],
-				textureIndex
-			));
-			vertices.push_back(new Vertex(
-				{ transform->position.x + transform->scale.x, transform->position.y - transform->scale.y, transform->position.z },
-				color,
-				sprite->GetTexCoords()[2],
-				textureIndex
-			));
-			vertices.push_back(new Vertex(
-				{ transform->position.x + transform->scale.x, transform->position.y + transform->scale.y, transform->position.z },
-				color,
-				sprite->GetTexCoords()[1],
-				textureIndex
-			));
-			vertices.push_back(new Vertex(
-				{ transform->position.x - transform->scale.x, transform->position.y + transform->scale.y, transform->position.z },
-				color,
-				sprite->GetTexCoords()[0],
-				textureIndex
-			));
-		}
-
-		s_Data.QuadBufferPtr->Position = { transform->position.x - transform->scale.x, transform->position.y - transform->scale.y, transform->position.z};
-		s_Data.QuadBufferPtr->Color = color;
-		s_Data.QuadBufferPtr->TexCoords = sprite->GetTexCoords()[3];
-		s_Data.QuadBufferPtr->TexID = textureIndex;
-		s_Data.QuadBufferPtr++;
-
-		s_Data.QuadBufferPtr->Position = { transform->position.x + transform->scale.x, transform->position.y - transform->scale.y, transform->position.z };
-		s_Data.QuadBufferPtr->Color = color;
-		s_Data.QuadBufferPtr->TexCoords = sprite->GetTexCoords()[2];
-		s_Data.QuadBufferPtr->TexID = textureIndex;
-		s_Data.QuadBufferPtr++;
-
-		s_Data.QuadBufferPtr->Position = { transform->position.x + transform->scale.x, transform->position.y + transform->scale.y, transform->position.z };
-		s_Data.QuadBufferPtr->Color = color;
-		s_Data.QuadBufferPtr->TexCoords = sprite->GetTexCoords()[1];
-		s_Data.QuadBufferPtr->TexID = textureIndex;
-		s_Data.QuadBufferPtr++;
-
-		s_Data.QuadBufferPtr->Position = { transform->position.x - transform->scale.x, transform->position.y + transform->scale.y, transform->position.z };
-		s_Data.QuadBufferPtr->Color = color;
-		s_Data.QuadBufferPtr->TexCoords = sprite->GetTexCoords()[0];
-		s_Data.QuadBufferPtr->TexID = textureIndex;
-		s_Data.QuadBufferPtr++;
-
-		s_Data.IndexCount += 6;
+		s_Data.VertexData[material->shader].push_back(new Vertex(
+			{ transform->position.x - transform->scale.x, transform->position.y - transform->scale.y, transform->position.z },
+			color,
+			sprite->GetTexCoords()[3],
+			textureIndex
+		));
+		s_Data.VertexData[material->shader].push_back(new Vertex(
+			{ transform->position.x + transform->scale.x, transform->position.y - transform->scale.y, transform->position.z },
+			color,
+			sprite->GetTexCoords()[2],
+			textureIndex
+		));
+		s_Data.VertexData[material->shader].push_back(new Vertex(
+			{ transform->position.x + transform->scale.x, transform->position.y + transform->scale.y, transform->position.z },
+			color,
+			sprite->GetTexCoords()[1],
+			textureIndex
+		));
+		s_Data.VertexData[material->shader].push_back(new Vertex(
+			{ transform->position.x - transform->scale.x, transform->position.y + transform->scale.y, transform->position.z },
+			color,
+			sprite->GetTexCoords()[0],
+			textureIndex
+		));
 	}
 
 	void Renderer2D::DrawQuad(const Vector3& pos, const Vector2& size, const Vector4& color)
 	{
-		if (s_Data.IndexCount >= MaxIndexCount)
-		{
-			EndBatch();
-			Flush();
-			BeginBatch();
-		}
+		Shader* standardShader = ResourceManager::GetShader("StandardShader");
 
-		s_Data.QuadBufferPtr->Position = { pos.x - size.x, pos.y - size.y, pos.z };
-		s_Data.QuadBufferPtr->Color = color;
-		s_Data.QuadBufferPtr->TexCoords = { 0.0f, 0.0f };
-		s_Data.QuadBufferPtr->TexID = 0.0f;
-		s_Data.QuadBufferPtr++;
-
-		s_Data.QuadBufferPtr->Position = { pos.x + size.x, pos.y - size.y, pos.z };
-		s_Data.QuadBufferPtr->Color = color;
-		s_Data.QuadBufferPtr->TexCoords = { 0.0f, 0.0f };
-		s_Data.QuadBufferPtr->TexID = 0.0f;
-		s_Data.QuadBufferPtr++;
-
-		s_Data.QuadBufferPtr->Position = { pos.x + size.x, pos.y + size.y, pos.z };
-		s_Data.QuadBufferPtr->Color = color;
-		s_Data.QuadBufferPtr->TexCoords = { 0.0f, 0.0f };
-		s_Data.QuadBufferPtr->TexID = 0.0f;
-		s_Data.QuadBufferPtr++;
-
-		s_Data.QuadBufferPtr->Position = { pos.x - size.x, pos.y + size.y, pos.z };
-		s_Data.QuadBufferPtr->Color = color;
-		s_Data.QuadBufferPtr->TexCoords = { 0.0f, 0.0f };
-		s_Data.QuadBufferPtr->TexID = 0.0f;
-		s_Data.QuadBufferPtr++;
-
-		s_Data.IndexCount += 6;
+		s_Data.VertexData[standardShader].push_back(new Vertex(
+			{ pos.x - size.x, pos.y - size.y, pos.z },
+			color,
+			{ 0.0f, 0.0f },
+			0.0f
+		));
+		s_Data.VertexData[standardShader].push_back(new Vertex(
+			{ pos.x + size.x, pos.y - size.y, pos.z },
+			color,
+			{ 0.0f, 0.0f },
+			0.0f
+		));
+		s_Data.VertexData[standardShader].push_back(new Vertex(
+			{ pos.x + size.x, pos.y + size.y, pos.z },
+			color,
+			{ 0.0f, 0.0f },
+			0.0f
+		));
+		s_Data.VertexData[standardShader].push_back(new Vertex(
+			{ pos.x - size.x, pos.y + size.y, pos.z },
+			color,
+			{ 0.0f, 0.0f },
+			0.0f
+		));
 	}
 
 	void Renderer2D::DrawQuad(const Vector3& pos, const Vector2& size, Texture2D* texture)
 	{
-		if (s_Data.IndexCount >= MaxIndexCount || s_Data.TextureSlotIndex > (MaxTextures - 1))
-		{
-			EndBatch();
-			Flush();
-			BeginBatch();
-		}
+		Shader* standardShader = ResourceManager::GetShader("StandardShader");
 
 		const Vector4 color = { 1.0f, 1.0f, 1.0f, 1.0f };
 
@@ -355,35 +390,35 @@ namespace Merlin::Renderer
 			s_Data.TextureSlotIndex++;
 		}
 
-		s_Data.QuadBufferPtr->Position = { pos.x - size.x, pos.y - size.y, pos.z };
-		s_Data.QuadBufferPtr->Color = color;
-		s_Data.QuadBufferPtr->TexCoords = { 0.0f, 0.0f };
-		s_Data.QuadBufferPtr->TexID = textureIndex;
-		s_Data.QuadBufferPtr++;
-
-		s_Data.QuadBufferPtr->Position = { pos.x + size.x, pos.y - size.y, pos.z };
-		s_Data.QuadBufferPtr->Color = color;
-		s_Data.QuadBufferPtr->TexCoords = { 1.0f, 0.0f };
-		s_Data.QuadBufferPtr->TexID = textureIndex;
-		s_Data.QuadBufferPtr++;
-
-		s_Data.QuadBufferPtr->Position = { pos.x + size.x, pos.y + size.y, pos.z };
-		s_Data.QuadBufferPtr->Color = color;
-		s_Data.QuadBufferPtr->TexCoords = { 1.0f, 1.0f };
-		s_Data.QuadBufferPtr->TexID = textureIndex;
-		s_Data.QuadBufferPtr++;
-
-		s_Data.QuadBufferPtr->Position = { pos.x - size.x, pos.y + size.y, pos.z };
-		s_Data.QuadBufferPtr->Color = color;
-		s_Data.QuadBufferPtr->TexCoords = { 0.0f, 1.0f };
-		s_Data.QuadBufferPtr->TexID = textureIndex;
-		s_Data.QuadBufferPtr++;
-
-		s_Data.IndexCount += 6;
+		s_Data.VertexData[standardShader].push_back(new Vertex(
+			{ pos.x - size.x, pos.y - size.y, pos.z },
+			color,
+			{ 0.0f, 0.0f },
+			textureIndex
+		));
+		s_Data.VertexData[standardShader].push_back(new Vertex(
+			{ pos.x + size.x, pos.y - size.y, pos.z },
+			color,
+			{ 1.0f, 0.0f },
+			0.0f
+		));
+		s_Data.VertexData[standardShader].push_back(new Vertex(
+			{ pos.x + size.x, pos.y + size.y, pos.z },
+			color,
+			{ 1.0f, 1.0f },
+			textureIndex
+		));
+		s_Data.VertexData[standardShader].push_back(new Vertex(
+			{ pos.x - size.x, pos.y + size.y, pos.z },
+			color,
+			{ 0.0f, 1.0f },
+			textureIndex
+		));
 	}
 
 	void Renderer2D::DrawText(Vector2 pos, const Vector2& size, const std::string& text)
 	{
+		Shader* fontShader = ResourceManager::GetShader("FontShader");
 		std::string::const_iterator c;
 
 		for (c = text.begin(); c != text.end(); c++)
@@ -413,31 +448,31 @@ namespace Merlin::Renderer
 			float width = (ch.Size.x * size.x) * 0.5f;
 			float height = (ch.Size.y * size.y) * 0.5f;
 
-			s_Data.QuadBufferPtr->Position = { xpos - width, ypos - height, 0.0f };
-			s_Data.QuadBufferPtr->Color = { 1.0f, 1.0f, 1.0f, 1.0f };
-			s_Data.QuadBufferPtr->TexCoords = { 0.0f, 1.0f };
-			s_Data.QuadBufferPtr->TexID = textureIndex;
-			s_Data.QuadBufferPtr++;
+			s_Data.VertexData[fontShader].push_back(new Vertex(
+				{ xpos - width, ypos - height, 0.0f },
+				{ 1.0f, 1.0f, 1.0f, 1.0f },
+				{ 0.0f, 1.0f },
+				textureIndex
+			));
+			s_Data.VertexData[fontShader].push_back(new Vertex(
+				{ xpos + width, ypos - height, 0.0f },
+				{ 1.0f, 1.0f, 1.0f, 1.0f },
+				{ 1.0f, 1.0f },
+				textureIndex
+			));
+			s_Data.VertexData[fontShader].push_back(new Vertex(
+				{ xpos + width, ypos + height, 0.0f },
+				{ 1.0f, 1.0f, 1.0f, 1.0f },
+				{ 1.0f, 0.0f },
+				textureIndex
+			));
+			s_Data.VertexData[fontShader].push_back(new Vertex(
+				{ xpos - width, ypos + height, 0.0f },
+				{ 1.0f, 1.0f, 1.0f, 1.0f },
+				{ 0.0f, 0.0f },
+				textureIndex
+			));
 
-			s_Data.QuadBufferPtr->Position = { xpos + width, ypos - height, 0.0f };
-			s_Data.QuadBufferPtr->Color = { 1.0f, 1.0f, 1.0f, 1.0f };
-			s_Data.QuadBufferPtr->TexCoords = { 1.0f, 1.0f };
-			s_Data.QuadBufferPtr->TexID = textureIndex;
-			s_Data.QuadBufferPtr++;
-
-			s_Data.QuadBufferPtr->Position = { xpos + width, ypos + height, 0.0f };
-			s_Data.QuadBufferPtr->Color = { 1.0f, 1.0f, 1.0f, 1.0f };
-			s_Data.QuadBufferPtr->TexCoords = { 1.0f, 0.0f };
-			s_Data.QuadBufferPtr->TexID = textureIndex;
-			s_Data.QuadBufferPtr++;
-
-			s_Data.QuadBufferPtr->Position = { xpos - width, ypos + height, 0.0f };
-			s_Data.QuadBufferPtr->Color = { 1.0f, 1.0f, 1.0f, 1.0f };
-			s_Data.QuadBufferPtr->TexCoords = { 0.0f, 0.0f };
-			s_Data.QuadBufferPtr->TexID = textureIndex;
-			s_Data.QuadBufferPtr++;
-
-			s_Data.IndexCount += 6;
 			pos.x += (ch.Advance >> 6) * size.x;
 		}
 	}

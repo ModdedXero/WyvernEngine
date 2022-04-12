@@ -23,7 +23,9 @@
 
 #include <Merlin/Core/Math/Math.h>
 
+#include <Merlin/Core/Graphics/Shader.h>
 #include <Merlin/Core/Graphics/Material.h>
+#include <Merlin/Core/Graphics/Sprite.h>
 #include <Merlin/Core/ResourceManager.h>
 
 #include <Merlin/Renderer/Renderer2D.h>

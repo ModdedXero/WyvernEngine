@@ -17,7 +17,7 @@ public:
 	void SetupPlayer(PlayerType type, GameState* state);
 	void MovePlayer(float delta);
 
-	Material2D* mat;
+	SpriteRenderer* mat;
 	RigidBody2D* rb;
 	BoxCollider2D* col;
 

@@ -9,6 +9,8 @@
 #include <Merlin/Renderer/RenderWizard.h>
 #include <Merlin/UI/UIWizard.h>
 
+#include "ResourceManager.h"
+
 #include <iostream>
 #include <chrono>
 
@@ -43,6 +45,14 @@ namespace Merlin
 		PushWizard(new RenderWizard());
 		PushWizard(new UIWizard());
 
+		// Initialize Default Assets
+		ResourceManager::LoadShader("../merlin/assets/shader/standardshader.vert",
+			"../merlin/assets/shader/standardshader.frag", nullptr, "StandardShader");
+		ResourceManager::LoadShader("../merlin/assets/shader/fontshader.vert",
+			"../merlin/assets/shader/fontshader.frag", nullptr, "FontShader");
+
+		ResourceManager::LoadMaterial("StandardShader", "StandardMaterial");
+
 		DEBUG_LOG("Merlin Engine Started");
 	}
 
@@ -61,7 +71,7 @@ namespace Merlin
 		{
 			m_Window->OnUpdate();
 
-			Renderer2D::BeginBatch();
+			Renderer2D::BeginScene();
 
 			// All application logic
 			// Get time since application start
@@ -102,8 +112,7 @@ namespace Merlin
 				layer->OnImGuiRender();
 			m_ImGuiLayer->End();
 
-			Renderer2D::EndBatch();
-			Renderer2D::Flush();
+			Renderer2D::EndScene();
 
 			m_Window->OnRender();
 		}

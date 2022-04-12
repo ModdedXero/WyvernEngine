@@ -46,9 +46,9 @@ void PongLayer::OnAttach()
 
 	ball = Entity::CreateEntity();
 	ball->GetTag()->name = "Ball";
-	Material2D* matb = ball->AddComponent<Material2D>();
-	matb->shader = ResourceManager::GetShader("FlatShader");
-	matb->texture = ResourceManager::GetTexture("Ball");
+	SpriteRenderer* matb = ball->AddComponent<SpriteRenderer>();
+	matb->material = ResourceManager::GetMaterial("StandardMaterial");
+	matb->sprite = ResourceManager::GetSprite("Ball");
 	matb->color = { 1,1,1,1 };
 	ball->GetTransform()->scale = { 0.15f, 0.15f, 1 };
 	SphereCollider2D* ballCol = ball->AddComponent<SphereCollider2D>();
@@ -59,43 +59,43 @@ void PongLayer::OnAttach()
 	ballRb->force += {-300, 180};
 
 	p1Score1 = Entity::CreateEntity();
-	Material2D* p1sMat = p1Score1->AddComponent<Material2D>();
-	p1sMat->shader = ResourceManager::GetShader("FlatShader");
+	SpriteRenderer* p1sMat = p1Score1->AddComponent<SpriteRenderer>();
+	p1sMat->material = ResourceManager::GetMaterial("StandardMaterial");
 	p1sMat->color = { 0.5f,1,0.7f,1 };
 	p1Score1->GetTransform()->position = { -4.5f, 3.3f, 1 };
 	p1Score1->GetTransform()->scale = { 0.05f, 0.3f, 1 };
 
 	p1Score2 = Entity::CreateEntity();
-	Material2D* p2sMat = p1Score2->AddComponent<Material2D>();
-	p2sMat->shader = ResourceManager::GetShader("FlatShader");
+	SpriteRenderer* p2sMat = p1Score2->AddComponent<SpriteRenderer>();
+	p2sMat->material = ResourceManager::GetMaterial("StandardMaterial");
 	p2sMat->color = { 0.5f,1,0.7f,1 };
 	p1Score2->GetTransform()->position = { -4.7f, 3.3f, 1 };
 	p1Score2->GetTransform()->scale = { 0.05f, 0.3f, 1 };
 
 	p1Score3 = Entity::CreateEntity();
-	Material2D* p3sMat = p1Score3->AddComponent<Material2D>();
-	p3sMat->shader = ResourceManager::GetShader("FlatShader");
+	SpriteRenderer* p3sMat = p1Score3->AddComponent<SpriteRenderer>();
+	p3sMat->material = ResourceManager::GetMaterial("StandardMaterial");
 	p3sMat->color = { 0.5f,1,0.7f,1 };
 	p1Score3->GetTransform()->position = { -4.9f, 3.3f, 1 };
 	p1Score3->GetTransform()->scale = { 0.05f, 0.3f, 1 };
 
 	p2Score1 = Entity::CreateEntity();
-	Material2D* p4sMat = p2Score1->AddComponent<Material2D>();
-	p4sMat->shader = ResourceManager::GetShader("FlatShader");
+	SpriteRenderer* p4sMat = p2Score1->AddComponent<SpriteRenderer>();
+	p4sMat->material = ResourceManager::GetMaterial("StandardMaterial");
 	p4sMat->color = { 0.5f,1,0.7f,1 };
 	p2Score1->GetTransform()->position = { 4.5f, 3.3f, 1 };
 	p2Score1->GetTransform()->scale = { 0.05f, 0.3f, 1 };
 
 	p2Score2 = Entity::CreateEntity();
-	Material2D* p5sMat = p2Score2->AddComponent<Material2D>();
-	p5sMat->shader = ResourceManager::GetShader("FlatShader");
+	SpriteRenderer* p5sMat = p2Score2->AddComponent<SpriteRenderer>();
+	p5sMat->material = ResourceManager::GetMaterial("StandardMaterial");
 	p5sMat->color = { 0.5f,1,0.7f,1 };
 	p2Score2->GetTransform()->position = { 4.7f, 3.3f, 1 };
 	p2Score2->GetTransform()->scale = { 0.05f, 0.3f, 1 };
 
 	p2Score3 = Entity::CreateEntity();
-	Material2D* p6sMat = p2Score3->AddComponent<Material2D>();
-	p6sMat->shader = ResourceManager::GetShader("FlatShader");
+	SpriteRenderer* p6sMat = p2Score3->AddComponent<SpriteRenderer>();
+	p6sMat->material = ResourceManager::GetMaterial("StandardMaterial");
 	p6sMat->color = { 0.5f,1,0.7f,1 };
 	p2Score3->GetTransform()->position = { 4.9f, 3.3f, 1 };
 	p2Score3->GetTransform()->scale = { 0.05f, 0.3f, 1 };

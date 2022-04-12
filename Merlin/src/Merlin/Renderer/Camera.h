@@ -2,6 +2,7 @@
 
 #include <Merlin/Core/Scene/Component.h>
 #include <Merlin/Core/Scene/Transform.h>
+#include <Merlin/Core/Graphics/Shader.h>
 
 #include <glm/glm.hpp>
 
@@ -16,7 +17,7 @@ namespace Merlin::Renderer
 		glm::mat4 projection;
 		Vector3 offset;
 
-		void SetShaderMatrices();
+		void SetShaderMatrices(Shader* shader);
 
 		static Camera* GetMain() { return s_Main; }
 		static Vector2 WorldToScreenPoint(Vector3& pos);

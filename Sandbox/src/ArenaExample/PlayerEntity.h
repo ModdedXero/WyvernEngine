@@ -18,7 +18,7 @@ public:
 	void MovePlayer(float delta);
 private:
 	Camera* m_Camera;
-	Material2D* m_Material;
+	SpriteRenderer* m_Sprite;
 	RigidBody2D* m_RigidBody;
 	BoxCollider2D* m_Collider;
 };
