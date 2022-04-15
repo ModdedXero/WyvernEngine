@@ -9,6 +9,6 @@ namespace Merlin
 	class CollisionSolver2D
 	{
 	public:
-		virtual void Solve(const std::vector<Collision2D*> collisions) {}
+		virtual void Solve(const std::vector<Ref<Collision2D>> collisions) {}
 	};
 }

@@ -4,7 +4,7 @@
 #include <Merlin/Events/WindowEvent.h>
 #include <Merlin/Events/MouseEvent.h>
 
-namespace Merlin::Window
+namespace Merlin::Display
 {
 	Window::Window(const WindowProps& props)
 	{

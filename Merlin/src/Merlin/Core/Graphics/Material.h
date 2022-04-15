@@ -9,7 +9,7 @@ namespace Merlin
 {
 	struct Material
 	{
-		Shader* shader = nullptr;
+		Ref<Shader> shader;
 		unsigned int sortValue = 2000;
 
 		Material operator<(const Material& other)

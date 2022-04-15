@@ -38,7 +38,7 @@ namespace Merlin
 				solver->Solve(ent->GetComponent<RigidBody2D>(), ts, ent->GetTransform());
 		}
 
-		std::vector<Collision2D*> collisions;
+		std::vector<Ref<Collision2D>> collisions;
 
 		for (Entity* ent1 : EntityList<BoxCollider2D>())
 		{
@@ -60,9 +60,9 @@ namespace Merlin
 						!(rb1->bodyType == RigidBody2D::PhysicsBody::Static &&
 							rb2->bodyType == RigidBody2D::PhysicsBody::Static))
 					{
-						Collision2D* collision = GetCollisionData(ent1, col1, ent2, col2);
+						Ref<Collision2D> collision = GetCollisionData(ent1, col1, ent2, col2);
 
-						ent1->OnCollision2D(*collision);
+						ent1->OnCollision2D(collision);
 						collisions.push_back(collision);
 					}
 				}
@@ -84,15 +84,15 @@ namespace Merlin
 						ent2->GetComponent<RigidBody2D>()->bodyType != RigidBody2D::PhysicsBody::Kinematic)
 					{
 						// Box vs Sphere
-						Collision2D* collision = GetCollisionData(ent1, col1, ent2, col2);
+						Ref<Collision2D> collision = GetCollisionData(ent1, col1, ent2, col2);
 
-						ent1->OnCollision2D(*collision);
+						ent1->OnCollision2D(collision);
 						collisions.push_back(collision);
 
 						// Sphere vs Box
-						Collision2D* collisionOther = GetCollisionData(ent2, col2, ent1, col1);
+						Ref<Collision2D> collisionOther = GetCollisionData(ent2, col2, ent1, col1);
 
-						ent2->OnCollision2D(*collisionOther);
+						ent2->OnCollision2D(collisionOther);
 						collisions.push_back(collisionOther);
 					}
 				}
@@ -138,7 +138,7 @@ namespace Merlin
 		return localPoint.Length() < otherCollider->radius;
 	}
 
-	Collision2D* Physics2DWizard::GetCollisionData(Entity* ent, BoxCollider2D* collider, Entity* otherEnt, BoxCollider2D* otherCollider)
+	Ref<Collision2D> Physics2DWizard::GetCollisionData(Entity* ent, BoxCollider2D* collider, Entity* otherEnt, BoxCollider2D* otherCollider)
 	{
 		static const Vector2 faces[4] =
 		{
@@ -174,10 +174,10 @@ namespace Merlin
 			}
 		}
 
-		return new Collision2D(ent, otherEnt, bestAxis, penetration);
+		return CreateRef<Collision2D>(Collision2D(ent, otherEnt, bestAxis, penetration));
 	}
 
-	Collision2D* Physics2DWizard::GetCollisionData(Entity* ent, BoxCollider2D* collider, Entity* otherEnt, SphereCollider2D* otherCollider)
+	Ref<Collision2D> Physics2DWizard::GetCollisionData(Entity* ent, BoxCollider2D* collider, Entity* otherEnt, SphereCollider2D* otherCollider)
 	{
 		Vector2 delta = otherEnt->GetTransform()->position - ent->GetTransform()->position;
 		Vector2 closest = Mathf::Clamp(delta, -collider->size, collider->size);
@@ -188,10 +188,10 @@ namespace Merlin
 		Vector2 normal = localPoint.Normalize();
 		float penetration = otherCollider->radius - distance;
 
-		return new Collision2D(ent, otherEnt, normal, penetration);
+		return CreateRef<Collision2D>(ent, otherEnt, normal, penetration);
 	}
 
-	Collision2D* Physics2DWizard::GetCollisionData(Entity* ent, SphereCollider2D* collider, Entity* otherEnt, BoxCollider2D* otherCollider)
+	Ref<Collision2D> Physics2DWizard::GetCollisionData(Entity* ent, SphereCollider2D* collider, Entity* otherEnt, BoxCollider2D* otherCollider)
 	{
 		Vector2 delta = ent->GetTransform()->position - otherEnt->GetTransform()->position;
 		Vector2 closest = Mathf::Clamp(delta, -otherCollider->size, otherCollider->size);
@@ -202,6 +202,6 @@ namespace Merlin
 		Vector2 normal = localPoint.Normalize();
 		float penetration = collider->radius - distance;
 
-		return new Collision2D(ent, otherEnt, -normal, penetration);
+		return CreateRef<Collision2D>(ent, otherEnt, -normal, penetration);
 	}
 }

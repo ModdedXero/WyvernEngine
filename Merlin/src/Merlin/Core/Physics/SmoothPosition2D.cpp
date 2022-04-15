@@ -4,9 +4,9 @@
 
 namespace Merlin
 {
-	void SmoothPosition2D::Solve(const std::vector<Collision2D*> collisions)
+	void SmoothPosition2D::Solve(const std::vector<Ref<Collision2D>> collisions)
 	{
-		for (Collision2D* collision : collisions)
+		for (Ref<Collision2D> collision : collisions)
 		{
 			RigidBody2D* rbA = collision->entityA->GetComponent<RigidBody2D>();
 			RigidBody2D* rbB = collision->entityB->GetComponent<RigidBody2D>();

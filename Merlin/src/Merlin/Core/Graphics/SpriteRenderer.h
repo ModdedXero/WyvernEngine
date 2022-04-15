@@ -12,8 +12,8 @@ namespace Merlin
 		SpriteRenderer() {}
 		~SpriteRenderer() {}
 
-		Sprite* sprite = nullptr;
-		Material* material = nullptr;
+		Ref<Sprite> sprite;
+		Ref<Material> material;
 
 		Vector4 color = { 1.0f,1.0f,1.0f,1.0f };
 		uint32_t zIndex = 0;

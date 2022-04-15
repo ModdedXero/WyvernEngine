@@ -202,7 +202,7 @@
     <ClInclude Include="Merlin\UI\UIWizard.h">
       <Filter>Merlin\UI</Filter>
     </ClInclude>
-    <ClInclude Include="Merlin\Window\Window.h">
+    <ClInclude Include="Merlin\Display\Window.h">
       <Filter>Merlin\Window</Filter>
     </ClInclude>
     <ClInclude Include="Platform\OpenGL\ImGuiGLFWRenderer.h">
@@ -296,7 +296,7 @@
     <ClCompile Include="Merlin\UI\UIWizard.cpp">
       <Filter>Merlin\UI</Filter>
     </ClCompile>
-    <ClCompile Include="Merlin\Window\Window.cpp">
+    <ClCompile Include="Merlin\Display\Window.cpp">
       <Filter>Merlin\Window</Filter>
     </ClCompile>
     <ClCompile Include="Platform\OpenGL\ImGuiGLFWRenderer.cpp">

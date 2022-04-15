@@ -17,7 +17,7 @@
 #include <chrono>
 
 using namespace Merlin::Events;
-using namespace Merlin::Window;
+using namespace Merlin::Display;
 using namespace Merlin::Renderer;
 using namespace Merlin::UI;
 
@@ -32,7 +32,7 @@ namespace Merlin
 	{
 		s_Instance = this;
 
-		m_Window = Window::Window::Create();
+		m_Window = Window::Create();
 		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
 
 		m_StartTime = Time::now();

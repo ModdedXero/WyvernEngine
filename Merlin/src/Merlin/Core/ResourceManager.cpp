@@ -5,12 +5,12 @@
 
 namespace Merlin
 {
-	std::unordered_map<const char*, Shader*> s_Shaders;
-	std::unordered_map<const char*, Texture2D*> s_Textures;
-	std::unordered_map<const char*, Sprite*> s_SubTextures;
-	std::unordered_map<const char*, Material*> s_Materials;
+	std::unordered_map<const char*, Ref<Shader>> s_Shaders;
+	std::unordered_map<const char*, Ref<Texture2D>> s_Textures;
+	std::unordered_map<const char*, Ref<Sprite>> s_SubTextures;
+	std::unordered_map<const char*, Ref<Material>> s_Materials;
 
-	Shader* ResourceManager::LoadShader(const char* vShaderFile, const char* fShaderFile, const char* gShaderFile, const char* name)
+	Ref<Shader> ResourceManager::LoadShader(const char* vShaderFile, const char* fShaderFile, const char* gShaderFile, const char* name)
 	{
 		s_Shaders[name] = loadShaderFromFile(vShaderFile, fShaderFile, gShaderFile);
 		s_Shaders[name]->Use();
@@ -21,42 +21,42 @@ namespace Merlin
 		return s_Shaders[name];
 	}
 
-	Shader* ResourceManager::GetShader(const char* name)
+	Ref<Shader> ResourceManager::GetShader(const char* name)
 	{
 		return s_Shaders[name];
 	}
 
-	Texture2D* ResourceManager::LoadTexture(const char* file, bool alpha, bool pixel, const char* name)
+	Ref<Texture2D> ResourceManager::LoadTexture(const char* file, bool alpha, bool pixel, const char* name)
 	{
 		s_Textures[name] = loadTexture2DFromFile(file, alpha, pixel);
 		return s_Textures[name];
 	}
 
-	Texture2D* ResourceManager::GetTexture(const char* name)
+	Ref<Texture2D> ResourceManager::GetTexture(const char* name)
 	{
 		return s_Textures[name];
 	}
 
-	Sprite* ResourceManager::LoadSprite(const char* name, const char* textureName, const Vector2& coords, const Vector2& tileSize, const Vector2& spriteSize)
+	Ref<Sprite> ResourceManager::LoadSprite(const char* name, const char* textureName, const Vector2& coords, const Vector2& tileSize, const Vector2& spriteSize)
 	{
 		s_SubTextures[name] = Sprite::CreateFromCoords(GetTexture(textureName), coords, tileSize, spriteSize);
 		return s_SubTextures[name];
 	}
 
-	Sprite* ResourceManager::GetSprite(const char* name)
+	Ref<Sprite> ResourceManager::GetSprite(const char* name)
 	{
 		return s_SubTextures[name];
 	}
 
-	Material* ResourceManager::LoadMaterial(const char* shader, const char* name)
+	Ref<Material> ResourceManager::LoadMaterial(const char* shader, const char* name)
 	{
-		Material* mat = new Material();
+		Ref<Material> mat = CreateRef<Material>();
 		mat->shader = GetShader(shader);
 		s_Materials[name] = mat;
 		return s_Materials[name];
 	}
 
-	Material* ResourceManager::GetMaterial(const char* name)
+	Ref<Material> ResourceManager::GetMaterial(const char* name)
 	{
 		return s_Materials[name];
 	}
@@ -70,7 +70,7 @@ namespace Merlin
 			glDeleteProgram(iter.second->ID);
 	}
 
-	Shader* ResourceManager::loadShaderFromFile(const char* vShaderPath, const char* fShaderPath, const char* gShaderPath)
+	Ref<Shader> ResourceManager::loadShaderFromFile(const char* vShaderPath, const char* fShaderPath, const char* gShaderPath)
 	{
 		std::string vertCode, fragCode, geoCode;
 
@@ -107,12 +107,12 @@ namespace Merlin
 		const char* fShaderCode = fragCode.c_str();
 		const char* gShaderCode = geoCode.c_str();
 
-		return new Shader(vShaderCode, fShaderCode, gShaderPath != nullptr ? gShaderCode : nullptr);
+		return CreateRef<Shader>(vShaderCode, fShaderCode, gShaderPath != nullptr ? gShaderCode : nullptr);
 	}
 
-	Texture2D* ResourceManager::loadTexture2DFromFile(const char* texturePath, bool alpha, bool pixel)
+	Ref<Texture2D> ResourceManager::loadTexture2DFromFile(const char* texturePath, bool alpha, bool pixel)
 	{
-		Texture2D* texture = new Texture2D();
+		Ref<Texture2D> texture = CreateRef<Texture2D>();
 
 		if (alpha)
 		{

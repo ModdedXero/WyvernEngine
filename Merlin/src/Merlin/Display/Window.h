@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Merlin/Core/Base.h>
 #include <Merlin/Events/Event.h>
 
 #include <glad.h>
@@ -7,7 +8,7 @@
 
 #include <string>
 
-namespace Merlin::Window
+namespace Merlin::Display
 {
 	struct WindowProps
 	{

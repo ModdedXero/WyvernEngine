@@ -3,7 +3,7 @@
 #include "Layer.h"
 #include "LayerStack.h"
 
-#include <Merlin/Window/Window.h>
+#include <Merlin/Display/Window.h>
 
 #include <Merlin/Events/Event.h>
 #include <Merlin/Events/WindowEvent.h>
@@ -35,13 +35,13 @@ namespace Merlin
 
 		virtual bool OnWindowResize(Events::WindowResizeEvent& e);
 
-		Window::Window& GetWindow() { return *m_Window; }
+		Display::Window& GetWindow() { return *m_Window; }
 
 		static Application& Get() { return *s_Instance; }
 	private:
 		static Application* s_Instance;
 
-		Window::Window* m_Window;
+		Display::Window* m_Window;
 		ImGuiLayer* m_ImGuiLayer;
 
 		LayerStack m_LayerStack;

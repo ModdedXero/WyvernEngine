@@ -46,7 +46,7 @@ namespace Merlin::Renderer
 
 		Vertex* QuadBuffer = nullptr;
 		Vertex* QuadBufferPtr = nullptr;
-		std::map<Material*, std::vector<Vertex*>> VertexData;
+		std::map<Ref<Material>, std::vector<Vertex*>> VertexData;
 
 		uint32_t IndexCount = 0;
 
@@ -274,7 +274,7 @@ namespace Merlin::Renderer
 		s_Data.IndexCount = 0;
 	}
 
-	void Renderer2D::DrawQuad(Transform* transform, Material* material, Sprite* sprite, const Vector4& color)
+	void Renderer2D::DrawQuad(Transform* transform, Ref<Material> material, Ref<Sprite> sprite, const Vector4& color)
 	{
 		float textureIndex = 0.0f;
 		for (uint32_t i = 1; i < s_Data.TextureSlotIndex; i++)
@@ -321,7 +321,7 @@ namespace Merlin::Renderer
 
 	void Renderer2D::DrawQuad(const Vector3& pos, const Vector2& size, const Vector4& color)
 	{
-		Material* standardMaterial = ResourceManager::GetMaterial("StandardMaterial");
+		Ref<Material> standardMaterial = ResourceManager::GetMaterial("StandardMaterial");
 
 		s_Data.VertexData[standardMaterial].push_back(new Vertex(
 			{ pos.x - size.x, pos.y - size.y, pos.z },
@@ -351,7 +351,7 @@ namespace Merlin::Renderer
 
 	void Renderer2D::DrawQuad(const Vector3& pos, const Vector2& size, Texture2D* texture)
 	{
-		Material* standardMaterial = ResourceManager::GetMaterial("StandardMaterial");
+		Ref<Material> standardMaterial = ResourceManager::GetMaterial("StandardMaterial");
 
 		const Vector4 color = { 1.0f, 1.0f, 1.0f, 1.0f };
 
@@ -400,7 +400,7 @@ namespace Merlin::Renderer
 
 	void Renderer2D::DrawText(Vector3 pos, const Vector2& size, const std::string& text)
 	{
-		Material* fontMaterial = ResourceManager::GetMaterial("StandardFontMaterial");
+		Ref<Material> fontMaterial = ResourceManager::GetMaterial("StandardFontMaterial");
 		std::string::const_iterator c;
 
 		for (c = text.begin(); c != text.end(); c++)

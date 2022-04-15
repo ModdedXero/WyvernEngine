@@ -20,6 +20,6 @@ public:
 
 int main()
 {
-	Scope<ExcaliburApp> app = std::make_unique<ExcaliburApp>();
+	Scope<ExcaliburApp> app = CreateScope<ExcaliburApp>();
 	app->Run();
 }

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <Merlin/Core/Base.h>
+
 #include "EntityConstants.h"
 
 #include "Tag.h"
@@ -38,7 +40,7 @@ namespace Merlin
 		template <typename T>
 		inline void RemoveComponent() { Scene::RemoveComponent<T>(m_ID); }
 
-		virtual void OnCollision2D(const Collision2D& collision) {}
+		virtual void OnCollision2D(Ref<Collision2D> collision) {}
 		
 		static inline Entity* CreateEntity() { return Scene::CreateEntity<Entity>(); }
 	protected:

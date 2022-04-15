@@ -189,7 +189,7 @@
     <ClInclude Include="Merlin\Renderer\Renderer2D.h" />
     <ClInclude Include="Merlin\UI\Button.h" />
     <ClInclude Include="Merlin\UI\UIWizard.h" />
-    <ClInclude Include="Merlin\Window\Window.h" />
+    <ClInclude Include="Merlin\Display\Window.h" />
     <ClInclude Include="Platform\OpenGL\ImGuiGLFWRenderer.h" />
     <ClInclude Include="Platform\OpenGL\ImGuiOpenGLLoader.h" />
     <ClInclude Include="Platform\OpenGL\ImGuiOpenGLRenderer.h" />
@@ -223,7 +223,7 @@
     <ClCompile Include="Merlin\Renderer\RenderWizard.cpp" />
     <ClCompile Include="Merlin\Renderer\Renderer2D.cpp" />
     <ClCompile Include="Merlin\UI\UIWizard.cpp" />
-    <ClCompile Include="Merlin\Window\Window.cpp" />
+    <ClCompile Include="Merlin\Display\Window.cpp" />
     <ClCompile Include="Platform\OpenGL\ImGuiGLFWRenderer.cpp" />
     <ClCompile Include="Platform\OpenGL\ImGuiOpenGLRenderer.cpp" />
     <ClCompile Include="mlpch.cpp" />

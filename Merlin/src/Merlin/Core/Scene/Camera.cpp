@@ -19,7 +19,7 @@ namespace Merlin
 			(float)Application::Get().GetWindow().GetWidth() / (float)Application::Get().GetWindow().GetHeight(), 0.1f, 100.0f);
 	}
 
-	void Camera::SetShaderMatrices(Shader* shader)
+	void Camera::SetShaderMatrices(Ref<Shader> shader)
 	{
 		view = glm::translate(glm::mat4(1.0f), -GetTransform()->position.glmPosition());
 
@@ -31,7 +31,7 @@ namespace Merlin
 	Vector2 Camera::WorldToScreenPoint(Vector3& pos)
 	{
 		Camera* cam = Camera::GetMain();
-		Window::Window& window = Application::Get().GetWindow();
+		Display::Window& window = Application::Get().GetWindow();
 
 		auto point = cam->projection * cam->view * glm::mat4(1.0f) * glm::vec4(pos.x, pos.y, 1.0f, 1.0f);
 

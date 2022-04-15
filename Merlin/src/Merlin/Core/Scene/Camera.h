@@ -17,7 +17,7 @@ namespace Merlin
 		glm::mat4 view;
 		glm::mat4 projection;
 
-		void SetShaderMatrices(Shader* shader);
+		void SetShaderMatrices(Ref<Shader> shader);
 
 		static Camera* GetMain() { return s_Main; }
 		static Vector2 WorldToScreenPoint(Vector3& pos);

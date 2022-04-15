@@ -18,7 +18,7 @@ namespace Merlin::Renderer
 		static void BeginScene();
 		static void EndScene();
 
-		static void DrawQuad(Transform* transform, Material* material, Sprite* sprite, const Vector4& color);
+		static void DrawQuad(Transform* transform, Ref<Material> material, Ref<Sprite> sprite, const Vector4& color);
 		static void DrawQuad(const Vector3& pos, const Vector2& size, const Vector4& color);
 		static void DrawQuad(const Vector3& pos, const Vector2& size, Texture2D* texture);
 
