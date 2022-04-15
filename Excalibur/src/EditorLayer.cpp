@@ -102,7 +102,7 @@ namespace Merlin
 
         ImGui::Begin("Viewport");
 
-        unsigned int textureID = Renderer::Renderer2D::framebuffer->GetColorAttachmentRendererID();
+        unsigned int textureID = Renderer::Renderer2D::Framebuffer->GetColorAttachmentRendererID();
         ImGui::Image((void*)textureID, ImVec2{ 1280, 720 });
 
         ImGui::End();

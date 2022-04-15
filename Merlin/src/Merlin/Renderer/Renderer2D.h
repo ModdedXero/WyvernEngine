@@ -24,7 +24,7 @@ namespace Merlin::Renderer
 
 		static void DrawText(Vector3 pos, const Vector2& size, const std::string& text);
 
-		static Framebuffer* framebuffer;
+		static Framebuffer* Framebuffer;
 	private:
 		static void BeginBatch();
 		static void EndBatch();

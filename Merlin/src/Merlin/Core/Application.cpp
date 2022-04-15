@@ -40,6 +40,7 @@ namespace Merlin
 
 		// Initialize Engine and Wizards
 		Renderer2D::OnAwake();
+
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);
 
@@ -169,7 +170,6 @@ namespace Merlin
 
 		m_Minimized = false;
 		glfwSetWindowSize(m_Window->GetNativeWindow(), m_Window->GetWidth(), m_Window->GetHeight());
-		glViewport(0, 0, m_Window->GetWidth(), m_Window->GetHeight());
 
 		return true;
 	}

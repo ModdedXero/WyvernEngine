@@ -13,7 +13,7 @@
 
 namespace Merlin::Renderer
 {
-	Framebuffer* Renderer2D::framebuffer = nullptr;
+	Framebuffer* Renderer2D::Framebuffer;
 
 	static const size_t MaxQuadCount = 1000;
 	static const size_t MaxVertexCount = MaxQuadCount * 4;
@@ -178,10 +178,11 @@ namespace Merlin::Renderer
 		FT_Done_Face(face);
 		FT_Done_FreeType(ft);
 
-		Renderer::FrameBufferSpecs fbSpec;
+		// Create Framebuffer
+		FrameBufferSpecs fbSpec;
 		fbSpec.Width = 1280;
 		fbSpec.Height = 720;
-		framebuffer = new Framebuffer(fbSpec);
+		Framebuffer = new Renderer::Framebuffer(fbSpec);
 	}
 
 	void Renderer2D::OnDestroy()
@@ -199,8 +200,7 @@ namespace Merlin::Renderer
 
 	void Renderer2D::EndScene()
 	{
-		framebuffer->Bind();
-
+		Framebuffer->Bind();
 		for (auto& drawData : s_Data.VertexData)
 		{
 			glUseProgram(drawData.first->shader->ID);
@@ -248,7 +248,7 @@ namespace Merlin::Renderer
 		}
 
 		s_Data.VertexData.clear();
-		framebuffer->Unbind();
+		Framebuffer->Unbind();
 	}
 
 	void Renderer2D::BeginBatch()

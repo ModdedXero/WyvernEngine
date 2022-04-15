@@ -19,5 +19,6 @@ namespace Merlin
 		virtual void OnEvent(Events::Event& e) override;
 	private:
 		EditorCamera* m_Camera;
+		Ref<Renderer::Framebuffer> m_Framebuffer;
 	};
 }
