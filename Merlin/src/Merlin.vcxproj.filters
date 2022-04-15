@@ -7,6 +7,9 @@
     <Filter Include="Merlin\Core">
       <UniqueIdentifier>{84345BC2-F0E9-D3B7-79DE-CD8EE592CABB}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Merlin\Core\Graphics">
+      <UniqueIdentifier>{44519CEE-30E0-25B8-D9FE-39B3C56C365E}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Merlin\Core\Math">
       <UniqueIdentifier>{DD0BE3F6-C904-0249-F236-E7CDDE8EE154}</UniqueIdentifier>
     </Filter>
@@ -55,11 +58,29 @@
     <ClInclude Include="Merlin\Core\Application.h">
       <Filter>Merlin\Core</Filter>
     </ClInclude>
+    <ClInclude Include="Merlin\Core\Base.h">
+      <Filter>Merlin\Core</Filter>
+    </ClInclude>
     <ClInclude Include="Merlin\Core\Constants.h">
       <Filter>Merlin\Core</Filter>
     </ClInclude>
     <ClInclude Include="Merlin\Core\Debug.h">
       <Filter>Merlin\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Merlin\Core\Graphics\Material.h">
+      <Filter>Merlin\Core\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Merlin\Core\Graphics\Shader.h">
+      <Filter>Merlin\Core\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Merlin\Core\Graphics\Sprite.h">
+      <Filter>Merlin\Core\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Merlin\Core\Graphics\SpriteRenderer.h">
+      <Filter>Merlin\Core\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Merlin\Core\Graphics\Texture2D.h">
+      <Filter>Merlin\Core\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="Merlin\Core\Input.h">
       <Filter>Merlin\Core</Filter>
@@ -77,6 +98,9 @@
       <Filter>Merlin\Core\Math</Filter>
     </ClInclude>
     <ClInclude Include="Merlin\Core\Math\Mathf.h">
+      <Filter>Merlin\Core\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Merlin\Core\Math\Matrix4.h">
       <Filter>Merlin\Core\Math</Filter>
     </ClInclude>
     <ClInclude Include="Merlin\Core\Math\Vector.h">
@@ -109,6 +133,12 @@
     <ClInclude Include="Merlin\Core\Physics\VelocitySolver2D.h">
       <Filter>Merlin\Core\Physics</Filter>
     </ClInclude>
+    <ClInclude Include="Merlin\Core\ResourceManager.h">
+      <Filter>Merlin\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Merlin\Core\Scene\Camera.h">
+      <Filter>Merlin\Core\Scene</Filter>
+    </ClInclude>
     <ClInclude Include="Merlin\Core\Scene\Component.h">
       <Filter>Merlin\Core\Scene</Filter>
     </ClInclude>
@@ -122,6 +152,9 @@
       <Filter>Merlin\Core\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Merlin\Core\Scene\EntityList.h">
+      <Filter>Merlin\Core\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Merlin\Core\Scene\EntityWizard.h">
       <Filter>Merlin\Core\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Merlin\Core\Scene\Scene.h">
@@ -157,28 +190,10 @@
     <ClInclude Include="Merlin\ImGui\ImGuiLayer.h">
       <Filter>Merlin\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="Merlin\Renderer\Camera.h">
-      <Filter>Merlin\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="Merlin\Core\Graphics\Material.h">
-      <Filter>Merlin\Renderer</Filter>
-    </ClInclude>
     <ClInclude Include="Merlin\Renderer\RenderWizard.h">
       <Filter>Merlin\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="Merlin\Renderer\Renderer2D.h">
-      <Filter>Merlin\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="Merlin\Core\ResourceManager.h">
-      <Filter>Merlin\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="Merlin\Core\Graphics\Shader.h">
-      <Filter>Merlin\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="Merlin\Core\Graphics\Sprite.h">
-      <Filter>Merlin\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="Merlin\Core\Graphics\Texture2D.h">
       <Filter>Merlin\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="Merlin\UI\Button.h">
@@ -200,9 +215,7 @@
       <Filter>Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="mlpch.h" />
-    <ClInclude Include="Merlin\Core\Graphics\SpriteRenderer.h" />
-    <ClInclude Include="Merlin\Core\Base.h" />
-    <ClInclude Include="Merlin\Core\Math\Matrix4.h" />
+    <ClInclude Include="Merlin\Renderer\Framebuffer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\vendor\glad\glad.c">
@@ -216,6 +229,15 @@
     </ClCompile>
     <ClCompile Include="Merlin\Core\Constants.cpp">
       <Filter>Merlin\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Merlin\Core\Graphics\Shader.cpp">
+      <Filter>Merlin\Core\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Merlin\Core\Graphics\Sprite.cpp">
+      <Filter>Merlin\Core\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Merlin\Core\Graphics\Texture2D.cpp">
+      <Filter>Merlin\Core\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="Merlin\Core\Input.cpp">
       <Filter>Merlin\Core</Filter>
@@ -238,10 +260,19 @@
     <ClCompile Include="Merlin\Core\Physics\VelocitySolver2D.cpp">
       <Filter>Merlin\Core\Physics</Filter>
     </ClCompile>
+    <ClCompile Include="Merlin\Core\ResourceManager.cpp">
+      <Filter>Merlin\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Merlin\Core\Scene\Camera.cpp">
+      <Filter>Merlin\Core\Scene</Filter>
+    </ClCompile>
     <ClCompile Include="Merlin\Core\Scene\Component.cpp">
       <Filter>Merlin\Core\Scene</Filter>
     </ClCompile>
     <ClCompile Include="Merlin\Core\Scene\Entity.cpp">
+      <Filter>Merlin\Core\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Merlin\Core\Scene\EntityWizard.cpp">
       <Filter>Merlin\Core\Scene</Filter>
     </ClCompile>
     <ClCompile Include="Merlin\Core\Scene\Scene.cpp">
@@ -256,25 +287,10 @@
     <ClCompile Include="Merlin\ImGui\ImGuiLayer.cpp">
       <Filter>Merlin\ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="Merlin\Renderer\Camera.cpp">
-      <Filter>Merlin\Renderer</Filter>
-    </ClCompile>
     <ClCompile Include="Merlin\Renderer\RenderWizard.cpp">
       <Filter>Merlin\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="Merlin\Renderer\Renderer2D.cpp">
-      <Filter>Merlin\Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="Merlin\Core\ResourceManager.cpp">
-      <Filter>Merlin\Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="Merlin\Core\Graphics\Shader.cpp">
-      <Filter>Merlin\Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="Merlin\Core\Graphics\Sprite.cpp">
-      <Filter>Merlin\Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="Merlin\Core\Graphics\Texture2D.cpp">
       <Filter>Merlin\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="Merlin\UI\UIWizard.cpp">
@@ -290,5 +306,6 @@
       <Filter>Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="mlpch.cpp" />
+    <ClCompile Include="Merlin\Renderer\Framebuffer.cpp" />
   </ItemGroup>
 </Project>

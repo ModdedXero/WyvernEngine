@@ -15,7 +15,7 @@ void PlayerEntity::OnAttach()
 
 	GetTransform()->scale = { 0.35f, 0.35f, 1.0f };
 
-	m_Camera->offset = { 0, 0, 8 };
+	GetTransform()->position = {0, 0, 8};
 
 	m_Sprite->material->shader = ResourceManager::GetShader("FlatShader");
 	m_Sprite->sprite = ResourceManager::GetSprite("Player");

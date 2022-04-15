@@ -5,6 +5,8 @@
 
 #include <Merlin/Core/Scene/Entity.h>
 #include <Merlin/Renderer/Renderer2D.h>
+
+#include <Merlin/Core/Scene/EntityWizard.h>
 #include <Merlin/Core/Physics/Physics2DWizard.h>
 #include <Merlin/Renderer/RenderWizard.h>
 #include <Merlin/UI/UIWizard.h>
@@ -41,6 +43,7 @@ namespace Merlin
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);
 
+		PushWizard(new EntityWizard());
 		PushWizard(new Physics2DWizard());
 		PushWizard(new RenderWizard());
 		PushWizard(new UIWizard());
@@ -52,6 +55,7 @@ namespace Merlin
 			"../merlin/assets/shader/fontshader.frag", nullptr, "FontShader");
 
 		ResourceManager::LoadMaterial("StandardShader", "StandardMaterial");
+		ResourceManager::LoadMaterial("FontShader", "StandardFontMaterial")->sortValue = 100;
 
 		DEBUG_LOG("Merlin Engine Started");
 	}
@@ -67,7 +71,9 @@ namespace Merlin
 
 	void Application::Run()
 	{
-		while (m_Window->IsRunning())
+		m_Running = true;
+
+		while (m_Running)
 		{
 			m_Window->OnUpdate();
 
@@ -128,6 +134,11 @@ namespace Merlin
 
 		for (Wizard* wizard : m_WizardStack)
 			wizard->OnEvent(e);
+	}
+
+	void Application::Close()
+	{
+		m_Running = false;
 	}
 
 	void Application::PushLayer(Layer* layer)

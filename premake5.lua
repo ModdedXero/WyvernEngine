@@ -90,6 +90,64 @@ project "Merlin"
 		defines "ML_DIST"
 		optimize "On"
 
+project "Excalibur"
+	location "Excalibur"
+	kind "ConsoleApp"
+	language "C++"
+
+	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+
+	files
+	{
+		"Excalibur/src/**.h",
+		"Excalibur/src/**.cpp"
+	}
+
+	includedirs
+	{
+		"Merlin/src",
+		"Excalibur/src",
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.GLM}",
+		"%{IncludeDir.ImGUI}",
+		"%{IncludeDir.GLAD}",
+		"%{IncludeDir.FreeType}",
+		"%{IncludeDir.FreeTypeSub}"
+	}
+
+	links
+	{
+		"Merlin"
+	}
+	
+	postbuildcommands
+	{
+		"{COPY} ../bin/" .. outputdir .. "/Merlin/*.dll ../bin/" .. outputdir .. "/Sandbox"
+	}
+
+	filter "system:windows"
+		cppdialect "C++17"
+		staticruntime "On"
+		systemversion "latest"
+
+		defines
+		{
+			"ML_PLATFORM_WINDOWS"
+		}
+
+	filter "configurations:Debug"
+		defines "ML_DEBUG"
+		symbols "On"
+
+	filter "configurations:Release"
+		defines "ML_RELEASE"
+		optimize "On"
+
+	filter "configurations:Dist"
+		defines "ML_DIST"
+		optimize "On"
+		
 project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp"

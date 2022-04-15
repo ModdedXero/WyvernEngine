@@ -6,7 +6,7 @@
 #include <glm/ext/matrix_clip_space.hpp>
 #include <glm/ext/matrix_transform.hpp>
 
-namespace Merlin::Renderer
+namespace Merlin
 {
 	Camera* Camera::s_Main = nullptr;
 
@@ -21,9 +21,8 @@ namespace Merlin::Renderer
 
 	void Camera::SetShaderMatrices(Shader* shader)
 	{
-		view = glm::translate(glm::mat4(1.0f), (-GetTransform()->position + -offset).glmPosition());
+		view = glm::translate(glm::mat4(1.0f), -GetTransform()->position.glmPosition());
 
-		// TODO: Loop through all Shaders and update their Matrices
 		shader->SetMatrix4("projection", projection);
 		shader->SetMatrix4("viewModel", view * glm::mat4(1.0f));
 	}

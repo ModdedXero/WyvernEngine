@@ -1,7 +1,6 @@
 #include "mlpch.h"
 #include "RenderWizard.h"
 
-#include "Camera.h"
 #include "Renderer2D.h"
 
 #include <Merlin/Core/Graphics/SpriteRenderer.h>
@@ -23,8 +22,6 @@ namespace Merlin::Renderer
 			{
 				Renderer2D::DrawQuad(ent->GetTransform(), sRend->material, sRend->sprite, sRend->color);
 			}
-
-			//Renderer2D::DrawQuad(ent->GetTransform(), sRend->material, sRend->sprite, sRend->color);
 		}
 	}
 }

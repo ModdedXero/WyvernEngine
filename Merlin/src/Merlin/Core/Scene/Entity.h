@@ -6,6 +6,9 @@
 #include "Transform.h"
 #include "Scene.h"
 
+#include <Merlin/Core/Timestep.h>
+#include <Merlin/Events/Event.h>
+
 #include <bitset>
 
 namespace Merlin
@@ -16,6 +19,7 @@ namespace Merlin
 	class Entity
 	{
 		friend class Scene;
+		friend class EntityWizard;
 	protected:
 		Entity()
 			: m_ID(0), m_Tag(nullptr), m_Transform(nullptr)
@@ -35,8 +39,8 @@ namespace Merlin
 		inline void RemoveComponent() { Scene::RemoveComponent<T>(m_ID); }
 
 		virtual void OnCollision2D(const Collision2D& collision) {}
-
-		static Entity* CreateEntity();
+		
+		static inline Entity* CreateEntity() { return Scene::CreateEntity<Entity>(); }
 	protected:
 		EntityID m_ID;
 		ComponentMask m_Components;
@@ -45,5 +49,9 @@ namespace Merlin
 		Tag* m_Tag;
 
 		virtual void OnAttach() {}
-	};
+		virtual void OnDetach() {}
+		virtual void OnUpdate(Timestep ts) {}
+		virtual void OnFixedUpdate(Timestep ts) {}
+		virtual void OnEvent(Events::Event& e) {}
+ 	};
 }

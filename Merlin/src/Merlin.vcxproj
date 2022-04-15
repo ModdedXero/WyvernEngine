@@ -138,12 +138,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\vendor\stb_image\stb_image.h" />
+    <ClInclude Include="Merlin\Renderer\Framebuffer.h" />
     <ClInclude Include="Merlin.h" />
     <ClInclude Include="Merlin\Core\Application.h" />
     <ClInclude Include="Merlin\Core\Base.h" />
     <ClInclude Include="Merlin\Core\Constants.h" />
     <ClInclude Include="Merlin\Core\Debug.h" />
+    <ClInclude Include="Merlin\Core\Graphics\Material.h" />
+    <ClInclude Include="Merlin\Core\Graphics\Shader.h" />
+    <ClInclude Include="Merlin\Core\Graphics\Sprite.h" />
     <ClInclude Include="Merlin\Core\Graphics\SpriteRenderer.h" />
+    <ClInclude Include="Merlin\Core\Graphics\Texture2D.h" />
     <ClInclude Include="Merlin\Core\Input.h" />
     <ClInclude Include="Merlin\Core\KeyCodes.h" />
     <ClInclude Include="Merlin\Core\Layer.h" />
@@ -161,11 +166,14 @@
     <ClInclude Include="Merlin\Core\Physics\RigidBody2D.h" />
     <ClInclude Include="Merlin\Core\Physics\SmoothPosition2D.h" />
     <ClInclude Include="Merlin\Core\Physics\VelocitySolver2D.h" />
+    <ClInclude Include="Merlin\Core\ResourceManager.h" />
+    <ClInclude Include="Merlin\Core\Scene\Camera.h" />
     <ClInclude Include="Merlin\Core\Scene\Component.h" />
     <ClInclude Include="Merlin\Core\Scene\ComponentPool.h" />
     <ClInclude Include="Merlin\Core\Scene\Entity.h" />
     <ClInclude Include="Merlin\Core\Scene\EntityConstants.h" />
     <ClInclude Include="Merlin\Core\Scene\EntityList.h" />
+    <ClInclude Include="Merlin\Core\Scene\EntityWizard.h" />
     <ClInclude Include="Merlin\Core\Scene\Scene.h" />
     <ClInclude Include="Merlin\Core\Scene\Tag.h" />
     <ClInclude Include="Merlin\Core\Scene\Transform.h" />
@@ -177,14 +185,8 @@
     <ClInclude Include="Merlin\Events\MouseEvent.h" />
     <ClInclude Include="Merlin\Events\WindowEvent.h" />
     <ClInclude Include="Merlin\ImGui\ImGuiLayer.h" />
-    <ClInclude Include="Merlin\Renderer\Camera.h" />
-    <ClInclude Include="Merlin\Core\Graphics\Material.h" />
     <ClInclude Include="Merlin\Renderer\RenderWizard.h" />
     <ClInclude Include="Merlin\Renderer\Renderer2D.h" />
-    <ClInclude Include="Merlin\Core\ResourceManager.h" />
-    <ClInclude Include="Merlin\Core\Graphics\Shader.h" />
-    <ClInclude Include="Merlin\Core\Graphics\Sprite.h" />
-    <ClInclude Include="Merlin\Core\Graphics\Texture2D.h" />
     <ClInclude Include="Merlin\UI\Button.h" />
     <ClInclude Include="Merlin\UI\UIWizard.h" />
     <ClInclude Include="Merlin\Window\Window.h" />
@@ -196,8 +198,12 @@
   <ItemGroup>
     <ClCompile Include="..\vendor\glad\glad.c" />
     <ClCompile Include="..\vendor\stb_image\stb_image.cpp" />
+    <ClCompile Include="Merlin\Renderer\Framebuffer.cpp" />
     <ClCompile Include="Merlin\Core\Application.cpp" />
     <ClCompile Include="Merlin\Core\Constants.cpp" />
+    <ClCompile Include="Merlin\Core\Graphics\Shader.cpp" />
+    <ClCompile Include="Merlin\Core\Graphics\Sprite.cpp" />
+    <ClCompile Include="Merlin\Core\Graphics\Texture2D.cpp" />
     <ClCompile Include="Merlin\Core\Input.cpp" />
     <ClCompile Include="Merlin\Core\Layer.cpp" />
     <ClCompile Include="Merlin\Core\LayerStack.cpp" />
@@ -205,19 +211,17 @@
     <ClCompile Include="Merlin\Core\Physics\Physics2DWizard.cpp" />
     <ClCompile Include="Merlin\Core\Physics\SmoothPosition2D.cpp" />
     <ClCompile Include="Merlin\Core\Physics\VelocitySolver2D.cpp" />
+    <ClCompile Include="Merlin\Core\ResourceManager.cpp" />
+    <ClCompile Include="Merlin\Core\Scene\Camera.cpp" />
     <ClCompile Include="Merlin\Core\Scene\Component.cpp" />
     <ClCompile Include="Merlin\Core\Scene\Entity.cpp" />
+    <ClCompile Include="Merlin\Core\Scene\EntityWizard.cpp" />
     <ClCompile Include="Merlin\Core\Scene\Scene.cpp" />
     <ClCompile Include="Merlin\Core\Scene\Wizard.cpp" />
     <ClCompile Include="Merlin\Core\Scene\WizardStack.cpp" />
     <ClCompile Include="Merlin\ImGui\ImGuiLayer.cpp" />
-    <ClCompile Include="Merlin\Renderer\Camera.cpp" />
     <ClCompile Include="Merlin\Renderer\RenderWizard.cpp" />
     <ClCompile Include="Merlin\Renderer\Renderer2D.cpp" />
-    <ClCompile Include="Merlin\Core\ResourceManager.cpp" />
-    <ClCompile Include="Merlin\Core\Graphics\Shader.cpp" />
-    <ClCompile Include="Merlin\Core\Graphics\Sprite.cpp" />
-    <ClCompile Include="Merlin\Core\Graphics\Texture2D.cpp" />
     <ClCompile Include="Merlin\UI\UIWizard.cpp" />
     <ClCompile Include="Merlin\Window\Window.cpp" />
     <ClCompile Include="Platform\OpenGL\ImGuiGLFWRenderer.cpp" />

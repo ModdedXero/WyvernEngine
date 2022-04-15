@@ -10,5 +10,11 @@ namespace Merlin
 	struct Material
 	{
 		Shader* shader = nullptr;
+		unsigned int sortValue = 2000;
+
+		Material operator<(const Material& other)
+		{
+			return other.sortValue < sortValue ? other : *this;
+		}
 	};
 }

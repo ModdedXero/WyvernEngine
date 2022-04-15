@@ -1,9 +1,10 @@
 #include "mlpch.h"
 #include "Renderer2D.h"
 
-#include "Camera.h"
+#include "Framebuffer.h"
 
 #include <Merlin/Core/ResourceManager.h>
+#include <Merlin/Core/Scene/Camera.h>
 
 #include <glad.h>
 
@@ -12,6 +13,8 @@
 
 namespace Merlin::Renderer
 {
+	Framebuffer* Renderer2D::framebuffer = nullptr;
+
 	static const size_t MaxQuadCount = 1000;
 	static const size_t MaxVertexCount = MaxQuadCount * 4;
 	static const size_t MaxIndexCount = MaxQuadCount * 6;
@@ -19,10 +22,7 @@ namespace Merlin::Renderer
 
 	struct Vertex
 	{
-		Vertex()
-		{
-
-		}
+		Vertex() {}
 
 		Vertex(Vector3 pos, Vector4 col, Vector2 coords, float texID)
 		{
@@ -46,14 +46,12 @@ namespace Merlin::Renderer
 
 		Vertex* QuadBuffer = nullptr;
 		Vertex* QuadBufferPtr = nullptr;
-
-		std::unordered_map<Shader*, std::vector<Vertex*>> VertexData;
+		std::map<Material*, std::vector<Vertex*>> VertexData;
 
 		uint32_t IndexCount = 0;
 
 		std::array<uint32_t, MaxTextures> TextureSlots;
 		uint32_t TextureSlotIndex = 1;
-
 		uint32_t WhiteTexture = 0;
 	};
 
@@ -179,6 +177,11 @@ namespace Merlin::Renderer
 
 		FT_Done_Face(face);
 		FT_Done_FreeType(ft);
+
+		Renderer::FrameBufferSpecs fbSpec;
+		fbSpec.Width = 1280;
+		fbSpec.Height = 720;
+		framebuffer = new Framebuffer(fbSpec);
 	}
 
 	void Renderer2D::OnDestroy()
@@ -189,30 +192,6 @@ namespace Merlin::Renderer
 
 		delete[] s_Data.QuadBuffer;
 	}
-
-	//void Renderer2D::BeginBatch()
-	//{
-	//	s_Data.QuadBufferPtr = s_Data.QuadBuffer;
-	//}
-
-	//void Renderer2D::EndBatch()
-	//{
-	//	GLsizeiptr size = (uint8_t*)s_Data.QuadBufferPtr - (uint8_t*)s_Data.QuadBuffer;
-	//	glBindBuffer(GL_ARRAY_BUFFER, s_Data.VBO);
-	//	glBufferSubData(GL_ARRAY_BUFFER, 0, size, s_Data.QuadBuffer);
-	//}
-
-	//void Renderer2D::Flush()
-	//{
-	//	for (uint32_t i = 0; i < s_Data.TextureSlotIndex; i++)
-	//		glBindTextureUnit(i, s_Data.TextureSlots[i]);
-
-	//	glBindVertexArray(s_Data.VAO);
-	//	glDrawElements(GL_TRIANGLES, s_Data.IndexCount, GL_UNSIGNED_INT, nullptr);
-
-	//	s_Data.IndexCount = 0;
-	//}
-
 	void Renderer2D::BeginScene()
 	{
 		BeginBatch();
@@ -220,10 +199,12 @@ namespace Merlin::Renderer
 
 	void Renderer2D::EndScene()
 	{
+		framebuffer->Bind();
+
 		for (auto& drawData : s_Data.VertexData)
 		{
-			glUseProgram(drawData.first->ID);
-			Camera::GetMain()->SetShaderMatrices(drawData.first);
+			glUseProgram(drawData.first->shader->ID);
+			Camera::GetMain()->SetShaderMatrices(drawData.first->shader);
 
 			for (int i = 0; i < drawData.second.size(); i += 4)
 			{
@@ -267,6 +248,7 @@ namespace Merlin::Renderer
 		}
 
 		s_Data.VertexData.clear();
+		framebuffer->Unbind();
 	}
 
 	void Renderer2D::BeginBatch()
@@ -311,25 +293,25 @@ namespace Merlin::Renderer
 			s_Data.TextureSlotIndex++;
 		}
 
-		s_Data.VertexData[material->shader].push_back(new Vertex(
+		s_Data.VertexData[material].push_back(new Vertex(
 			{ transform->position.x - transform->scale.x, transform->position.y - transform->scale.y, transform->position.z },
 			color,
 			sprite->GetTexCoords()[3],
 			textureIndex
 		));
-		s_Data.VertexData[material->shader].push_back(new Vertex(
+		s_Data.VertexData[material].push_back(new Vertex(
 			{ transform->position.x + transform->scale.x, transform->position.y - transform->scale.y, transform->position.z },
 			color,
 			sprite->GetTexCoords()[2],
 			textureIndex
 		));
-		s_Data.VertexData[material->shader].push_back(new Vertex(
+		s_Data.VertexData[material].push_back(new Vertex(
 			{ transform->position.x + transform->scale.x, transform->position.y + transform->scale.y, transform->position.z },
 			color,
 			sprite->GetTexCoords()[1],
 			textureIndex
 		));
-		s_Data.VertexData[material->shader].push_back(new Vertex(
+		s_Data.VertexData[material].push_back(new Vertex(
 			{ transform->position.x - transform->scale.x, transform->position.y + transform->scale.y, transform->position.z },
 			color,
 			sprite->GetTexCoords()[0],
@@ -339,27 +321,27 @@ namespace Merlin::Renderer
 
 	void Renderer2D::DrawQuad(const Vector3& pos, const Vector2& size, const Vector4& color)
 	{
-		Shader* standardShader = ResourceManager::GetShader("StandardShader");
+		Material* standardMaterial = ResourceManager::GetMaterial("StandardMaterial");
 
-		s_Data.VertexData[standardShader].push_back(new Vertex(
+		s_Data.VertexData[standardMaterial].push_back(new Vertex(
 			{ pos.x - size.x, pos.y - size.y, pos.z },
 			color,
 			{ 0.0f, 0.0f },
 			0.0f
 		));
-		s_Data.VertexData[standardShader].push_back(new Vertex(
+		s_Data.VertexData[standardMaterial].push_back(new Vertex(
 			{ pos.x + size.x, pos.y - size.y, pos.z },
 			color,
 			{ 0.0f, 0.0f },
 			0.0f
 		));
-		s_Data.VertexData[standardShader].push_back(new Vertex(
+		s_Data.VertexData[standardMaterial].push_back(new Vertex(
 			{ pos.x + size.x, pos.y + size.y, pos.z },
 			color,
 			{ 0.0f, 0.0f },
 			0.0f
 		));
-		s_Data.VertexData[standardShader].push_back(new Vertex(
+		s_Data.VertexData[standardMaterial].push_back(new Vertex(
 			{ pos.x - size.x, pos.y + size.y, pos.z },
 			color,
 			{ 0.0f, 0.0f },
@@ -369,7 +351,7 @@ namespace Merlin::Renderer
 
 	void Renderer2D::DrawQuad(const Vector3& pos, const Vector2& size, Texture2D* texture)
 	{
-		Shader* standardShader = ResourceManager::GetShader("StandardShader");
+		Material* standardMaterial = ResourceManager::GetMaterial("StandardMaterial");
 
 		const Vector4 color = { 1.0f, 1.0f, 1.0f, 1.0f };
 
@@ -390,25 +372,25 @@ namespace Merlin::Renderer
 			s_Data.TextureSlotIndex++;
 		}
 
-		s_Data.VertexData[standardShader].push_back(new Vertex(
+		s_Data.VertexData[standardMaterial].push_back(new Vertex(
 			{ pos.x - size.x, pos.y - size.y, pos.z },
 			color,
 			{ 0.0f, 0.0f },
 			textureIndex
 		));
-		s_Data.VertexData[standardShader].push_back(new Vertex(
+		s_Data.VertexData[standardMaterial].push_back(new Vertex(
 			{ pos.x + size.x, pos.y - size.y, pos.z },
 			color,
 			{ 1.0f, 0.0f },
 			0.0f
 		));
-		s_Data.VertexData[standardShader].push_back(new Vertex(
+		s_Data.VertexData[standardMaterial].push_back(new Vertex(
 			{ pos.x + size.x, pos.y + size.y, pos.z },
 			color,
 			{ 1.0f, 1.0f },
 			textureIndex
 		));
-		s_Data.VertexData[standardShader].push_back(new Vertex(
+		s_Data.VertexData[standardMaterial].push_back(new Vertex(
 			{ pos.x - size.x, pos.y + size.y, pos.z },
 			color,
 			{ 0.0f, 1.0f },
@@ -416,9 +398,9 @@ namespace Merlin::Renderer
 		));
 	}
 
-	void Renderer2D::DrawText(Vector2 pos, const Vector2& size, const std::string& text)
+	void Renderer2D::DrawText(Vector3 pos, const Vector2& size, const std::string& text)
 	{
-		Shader* fontShader = ResourceManager::GetShader("FontShader");
+		Material* fontMaterial = ResourceManager::GetMaterial("StandardFontMaterial");
 		std::string::const_iterator c;
 
 		for (c = text.begin(); c != text.end(); c++)
@@ -448,33 +430,30 @@ namespace Merlin::Renderer
 			float width = (ch.Size.x * size.x) * 0.5f;
 			float height = (ch.Size.y * size.y) * 0.5f;
 
-			s_Data.VertexData[fontShader].push_back(new Vertex(
-				{ xpos - width, ypos - height, -7.0f },
+			s_Data.VertexData[fontMaterial].push_back(new Vertex(
+				{ xpos - width, ypos - height, pos.z },
 				{ 1.0f, 1.0f, 1.0f, 1.0f },
 				{ 0.0f, 1.0f },
 				textureIndex
 			));
-			s_Data.VertexData[fontShader].push_back(new Vertex(
-				{ xpos + width, ypos - height, -7.0f },
+			s_Data.VertexData[fontMaterial].push_back(new Vertex(
+				{ xpos + width, ypos - height, pos.z },
 				{ 1.0f, 1.0f, 1.0f, 1.0f },
 				{ 1.0f, 1.0f },
 				textureIndex
 			));
-			s_Data.VertexData[fontShader].push_back(new Vertex(
-				{ xpos + width, ypos + height, -7.0f },
+			s_Data.VertexData[fontMaterial].push_back(new Vertex(
+				{ xpos + width, ypos + height, pos.z },
 				{ 1.0f, 1.0f, 1.0f, 1.0f },
 				{ 1.0f, 0.0f },
 				textureIndex
 			));
-			s_Data.VertexData[fontShader].push_back(new Vertex(
-				{ xpos - width, ypos + height, -7.0f },
+			s_Data.VertexData[fontMaterial].push_back(new Vertex(
+				{ xpos - width, ypos + height, pos.z },
 				{ 1.0f, 1.0f, 1.0f, 1.0f },
 				{ 0.0f, 0.0f },
 				textureIndex
 			));
-
-			DEBUG_LOG((Camera::GetMain()->projection * glm::vec4(Vector3(xpos - width, ypos + height, -7.0f).glmPosition(), 1.0f)).z);
-			//DEBUG_LOG((Camera::GetMain()->projection * Camera::GetMain()->view * glm::mat4(1.0f) * glm::vec4(Vector3(xpos - width, ypos + height, 0.0f).glmPosition(), 1.0f)).z);
 
 			pos.x += (ch.Advance >> 6) * size.x;
 		}

@@ -19,6 +19,7 @@ private:
 	int fps;
 
 	GameState* state;
+	Entity* camera;
 
 	PlayerPaddle* player1;
 	PlayerPaddle* player2;

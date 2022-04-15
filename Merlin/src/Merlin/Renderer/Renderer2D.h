@@ -5,6 +5,8 @@
 #include <Merlin/Core/Scene/Transform.h>
 #include <Merlin/Core/Math/Vector.h>
 
+#include "Framebuffer.h"
+
 namespace Merlin::Renderer
 {
 	class Renderer2D
@@ -20,7 +22,9 @@ namespace Merlin::Renderer
 		static void DrawQuad(const Vector3& pos, const Vector2& size, const Vector4& color);
 		static void DrawQuad(const Vector3& pos, const Vector2& size, Texture2D* texture);
 
-		static void DrawText(Vector2 pos, const Vector2& size, const std::string& text);
+		static void DrawText(Vector3 pos, const Vector2& size, const std::string& text);
+
+		static Framebuffer* framebuffer;
 	private:
 		static void BeginBatch();
 		static void EndBatch();

@@ -12,7 +12,7 @@ using namespace Merlin::Renderer;
 using namespace Merlin::UI;
 
 PongLayer::PongLayer()
-	: Layer("Arena Layer"), fps(0), state(nullptr), player1(nullptr), player2(nullptr), ball(nullptr)
+	: Layer("Arena Layer"), fps(0), state(nullptr), camera(nullptr), player1(nullptr), player2(nullptr), ball(nullptr)
 {
 }
 
@@ -25,9 +25,9 @@ void PongLayer::OnAttach()
 {
 	state = new GameState();
 
-	Entity* camera = Entity::CreateEntity();
+	camera = Entity::CreateEntity();
 	Camera* cam = camera->AddComponent<Camera>();
-	cam->offset = { 0,0,8 };
+	cam->GetTransform()->position = { 0,0,8 };
 
 	LeftWall* left = Scene::CreateEntity<LeftWall>();
 	left->SetupWall(state);
@@ -108,7 +108,8 @@ void PongLayer::OnUpdate(Merlin::Timestep ts)
 	player1->MovePlayer(ts.GetDeltaTime());
 	player2->MovePlayer(ts.GetDeltaTime());
 
-	Renderer2D::DrawText({ 0,0 }, { 0.01f, 0.01f }, "I really love Pong!");
+	Renderer2D::DrawText({ 0,0, -7 }, { 0.01f, 0.01f }, "I really love Pong!");
+	camera->GetTransform()->position.x += 0.3f * ts.GetDeltaTime();
 
 	CheckScore();
 }

@@ -3,13 +3,12 @@
 
 #include "Button.h"
 
-#include <Merlin/Renderer/Camera.h>
+#include <Merlin/Core/Scene/Camera.h>
 #include <Merlin/Core/Input.h>
 
 #include "GLFW/glfw3.h"
 
 using namespace Merlin::Events;
-using namespace Merlin::Renderer;
 
 namespace Merlin::UI
 {
