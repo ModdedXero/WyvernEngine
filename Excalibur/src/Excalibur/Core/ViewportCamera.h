@@ -3,12 +3,13 @@
 
 namespace Merlin
 {
-	class EditorCamera : public Entity
+	class ViewportCamera : public Entity
 	{
 	public:
 		virtual void OnAttach() override;
-		virtual void OnUpdate(Timestep ts) override;
-		virtual void OnEvent(Events::Event& e) override;
+		virtual void OnUpdate() override;
+
+		float CameraSpeed = 2.0f;
 	private:
 		Camera* m_Camera;
 	};

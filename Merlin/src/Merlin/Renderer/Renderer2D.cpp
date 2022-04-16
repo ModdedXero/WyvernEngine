@@ -201,6 +201,7 @@ namespace Merlin::Renderer
 	void Renderer2D::EndScene()
 	{
 		Framebuffer->Bind();
+
 		for (auto& drawData : s_Data.VertexData)
 		{
 			glUseProgram(drawData.first->shader->ID);
@@ -248,6 +249,7 @@ namespace Merlin::Renderer
 		}
 
 		s_Data.VertexData.clear();
+
 		Framebuffer->Unbind();
 	}
 

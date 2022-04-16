@@ -8,7 +8,7 @@
 
 namespace Merlin::Renderer
 {
-	void RenderWizard::OnUpdate(Timestep ts)
+	void RenderWizard::OnUpdate()
 	{
 		for (Entity* ent : EntityList<SpriteRenderer>())
 		{

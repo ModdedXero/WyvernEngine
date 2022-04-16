@@ -52,8 +52,8 @@ namespace Merlin
 
 		virtual void OnAttach() {}
 		virtual void OnDetach() {}
-		virtual void OnUpdate(Timestep ts) {}
-		virtual void OnFixedUpdate(Timestep ts) {}
+		virtual void OnUpdate() {}
+		virtual void OnFixedUpdate() {}
 		virtual void OnEvent(Events::Event& e) {}
  	};
 }

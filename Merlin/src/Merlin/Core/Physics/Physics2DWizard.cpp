@@ -30,12 +30,12 @@ namespace Merlin
 			delete solver;
 	}
 
-	void Physics2DWizard::OnFixedUpdate(Timestep ts)
+	void Physics2DWizard::OnFixedUpdate()
 	{
 		for (Entity* ent : EntityList<RigidBody2D>())
 		{
 			for (PhysicsSolver2D* solver : m_PhysicsSolvers)
-				solver->Solve(ent->GetComponent<RigidBody2D>(), ts, ent->GetTransform());
+				solver->Solve(ent->GetComponent<RigidBody2D>(), ent->GetTransform());
 		}
 
 		std::vector<Ref<Collision2D>> collisions;

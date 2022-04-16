@@ -14,10 +14,19 @@ namespace Merlin::Renderer
 	Framebuffer::~Framebuffer()
 	{
 		glDeleteFramebuffers(1, &m_RendererID);
+		glDeleteTextures(1, &m_ColorAttachment);
+		glDeleteTextures(1, &m_DepthAttachment);
 	}
 
 	void Framebuffer::Invalidate()
 	{
+		if (m_RendererID)
+		{
+			glDeleteFramebuffers(1, &m_RendererID);
+			glDeleteTextures(1, &m_ColorAttachment);
+			glDeleteTextures(1, &m_DepthAttachment);
+		}
+
 		glCreateFramebuffers(1, &m_RendererID);
 		glBindFramebuffer(GL_FRAMEBUFFER, m_RendererID);
 
@@ -40,8 +49,17 @@ namespace Merlin::Renderer
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	}
 
+	void Framebuffer::Resize(const Vector2& size)
+	{
+		m_Specs.Width = size.x;
+		m_Specs.Height = size.y;
+
+		Invalidate();
+	}
+
 	void Framebuffer::Bind()
 	{
+		Invalidate();
 		glBindFramebuffer(GL_FRAMEBUFFER, m_RendererID);
 	}
 

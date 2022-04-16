@@ -1,7 +1,7 @@
 #pragma once
 #include <Merlin.h>
 
-#include "EditorCamera.h"
+#include "EditorWindow.h"
 
 namespace Merlin
 {
@@ -14,11 +14,10 @@ namespace Merlin
 		virtual void OnAttach() override;
 		virtual void OnDetach() override;
 
-		virtual void OnUpdate(Timestep ts) override;
-		virtual void OnImGuiRender() override;
+		virtual void OnUpdate() override;
+		virtual void OnUIRender() override;
 		virtual void OnEvent(Events::Event& e) override;
 	private:
-		EditorCamera* m_Camera;
-		Ref<Renderer::Framebuffer> m_Framebuffer;
+		std::vector<EditorWindow*> m_Windows;
 	};
 }

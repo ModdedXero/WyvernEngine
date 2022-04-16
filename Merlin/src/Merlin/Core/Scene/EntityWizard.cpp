@@ -4,19 +4,19 @@
 
 namespace Merlin
 {
-	void EntityWizard::OnUpdate(Timestep ts)
+	void EntityWizard::OnUpdate()
 	{
 		for (Entity* ent : EntityList())
 		{
-			ent->OnUpdate(ts);
+			ent->OnUpdate();
 		}
 	}
 
-	void EntityWizard::OnFixedUpdate(Timestep ts)
+	void EntityWizard::OnFixedUpdate()
 	{
 		for (Entity* ent : EntityList())
 		{
-			ent->OnFixedUpdate(ts);
+			ent->OnFixedUpdate();
 		}
 	}
 

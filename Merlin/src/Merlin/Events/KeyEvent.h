@@ -27,6 +27,7 @@ namespace Merlin::Events
 		{}
 
 		inline int GetRepeatCount() const { return m_RepeatCount; }
+		inline bool IsKeyHeld() const { return m_RepeatCount > 0; }
 
 		std::string ToString() const override
 		{

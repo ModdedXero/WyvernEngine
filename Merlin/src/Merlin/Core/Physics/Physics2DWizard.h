@@ -15,7 +15,7 @@ namespace Merlin
 		Physics2DWizard();
 		~Physics2DWizard();
 
-		void OnFixedUpdate(Timestep ts) override;
+		void OnFixedUpdate() override;
 
 		void AddSolver(CollisionSolver2D* solver);
 		void AddSolver(PhysicsSolver2D* solver);

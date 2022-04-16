@@ -1,18 +1,18 @@
 #include "EditorLayer.h"
 
+#include <Excalibur/Windows/Viewport.h>
+
 #include "imgui.h"
 
 namespace Merlin
 {
 	EditorLayer::EditorLayer()
-		: m_Camera(nullptr)
 	{
-
+        m_Windows.push_back(new Viewport());
 	}
 
 	void EditorLayer::OnAttach()
 	{
-		m_Camera = Scene::CreateEntity<EditorCamera>();
 		Entity* test = Scene::CreateEntity<Entity>();
 
 		test->GetTransform()->position = { 0, 0, 0 };
@@ -24,15 +24,16 @@ namespace Merlin
 
 	void EditorLayer::OnDetach()
 	{
-
+        for (EditorWindow* window : m_Windows)
+            delete window;
 	}
 
-	void EditorLayer::OnUpdate(Timestep ts)
+	void EditorLayer::OnUpdate()
 	{
 
 	}
 
-	void EditorLayer::OnImGuiRender()
+	void EditorLayer::OnUIRender()
 	{
         static bool dockspaceOpen = true;
         static bool opt_fullscreen = true;
@@ -100,12 +101,12 @@ namespace Merlin
             ImGui::EndMenuBar();
         }
 
-        ImGui::Begin("Viewport");
-
-        unsigned int textureID = Renderer::Renderer2D::Framebuffer->GetColorAttachmentRendererID();
-        ImGui::Image((void*)textureID, ImVec2{ 1280, 720 });
-
-        ImGui::End();
+        for (EditorWindow* window : m_Windows)
+        {
+            window->BeginRender();
+            window->OnGUI();
+            window->EndRender();
+        }
 
         ImGui::End();
 	}

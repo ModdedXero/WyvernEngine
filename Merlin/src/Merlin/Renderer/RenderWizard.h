@@ -7,6 +7,6 @@ namespace Merlin::Renderer
 	class RenderWizard : public Wizard
 	{
 	public:
-		void OnUpdate(Timestep ts) override;
+		void OnUpdate() override;
 	};
 }

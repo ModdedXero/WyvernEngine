@@ -10,6 +10,6 @@ namespace Merlin
 	class PhysicsSolver2D
 	{
 	public:
-		virtual void Solve(RigidBody2D* rb, Timestep& ts, Transform* transform) {}
+		virtual void Solve(RigidBody2D* rb, Transform* transform) {}
 	};
 }

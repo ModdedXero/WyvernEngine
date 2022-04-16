@@ -6,20 +6,17 @@ namespace Merlin
 {
 	class Timestep
 	{
+		friend class Application;
 	public:
-		Timestep(float time = 0.0f, float deltaTime = 0.0f)
-			: m_Time(time), m_DeltaTime(deltaTime)
-		{}
+		static float GetSeconds() { return m_Time; }
+		static float GetMilliseconds() { return m_Time * 1000; }
+		static float GetDeltaTime() { return m_DeltaTime; }
+		static float GetFPS() { return 1 / m_DeltaTime; }
+		static float GetFixedDeltaTime() { return Constants::FixedUpdateInterval; }
 
 		operator float() const { return m_Time; }
-
-		float GetSeconds() const { return m_Time; }
-		float GetMilliseconds() const { return m_Time * 1000; }
-		float GetDeltaTime() const { return m_DeltaTime; }
-		float GetFPS() const { return 1 / m_DeltaTime; }
-		float GetFixedDeltaTime() const { return Constants::FixedUpdateInterval; }
-	private:
-		float m_Time;
-		float m_DeltaTime;
+	protected:
+		static inline float m_Time = 0;
+		static inline float m_DeltaTime = 0;
 	};
 }

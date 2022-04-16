@@ -140,13 +140,17 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\EditorCamera.h" />
-    <ClInclude Include="src\EditorLayer.h" />
+    <ClInclude Include="src\Excalibur\Core\EditorWindow.h" />
+    <ClInclude Include="src\Excalibur\Core\ViewportCamera.h" />
+    <ClInclude Include="src\Excalibur\Core\EditorLayer.h" />
+    <ClInclude Include="src\Excalibur\Windows\Viewport.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\EditorCamera.cpp" />
-    <ClCompile Include="src\EditorLayer.cpp" />
-    <ClCompile Include="src\Excalibur.cpp" />
+    <ClCompile Include="src\Excalibur\Core\EditorWindow.cpp" />
+    <ClCompile Include="src\Excalibur\Core\ViewportCamera.cpp" />
+    <ClCompile Include="src\Excalibur\Core\EditorLayer.cpp" />
+    <ClCompile Include="src\Excalibur\Core\Excalibur.cpp" />
+    <ClCompile Include="src\Excalibur\Windows\Viewport.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Merlin\src\Merlin.vcxproj">

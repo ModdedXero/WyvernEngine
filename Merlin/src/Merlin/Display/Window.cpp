@@ -42,10 +42,18 @@ namespace Merlin::Display
 
 				switch (action)
 				{
-				case GLFW_PRESS:
-					Events::KeyPressedEvent event(key, 0);
-					data.EventCallback(event);
-					break;
+					case GLFW_PRESS:
+					{
+						Events::KeyPressedEvent pressEvent(key, 0);
+						data.EventCallback(pressEvent);
+						break;
+					}
+					case GLFW_REPEAT:
+					{
+						Events::KeyPressedEvent holdEvent(key, 1);
+						data.EventCallback(holdEvent);
+						break;
+					}
 				}
 		});
 

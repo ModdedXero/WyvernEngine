@@ -17,14 +17,16 @@ namespace Merlin::Renderer
 		~Framebuffer();
 
 		void Invalidate();
+		void Resize(const Vector2& size);
+
 		void Bind();
 		void Unbind();
 
 		unsigned int GetColorAttachmentRendererID() const { return m_ColorAttachment; }
 	private:
-		unsigned int m_RendererID;
-		unsigned int m_ColorAttachment;
-		unsigned int m_DepthAttachment;
+		unsigned int m_RendererID = 0;
+		unsigned int m_ColorAttachment = 0;
+		unsigned int m_DepthAttachment = 0;
 
 		FrameBufferSpecs m_Specs;
 	};

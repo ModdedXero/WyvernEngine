@@ -88,35 +88,40 @@ namespace Merlin
 			// Get Delta time for Layers
 			fsec deltaTime = cTime - m_LastFrameTime;
 
-			Timestep ts;
 			if (deltaTime.count() > 10.0f)
-				ts = Timestep(0, 0);
+			{
+				Timestep::m_Time = 0;
+				Timestep::m_DeltaTime = 0;
+			}
 			else
-				ts = Timestep(fs.count(), deltaTime.count());
+			{
+				Timestep::m_Time = fs.count();
+				Timestep::m_DeltaTime = deltaTime.count();
+			}
 
 			m_LastFrameTime = cTime;
 
 			for (Layer* layer : m_LayerStack)
-				layer->OnUpdate(ts);
+				layer->OnUpdate();
 
 			for (Wizard* wizard : m_WizardStack)
-				wizard->OnUpdate(ts);
+				wizard->OnUpdate();
 
 			fsec fixed = Time::now() - m_FixedLoop;
 			if (fixed.count() > Constants::FixedUpdateInterval)
 			{
 				for (Layer* layer : m_LayerStack)
-					layer->OnFixedUpdate(ts);
+					layer->OnFixedUpdate();
 
 				for (Wizard* wizard : m_WizardStack)
-					wizard->OnFixedUpdate(ts);
+					wizard->OnFixedUpdate();
 
 				m_FixedLoop = Time::now();
 			}
 
 			m_ImGuiLayer->Begin();
 			for (Layer* layer : m_LayerStack)
-				layer->OnImGuiRender();
+				layer->OnUIRender();
 			m_ImGuiLayer->End();
 
 			Renderer2D::EndScene();
@@ -170,6 +175,7 @@ namespace Merlin
 
 		m_Minimized = false;
 		glfwSetWindowSize(m_Window->GetNativeWindow(), m_Window->GetWidth(), m_Window->GetHeight());
+		glViewport(0, 0, m_Window->GetWidth(), m_Window->GetHeight());
 
 		return true;
 	}
