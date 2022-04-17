@@ -135,11 +135,19 @@ namespace Merlin
 		EventDispatcher dispatcher(e);
 		dispatcher.Distpatch<WindowResizeEvent>(BIND_EVENT_FN(Application::OnWindowResize));
 
-		for (Layer* layer : m_LayerStack)
-			layer->OnEvent(e);
-
 		for (Wizard* wizard : m_WizardStack)
+		{
+			if (e.Handled)
+				break;
 			wizard->OnEvent(e);
+		}
+
+		for (Layer* layer : m_LayerStack)
+		{
+			if (e.Handled)
+				break;
+			layer->OnEvent(e);
+		}
 	}
 
 	void Application::Close()
@@ -170,12 +178,11 @@ namespace Merlin
 		if (e.GetWidth() == 0 || e.GetHeight() == 0)
 		{
 			m_Minimized = true;
-			return false;
+			return true;
 		}
 
 		m_Minimized = false;
 		glfwSetWindowSize(m_Window->GetNativeWindow(), m_Window->GetWidth(), m_Window->GetHeight());
-		glViewport(0, 0, m_Window->GetWidth(), m_Window->GetHeight());
 
 		return true;
 	}

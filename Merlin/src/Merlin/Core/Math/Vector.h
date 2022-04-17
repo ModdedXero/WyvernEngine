@@ -67,6 +67,7 @@ namespace Merlin
 			return *this;
 		}
 
+
 		Vector2 operator -() const
 		{
 			return *this * -1;
@@ -90,6 +91,11 @@ namespace Merlin
 		bool operator ==(const Vector2& other) const
 		{
 			return (x == other.x) && (y == other.y);
+		}
+
+		bool operator !=(const Vector2& other) const
+		{
+			return (x != other.x) || (y != other.y);
 		}
 
 		bool operator >(const Vector2& other) const

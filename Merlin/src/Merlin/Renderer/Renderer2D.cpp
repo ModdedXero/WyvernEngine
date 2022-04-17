@@ -36,6 +36,11 @@ namespace Merlin::Renderer
 		Vector4 Color;
 		Vector2 TexCoords;
 		float TexID = 0;
+
+		Vertex operator<(const Vertex& other)
+		{
+			return other.Position.z < Position.z ? other : *this;
+		}
 	};
 
 	struct RenderData
@@ -206,6 +211,29 @@ namespace Merlin::Renderer
 		{
 			glUseProgram(drawData.first->shader->ID);
 			Camera::GetMain()->SetShaderMatrices(drawData.first->shader);
+			
+			for (int i = 0; i < drawData.second.size(); i += 4)
+			{
+				if (drawData.second.size() == i + 4) break;
+
+				if (drawData.second[i]->Position.z > drawData.second[i + 4]->Position.z)
+				{
+					Vertex* v1 = drawData.second[i];
+					Vertex* v2 = drawData.second[i + 1];
+					Vertex* v3 = drawData.second[i + 2];
+					Vertex* v4 = drawData.second[i + 3];
+
+					drawData.second[i] = drawData.second[i + 4];
+					drawData.second[i + 1] = drawData.second[i + 5];
+					drawData.second[i + 2] = drawData.second[i + 6];
+					drawData.second[i + 3] = drawData.second[i + 7];
+
+					drawData.second[i + 4] = v1;
+					drawData.second[i + 5] = v2;
+					drawData.second[i + 6] = v3;
+					drawData.second[i + 7] = v4;
+				}
+			}
 
 			for (int i = 0; i < drawData.second.size(); i += 4)
 			{

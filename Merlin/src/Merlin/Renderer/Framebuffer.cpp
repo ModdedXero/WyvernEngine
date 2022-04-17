@@ -51,8 +51,8 @@ namespace Merlin::Renderer
 
 	void Framebuffer::Resize(const Vector2& size)
 	{
-		m_Specs.Width = size.x;
-		m_Specs.Height = size.y;
+		m_Specs.Width = size.x < 1 ? 1 : size.x;
+		m_Specs.Height = size.y < 1 ? 1 : size.y;
 
 		Invalidate();
 	}

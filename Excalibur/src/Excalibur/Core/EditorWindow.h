@@ -4,21 +4,26 @@
 
 #include <string>
 
-namespace Merlin
+namespace Merlin::Editor
 {
 	class EditorWindow
 	{
 		friend class EditorLayer;
 	public:
-		EditorWindow() {}
-		virtual ~EditorWindow() {}
-
 		virtual const char* GetWindowTitle() const = 0;
+
 	protected:
 		void BeginRender();
 		void EndRender();
 
+		virtual void OnAttach() {}
+		virtual void OnDetach() {}
 		virtual void OnGUI() {}
+		virtual void OnEvent(Events::Event& e) {}
+
+		Vector2 GetWindowSize();
+		bool IsFocused();
+		bool IsHovered();
 
 		Vector2 WindowSize;
 	};

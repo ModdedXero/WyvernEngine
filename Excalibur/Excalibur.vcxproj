@@ -140,17 +140,23 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Excalibur\Utility\EditorGUI.h" />
+    <ClInclude Include="src\Excalibur\Windows\PropertiesWindow.h" />
+    <ClInclude Include="src\Excalibur\Windows\HierarchyWindow.h" />
     <ClInclude Include="src\Excalibur\Core\EditorWindow.h" />
-    <ClInclude Include="src\Excalibur\Core\ViewportCamera.h" />
+    <ClInclude Include="src\Excalibur\Editor\ViewportCamera.h" />
     <ClInclude Include="src\Excalibur\Core\EditorLayer.h" />
-    <ClInclude Include="src\Excalibur\Windows\Viewport.h" />
+    <ClInclude Include="src\Excalibur\Windows\ViewportWindow.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Excalibur\Utility\EditorGUI.cpp" />
+    <ClCompile Include="src\Excalibur\Windows\PropertiesWindow.cpp" />
+    <ClCompile Include="src\Excalibur\Windows\HierarchyWindow.cpp" />
     <ClCompile Include="src\Excalibur\Core\EditorWindow.cpp" />
-    <ClCompile Include="src\Excalibur\Core\ViewportCamera.cpp" />
+    <ClCompile Include="src\Excalibur\Editor\ViewportCamera.cpp" />
     <ClCompile Include="src\Excalibur\Core\EditorLayer.cpp" />
     <ClCompile Include="src\Excalibur\Core\Excalibur.cpp" />
-    <ClCompile Include="src\Excalibur\Windows\Viewport.cpp" />
+    <ClCompile Include="src\Excalibur\Windows\ViewportWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Merlin\src\Merlin.vcxproj">

@@ -3,7 +3,11 @@
 
 #include "EditorWindow.h"
 
-namespace Merlin
+#include <Excalibur/Windows/ViewportWindow.h>
+#include <Excalibur/Windows/HierarchyWindow.h>
+#include <Excalibur/Windows/PropertiesWindow.h>
+
+namespace Merlin::Editor
 {
 	class EditorLayer : public Layer
 	{
@@ -17,7 +21,20 @@ namespace Merlin
 		virtual void OnUpdate() override;
 		virtual void OnUIRender() override;
 		virtual void OnEvent(Events::Event& e) override;
+
+		static void OpenViewportWindow();
+		static void OpenHierarchyWindow();
+		static void OpenPropertiesWindow();
+
+		static Entity* GetSelectedContext() { return m_SelectedContext; }
+		static void SetSelectedContext(Entity* ent) { m_SelectedContext = ent; }
 	private:
-		std::vector<EditorWindow*> m_Windows;
+		static ViewportWindow* m_ViewportWindow;
+		static HierarchyWindow* m_HierarchyWindow;
+		static PropertiesWindow* m_PropertiesWindow;
+
+		static std::vector<EditorWindow*> m_Windows;
+
+		static Entity* m_SelectedContext;
 	};
 }

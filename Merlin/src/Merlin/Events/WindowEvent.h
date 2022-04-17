@@ -13,8 +13,8 @@ namespace Merlin::Events
 			: m_Width(width), m_Height(height)
 		{}
 
-		inline int GetWidth() const { return m_Width; }
-		inline int GetHeight() const { return m_Height; }
+		inline int GetWidth() const { return m_Width < 1 ? 1 : m_Width; }
+		inline int GetHeight() const { return m_Height < 1 ? 1 : m_Height; }
 
 		EVENT_CLASS_TYPE(WindowResize);
 

@@ -3,6 +3,7 @@
 #include "EditorLayer.h"
 
 using namespace Merlin;
+using namespace Merlin::Editor;
 
 class ExcaliburApp : public Application
 {

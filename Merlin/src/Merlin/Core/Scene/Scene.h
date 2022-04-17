@@ -22,7 +22,7 @@ namespace Merlin
 		friend struct EntityList;
 	public:
 		template <typename T>
-		static inline T* CreateEntity()
+		static inline T* CreateEntity(std::string name = "Entity", std::string type = "Default")
 		{
 			if (s_Entities.size() >= MaxEntities)
 			{
@@ -42,10 +42,14 @@ namespace Merlin
 				EntityIndex index = s_FreeEntities.back();
 				s_FreeEntities.pop_back();
 				EntityID id = CreateEntityID(index, GetEntityVersion(s_Entities[index]->m_ID));
+				SetupEntity(id);
 				s_Entities[index]->m_ID = id;
 				s_Entities[index]->m_Components.reset();
+				s_Entities[index]->m_isDeleting = false;
 				Transform* ts = AddComponent<Transform>(s_Entities[index]->m_ID);
 				Tag* tag = AddComponent<Tag>(s_Entities[index]->m_ID);
+				tag->name = name;
+				tag->type = type;
 				s_Entities[index]->m_Transform = ts;
 				s_Entities[index]->m_Tag = tag;
 				s_Entities[index]->OnAttach();
@@ -61,17 +65,23 @@ namespace Merlin
 
 			Transform* ts = AddComponent<Transform>(s_Entities.back()->m_ID);
 			Tag* tag = AddComponent<Tag>(s_Entities.back()->m_ID);
+			tag->name = name;
+			tag->type = type;
 			s_Entities.back()->m_Transform = ts;
 			s_Entities.back()->m_Tag = tag;
 
 			s_Entities.back()->OnAttach();
 			return (T*)s_Entities.back();
 		}
-		static void DestroyEntity(EntityID id);
+		static void SetupEntity(EntityID id);
+
+		static void DestoryEntity(EntityID id);
+		static void DestoryEntity(Entity* entity);
 
 		static EntityIndex GetEntityIndex(EntityID id);
 		static EntityVersion GetEntityVersion(EntityID id);
 		static bool IsEntityValid(EntityID id);
+		static bool IsEntityValid(Entity* ent);
 	public:
 		template <typename T>
 		static inline T* AddComponent(EntityID id)

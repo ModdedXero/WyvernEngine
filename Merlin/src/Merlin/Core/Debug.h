@@ -37,16 +37,13 @@ namespace Merlin
 			expandType{ 0, (std::cout << args, 0)... };
 			std::cout << std::endl;
 		}
-
-		static void DrawLine(const Vector2& start, const Vector2& end, float width)
-		{
-
-		}
 	};
 
-#define DEBUG_LOG(...)							Debug::Log(__VA_ARGS__)
-#define DEBUG_LOG_WARN(...)						Debug::LogWarn(__VA_ARGS__)
-#define DEBUG_LOG_ERROR(...)					Debug::LogError(__VA_ARGS__)
+#define DEBUG_LOG(...)							Debug::Log("Application: ", __VA_ARGS__)
+#define DEBUG_LOG_WARN(...)						Debug::LogWarn("Application: ", __VA_ARGS__)
+#define DEBUG_LOG_ERROR(...)					Debug::LogError("Application: ", __VA_ARGS__)
 
-#define DEBUG_DRAW_LINE(start, end, width)		Debug::DrawLine(start, end, width)
+#define DEBUG_CORE(...)							Debug::Log("Merlin: ", __VA_ARGS__)
+#define DEBUG_CORE_WARN(...)					Debug::LogWarn("Merlin: ", __VA_ARGS__)
+#define DEBUG_CORE_ERROR(...)					Debug::LogError("Melrin: ", __VA_ARGS__)
 }

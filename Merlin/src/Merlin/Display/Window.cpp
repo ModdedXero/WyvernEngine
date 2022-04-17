@@ -13,18 +13,10 @@ namespace Merlin::Display
 		m_Data.Height = props.Height;
 
 		// Check if GLFW is Initialized
-		if (!glfwInit())
-		{
-			// Log Error
-			return;
-		}
+		ML_CORE_ASSERT(glfwInit(), "Failed to initialize GLFW library!");
 
 		m_Window = glfwCreateWindow(props.Width, props.Height, props.Title, NULL, NULL);
-		if (!m_Window)
-		{
-			// Log Error
-			return;
-		}
+		ML_CORE_ASSERT(m_Window, "Failed to create GLFW Window instance!");
 
 		glfwSetWindowAspectRatio(m_Window, 16, 9);
 
@@ -87,7 +79,7 @@ namespace Merlin::Display
 
 	void Window::OnUpdate()
 	{
-		glClear(GL_COLOR_BUFFER_BIT);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glfwPollEvents();
 	}
 

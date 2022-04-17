@@ -2,7 +2,7 @@
 
 #include <imgui.h>
 
-namespace Merlin
+namespace Merlin::Editor
 {
 	void EditorWindow::BeginRender()
 	{
@@ -12,5 +12,21 @@ namespace Merlin
 	void EditorWindow::EndRender()
 	{
 		ImGui::End();
+	}
+
+	Vector2 EditorWindow::GetWindowSize()
+	{
+		ImVec2 windowPanelSize = ImGui::GetContentRegionAvail();
+		return { windowPanelSize.x, windowPanelSize.y };
+	}
+
+	bool EditorWindow::IsFocused()
+	{
+		return ImGui::IsWindowFocused();
+	}
+
+	bool EditorWindow::IsHovered()
+	{
+		return ImGui::IsWindowHovered();
 	}
 }
