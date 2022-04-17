@@ -17,6 +17,26 @@ namespace Merlin::Editor
 			m_SelectedContext = EditorLayer::GetSelectedContext();
 
 		DrawComponents();
+
+		if (ImGui::Button("Add Component"))
+			ImGui::OpenPopup("Add Component");
+
+		if (ImGui::BeginPopup("Add Component"))
+		{
+			if (ImGui::MenuItem("Camera"))
+			{
+				m_SelectedContext->AddComponent<Camera>();
+				ImGui::CloseCurrentPopup();
+			}
+
+			if (ImGui::MenuItem("Sprite Renderer"))
+			{
+				m_SelectedContext->AddComponent<SpriteRenderer>();
+				ImGui::CloseCurrentPopup();
+			}
+
+			ImGui::EndPopup();
+		}
 	}
 
 	void PropertiesWindow::DrawComponents()

@@ -1,6 +1,6 @@
 workspace "Merlin"
 	architecture "x64"
-	startproject  "Sandbox"
+	startproject  "Excalibur"
 	
 	configurations
 	{

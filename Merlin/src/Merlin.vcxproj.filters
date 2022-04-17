@@ -19,6 +19,9 @@
     <Filter Include="Merlin\Core\Scene">
       <UniqueIdentifier>{A1F4B1D3-0D0B-B069-5682-3B8BC2D780F1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Merlin\Display">
+      <UniqueIdentifier>{11585CC4-FD25-50CA-E6B9-C0F0D2262C2F}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Merlin\Events">
       <UniqueIdentifier>{10771CCB-7C37-9801-4572-E17EB1F1DCDD}</UniqueIdentifier>
     </Filter>
@@ -30,9 +33,6 @@
     </Filter>
     <Filter Include="Merlin\UI">
       <UniqueIdentifier>{59E8887C-C552-3DF3-0E91-EE987A3A1B48}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Merlin\Window">
-      <UniqueIdentifier>{13D832F4-7F98-AE2A-48D3-F7A7B452F306}</UniqueIdentifier>
     </Filter>
     <Filter Include="Platform">
       <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
@@ -175,6 +175,9 @@
     <ClInclude Include="Merlin\Core\Timestep.h">
       <Filter>Merlin\Core</Filter>
     </ClInclude>
+    <ClInclude Include="Merlin\Display\Window.h">
+      <Filter>Merlin\Display</Filter>
+    </ClInclude>
     <ClInclude Include="Merlin\Events\Event.h">
       <Filter>Merlin\Events</Filter>
     </ClInclude>
@@ -190,6 +193,9 @@
     <ClInclude Include="Merlin\ImGui\ImGuiLayer.h">
       <Filter>Merlin\ImGui</Filter>
     </ClInclude>
+    <ClInclude Include="Merlin\Renderer\Framebuffer.h">
+      <Filter>Merlin\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="Merlin\Renderer\RenderWizard.h">
       <Filter>Merlin\Renderer</Filter>
     </ClInclude>
@@ -202,9 +208,6 @@
     <ClInclude Include="Merlin\UI\UIWizard.h">
       <Filter>Merlin\UI</Filter>
     </ClInclude>
-    <ClInclude Include="Merlin\Display\Window.h">
-      <Filter>Merlin\Window</Filter>
-    </ClInclude>
     <ClInclude Include="Platform\OpenGL\ImGuiGLFWRenderer.h">
       <Filter>Platform\OpenGL</Filter>
     </ClInclude>
@@ -215,7 +218,6 @@
       <Filter>Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="mlpch.h" />
-    <ClInclude Include="Merlin\Renderer\Framebuffer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\vendor\glad\glad.c">
@@ -284,8 +286,14 @@
     <ClCompile Include="Merlin\Core\Scene\WizardStack.cpp">
       <Filter>Merlin\Core\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="Merlin\Display\Window.cpp">
+      <Filter>Merlin\Display</Filter>
+    </ClCompile>
     <ClCompile Include="Merlin\ImGui\ImGuiLayer.cpp">
       <Filter>Merlin\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="Merlin\Renderer\Framebuffer.cpp">
+      <Filter>Merlin\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="Merlin\Renderer\RenderWizard.cpp">
       <Filter>Merlin\Renderer</Filter>
@@ -296,9 +304,6 @@
     <ClCompile Include="Merlin\UI\UIWizard.cpp">
       <Filter>Merlin\UI</Filter>
     </ClCompile>
-    <ClCompile Include="Merlin\Display\Window.cpp">
-      <Filter>Merlin\Window</Filter>
-    </ClCompile>
     <ClCompile Include="Platform\OpenGL\ImGuiGLFWRenderer.cpp">
       <Filter>Platform\OpenGL</Filter>
     </ClCompile>
@@ -306,6 +311,5 @@
       <Filter>Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="mlpch.cpp" />
-    <ClCompile Include="Merlin\Renderer\Framebuffer.cpp" />
   </ItemGroup>
 </Project>

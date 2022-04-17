@@ -48,11 +48,13 @@ namespace Merlin::Editor
 			EditorLayer::SetSelectedContext(ent);
 		}
 
-		bool entityDeleted = false;
 		if (ImGui::BeginPopupContextItem())
 		{
+			if (ImGui::MenuItem("Create Child Entity"))
+				ent->AddChildEntity(Scene::CreateEntity<Entity>());
+
 			if (ImGui::MenuItem("Delete Entity"))
-				entityDeleted = true;
+				ent->DestroyEntity();
 
 			ImGui::EndPopup();
 		}
@@ -62,9 +64,6 @@ namespace Merlin::Editor
 			DrawEntityChildren(ent);
 			ImGui::TreePop();
 		}
-
-		if (entityDeleted)
-			ent->DestroyEntity();
 	}
 
 	void HierarchyWindow::DrawEntityChildren(Entity* ent)

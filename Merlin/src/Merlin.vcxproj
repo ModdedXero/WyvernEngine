@@ -138,7 +138,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\vendor\stb_image\stb_image.h" />
-    <ClInclude Include="Merlin\Renderer\Framebuffer.h" />
     <ClInclude Include="Merlin.h" />
     <ClInclude Include="Merlin\Core\Application.h" />
     <ClInclude Include="Merlin\Core\Base.h" />
@@ -180,16 +179,17 @@
     <ClInclude Include="Merlin\Core\Scene\Wizard.h" />
     <ClInclude Include="Merlin\Core\Scene\WizardStack.h" />
     <ClInclude Include="Merlin\Core\Timestep.h" />
+    <ClInclude Include="Merlin\Display\Window.h" />
     <ClInclude Include="Merlin\Events\Event.h" />
     <ClInclude Include="Merlin\Events\KeyEvent.h" />
     <ClInclude Include="Merlin\Events\MouseEvent.h" />
     <ClInclude Include="Merlin\Events\WindowEvent.h" />
     <ClInclude Include="Merlin\ImGui\ImGuiLayer.h" />
+    <ClInclude Include="Merlin\Renderer\Framebuffer.h" />
     <ClInclude Include="Merlin\Renderer\RenderWizard.h" />
     <ClInclude Include="Merlin\Renderer\Renderer2D.h" />
     <ClInclude Include="Merlin\UI\Button.h" />
     <ClInclude Include="Merlin\UI\UIWizard.h" />
-    <ClInclude Include="Merlin\Display\Window.h" />
     <ClInclude Include="Platform\OpenGL\ImGuiGLFWRenderer.h" />
     <ClInclude Include="Platform\OpenGL\ImGuiOpenGLLoader.h" />
     <ClInclude Include="Platform\OpenGL\ImGuiOpenGLRenderer.h" />
@@ -198,7 +198,6 @@
   <ItemGroup>
     <ClCompile Include="..\vendor\glad\glad.c" />
     <ClCompile Include="..\vendor\stb_image\stb_image.cpp" />
-    <ClCompile Include="Merlin\Renderer\Framebuffer.cpp" />
     <ClCompile Include="Merlin\Core\Application.cpp" />
     <ClCompile Include="Merlin\Core\Constants.cpp" />
     <ClCompile Include="Merlin\Core\Graphics\Shader.cpp" />
@@ -219,11 +218,12 @@
     <ClCompile Include="Merlin\Core\Scene\Scene.cpp" />
     <ClCompile Include="Merlin\Core\Scene\Wizard.cpp" />
     <ClCompile Include="Merlin\Core\Scene\WizardStack.cpp" />
+    <ClCompile Include="Merlin\Display\Window.cpp" />
     <ClCompile Include="Merlin\ImGui\ImGuiLayer.cpp" />
+    <ClCompile Include="Merlin\Renderer\Framebuffer.cpp" />
     <ClCompile Include="Merlin\Renderer\RenderWizard.cpp" />
     <ClCompile Include="Merlin\Renderer\Renderer2D.cpp" />
     <ClCompile Include="Merlin\UI\UIWizard.cpp" />
-    <ClCompile Include="Merlin\Display\Window.cpp" />
     <ClCompile Include="Platform\OpenGL\ImGuiGLFWRenderer.cpp" />
     <ClCompile Include="Platform\OpenGL\ImGuiOpenGLRenderer.cpp" />
     <ClCompile Include="mlpch.cpp" />
