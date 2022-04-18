@@ -3,7 +3,7 @@
 
 #include "Timestep.h"
 
-#include <Merlin/Core/Scene/Entity.h>
+#include <Merlin/Core/Scene/Scene.h>
 #include <Merlin/Renderer/Renderer2D.h>
 
 #include <Merlin/Core/Scene/EntityWizard.h>
@@ -125,6 +125,8 @@ namespace Merlin
 			m_ImGuiLayer->End();
 
 			Renderer2D::EndScene();
+
+			Scene::FlushScene();
 
 			m_Window->OnRender();
 		}

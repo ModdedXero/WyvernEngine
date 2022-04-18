@@ -1,3 +1,4 @@
+#include "mlpch.h"
 #include "Window.h"
 
 #include <Merlin/Events/KeyEvent.h>
@@ -13,7 +14,10 @@ namespace Merlin::Display
 		m_Data.Height = props.Height;
 
 		// Check if GLFW is Initialized
-		ML_CORE_ASSERT(glfwInit(), "Failed to initialize GLFW library!");
+		if (!glfwInit())
+		{
+			ML_CORE_ASSERT(false, "Failed to initialize GLFW library!");
+		}
 
 		m_Window = glfwCreateWindow(props.Width, props.Height, props.Title, NULL, NULL);
 		ML_CORE_ASSERT(m_Window, "Failed to create GLFW Window instance!");

@@ -13,8 +13,13 @@
 	#endif
 #endif
 
-#define ML_ASSERT(check, ...) { if(!(check)) {DEBUG_ERROR("Assertion failed at ", std::filesystem::path(__FILE__).filename().string(), ":", __LINE__, " (", __VA_ARGS__, ")"); ML_DEBUGBREAK(); } }
-#define ML_CORE_ASSERT(check, ...) { if(!(check)) {DEBUG_CORE_ERROR("Assertion failed at ", std::filesystem::path(__FILE__).filename().string(), ":", __LINE__, " (", __VA_ARGS__, ")"); ML_DEBUGBREAK(); } }
+#ifdef ML_DEBUG
+	#define ML_ASSERT(check, ...) { if(!(check)) {DEBUG_LOG_ERROR("Assertion failed at ", std::filesystem::path(__FILE__).filename().string(), ":", __LINE__, " (", __VA_ARGS__, ")"); ML_DEBUGBREAK(); } }
+	#define ML_CORE_ASSERT(check, ...) { if(!(check)) {DEBUG_CORE_ERROR("Assertion failed at ", std::filesystem::path(__FILE__).filename().string(), ":", __LINE__, " (", __VA_ARGS__, ")"); ML_DEBUGBREAK(); } }
+#else
+	#define ML_ASSERT(check, ...) {(check);}
+	#define ML_CORE_ASSERT(check, ...) {(check);}
+#endif
 
 #define BIND_EVENT_FN(fn) [this](auto&&... args) -> decltype(auto) { return this->fn(std::forward<decltype(args)>(args)...); }
 

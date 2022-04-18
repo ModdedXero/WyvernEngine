@@ -17,14 +17,4 @@ namespace Merlin
                 m_Children.erase(m_Children.begin() + i);
         }
     }
-
-    std::vector<Entity*> Entity::GetChildren()
-    {
-        std::vector<Entity*> children;
-        for (Entity* ent : m_Children)
-            if (!ent->m_isDeleting)
-                children.push_back(ent);
-
-        return children;
-    }
 }

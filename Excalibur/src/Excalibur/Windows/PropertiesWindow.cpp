@@ -72,6 +72,20 @@ namespace Merlin::Editor
 		{
 			if (ImGui::TreeNodeEx((void*)m_SelectedContext->GetID(), ImGuiTreeNodeFlags_DefaultOpen, "Camera"))
 			{
+				ImGui::SameLine();
+				if (ImGui::Button(":"))
+				{
+					ImGui::OpenPopup("ComponentSettings");
+				}
+
+				if (ImGui::BeginPopup("ComponentSettings"))
+				{
+					if (ImGui::MenuItem("Remove Component"))
+						DEBUG_CORE("Test");
+
+					ImGui::EndPopup();
+				}
+
 				const char* projectionTypeStrings[] = { "Perspective", "Orthographic" };
 				const char* currentProjectionString = projectionTypeStrings[(int)camera->GetCameraMode()];
 
@@ -110,6 +124,17 @@ namespace Merlin::Editor
 				float far = camera->GetClipFar();
 				if (ImGui::DragFloat("Clip Far", &far, 0.1f))
 					camera->SetClipSpaceFar(far);
+
+				ImGui::TreePop();
+			}
+		}
+
+		SpriteRenderer* spriteRenderer = m_SelectedContext->GetComponent<SpriteRenderer>();
+		if (spriteRenderer)
+		{
+			if (ImGui::TreeNodeEx((void*)m_SelectedContext->GetID(), ImGuiTreeNodeFlags_DefaultOpen, "Sprite Renderer"))
+			{
+				EditorGUI::Vector4Control("Color", spriteRenderer->color, 1.0f);
 
 				ImGui::TreePop();
 			}
