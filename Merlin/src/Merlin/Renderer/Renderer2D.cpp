@@ -122,7 +122,7 @@ namespace Merlin::Renderer
 		}
 
 		FT_Face face;
-		if (FT_New_Face(ft, "..\\Sandbox\\Assets\\Fonts\\Times.TTF", 0, &face))
+		if (FT_New_Face(ft, "..\\Excalibur\\Assets\\Fonts\\Times.TTF", 0, &face))
 		{
 			DEBUG_LOG_ERROR("Error: FreeType failed to load font");
 		}
@@ -296,27 +296,37 @@ namespace Merlin::Renderer
 			coords[3] = sprite->GetTexCoords()[3];
 		}
 
+		glm::mat4 matrix = glm::translate(glm::mat4(1.0f), transform->position.glmPosition())
+			* glm::rotate(glm::mat4(1.0f), glm::radians(transform->rotation.x), { 1.0f, 0.0f, 0.0f })
+			* glm::rotate(glm::mat4(1.0f), glm::radians(transform->rotation.y), { 0.0f, 1.0f, 0.0f })
+			* glm::rotate(glm::mat4(1.0f), glm::radians(transform->rotation.z), { 0.0f, 0.0f, 1.0f });
+
+		auto v1 = matrix * glm::vec4(-transform->scale.x, -transform->scale.y, 0.0f, 1.0f );
+		glm::vec3 v2 = matrix * glm::vec4(transform->scale.x, -transform->scale.y, 0.0f, 1.0f );
+		glm::vec3 v3 = matrix * glm::vec4(transform->scale.x, transform->scale.y, 0.0f, 1.0f );
+		glm::vec3 v4 = matrix * glm::vec4(-transform->scale.x, transform->scale.y, 0.0f, 1.0f );
+
 		Vertex* vertices[4] = {
 			new Vertex(
-			{ transform->position.x - transform->scale.x, transform->position.y - transform->scale.y, transform->position.z },
-			color,
-			coords[3],
-			textureIndex
+				{v1.x, v1.y, v1.z},
+				color,
+				coords[3],
+				textureIndex
 			),
 			new Vertex(
-				{ transform->position.x + transform->scale.x, transform->position.y - transform->scale.y, transform->position.z },
+				{v2.x, v2.y, v2.z},
 				color,
 				coords[2],
 				textureIndex
 			),
 			new Vertex(
-				{ transform->position.x + transform->scale.x, transform->position.y + transform->scale.y, transform->position.z },
+				{v3.x, v3.y, v3.z},
 				color,
 				coords[1],
 				textureIndex
 			),
 			new Vertex(
-				{ transform->position.x - transform->scale.x, transform->position.y + transform->scale.y, transform->position.z },
+				{v4.x, v4.y, v4.z},
 				color,
 				coords[0],
 				textureIndex

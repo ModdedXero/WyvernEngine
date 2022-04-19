@@ -16,10 +16,10 @@
 #include <iostream>
 #include <chrono>
 
+using namespace Merlin::UI;
 using namespace Merlin::Events;
 using namespace Merlin::Display;
 using namespace Merlin::Renderer;
-using namespace Merlin::UI;
 
 namespace Merlin
 {
@@ -49,16 +49,7 @@ namespace Merlin
 		PushWizard(new RenderWizard());
 		PushWizard(new UIWizard());
 
-		// Initialize Default Assets
-		ResourceManager::LoadShader("../merlin/assets/shader/standardshader.vert",
-			"../merlin/assets/shader/standardshader.frag", nullptr, "StandardShader");
-		ResourceManager::LoadShader("../merlin/assets/shader/fontshader.vert",
-			"../merlin/assets/shader/fontshader.frag", nullptr, "FontShader");
-
-		ResourceManager::LoadMaterial("StandardShader", "StandardMaterial");
-		ResourceManager::LoadMaterial("FontShader", "StandardFontMaterial")->sortValue = 100;
-
-		DEBUG_LOG("Merlin Engine Started");
+		DEBUG_CORE("Merlin Engine Started");
 	}
 
 	Application::~Application()
