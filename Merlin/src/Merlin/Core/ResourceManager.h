@@ -27,6 +27,7 @@ namespace Merlin
 
 		static Ref<Material> LoadMaterial(const char* shader, const char* name);
 		static Ref<Material> GetMaterial(const char* name);
+		static Ref<Material> GetDefaultMaterial();
 
 		static void Clear();
 	private:

@@ -14,14 +14,7 @@ namespace Merlin::Renderer
 		{
 			SpriteRenderer* sRend = ent->GetComponent<SpriteRenderer>();
 
-			if (sRend->material == nullptr || sRend->sprite == nullptr)
-			{
-				Renderer2D::DrawQuad(ent->GetTransform()->position, ent->GetTransform()->scale, sRend->color);
-			}
-			else
-			{
-				Renderer2D::DrawQuad(ent->GetTransform(), sRend->material, sRend->sprite, sRend->color);
-			}
+			Renderer2D::DrawQuad(ent->GetTransform(), sRend->material, sRend->sprite, sRend->color);
 		}
 	}
 }

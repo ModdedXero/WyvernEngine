@@ -61,6 +61,11 @@ namespace Merlin
 		return s_Materials[name];
 	}
 
+	Ref<Material> ResourceManager::GetDefaultMaterial()
+	{
+		return s_Materials.begin()->second;
+	}
+
 	void ResourceManager::Clear()
 	{
 		for (auto& iter : s_Shaders)

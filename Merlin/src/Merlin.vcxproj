@@ -188,6 +188,7 @@
     <ClInclude Include="Merlin\Renderer\Framebuffer.h" />
     <ClInclude Include="Merlin\Renderer\RenderWizard.h" />
     <ClInclude Include="Merlin\Renderer\Renderer2D.h" />
+    <ClInclude Include="Merlin\Renderer\VertexArray.h" />
     <ClInclude Include="Merlin\UI\Button.h" />
     <ClInclude Include="Merlin\UI\UIWizard.h" />
     <ClInclude Include="Platform\OpenGL\ImGuiGLFWRenderer.h" />
