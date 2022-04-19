@@ -154,7 +154,7 @@
     <ClInclude Include="Merlin\Core\LayerStack.h" />
     <ClInclude Include="Merlin\Core\Math\Math.h" />
     <ClInclude Include="Merlin\Core\Math\Mathf.h" />
-    <ClInclude Include="Merlin\Core\Math\Matrix4.h" />
+    <ClInclude Include="Merlin\Core\Math\Matrix4x4.h" />
     <ClInclude Include="Merlin\Core\Math\Vector.h" />
     <ClInclude Include="Merlin\Core\MouseCodes.h" />
     <ClInclude Include="Merlin\Core\Physics\Collider2D.h" />
@@ -217,6 +217,7 @@
     <ClCompile Include="Merlin\Core\Scene\Entity.cpp" />
     <ClCompile Include="Merlin\Core\Scene\EntityWizard.cpp" />
     <ClCompile Include="Merlin\Core\Scene\Scene.cpp" />
+    <ClCompile Include="Merlin\Core\Scene\Transform.cpp" />
     <ClCompile Include="Merlin\Core\Scene\Wizard.cpp" />
     <ClCompile Include="Merlin\Core\Scene\WizardStack.cpp" />
     <ClCompile Include="Merlin\Display\Window.cpp" />

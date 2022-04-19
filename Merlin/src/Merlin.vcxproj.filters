@@ -100,7 +100,7 @@
     <ClInclude Include="Merlin\Core\Math\Mathf.h">
       <Filter>Merlin\Core\Math</Filter>
     </ClInclude>
-    <ClInclude Include="Merlin\Core\Math\Matrix4.h">
+    <ClInclude Include="Merlin\Core\Math\Matrix4x4.h">
       <Filter>Merlin\Core\Math</Filter>
     </ClInclude>
     <ClInclude Include="Merlin\Core\Math\Vector.h">
@@ -312,5 +312,6 @@
       <Filter>Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="mlpch.cpp" />
+    <ClCompile Include="Merlin\Core\Scene\Transform.cpp" />
   </ItemGroup>
 </Project>

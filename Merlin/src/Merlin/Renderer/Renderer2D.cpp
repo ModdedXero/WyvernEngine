@@ -6,6 +6,7 @@
 
 #include <Merlin/Core/ResourceManager.h>
 #include <Merlin/Core/Scene/Camera.h>
+#include <Merlin/Core/Math/Matrix4x4.h>
 
 #include <glad.h>
 
@@ -296,37 +297,34 @@ namespace Merlin::Renderer
 			coords[3] = sprite->GetTexCoords()[3];
 		}
 
-		glm::mat4 matrix = glm::translate(glm::mat4(1.0f), transform->position.glmPosition())
-			* glm::rotate(glm::mat4(1.0f), glm::radians(transform->rotation.x), { 1.0f, 0.0f, 0.0f })
-			* glm::rotate(glm::mat4(1.0f), glm::radians(transform->rotation.y), { 0.0f, 1.0f, 0.0f })
-			* glm::rotate(glm::mat4(1.0f), glm::radians(transform->rotation.z), { 0.0f, 0.0f, 1.0f });
+		Matrix4x4 matrix = Matrix4x4::Translate(transform->GlobalPosition()) * Matrix4x4::Rotate(transform->GlobalRotation());
 
-		auto v1 = matrix * glm::vec4(-transform->scale.x, -transform->scale.y, 0.0f, 1.0f );
-		glm::vec3 v2 = matrix * glm::vec4(transform->scale.x, -transform->scale.y, 0.0f, 1.0f );
-		glm::vec3 v3 = matrix * glm::vec4(transform->scale.x, transform->scale.y, 0.0f, 1.0f );
-		glm::vec3 v4 = matrix * glm::vec4(-transform->scale.x, transform->scale.y, 0.0f, 1.0f );
+		Vector3 v1 = matrix * glm::vec4(-transform->GlobalScale().x, -transform->GlobalScale().y, 0.0f, 1.0f);
+		Vector3 v2 = matrix * glm::vec4(transform->GlobalScale().x, -transform->GlobalScale().y, 0.0f, 1.0f );
+		Vector3 v3 = matrix * glm::vec4(transform->GlobalScale().x, transform->GlobalScale().y, 0.0f, 1.0f );
+		Vector3 v4 = matrix * glm::vec4(-transform->GlobalScale().x, transform->GlobalScale().y, 0.0f, 1.0f );
 
 		Vertex* vertices[4] = {
 			new Vertex(
-				{v1.x, v1.y, v1.z},
+				v1,
 				color,
 				coords[3],
 				textureIndex
 			),
 			new Vertex(
-				{v2.x, v2.y, v2.z},
+				v2,
 				color,
 				coords[2],
 				textureIndex
 			),
 			new Vertex(
-				{v3.x, v3.y, v3.z},
+				v3,
 				color,
 				coords[1],
 				textureIndex
 			),
 			new Vertex(
-				{v4.x, v4.y, v4.z},
+				v4,
 				color,
 				coords[0],
 				textureIndex

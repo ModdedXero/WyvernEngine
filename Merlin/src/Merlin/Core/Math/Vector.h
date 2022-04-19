@@ -128,6 +128,10 @@ namespace Merlin
 
 	struct Vector3
 	{
+		float x = 0.0f;
+		float y = 0.0f;
+		float z = 0.0f;
+
 		Vector3(float x, float y, float z)
 		{
 			this->x = x;
@@ -142,9 +146,14 @@ namespace Merlin
 			this->y = 0.0f;
 		}
 
-		float x = 0.0f;
-		float y = 0.0f;
-		float z = 0.0f;
+		// GLM Operations
+
+		Vector3(glm::vec<4, float, glm::packed_highp> vec)
+		{
+			this->x = vec.x;
+			this->y = vec.y;
+			this->z = vec.z;
+		}
 
 		glm::vec3 glmPosition() { return glm::vec3(x, y, z); }
 
