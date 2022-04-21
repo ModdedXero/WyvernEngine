@@ -2,6 +2,7 @@
 
 #include <Excalibur/Core/EditorLayer.h>
 #include <Excalibur/Utility/EditorGUI.h>
+#include <Excalibur/Utility/EditorGUIInternal.h>
 
 #include <imgui.h>
 
@@ -17,6 +18,23 @@ namespace Merlin::Editor
 			m_SelectedContext = EditorLayer::GetSelectedContext();
 
 		DrawComponents();
+	}
+
+	void PropertiesWindow::DrawComponents()
+	{
+		Tag* tag = m_SelectedContext->GetTag();
+
+		char buffer[256];
+		memset(buffer, 0, sizeof(buffer));
+		strcpy_s(buffer, sizeof(buffer), tag->name.c_str());
+
+		if (ImGui::InputText("##Tag", buffer, sizeof(buffer)))
+		{
+			tag->name = std::string(buffer);
+		}
+
+		ImGui::SameLine();
+		ImGui::PushItemWidth(-1);
 
 		if (ImGui::Button("Add Component"))
 			ImGui::OpenPopup("Add Component");
@@ -37,57 +55,21 @@ namespace Merlin::Editor
 
 			ImGui::EndPopup();
 		}
-	}
 
-	void PropertiesWindow::DrawComponents()
-	{
-		Tag* tag = m_SelectedContext->GetTag();
-
-		char buffer[256];
-		memset(buffer, 0, sizeof(buffer));
-		strcpy_s(buffer, sizeof(buffer), tag->name.c_str());
-
-		if (ImGui::InputText("Name", buffer, sizeof(buffer)))
-		{
-			tag->name = std::string(buffer);
-		}
-
+		ImGui::PopItemWidth();
 		ImGui::Separator();
 
-		Transform* transform = m_SelectedContext->GetTransform();
-
-		if (ImGui::TreeNodeEx((void*)m_SelectedContext->GetID(), ImGuiTreeNodeFlags_DefaultOpen, "Transform"))
-		{
-			EditorGUI::Vector3Control("Position", transform->position);
-			EditorGUI::Vector3Control("Rotation", transform->rotation);
-			EditorGUI::Vector3Control("Scale", transform->scale, 1.0f);
-
-			ImGui::TreePop();
-		}
-
-		ImGui::Separator();
-
-		Camera* camera = m_SelectedContext->GetComponent<Camera>();
-		if (camera)
-		{
-			if (ImGui::TreeNodeEx((void*)m_SelectedContext->GetID(), ImGuiTreeNodeFlags_DefaultOpen, "Camera"))
+		EditorGUIInternal::DrawComponent<Transform>("Transform", m_SelectedContext, [](auto& component)
 			{
-				ImGui::SameLine();
-				if (ImGui::Button(":"))
-				{
-					ImGui::OpenPopup("ComponentSettings");
-				}
+				EditorGUI::Vector3Control("Position", component->position);
+				EditorGUI::Vector3Control("Rotation", component->rotation);
+				EditorGUI::Vector3Control("Scale", component->scale, 1.0f);
+			});
 
-				if (ImGui::BeginPopup("ComponentSettings"))
-				{
-					if (ImGui::MenuItem("Remove Component"))
-						DEBUG_CORE("Test");
-
-					ImGui::EndPopup();
-				}
-
+		EditorGUIInternal::DrawComponent<Camera>("Camera", m_SelectedContext, [](auto& component)
+			{
 				const char* projectionTypeStrings[] = { "Perspective", "Orthographic" };
-				const char* currentProjectionString = projectionTypeStrings[(int)camera->GetCameraMode()];
+				const char* currentProjectionString = projectionTypeStrings[(int)component->GetCameraMode()];
 
 				if (ImGui::BeginCombo("Projection", currentProjectionString))
 				{
@@ -97,47 +79,38 @@ namespace Merlin::Editor
 						if (ImGui::Selectable(projectionTypeStrings[i], isSelected))
 						{
 							currentProjectionString = projectionTypeStrings[i];
-							camera->SetCameraMode((CameraMode)i);
+							component->SetCameraMode((CameraMode)i);
 						}
 					}
 
 					ImGui::EndCombo();
 				}
 
-				if (camera->GetCameraMode() == CameraMode::Perspective)
+				if (component->GetCameraMode() == CameraMode::Perspective)
 				{
-					float fov = camera->GetFieldOfView();
+					float fov = component->GetFieldOfView();
 					if (ImGui::DragFloat("FOV", &fov, 1))
-						camera->SetFieldOfView(fov);
+						component->SetFieldOfView(fov);
 				}
 				else
 				{
-					float orthoSize = camera->GetOrthoSize();
+					float orthoSize = component->GetOrthoSize();
 					if (ImGui::DragFloat("Ortho Size", &orthoSize, 0.1f))
-						camera->SetOrthoSize(orthoSize);
+						component->SetOrthoSize(orthoSize);
 				}
 
-				float near = camera->GetClipNear();
+				float near = component->GetClipNear();
 				if (ImGui::DragFloat("Clip Near", &near, 0.1f))
-					camera->SetClipSpaceNear(near);
+					component->SetClipSpaceNear(near);
 
-				float far = camera->GetClipFar();
+				float far = component->GetClipFar();
 				if (ImGui::DragFloat("Clip Far", &far, 0.1f))
-					camera->SetClipSpaceFar(far);
+					component->SetClipSpaceFar(far);
+			});
 
-				ImGui::TreePop();
-			}
-		}
-
-		SpriteRenderer* spriteRenderer = m_SelectedContext->GetComponent<SpriteRenderer>();
-		if (spriteRenderer)
-		{
-			if (ImGui::TreeNodeEx((void*)m_SelectedContext->GetID(), ImGuiTreeNodeFlags_DefaultOpen, "Sprite Renderer"))
+		EditorGUIInternal::DrawComponent<SpriteRenderer>("Sprite Renderer", m_SelectedContext, [](auto& component)
 			{
-				EditorGUI::Vector4Control("Color", spriteRenderer->color, 1.0f);
-
-				ImGui::TreePop();
-			}
-		}
+				EditorGUI::Color4Control("Color", component->color);
+			});
 	}
 }

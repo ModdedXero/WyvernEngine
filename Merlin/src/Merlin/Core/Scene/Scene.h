@@ -15,12 +15,13 @@
 
 namespace Merlin
 {
-	class Entity;
+	class Entiy;
 
 	class Scene
 	{
 		template <class... ComponentTypes>
 		friend struct EntityList;
+		friend class SceneSerializer;
 	public:
 		template <typename T>
 		static T* CreateEntity(std::string name = "Entity");
@@ -46,6 +47,7 @@ namespace Merlin
 		static int GetComponentID();
 		template <typename T>
 		static inline int FindComponentID();
+		static void ListComponents(Entity* ent);
 
 		static size_t GetEntityCount() { return s_Entities.size(); }
 	private:

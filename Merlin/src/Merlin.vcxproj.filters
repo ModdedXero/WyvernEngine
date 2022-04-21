@@ -133,7 +133,7 @@
     <ClInclude Include="Merlin\Core\Physics\VelocitySolver2D.h">
       <Filter>Merlin\Core\Physics</Filter>
     </ClInclude>
-    <ClInclude Include="Merlin\Core\ResourceManager.h">
+    <ClInclude Include="Merlin\Core\AssetManager.h">
       <Filter>Merlin\Core</Filter>
     </ClInclude>
     <ClInclude Include="Merlin\Core\Scene\Camera.h">
@@ -202,6 +202,9 @@
     <ClInclude Include="Merlin\Renderer\Renderer2D.h">
       <Filter>Merlin\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="Merlin\Renderer\VertexArray.h">
+      <Filter>Merlin\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="Merlin\UI\Button.h">
       <Filter>Merlin\UI</Filter>
     </ClInclude>
@@ -218,7 +221,8 @@
       <Filter>Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="mlpch.h" />
-    <ClInclude Include="Merlin\Renderer\VertexArray.h" />
+    <ClInclude Include="Merlin\Core\Scene\SceneSerializer.h" />
+    <ClInclude Include="Merlin\Core\ProjectManger.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\vendor\glad\glad.c">
@@ -263,7 +267,7 @@
     <ClCompile Include="Merlin\Core\Physics\VelocitySolver2D.cpp">
       <Filter>Merlin\Core\Physics</Filter>
     </ClCompile>
-    <ClCompile Include="Merlin\Core\ResourceManager.cpp">
+    <ClCompile Include="Merlin\Core\AssetManager.cpp">
       <Filter>Merlin\Core</Filter>
     </ClCompile>
     <ClCompile Include="Merlin\Core\Scene\Camera.cpp">
@@ -279,6 +283,9 @@
       <Filter>Merlin\Core\Scene</Filter>
     </ClCompile>
     <ClCompile Include="Merlin\Core\Scene\Scene.cpp">
+      <Filter>Merlin\Core\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Merlin\Core\Scene\Transform.cpp">
       <Filter>Merlin\Core\Scene</Filter>
     </ClCompile>
     <ClCompile Include="Merlin\Core\Scene\Wizard.cpp">
@@ -312,6 +319,7 @@
       <Filter>Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="mlpch.cpp" />
-    <ClCompile Include="Merlin\Core\Scene\Transform.cpp" />
+    <ClCompile Include="Merlin\Core\Scene\SceneSerializer.cpp" />
+    <ClCompile Include="Merlin\Core\ProjectManager.cpp" />
   </ItemGroup>
 </Project>

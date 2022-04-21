@@ -11,8 +11,6 @@
 #include <Merlin/Renderer/RenderWizard.h>
 #include <Merlin/UI/UIWizard.h>
 
-#include "ResourceManager.h"
-
 #include <iostream>
 #include <chrono>
 

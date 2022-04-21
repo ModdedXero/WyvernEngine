@@ -79,7 +79,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>ML_PLATFORM_WINDOWS;ML_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\Merlin\src;src;..\Merlin\vendor\GLFW\include;..\Merlin\vendor\glm;..\Merlin\vendor\imgui;..\Merlin\vendor\glad\include;..\Merlin\vendor\freetype\include;..\Merlin\vendor\freetype\include\freetype;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Merlin\src;src;..\Merlin\vendor\GLFW\include;..\Merlin\vendor\glm;..\Merlin\vendor\imgui;..\Merlin\vendor\glad\include;..\Merlin\vendor\freetype\include;..\Merlin\vendor\freetype\include\freetype;..\Merlin\vendor\yaml-cpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -98,7 +98,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>ML_PLATFORM_WINDOWS;ML_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\Merlin\src;src;..\Merlin\vendor\GLFW\include;..\Merlin\vendor\glm;..\Merlin\vendor\imgui;..\Merlin\vendor\glad\include;..\Merlin\vendor\freetype\include;..\Merlin\vendor\freetype\include\freetype;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Merlin\src;src;..\Merlin\vendor\GLFW\include;..\Merlin\vendor\glm;..\Merlin\vendor\imgui;..\Merlin\vendor\glad\include;..\Merlin\vendor\freetype\include;..\Merlin\vendor\freetype\include\freetype;..\Merlin\vendor\yaml-cpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -121,7 +121,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>ML_PLATFORM_WINDOWS;ML_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\Merlin\src;src;..\Merlin\vendor\GLFW\include;..\Merlin\vendor\glm;..\Merlin\vendor\imgui;..\Merlin\vendor\glad\include;..\Merlin\vendor\freetype\include;..\Merlin\vendor\freetype\include\freetype;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Merlin\src;src;..\Merlin\vendor\GLFW\include;..\Merlin\vendor\glm;..\Merlin\vendor\imgui;..\Merlin\vendor\glad\include;..\Merlin\vendor\freetype\include;..\Merlin\vendor\freetype\include\freetype;..\Merlin\vendor\yaml-cpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -144,6 +144,7 @@
     <ClInclude Include="src\Excalibur\Core\EditorWindow.h" />
     <ClInclude Include="src\Excalibur\Editor\ViewportCamera.h" />
     <ClInclude Include="src\Excalibur\Utility\EditorGUI.h" />
+    <ClInclude Include="src\Excalibur\Utility\EditorGUIInternal.h" />
     <ClInclude Include="src\Excalibur\Windows\HierarchyWindow.h" />
     <ClInclude Include="src\Excalibur\Windows\PropertiesWindow.h" />
     <ClInclude Include="src\Excalibur\Windows\ViewportWindow.h" />
@@ -154,6 +155,7 @@
     <ClCompile Include="src\Excalibur\Core\Excalibur.cpp" />
     <ClCompile Include="src\Excalibur\Editor\ViewportCamera.cpp" />
     <ClCompile Include="src\Excalibur\Utility\EditorGUI.cpp" />
+    <ClCompile Include="src\Excalibur\Utility\EditorGUIInternal.cpp" />
     <ClCompile Include="src\Excalibur\Windows\HierarchyWindow.cpp" />
     <ClCompile Include="src\Excalibur\Windows\PropertiesWindow.cpp" />
     <ClCompile Include="src\Excalibur\Windows\ViewportWindow.cpp" />

@@ -13,7 +13,7 @@
 
 namespace Merlin
 {
-	class ResourceManager
+	class AssetManager
 	{
 	public:
 		static Ref<Shader> LoadShader(const char* vShaderFile, const char* fShaderFile, const char* gShaderFile, const char* name);
@@ -31,7 +31,7 @@ namespace Merlin
 
 		static void Clear();
 	private:
-		ResourceManager() {}
+		AssetManager() {}
 
 		static Ref<Shader> loadShaderFromFile(const char* vShaderPath, const char* fShaderPath, const char* gShaderPath = nullptr);
 		static Ref<Texture2D> loadTexture2DFromFile(const char* texturePath, bool alpha, bool pixel);

@@ -27,6 +27,9 @@
     <ClInclude Include="src\Excalibur\Utility\EditorGUI.h">
       <Filter>Utility</Filter>
     </ClInclude>
+    <ClInclude Include="src\Excalibur\Utility\EditorGUIInternal.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
     <ClInclude Include="src\Excalibur\Windows\HierarchyWindow.h">
       <Filter>Windows</Filter>
     </ClInclude>
@@ -51,6 +54,9 @@
       <Filter>Editor</Filter>
     </ClCompile>
     <ClCompile Include="src\Excalibur\Utility\EditorGUI.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Excalibur\Utility\EditorGUIInternal.cpp">
       <Filter>Utility</Filter>
     </ClCompile>
     <ClCompile Include="src\Excalibur\Windows\HierarchyWindow.cpp">

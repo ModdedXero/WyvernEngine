@@ -10,13 +10,13 @@ class ExcaliburApp : public Application
 public:
 	ExcaliburApp()
 	{
-		ResourceManager::LoadShader("./assets/shader/standardshader.vert",
+		AssetManager::LoadShader("./assets/shader/standardshader.vert",
 			"./assets/shader/standardshader.frag", nullptr, "StandardShader");
-		ResourceManager::LoadShader("./assets/shader/fontshader.vert",
+		AssetManager::LoadShader("./assets/shader/fontshader.vert",
 			"./assets/shader/fontshader.frag", nullptr, "FontShader");
 
-		ResourceManager::LoadMaterial("StandardShader", "StandardMaterial");
-		ResourceManager::LoadMaterial("FontShader", "StandardFontMaterial")->sortValue = 100;
+		AssetManager::LoadMaterial("StandardShader", "StandardMaterial");
+		AssetManager::LoadMaterial("FontShader", "StandardFontMaterial")->sortValue = 100;
 
 		PushLayer(new EditorLayer());
 	}

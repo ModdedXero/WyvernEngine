@@ -16,5 +16,7 @@ namespace Merlin
 
 		void Begin();
 		void End();
+
+		void SetDarkThemeColors();
 	};
 }

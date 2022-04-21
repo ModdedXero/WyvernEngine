@@ -9,7 +9,7 @@ PongWall::PongWall()
 void PongWall::OnAttach()
 {
 	mat = AddComponent<SpriteRenderer>();
-	mat->material = ResourceManager::GetMaterial("StandardMaterial");
+	mat->material = AssetManager::GetMaterial("StandardMaterial");
 	mat->color = { 1,1,1,1 };
 
 	rb = AddComponent<RigidBody2D>();

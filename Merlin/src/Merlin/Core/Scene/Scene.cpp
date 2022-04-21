@@ -52,6 +52,11 @@ namespace Merlin
 		s_ComponentsToDelete.clear();
 	}
 
+	void Scene::ListComponents(Entity* ent)
+	{
+
+	}
+
 	EntityID Scene::CreateEntityID(EntityIndex index, EntityVersion version)
 	{
 		return ((EntityID)index << 32) | ((EntityID)version);

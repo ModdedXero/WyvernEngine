@@ -36,7 +36,7 @@
 #include <Merlin/Renderer/Framebuffer.h>
 
 // Resources
-#include <Merlin/Core/ResourceManager.h>
+#include <Merlin/Core/AssetManager.h>
 
 // Input
 #include <Merlin/Core/Input.h>

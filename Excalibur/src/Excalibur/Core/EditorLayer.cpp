@@ -28,7 +28,7 @@ namespace Merlin::Editor
 		test->GetTransform()->position = { 0, 0, 0 };
 		test->GetTransform()->scale = { 0.5f, 0.5f, 1.0f };
 		SpriteRenderer* testRend = test->AddComponent<SpriteRenderer>();
-		testRend->material = ResourceManager::GetMaterial("StandardMaterial");
+		testRend->material = AssetManager::GetMaterial("StandardMaterial");
         testRend->color = { 1.0f, 0.5f, 0.6f, 1.0f };
 
         Entity* test2 = Scene::CreateEntity<Entity>();
@@ -36,7 +36,7 @@ namespace Merlin::Editor
         test2->GetTransform()->position = { 2, 0, 0 };
         test2->GetTransform()->scale = { 0.5f, 0.5f, 1.0f };
         SpriteRenderer* testRend2 = test2->AddComponent<SpriteRenderer>();
-        testRend2->material = ResourceManager::GetMaterial("StandardMaterial");
+        testRend2->material = AssetManager::GetMaterial("StandardMaterial");
         testRend2->color = { 0.3f, 0.5f, 0.6f, 1.0f };
 
         test->AddChildEntity(test2);
@@ -71,17 +71,22 @@ namespace Merlin::Editor
         ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
 
         // Begin Editor
-        ImGui::Begin("DockSpace Demo", &dockspaceOpen, window_flags);
+        ImGui::Begin("DockSpace", &dockspaceOpen, window_flags);
 
         ImGui::PopStyleVar();
         ImGui::PopStyleVar(2);
 
         ImGuiIO& io = ImGui::GetIO();
+        ImGuiStyle& style = ImGui::GetStyle();
+        float minWinSize = style.WindowMinSize.x;
+        style.WindowMinSize.x = 370.0f;
         if (io.ConfigFlags & ImGuiConfigFlags_DockingEnable)
         {
             ImGuiID dockspace_id = ImGui::GetID("MyDockSpace");
             ImGui::DockSpace(dockspace_id, ImVec2(0.0f, 0.0f), dockspace_flags);
         }
+
+        style.WindowMinSize.x = minWinSize;
 
         if (ImGui::BeginMenuBar())
         {

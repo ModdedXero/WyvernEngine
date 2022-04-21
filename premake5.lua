@@ -19,10 +19,12 @@ IncludeDir["ImGUI"] = "Merlin/vendor/imgui"
 IncludeDir["STB"] = "Merlin/vendor/stb_image"
 IncludeDir["FreeType"] = "Merlin/vendor/freetype/include"
 IncludeDir["FreeTypeSub"] = "Merlin/vendor/freetype/include/freetype"
+IncludeDir["YamlCPP"] = "Merlin/vendor/yaml-cpp/include"
 
 include "Merlin/vendor/GLFW"
 include "Merlin/vendor/ImGui"
 include "Merlin/vendor/FreeType"
+include "Merlin/vendor/yaml-cpp"
 	
 project "Merlin"
 	location "Merlin/src"
@@ -55,7 +57,8 @@ project "Merlin"
 		"%{IncludeDir.ImGUI}",
 		"%{IncludeDir.STB}",
 		"%{IncludeDir.FreeType}",
-		"%{IncludeDir.FreeTypeSub}"
+		"%{IncludeDir.FreeTypeSub}",
+		"%{IncludeDir.YamlCPP}"
 	}
 
 	links
@@ -63,6 +66,7 @@ project "Merlin"
 		"GLFW",
 		"ImGui",
 		"FreeType",
+		"yaml-cpp",
 		"opengl32.lib"
 	}
 	
@@ -113,7 +117,8 @@ project "Excalibur"
 		"%{IncludeDir.ImGUI}",
 		"%{IncludeDir.GLAD}",
 		"%{IncludeDir.FreeType}",
-		"%{IncludeDir.FreeTypeSub}"
+		"%{IncludeDir.FreeTypeSub}",
+		"%{IncludeDir.YamlCPP}"
 	}
 
 	links

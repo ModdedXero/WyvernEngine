@@ -9,7 +9,7 @@ PlayerPaddle::PlayerPaddle()
 void PlayerPaddle::OnAttach()
 {
 	mat = AddComponent<SpriteRenderer>();
-	mat->material = ResourceManager::GetMaterial("StandardMaterial");
+	mat->material = AssetManager::GetMaterial("StandardMaterial");
 	mat->color = { 0.4f, 0.35f, 1, 1 };
 
 	GetTransform()->scale = { 0.125f, 0.5f, 1 };

@@ -32,8 +32,8 @@ public:
 	{
 		GetTransform()->scale = { 0.5f, 0.5f, 0.5f };
 		SpriteRenderer* mat = AddComponent<SpriteRenderer>();
-		mat->material->shader = ResourceManager::GetShader("StandardShader");
-		mat->sprite = ResourceManager::GetSprite("Wall");
+		mat->material->shader = AssetManager::GetShader("StandardShader");
+		mat->sprite = AssetManager::GetSprite("Wall");
 		RigidBody2D* rb = AddComponent<RigidBody2D>();
 		rb->bodyType = RigidBody2D::PhysicsBody::Static;
 		rb->mass = 0.0f;
@@ -58,8 +58,8 @@ void ArenaLayer::OnAttach()
 				tile->GetTransform()->scale = { 0.5f, 0.5f, 0.5f };
 				tile->GetTransform()->position += Vector2(row - 1, -col + 1);
 				SpriteRenderer* mat = tile->AddComponent<SpriteRenderer>();
-				mat->material->shader = ResourceManager::GetShader("StandardShader");
-				mat->sprite = ResourceManager::GetSprite("Floor");
+				mat->material->shader = AssetManager::GetShader("StandardShader");
+				mat->sprite = AssetManager::GetSprite("Floor");
 			}
 			else if (TileMap[col][row] == 2)
 			{

@@ -17,8 +17,8 @@ void PlayerEntity::OnAttach()
 
 	GetTransform()->position = {0, 0, 8};
 
-	m_Sprite->material->shader = ResourceManager::GetShader("FlatShader");
-	m_Sprite->sprite = ResourceManager::GetSprite("Player");
+	m_Sprite->material->shader = AssetManager::GetShader("FlatShader");
+	m_Sprite->sprite = AssetManager::GetSprite("Player");
 
 	m_Collider->size = GetTransform()->scale;
 }

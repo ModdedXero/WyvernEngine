@@ -4,7 +4,6 @@
 #include "Renderer2D.h"
 
 #include <Merlin/Core/Graphics/SpriteRenderer.h>
-#include <Merlin/Core/ResourceManager.h>
 
 namespace Merlin::Renderer
 {

@@ -4,7 +4,7 @@
 #include "Framebuffer.h"
 #include "VertexArray.h"
 
-#include <Merlin/Core/ResourceManager.h>
+#include <Merlin/Core/AssetManager.h>
 #include <Merlin/Core/Scene/Camera.h>
 #include <Merlin/Core/Math/Matrix4x4.h>
 
@@ -337,7 +337,7 @@ namespace Merlin::Renderer
 
 	void Renderer2D::DrawText(Vector3 pos, const Vector2& size, const std::string& text)
 	{
-		Ref<Material> fontMaterial = ResourceManager::GetMaterial("StandardFontMaterial");
+		Ref<Material> fontMaterial = AssetManager::GetMaterial("StandardFontMaterial");
 		std::string::const_iterator c;
 
 		for (c = text.begin(); c != text.end(); c++)
