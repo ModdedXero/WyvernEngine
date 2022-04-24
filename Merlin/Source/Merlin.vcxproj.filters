@@ -230,6 +230,7 @@
       <Filter>Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="mlpch.h" />
+    <ClInclude Include="Merlin\Core\ApplicationDomain.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Vendor\glad\glad.c">
@@ -326,5 +327,6 @@
       <Filter>Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="mlpch.cpp" />
+    <ClCompile Include="Merlin\Core\ApplicationDomain.cpp" />
   </ItemGroup>
 </Project>

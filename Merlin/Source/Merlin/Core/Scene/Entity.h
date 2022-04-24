@@ -38,7 +38,7 @@ namespace Merlin
 		template <typename T>
 		inline T* GetComponent() { return Scene::GetComponent<T>(this); }
 		template <typename T>
-		inline std::vector<T*> GetBaseComponents() { return Scene::GetBaseComponents<T>(this); }
+		inline std::vector<T*> GetComponentsOfBase() { return Scene::GetComponentsOfBase<T>(this); }
 		template <typename T>
 		inline void RemoveComponent() { Scene::RemoveComponent<T>(this); }
 

@@ -4,6 +4,6 @@
 [submodule "Merlin/vendor/imgui"]
 	path = Merlin/vendor/imgui
 	url = https://github.com/TheCherno/imgui.git
-[submodule "Merlin/Vendor/yaml-cpp"]
-	path = Merlin/Vendor/yaml-cpp
+[submodule "Merlin/vendor/yaml-cpp"]
+	path = Merlin/vendor/yaml-cpp
 	url = https://github.com/TheCherno/yaml-cpp.git

@@ -54,7 +54,7 @@ namespace Merlin
 		template <typename T>
 		static T* GetComponent(Entity* ent);
 		template <typename T>
-		static std::vector<T*> GetBaseComponents(Entity* ent);
+		static std::vector<T*> GetComponentsOfBase(Entity* ent);
 		template <typename T>
 		static void RemoveComponent(Entity* ent);
 
@@ -199,7 +199,7 @@ namespace Merlin
 	}
 
 	template<typename T>
-	inline std::vector<T*> Scene::GetBaseComponents(Entity* ent)
+	inline std::vector<T*> Scene::GetComponentsOfBase(Entity* ent)
 	{
 		std::vector<T*> components;
 

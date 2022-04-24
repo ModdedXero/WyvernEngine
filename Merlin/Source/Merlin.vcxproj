@@ -140,6 +140,7 @@
     <ClInclude Include="..\Vendor\stb_image\stb_image.h" />
     <ClInclude Include="Merlin.h" />
     <ClInclude Include="Merlin\Core\Application.h" />
+    <ClInclude Include="Merlin\Core\ApplicationDomain.h" />
     <ClInclude Include="Merlin\Core\AssetManager.h" />
     <ClInclude Include="Merlin\Core\Base.h" />
     <ClInclude Include="Merlin\Core\Components\Button.h" />
@@ -202,6 +203,7 @@
     <ClCompile Include="..\Vendor\glad\glad.c" />
     <ClCompile Include="..\Vendor\stb_image\stb_image.cpp" />
     <ClCompile Include="Merlin\Core\Application.cpp" />
+    <ClCompile Include="Merlin\Core\ApplicationDomain.cpp" />
     <ClCompile Include="Merlin\Core\AssetManager.cpp" />
     <ClCompile Include="Merlin\Core\Components\Transform.cpp" />
     <ClCompile Include="Merlin\Core\Constants.cpp" />

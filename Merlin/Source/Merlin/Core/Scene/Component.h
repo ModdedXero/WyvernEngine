@@ -17,6 +17,7 @@ namespace Merlin
 		Entity* GetEntity() const { return m_Entity; }
 		Transform* GetTransform() const { return m_Transform; }
 		Tag* GetTag() const { return m_Tag; }
+
 	private:
 		Entity* m_Entity;
 		Transform* m_Transform;
@@ -36,8 +37,8 @@ namespace Merlin
 		virtual void OnAwake() {}
 		virtual void OnDestroy() {}
 		virtual void OnUpdate() {}
-	private:
 
+	private:
 		friend class Scene;
 		typedef NativeScriptComponent base;
 	};

@@ -38,7 +38,7 @@ namespace Merlin
 
 		for (Entity* ent : EntityList<NativeScriptComponent>(true))
 		{
-			for (NativeScriptComponent* nsc : ent->GetBaseComponents<NativeScriptComponent>())
+			for (NativeScriptComponent* nsc : ent->GetComponentsOfBase<NativeScriptComponent>())
 			{
 				nsc->OnUpdate();
 			}
