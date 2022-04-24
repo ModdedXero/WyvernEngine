@@ -12,22 +12,22 @@ workspace "Merlin"
 outputdir = "%{cfg.buildcfg}-%{cfg.system}"
 
 IncludeDir = {}
-IncludeDir["GLFW"] = "Merlin/vendor/GLFW/include"
-IncludeDir["GLAD"] = "Merlin/vendor/glad/include"
-IncludeDir["GLM"] = "Merlin/vendor/glm"
-IncludeDir["ImGUI"] = "Merlin/vendor/imgui"
-IncludeDir["STB"] = "Merlin/vendor/stb_image"
-IncludeDir["FreeType"] = "Merlin/vendor/freetype/include"
-IncludeDir["FreeTypeSub"] = "Merlin/vendor/freetype/include/freetype"
-IncludeDir["YamlCPP"] = "Merlin/vendor/yaml-cpp/include"
+IncludeDir["GLFW"] = "Merlin/Vendor/GLFW/include"
+IncludeDir["GLAD"] = "Merlin/Vendor/glad/include"
+IncludeDir["GLM"] = "Merlin/Vendor/glm"
+IncludeDir["ImGUI"] = "Merlin/Vendor/imgui"
+IncludeDir["STB"] = "Merlin/Vendor/stb_image"
+IncludeDir["FreeType"] = "Merlin/Vendor/freetype/include"
+IncludeDir["FreeTypeSub"] = "Merlin/Vendor/freetype/include/freetype"
+IncludeDir["YamlCPP"] = "Merlin/Vendor/yaml-cpp/include"
 
-include "Merlin/vendor/GLFW"
-include "Merlin/vendor/ImGui"
-include "Merlin/vendor/FreeType"
-include "Merlin/vendor/yaml-cpp"
+include "Merlin/Vendor/GLFW"
+include "Merlin/Vendor/ImGui"
+include "Merlin/Vendor/FreeType"
+include "Merlin/Vendor/yaml-cpp"
 	
 project "Merlin"
-	location "Merlin/src"
+	location "Merlin/Source"
 	kind "StaticLib"
 	language "C++"
 	cppdialect "C++17"
@@ -41,16 +41,16 @@ project "Merlin"
 
 	files
 	{
-		"Merlin/src/**.h",
-		"Merlin/src/**.cpp",
-		"Merlin/vendor/stb_image/**.h",
-		"Merlin/vendor/stb_image/**.cpp",
-		"Merlin/vendor/glad/**.c"
+		"Merlin/Source/**.h",
+		"Merlin/Source/**.cpp",
+		"Merlin/Vendor/stb_image/**.h",
+		"Merlin/Vendor/stb_image/**.cpp",
+		"Merlin/Vendor/glad/**.c"
 	}
 
 	includedirs
 	{
-		"Merlin/src",
+		"Merlin/Source",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.GLAD}",
 		"%{IncludeDir.GLM}",
@@ -95,7 +95,7 @@ project "Merlin"
 		optimize "On"
 
 project "Excalibur"
-	location "Excalibur"
+	location "Excalibur/Source"
 	kind "ConsoleApp"
 	language "C++"
 
@@ -104,14 +104,14 @@ project "Excalibur"
 
 	files
 	{
-		"Excalibur/src/**.h",
-		"Excalibur/src/**.cpp"
+		"Excalibur/Source/**.h",
+		"Excalibur/Source/**.cpp"
 	}
 
 	includedirs
 	{
-		"Merlin/src",
-		"Excalibur/src",
+		"Merlin/Source",
+		"Excalibur/Source",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.GLM}",
 		"%{IncludeDir.ImGUI}",
@@ -128,7 +128,7 @@ project "Excalibur"
 	
 	postbuildcommands
 	{
-		"{COPY} ../bin/" .. outputdir .. "/Merlin/*.dll ../bin/" .. outputdir .. "/Sandbox"
+		"{COPY} ../../bin/" .. outputdir .. "/Merlin/*.dll ../../bin/" .. outputdir .. "/Excalibur"
 	}
 
 	filter "system:windows"
@@ -154,7 +154,7 @@ project "Excalibur"
 		optimize "On"
 		
 project "Sandbox"
-	location "Sandbox"
+	location "Sandbox/Source"
 	kind "ConsoleApp"
 	language "C++"
 
@@ -163,14 +163,14 @@ project "Sandbox"
 
 	files
 	{
-		"Sandbox/src/**.h",
-		"Sandbox/src/**.cpp"
+		"Sandbox/Source/**.h",
+		"Sandbox/Source/**.cpp"
 	}
 
 	includedirs
 	{
-		"Merlin/src",
-		"Sandbox/src",
+		"Merlin/Source",
+		"Sandbox/Source",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.GLM}",
 		"%{IncludeDir.ImGUI}",
@@ -186,7 +186,7 @@ project "Sandbox"
 	
 	postbuildcommands
 	{
-		"{COPY} ../bin/" .. outputdir .. "/Merlin/*.dll ../bin/" .. outputdir .. "/Sandbox"
+		"{COPY} ../../bin/" .. outputdir .. "/Merlin/*.dll ../../bin/" .. outputdir .. "/Sandbox"
 	}
 
 	filter "system:windows"

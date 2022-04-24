@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Dist|x64">
+      <Configuration>Dist</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{A4476AC5-10B2-1E3C-59F0-CFE1C599FC90}</ProjectGuid>
+    <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>Excalibur</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>..\..\bin\Debug-windows\Excalibur\</OutDir>
+    <IntDir>..\..\bin-int\Debug-windows\Excalibur\</IntDir>
+    <TargetName>Excalibur</TargetName>
+    <TargetExt>.exe</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>..\..\bin\Release-windows\Excalibur\</OutDir>
+    <IntDir>..\..\bin-int\Release-windows\Excalibur\</IntDir>
+    <TargetName>Excalibur</TargetName>
+    <TargetExt>.exe</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>..\..\bin\Dist-windows\Excalibur\</OutDir>
+    <IntDir>..\..\bin-int\Dist-windows\Excalibur\</IntDir>
+    <TargetName>Excalibur</TargetName>
+    <TargetExt>.exe</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>ML_PLATFORM_WINDOWS;ML_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\Merlin\Source;.;..\..\Merlin\Vendor\GLFW\include;..\..\Merlin\Vendor\glm;..\..\Merlin\Vendor\imgui;..\..\Merlin\Vendor\glad\include;..\..\Merlin\Vendor\freetype\include;..\..\Merlin\Vendor\freetype\include\freetype;..\..\Merlin\Vendor\yaml-cpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <PostBuildEvent>
+      <Command>IF EXIST ..\..\bin\Debug-windows\Merlin\*.dll\ (xcopy /Q /E /Y /I ..\..\bin\Debug-windows\Merlin\*.dll ..\..\bin\Debug-windows\Excalibur &gt; nul) ELSE (xcopy /Q /Y /I ..\..\bin\Debug-windows\Merlin\*.dll ..\..\bin\Debug-windows\Excalibur &gt; nul)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>ML_PLATFORM_WINDOWS;ML_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\Merlin\Source;.;..\..\Merlin\Vendor\GLFW\include;..\..\Merlin\Vendor\glm;..\..\Merlin\Vendor\imgui;..\..\Merlin\Vendor\glad\include;..\..\Merlin\Vendor\freetype\include;..\..\Merlin\Vendor\freetype\include\freetype;..\..\Merlin\Vendor\yaml-cpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Full</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <PostBuildEvent>
+      <Command>IF EXIST ..\..\bin\Release-windows\Merlin\*.dll\ (xcopy /Q /E /Y /I ..\..\bin\Release-windows\Merlin\*.dll ..\..\bin\Release-windows\Excalibur &gt; nul) ELSE (xcopy /Q /Y /I ..\..\bin\Release-windows\Merlin\*.dll ..\..\bin\Release-windows\Excalibur &gt; nul)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>ML_PLATFORM_WINDOWS;ML_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\Merlin\Source;.;..\..\Merlin\Vendor\GLFW\include;..\..\Merlin\Vendor\glm;..\..\Merlin\Vendor\imgui;..\..\Merlin\Vendor\glad\include;..\..\Merlin\Vendor\freetype\include;..\..\Merlin\Vendor\freetype\include\freetype;..\..\Merlin\Vendor\yaml-cpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Full</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <PostBuildEvent>
+      <Command>IF EXIST ..\..\bin\Dist-windows\Merlin\*.dll\ (xcopy /Q /E /Y /I ..\..\bin\Dist-windows\Merlin\*.dll ..\..\bin\Dist-windows\Excalibur &gt; nul) ELSE (xcopy /Q /Y /I ..\..\bin\Dist-windows\Merlin\*.dll ..\..\bin\Dist-windows\Excalibur &gt; nul)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="Excalibur\Core\EditorLayer.h" />
+    <ClInclude Include="Excalibur\Core\EditorWindow.h" />
+    <ClInclude Include="Excalibur\Editor\ViewportCamera.h" />
+    <ClInclude Include="Excalibur\Utility\EditorGUI.h" />
+    <ClInclude Include="Excalibur\Utility\EditorGUIInternal.h" />
+    <ClInclude Include="Excalibur\Windows\HierarchyWindow.h" />
+    <ClInclude Include="Excalibur\Windows\PropertiesWindow.h" />
+    <ClInclude Include="Excalibur\Windows\ViewportWindow.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Excalibur\Core\EditorLayer.cpp" />
+    <ClCompile Include="Excalibur\Core\EditorWindow.cpp" />
+    <ClCompile Include="Excalibur\Core\Excalibur.cpp" />
+    <ClCompile Include="Excalibur\Editor\ViewportCamera.cpp" />
+    <ClCompile Include="Excalibur\Utility\EditorGUI.cpp" />
+    <ClCompile Include="Excalibur\Utility\EditorGUIInternal.cpp" />
+    <ClCompile Include="Excalibur\Windows\HierarchyWindow.cpp" />
+    <ClCompile Include="Excalibur\Windows\PropertiesWindow.cpp" />
+    <ClCompile Include="Excalibur\Windows\ViewportWindow.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Merlin\Source\Merlin.vcxproj">
+      <Project>{AC44E0C2-98E6-0A99-81A1-1EED6DE291E9}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

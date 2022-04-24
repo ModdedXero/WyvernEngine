@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Dist|x64">
+      <Configuration>Dist</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{AC44E0C2-98E6-0A99-81A1-1EED6DE291E9}</ProjectGuid>
+    <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>Merlin</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>..\..\bin\Debug-windows\Merlin\</OutDir>
+    <IntDir>..\..\bin-int\Debug-windows\Merlin\</IntDir>
+    <TargetName>Merlin</TargetName>
+    <TargetExt>.lib</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>..\..\bin\Release-windows\Merlin\</OutDir>
+    <IntDir>..\..\bin-int\Release-windows\Merlin\</IntDir>
+    <TargetName>Merlin</TargetName>
+    <TargetExt>.lib</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
+    <OutDir>..\..\bin\Dist-windows\Merlin\</OutDir>
+    <IntDir>..\..\bin-int\Dist-windows\Merlin\</IntDir>
+    <TargetName>Merlin</TargetName>
+    <TargetExt>.lib</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>ML_PLATFORM_WINDOWS;ML_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.;..\Vendor\GLFW\include;..\Vendor\glad\include;..\Vendor\glm;..\Vendor\imgui;..\Vendor\stb_image;..\Vendor\freetype\include;..\Vendor\freetype\include\freetype;..\Vendor\yaml-cpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <Lib>
+      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>ML_PLATFORM_WINDOWS;ML_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.;..\Vendor\GLFW\include;..\Vendor\glad\include;..\Vendor\glm;..\Vendor\imgui;..\Vendor\stb_image;..\Vendor\freetype\include;..\Vendor\freetype\include\freetype;..\Vendor\yaml-cpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Full</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <Lib>
+      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>ML_PLATFORM_WINDOWS;ML_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.;..\Vendor\GLFW\include;..\Vendor\glad\include;..\Vendor\glm;..\Vendor\imgui;..\Vendor\stb_image;..\Vendor\freetype\include;..\Vendor\freetype\include\freetype;..\Vendor\yaml-cpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Full</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <Lib>
+      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Vendor\stb_image\stb_image.h" />
+    <ClInclude Include="Merlin.h" />
+    <ClInclude Include="Merlin\Core\Application.h" />
+    <ClInclude Include="Merlin\Core\AssetManager.h" />
+    <ClInclude Include="Merlin\Core\Base.h" />
+    <ClInclude Include="Merlin\Core\Components\Button.h" />
+    <ClInclude Include="Merlin\Core\Components\Camera.h" />
+    <ClInclude Include="Merlin\Core\Components\Components.h" />
+    <ClInclude Include="Merlin\Core\Components\RigidBody2D.h" />
+    <ClInclude Include="Merlin\Core\Components\SpriteRenderer.h" />
+    <ClInclude Include="Merlin\Core\Components\Tag.h" />
+    <ClInclude Include="Merlin\Core\Components\Transform.h" />
+    <ClInclude Include="Merlin\Core\Constants.h" />
+    <ClInclude Include="Merlin\Core\Debug.h" />
+    <ClInclude Include="Merlin\Core\Graphics\Material.h" />
+    <ClInclude Include="Merlin\Core\Graphics\Shader.h" />
+    <ClInclude Include="Merlin\Core\Graphics\Sprite.h" />
+    <ClInclude Include="Merlin\Core\Graphics\Texture2D.h" />
+    <ClInclude Include="Merlin\Core\Input.h" />
+    <ClInclude Include="Merlin\Core\KeyCodes.h" />
+    <ClInclude Include="Merlin\Core\Layer.h" />
+    <ClInclude Include="Merlin\Core\LayerStack.h" />
+    <ClInclude Include="Merlin\Core\Math\Math.h" />
+    <ClInclude Include="Merlin\Core\Math\Mathf.h" />
+    <ClInclude Include="Merlin\Core\Math\Matrix4x4.h" />
+    <ClInclude Include="Merlin\Core\Math\Vector.h" />
+    <ClInclude Include="Merlin\Core\MouseCodes.h" />
+    <ClInclude Include="Merlin\Core\Physics\Collider2D.h" />
+    <ClInclude Include="Merlin\Core\Physics\CollisionSolver2D.h" />
+    <ClInclude Include="Merlin\Core\Physics\Impulse2D.h" />
+    <ClInclude Include="Merlin\Core\Physics\Physics2DWizard.h" />
+    <ClInclude Include="Merlin\Core\Physics\PhysicsSolver2D.h" />
+    <ClInclude Include="Merlin\Core\Physics\SmoothPosition2D.h" />
+    <ClInclude Include="Merlin\Core\Physics\VelocitySolver2D.h" />
+    <ClInclude Include="Merlin\Core\ProjectManger.h" />
+    <ClInclude Include="Merlin\Core\Scene\Component.h" />
+    <ClInclude Include="Merlin\Core\Scene\ComponentPool.h" />
+    <ClInclude Include="Merlin\Core\Scene\Entity.h" />
+    <ClInclude Include="Merlin\Core\Scene\EntityConstants.h" />
+    <ClInclude Include="Merlin\Core\Scene\EntityList.h" />
+    <ClInclude Include="Merlin\Core\Scene\Scene.h" />
+    <ClInclude Include="Merlin\Core\Scene\SceneSerializer.h" />
+    <ClInclude Include="Merlin\Core\Scene\Wizard.h" />
+    <ClInclude Include="Merlin\Core\Scene\WizardStack.h" />
+    <ClInclude Include="Merlin\Core\Timestep.h" />
+    <ClInclude Include="Merlin\Display\Window.h" />
+    <ClInclude Include="Merlin\Events\Event.h" />
+    <ClInclude Include="Merlin\Events\KeyEvent.h" />
+    <ClInclude Include="Merlin\Events\MouseEvent.h" />
+    <ClInclude Include="Merlin\Events\WindowEvent.h" />
+    <ClInclude Include="Merlin\ImGui\ImGuiLayer.h" />
+    <ClInclude Include="Merlin\Renderer\CameraRenderer.h" />
+    <ClInclude Include="Merlin\Renderer\Framebuffer.h" />
+    <ClInclude Include="Merlin\Renderer\Renderer2D.h" />
+    <ClInclude Include="Merlin\Renderer\VertexArray.h" />
+    <ClInclude Include="Merlin\UI\UIWizard.h" />
+    <ClInclude Include="Platform\OpenGL\ImGuiGLFWRenderer.h" />
+    <ClInclude Include="Platform\OpenGL\ImGuiOpenGLLoader.h" />
+    <ClInclude Include="Platform\OpenGL\ImGuiOpenGLRenderer.h" />
+    <ClInclude Include="mlpch.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Vendor\glad\glad.c" />
+    <ClCompile Include="..\Vendor\stb_image\stb_image.cpp" />
+    <ClCompile Include="Merlin\Core\Application.cpp" />
+    <ClCompile Include="Merlin\Core\AssetManager.cpp" />
+    <ClCompile Include="Merlin\Core\Components\Transform.cpp" />
+    <ClCompile Include="Merlin\Core\Constants.cpp" />
+    <ClCompile Include="Merlin\Core\Graphics\Shader.cpp" />
+    <ClCompile Include="Merlin\Core\Graphics\Sprite.cpp" />
+    <ClCompile Include="Merlin\Core\Graphics\Texture2D.cpp" />
+    <ClCompile Include="Merlin\Core\Input.cpp" />
+    <ClCompile Include="Merlin\Core\Layer.cpp" />
+    <ClCompile Include="Merlin\Core\LayerStack.cpp" />
+    <ClCompile Include="Merlin\Core\Physics\Impulse2D.cpp" />
+    <ClCompile Include="Merlin\Core\Physics\Physics2DWizard.cpp" />
+    <ClCompile Include="Merlin\Core\Physics\SmoothPosition2D.cpp" />
+    <ClCompile Include="Merlin\Core\Physics\VelocitySolver2D.cpp" />
+    <ClCompile Include="Merlin\Core\ProjectManager.cpp" />
+    <ClCompile Include="Merlin\Core\Scene\Component.cpp" />
+    <ClCompile Include="Merlin\Core\Scene\Entity.cpp" />
+    <ClCompile Include="Merlin\Core\Scene\Scene.cpp" />
+    <ClCompile Include="Merlin\Core\Scene\SceneSerializer.cpp" />
+    <ClCompile Include="Merlin\Core\Scene\Wizard.cpp" />
+    <ClCompile Include="Merlin\Core\Scene\WizardStack.cpp" />
+    <ClCompile Include="Merlin\Display\Window.cpp" />
+    <ClCompile Include="Merlin\ImGui\ImGuiLayer.cpp" />
+    <ClCompile Include="Merlin\Renderer\CameraRenderer.cpp" />
+    <ClCompile Include="Merlin\Renderer\Framebuffer.cpp" />
+    <ClCompile Include="Merlin\Renderer\Renderer2D.cpp" />
+    <ClCompile Include="Merlin\UI\UIWizard.cpp" />
+    <ClCompile Include="Platform\OpenGL\ImGuiGLFWRenderer.cpp" />
+    <ClCompile Include="Platform\OpenGL\ImGuiOpenGLRenderer.cpp" />
+    <ClCompile Include="mlpch.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Vendor\GLFW\GLFW.vcxproj">
+      <Project>{154B857C-0182-860D-AA6E-6C109684020F}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Vendor\ImGui\ImGui.vcxproj">
+      <Project>{C0FF640D-2C14-8DBE-F595-301E616989EF}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Vendor\FreeType\freetype.vcxproj">
+      <Project>{89895BD8-7556-B6E3-9E6F-A48B8A9BEB71}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Vendor\yaml-cpp\yaml-cpp.vcxproj">
+      <Project>{88F1A057-74BE-FB62-9DD7-E90A890331F1}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
