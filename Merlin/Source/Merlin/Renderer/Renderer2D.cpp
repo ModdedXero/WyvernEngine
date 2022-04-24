@@ -21,11 +21,6 @@ namespace Merlin::Renderer
 	static const size_t MaxIndexCount = MaxQuadCount * 6;
 	static const size_t MaxTextures = 32;
 
-	auto arrComp = [](const VertexArray& arr1, const VertexArray& arr2)
-	{
-		return arr1.vertices[0]->Position.z < arr2.vertices[0]->Position.z;
-	};
-
 	struct RenderData
 	{
 		GLuint VAO = 0;
@@ -34,7 +29,7 @@ namespace Merlin::Renderer
 
 		Vertex* QuadBuffer = nullptr;
 		Vertex* QuadBufferPtr = nullptr;
-		std::multimap<float, VertexArray*> VertexData;
+		std::multimap<float, Ref<VertexArray>> VertexData;
 
 		uint32_t IndexCount = 0;
 
@@ -208,28 +203,28 @@ namespace Merlin::Renderer
 				BeginBatch();
 			}
 
-			s_Data.QuadBufferPtr->Position = drawData.second->vertices[0]->Position;
-			s_Data.QuadBufferPtr->Color = drawData.second->vertices[0]->Color;
-			s_Data.QuadBufferPtr->TexCoords = drawData.second->vertices[0]->TexCoords;
-			s_Data.QuadBufferPtr->TexID = drawData.second->vertices[0]->TexID;
+			s_Data.QuadBufferPtr->Position = drawData.second->vertices[0].Position;
+			s_Data.QuadBufferPtr->Color = drawData.second->vertices[0].Color;
+			s_Data.QuadBufferPtr->TexCoords = drawData.second->vertices[0].TexCoords;
+			s_Data.QuadBufferPtr->TexID = drawData.second->vertices[0].TexID;
 			s_Data.QuadBufferPtr++;
 
-			s_Data.QuadBufferPtr->Position = drawData.second->vertices[1]->Position;
-			s_Data.QuadBufferPtr->Color = drawData.second->vertices[1]->Color;
-			s_Data.QuadBufferPtr->TexCoords = drawData.second->vertices[1]->TexCoords;
-			s_Data.QuadBufferPtr->TexID = drawData.second->vertices[1]->TexID;
+			s_Data.QuadBufferPtr->Position = drawData.second->vertices[1].Position;
+			s_Data.QuadBufferPtr->Color = drawData.second->vertices[1].Color;
+			s_Data.QuadBufferPtr->TexCoords = drawData.second->vertices[1].TexCoords;
+			s_Data.QuadBufferPtr->TexID = drawData.second->vertices[1].TexID;
 			s_Data.QuadBufferPtr++;
 
-			s_Data.QuadBufferPtr->Position = drawData.second->vertices[2]->Position;
-			s_Data.QuadBufferPtr->Color = drawData.second->vertices[2]->Color;
-			s_Data.QuadBufferPtr->TexCoords = drawData.second->vertices[2]->TexCoords;
-			s_Data.QuadBufferPtr->TexID = drawData.second->vertices[2]->TexID;
+			s_Data.QuadBufferPtr->Position = drawData.second->vertices[2].Position;
+			s_Data.QuadBufferPtr->Color = drawData.second->vertices[2].Color;
+			s_Data.QuadBufferPtr->TexCoords = drawData.second->vertices[2].TexCoords;
+			s_Data.QuadBufferPtr->TexID = drawData.second->vertices[2].TexID;
 			s_Data.QuadBufferPtr++;
 
-			s_Data.QuadBufferPtr->Position = drawData.second->vertices[3]->Position;
-			s_Data.QuadBufferPtr->Color = drawData.second->vertices[3]->Color;
-			s_Data.QuadBufferPtr->TexCoords = drawData.second->vertices[3]->TexCoords;
-			s_Data.QuadBufferPtr->TexID = drawData.second->vertices[3]->TexID;
+			s_Data.QuadBufferPtr->Position = drawData.second->vertices[3].Position;
+			s_Data.QuadBufferPtr->Color = drawData.second->vertices[3].Color;
+			s_Data.QuadBufferPtr->TexCoords = drawData.second->vertices[3].TexCoords;
+			s_Data.QuadBufferPtr->TexID = drawData.second->vertices[3].TexID;
 			s_Data.QuadBufferPtr++;
 
 			s_Data.IndexCount += 6;
@@ -309,26 +304,26 @@ namespace Merlin::Renderer
 		Vector3 v3 = matrix * glm::vec4(transform->GlobalScale().x, transform->GlobalScale().y, 0.0f, 1.0f );
 		Vector3 v4 = matrix * glm::vec4(-transform->GlobalScale().x, transform->GlobalScale().y, 0.0f, 1.0f );
 
-		Vertex* vertices[4] = {
-			new Vertex(
+		Vertex vertices[4] = {
+			Vertex(
 				v1,
 				color,
 				coords[3],
 				textureIndex
 			),
-			new Vertex(
+			Vertex(
 				v2,
 				color,
 				coords[2],
 				textureIndex
 			),
-			new Vertex(
+			Vertex(
 				v3,
 				color,
 				coords[1],
 				textureIndex
 			),
-			new Vertex(
+			Vertex(
 				v4,
 				color,
 				coords[0],
@@ -336,8 +331,8 @@ namespace Merlin::Renderer
 			)
 		};
 		
-		VertexArray* vertexArray = new VertexArray(vertices, material);
-		s_Data.VertexData.insert(std::pair<float, VertexArray*>(transform->position.z, vertexArray));
+		Ref<VertexArray> vertexArray = CreateRef<VertexArray>(vertices, material);
+		s_Data.VertexData.insert(std::pair<float, Ref<VertexArray>>(transform->position.z, vertexArray));
 	}
 
 	void Renderer2D::DrawText(Vector3 pos, const Vector2& size, const std::string& text)
@@ -372,35 +367,35 @@ namespace Merlin::Renderer
 			float width = (ch.Size.x * size.x) * 0.5f;
 			float height = (ch.Size.y * size.y) * 0.5f;
 
-			Vertex* vertices[4];
+			Vertex vertices[4];
 
-			vertices[0] = new Vertex(
+			vertices[0] = Vertex(
 				{ xpos - width, ypos - height, pos.z },
 				{ 1.0f, 1.0f, 1.0f, 1.0f },
 				{ 0.0f, 1.0f },
 				textureIndex
 			);
-			vertices[1] = new Vertex(
+			vertices[1] = Vertex(
 				{ xpos + width, ypos - height, pos.z },
 				{ 1.0f, 1.0f, 1.0f, 1.0f },
 				{ 1.0f, 1.0f },
 				textureIndex
 			);
-			vertices[2] = new Vertex(
+			vertices[2] = Vertex(
 				{ xpos + width, ypos + height, pos.z },
 				{ 1.0f, 1.0f, 1.0f, 1.0f },
 				{ 1.0f, 0.0f },
 				textureIndex
 			);
-			vertices[3] = new Vertex(
+			vertices[3] = Vertex(
 				{ xpos - width, ypos + height, pos.z },
 				{ 1.0f, 1.0f, 1.0f, 1.0f },
 				{ 0.0f, 0.0f },
 				textureIndex
 			);
 
-			VertexArray* vertexArray = new VertexArray(vertices, fontMaterial);
-			s_Data.VertexData.insert(std::pair<float, VertexArray*>(pos.z, vertexArray));
+			Ref<VertexArray> vertexArray = CreateRef<VertexArray>(vertices, fontMaterial);
+			s_Data.VertexData.insert(std::pair<float, Ref<VertexArray>>(pos.z, vertexArray));
 
 			pos.x += (ch.Advance >> 6) * size.x;
 		}

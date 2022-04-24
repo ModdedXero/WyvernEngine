@@ -4,6 +4,7 @@
 #include "Timestep.h"
 
 #include <Merlin/Core/Scene/Scene.h>
+#include <Merlin/Core/Scene/SceneSerializer.h>
 #include <Merlin/Renderer/Renderer2D.h>
 
 #include <Merlin/Core/Physics/Physics2DWizard.h>
@@ -50,6 +51,9 @@ namespace Merlin
 	void Application::Run()
 	{
 		m_Running = true;
+
+		typedef __CLASS__ test;
+		DEBUG_CORE(typeid(test).name());
 
 		while (m_Running)
 		{

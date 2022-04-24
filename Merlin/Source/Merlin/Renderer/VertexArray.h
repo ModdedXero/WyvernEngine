@@ -29,10 +29,10 @@ namespace Merlin::Renderer
 
 	struct VertexArray
 	{
-		Vertex* vertices[4];
+		Vertex vertices[4];
 		Ref<Material> material;
 
-		VertexArray(Vertex* vertices[4], Ref<Material> material)
+		VertexArray(Vertex vertices[4], Ref<Material> material)
 		{
 			this->vertices[0] = vertices[0];
 			this->vertices[1] = vertices[1];

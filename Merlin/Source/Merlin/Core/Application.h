@@ -8,6 +8,8 @@
 #include <Merlin/Events/Event.h>
 #include <Merlin/Events/WindowEvent.h>
 
+#include <Merlin/Core/Scene/SceneSerializer.h>
+
 #include <Merlin/ImGui/ImGuiLayer.h>
 
 #include <chrono>

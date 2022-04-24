@@ -16,4 +16,12 @@ namespace Merlin
 	private:
 		static void SerializeEntity(YAML::Emitter& out, Entity* ent);
 	};
+
+				
+#define MCLASS
+#define MPROPERTY()
+#define MFUNCTION()
+
+#define __CLASS__ std::remove_reference<decltype(classMacroImpl(this))>::type
+	template <class T> T& classMacroImpl(const T* t);
 }
