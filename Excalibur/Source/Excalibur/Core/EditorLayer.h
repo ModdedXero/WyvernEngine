@@ -41,6 +41,8 @@ namespace Merlin::Editor
 
 	struct TestNativeComponent : public NativeScriptComponent
 	{
+		MCLASS(TestNativeComponent);
+
 		void OnUpdate() override;
 	};
 

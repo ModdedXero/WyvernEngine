@@ -1,33 +1,25 @@
 #pragma once
 
+#include <Merlin/Core/Scene/Component.h>
+
 namespace Merlin
 {
-	template <const char* N, typename T>
-	struct TypePair
-	{
-		using type = T;
-
-		static TypePair GetPair(std::integral_constant<const char*, N>)
-		{
-			return {};
-		}
-	};
-
-	template <typename ...T>
-	struct TypeMap : public T...
-	{
-		using T::GetPair...;
-
-		template <const char* N>
-		using FindType = typename decltype(
-				GetPair(std::integral_constant<const char*, N>{}))::type;
-	};
-
 	class ApplicationDomain
 	{
 	public:
-		static void RegisterType();
-	private:
+		template <typename T>
+		static void RegisterComponentType(const char* name);
+		static void DeregisterComponentType(const char* name);
 
+		static std::unordered_map<const char*, Component*(*)()> ComponentTypes;
+	private:
+		template <typename T>
+		Component* CreateComponentInstance() { return new T(); }
 	};
+
+	template<typename T>
+	inline void ApplicationDomain::RegisterComponentType(const char* name)
+	{
+		s_ComponentTypes[name] = &CreateComponentInstance<T>;
+	}
 }

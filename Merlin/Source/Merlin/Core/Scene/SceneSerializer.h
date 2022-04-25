@@ -1,6 +1,9 @@
 #pragma once
 
 #include "Entity.h"
+
+#include <Merlin/Core/ApplicationDomain.h>
+
 #include <yaml-cpp/yaml.h>
 
 namespace Merlin
@@ -18,7 +21,8 @@ namespace Merlin
 	};
 
 				
-#define MCLASS
+
+#define MCLASS(CLASS)	constexpr int Register { ApplicationDomain::RegisterComponentType<CLASS>(typeid(CLASS).name()); return 0; }
 #define MPROPERTY()
 #define MFUNCTION()
 

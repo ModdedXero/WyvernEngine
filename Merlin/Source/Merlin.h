@@ -5,11 +5,13 @@
 
 // Application
 #include <Merlin/Core/Application.h>
+#include <Merlin/Core/ApplicationDomain.h>
 #include <Merlin/Core/Layer.h>
 #include <Merlin/Core/Timestep.h>
 
 // Scene
 #include <Merlin/Core/Scene/Scene.h>
+#include <Merlin/Core/Scene/SceneSerializer.h>
 #include <Merlin/Core/Scene/Entity.h>
 #include <Merlin/Core/Scene/Wizard.h>
 #include <Merlin/Core/Scene/EntityList.h>
