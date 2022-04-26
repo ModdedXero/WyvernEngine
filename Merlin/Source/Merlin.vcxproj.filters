@@ -310,6 +310,9 @@
     <ClCompile Include="Merlin\Core\Scene\SceneSerializer.cpp">
       <Filter>Merlin\Core\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="Merlin\Core\Scene\SerializeHelper.cpp">
+      <Filter>Merlin\Core\Scene</Filter>
+    </ClCompile>
     <ClCompile Include="Merlin\Core\Scene\Wizard.cpp">
       <Filter>Merlin\Core\Scene</Filter>
     </ClCompile>
@@ -341,6 +344,5 @@
       <Filter>Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="mlpch.cpp" />
-    <ClCompile Include="Merlin\Core\Scene\SerializeHelper.cpp" />
   </ItemGroup>
 </Project>

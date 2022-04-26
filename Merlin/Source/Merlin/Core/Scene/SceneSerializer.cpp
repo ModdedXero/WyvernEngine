@@ -57,8 +57,7 @@ namespace Merlin
 					for (auto comp : components)
 					{
 						auto compBase = ApplicationDomain::CreateComponent(comp.first.as<std::string>());
-						DEBUG_CORE(comp.first.as<std::string>());
-						compBase->Deserialize(entity, comp);
+						compBase->Deserialize(entity, comp.second);
 					}
 				}
 			}
