@@ -180,6 +180,7 @@
     <ClInclude Include="Merlin\Core\Scene\EntityList.h" />
     <ClInclude Include="Merlin\Core\Scene\Scene.h" />
     <ClInclude Include="Merlin\Core\Scene\SceneSerializer.h" />
+    <ClInclude Include="Merlin\Core\Scene\SerializeHelper.h" />
     <ClInclude Include="Merlin\Core\Scene\Wizard.h" />
     <ClInclude Include="Merlin\Core\Scene\WizardStack.h" />
     <ClInclude Include="Merlin\Core\Timestep.h" />
@@ -205,6 +206,8 @@
     <ClCompile Include="Merlin\Core\Application.cpp" />
     <ClCompile Include="Merlin\Core\ApplicationDomain.cpp" />
     <ClCompile Include="Merlin\Core\AssetManager.cpp" />
+    <ClCompile Include="Merlin\Core\Components\SpriteRenderer.cpp" />
+    <ClCompile Include="Merlin\Core\Components\Tag.cpp" />
     <ClCompile Include="Merlin\Core\Components\Transform.cpp" />
     <ClCompile Include="Merlin\Core\Constants.cpp" />
     <ClCompile Include="Merlin\Core\Graphics\Shader.cpp" />
@@ -222,6 +225,7 @@
     <ClCompile Include="Merlin\Core\Scene\Entity.cpp" />
     <ClCompile Include="Merlin\Core\Scene\Scene.cpp" />
     <ClCompile Include="Merlin\Core\Scene\SceneSerializer.cpp" />
+    <ClCompile Include="Merlin\Core\Scene\SerializeHelper.cpp" />
     <ClCompile Include="Merlin\Core\Scene\Wizard.cpp" />
     <ClCompile Include="Merlin\Core\Scene\WizardStack.cpp" />
     <ClCompile Include="Merlin\Display\Window.cpp" />

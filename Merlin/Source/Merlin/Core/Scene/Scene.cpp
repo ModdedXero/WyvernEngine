@@ -27,7 +27,10 @@ namespace Merlin
 
 	void Scene::OnDestroy()
 	{
+		for (auto ent : s_Entities)
+			ent->DestroyEntity();
 
+		FlushScene();
 	}
 
 	void Scene::OnRuntimeUpdate()
@@ -183,6 +186,21 @@ namespace Merlin
 	void Scene::PurgeComponent(Entity* ent, int component)
 	{
 		if (!IsEntityValid(ent)) return;
+
+		for (ComponentPool* pool : s_ComponentPools)
+		{
+			if (pool->ComponentID = component)
+			{
+				for (int i = 0; i < ent->m_ComponentPtrs.size(); i++)
+				{
+					if (ent->m_ComponentPtrs[i] == pool->Get(GetEntityIndex(ent->m_ID)))
+					{
+						ent->m_ComponentPtrs.erase(ent->m_ComponentPtrs.begin() + i);
+					}
+				}
+			}
+		}
+
 		ent->m_Components.reset(component);
 	}
 }

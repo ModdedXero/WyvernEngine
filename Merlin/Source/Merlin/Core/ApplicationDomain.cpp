@@ -3,10 +3,25 @@
 
 namespace Merlin
 {
-    std::unordered_map<const char*, Component* (*)()> s_ComponentTypes;
-
-    void ApplicationDomain::DeregisterComponentType(const char* name)
+    bool ApplicationDomain::RegisterComponent(std::string name, CreateComponentFn func)
     {
-        s_ComponentTypes.erase(name);
+        if (auto it = s_Components.find(name); it == s_Components.end())
+        {
+            s_Components[name] = func;
+            return true;
+        }
+
+        return false;
     }
+
+    std::shared_ptr<Component> ApplicationDomain::CreateComponent(std::string name)
+    {
+        if (auto it = s_Components.find(name); it != s_Components.end())
+        {
+            return it->second();
+        }
+
+        return nullptr;
+    }
+
 }

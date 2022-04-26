@@ -1,5 +1,9 @@
 #pragma once
 
+#include <Merlin/Core/Math/Vector.h>
+
+#include <yaml-cpp/yaml.h>
+
 namespace Merlin
 {
 	class Scene;
@@ -18,12 +22,17 @@ namespace Merlin
 		Transform* GetTransform() const { return m_Transform; }
 		Tag* GetTag() const { return m_Tag; }
 
+		virtual void Serialize(YAML::Emitter& out) {}
+		virtual void Deserialize(Entity* ent, YAML::Node& data) {}
 	private:
 		Entity* m_Entity;
 		Transform* m_Transform;
 		Tag* m_Tag;
 
+
 		friend class Scene;
+		friend class ApplicationDomain;
+
 		typedef Component base;
 	};
 
@@ -40,6 +49,8 @@ namespace Merlin
 
 	private:
 		friend class Scene;
+		friend class ApplicationDomain;
+
 		typedef NativeScriptComponent base;
 	};
 }

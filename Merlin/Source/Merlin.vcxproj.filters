@@ -61,6 +61,9 @@
     <ClInclude Include="Merlin\Core\Application.h">
       <Filter>Merlin\Core</Filter>
     </ClInclude>
+    <ClInclude Include="Merlin\Core\ApplicationDomain.h">
+      <Filter>Merlin\Core</Filter>
+    </ClInclude>
     <ClInclude Include="Merlin\Core\AssetManager.h">
       <Filter>Merlin\Core</Filter>
     </ClInclude>
@@ -178,6 +181,9 @@
     <ClInclude Include="Merlin\Core\Scene\SceneSerializer.h">
       <Filter>Merlin\Core\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="Merlin\Core\Scene\SerializeHelper.h">
+      <Filter>Merlin\Core\Scene</Filter>
+    </ClInclude>
     <ClInclude Include="Merlin\Core\Scene\Wizard.h">
       <Filter>Merlin\Core\Scene</Filter>
     </ClInclude>
@@ -230,7 +236,6 @@
       <Filter>Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="mlpch.h" />
-    <ClInclude Include="Merlin\Core\ApplicationDomain.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Vendor\glad\glad.c">
@@ -242,8 +247,17 @@
     <ClCompile Include="Merlin\Core\Application.cpp">
       <Filter>Merlin\Core</Filter>
     </ClCompile>
+    <ClCompile Include="Merlin\Core\ApplicationDomain.cpp">
+      <Filter>Merlin\Core</Filter>
+    </ClCompile>
     <ClCompile Include="Merlin\Core\AssetManager.cpp">
       <Filter>Merlin\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Merlin\Core\Components\SpriteRenderer.cpp">
+      <Filter>Merlin\Core\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Merlin\Core\Components\Tag.cpp">
+      <Filter>Merlin\Core\Components</Filter>
     </ClCompile>
     <ClCompile Include="Merlin\Core\Components\Transform.cpp">
       <Filter>Merlin\Core\Components</Filter>
@@ -327,6 +341,6 @@
       <Filter>Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="mlpch.cpp" />
-    <ClCompile Include="Merlin\Core\ApplicationDomain.cpp" />
+    <ClCompile Include="Merlin\Core\Scene\SerializeHelper.cpp" />
   </ItemGroup>
 </Project>

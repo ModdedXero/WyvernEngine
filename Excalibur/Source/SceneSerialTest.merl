@@ -1,0 +1,22 @@
+Scene: Scene name here
+Entities:
+  - Entity: 707034759034570
+    Components:
+      Transform:
+        position: [0, 0, 0]
+        rotation: [0, 0, 0]
+        scale: [0.5, 0.5, 1]
+      Tag:
+        name: Entity
+      SpriteRenderer:
+        color: [1, 0.5, 0.600000024, 1]
+  - Entity: 707034759034570
+    Components:
+      Transform:
+        position: [2, 0, 0]
+        rotation: [0, 0, 0]
+        scale: [0.5, 0.5, 1]
+      Tag:
+        name: Entity
+      SpriteRenderer:
+        color: [0.300000012, 0.5, 0.600000024, 1]

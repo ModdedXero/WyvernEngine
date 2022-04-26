@@ -47,7 +47,6 @@ namespace Merlin::Editor
 
         test->AddChildEntity(test2);
         test->AddComponent<Camera>();
-        test->AddComponent<TestNativeComponent>();
         test->AddComponent<Test2NativeComponent>();
 
         Scene::OnAwake();
@@ -107,7 +106,18 @@ namespace Merlin::Editor
         {
             if (ImGui::BeginMenu("File"))
             {
-                if (ImGui::MenuItem("Exit")) Application::Get().Close();
+                if (ImGui::MenuItem("Save"))
+                    SceneSerializer::Serialize("SceneSerialTest.merl");
+
+                if (ImGui::MenuItem("Load"))
+                {
+                    Scene::OnDestroy();
+                    SceneSerializer::Deserialize("SceneSerialTest.merl");
+                }
+
+                if (ImGui::MenuItem("Exit")) 
+                    Application::Get().Close();
+                    
                 ImGui::EndMenu();
             }
 

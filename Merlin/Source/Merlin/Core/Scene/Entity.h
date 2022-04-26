@@ -19,6 +19,7 @@ namespace Merlin
 	class Entity
 	{
 		friend class Scene;
+		friend class SceneSerializer;
 		friend class EntityWizard;
 	protected:
 		Entity()
@@ -62,6 +63,7 @@ namespace Merlin
 
 		Entity* m_Parent;
 		std::vector<Entity*> m_Children;
+		std::vector<Component*> m_ComponentPtrs;
 
 		virtual void OnAttach() {}
  	};

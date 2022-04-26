@@ -119,7 +119,6 @@ namespace Merlin
 			Transform* ts = AddComponent<Transform>(s_Entities[index]);
 			Tag* tag = AddComponent<Tag>(s_Entities[index]);
 			tag->name = name;
-			tag->type = "Default";
 			s_Entities[index]->m_Transform = ts;
 			s_Entities[index]->m_Tag = tag;
 			s_Entities[index]->OnAttach();
@@ -136,7 +135,6 @@ namespace Merlin
 		Transform* ts = AddComponent<Transform>(s_Entities.back());
 		Tag* tag = AddComponent<Tag>(s_Entities.back());
 		tag->name = name;
-		tag->type = "Default";
 		s_Entities.back()->m_Transform = ts;
 		s_Entities.back()->m_Tag = tag;
 		s_Entities.back()->OnAttach();
@@ -180,6 +178,7 @@ namespace Merlin
 		component->m_Tag = ent->m_Tag;
 
 		ent->m_Components.set(componentID);
+		ent->m_ComponentPtrs.push_back(component);
 
 		return component;
 	}
