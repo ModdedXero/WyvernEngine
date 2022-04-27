@@ -1,6 +1,6 @@
-workspace "Merlin"
+workspace "WyvernEngine"
 	architecture "x64"
-	startproject  "Excalibur"
+	startproject  "WyvernEditor"
 	
 	configurations
 	{
@@ -12,23 +12,23 @@ workspace "Merlin"
 outputdir = "%{cfg.buildcfg}-%{cfg.system}"
 
 IncludeDir = {}
-IncludeDir["GLFW"] = "Merlin/Vendor/GLFW/include"
-IncludeDir["GLAD"] = "Merlin/Vendor/glad/include"
-IncludeDir["GLM"] = "Merlin/Vendor/glm"
-IncludeDir["ImGUI"] = "Merlin/Vendor/imgui"
-IncludeDir["STB"] = "Merlin/Vendor/stb_image"
-IncludeDir["FreeType"] = "Merlin/Vendor/freetype/include"
-IncludeDir["FreeTypeSub"] = "Merlin/Vendor/freetype/include/freetype"
-IncludeDir["YamlCPP"] = "Merlin/Vendor/yaml-cpp/include"
-IncludeDir["ImGUIzmo"] = "Merlin/Vendor/ImGuizmo"
+IncludeDir["GLFW"] = "WyvernEngine/Vendor/GLFW/include"
+IncludeDir["GLAD"] = "WyvernEngine/Vendor/glad/include"
+IncludeDir["GLM"] = "WyvernEngine/Vendor/glm"
+IncludeDir["ImGUI"] = "WyvernEngine/Vendor/imgui"
+IncludeDir["STB"] = "WyvernEngine/Vendor/stb_image"
+IncludeDir["FreeType"] = "WyvernEngine/Vendor/freetype/include"
+IncludeDir["FreeTypeSub"] = "WyvernEngine/Vendor/freetype/include/freetype"
+IncludeDir["YamlCPP"] = "WyvernEngine/Vendor/yaml-cpp/include"
+IncludeDir["ImGUIzmo"] = "WyvernEngine/Vendor/ImGuizmo"
 
-include "Merlin/Vendor/GLFW"
-include "Merlin/Vendor/ImGui"
-include "Merlin/Vendor/FreeType"
-include "Merlin/Vendor/yaml-cpp"
+include "WyvernEngine/Vendor/GLFW"
+include "WyvernEngine/Vendor/ImGui"
+include "WyvernEngine/Vendor/FreeType"
+include "WyvernEngine/Vendor/yaml-cpp"
 	
-project "Merlin"
-	location "Merlin/Source"
+project "WyvernEngine"
+	location "WyvernEngine/Source"
 	kind "StaticLib"
 	language "C++"
 	cppdialect "C++17"
@@ -37,23 +37,23 @@ project "Merlin"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 	
-	pchheader "mlpch.h"
-	pchsource "merlin/source/mlpch.cpp"
+	pchheader "wvpch.h"
+	pchsource "WyvernEngine/source/wvpch.cpp"
 
 	files
 	{
-		"Merlin/Source/**.h",
-		"Merlin/Source/**.cpp",
-		"Merlin/Vendor/stb_image/**.h",
-		"Merlin/Vendor/stb_image/**.cpp",
-		"Merlin/Vendor/glad/**.c",
-		"Merlin/Vendor/ImGuizmo/ImGuizmo.h",
-		"Merlin/Vendor/ImGuizmo/ImGuizmo.cpp"
+		"WyvernEngine/Source/**.h",
+		"WyvernEngine/Source/**.cpp",
+		"WyvernEngine/Vendor/stb_image/**.h",
+		"WyvernEngine/Vendor/stb_image/**.cpp",
+		"WyvernEngine/Vendor/glad/**.c",
+		"WyvernEngine/Vendor/ImGuizmo/ImGuizmo.h",
+		"WyvernEngine/Vendor/ImGuizmo/ImGuizmo.cpp"
 	}
 
 	includedirs
 	{
-		"Merlin/Source",
+		"WyvernEngine/Source",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.GLAD}",
 		"%{IncludeDir.GLM}",
@@ -74,9 +74,9 @@ project "Merlin"
 		"opengl32.lib"
 	}
 	
-	filter "files:Merlin/Vendor/**.c"
+	filter "files:WyvernEngine/Vendor/**.c"
 		flags { "NoPCH" }
-	filter "files:Merlin/Vendor/**.cpp"
+	filter "files:WyvernEngine/Vendor/**.cpp"
 		flags { "NoPCH" }
 
 	filter "system:windows"
@@ -86,23 +86,23 @@ project "Merlin"
 
 		defines
 		{
-			"ML_PLATFORM_WINDOWS"
+			"WV_PLATFORM_WINDOWS"
 		}
 
 	filter "configurations:Debug"
-		defines "ML_DEBUG"
+		defines "WV_DEBUG"
 		symbols "On"
 
 	filter "configurations:Release"
-		defines "ML_RELEASE"
+		defines "WV_RELEASE"
 		optimize "On"
 
 	filter "configurations:Dist"
-		defines "ML_DIST"
+		defines "WV_DIST"
 		optimize "On"
 
-project "Excalibur"
-	location "Excalibur/Source"
+project "WyvernEditor"
+	location "WyvernEditor/Source"
 	kind "ConsoleApp"
 	language "C++"
 
@@ -111,14 +111,14 @@ project "Excalibur"
 
 	files
 	{
-		"Excalibur/Source/**.h",
-		"Excalibur/Source/**.cpp"
+		"WyvernEditor/Source/**.h",
+		"WyvernEditor/Source/**.cpp"
 	}
 
 	includedirs
 	{
-		"Merlin/Source",
-		"Excalibur/Source",
+		"WyvernEngine/Source",
+		"WyvernEditor/Source",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.GLM}",
 		"%{IncludeDir.ImGUI}",
@@ -131,12 +131,12 @@ project "Excalibur"
 
 	links
 	{
-		"Merlin"
+		"WyvernEngine"
 	}
 	
 	postbuildcommands
 	{
-		"{COPY} ../../bin/" .. outputdir .. "/Merlin/*.dll ../../bin/" .. outputdir .. "/Excalibur"
+		"{COPY} ../../bin/" .. outputdir .. "/WyvernEngine/*.dll ../../bin/" .. outputdir .. "/WyvernEditor"
 	}
 
 	filter "system:windows"
@@ -146,19 +146,19 @@ project "Excalibur"
 
 		defines
 		{
-			"ML_PLATFORM_WINDOWS"
+			"WV_PLATFORM_WINDOWS"
 		}
 
 	filter "configurations:Debug"
-		defines "ML_DEBUG"
+		defines "WV_DEBUG"
 		symbols "On"
 
 	filter "configurations:Release"
-		defines "ML_RELEASE"
+		defines "WV_RELEASE"
 		optimize "On"
 
 	filter "configurations:Dist"
-		defines "ML_DIST"
+		defines "WV_DIST"
 		optimize "On"
 		
 project "Sandbox"
@@ -177,7 +177,7 @@ project "Sandbox"
 
 	includedirs
 	{
-		"Merlin/Source",
+		"WyvernEngine/Source",
 		"Sandbox/Source",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.GLM}",
@@ -189,12 +189,12 @@ project "Sandbox"
 
 	links
 	{
-		"Merlin"
+		"WyvernEngine"
 	}
 	
 	postbuildcommands
 	{
-		"{COPY} ../../bin/" .. outputdir .. "/Merlin/*.dll ../../bin/" .. outputdir .. "/Sandbox"
+		"{COPY} ../../bin/" .. outputdir .. "/WyvernEngine/*.dll ../../bin/" .. outputdir .. "/Sandbox"
 	}
 
 	filter "system:windows"
@@ -204,17 +204,17 @@ project "Sandbox"
 
 		defines
 		{
-			"ML_PLATFORM_WINDOWS"
+			"WV_PLATFORM_WINDOWS"
 		}
 
 	filter "configurations:Debug"
-		defines "ML_DEBUG"
+		defines "WV_DEBUG"
 		symbols "On"
 
 	filter "configurations:Release"
-		defines "ML_RELEASE"
+		defines "WV_RELEASE"
 		optimize "On"
 
 	filter "configurations:Dist"
-		defines "ML_DIST"
+		defines "WV_DIST"
 		optimize "On"

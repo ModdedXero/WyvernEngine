@@ -78,8 +78,8 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>ML_PLATFORM_WINDOWS;ML_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\Merlin\Source;.;..\..\Merlin\Vendor\GLFW\include;..\..\Merlin\Vendor\glm;..\..\Merlin\Vendor\imgui;..\..\Merlin\Vendor\glad\include;..\..\Merlin\Vendor\freetype\include;..\..\Merlin\Vendor\freetype\include\freetype;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WV_PLATFORM_WINDOWS;WV_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\WyvernEngine\Source;.;..\..\WyvernEngine\Vendor\GLFW\include;..\..\WyvernEngine\Vendor\glm;..\..\WyvernEngine\Vendor\imgui;..\..\WyvernEngine\Vendor\glad\include;..\..\WyvernEngine\Vendor\freetype\include;..\..\WyvernEngine\Vendor\freetype\include\freetype;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -90,15 +90,15 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PostBuildEvent>
-      <Command>IF EXIST ..\..\bin\Debug-windows\Merlin\*.dll\ (xcopy /Q /E /Y /I ..\..\bin\Debug-windows\Merlin\*.dll ..\..\bin\Debug-windows\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\..\bin\Debug-windows\Merlin\*.dll ..\..\bin\Debug-windows\Sandbox &gt; nul)</Command>
+      <Command>IF EXIST ..\..\bin\Debug-windows\WyvernEngine\*.dll\ (xcopy /Q /E /Y /I ..\..\bin\Debug-windows\WyvernEngine\*.dll ..\..\bin\Debug-windows\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\..\bin\Debug-windows\WyvernEngine\*.dll ..\..\bin\Debug-windows\Sandbox &gt; nul)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>ML_PLATFORM_WINDOWS;ML_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\Merlin\Source;.;..\..\Merlin\Vendor\GLFW\include;..\..\Merlin\Vendor\glm;..\..\Merlin\Vendor\imgui;..\..\Merlin\Vendor\glad\include;..\..\Merlin\Vendor\freetype\include;..\..\Merlin\Vendor\freetype\include\freetype;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WV_PLATFORM_WINDOWS;WV_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\WyvernEngine\Source;.;..\..\WyvernEngine\Vendor\GLFW\include;..\..\WyvernEngine\Vendor\glm;..\..\WyvernEngine\Vendor\imgui;..\..\WyvernEngine\Vendor\glad\include;..\..\WyvernEngine\Vendor\freetype\include;..\..\WyvernEngine\Vendor\freetype\include\freetype;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -113,15 +113,15 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <PostBuildEvent>
-      <Command>IF EXIST ..\..\bin\Release-windows\Merlin\*.dll\ (xcopy /Q /E /Y /I ..\..\bin\Release-windows\Merlin\*.dll ..\..\bin\Release-windows\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\..\bin\Release-windows\Merlin\*.dll ..\..\bin\Release-windows\Sandbox &gt; nul)</Command>
+      <Command>IF EXIST ..\..\bin\Release-windows\WyvernEngine\*.dll\ (xcopy /Q /E /Y /I ..\..\bin\Release-windows\WyvernEngine\*.dll ..\..\bin\Release-windows\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\..\bin\Release-windows\WyvernEngine\*.dll ..\..\bin\Release-windows\Sandbox &gt; nul)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>ML_PLATFORM_WINDOWS;ML_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\Merlin\Source;.;..\..\Merlin\Vendor\GLFW\include;..\..\Merlin\Vendor\glm;..\..\Merlin\Vendor\imgui;..\..\Merlin\Vendor\glad\include;..\..\Merlin\Vendor\freetype\include;..\..\Merlin\Vendor\freetype\include\freetype;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WV_PLATFORM_WINDOWS;WV_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\WyvernEngine\Source;.;..\..\WyvernEngine\Vendor\GLFW\include;..\..\WyvernEngine\Vendor\glm;..\..\WyvernEngine\Vendor\imgui;..\..\WyvernEngine\Vendor\glad\include;..\..\WyvernEngine\Vendor\freetype\include;..\..\WyvernEngine\Vendor\freetype\include\freetype;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -136,7 +136,7 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <PostBuildEvent>
-      <Command>IF EXIST ..\..\bin\Dist-windows\Merlin\*.dll\ (xcopy /Q /E /Y /I ..\..\bin\Dist-windows\Merlin\*.dll ..\..\bin\Dist-windows\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\..\bin\Dist-windows\Merlin\*.dll ..\..\bin\Dist-windows\Sandbox &gt; nul)</Command>
+      <Command>IF EXIST ..\..\bin\Dist-windows\WyvernEngine\*.dll\ (xcopy /Q /E /Y /I ..\..\bin\Dist-windows\WyvernEngine\*.dll ..\..\bin\Dist-windows\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\..\bin\Dist-windows\WyvernEngine\*.dll ..\..\bin\Dist-windows\Sandbox &gt; nul)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -164,8 +164,8 @@
     <ClCompile Include="SandboxApp.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Merlin\Source\Merlin.vcxproj">
-      <Project>{AC44E0C2-98E6-0A99-81A1-1EED6DE291E9}</Project>
+    <ProjectReference Include="..\..\WyvernEngine\Source\WyvernEngine.vcxproj">
+      <Project>{0651ECC7-F2B3-7B6C-9B39-B422877B47EF}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

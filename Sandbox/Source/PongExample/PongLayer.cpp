@@ -7,9 +7,9 @@
 
 #include <imgui.h>
 
-using namespace Merlin;
-using namespace Merlin::Renderer;
-using namespace Merlin::UI;
+using namespace Wyvern;
+using namespace Wyvern::Renderer;
+using namespace Wyvern::UI;
 
 PongLayer::PongLayer()
 	: Layer("Arena Layer"), fps(0), state(nullptr), camera(nullptr), player1(nullptr), player2(nullptr), ball(nullptr)
@@ -101,7 +101,7 @@ void PongLayer::OnAttach()
 	p2Score3->GetTransform()->scale = { 0.05f, 0.3f, 1 };
 }
 
-void PongLayer::OnUpdate(Merlin::Timestep ts)
+void PongLayer::OnUpdate(Wyvern::Timestep ts)
 {
 	fps = ts.GetFPS();
 

@@ -1,9 +1,9 @@
 #pragma once
 
-#include <Merlin.h>
+#include <Wyvern.h>
 
-using namespace Merlin;
-using namespace Merlin::Renderer;
+using namespace Wyvern;
+using namespace Wyvern::Renderer;
 
 class PlayerEntity : public Entity
 {

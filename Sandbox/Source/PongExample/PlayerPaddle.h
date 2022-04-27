@@ -1,11 +1,11 @@
 #pragma once
 
-#include <Merlin.h>
+#include <Wyvern.h>
 
 #include "GameState.h"
 
-using namespace Merlin;
-using namespace Merlin::Renderer;
+using namespace Wyvern;
+using namespace Wyvern::Renderer;
 
 class PlayerPaddle : public Entity
 {

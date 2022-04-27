@@ -1,10 +1,10 @@
-#include "Merlin.h"
+#include "Wyvern.h"
 
 #include "ArenaExample/ArenaLayer.h"
 #include "PongExample/PongLayer.h"
 
-using namespace Merlin;
-using namespace Merlin::Renderer;
+using namespace Wyvern;
+using namespace Wyvern::Renderer;
 
 class SandboxApp : public Application
 {

@@ -3,8 +3,8 @@
 #include "PongWall.h"
 #include "GameState.h"
 
-using namespace Merlin;
-using namespace Merlin::Renderer;
+using namespace Wyvern;
+using namespace Wyvern::Renderer;
 
 class LeftWall : public PongWall
 {

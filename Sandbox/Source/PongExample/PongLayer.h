@@ -1,17 +1,17 @@
 #pragma once
 
-#include <Merlin.h>
+#include <Wyvern.h>
 
 #include "GameState.h"
 #include "PlayerPaddle.h"
 
-class PongLayer : public Merlin::Layer
+class PongLayer : public Wyvern::Layer
 {
 public:
 	PongLayer();
 
 	void OnAttach() override;
-	void OnUpdate(Merlin::Timestep ts) override;
+	void OnUpdate(Wyvern::Timestep ts) override;
 	void OnImGuiRender() override;
 
 	void CheckScore();

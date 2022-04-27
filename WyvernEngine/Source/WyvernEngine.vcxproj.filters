@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Platform">
+      <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\OpenGL">
+      <UniqueIdentifier>{1E7D2C1D-8A08-9AE1-9319-1DD6FF23F6E1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vendor">
+      <UniqueIdentifier>{935FDCD7-7F01-07AE-68BC-1A0254FD8DFE}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vendor\ImGuizmo">
+      <UniqueIdentifier>{530792E3-BF92-FFA7-C8A3-829C34AE5BA8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vendor\glad">
+      <UniqueIdentifier>{7AE6E215-E69B-5B0B-6F90-55E2DB44520F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vendor\stb_image">
+      <UniqueIdentifier>{EDE315D3-D9DC-3425-020F-1AAAEE661431}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Wyvern">
+      <UniqueIdentifier>{F0D99FDB-DC7B-CAB1-C536-DE05B1775102}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Wyvern\Core">
+      <UniqueIdentifier>{48B4BE59-B469-374F-3D5E-3126A9122E53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Wyvern\Core\Components">
+      <UniqueIdentifier>{5D5C4546-4956-6E98-32C3-04A91E5CD404}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Wyvern\Core\Graphics">
+      <UniqueIdentifier>{88CD75DB-745C-FFA4-1D7B-13A009E90F4B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Wyvern\Core\Math">
+      <UniqueIdentifier>{210681AC-0DFF-9FFE-3631-858322897F0A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Wyvern\Core\Physics">
+      <UniqueIdentifier>{BA7FE2E3-26E1-BFF1-AF4E-06A41BAFF6B0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Wyvern\Core\Scene">
+      <UniqueIdentifier>{65370F3D-D14D-0DD3-1AC5-98F4861ADE5A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Wyvern\Display">
+      <UniqueIdentifier>{55F1EE8A-41BF-E290-2A53-53B716C0BEF5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Wyvern\Events">
+      <UniqueIdentifier>{D4F75EC9-40B8-DAFF-09F3-237D75721FDC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Wyvern\ImGui">
+      <UniqueIdentifier>{1A030092-0666-8F36-AFEB-C7EC9B2D5BB9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Wyvern\Renderer">
+      <UniqueIdentifier>{964BF793-02D7-6458-0BE8-E74C77F2C058}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Wyvern\UI">
+      <UniqueIdentifier>{1DA7C1A2-8911-7619-D24F-27BF3EF9536E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Wyvern\Utils">
+      <UniqueIdentifier>{508FDD92-3CF2-6C37-E577-A5EDD1B938BA}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Vendor\ImGuizmo\ImGuizmo.h">
+      <Filter>Vendor\ImGuizmo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Vendor\stb_image\stb_image.h">
+      <Filter>Vendor\stb_image</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform\OpenGL\ImGuiGLFWRenderer.h">
+      <Filter>Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform\OpenGL\ImGuiOpenGLLoader.h">
+      <Filter>Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform\OpenGL\ImGuiOpenGLRenderer.h">
+      <Filter>Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern.h" />
+    <ClInclude Include="Wyvern\Core\Application.h">
+      <Filter>Wyvern\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\Core\ApplicationDomain.h">
+      <Filter>Wyvern\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\Core\AssetManager.h">
+      <Filter>Wyvern\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\Core\Base.h">
+      <Filter>Wyvern\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\Core\Components\Button.h">
+      <Filter>Wyvern\Core\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\Core\Components\Camera.h">
+      <Filter>Wyvern\Core\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\Core\Components\Components.h">
+      <Filter>Wyvern\Core\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\Core\Components\RigidBody2D.h">
+      <Filter>Wyvern\Core\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\Core\Components\SpriteRenderer.h">
+      <Filter>Wyvern\Core\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\Core\Components\Tag.h">
+      <Filter>Wyvern\Core\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\Core\Components\Transform.h">
+      <Filter>Wyvern\Core\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\Core\Constants.h">
+      <Filter>Wyvern\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\Core\Debug.h">
+      <Filter>Wyvern\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\Core\Graphics\Material.h">
+      <Filter>Wyvern\Core\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\Core\Graphics\Shader.h">
+      <Filter>Wyvern\Core\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\Core\Graphics\Sprite.h">
+      <Filter>Wyvern\Core\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\Core\Graphics\Texture2D.h">
+      <Filter>Wyvern\Core\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\Core\Input.h">
+      <Filter>Wyvern\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\Core\KeyCodes.h">
+      <Filter>Wyvern\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\Core\Layer.h">
+      <Filter>Wyvern\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\Core\LayerStack.h">
+      <Filter>Wyvern\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\Core\Math\Math.h">
+      <Filter>Wyvern\Core\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\Core\Math\Mathf.h">
+      <Filter>Wyvern\Core\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\Core\Math\Matrix4x4.h">
+      <Filter>Wyvern\Core\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\Core\Math\Vector.h">
+      <Filter>Wyvern\Core\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\Core\MouseCodes.h">
+      <Filter>Wyvern\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\Core\Physics\Collider2D.h">
+      <Filter>Wyvern\Core\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\Core\Physics\CollisionSolver2D.h">
+      <Filter>Wyvern\Core\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\Core\Physics\Impulse2D.h">
+      <Filter>Wyvern\Core\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\Core\Physics\Physics2DWizard.h">
+      <Filter>Wyvern\Core\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\Core\Physics\PhysicsSolver2D.h">
+      <Filter>Wyvern\Core\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\Core\Physics\SmoothPosition2D.h">
+      <Filter>Wyvern\Core\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\Core\Physics\VelocitySolver2D.h">
+      <Filter>Wyvern\Core\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\Core\ProjectManger.h">
+      <Filter>Wyvern\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\Core\Scene\Component.h">
+      <Filter>Wyvern\Core\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\Core\Scene\ComponentPool.h">
+      <Filter>Wyvern\Core\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\Core\Scene\Entity.h">
+      <Filter>Wyvern\Core\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\Core\Scene\EntityConstants.h">
+      <Filter>Wyvern\Core\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\Core\Scene\EntityList.h">
+      <Filter>Wyvern\Core\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\Core\Scene\Scene.h">
+      <Filter>Wyvern\Core\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\Core\Scene\SceneSerializer.h">
+      <Filter>Wyvern\Core\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\Core\Scene\SerializeHelper.h">
+      <Filter>Wyvern\Core\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\Core\Scene\Wizard.h">
+      <Filter>Wyvern\Core\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\Core\Scene\WizardStack.h">
+      <Filter>Wyvern\Core\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\Core\Timestep.h">
+      <Filter>Wyvern\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\Display\Window.h">
+      <Filter>Wyvern\Display</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\Events\Event.h">
+      <Filter>Wyvern\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\Events\KeyEvent.h">
+      <Filter>Wyvern\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\Events\MouseEvent.h">
+      <Filter>Wyvern\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\Events\WindowEvent.h">
+      <Filter>Wyvern\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\ImGui\ImGuiLayer.h">
+      <Filter>Wyvern\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\Renderer\CameraRenderer.h">
+      <Filter>Wyvern\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\Renderer\Framebuffer.h">
+      <Filter>Wyvern\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\Renderer\Renderer2D.h">
+      <Filter>Wyvern\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\Renderer\VertexArray.h">
+      <Filter>Wyvern\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\UI\UIWizard.h">
+      <Filter>Wyvern\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\Utils\PlatformUtils.h">
+      <Filter>Wyvern\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="wvpch.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Vendor\ImGuizmo\ImGuizmo.cpp">
+      <Filter>Vendor\ImGuizmo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Vendor\glad\glad.c">
+      <Filter>Vendor\glad</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Vendor\stb_image\stb_image.cpp">
+      <Filter>Vendor\stb_image</Filter>
+    </ClCompile>
+    <ClCompile Include="Platform\OpenGL\ImGuiGLFWRenderer.cpp">
+      <Filter>Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="Platform\OpenGL\ImGuiOpenGLRenderer.cpp">
+      <Filter>Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="Wyvern\Core\Application.cpp">
+      <Filter>Wyvern\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Wyvern\Core\ApplicationDomain.cpp">
+      <Filter>Wyvern\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Wyvern\Core\AssetManager.cpp">
+      <Filter>Wyvern\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Wyvern\Core\Components\SpriteRenderer.cpp">
+      <Filter>Wyvern\Core\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Wyvern\Core\Components\Tag.cpp">
+      <Filter>Wyvern\Core\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Wyvern\Core\Components\Transform.cpp">
+      <Filter>Wyvern\Core\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Wyvern\Core\Constants.cpp">
+      <Filter>Wyvern\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Wyvern\Core\Graphics\Shader.cpp">
+      <Filter>Wyvern\Core\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Wyvern\Core\Graphics\Sprite.cpp">
+      <Filter>Wyvern\Core\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Wyvern\Core\Graphics\Texture2D.cpp">
+      <Filter>Wyvern\Core\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Wyvern\Core\Input.cpp">
+      <Filter>Wyvern\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Wyvern\Core\Layer.cpp">
+      <Filter>Wyvern\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Wyvern\Core\LayerStack.cpp">
+      <Filter>Wyvern\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Wyvern\Core\Physics\Impulse2D.cpp">
+      <Filter>Wyvern\Core\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Wyvern\Core\Physics\Physics2DWizard.cpp">
+      <Filter>Wyvern\Core\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Wyvern\Core\Physics\SmoothPosition2D.cpp">
+      <Filter>Wyvern\Core\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Wyvern\Core\Physics\VelocitySolver2D.cpp">
+      <Filter>Wyvern\Core\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Wyvern\Core\ProjectManager.cpp">
+      <Filter>Wyvern\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Wyvern\Core\Scene\Component.cpp">
+      <Filter>Wyvern\Core\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Wyvern\Core\Scene\Entity.cpp">
+      <Filter>Wyvern\Core\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Wyvern\Core\Scene\Scene.cpp">
+      <Filter>Wyvern\Core\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Wyvern\Core\Scene\SceneSerializer.cpp">
+      <Filter>Wyvern\Core\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Wyvern\Core\Scene\SerializeHelper.cpp">
+      <Filter>Wyvern\Core\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Wyvern\Core\Scene\Wizard.cpp">
+      <Filter>Wyvern\Core\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Wyvern\Core\Scene\WizardStack.cpp">
+      <Filter>Wyvern\Core\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Wyvern\Display\Window.cpp">
+      <Filter>Wyvern\Display</Filter>
+    </ClCompile>
+    <ClCompile Include="Wyvern\ImGui\ImGuiLayer.cpp">
+      <Filter>Wyvern\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="Wyvern\Renderer\CameraRenderer.cpp">
+      <Filter>Wyvern\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Wyvern\Renderer\Framebuffer.cpp">
+      <Filter>Wyvern\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Wyvern\Renderer\Renderer2D.cpp">
+      <Filter>Wyvern\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Wyvern\UI\UIWizard.cpp">
+      <Filter>Wyvern\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Wyvern\Utils\WindowsPlatformUtils.cpp">
+      <Filter>Wyvern\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="wvpch.cpp" />
+  </ItemGroup>
+</Project>

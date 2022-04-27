@@ -2,8 +2,8 @@
 
 #include "PongWall.h"
 
-using namespace Merlin;
-using namespace Merlin::Renderer;
+using namespace Wyvern;
+using namespace Wyvern::Renderer;
 
 class TopWall : public PongWall
 {

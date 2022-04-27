@@ -1,0 +1,275 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Dist|x64">
+      <Configuration>Dist</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{0651ECC7-F2B3-7B6C-9B39-B422877B47EF}</ProjectGuid>
+    <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>WyvernEngine</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>..\..\bin\Debug-windows\WyvernEngine\</OutDir>
+    <IntDir>..\..\bin-int\Debug-windows\WyvernEngine\</IntDir>
+    <TargetName>WyvernEngine</TargetName>
+    <TargetExt>.lib</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>..\..\bin\Release-windows\WyvernEngine\</OutDir>
+    <IntDir>..\..\bin-int\Release-windows\WyvernEngine\</IntDir>
+    <TargetName>WyvernEngine</TargetName>
+    <TargetExt>.lib</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
+    <OutDir>..\..\bin\Dist-windows\WyvernEngine\</OutDir>
+    <IntDir>..\..\bin-int\Dist-windows\WyvernEngine\</IntDir>
+    <TargetName>WyvernEngine</TargetName>
+    <TargetExt>.lib</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>wvpch.h</PrecompiledHeaderFile>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WV_PLATFORM_WINDOWS;WV_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.;..\Vendor\GLFW\include;..\Vendor\glad\include;..\Vendor\glm;..\Vendor\imgui;..\Vendor\stb_image;..\Vendor\freetype\include;..\Vendor\freetype\include\freetype;..\Vendor\yaml-cpp\include;..\Vendor\ImGuizmo;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <Lib>
+      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>wvpch.h</PrecompiledHeaderFile>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WV_PLATFORM_WINDOWS;WV_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.;..\Vendor\GLFW\include;..\Vendor\glad\include;..\Vendor\glm;..\Vendor\imgui;..\Vendor\stb_image;..\Vendor\freetype\include;..\Vendor\freetype\include\freetype;..\Vendor\yaml-cpp\include;..\Vendor\ImGuizmo;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Full</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <Lib>
+      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>wvpch.h</PrecompiledHeaderFile>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WV_PLATFORM_WINDOWS;WV_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.;..\Vendor\GLFW\include;..\Vendor\glad\include;..\Vendor\glm;..\Vendor\imgui;..\Vendor\stb_image;..\Vendor\freetype\include;..\Vendor\freetype\include\freetype;..\Vendor\yaml-cpp\include;..\Vendor\ImGuizmo;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Full</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <Lib>
+      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Vendor\ImGuizmo\ImGuizmo.h" />
+    <ClInclude Include="..\Vendor\stb_image\stb_image.h" />
+    <ClInclude Include="Platform\OpenGL\ImGuiGLFWRenderer.h" />
+    <ClInclude Include="Platform\OpenGL\ImGuiOpenGLLoader.h" />
+    <ClInclude Include="Platform\OpenGL\ImGuiOpenGLRenderer.h" />
+    <ClInclude Include="Wyvern.h" />
+    <ClInclude Include="Wyvern\Core\Application.h" />
+    <ClInclude Include="Wyvern\Core\ApplicationDomain.h" />
+    <ClInclude Include="Wyvern\Core\AssetManager.h" />
+    <ClInclude Include="Wyvern\Core\Base.h" />
+    <ClInclude Include="Wyvern\Core\Components\Button.h" />
+    <ClInclude Include="Wyvern\Core\Components\Camera.h" />
+    <ClInclude Include="Wyvern\Core\Components\Components.h" />
+    <ClInclude Include="Wyvern\Core\Components\RigidBody2D.h" />
+    <ClInclude Include="Wyvern\Core\Components\SpriteRenderer.h" />
+    <ClInclude Include="Wyvern\Core\Components\Tag.h" />
+    <ClInclude Include="Wyvern\Core\Components\Transform.h" />
+    <ClInclude Include="Wyvern\Core\Constants.h" />
+    <ClInclude Include="Wyvern\Core\Debug.h" />
+    <ClInclude Include="Wyvern\Core\Graphics\Material.h" />
+    <ClInclude Include="Wyvern\Core\Graphics\Shader.h" />
+    <ClInclude Include="Wyvern\Core\Graphics\Sprite.h" />
+    <ClInclude Include="Wyvern\Core\Graphics\Texture2D.h" />
+    <ClInclude Include="Wyvern\Core\Input.h" />
+    <ClInclude Include="Wyvern\Core\KeyCodes.h" />
+    <ClInclude Include="Wyvern\Core\Layer.h" />
+    <ClInclude Include="Wyvern\Core\LayerStack.h" />
+    <ClInclude Include="Wyvern\Core\Math\Math.h" />
+    <ClInclude Include="Wyvern\Core\Math\Mathf.h" />
+    <ClInclude Include="Wyvern\Core\Math\Matrix4x4.h" />
+    <ClInclude Include="Wyvern\Core\Math\Vector.h" />
+    <ClInclude Include="Wyvern\Core\MouseCodes.h" />
+    <ClInclude Include="Wyvern\Core\Physics\Collider2D.h" />
+    <ClInclude Include="Wyvern\Core\Physics\CollisionSolver2D.h" />
+    <ClInclude Include="Wyvern\Core\Physics\Impulse2D.h" />
+    <ClInclude Include="Wyvern\Core\Physics\Physics2DWizard.h" />
+    <ClInclude Include="Wyvern\Core\Physics\PhysicsSolver2D.h" />
+    <ClInclude Include="Wyvern\Core\Physics\SmoothPosition2D.h" />
+    <ClInclude Include="Wyvern\Core\Physics\VelocitySolver2D.h" />
+    <ClInclude Include="Wyvern\Core\ProjectManger.h" />
+    <ClInclude Include="Wyvern\Core\Scene\Component.h" />
+    <ClInclude Include="Wyvern\Core\Scene\ComponentPool.h" />
+    <ClInclude Include="Wyvern\Core\Scene\Entity.h" />
+    <ClInclude Include="Wyvern\Core\Scene\EntityConstants.h" />
+    <ClInclude Include="Wyvern\Core\Scene\EntityList.h" />
+    <ClInclude Include="Wyvern\Core\Scene\Scene.h" />
+    <ClInclude Include="Wyvern\Core\Scene\SceneSerializer.h" />
+    <ClInclude Include="Wyvern\Core\Scene\SerializeHelper.h" />
+    <ClInclude Include="Wyvern\Core\Scene\Wizard.h" />
+    <ClInclude Include="Wyvern\Core\Scene\WizardStack.h" />
+    <ClInclude Include="Wyvern\Core\Timestep.h" />
+    <ClInclude Include="Wyvern\Display\Window.h" />
+    <ClInclude Include="Wyvern\Events\Event.h" />
+    <ClInclude Include="Wyvern\Events\KeyEvent.h" />
+    <ClInclude Include="Wyvern\Events\MouseEvent.h" />
+    <ClInclude Include="Wyvern\Events\WindowEvent.h" />
+    <ClInclude Include="Wyvern\ImGui\ImGuiLayer.h" />
+    <ClInclude Include="Wyvern\Renderer\CameraRenderer.h" />
+    <ClInclude Include="Wyvern\Renderer\Framebuffer.h" />
+    <ClInclude Include="Wyvern\Renderer\Renderer2D.h" />
+    <ClInclude Include="Wyvern\Renderer\VertexArray.h" />
+    <ClInclude Include="Wyvern\UI\UIWizard.h" />
+    <ClInclude Include="Wyvern\Utils\PlatformUtils.h" />
+    <ClInclude Include="wvpch.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Vendor\ImGuizmo\ImGuizmo.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Vendor\glad\glad.c">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Vendor\stb_image\stb_image.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Platform\OpenGL\ImGuiGLFWRenderer.cpp" />
+    <ClCompile Include="Platform\OpenGL\ImGuiOpenGLRenderer.cpp" />
+    <ClCompile Include="Wyvern\Core\Application.cpp" />
+    <ClCompile Include="Wyvern\Core\ApplicationDomain.cpp" />
+    <ClCompile Include="Wyvern\Core\AssetManager.cpp" />
+    <ClCompile Include="Wyvern\Core\Components\SpriteRenderer.cpp" />
+    <ClCompile Include="Wyvern\Core\Components\Tag.cpp" />
+    <ClCompile Include="Wyvern\Core\Components\Transform.cpp" />
+    <ClCompile Include="Wyvern\Core\Constants.cpp" />
+    <ClCompile Include="Wyvern\Core\Graphics\Shader.cpp" />
+    <ClCompile Include="Wyvern\Core\Graphics\Sprite.cpp" />
+    <ClCompile Include="Wyvern\Core\Graphics\Texture2D.cpp" />
+    <ClCompile Include="Wyvern\Core\Input.cpp" />
+    <ClCompile Include="Wyvern\Core\Layer.cpp" />
+    <ClCompile Include="Wyvern\Core\LayerStack.cpp" />
+    <ClCompile Include="Wyvern\Core\Physics\Impulse2D.cpp" />
+    <ClCompile Include="Wyvern\Core\Physics\Physics2DWizard.cpp" />
+    <ClCompile Include="Wyvern\Core\Physics\SmoothPosition2D.cpp" />
+    <ClCompile Include="Wyvern\Core\Physics\VelocitySolver2D.cpp" />
+    <ClCompile Include="Wyvern\Core\ProjectManager.cpp" />
+    <ClCompile Include="Wyvern\Core\Scene\Component.cpp" />
+    <ClCompile Include="Wyvern\Core\Scene\Entity.cpp" />
+    <ClCompile Include="Wyvern\Core\Scene\Scene.cpp" />
+    <ClCompile Include="Wyvern\Core\Scene\SceneSerializer.cpp" />
+    <ClCompile Include="Wyvern\Core\Scene\SerializeHelper.cpp" />
+    <ClCompile Include="Wyvern\Core\Scene\Wizard.cpp" />
+    <ClCompile Include="Wyvern\Core\Scene\WizardStack.cpp" />
+    <ClCompile Include="Wyvern\Display\Window.cpp" />
+    <ClCompile Include="Wyvern\ImGui\ImGuiLayer.cpp" />
+    <ClCompile Include="Wyvern\Renderer\CameraRenderer.cpp" />
+    <ClCompile Include="Wyvern\Renderer\Framebuffer.cpp" />
+    <ClCompile Include="Wyvern\Renderer\Renderer2D.cpp" />
+    <ClCompile Include="Wyvern\UI\UIWizard.cpp" />
+    <ClCompile Include="Wyvern\Utils\WindowsPlatformUtils.cpp" />
+    <ClCompile Include="wvpch.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Vendor\GLFW\GLFW.vcxproj">
+      <Project>{154B857C-0182-860D-AA6E-6C109684020F}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Vendor\ImGui\ImGui.vcxproj">
+      <Project>{C0FF640D-2C14-8DBE-F595-301E616989EF}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Vendor\FreeType\freetype.vcxproj">
+      <Project>{89895BD8-7556-B6E3-9E6F-A48B8A9BEB71}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Vendor\yaml-cpp\yaml-cpp.vcxproj">
+      <Project>{88F1A057-74BE-FB62-9DD7-E90A890331F1}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
