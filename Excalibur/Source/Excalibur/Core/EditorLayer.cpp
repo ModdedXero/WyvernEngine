@@ -29,27 +29,8 @@ namespace Merlin::Editor
         OpenHierarchyWindow();
         OpenPropertiesWindow();
 
-		Entity* test = Scene::CreateEntity<Entity>();
-
-		test->GetTransform()->position = { 0, 0, 0 };
-		test->GetTransform()->scale = { 0.5f, 0.5f, 1.0f };
-		SpriteRenderer* testRend = test->AddComponent<SpriteRenderer>();
-		testRend->material = AssetManager::GetMaterial("StandardMaterial");
-        testRend->color = { 1.0f, 0.5f, 0.6f, 1.0f };
-
-        Entity* test2 = Scene::CreateEntity<Entity>();
-
-        test2->GetTransform()->position = { 2, 0, 0 };
-        test2->GetTransform()->scale = { 0.5f, 0.5f, 1.0f };
-        SpriteRenderer* testRend2 = test2->AddComponent<SpriteRenderer>();
-        testRend2->material = AssetManager::GetMaterial("StandardMaterial");
-        testRend2->color = { 0.3f, 0.5f, 0.6f, 1.0f };
-
-        test->AddChildEntity(test2);
-        test->AddComponent<Camera>();
-        test->AddComponent<Test2NativeComponent>();
-
         Scene::OnAwake();
+        ImGui::SetCurrentContext(Application::Get().GetImGuiLayer()->GetImGuiContext());
 
         m_EditorCamera = new ViewportCamera();
 	}
@@ -154,9 +135,7 @@ namespace Merlin::Editor
         for (EditorWindow* window : m_Windows)
         {
             if (window->IsFocused() && window->IsHovered())
-            {
                 window->OnEvent(e);
-            }
         }
 
         Scene::OnEvent(e);

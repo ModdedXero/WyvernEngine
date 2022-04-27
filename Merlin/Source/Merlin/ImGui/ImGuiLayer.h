@@ -3,6 +3,9 @@
 #include <Merlin/Core/Layer.h>
 #include <Merlin/Core/Timestep.h>
 
+#include <Platform/OpenGL/ImGuiOpenGLRenderer.h>
+#include <Platform/OpenGL/ImGuiGLFWRenderer.h>
+
 namespace Merlin
 {
 	class ImGuiLayer : public Layer
@@ -18,5 +21,8 @@ namespace Merlin
 		void End();
 
 		void SetDarkThemeColors();
+		ImGuiContext* GetImGuiContext() { return m_ImGuiContext; }
+	private:
+		ImGuiContext* m_ImGuiContext;
 	};
 }

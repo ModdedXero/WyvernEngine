@@ -26,5 +26,8 @@ namespace Merlin::Editor
 		bool IsHovered();
 
 		Vector2 WindowSize;
+	private:
+		bool m_IsFocused = false;
+		bool m_IsHovered = false;
 	};
 }

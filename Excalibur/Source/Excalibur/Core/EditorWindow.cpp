@@ -7,6 +7,8 @@ namespace Merlin::Editor
 	void EditorWindow::BeginRender()
 	{
 		ImGui::Begin(GetWindowTitle());
+		m_IsFocused = ImGui::IsWindowFocused();
+		m_IsHovered = ImGui::IsWindowHovered();
 	}
 
 	void EditorWindow::EndRender()
@@ -22,11 +24,11 @@ namespace Merlin::Editor
 
 	bool EditorWindow::IsFocused()
 	{
-		return ImGui::IsWindowFocused();
+		return m_IsFocused;
 	}
 
 	bool EditorWindow::IsHovered()
 	{
-		return ImGui::IsWindowHovered();
+		return m_IsHovered;
 	}
 }

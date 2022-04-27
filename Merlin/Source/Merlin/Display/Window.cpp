@@ -50,6 +50,12 @@ namespace Merlin::Display
 						data.EventCallback(holdEvent);
 						break;
 					}
+					case GLFW_RELEASE:
+					{
+						Events::KeyReleasedEvent releaseEvent(key);
+						data.EventCallback(releaseEvent);
+						break;
+					}
 				}
 		});
 

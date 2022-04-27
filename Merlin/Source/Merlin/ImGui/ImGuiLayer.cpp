@@ -1,8 +1,6 @@
 #include "mlpch.h"
 #include "ImGuiLayer.h"
 
-#include <Platform/OpenGL/ImGuiOpenGLRenderer.h>
-#include <Platform/OpenGL/ImGuiGLFWRenderer.h>
 #include <Merlin/Core/Application.h>
 
 #include <ImGuizmo.h>
@@ -23,7 +21,7 @@ namespace Merlin
 	void ImGuiLayer::OnAttach()
 	{
 		IMGUI_CHECKVERSION();
-		ImGui::CreateContext();
+		m_ImGuiContext = ImGui::CreateContext();
 		ImGuiIO& io = ImGui::GetIO();
 		(void)io;
 
