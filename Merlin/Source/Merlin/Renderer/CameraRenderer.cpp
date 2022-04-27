@@ -46,11 +46,11 @@ namespace Merlin::Renderer
 		glViewport(0, 0, lWidth, lHeight);
 	}
 
-	void CameraRenderer::SetShaderMatrices(Ref<Shader> shader, const Vector3& position)
+	void CameraRenderer::SetShaderMatrices(Ref<Shader> shader, const Matrix4x4& position)
 	{
 		RecalculateProjection();
 
-		m_View = glm::translate(glm::mat4(1.0f), glm::vec3(-position.x, -position.y, -position.z));
+		m_View = Matrix4x4::Inverse(position).GetNativeMatrix();
 
 		shader->SetMatrix4("projection", m_Projection);
 		shader->SetMatrix4("viewModel", m_View * glm::mat4(1.0f));

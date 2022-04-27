@@ -16,7 +16,7 @@ namespace Merlin::Renderer
 		static void OnAwake();
 		static void OnDestroy();
 
-		static void BeginScene(CameraRenderer* cameraRenderer, const Vector3& cameraPosition);
+		static void BeginScene(CameraRenderer* cameraRenderer, const Matrix4x4& cameraPosition);
 		static void EndScene();
 
 		static void DrawQuad(Transform* transform, Ref<Material> material, Ref<Sprite> sprite, const Vector4& color);

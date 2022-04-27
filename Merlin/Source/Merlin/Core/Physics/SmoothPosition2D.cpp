@@ -1,3 +1,4 @@
+#include "mlpch.h"
 #include "SmoothPosition2D.h"
 
 #include <Merlin/Core/Components/RigidBody2D.h>

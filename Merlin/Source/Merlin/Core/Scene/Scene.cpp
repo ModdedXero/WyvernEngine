@@ -70,7 +70,7 @@ namespace Merlin
 
 		if (mainCamera)
 		{
-			Renderer::Renderer2D::BeginScene(mainCamera->GetRenderer(), cameraTransform->position);
+			Renderer::Renderer2D::BeginScene(mainCamera->GetRenderer(), cameraTransform->GetTransform());
 
 			for (Entity* ent : EntityList<SpriteRenderer>())
 			{
@@ -83,7 +83,7 @@ namespace Merlin
 		}
 	}
 
-	void Scene::OnEditorUpdate(Renderer::CameraRenderer* camera, const Vector3& position)
+	void Scene::OnEditorUpdate(Renderer::CameraRenderer* camera, const Matrix4x4& position)
 	{
 		if (s_SceneState != SceneState::Edit) return;
 

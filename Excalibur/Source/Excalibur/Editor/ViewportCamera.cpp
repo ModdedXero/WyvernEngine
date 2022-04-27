@@ -2,28 +2,34 @@
 
 namespace Merlin::Editor
 {
+	ViewportCamera::ViewportCamera()
+	{
+		transform = new Transform();
+		transform->position.z = 8;
+	}
+
 	void ViewportCamera::MoveCamera()
 	{
 		if (Input::IsMouseButton(MouseCode::MOUSE_BUTTON_RIGHT))
 		{
 			if (Input::IsKey(KeyCode::W))
 			{
-				Position.y -= CameraSpeed * Timestep::GetDeltaTime();
+				transform->position.y -= cameraSpeed * Timestep::GetDeltaTime();
 			}
 
 			if (Input::IsKey(KeyCode::S))
 			{
-				Position.y += CameraSpeed * Timestep::GetDeltaTime();
+				transform->position.y += cameraSpeed * Timestep::GetDeltaTime();
 			}
 
 			if (Input::IsKey(KeyCode::A))
 			{
-				Position.x -= CameraSpeed * Timestep::GetDeltaTime();
+				transform->position.x -= cameraSpeed * Timestep::GetDeltaTime();
 			}
 
 			if (Input::IsKey(KeyCode::D))
 			{
-				Position.x += CameraSpeed * Timestep::GetDeltaTime();
+				transform->position.x += cameraSpeed * Timestep::GetDeltaTime();
 			}
 		}
 	}

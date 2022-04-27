@@ -1,3 +1,4 @@
+#include "mlpch.h"
 #include "Component.h"
 
 namespace Merlin

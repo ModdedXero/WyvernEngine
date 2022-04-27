@@ -65,7 +65,7 @@ namespace Merlin::Editor
 	void EditorLayer::OnUpdate()
 	{
         Scene::OnRuntimeUpdate();
-        Scene::OnEditorUpdate(m_EditorCamera, m_EditorCamera->Position);
+        Scene::OnEditorUpdate(m_EditorCamera, m_EditorCamera->transform->GetTransform());
 	}
 
 	void EditorLayer::OnUIRender()
@@ -106,13 +106,28 @@ namespace Merlin::Editor
         {
             if (ImGui::BeginMenu("File"))
             {
-                if (ImGui::MenuItem("Save"))
-                    SceneSerializer::Serialize("SceneSerialTest.merl");
-
-                if (ImGui::MenuItem("Load"))
+                if (ImGui::MenuItem("New", "Ctrl+N"))
                 {
                     Scene::OnDestroy();
-                    SceneSerializer::Deserialize("SceneSerialTest.merl");
+                }
+
+                if (ImGui::MenuItem("Open...", "Ctrl+O"))
+                {
+                    std::string filePath = FileDialogs::OpenFile("Merlin Scene (*.merlin)\0*.merlin\0");
+                    if (!filePath.empty())
+                    {
+                        Scene::OnDestroy();
+                        SceneSerializer::Deserialize(filePath);
+                    }
+                }
+
+                if (ImGui::MenuItem("Save As...", "Ctrl+Shift+S"))
+                {
+                    std::string filePath = FileDialogs::SaveFile("Merlin Scene (*.merlin)\0*.merlin\0", "merlin");
+                    if (!filePath.empty())
+                    {
+                        SceneSerializer::Serialize(filePath);
+                    }
                 }
 
                 if (ImGui::MenuItem("Exit")) 

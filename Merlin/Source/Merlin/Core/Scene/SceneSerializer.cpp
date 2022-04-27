@@ -15,7 +15,7 @@ namespace Merlin
 		for (Entity* ent : Scene::s_Entities)
 		{
 			if (!Scene::IsEntityValid(ent))
-				return;
+				continue;
 
 			SerializeEntity(out, ent);
 		}

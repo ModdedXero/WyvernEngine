@@ -36,6 +36,28 @@ namespace Merlin
 		return scale;
 	}
 
+	Matrix4x4 Transform::GetTransform()
+	{
+		Matrix4x4 trans = Matrix4x4::Translate(position)
+			* Matrix4x4::Rotate(rotation)
+			* Matrix4x4::Scale(scale);
+
+		return trans;
+	}
+
+	Matrix4x4 Transform::GetGlobalTransform()
+	{
+		if (GetEntity()->GetParent())
+		{
+			Matrix4x4 trans = Matrix4x4::Translate(GetEntity()->GetParent()->GetTransform()->GlobalPosition() + position)
+				* Matrix4x4::Rotate(GetEntity()->GetParent()->GetTransform()->GlobalRotation() + rotation)
+				* Matrix4x4::Scale(GetEntity()->GetParent()->GetTransform()->GlobalScale() * scale);
+			return trans;
+		}
+
+		return GetTransform();
+	}
+
 	void Transform::Serialize(YAML::Emitter& out)
 	{
 		out << YAML::Key << "Transform";

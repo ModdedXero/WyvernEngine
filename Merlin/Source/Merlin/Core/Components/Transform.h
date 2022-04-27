@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Merlin/Core/Scene/Component.h>
-#include <Merlin/Core/Math/Vector.h>
+#include <Merlin/Core/Math/Math.h>
 #include <Merlin/Core/ApplicationDomain.h>
 
 namespace Merlin
@@ -20,6 +20,9 @@ namespace Merlin
 		Vector3 GlobalPosition();
 		Vector3 GlobalRotation();
 		Vector3 GlobalScale();
+
+		Matrix4x4 GetTransform();
+		Matrix4x4 GetGlobalTransform();
 
 		virtual void Serialize(YAML::Emitter& out) override;
 		virtual void Deserialize(Entity* ent, YAML::Node& data) override;

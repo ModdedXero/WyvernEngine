@@ -47,3 +47,4 @@
 // Utility
 #include <Merlin/Core/Debug.h>
 #include <Merlin/Core/Base.h>
+#include <Merlin/Utils/PlatformUtils.h>

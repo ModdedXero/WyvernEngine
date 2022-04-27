@@ -20,6 +20,7 @@ IncludeDir["STB"] = "Merlin/Vendor/stb_image"
 IncludeDir["FreeType"] = "Merlin/Vendor/freetype/include"
 IncludeDir["FreeTypeSub"] = "Merlin/Vendor/freetype/include/freetype"
 IncludeDir["YamlCPP"] = "Merlin/Vendor/yaml-cpp/include"
+IncludeDir["ImGUIzmo"] = "Merlin/Vendor/ImGuizmo"
 
 include "Merlin/Vendor/GLFW"
 include "Merlin/Vendor/ImGui"
@@ -37,7 +38,7 @@ project "Merlin"
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 	
 	pchheader "mlpch.h"
-	pchsource "mlpch.cpp"
+	pchsource "merlin/source/mlpch.cpp"
 
 	files
 	{
@@ -45,7 +46,9 @@ project "Merlin"
 		"Merlin/Source/**.cpp",
 		"Merlin/Vendor/stb_image/**.h",
 		"Merlin/Vendor/stb_image/**.cpp",
-		"Merlin/Vendor/glad/**.c"
+		"Merlin/Vendor/glad/**.c",
+		"Merlin/Vendor/ImGuizmo/ImGuizmo.h",
+		"Merlin/Vendor/ImGuizmo/ImGuizmo.cpp"
 	}
 
 	includedirs
@@ -58,7 +61,8 @@ project "Merlin"
 		"%{IncludeDir.STB}",
 		"%{IncludeDir.FreeType}",
 		"%{IncludeDir.FreeTypeSub}",
-		"%{IncludeDir.YamlCPP}"
+		"%{IncludeDir.YamlCPP}",
+		"%{IncludeDir.ImGUIzmo}"
 	}
 
 	links
@@ -70,7 +74,10 @@ project "Merlin"
 		"opengl32.lib"
 	}
 	
-	flags { "NoPCH" }
+	filter "files:Merlin/Vendor/**.c"
+		flags { "NoPCH" }
+	filter "files:Merlin/Vendor/**.cpp"
+		flags { "NoPCH" }
 
 	filter "system:windows"
 		cppdialect "C++17"
@@ -118,7 +125,8 @@ project "Excalibur"
 		"%{IncludeDir.GLAD}",
 		"%{IncludeDir.FreeType}",
 		"%{IncludeDir.FreeTypeSub}",
-		"%{IncludeDir.YamlCPP}"
+		"%{IncludeDir.YamlCPP}",
+		"%{IncludeDir.ImGUIzmo}"
 	}
 
 	links

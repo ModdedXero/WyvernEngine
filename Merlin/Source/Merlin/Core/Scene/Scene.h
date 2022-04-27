@@ -31,7 +31,7 @@ namespace Merlin
 		static void OnAwake();
 		static void OnDestroy();
 		static void OnRuntimeUpdate();
-		static void OnEditorUpdate(Renderer::CameraRenderer* camera, const Vector3& position);
+		static void OnEditorUpdate(Renderer::CameraRenderer* camera, const Matrix4x4& position);
 		static void OnFixedUpdate();
 		static void OnEvent(Events::Event& e);
 

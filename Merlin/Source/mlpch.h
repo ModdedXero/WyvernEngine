@@ -1,8 +1,5 @@
 #pragma once
 
-#ifndef MERLIN_PCH
-#define MERLIN_PCH
-
 #include <iostream>
 #include <memory>
 #include <utility>
@@ -21,5 +18,3 @@
 #include <Merlin/Core/Debug.h>
 #include <Merlin/Core/Base.h>
 #include <Merlin/Core/Timestep.h>
-
-#endif

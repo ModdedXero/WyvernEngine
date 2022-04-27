@@ -24,6 +24,8 @@ namespace Merlin::Renderer
 		float GetFieldOfView() { return m_FieldOfView; }
 		float GetClipNear() { return m_ClipNear; }
 		float GetClipFar() { return m_ClipFar; }
+		glm::mat4 GetProjection() { return m_Projection; }
+		glm::mat4 GetView() { return m_View; }
 
 		void SetCameraMode(CameraMode mode);
 		void SetProjection(float width, float height);
@@ -33,7 +35,7 @@ namespace Merlin::Renderer
 		void SetClipSpaceFar(float far) { m_ClipFar = far; }
 
 		void ResizeView(float width, float height);
-		void SetShaderMatrices(Ref<Shader> shader, const Vector3& position);
+		void SetShaderMatrices(Ref<Shader> shader, const Matrix4x4& position);
 
 		static CameraRenderer* GetActive() { return s_Active; }
 		static void SetActiveCamera(CameraRenderer* camera) { s_Active = camera; }

@@ -38,7 +38,7 @@ namespace Merlin::Renderer
 		uint32_t WhiteTexture = 0;
 
 		CameraRenderer* Camera = nullptr;
-		Vector3 CameraPosition = Vector3();
+		Matrix4x4 CameraPosition = Matrix4x4(1.0f);
 	};
 
 	struct Character
@@ -179,7 +179,7 @@ namespace Merlin::Renderer
 
 		delete[] s_Data.QuadBuffer;
 	}
-	void Renderer2D::BeginScene(CameraRenderer* cameraRenderer, const Vector3& cameraPosition)
+	void Renderer2D::BeginScene(CameraRenderer* cameraRenderer, const Matrix4x4& cameraPosition)
 	{
 		s_Data.Camera = cameraRenderer;
 		s_Data.CameraPosition = cameraPosition;

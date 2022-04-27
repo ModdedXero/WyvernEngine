@@ -4,6 +4,7 @@
 #include "Timestep.h"
 
 #include <Merlin/Renderer/Renderer2D.h>
+#include <Merlin/Core/Physics/Physics2DWizard.h>
 
 #include <iostream>
 #include <chrono>
@@ -30,6 +31,7 @@ namespace Merlin
 		m_FixedLoop = Time::now();
 
 		Renderer2D::OnAwake();
+		Scene::CreateWizard<Physics2DWizard>();
 
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);
