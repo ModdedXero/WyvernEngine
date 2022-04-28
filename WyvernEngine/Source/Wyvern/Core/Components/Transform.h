@@ -13,6 +13,7 @@ namespace Wyvern
 		Transform() {}
 		~Transform() {}
 
+		
 		Vector3 position;
 		Vector3 rotation;
 		Vector3 scale = Vector3(1, 1, 1);
@@ -26,6 +27,7 @@ namespace Wyvern
 
 		virtual void Serialize(YAML::Emitter& out) override;
 		virtual void Deserialize(Entity* ent, YAML::Node& data) override;
+		virtual void DrawEditor() override;
 
 		static std::shared_ptr<Component> RegisterComponent() { return std::make_shared<Transform>(); }
 		static inline bool IsRegistered = ApplicationDomain::RegisterComponent("Transform", RegisterComponent);

@@ -2,8 +2,8 @@
 
 #include <Wyvern.h>
 
-#include <Excalibur/Core/EditorWindow.h>
-#include <Excalibur/Editor/ViewportCamera.h>
+#include <WyvernEditor/Core/EditorWindow.h>
+#include <WyvernEditor/Core/ViewportCamera.h>
 
 namespace Wyvern::Editor
 {

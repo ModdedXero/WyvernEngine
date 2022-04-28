@@ -24,10 +24,13 @@ namespace Wyvern
 
 		virtual void Serialize(YAML::Emitter& out) {}
 		virtual void Deserialize(Entity* ent, YAML::Node& data) {}
+		virtual void DrawEditor() {}
 	private:
 		Entity* m_Entity;
 		Transform* m_Transform;
 		Tag* m_Tag;
+
+		int m_ComponentID;
 
 
 		friend class Scene;

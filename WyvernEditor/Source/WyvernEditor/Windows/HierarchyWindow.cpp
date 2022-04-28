@@ -1,6 +1,6 @@
 #include "HierarchyWindow.h"
 
-#include <Excalibur/Core/EditorLayer.h>
+#include <WyvernEditor/Core/EditorLayer.h>
 
 #include <imgui.h>
 

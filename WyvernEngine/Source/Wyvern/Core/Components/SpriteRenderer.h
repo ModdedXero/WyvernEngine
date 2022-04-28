@@ -21,6 +21,7 @@ namespace Wyvern
 
 		virtual void Serialize(YAML::Emitter& out) override;
 		virtual void Deserialize(Entity* ent, YAML::Node& data) override;
+		virtual void DrawEditor() override;
 
 		static std::shared_ptr<Component> RegisterComponent() { return std::make_shared<SpriteRenderer>(); }
 		static inline bool IsRegistered = ApplicationDomain::RegisterComponent("SpriteRenderer", RegisterComponent);

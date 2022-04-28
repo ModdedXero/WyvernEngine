@@ -57,6 +57,7 @@ namespace Wyvern
 		static std::vector<T*> GetComponentsOfBase(Entity* ent);
 		template <typename T>
 		static void RemoveComponent(Entity* ent);
+		static void RemoveComponent(Entity* ent, Component* component);
 
 		template <typename T>
 		static int GetComponentID();
@@ -176,6 +177,7 @@ namespace Wyvern
 		component->m_Entity = ent;
 		component->m_Transform = ent->m_Transform;
 		component->m_Tag = ent->m_Tag;
+		component->m_ComponentID = componentID;
 
 		ent->m_Components.set(componentID);
 		ent->m_ComponentPtrs.push_back(component);

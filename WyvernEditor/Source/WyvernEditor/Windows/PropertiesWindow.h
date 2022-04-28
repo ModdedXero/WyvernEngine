@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Excalibur/Core/EditorWindow.h>
+#include <WyvernEditor/Core/EditorWindow.h>
 
 namespace Wyvern::Editor
 {

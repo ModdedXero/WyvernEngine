@@ -160,6 +160,11 @@ namespace Wyvern
 		return IsEntityValid(ent->m_ID);
 	}
 
+	void Scene::RemoveComponent(Entity* ent, Component* component)
+	{
+		s_ComponentsToDelete[ent] = component->m_ComponentID;
+	}
+
 	EntityID Scene::CreateEntityID(EntityIndex index, EntityVersion version)
 	{
 		return ((EntityID)index << 32) | ((EntityID)version);

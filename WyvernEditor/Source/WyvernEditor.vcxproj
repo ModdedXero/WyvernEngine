@@ -140,25 +140,26 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Excalibur\Core\EditorLayer.h" />
-    <ClInclude Include="Excalibur\Core\EditorWindow.h" />
-    <ClInclude Include="Excalibur\Editor\ViewportCamera.h" />
-    <ClInclude Include="Excalibur\Utility\EditorGUI.h" />
-    <ClInclude Include="Excalibur\Utility\EditorGUIInternal.h" />
-    <ClInclude Include="Excalibur\Windows\HierarchyWindow.h" />
-    <ClInclude Include="Excalibur\Windows\PropertiesWindow.h" />
-    <ClInclude Include="Excalibur\Windows\ViewportWindow.h" />
+    <ClInclude Include="WyvernEditor\Core\EditorLayer.h" />
+    <ClInclude Include="WyvernEditor\Core\EditorWindow.h" />
+    <ClInclude Include="WyvernEditor\Core\ViewportCamera.h" />
+    <ClInclude Include="WyvernEditor\Utility\EditorGUI.h" />
+    <ClInclude Include="WyvernEditor\Utility\EditorGUIInternal.h" />
+    <ClInclude Include="WyvernEditor\Windows\HierarchyWindow.h" />
+    <ClInclude Include="WyvernEditor\Windows\PropertiesWindow.h" />
+    <ClInclude Include="WyvernEditor\Windows\ViewportWindow.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Excalibur\Core\EditorLayer.cpp" />
-    <ClCompile Include="Excalibur\Core\EditorWindow.cpp" />
-    <ClCompile Include="Excalibur\Core\Excalibur.cpp" />
-    <ClCompile Include="Excalibur\Editor\ViewportCamera.cpp" />
-    <ClCompile Include="Excalibur\Utility\EditorGUI.cpp" />
-    <ClCompile Include="Excalibur\Utility\EditorGUIInternal.cpp" />
-    <ClCompile Include="Excalibur\Windows\HierarchyWindow.cpp" />
-    <ClCompile Include="Excalibur\Windows\PropertiesWindow.cpp" />
-    <ClCompile Include="Excalibur\Windows\ViewportWindow.cpp" />
+    <ClCompile Include="WyvernEditor\Core\ComponentUI.cpp" />
+    <ClCompile Include="WyvernEditor\Core\EditorLayer.cpp" />
+    <ClCompile Include="WyvernEditor\Core\EditorWindow.cpp" />
+    <ClCompile Include="WyvernEditor\Core\Excalibur.cpp" />
+    <ClCompile Include="WyvernEditor\Core\ViewportCamera.cpp" />
+    <ClCompile Include="WyvernEditor\Utility\EditorGUI.cpp" />
+    <ClCompile Include="WyvernEditor\Utility\EditorGUIInternal.cpp" />
+    <ClCompile Include="WyvernEditor\Windows\HierarchyWindow.cpp" />
+    <ClCompile Include="WyvernEditor\Windows\PropertiesWindow.cpp" />
+    <ClCompile Include="WyvernEditor\Windows\ViewportWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\WyvernEngine\Source\WyvernEngine.vcxproj">

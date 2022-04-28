@@ -3,9 +3,9 @@
 
 #include "EditorWindow.h"
 
-#include <Excalibur/Windows/ViewportWindow.h>
-#include <Excalibur/Windows/HierarchyWindow.h>
-#include <Excalibur/Windows/PropertiesWindow.h>
+#include <WyvernEditor/Windows/ViewportWindow.h>
+#include <WyvernEditor/Windows/HierarchyWindow.h>
+#include <WyvernEditor/Windows/PropertiesWindow.h>
 
 namespace Wyvern::Editor
 {

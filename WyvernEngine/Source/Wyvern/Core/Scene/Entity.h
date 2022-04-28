@@ -36,21 +36,24 @@ namespace Wyvern
 
 		template <typename T>
 		inline T* AddComponent() { return Scene::AddComponent<T>(this); }
+
 		template <typename T>
 		inline T* GetComponent() { return Scene::GetComponent<T>(this); }
 		template <typename T>
 		inline std::vector<T*> GetComponentsOfBase() { return Scene::GetComponentsOfBase<T>(this); }
+		std::vector<Component*> GetAllComponents() { return m_ComponentPtrs; }
+
 		template <typename T>
 		inline void RemoveComponent() { Scene::RemoveComponent<T>(this); }
+		void RemoveComponent(Component* component) { Scene::RemoveComponent(this, component); }
 
 		void DestroyEntity();
 
 		void AddChildEntity(Entity* ent);
 		void RemoveChildEntity(Entity* ent);
 
-		std::vector<Entity*> GetChildren() { return m_Children; }
-
 		Entity* GetParent() { return m_Parent; }
+		std::vector<Entity*> GetChildren() { return m_Children; }
 
 		virtual void OnCollision2D(Ref<Collision2D> collision) {}
 	protected:

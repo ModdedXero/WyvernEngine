@@ -1,0 +1,68 @@
+#include "PropertiesWindow.h"
+
+#include <WyvernEditor/Core/EditorLayer.h>
+#include <WyvernEditor/Utility/EditorGUI.h>
+#include <WyvernEditor/Utility/EditorGUIInternal.h>
+
+#include <imgui.h>
+
+namespace Wyvern::Editor
+{
+	void PropertiesWindow::OnGUI()
+	{
+		if (!Scene::IsEntityValid(EditorLayer::GetSelectedContext())) 
+			EditorLayer::SetSelectedContext(nullptr);
+		if (EditorLayer::GetSelectedContext() == nullptr) return;
+
+		if (EditorLayer::GetSelectedContext() != m_SelectedContext)
+			m_SelectedContext = EditorLayer::GetSelectedContext();
+
+		DrawComponents();
+	}
+
+	void PropertiesWindow::DrawComponents()
+	{
+		Tag* tag = m_SelectedContext->GetTag();
+
+		char buffer[256];
+		memset(buffer, 0, sizeof(buffer));
+		strcpy_s(buffer, sizeof(buffer), tag->name.c_str());
+
+		if (ImGui::InputText("##Tag", buffer, sizeof(buffer)))
+		{
+			tag->name = std::string(buffer);
+		}
+
+		ImGui::SameLine();
+		ImGui::PushItemWidth(-1);
+
+		if (ImGui::Button("Add Component"))
+			ImGui::OpenPopup("Add Component");
+
+		if (ImGui::BeginPopup("Add Component"))
+		{
+			if (ImGui::MenuItem("Camera"))
+			{
+				m_SelectedContext->AddComponent<Camera>();
+				ImGui::CloseCurrentPopup();
+			}
+
+			if (ImGui::MenuItem("Sprite Renderer"))
+			{
+				m_SelectedContext->AddComponent<SpriteRenderer>();
+				ImGui::CloseCurrentPopup();
+			}
+
+			ImGui::EndPopup();
+		}
+
+		ImGui::PopItemWidth();
+		ImGui::Separator();
+
+		for (Component* component : m_SelectedContext->GetAllComponents())
+		{
+			if (component != m_SelectedContext->GetTag())
+				EditorGUIInternal::DrawComponent(typeid(*component).name(), component, m_SelectedContext);
+		}
+	}
+}
