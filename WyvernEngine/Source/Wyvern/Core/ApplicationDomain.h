@@ -18,6 +18,8 @@ namespace Wyvern
 		static bool RegisterComponent(std::string name, CreateComponentFn func);
 		static std::shared_ptr<Component> CreateComponent(std::string name);
 
+		static std::map<std::string, CreateComponentFn> GetComponents() { return s_Components; }
+
 	private:
 		static inline std::map<std::string, CreateComponentFn> s_Components;
 	};

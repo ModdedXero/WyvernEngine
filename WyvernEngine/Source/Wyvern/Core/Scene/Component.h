@@ -24,6 +24,7 @@ namespace Wyvern
 
 		virtual void Serialize(YAML::Emitter& out) {}
 		virtual void Deserialize(Entity* ent, YAML::Node& data) {}
+		virtual void AddToEntity(Entity* ent) {}
 		virtual void DrawEditor() {}
 	private:
 		Entity* m_Entity;
@@ -32,11 +33,11 @@ namespace Wyvern
 
 		int m_ComponentID;
 
-
 		friend class Scene;
 		friend class ApplicationDomain;
 
 		typedef Component base;
+		typedef Component type;
 	};
 
 	struct NativeScriptComponent : public Component

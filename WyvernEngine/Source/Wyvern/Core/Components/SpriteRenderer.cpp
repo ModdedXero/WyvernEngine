@@ -2,6 +2,7 @@
 #include "SpriteRenderer.h"
 
 #include <Wyvern/Core/Scene/Entity.h>
+#include <Wyvern/Core/Scene/Scene.h>
 #include <Wyvern/Core/Scene/SerializeHelper.h>
 
 namespace Wyvern
@@ -21,5 +22,10 @@ namespace Wyvern
 		SpriteRenderer* spriteRenderer = ent->AddComponent<SpriteRenderer>();
 
 		spriteRenderer->color = data["color"].as<Vector4>();
+	}
+
+	void SpriteRenderer::AddToEntity(Entity* ent)
+	{
+		Scene::AddComponent<SpriteRenderer>(ent);
 	}
 }

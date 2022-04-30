@@ -2,6 +2,7 @@
 #include "Transform.h"
 
 #include <Wyvern/Core/Scene/Entity.h>
+#include <Wyvern/Core/Scene/Scene.h>
 #include <Wyvern/Core/Scene/SerializeHelper.h>
 
 namespace Wyvern

@@ -41,16 +41,17 @@ namespace Wyvern::Editor
 
 		if (ImGui::BeginPopup("Add Component"))
 		{
-			if (ImGui::MenuItem("Camera"))
+			for (auto& component : ApplicationDomain::GetComponents())
 			{
-				m_SelectedContext->AddComponent<Camera>();
-				ImGui::CloseCurrentPopup();
-			}
+				if (component.first == "Tag" || component.first == "Transform")
+					continue;
 
-			if (ImGui::MenuItem("Sprite Renderer"))
-			{
-				m_SelectedContext->AddComponent<SpriteRenderer>();
-				ImGui::CloseCurrentPopup();
+				if (ImGui::MenuItem(component.first.c_str()))
+				{
+					auto newComp = component.second();
+					newComp->AddToEntity(m_SelectedContext);
+					ImGui::CloseCurrentPopup();
+				}
 			}
 
 			ImGui::EndPopup();
