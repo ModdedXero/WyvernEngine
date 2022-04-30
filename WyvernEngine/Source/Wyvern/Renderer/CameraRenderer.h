@@ -45,7 +45,7 @@ namespace Wyvern::Renderer
 
 		void RecalculateProjection();
 
-		CameraMode m_CameraMode = CameraMode::Perspective;
+		CameraMode m_CameraMode = CameraMode::Orthographic;
 
 		glm::mat4 m_View;
 		glm::mat4 m_Projection;

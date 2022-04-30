@@ -37,7 +37,9 @@ namespace Wyvern::Editor
 			ImGuizmo::SetRect(ImGui::GetWindowPos().x, ImGui::GetWindowPos().y, windowWidth, windowHeight);
 
 			ViewportCamera* camera = EditorLayer::GetEditorCamera();
-			glm::mat4 cameraView = Matrix4x4::Inverse(camera->transform->GetTransform()).GetNativeMatrix();
+			Transform cameraTransform = *camera->transform;
+			cameraTransform.position.y = -cameraTransform.position.y;
+			glm::mat4 cameraView = Matrix4x4::Inverse(cameraTransform.GetTransform()).GetNativeMatrix();
 			glm::mat4 cameraProjection = camera->GetProjection();
 
 			Transform* transformComp = selectedContext->GetTransform();
@@ -51,6 +53,11 @@ namespace Wyvern::Editor
 				snapValues[2] = 45.0f;
 			}
 
+			if (camera->GetCameraMode() == Renderer::CameraMode::Orthographic)
+				ImGuizmo::SetOrthographic(true);
+			else
+				ImGuizmo::SetOrthographic(false);
+
 			ImGuizmo::Manipulate(glm::value_ptr(cameraView), glm::value_ptr(cameraProjection),
 				(ImGuizmo::OPERATION)m_GizmoSelection, ImGuizmo::LOCAL, glm::value_ptr(transform),
 				nullptr, m_IsSnap ? snapValues : nullptr);
@@ -61,7 +68,14 @@ namespace Wyvern::Editor
 				Matrix4x4::Decompose(transform, position, rotation, scale);
 
 				glm::vec3 deltaRotation = glm::degrees(rotation) - transformComp->rotation.glmPosition();
-				transformComp->position = position;
+
+				if (camera->GetCameraMode() == Renderer::CameraMode::Orthographic)
+				{
+					transformComp->position.x = position.x;
+					transformComp->position.y = position.y;
+				}
+				else
+					transformComp->position = position;
 				transformComp->rotation += deltaRotation;
 				transformComp->scale = scale;
 			}
