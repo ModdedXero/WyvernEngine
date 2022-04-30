@@ -249,9 +249,7 @@
     <ClCompile Include="Wyvern\Renderer\Renderer2D.cpp" />
     <ClCompile Include="Wyvern\UI\UIWizard.cpp" />
     <ClCompile Include="Wyvern\Utils\WindowsPlatformUtils.cpp" />
-    <ClCompile Include="wvpch.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
-    </ClCompile>
+    <ClCompile Include="wvpch.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Vendor\GLFW\GLFW.vcxproj">

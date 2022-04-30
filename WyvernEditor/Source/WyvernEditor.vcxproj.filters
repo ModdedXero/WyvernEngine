@@ -4,9 +4,6 @@
     <Filter Include="Core">
       <UniqueIdentifier>{2EB4837C-1AEB-840D-C3D7-6A10AFED000F}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Editor">
-      <UniqueIdentifier>{8C1A20B0-78BC-4A86-6177-5EDA4DB8D1D6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Utility">
       <UniqueIdentifier>{594615A9-C525-9444-CE3D-1F1B3A9CFAA5}</UniqueIdentifier>
     </Filter>
@@ -22,7 +19,7 @@
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="WyvernEditor\Core\ViewportCamera.h">
-      <Filter>Editor</Filter>
+      <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="WyvernEditor\Utility\EditorGUI.h">
       <Filter>Utility</Filter>
@@ -41,6 +38,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="WyvernEditor\Core\ComponentUI.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
     <ClCompile Include="WyvernEditor\Core\EditorLayer.cpp">
       <Filter>Core</Filter>
     </ClCompile>
@@ -51,7 +51,7 @@
       <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="WyvernEditor\Core\ViewportCamera.cpp">
-      <Filter>Editor</Filter>
+      <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="WyvernEditor\Utility\EditorGUI.cpp">
       <Filter>Utility</Filter>
@@ -68,6 +68,5 @@
     <ClCompile Include="WyvernEditor\Windows\ViewportWindow.cpp">
       <Filter>Windows</Filter>
     </ClCompile>
-    <ClCompile Include="WyvernEditor\Core\ComponentUI.cpp" />
   </ItemGroup>
 </Project>

@@ -1,9 +1,12 @@
-[submodule "WyvernEngine/vendor/glfw"]
-	path = WyvernEngine/vendor/glfw
+[submodule "WyvernEngine/Vendor/glfw"]
+	path = WyvernEngine/Vendor/glfw
 	url = https://github.com/TheCherno/glfw.git
-[submodule "WyvernEngine/vendor/imgui"]
-	path = WyvernEngine/vendor/imgui
+[submodule "WyvernEngine/Vendor/imgui"]
+	path = WyvernEngine/Vendor/imgui
 	url = https://github.com/TheCherno/imgui.git
-[submodule "WyvernEngine/vendor/yaml-cpp"]
-	path = WyvernEngine/vendor/yaml-cpp
+[submodule "WyvernEngine/Vendor/yaml-cpp"]
+	path = WyvernEngine/Vendor/yaml-cpp
 	url = https://github.com/TheCherno/yaml-cpp.git
+[submodule "WyvernEngine/Vendor/ImGuizmo"]
+	path = WyvernEngine/Vendor/ImGuizmo
+	url = https://github.com/TheCherno/ImGuizmo.git
