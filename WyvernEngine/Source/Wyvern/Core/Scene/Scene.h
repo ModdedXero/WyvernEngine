@@ -11,6 +11,7 @@
 #include <vector>
 #include <typeinfo>
 #include <unordered_map>
+#include <type_traits>
 
 namespace Wyvern
 {
@@ -180,7 +181,10 @@ namespace Wyvern
 		component->m_ComponentID = componentID;
 
 		ent->m_Components.set(componentID);
-		ent->m_ComponentPtrs.push_back(component);
+
+		// Do not add default components of Tag and Transform to ent component list
+		if (!std::is_same<T, Tag>().value && !std::is_same<T, Transform>().value)
+			ent->m_ComponentPtrs.push_back(component);
 
 		return component;
 	}

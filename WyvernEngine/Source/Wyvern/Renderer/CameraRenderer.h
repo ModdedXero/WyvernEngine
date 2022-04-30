@@ -35,7 +35,7 @@ namespace Wyvern::Renderer
 		void SetClipSpaceFar(float far) { m_ClipFar = far; }
 
 		void ResizeView(float width, float height);
-		void SetShaderMatrices(Ref<Shader> shader, const Matrix4x4& position);
+		void SetShaderMatrices(Ref<Shader> shader, Matrix4x4& position);
 
 		static CameraRenderer* GetActive() { return s_Active; }
 		static void SetActiveCamera(CameraRenderer* camera) { s_Active = camera; }

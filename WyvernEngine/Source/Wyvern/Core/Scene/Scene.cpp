@@ -180,6 +180,7 @@ namespace Wyvern
 		s_Entities[index]->m_ID = newID;
 		s_Entities[index]->m_Components.reset();
 		s_Entities[index]->m_Children.clear();
+		s_Entities[index]->m_ComponentPtrs.clear();
 
 		if (s_Entities[index]->m_Parent != nullptr)
 			s_Entities[index]->m_Parent->RemoveChildEntity(s_Entities[index]);
@@ -194,7 +195,7 @@ namespace Wyvern
 
 		for (ComponentPool* pool : s_ComponentPools)
 		{
-			if (pool->ComponentID = component)
+			if (pool->ComponentID == component)
 			{
 				for (int i = 0; i < ent->m_ComponentPtrs.size(); i++)
 				{

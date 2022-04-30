@@ -46,7 +46,7 @@ namespace Wyvern::Renderer
 		glViewport(0, 0, lWidth, lHeight);
 	}
 
-	void CameraRenderer::SetShaderMatrices(Ref<Shader> shader, const Matrix4x4& position)
+	void CameraRenderer::SetShaderMatrices(Ref<Shader> shader, Matrix4x4& position)
 	{
 		RecalculateProjection();
 

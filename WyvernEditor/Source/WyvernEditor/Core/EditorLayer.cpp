@@ -47,6 +47,7 @@ namespace Wyvern::Editor
 	{
         Scene::OnRuntimeUpdate();
         Scene::OnEditorUpdate(m_EditorCamera, m_EditorCamera->transform->GetTransform());
+        Scene::FlushScene();
 	}
 
 	void EditorLayer::OnUIRender()

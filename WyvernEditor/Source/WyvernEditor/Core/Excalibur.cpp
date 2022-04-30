@@ -16,7 +16,6 @@ public:
 			"../assets/shader/fontshader.frag", nullptr, "FontShader");
 
 		AssetManager::LoadMaterial("StandardShader", "StandardMaterial");
-		AssetManager::LoadMaterial("FontShader", "StandardFontMaterial")->sortValue = 100;
 
 		PushLayer(new EditorLayer());
 	}

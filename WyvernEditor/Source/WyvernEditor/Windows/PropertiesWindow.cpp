@@ -59,10 +59,11 @@ namespace Wyvern::Editor
 		ImGui::PopItemWidth();
 		ImGui::Separator();
 
+		EditorGUIInternal::DrawComponent("Transform", m_SelectedContext->GetTransform(), m_SelectedContext, true);
+
 		for (Component* component : m_SelectedContext->GetAllComponents())
 		{
-			if (component != m_SelectedContext->GetTag())
-				EditorGUIInternal::DrawComponent(typeid(*component).name(), component, m_SelectedContext);
+			EditorGUIInternal::DrawComponent(typeid(*component).name(), component, m_SelectedContext);
 		}
 	}
 }

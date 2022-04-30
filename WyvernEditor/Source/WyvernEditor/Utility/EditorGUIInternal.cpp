@@ -6,7 +6,7 @@
 
 namespace Wyvern::Editor
 {
-    void EditorGUIInternal::DrawComponent(const std::string label, Component* component, Entity* entity)
+    void EditorGUIInternal::DrawComponent(const std::string label, Component* component, Entity* entity, bool isDefault)
     {
 		if (component)
 		{
@@ -28,14 +28,18 @@ namespace Wyvern::Editor
 			bool open = ImGui::TreeNodeEx((void*)typeid(*component).hash_code(), treeNodeFlags, label.substr(pos + 1).c_str());
 
 			ImGui::PopStyleVar();
+
 			ImGui::SameLine(contentRegionAvailable.x - lineHeight * 0.5f);
 			if (ImGui::Button("-", ImVec2{ lineHeight, lineHeight }))
 				ImGui::OpenPopup("ComponentSettings");
 
 			if (ImGui::BeginPopup("ComponentSettings"))
 			{
-				if (ImGui::MenuItem("Remove"))
-					entity->RemoveComponent(component);
+				if (!isDefault)
+				{
+					if (ImGui::MenuItem("Remove"))
+						entity->RemoveComponent(component);
+				}
 
 				ImGui::EndPopup();
 			}

@@ -31,7 +31,7 @@ namespace Wyvern
 		m_FixedLoop = Time::now();
 
 		Renderer2D::OnAwake();
-		Scene::CreateWizard<Physics2DWizard>();
+		Scene::CreateWizard<Physics2DWizard>(); // Remove and automate later with settings window
 
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);
