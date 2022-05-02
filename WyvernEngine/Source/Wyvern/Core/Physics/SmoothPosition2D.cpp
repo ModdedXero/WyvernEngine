@@ -2,6 +2,8 @@
 #include "SmoothPosition2D.h"
 
 #include <Wyvern/Core/Components/RigidBody2D.h>
+#include <Wyvern/Core/Components/Transform.h>
+#include <Wyvern/Core/Scene/Entity.h>
 
 namespace Wyvern
 {
@@ -9,8 +11,8 @@ namespace Wyvern
 	{
 		for (Ref<Collision2D> collision : collisions)
 		{
-			RigidBody2D* rbA = collision->entityA->GetComponent<RigidBody2D>();
-			RigidBody2D* rbB = collision->entityB->GetComponent<RigidBody2D>();
+			RigidBody2D* rbA = Scene::GetComponent<RigidBody2D>(collision->entityA);
+			RigidBody2D* rbB = Scene::GetComponent<RigidBody2D>(collision->entityB);
 
 			float aMass = rbA->GetInvMass();
 			float bMass = rbB->GetInvMass();

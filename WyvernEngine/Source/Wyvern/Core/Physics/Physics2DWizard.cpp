@@ -36,20 +36,20 @@ namespace Wyvern
 		for (Entity* ent : EntityList<RigidBody2D>())
 		{
 			for (PhysicsSolver2D* solver : m_PhysicsSolvers)
-				solver->Solve(ent->GetComponent<RigidBody2D>(), ent->GetTransform());
+				solver->Solve(Scene::GetComponent<RigidBody2D>(ent), ent->GetTransform());
 		}
 
 		std::vector<Ref<Collision2D>> collisions;
 
 		for (Entity* ent1 : EntityList<BoxCollider2D>())
 		{
-			BoxCollider2D* col1 = ent1->GetComponent<BoxCollider2D>();
-			RigidBody2D* rb1 = ent1->GetComponent<RigidBody2D>();
+			BoxCollider2D* col1 = Scene::GetComponent<BoxCollider2D>(ent1);
+			RigidBody2D* rb1 = Scene::GetComponent<RigidBody2D>(ent1);
 
 			for (Entity* ent2 : EntityList<BoxCollider2D>())
 			{
-				BoxCollider2D* col2 = ent2->GetComponent<BoxCollider2D>();
-				RigidBody2D* rb2 = ent2->GetComponent<RigidBody2D>();
+				BoxCollider2D* col2 = Scene::GetComponent<BoxCollider2D>(ent2);
+				RigidBody2D* rb2 = Scene::GetComponent<RigidBody2D>(ent2);
 
 				if (col1 == col2) continue;
 
@@ -72,17 +72,17 @@ namespace Wyvern
 
 		for (Entity* ent1 : EntityList<BoxCollider2D>())
 		{
-			BoxCollider2D* col1 = ent1->GetComponent<BoxCollider2D>();
+			BoxCollider2D* col1 = Scene::GetComponent<BoxCollider2D>(ent1);
 
 			for (Entity* ent2 : EntityList<SphereCollider2D>())
 			{
-				SphereCollider2D* col2 = ent2->GetComponent<SphereCollider2D>();
+				SphereCollider2D* col2 = Scene::GetComponent<SphereCollider2D>(ent2);
 
 				if (CheckCollision(col1, ent1->GetTransform(), col2, ent2->GetTransform()))
 				{
 					if (Scene::IsEntityValid(ent1->GetID()) && Scene::IsEntityValid(ent2->GetID()) &&
-						ent1->GetComponent<RigidBody2D>()->bodyType != RigidBody2D::PhysicsBody::Kinematic &&
-						ent2->GetComponent<RigidBody2D>()->bodyType != RigidBody2D::PhysicsBody::Kinematic)
+						Scene::GetComponent<RigidBody2D>(ent1)->bodyType != RigidBody2D::PhysicsBody::Kinematic &&
+						Scene::GetComponent<RigidBody2D>(ent2)->bodyType != RigidBody2D::PhysicsBody::Kinematic)
 					{
 						// Box vs Sphere
 						Ref<Collision2D> collision = GetCollisionData(ent1, col1, ent2, col2);

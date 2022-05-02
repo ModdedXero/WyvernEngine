@@ -2,8 +2,6 @@
 #include "Transform.h"
 
 #include <Wyvern/Core/Scene/Entity.h>
-#include <Wyvern/Core/Scene/Scene.h>
-#include <Wyvern/Core/Scene/SerializeHelper.h>
 
 namespace Wyvern
 {
@@ -57,26 +55,5 @@ namespace Wyvern
 		}
 
 		return GetTransform();
-	}
-
-	void Transform::Serialize(YAML::Emitter& out)
-	{
-		out << YAML::Key << "Transform";
-		out << YAML::BeginMap;
-
-		out << YAML::Key << "position" << YAML::Value << position;
-		out << YAML::Key << "rotation" << YAML::Value << rotation;
-		out << YAML::Key << "scale" << YAML::Value << scale;
-
-		out << YAML::EndMap;
-	}
-
-	void Transform::Deserialize(Entity* ent, YAML::Node& data)
-	{
-		Transform* transform = ent->GetTransform();
-
-		transform->position = data["position"].as<Vector3>();
-		transform->rotation = data["rotation"].as<Vector3>();
-		transform->scale = data["scale"].as<Vector3>();
 	}
 }

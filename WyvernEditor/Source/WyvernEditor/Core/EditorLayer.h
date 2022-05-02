@@ -41,8 +41,6 @@ namespace Wyvern::Editor
 
 	struct TestNativeComponent : public NativeScriptComponent
 	{
-		MCLASS(TestNativeComponent);
-
 		void OnUpdate() override;
 
 		int awesomeLevel = 1;

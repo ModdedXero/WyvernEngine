@@ -1,6 +1,7 @@
 #pragma once
 
-#include "Entity.h"
+#include "Scene.h"
+#include "SerializeHelper.h"
 
 #include <Wyvern/Core/ApplicationDomain.h>
 
@@ -9,6 +10,24 @@
 
 namespace Wyvern
 {
+	class Entity;
+
+	struct SerializeInfo
+	{
+		YAML::Emitter out;
+		YAML::Node in;
+		
+		SerializeInfo(bool isSerialize)
+		{
+			m_IsSerialize = isSerialize;
+		}
+
+		bool IsSerialize() { return m_IsSerialize; }
+
+	private:
+		bool m_IsSerialize;
+	};
+
 	class SceneSerializer
 	{
 	public:
@@ -18,11 +37,19 @@ namespace Wyvern
 		static bool Deserialize(const std::string& filepath);
 		static bool DeserizlizeRuntime(const std::string& filepath);
 	private:
-		static void SerializeEntity(YAML::Emitter& out, Entity* ent);
+		static void SerializeEntity(SerializeInfo& info, Entity* ent);
 	};
 
-#define MCLASS(CLASS)	static std::shared_ptr<Component> RegisterComponent() { return std::make_shared<CLASS>(); }\
-						static inline bool IsRegistered = ApplicationDomain::RegisterComponent(#CLASS, RegisterComponent)
-#define MPROPERTY()
-#define MFUNCTION()
+#define WV_SERIALIZE_COMPONENT(CLASS_NAME)			static inline Component* __RegisterComponent(unsigned long long ent) { return Scene::AddComponent<CLASS_NAME>(ent); }\
+													static inline bool __IsRegistered = ApplicationDomain::RegisterComponent(#CLASS_NAME, __RegisterComponent);\
+													virtual void __Serialize(SerializeInfo& info) override\
+													{\
+														info.out << YAML::Key << #CLASS_NAME;\
+														info.out << YAML::BeginMap;
+
+#define WV_SERIALIZE_VARIABLE(VAR_TYPE, VAR_NAME)		if (info.IsSerialize()) info.out << YAML::Key << #VAR_NAME << YAML::Value << VAR_NAME;\
+														else VAR_NAME = info.in[#VAR_NAME].as<VAR_TYPE>();
+
+#define WV_SERIALIZE_COMPONENT_END						info.out << YAML::EndMap;\
+													}
 }

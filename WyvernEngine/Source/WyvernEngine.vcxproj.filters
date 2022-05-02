@@ -274,12 +274,6 @@
     <ClCompile Include="Wyvern\Core\AssetManager.cpp">
       <Filter>Wyvern\Core</Filter>
     </ClCompile>
-    <ClCompile Include="Wyvern\Core\Components\SpriteRenderer.cpp">
-      <Filter>Wyvern\Core\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Wyvern\Core\Components\Tag.cpp">
-      <Filter>Wyvern\Core\Components</Filter>
-    </ClCompile>
     <ClCompile Include="Wyvern\Core\Components\Transform.cpp">
       <Filter>Wyvern\Core\Components</Filter>
     </ClCompile>

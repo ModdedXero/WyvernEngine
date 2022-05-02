@@ -2,29 +2,34 @@
 #include "SceneSerializer.h"
 
 #include "Scene.h"
+#include "Entity.h"
+#include "Component.h"
+
+#include <Wyvern/Core/Components/Tag.h>
+#include <Wyvern/Core/Components/Transform.h>
 
 namespace Wyvern
 {
 	void SceneSerializer::Serialize(const std::string& filepath)
 	{
-		YAML::Emitter out;
-		out << YAML::BeginMap;
-		out << YAML::Key << "Scene" << YAML::Value << "Scene name here";
-		out << YAML::Key << "Entities" << YAML::Value << YAML::BeginSeq;
+		SerializeInfo info(true);
+		info.out << YAML::BeginMap;
+		info.out << YAML::Key << "Scene" << YAML::Value << "Scene name here";
+		info.out << YAML::Key << "Entities" << YAML::Value << YAML::BeginSeq;
 
 		for (Entity* ent : Scene::s_Entities)
 		{
 			if (!Scene::IsEntityValid(ent))
 				continue;
 
-			SerializeEntity(out, ent);
+			SerializeEntity(info, ent);
 		}
 
-		out << YAML::EndSeq;
-		out << YAML::EndMap;
+		info.out << YAML::EndSeq;
+		info.out << YAML::EndMap;
 
 		std::ofstream fout(filepath);
-		fout << out.c_str();
+		fout << info.out.c_str();
 	}
 
 	void SceneSerializer::SerializeRuntime(const std::string& filepath)
@@ -38,14 +43,15 @@ namespace Wyvern
 		std::stringstream strStream;
 		strStream << stream.rdbuf();
 
-		YAML::Node data = YAML::Load(strStream.str());
-		if (!data["Scene"])
+		SerializeInfo info(false);
+		info.in = YAML::Load(strStream.str());
+		if (!info.in["Scene"])
 			return false;
 
-		std::string sceneName = data["Scene"].as<std::string>();
+		std::string sceneName = info.in["Scene"].as<std::string>();
 		DEBUG_CORE("Deserilizing scene ", sceneName);
 
-		auto entities = data["Entities"];
+		auto entities = info.in["Entities"];
 		if (entities)
 		{
 			for (auto ent : entities)
@@ -56,8 +62,10 @@ namespace Wyvern
 				{
 					for (auto comp : components)
 					{
-						auto compBase = ApplicationDomain::CreateComponent(comp.first.as<std::string>());
-						compBase->Deserialize(entity, comp.second);
+						SerializeInfo compInfo(false);
+						compInfo.in = comp.second;
+						auto compBase = ApplicationDomain::CreateComponent(comp.first.as<std::string>(), entity->GetID());
+						compBase->__Serialize(compInfo);
 					}
 				}
 			}
@@ -70,17 +78,21 @@ namespace Wyvern
 		return false;
 	}
 
-	void SceneSerializer::SerializeEntity(YAML::Emitter& out, Entity* ent)
+	void SceneSerializer::SerializeEntity(SerializeInfo& info, Entity* ent)
 	{
-		out << YAML::BeginMap;
-		out << YAML::Key << "Entity";
-		out << YAML::Value << "707034759034570"; // TODO: Add UUID of Entity
+		info.out << YAML::BeginMap;
+		info.out << YAML::Key << "Entity";
+		info.out << YAML::Value << "707034759034570"; // TODO: Add UUID of Entity
 
-		out << YAML::Key << "Components" << YAML::Value << YAML::BeginMap;
+		info.out << YAML::Key << "Components" << YAML::Value << YAML::BeginMap;
+
+		ent->GetTag()->__Serialize(info);
+		ent->GetTransform()->__Serialize(info);
 		for (Component* comp : ent->m_ComponentPtrs)
-			comp->Serialize(out);
-		out << YAML::EndMap;
+			comp->__Serialize(info);
 
-		out << YAML::EndMap;
+		info.out << YAML::EndMap;
+
+		info.out << YAML::EndMap;
 	}
 }

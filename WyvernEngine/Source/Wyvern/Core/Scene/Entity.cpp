@@ -1,6 +1,8 @@
 #include "wvpch.h"
 #include "Entity.h"
 
+#include "Scene.h"
+
 namespace Wyvern
 {
     void Entity::DestroyEntity()

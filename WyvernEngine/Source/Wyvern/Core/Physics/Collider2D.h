@@ -2,7 +2,6 @@
 
 #include <Wyvern/Core/Math/Vector.h>
 #include <Wyvern/Core/Scene/Component.h>
-#include <Wyvern/Core/Scene/Entity.h>
 
 namespace Wyvern
 {

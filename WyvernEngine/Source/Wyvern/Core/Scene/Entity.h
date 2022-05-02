@@ -1,19 +1,18 @@
 #pragma once
 
-#include <Wyvern/Core/Base.h>
-
 #include "EntityConstants.h"
-#include "Scene.h"
 
+#include <Wyvern/Core/Base.h>
 #include <Wyvern/Core/Timestep.h>
 #include <Wyvern/Events/Event.h>
-#include <Wyvern/Core/Components/Components.h>
 
 #include <bitset>
 
 namespace Wyvern
 {
-	class Scene;
+	struct Tag;
+	struct Transform;
+	struct Component;
 	struct Collision2D;
 
 	class Entity
@@ -23,7 +22,7 @@ namespace Wyvern
 		friend class EntityWizard;
 	protected:
 		Entity()
-			: m_ID(0), m_Tag(nullptr), m_Transform(nullptr), m_Parent(nullptr), m_EditorOnly(false)
+			: m_ID(0), m_Tag(nullptr), m_Transform(nullptr), m_Parent(nullptr)
 		{}
 	public:
 		EntityID GetID() { return m_ID; }
@@ -32,20 +31,19 @@ namespace Wyvern
 		Transform* GetTransform() { return m_Transform; }
 		Tag* GetTag() { return m_Tag; }
 
-		bool GetEditorOnly() { return m_EditorOnly; }
+		//template <typename T>
+		//inline T* AddComponent() { return Scene::AddComponent<T>(this); }
 
-		template <typename T>
-		inline T* AddComponent() { return Scene::AddComponent<T>(this); }
+		//template <typename T>
+		//inline T* GetComponent() { return Scene::GetComponent<T>(this); }
+		//template <typename T>
+		//inline std::vector<T*> GetComponentsOfBase() { return Scene::GetComponentsOfBase<T>(this); }
 
-		template <typename T>
-		inline T* GetComponent() { return Scene::GetComponent<T>(this); }
-		template <typename T>
-		inline std::vector<T*> GetComponentsOfBase() { return Scene::GetComponentsOfBase<T>(this); }
+		//template <typename T>
+		//inline void RemoveComponent() { Scene::RemoveComponent<T>(this); }
+		//inline void RemoveComponent(int component) { Scene::RemoveComponent(this, component); }
+
 		std::vector<Component*> GetAllComponents() { return m_ComponentPtrs; }
-
-		template <typename T>
-		inline void RemoveComponent() { Scene::RemoveComponent<T>(this); }
-		void RemoveComponent(Component* component) { Scene::RemoveComponent(this, component); }
 
 		void DestroyEntity();
 
@@ -59,7 +57,6 @@ namespace Wyvern
 	protected:
 		EntityID m_ID;
 		ComponentMask m_Components;
-		bool m_EditorOnly;
 
 		Transform* m_Transform;
 		Tag* m_Tag;

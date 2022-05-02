@@ -5,6 +5,7 @@
 
 #include <Wyvern/Renderer/Renderer2D.h>
 #include <Wyvern/Core/Physics/Physics2DWizard.h>
+#include <Wyvern/Core/Scene/Scene.h>
 
 #include <iostream>
 #include <chrono>

@@ -21,7 +21,6 @@ namespace Wyvern::Editor
 
 		for (Entity* ent : EntityList<>())
 		{
-			if (ent->GetEditorOnly()) continue;
 			DrawEntityNode(ent);
 		}
 

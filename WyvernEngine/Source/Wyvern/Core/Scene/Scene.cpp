@@ -5,6 +5,8 @@
 #include "EntityList.h"
 
 #include <Wyvern/Core/Components/Camera.h>
+#include <Wyvern/Core/Components/Tag.h>
+#include <Wyvern/Core/Components/Transform.h>
 #include <Wyvern/Core/Components/SpriteRenderer.h>
 #include <Wyvern/Renderer/Renderer2D.h>
 
@@ -41,7 +43,7 @@ namespace Wyvern
 
 		for (Entity* ent : EntityList<NativeScriptComponent>(true))
 		{
-			for (NativeScriptComponent* nsc : ent->GetComponentsOfBase<NativeScriptComponent>())
+			for (NativeScriptComponent* nsc : GetComponentsOfBase<NativeScriptComponent>(ent))
 			{
 				nsc->OnUpdate();
 			}
@@ -61,9 +63,9 @@ namespace Wyvern
 
 		for (Entity* ent : EntityList<Camera>())
 		{
-			if (Renderer::CameraRenderer::GetActive() == ent->GetComponent<Camera>()->GetRenderer())
+			if (Renderer::CameraRenderer::GetActive() == Scene::GetComponent<Camera>(ent)->GetRenderer())
 			{
-				mainCamera = ent->GetComponent<Camera>();
+				mainCamera = Scene::GetComponent<Camera>(ent);
 				cameraTransform = ent->GetTransform();
 			}
 		}
@@ -74,7 +76,7 @@ namespace Wyvern
 
 			for (Entity* ent : EntityList<SpriteRenderer>())
 			{
-				SpriteRenderer* sRend = ent->GetComponent<SpriteRenderer>();
+				SpriteRenderer* sRend = Scene::GetComponent<SpriteRenderer>(ent);
 
 				Renderer::Renderer2D::DrawQuad(ent->GetTransform(), sRend->material, sRend->sprite, sRend->color);
 			}
@@ -91,7 +93,7 @@ namespace Wyvern
 
 		for (Entity* ent : EntityList<SpriteRenderer>())
 		{
-			SpriteRenderer* sRend = ent->GetComponent<SpriteRenderer>();
+			SpriteRenderer* sRend = Scene::GetComponent<SpriteRenderer>(ent);
 
 			Renderer::Renderer2D::DrawQuad(ent->GetTransform(), sRend->material, sRend->sprite, sRend->color);
 		}
@@ -160,14 +162,23 @@ namespace Wyvern
 		return IsEntityValid(ent->m_ID);
 	}
 
-	void Scene::RemoveComponent(Entity* ent, Component* component)
+	void Scene::RemoveComponent(Entity* ent, int component)
 	{
-		s_ComponentsToDelete[ent] = component->m_ComponentID;
+		s_ComponentsToDelete[ent] = component;
 	}
 
 	EntityID Scene::CreateEntityID(EntityIndex index, EntityVersion version)
 	{
 		return ((EntityID)index << 32) | ((EntityID)version);
+	}
+
+	void Scene::CreateEntityDefaults(EntityID id, std::string name)
+	{
+		s_Entities[GetEntityIndex(id)]->m_Components.reset();
+		s_Entities[GetEntityIndex(id)]->m_Transform = AddComponent<Transform>(s_Entities[GetEntityIndex(id)]);
+		s_Entities[GetEntityIndex(id)]->m_Tag = AddComponent<Tag>(s_Entities[GetEntityIndex(id)]);
+		s_Entities[GetEntityIndex(id)]->m_Tag->name = name;
+		s_Entities[GetEntityIndex(id)]->OnAttach();
 	}
 
 	void Scene::PurgeEntity(Entity* ent)

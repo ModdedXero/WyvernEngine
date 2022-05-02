@@ -14,11 +14,11 @@ namespace Wyvern
         return false;
     }
 
-    std::shared_ptr<Component> ApplicationDomain::CreateComponent(std::string name)
+    Component* ApplicationDomain::CreateComponent(std::string name, unsigned long long ent)
     {
         if (auto it = s_Components.find(name); it != s_Components.end())
         {
-            return it->second();
+            return it->second(ent);
         }
 
         return nullptr;

@@ -3,9 +3,32 @@
 #include <Wyvern/Core/Math/Math.h>
 
 #include <yaml-cpp/yaml.h>
+#include <string>
 
 namespace YAML
 {
+	template<>
+	struct convert<Wyvern::Vector2>
+	{
+		static YAML::Node encode(const Wyvern::Vector2& rhs)
+		{
+			YAML::Node node;
+			node.push_back(rhs.x);
+			node.push_back(rhs.y);
+			return node;
+		}
+
+		static bool decode(const YAML::Node& node, Wyvern::Vector2& rhs)
+		{
+			if (!node.IsSequence() || node.size() != 2)
+				return false;
+
+			rhs.x = node[0].as<float>();
+			rhs.y = node[1].as<float>();
+			return true;
+		}
+	};
+
 	template<>
 	struct convert<Wyvern::Vector3>
 	{

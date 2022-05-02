@@ -3,10 +3,11 @@
 #include "EntityConstants.h"
 #include "ComponentPool.h"
 #include "WizardStack.h"
+#include "Entity.h"
 
 #include <Wyvern/Events/Event.h>
-#include <Wyvern/Core/Components/Components.h>
 #include <Wyvern/Core/Debug.h>
+#include <Wyvern/Renderer/CameraRenderer.h>
 
 #include <vector>
 #include <typeinfo>
@@ -15,7 +16,10 @@
 
 namespace Wyvern
 {
-	class Entiy;
+	class Entity;
+	struct Transform;
+	struct Tag;
+	struct Component;
 
 	enum class SceneState
 	{
@@ -53,12 +57,14 @@ namespace Wyvern
 		template <typename T>
 		static T* AddComponent(Entity* ent);
 		template <typename T>
+		static T* AddComponent(EntityID entityID);
+		template <typename T>
 		static T* GetComponent(Entity* ent);
 		template <typename T>
 		static std::vector<T*> GetComponentsOfBase(Entity* ent);
 		template <typename T>
 		static void RemoveComponent(Entity* ent);
-		static void RemoveComponent(Entity* ent, Component* component);
+		static void RemoveComponent(Entity* ent, int component);
 
 		template <typename T>
 		static int GetComponentID();
@@ -87,6 +93,7 @@ namespace Wyvern
 		static inline int s_ComponentCounter;
 
 		static EntityID CreateEntityID(EntityIndex index, EntityVersion version);
+		static void CreateEntityDefaults(EntityID id, std::string name = "Entity");
 
 		static void PurgeEntity(Entity* ent);
 		static void PurgeComponent(Entity* ent, int component);
@@ -117,13 +124,8 @@ namespace Wyvern
 			s_FreeEntities.pop_back();
 			EntityID id = CreateEntityID(index, GetEntityVersion(s_Entities[index]->m_ID));
 			s_Entities[index]->m_ID = id;
-			s_Entities[index]->m_Components.reset();
-			Transform* ts = AddComponent<Transform>(s_Entities[index]);
-			Tag* tag = AddComponent<Tag>(s_Entities[index]);
-			tag->name = name;
-			s_Entities[index]->m_Transform = ts;
-			s_Entities[index]->m_Tag = tag;
-			s_Entities[index]->OnAttach();
+			CreateEntityDefaults(id, name);
+
 			return (T*)s_Entities[index];
 		}
 
@@ -132,14 +134,7 @@ namespace Wyvern
 		entity->m_Components = ComponentMask();
 
 		s_Entities.push_back(entity);
-		s_Entities.back()->m_Components.reset();
-
-		Transform* ts = AddComponent<Transform>(s_Entities.back());
-		Tag* tag = AddComponent<Tag>(s_Entities.back());
-		tag->name = name;
-		s_Entities.back()->m_Transform = ts;
-		s_Entities.back()->m_Tag = tag;
-		s_Entities.back()->OnAttach();
+		CreateEntityDefaults(s_Entities.back()->m_ID, name);
 
 		return (T*)s_Entities.back();
 	}
@@ -147,7 +142,13 @@ namespace Wyvern
 	template <typename T>
 	inline T* Scene::AddComponent(Entity* ent)
 	{
-		if (!IsEntityValid(ent)) return nullptr;
+		return AddComponent<T>(ent->m_ID);
+	}
+
+	template<typename T>
+	inline T* Scene::AddComponent(EntityID entityID)
+	{
+		if (!IsEntityValid(entityID)) return nullptr;
 
 		if (!std::is_base_of<Component, T>())
 		{
@@ -158,10 +159,10 @@ namespace Wyvern
 
 		int componentID = GetComponentID<T>();
 
-		if (ent->m_Components.test(componentID))
+		if (s_Entities[GetEntityIndex(entityID)]->m_Components.test(componentID))
 		{
 			DEBUG_CORE_ERROR("Scene: Component ", typeid(T).name(), " already exists on this entity");
-			return GetComponent<T>(ent);
+			return GetComponent<T>(s_Entities[GetEntityIndex(entityID)]);
 		}
 
 		if (s_ComponentPools.size() <= componentID)
@@ -174,17 +175,17 @@ namespace Wyvern
 			s_ComponentPools[componentID] = new ComponentPool(sizeof(T), typeid(T).name(), typeid(T::base).name(), componentID);
 		}
 
-		T* component = new (s_ComponentPools[componentID]->Get(GetEntityIndex(ent->m_ID))) T();
-		component->m_Entity = ent;
-		component->m_Transform = ent->m_Transform;
-		component->m_Tag = ent->m_Tag;
+		T* component = new (s_ComponentPools[componentID]->Get(GetEntityIndex(entityID))) T();
+		component->m_Entity = s_Entities[GetEntityIndex(entityID)];
+		component->m_Transform = s_Entities[GetEntityIndex(entityID)]->m_Transform;
+		component->m_Tag = s_Entities[GetEntityIndex(entityID)]->m_Tag;
 		component->m_ComponentID = componentID;
 
-		ent->m_Components.set(componentID);
+		s_Entities[GetEntityIndex(entityID)]->m_Components.set(componentID);
 
 		// Do not add default components of Tag and Transform to ent component list
 		if (!std::is_same<T, Tag>().value && !std::is_same<T, Transform>().value)
-			ent->m_ComponentPtrs.push_back(component);
+			s_Entities[GetEntityIndex(entityID)]->m_ComponentPtrs.push_back(component);
 
 		return component;
 	}

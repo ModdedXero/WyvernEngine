@@ -1,22 +1,22 @@
 #pragma once
 
-#include <Wyvern/Core/Scene/Component.h>
-
 #include <map>
 #include <memory>
 
 namespace Wyvern
 {
+	struct Component;
+
 	class ApplicationDomain
 	{
 	public:
-		using CreateComponentFn = std::shared_ptr<Component>(*)();
+		using CreateComponentFn = Component*(*)(unsigned long long ent);
 
 	public:
 		ApplicationDomain() = delete;
 
 		static bool RegisterComponent(std::string name, CreateComponentFn func);
-		static std::shared_ptr<Component> CreateComponent(std::string name);
+		static Component* CreateComponent(std::string name, unsigned long long ent);
 
 		static std::map<std::string, CreateComponentFn> GetComponents() { return s_Components; }
 

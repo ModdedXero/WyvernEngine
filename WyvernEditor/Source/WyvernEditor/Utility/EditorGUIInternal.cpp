@@ -38,7 +38,7 @@ namespace Wyvern::Editor
 				if (!isDefault)
 				{
 					if (ImGui::MenuItem("Remove"))
-						entity->RemoveComponent(component);
+						Scene::RemoveComponent(entity, component->GetID());
 				}
 
 				ImGui::EndPopup();

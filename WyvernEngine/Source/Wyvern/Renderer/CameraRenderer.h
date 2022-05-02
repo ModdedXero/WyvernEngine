@@ -1,8 +1,7 @@
 #pragma once
 
-#include <Wyvern/Core/Components/Transform.h>
-
 #include <Wyvern/Core/Graphics/Shader.h>
+#include <Wyvern/Core/Math/Math.h>
 
 #include <glm/glm.hpp>
 

@@ -2,6 +2,7 @@
 #include "UIWizard.h"
 
 #include <Wyvern/Core/Components/Button.h>
+#include <Wyvern/Core/Components/Transform.h>
 #include <Wyvern/Renderer/CameraRenderer.h>
 #include <Wyvern/Core/Input.h>
 #include <Wyvern/Core/Scene/Entity.h>
@@ -25,7 +26,7 @@ namespace Wyvern::UI
 	{
 		for (Entity* ent : EntityList<Button>())
 		{
-			Button* button = ent->GetComponent<Button>();
+			Button* button = Scene::GetComponent<Button>(ent);
 			Vector2 mousePos = Vector2(e.GetXPos(), e.GetYPos());
 			Vector2 buttonScale = ent->GetTransform()->scale;
 			Vector2 buttonPos = ent->GetTransform()->position;
@@ -62,7 +63,7 @@ namespace Wyvern::UI
 	{
 		for (Entity* ent : EntityList<Button>())
 		{
-			Button* button = ent->GetComponent<Button>();
+			Button* button = Scene::GetComponent<Button>(ent);
 
 			if (e.GetKey() == MouseCode::MOUSE_BUTTON_LEFT)
 			{

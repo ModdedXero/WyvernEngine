@@ -1,7 +1,6 @@
 #pragma once
 
 #include <Wyvern/Core/Scene/Component.h>
-#include <Wyvern/Core/ApplicationDomain.h>
 
 #include <string>
 
@@ -14,10 +13,8 @@ namespace Wyvern
 
 		std::string name;
 
-		virtual void Serialize(YAML::Emitter& out) override;
-		virtual void Deserialize(Entity* ent, YAML::Node& data) override;
-
-		static std::shared_ptr<Component> RegisterComponent() { return std::make_shared<Tag>(); }
-		static inline bool IsRegistered = ApplicationDomain::RegisterComponent("Tag", RegisterComponent);
+		WV_SERIALIZE_COMPONENT(Tag)
+		WV_SERIALIZE_VARIABLE(std::string, name)
+		WV_SERIALIZE_COMPONENT_END
 	};
 }
