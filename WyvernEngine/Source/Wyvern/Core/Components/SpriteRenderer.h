@@ -18,8 +18,6 @@ namespace Wyvern
 		Vector4 color = { 1.0f,1.0f,1.0f,1.0f };
 		uint32_t zIndex = 0; // Not implemented yet
 
-		virtual void DrawEditor() override;
-
 		WV_SERIALIZE_COMPONENT(SpriteRenderer)
 		WV_SERIALIZE_VARIABLE(Vector4, color)
 		WV_SERIALIZE_COMPONENT_END

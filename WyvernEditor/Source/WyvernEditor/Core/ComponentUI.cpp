@@ -2,17 +2,31 @@
 
 #include <WyvernEditor/Utility/EditorGUI.h>
 
+using namespace Wyvern::Editor;
+
 namespace Wyvern
 {
+	void Tag::DrawEditor()
+	{
+
+	}
+
 	void Transform::DrawEditor()
 	{
-		Editor::EditorGUI::Vector3Control("Position", this->position);
-		Editor::EditorGUI::Vector3Control("Rotation", this->rotation);
-		Editor::EditorGUI::Vector3Control("Scale", this->scale, 1.0f);
+		EditorGUI::Vector3Control("Position", this->position);
+		EditorGUI::Vector3Control("Rotation", this->rotation);
+		EditorGUI::Vector3Control("Scale", this->scale, 1.0f);
 	}
 
 	void SpriteRenderer::DrawEditor()
 	{
-		Editor::EditorGUI::Color4Control("Color", this->color);
+		EditorGUI::Color4Control("Color", this->color);
+	}
+
+	void RigidBody2D::DrawEditor()
+	{
+		EditorGUI::FloatControl("Mass", this->mass);
+		EditorGUI::FloatControl("Drag", this->drag);
+		EditorGUI::FloatControl("Bounce", this->bounce);
 	}
 }

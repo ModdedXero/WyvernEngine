@@ -42,6 +42,7 @@ namespace Wyvern
 
 #define WV_SERIALIZE_COMPONENT(CLASS_NAME)			static inline Component* __RegisterComponent(unsigned long long ent) { return Scene::AddComponent<CLASS_NAME>(ent); }\
 													static inline bool __IsRegistered = ApplicationDomain::RegisterComponent(#CLASS_NAME, __RegisterComponent);\
+													virtual void DrawEditor() override;\
 													virtual void __Serialize(SerializeInfo& info) override\
 													{\
 														info.out << YAML::Key << #CLASS_NAME;\

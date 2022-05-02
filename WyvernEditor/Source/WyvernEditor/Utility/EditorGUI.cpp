@@ -5,6 +5,10 @@
 
 namespace Wyvern::Editor
 {
+	void EditorGUI::Vector2Control(const std::string& label, Vector2& values, float resetValue, float columnWidth)
+	{
+	}
+
 	void EditorGUI::Vector3Control(const std::string& label, Vector3& values, float resetValue, float columnWidth)
 	{
 		ImGuiIO& io = ImGui::GetIO();
@@ -149,5 +153,10 @@ namespace Wyvern::Editor
 		};
 
 		ImGui::ColorEdit4(label.c_str(), *fValues);
+	}
+
+	void EditorGUI::FloatControl(const std::string& label, float& value, float columnWidth)
+	{
+		ImGui::InputFloat(label.c_str(), &value);
 	}
 }

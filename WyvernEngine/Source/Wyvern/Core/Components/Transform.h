@@ -21,8 +21,6 @@ namespace Wyvern
 		Matrix4x4 GetTransform();
 		Matrix4x4 GetGlobalTransform();
 
-		virtual void DrawEditor() override;
-
 		WV_SERIALIZE_COMPONENT(Transform)
 		WV_SERIALIZE_VARIABLE(Vector3, position)
 		WV_SERIALIZE_VARIABLE(Vector3, rotation)

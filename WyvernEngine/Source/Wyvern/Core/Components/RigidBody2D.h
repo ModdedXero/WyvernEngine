@@ -27,8 +27,6 @@ namespace Wyvern
 		float bounce = 0.2f;
 
 		WV_SERIALIZE_COMPONENT(RigidBody2D)
-		WV_SERIALIZE_VARIABLE(Vector2, velocity)
-		WV_SERIALIZE_VARIABLE(Vector2, force)
 		WV_SERIALIZE_VARIABLE(float, mass)
 		WV_SERIALIZE_VARIABLE(float, drag)
 		WV_SERIALIZE_VARIABLE(float, bounce)
