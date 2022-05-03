@@ -118,6 +118,19 @@ namespace Wyvern::Editor
                 ImGui::EndMenu();
             }
 
+            if (ImGui::BeginMenu("Scene"))
+            {
+                if (ImGui::MenuItem(Scene::GetSceneState() == SceneState::Edit ? "Play" : "Stop"))
+                {
+                    if (Scene::GetSceneState() == SceneState::Edit)
+                        Scene::SetSceneState(SceneState::Play);
+                    else
+                        Scene::SetSceneState(SceneState::Edit);
+                }
+
+                ImGui::EndMenu();
+            }
+
             ImGui::EndMenuBar();
         }
 

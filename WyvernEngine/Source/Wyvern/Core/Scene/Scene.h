@@ -40,6 +40,7 @@ namespace Wyvern
 		static void OnFixedUpdate();
 		static void OnEvent(Events::Event& e);
 
+		static SceneState GetSceneState() { return s_SceneState; }
 		static void SetSceneState(SceneState state);
 
 		static void FlushScene();

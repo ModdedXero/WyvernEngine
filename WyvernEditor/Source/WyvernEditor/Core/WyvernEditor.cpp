@@ -5,10 +5,10 @@
 using namespace Wyvern;
 using namespace Wyvern::Editor;
 
-class ExcaliburApp : public Application
+class WyvernEditor : public Application
 {
 public:
-	ExcaliburApp()
+	WyvernEditor()
 	{
 		AssetManager::LoadShader("../assets/shader/standardshader.vert",
 			"../assets/shader/standardshader.frag", nullptr, "StandardShader");
@@ -20,7 +20,7 @@ public:
 		PushLayer(new EditorLayer());
 	}
 
-	~ExcaliburApp()
+	~WyvernEditor()
 	{
 
 	}
@@ -28,6 +28,6 @@ public:
 
 int main()
 {
-	Scope<ExcaliburApp> app = CreateScope<ExcaliburApp>();
+	Scope<WyvernEditor> app = CreateScope<WyvernEditor>();
 	app->Run();
 }

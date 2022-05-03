@@ -153,7 +153,7 @@
     <ClCompile Include="WyvernEditor\Core\ComponentUI.cpp" />
     <ClCompile Include="WyvernEditor\Core\EditorLayer.cpp" />
     <ClCompile Include="WyvernEditor\Core\EditorWindow.cpp" />
-    <ClCompile Include="WyvernEditor\Core\Excalibur.cpp" />
+    <ClCompile Include="WyvernEditor\Core\WyvernEditor.cpp" />
     <ClCompile Include="WyvernEditor\Core\ViewportCamera.cpp" />
     <ClCompile Include="WyvernEditor\Utility\EditorGUI.cpp" />
     <ClCompile Include="WyvernEditor\Utility\EditorGUIInternal.cpp" />
