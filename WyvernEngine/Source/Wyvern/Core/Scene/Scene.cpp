@@ -12,14 +12,13 @@
 
 namespace Wyvern
 {
-	std::vector<Entity*> s_Entities;
-	std::vector<EntityIndex> s_FreeEntities;
-	std::vector<ComponentPool*> s_ComponentPools;
+	std::vector<Entity*> m_Entities;
+	std::vector<EntityIndex> m_FreeEntities;
+	std::vector<ComponentPool*> m_ComponentPools;
 
 	std::vector<Entity*> s_EntitiesToDelete;
 	std::unordered_map<Entity*, int> s_ComponentsToDelete;
 
-	SceneState Scene::s_SceneState;
 	WizardStack Scene::s_WizardStack;
 
 	void Scene::OnAwake()
@@ -29,7 +28,7 @@ namespace Wyvern
 
 	void Scene::OnDestroy()
 	{
-		for (auto ent : s_Entities)
+		for (auto ent : m_Entities)
 			ent->DestroyEntity();
 
 		FlushScene();
@@ -151,9 +150,9 @@ namespace Wyvern
 		return (EntityVersion)id;
 	}
 
-	bool Scene::IsEntityValid(EntityID id)
+	bool Scene::IsEntityValid(EntityID id, Ref<Scene> scene)
 	{
-		return (id >> 32) != EntityIndex(-1) && s_Entities[GetEntityIndex(id)]->m_ID == id;
+		return (id >> 32) != EntityIndex(-1) && scene->m_Entities[GetEntityIndex(id)]->m_ID == id;
 	}
 
 	bool Scene::IsEntityValid(Entity* ent)
@@ -172,13 +171,13 @@ namespace Wyvern
 		return ((EntityID)index << 32) | ((EntityID)version);
 	}
 
-	void Scene::CreateEntityDefaults(EntityID id, std::string name)
+	void Scene::CreateEntityDefaults(Entity* ent, std::string name)
 	{
-		s_Entities[GetEntityIndex(id)]->m_Components.reset();
-		s_Entities[GetEntityIndex(id)]->m_Transform = AddComponent<Transform>(s_Entities[GetEntityIndex(id)]);
-		s_Entities[GetEntityIndex(id)]->m_Tag = AddComponent<Tag>(s_Entities[GetEntityIndex(id)]);
-		s_Entities[GetEntityIndex(id)]->m_Tag->name = name;
-		s_Entities[GetEntityIndex(id)]->OnAttach();
+		ent->m_Components.reset();
+		ent->m_Transform = AddComponent<Transform>(ent);
+		ent->m_Tag = AddComponent<Tag>(ent);
+		ent->m_Tag->name = name;
+		ent->OnAttach();
 	}
 
 	void Scene::PurgeEntity(Entity* ent)
@@ -188,23 +187,23 @@ namespace Wyvern
 		EntityIndex index = GetEntityIndex(ent->m_ID);
 		EntityID newID = CreateEntityID(EntityIndex(-1), GetEntityVersion(ent->m_ID) + 1);
 
-		s_Entities[index]->m_ID = newID;
-		s_Entities[index]->m_Components.reset();
-		s_Entities[index]->m_Children.clear();
-		s_Entities[index]->m_ComponentPtrs.clear();
+		m_Entities[index]->m_ID = newID;
+		m_Entities[index]->m_Components.reset();
+		m_Entities[index]->m_Children.clear();
+		m_Entities[index]->m_ComponentPtrs.clear();
 
-		if (s_Entities[index]->m_Parent != nullptr)
-			s_Entities[index]->m_Parent->RemoveChildEntity(s_Entities[index]);
-		s_Entities[index]->m_Parent = nullptr;
+		if (m_Entities[index]->m_Parent != nullptr)
+			m_Entities[index]->m_Parent->RemoveChildEntity(m_Entities[index]);
+		m_Entities[index]->m_Parent = nullptr;
 
-		s_FreeEntities.push_back(index);
+		m_FreeEntities.push_back(index);
 	}
 
 	void Scene::PurgeComponent(Entity* ent, int component)
 	{
 		if (!IsEntityValid(ent)) return;
 
-		for (ComponentPool* pool : s_ComponentPools)
+		for (ComponentPool* pool : m_ComponentPools)
 		{
 			if (pool->ComponentID == component)
 			{

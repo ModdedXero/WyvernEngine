@@ -17,7 +17,7 @@ namespace Wyvern
 		info.out << YAML::Key << "Scene" << YAML::Value << "Scene name here";
 		info.out << YAML::Key << "Entities" << YAML::Value << YAML::BeginSeq;
 
-		for (Entity* ent : Scene::s_Entities)
+		for (Entity* ent : Scene::m_Entities)
 		{
 			if (!Scene::IsEntityValid(ent))
 				continue;

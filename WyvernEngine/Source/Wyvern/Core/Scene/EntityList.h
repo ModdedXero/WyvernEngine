@@ -28,7 +28,7 @@ namespace Wyvern
 				}
 			}
 
-			EntitySize = (EntityIndex)Scene::s_Entities.size();
+			EntitySize = (EntityIndex)Scene::m_Entities.size();
 		}
 
 		struct Iterator
@@ -39,7 +39,7 @@ namespace Wyvern
 
 			Entity* operator*() const
 			{
-				return Scene::s_Entities[index];
+				return Scene::m_Entities[index];
 			}
 
 			bool operator==(const Iterator& other) const
@@ -63,8 +63,8 @@ namespace Wyvern
 
 			bool isValidIndex()
 			{
-				return Scene::IsEntityValid(Scene::s_Entities[index]->GetID()) &&
-					(all || components == (components & Scene::s_Entities[index]->GetMask()));
+				return Scene::IsEntityValid(Scene::m_Entities[index]->GetID()) &&
+					(all || components == (components & Scene::m_Entities[index]->GetMask()));
 			}
 
 			size_t entitySize;
@@ -77,8 +77,8 @@ namespace Wyvern
 		{
 			EntityIndex firstIndex = Invalid ? EntitySize : 0;
 			while (firstIndex < EntitySize &&
-				(Components != (Components & Scene::s_Entities[firstIndex]->GetMask())
-					|| !Scene::IsEntityValid(Scene::s_Entities[firstIndex]->GetID())))
+				(Components != (Components & Scene::m_Entities[firstIndex]->GetMask())
+					|| !Scene::IsEntityValid(Scene::m_Entities[firstIndex]->GetID())))
 			{
 				firstIndex++;
 			}
