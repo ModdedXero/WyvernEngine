@@ -4,8 +4,6 @@
 #include "Timestep.h"
 
 #include <Wyvern/Renderer/Renderer2D.h>
-#include <Wyvern/Core/Physics/Physics2DWizard.h>
-#include <Wyvern/Core/Scene/Scene.h>
 
 #include <iostream>
 #include <chrono>
@@ -32,7 +30,6 @@ namespace Wyvern
 		m_FixedLoop = Time::now();
 
 		Renderer2D::OnAwake();
-		Scene::CreateWizard<Physics2DWizard>(); // Remove and automate later with settings window
 
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);

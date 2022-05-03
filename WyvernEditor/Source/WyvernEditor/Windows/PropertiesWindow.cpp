@@ -14,15 +14,15 @@ namespace Wyvern::Editor
 			EditorLayer::SetSelectedContext(nullptr);
 		if (EditorLayer::GetSelectedContext() == nullptr) return;
 
-		if (EditorLayer::GetSelectedContext() != m_SelectedContext)
-			m_SelectedContext = EditorLayer::GetSelectedContext();
+		if (EditorLayer::GetSelectedContext() != s_SelectedContext)
+			s_SelectedContext = EditorLayer::GetSelectedContext();
 
 		DrawComponents();
 	}
 
 	void PropertiesWindow::DrawComponents()
 	{
-		Tag* tag = m_SelectedContext->GetTag();
+		Tag* tag = s_SelectedContext->GetTag();
 
 		char buffer[256];
 		memset(buffer, 0, sizeof(buffer));
@@ -48,8 +48,8 @@ namespace Wyvern::Editor
 
 				if (ImGui::MenuItem(component.first.c_str()))
 				{
-					auto newComp = component.second(m_SelectedContext->GetID());
-					newComp->AddToEntity(m_SelectedContext);
+					auto newComp = component.second(s_SelectedContext->GetID());
+					newComp->AddToEntity(s_SelectedContext);
 					ImGui::CloseCurrentPopup();
 				}
 			}
@@ -60,11 +60,11 @@ namespace Wyvern::Editor
 		ImGui::PopItemWidth();
 		ImGui::Separator();
 
-		EditorGUIInternal::DrawComponent("Transform", m_SelectedContext->GetTransform(), m_SelectedContext, true);
+		EditorGUIInternal::DrawComponent("Transform", s_SelectedContext->GetTransform(), s_SelectedContext, true);
 
-		for (Component* component : m_SelectedContext->GetAllComponents())
+		for (Component* component : s_SelectedContext->GetAllComponents())
 		{
-			EditorGUIInternal::DrawComponent(typeid(*component).name(), component, m_SelectedContext);
+			EditorGUIInternal::DrawComponent(typeid(*component).name(), component, s_SelectedContext);
 		}
 	}
 }

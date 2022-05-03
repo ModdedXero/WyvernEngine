@@ -11,7 +11,7 @@ namespace Wyvern::Editor
 
 		virtual void OnGUI() override;
 	private:
-		Entity* m_SelectedContext;
+		Entity* s_SelectedContext;
 
 		void DrawComponents();
 	};

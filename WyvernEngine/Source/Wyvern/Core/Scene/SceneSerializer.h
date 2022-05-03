@@ -31,16 +31,16 @@ namespace Wyvern
 	class SceneSerializer
 	{
 	public:
-		static void Serialize(const std::string& filepath);
-		static void SerializeRuntime(const std::string& filepath);
+		static void Serialize(Ref<Scene> scene, const std::string& filepath);
+		static void SerializeRuntime(Ref<Scene> scene, const std::string& filepath);
 
-		static bool Deserialize(const std::string& filepath);
-		static bool DeserizlizeRuntime(const std::string& filepath);
+		static bool Deserialize(Ref<Scene> scene, const std::string& filepath);
+		static bool DeserizlizeRuntime(Ref<Scene> scene, const std::string& filepath);
 	private:
 		static void SerializeEntity(SerializeInfo& info, Entity* ent);
 	};
 
-#define WV_SERIALIZE_COMPONENT(CLASS_NAME)			static inline Component* __RegisterComponent(unsigned long long ent) { return Scene::AddComponent<CLASS_NAME>(ent); }\
+#define WV_SERIALIZE_COMPONENT(CLASS_NAME)			static inline Component* __RegisterComponent(unsigned long long ent) { return Scene::AddComponent<CLASS_NAME>(Scene::GetActiveScene(), ent); }\
 													static inline bool __IsRegistered = ApplicationDomain::RegisterComponent(#CLASS_NAME, __RegisterComponent);\
 													virtual void DrawEditor() override;\
 													virtual void __Serialize(SerializeInfo& info) override\

@@ -10,14 +10,14 @@
 
 namespace Wyvern
 {
-	void SceneSerializer::Serialize(const std::string& filepath)
+	void SceneSerializer::Serialize(Ref<Scene> scene, const std::string& filepath)
 	{
 		SerializeInfo info(true);
 		info.out << YAML::BeginMap;
 		info.out << YAML::Key << "Scene" << YAML::Value << "Scene name here";
 		info.out << YAML::Key << "Entities" << YAML::Value << YAML::BeginSeq;
 
-		for (Entity* ent : Scene::m_Entities)
+		for (Entity* ent : scene->m_Entities)
 		{
 			if (!Scene::IsEntityValid(ent))
 				continue;
@@ -32,12 +32,12 @@ namespace Wyvern
 		fout << info.out.c_str();
 	}
 
-	void SceneSerializer::SerializeRuntime(const std::string& filepath)
+	void SceneSerializer::SerializeRuntime(Ref<Scene> scene, const std::string& filepath)
 	{
 
 	}
 
-	bool SceneSerializer::Deserialize(const std::string& filepath)
+	bool SceneSerializer::Deserialize(Ref<Scene> scene, const std::string& filepath)
 	{
 		std::ifstream stream(filepath);
 		std::stringstream strStream;
@@ -56,7 +56,7 @@ namespace Wyvern
 		{
 			for (auto ent : entities)
 			{
-				Entity* entity = Scene::CreateEntity<Entity>();
+				Entity* entity = Scene::CreateEntity<Entity>(scene);
 				auto components = ent["Components"];
 				if (components)
 				{
@@ -72,7 +72,7 @@ namespace Wyvern
 		}
 	}
 
-	bool SceneSerializer::DeserizlizeRuntime(const std::string& filepath)
+	bool SceneSerializer::DeserizlizeRuntime(Ref<Scene> scene, const std::string& filepath)
 	{
 		ML_CORE_ASSERT(false, "Not Implemented!");
 		return false;

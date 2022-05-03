@@ -4,14 +4,15 @@
 
 namespace Wyvern::Editor
 {
-    ViewportWindow* EditorLayer::m_ViewportWindow = nullptr;
-    HierarchyWindow* EditorLayer::m_HierarchyWindow = nullptr;
-    PropertiesWindow* EditorLayer::m_PropertiesWindow = nullptr;
+    Ref<Scene> EditorLayer::s_ActiveScene;
+    ViewportCamera* EditorLayer::s_EditorCamera = nullptr;
+    Entity* EditorLayer::s_SelectedContext = nullptr;
 
-    std::vector<EditorWindow*> EditorLayer::m_Windows;
+    ViewportWindow* EditorLayer::s_ViewportWindow = nullptr;
+    HierarchyWindow* EditorLayer::s_HierarchyWindow = nullptr;
+    PropertiesWindow* EditorLayer::s_PropertiesWindow = nullptr;
 
-    Entity* EditorLayer::m_SelectedContext = nullptr;
-    ViewportCamera* EditorLayer::m_EditorCamera = nullptr;
+    std::vector<EditorWindow*> EditorLayer::s_Windows;
 
     void TestNativeComponent::OnUpdate()
     {
@@ -25,28 +26,33 @@ namespace Wyvern::Editor
 
 	void EditorLayer::OnAttach()
 	{
+        s_ActiveScene = CreateRef<Scene>();
+        Scene::SetActiveScene(s_ActiveScene);
+
+        s_ActiveScene->CreateWizard<Physics2DWizard>();
+
+        s_ActiveScene->OnAwake();
+        ImGui::SetCurrentContext(Application::Get().GetImGuiLayer()->GetImGuiContext());
+
+        s_EditorCamera = new ViewportCamera();
+
         OpenViewportWindow();
         OpenHierarchyWindow();
         OpenPropertiesWindow();
-
-        Scene::OnAwake();
-        ImGui::SetCurrentContext(Application::Get().GetImGuiLayer()->GetImGuiContext());
-
-        m_EditorCamera = new ViewportCamera();
 	}
 
 	void EditorLayer::OnDetach()
 	{
-        for (EditorWindow* window : m_Windows)
+        for (EditorWindow* window : s_Windows)
             delete window;
 
-        Scene::OnDestroy();
+        s_ActiveScene->OnDestroy();
 	}
 
 	void EditorLayer::OnUpdate()
 	{
-        Scene::OnRuntimeUpdate();
-        Scene::OnEditorUpdate(m_EditorCamera, m_EditorCamera->transform->GetTransform());
+        s_ActiveScene->OnRuntimeUpdate();
+        s_ActiveScene->OnEditorUpdate(s_EditorCamera, s_EditorCamera->transform->GetTransform());
         Scene::FlushScene();
 	}
 
@@ -90,7 +96,7 @@ namespace Wyvern::Editor
             {
                 if (ImGui::MenuItem("New", "Ctrl+N"))
                 {
-                    Scene::OnDestroy();
+                    s_ActiveScene->OnDestroy();
                 }
 
                 if (ImGui::MenuItem("Open...", "Ctrl+O"))
@@ -98,8 +104,8 @@ namespace Wyvern::Editor
                     std::string filePath = FileDialogs::OpenFile("Wyvern Scene (*.wyvern)\0*.wyvern\0");
                     if (!filePath.empty())
                     {
-                        Scene::OnDestroy();
-                        SceneSerializer::Deserialize(filePath);
+                        s_ActiveScene->OnDestroy();
+                        SceneSerializer::Deserialize(s_ActiveScene, filePath);
                     }
                 }
 
@@ -108,7 +114,7 @@ namespace Wyvern::Editor
                     std::string filePath = FileDialogs::SaveFile("Wyvern Scene (*.wyvern)\0*.wyvern\0", "wyvern");
                     if (!filePath.empty())
                     {
-                        SceneSerializer::Serialize(filePath);
+                        SceneSerializer::Serialize(s_ActiveScene, filePath);
                     }
                 }
 
@@ -120,12 +126,12 @@ namespace Wyvern::Editor
 
             if (ImGui::BeginMenu("Scene"))
             {
-                if (ImGui::MenuItem(Scene::GetSceneState() == SceneState::Edit ? "Play" : "Stop"))
+                if (ImGui::MenuItem(s_ActiveScene->GetSceneState() == SceneState::Edit ? "Play" : "Stop"))
                 {
-                    if (Scene::GetSceneState() == SceneState::Edit)
-                        Scene::SetSceneState(SceneState::Play);
+                    if (s_ActiveScene->GetSceneState() == SceneState::Edit)
+                        s_ActiveScene->SetSceneState(SceneState::Play);
                     else
-                        Scene::SetSceneState(SceneState::Edit);
+                        s_ActiveScene->SetSceneState(SceneState::Edit);
                 }
 
                 ImGui::EndMenu();
@@ -134,7 +140,7 @@ namespace Wyvern::Editor
             ImGui::EndMenuBar();
         }
 
-        for (EditorWindow* window : m_Windows)
+        for (EditorWindow* window : s_Windows)
         {
             window->BeginRender();
             window->OnGUI();
@@ -146,39 +152,39 @@ namespace Wyvern::Editor
 
 	void EditorLayer::OnEvent(Events::Event& e)
 	{
-        for (EditorWindow* window : m_Windows)
+        for (EditorWindow* window : s_Windows)
         {
             if (window->IsFocused() && window->IsHovered())
                 window->OnEvent(e);
         }
 
-        Scene::OnEvent(e);
+        s_ActiveScene->OnEvent(e);
 	}
 
     void EditorLayer::OpenViewportWindow()
     {
-        if (m_ViewportWindow == nullptr)
+        if (s_ViewportWindow == nullptr)
         {
-            m_ViewportWindow = new ViewportWindow();
-            m_Windows.push_back(m_ViewportWindow);
+            s_ViewportWindow = new ViewportWindow();
+            s_Windows.push_back(s_ViewportWindow);
         }
     }
 
     void EditorLayer::OpenHierarchyWindow()
     {
-        if (m_HierarchyWindow == nullptr)
+        if (s_HierarchyWindow == nullptr)
         {
-            m_HierarchyWindow = new HierarchyWindow();
-            m_Windows.push_back(m_HierarchyWindow);
+            s_HierarchyWindow = new HierarchyWindow();
+            s_Windows.push_back(s_HierarchyWindow);
         }
     }
 
     void EditorLayer::OpenPropertiesWindow()
     {
-        if (m_PropertiesWindow == nullptr)
+        if (s_PropertiesWindow == nullptr)
         {
-            m_PropertiesWindow = new PropertiesWindow();
-            m_Windows.push_back(m_PropertiesWindow);
+            s_PropertiesWindow = new PropertiesWindow();
+            s_Windows.push_back(s_PropertiesWindow);
         }
     }
 }

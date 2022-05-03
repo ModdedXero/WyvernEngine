@@ -23,20 +23,22 @@ namespace Wyvern::Editor
 		static void OpenHierarchyWindow();
 		static void OpenPropertiesWindow();
 
-		static ViewportCamera* GetEditorCamera() { return m_EditorCamera; }
+		static ViewportCamera* GetEditorCamera() { return s_EditorCamera; }
+		static Ref<Scene> GetActiveScene() { return s_ActiveScene; }
 
-		static Entity* GetSelectedContext() { return m_SelectedContext; }
-		static void SetSelectedContext(Entity* ent) { m_SelectedContext = ent; }
+		static Entity* GetSelectedContext() { return s_SelectedContext; }
+		static void SetSelectedContext(Entity* ent) { s_SelectedContext = ent; }
+
 	private:
-		static ViewportWindow* m_ViewportWindow;
-		static HierarchyWindow* m_HierarchyWindow;
-		static PropertiesWindow* m_PropertiesWindow;
+		static Ref<Scene> s_ActiveScene;
+		static ViewportCamera* s_EditorCamera;
+		static Entity* s_SelectedContext;
 
-		static ViewportCamera* m_EditorCamera;
+		static ViewportWindow* s_ViewportWindow;
+		static HierarchyWindow* s_HierarchyWindow;
+		static PropertiesWindow* s_PropertiesWindow;
 
-		static std::vector<EditorWindow*> m_Windows;
-
-		static Entity* m_SelectedContext;
+		static std::vector<EditorWindow*> s_Windows;
 	};
 
 	struct TestNativeComponent : public NativeScriptComponent

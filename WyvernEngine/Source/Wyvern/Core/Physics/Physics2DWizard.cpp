@@ -55,7 +55,7 @@ namespace Wyvern
 
 				if (CheckCollision(col1, ent1->GetTransform(), col2, ent2->GetTransform()))
 				{
-					if (Scene::IsEntityValid(ent1->GetID()) && Scene::IsEntityValid(ent2->GetID()) &&
+					if (Scene::IsEntityValid(ent1) && Scene::IsEntityValid(ent2) &&
 						rb1->bodyType != RigidBody2D::PhysicsBody::Kinematic &&
 						rb2->bodyType != RigidBody2D::PhysicsBody::Kinematic &&
 						!(rb1->bodyType == RigidBody2D::PhysicsBody::Static &&
@@ -80,7 +80,7 @@ namespace Wyvern
 
 				if (CheckCollision(col1, ent1->GetTransform(), col2, ent2->GetTransform()))
 				{
-					if (Scene::IsEntityValid(ent1->GetID()) && Scene::IsEntityValid(ent2->GetID()) &&
+					if (Scene::IsEntityValid(ent1) && Scene::IsEntityValid(ent2) &&
 						Scene::GetComponent<RigidBody2D>(ent1)->bodyType != RigidBody2D::PhysicsBody::Kinematic &&
 						Scene::GetComponent<RigidBody2D>(ent2)->bodyType != RigidBody2D::PhysicsBody::Kinematic)
 					{

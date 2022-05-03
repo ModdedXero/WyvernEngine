@@ -12,18 +12,25 @@
 
 namespace Wyvern
 {
-	std::vector<Entity*> m_Entities;
-	std::vector<EntityIndex> m_FreeEntities;
-	std::vector<ComponentPool*> m_ComponentPools;
-
 	std::vector<Entity*> s_EntitiesToDelete;
 	std::unordered_map<Entity*, int> s_ComponentsToDelete;
 
-	WizardStack Scene::s_WizardStack;
+	Ref<Scene> Scene::s_ActiveScene;
+
+	Scene::Scene()
+		: m_ComponentCounter(0)
+	{
+
+	}
+
+	Scene::~Scene()
+	{
+
+	}
 
 	void Scene::OnAwake()
 	{
-		s_SceneState = SceneState::Edit;
+		m_SceneState = SceneState::Edit;
 	}
 
 	void Scene::OnDestroy()
@@ -36,7 +43,7 @@ namespace Wyvern
 
 	void Scene::OnRuntimeUpdate()
 	{
-		if (s_SceneState != SceneState::Play) return;
+		if (m_SceneState != SceneState::Play) return;
 
 		// Update Native Scripts
 
@@ -50,7 +57,7 @@ namespace Wyvern
 
 		// Update Wizards
 
-		for (Wizard* wizard : s_WizardStack)
+		for (Wizard* wizard : m_WizardStack)
 		{
 			wizard->OnUpdate();
 		}
@@ -86,7 +93,7 @@ namespace Wyvern
 
 	void Scene::OnEditorUpdate(Renderer::CameraRenderer* camera, const Matrix4x4& position)
 	{
-		if (s_SceneState != SceneState::Edit) return;
+		if (m_SceneState != SceneState::Edit) return;
 
 		Renderer::Renderer2D::BeginScene(camera, position);
 
@@ -102,7 +109,7 @@ namespace Wyvern
 
 	void Scene::OnFixedUpdate()
 	{
-		for (Wizard* wizard : s_WizardStack)
+		for (Wizard* wizard : m_WizardStack)
 		{
 			wizard->OnFixedUpdate();
 		}
@@ -110,7 +117,7 @@ namespace Wyvern
 
 	void Scene::OnEvent(Events::Event& e)
 	{
-		for (Wizard* wizard : s_WizardStack)
+		for (Wizard* wizard : m_WizardStack)
 		{
 			wizard->OnEvent(e);
 		}
@@ -118,7 +125,7 @@ namespace Wyvern
 
 	void Scene::SetSceneState(SceneState state)
 	{
-		s_SceneState = state;
+		m_SceneState = state;
 	}
 
 	void Scene::FlushScene()
@@ -150,15 +157,15 @@ namespace Wyvern
 		return (EntityVersion)id;
 	}
 
-	bool Scene::IsEntityValid(EntityID id, Ref<Scene> scene)
+	bool Scene::IsEntityValid(Ref<Scene> scene, EntityID id)
 	{
-		return (id >> 32) != EntityIndex(-1) && scene->m_Entities[GetEntityIndex(id)]->m_ID == id;
+		return (id >> 32) != EntityIndex(-1);
 	}
 
 	bool Scene::IsEntityValid(Entity* ent)
 	{
 		if (ent == nullptr) return false;
-		return IsEntityValid(ent->m_ID);
+		return IsEntityValid(ent->m_Scene, ent->m_ID);
 	}
 
 	void Scene::RemoveComponent(Entity* ent, int component)
@@ -171,8 +178,9 @@ namespace Wyvern
 		return ((EntityID)index << 32) | ((EntityID)version);
 	}
 
-	void Scene::CreateEntityDefaults(Entity* ent, std::string name)
+	void Scene::CreateEntityDefaults(Ref<Scene> scene, Entity* ent, std::string name)
 	{
+		ent->m_Scene = scene;
 		ent->m_Components.reset();
 		ent->m_Transform = AddComponent<Transform>(ent);
 		ent->m_Tag = AddComponent<Tag>(ent);
@@ -184,26 +192,28 @@ namespace Wyvern
 	{
 		if (!IsEntityValid(ent)) return;
 
+		Ref<Scene> scene = ent->m_Scene;
+
 		EntityIndex index = GetEntityIndex(ent->m_ID);
 		EntityID newID = CreateEntityID(EntityIndex(-1), GetEntityVersion(ent->m_ID) + 1);
 
-		m_Entities[index]->m_ID = newID;
-		m_Entities[index]->m_Components.reset();
-		m_Entities[index]->m_Children.clear();
-		m_Entities[index]->m_ComponentPtrs.clear();
+		scene->m_Entities[index]->m_ID = newID;
+		scene->m_Entities[index]->m_Components.reset();
+		scene->m_Entities[index]->m_Children.clear();
+		scene->m_Entities[index]->m_ComponentPtrs.clear();
 
-		if (m_Entities[index]->m_Parent != nullptr)
-			m_Entities[index]->m_Parent->RemoveChildEntity(m_Entities[index]);
-		m_Entities[index]->m_Parent = nullptr;
+		if (scene->m_Entities[index]->m_Parent != nullptr)
+			scene->m_Entities[index]->m_Parent->RemoveChildEntity(scene->m_Entities[index]);
+		scene->m_Entities[index]->m_Parent = nullptr;
 
-		m_FreeEntities.push_back(index);
+		scene->m_FreeEntities.push_back(index);
 	}
 
 	void Scene::PurgeComponent(Entity* ent, int component)
 	{
 		if (!IsEntityValid(ent)) return;
 
-		for (ComponentPool* pool : m_ComponentPools)
+		for (ComponentPool* pool : ent->m_Scene->m_ComponentPools)
 		{
 			if (pool->ComponentID == component)
 			{

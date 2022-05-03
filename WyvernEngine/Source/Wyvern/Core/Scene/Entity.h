@@ -56,6 +56,7 @@ namespace Wyvern
 		virtual void OnCollision2D(Ref<Collision2D> collision) {}
 	protected:
 		EntityID m_ID;
+		Ref<Scene> m_Scene;
 		ComponentMask m_Components;
 
 		Transform* m_Transform;

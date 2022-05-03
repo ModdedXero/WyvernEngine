@@ -15,7 +15,9 @@
 #include <Wyvern/Core/Scene/Entity.h>
 #include <Wyvern/Core/Scene/Wizard.h>
 #include <Wyvern/Core/Scene/EntityList.h>
-#include <Wyvern/Renderer/CameraRenderer.h>
+
+// Wizards
+#include <Wyvern/Core/Physics/Physics2DWizard.h>
 
 // Components
 #include <Wyvern/Core/Components/Components.h>
@@ -32,6 +34,7 @@
 // Renderer
 #include <Wyvern/Renderer/Renderer2D.h>
 #include <Wyvern/Renderer/Framebuffer.h>
+#include <Wyvern/Renderer/CameraRenderer.h>
 
 // Resources
 #include <Wyvern/Core/AssetManager.h>

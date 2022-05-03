@@ -33,37 +33,48 @@ namespace Wyvern
 		friend struct EntityList;
 		friend class SceneSerializer;
 	public:
+		Scene();
+		~Scene();
+
 		void OnAwake();
 		void OnDestroy();
 		void OnRuntimeUpdate();
 		void OnEditorUpdate(Renderer::CameraRenderer* camera, const Matrix4x4& position);
 		void OnFixedUpdate();
 		void OnEvent(Events::Event& e);
-		void FlushScene();
 
-		SceneState GetSceneState() { return s_SceneState; }
+		template <typename T>
+		void CreateWizard();
+		template <typename T>
+		void DestroyWizard();
+
+		SceneState GetSceneState() { return m_SceneState; }
 		void SetSceneState(SceneState state);
 
 		size_t GetEntityCount() { return m_Entities.size(); }
 
-		static Scene* GetActiveScene();
-		static void SetActiveScene();
+		static void FlushScene();
+
+		static Ref<Scene> GetActiveScene() { return s_ActiveScene; }
+		static void SetActiveScene(Ref<Scene> scene) { s_ActiveScene = scene; }
+
+	public:
 
 	public:
 		template <typename T>
-		static T* CreateEntity(std::string name = "Entity");
+		static T* CreateEntity(Ref<Scene> scene, std::string name = "Entity");
 		static void DestoryEntity(Entity* ent);
 
 		static EntityIndex GetEntityIndex(EntityID id);
 		static EntityVersion GetEntityVersion(EntityID id);
-		static bool IsEntityValid(EntityID id, Ref<Scene> scene);
+		static bool IsEntityValid(Ref<Scene> scene, EntityID id);
 		static bool IsEntityValid(Entity* ent);
 
 	public:
 		template <typename T>
 		static T* AddComponent(Entity* ent);
 		template <typename T>
-		static T* AddComponent(EntityID entityID);
+		static T* AddComponent(Ref<Scene> scene, EntityID entityID);
 		template <typename T>
 		static T* GetComponent(Entity* ent);
 		template <typename T>
@@ -73,43 +84,38 @@ namespace Wyvern
 		static void RemoveComponent(Entity* ent, int component);
 
 		template <typename T>
-		static int GetComponentID();
+		inline int GetComponentID();
 		template <typename T>
-		static inline int FindComponentID(bool isBase = false);
-		
-	public:
-		template <typename T>
-		static void CreateWizard();
-		template <typename T>
-		static void DestroyWizard();
+		inline int FindComponentID(bool isBase = false);
 
 	private:
-		SceneState s_SceneState;
+		SceneState m_SceneState;
 
 		std::vector<Entity*> m_Entities;
 		std::vector<EntityIndex> m_FreeEntities;
 		std::vector<ComponentPool*> m_ComponentPools;
 
+		WizardStack m_WizardStack;
+
 		int m_ComponentCounter;
 
 	private:
+		static Ref<Scene> s_ActiveScene;
+
 		static inline std::vector<Entity*> s_EntitiesToDelete;
 		static inline std::unordered_map<Entity*, int> s_ComponentsToDelete;
 
 		static EntityID CreateEntityID(EntityIndex index, EntityVersion version);
-		static void CreateEntityDefaults(Entity* ent, std::string name = "Entity");
+		static void CreateEntityDefaults(Ref<Scene> scene, Entity* ent, std::string name = "Entity");
 
 		static void PurgeEntity(Entity* ent);
 		static void PurgeComponent(Entity* ent, int component);
-
-	private:
-		static WizardStack s_WizardStack;
 	};
 
 	template <typename T>
-	inline T* Scene::CreateEntity(std::string name)
+	inline T* Scene::CreateEntity(Ref<Scene> scene, std::string name)
 	{
-		if (m_Entities.size() >= MaxEntities)
+		if (scene->m_Entities.size() >= MaxEntities)
 		{
 			DEBUG_LOG_ERROR("Scene: MaxEntity count reached; ", MaxEntities);
 			throw std::invalid_argument("Scene: MaxEntity count reached");
@@ -122,37 +128,37 @@ namespace Wyvern
 			return nullptr;
 		}
 
-		if (!m_FreeEntities.empty())
+		if (!scene->m_FreeEntities.empty())
 		{
-			EntityIndex index = m_FreeEntities.back();
-			m_FreeEntities.pop_back();
-			EntityID id = CreateEntityID(index, GetEntityVersion(m_Entities[index]->m_ID));
-			m_Entities[index]->m_ID = id;
-			CreateEntityDefaults(id, name);
+			EntityIndex index = scene->m_FreeEntities.back();
+			scene->m_FreeEntities.pop_back();
+			EntityID id = CreateEntityID(index, GetEntityVersion(scene->m_Entities[index]->m_ID));
+			scene->m_Entities[index]->m_ID = id;
+			CreateEntityDefaults(scene, scene->m_Entities[index], name);
 
-			return (T*)m_Entities[index];
+			return (T*)scene->m_Entities[index];
 		}
 
 		T* entity = new T();
-		entity->m_ID = CreateEntityID((EntityIndex)m_Entities.size(), 0);
+		entity->m_ID = CreateEntityID((EntityIndex)scene->m_Entities.size(), 0);
 		entity->m_Components = ComponentMask();
+		scene->m_Entities.push_back(entity);
 
-		m_Entities.push_back(entity);
-		CreateEntityDefaults(m_Entities.back()->m_ID, name);
+		CreateEntityDefaults(scene, scene->m_Entities.back(), name);
 
-		return (T*)m_Entities.back();
+		return (T*)scene->m_Entities.back();
 	}
 
 	template <typename T>
 	inline T* Scene::AddComponent(Entity* ent)
 	{
-		return AddComponent<T>(ent->m_ID);
+		return AddComponent<T>(ent->m_Scene, ent->m_ID);
 	}
 
 	template<typename T>
-	inline T* Scene::AddComponent(EntityID entityID)
+	inline T* Scene::AddComponent(Ref<Scene> scene, EntityID entityID)
 	{
-		if (!IsEntityValid(entityID)) return nullptr;
+		if (!IsEntityValid(scene, entityID)) return nullptr;
 
 		if (!std::is_base_of<Component, T>())
 		{
@@ -161,35 +167,35 @@ namespace Wyvern
 			return nullptr;
 		}
 
-		int componentID = GetComponentID<T>();
+		int componentID = scene->GetComponentID<T>();
 
-		if (m_Entities[GetEntityIndex(entityID)]->m_Components.test(componentID))
+		if (scene->m_Entities[GetEntityIndex(entityID)]->m_Components.test(componentID))
 		{
 			DEBUG_CORE_ERROR("Scene: Component ", typeid(T).name(), " already exists on this entity");
-			return GetComponent<T>(m_Entities[GetEntityIndex(entityID)]);
+			return GetComponent<T>(scene->m_Entities[GetEntityIndex(entityID)]);
 		}
 
-		if (m_ComponentPools.size() <= componentID)
+		if (scene->m_ComponentPools.size() <= componentID)
 		{
-			m_ComponentPools.resize(componentID + 1, nullptr);
+			scene->m_ComponentPools.resize(componentID + 1, nullptr);
 		}
 
-		if (m_ComponentPools[componentID] == nullptr)
+		if (scene->m_ComponentPools[componentID] == nullptr)
 		{
-			m_ComponentPools[componentID] = new ComponentPool(sizeof(T), typeid(T).name(), typeid(T::base).name(), componentID);
+			scene->m_ComponentPools[componentID] = new ComponentPool(sizeof(T), typeid(T).name(), typeid(T::base).name(), componentID);
 		}
 
-		T* component = new (m_ComponentPools[componentID]->Get(GetEntityIndex(entityID))) T();
-		component->m_Entity = m_Entities[GetEntityIndex(entityID)];
-		component->m_Transform = m_Entities[GetEntityIndex(entityID)]->m_Transform;
-		component->m_Tag = m_Entities[GetEntityIndex(entityID)]->m_Tag;
+		T* component = new (scene->m_ComponentPools[componentID]->Get(GetEntityIndex(entityID))) T();
+		component->m_Entity = scene->m_Entities[GetEntityIndex(entityID)];
+		component->m_Transform = scene->m_Entities[GetEntityIndex(entityID)]->m_Transform;
+		component->m_Tag = scene->m_Entities[GetEntityIndex(entityID)]->m_Tag;
 		component->m_ComponentID = componentID;
 
-		m_Entities[GetEntityIndex(entityID)]->m_Components.set(componentID);
+		scene->m_Entities[GetEntityIndex(entityID)]->m_Components.set(componentID);
 
 		// Do not add default components of Tag and Transform to ent component list
 		if (!std::is_same<T, Tag>().value && !std::is_same<T, Transform>().value)
-			m_Entities[GetEntityIndex(entityID)]->m_ComponentPtrs.push_back(component);
+			scene->m_Entities[GetEntityIndex(entityID)]->m_ComponentPtrs.push_back(component);
 
 		return component;
 	}
@@ -199,12 +205,12 @@ namespace Wyvern
 	{
 		if (!IsEntityValid(ent)) return nullptr;
 
-		int componentID = FindComponentID<T>();
+		int componentID = ent->m_Scene->FindComponentID<T>();
 
 		if (componentID == -1 || !ent->m_Components.test(componentID))
 			return nullptr;
 
-		T* component = static_cast<T*>(m_ComponentPools[componentID]->Get(GetEntityIndex(ent->m_ID)));
+		T* component = static_cast<T*>(ent->m_Scene->m_ComponentPools[componentID]->Get(GetEntityIndex(ent->m_ID)));
 		return component;
 	}
 
@@ -213,7 +219,7 @@ namespace Wyvern
 	{
 		std::vector<T*> components;
 
-		for (ComponentPool* pool : m_ComponentPools)
+		for (ComponentPool* pool : ent->m_Scene->m_ComponentPools)
 		{
 			if (pool->ComponentBaseType == typeid(T).name())
 				if (ent->m_Components.test(pool->ComponentID))
@@ -226,13 +232,15 @@ namespace Wyvern
 	template <typename T>
 	inline void Scene::RemoveComponent(Entity* ent)
 	{
-		s_ComponentsToDelete[ent] = FindComponentID<T>();
+		s_ComponentsToDelete[ent] = ent->m_Scene->FindComponentID<T>();
 	}
 
 	template<typename T>
 	inline int Scene::GetComponentID()
 	{
-		for (ComponentPool* pool : m_ComponentPools)
+		DEBUG_CORE(this->m_ComponentPools.size());
+
+		for (ComponentPool* pool : this->m_ComponentPools)
 			if (pool->ComponentType == typeid(T).name())
 				return pool->ComponentID;
 
@@ -241,7 +249,7 @@ namespace Wyvern
 	}
 
 	template <typename T>
-	static int Scene::FindComponentID(bool isBase)
+	inline int Scene::FindComponentID(bool isBase)
 	{
 		for (ComponentPool* pool : m_ComponentPools)
 			if (isBase ? pool->ComponentBaseType == typeid(T::base).name() : pool->ComponentType == typeid(T).name())
@@ -253,7 +261,7 @@ namespace Wyvern
 	template<typename T>
 	inline void Scene::CreateWizard()
 	{
-		s_WizardStack.PushWizard(new T());
+		m_WizardStack.PushWizard(new T());
 	}
 
 	template<typename T>
