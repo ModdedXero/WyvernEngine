@@ -21,8 +21,6 @@ namespace Wyvern::Renderer
 
 		static void DrawQuad(Transform* transform, Ref<Material> material, Ref<Sprite> sprite, const Vector4& color);
 		static void DrawText(Vector3 pos, const Vector2& size, const std::string& text);
-
-		static Framebuffer* Framebuffer;
 	private:
 		static void BeginBatch();
 		static void EndBatch();

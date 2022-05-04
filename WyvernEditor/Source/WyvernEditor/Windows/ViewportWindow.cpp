@@ -7,6 +7,14 @@
 
 namespace Wyvern::Editor
 {
+	void ViewportWindow::OnAttach()
+	{
+		Renderer::FrameBufferSpecs fbSpec;
+		fbSpec.Width = 1280;
+		fbSpec.Height = 720;
+		m_Framebuffer = new Renderer::Framebuffer(fbSpec);
+	}
+
 	void ViewportWindow::OnGUI()
 	{
 		if (IsFocused() && IsHovered())
@@ -15,13 +23,15 @@ namespace Wyvern::Editor
 		Vector2 windowPanelSize = GetWindowSize();
 		if (WindowSize != windowPanelSize)
 		{
-			Renderer::Renderer2D::Framebuffer->Resize(windowPanelSize);
+			m_Framebuffer->Resize(windowPanelSize);
 			WindowSize = windowPanelSize;
 
 			EditorLayer::GetEditorCamera()->Resize(windowPanelSize.x, windowPanelSize.y);
+			if (Renderer::CameraRenderer::GetActive())
+				Renderer::CameraRenderer::GetActive()->ResizeView(windowPanelSize.x, windowPanelSize.y);
 		}
 
-		unsigned int textureID = Renderer::Renderer2D::Framebuffer->GetColorAttachmentRendererID();
+		unsigned int textureID = m_Framebuffer->GetColorAttachmentRendererID();
 		ImGui::Image((void*)textureID, ImVec2{ WindowSize.x, WindowSize.y });
 
 		// Gizmos
@@ -80,6 +90,16 @@ namespace Wyvern::Editor
 				transformComp->scale = scale;
 			}
 		}
+	}
+
+	void ViewportWindow::OnPreRender()
+	{
+		m_Framebuffer->Bind();
+	}
+
+	void ViewportWindow::OnPostRender()
+	{
+		m_Framebuffer->Unbind();
 	}
 
 	void ViewportWindow::OnEvent(Events::Event& e)

@@ -14,5 +14,6 @@ namespace Wyvern::Editor
 		static void Color4Control(const std::string& label, Vector4& values);
 
 		static void FloatControl(const std::string& label, float& value, float columnWidth = 80.0f);
+		static void IntControl(const std::string& label, int& value, float columnWidth = 80.0f);
 	};
 }

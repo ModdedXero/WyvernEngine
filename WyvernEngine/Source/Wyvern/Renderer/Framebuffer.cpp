@@ -54,6 +54,7 @@ namespace Wyvern::Renderer
 		m_Specs.Width = size.x < 1 ? 1 : size.x;
 		m_Specs.Height = size.y < 1 ? 1 : size.y;
 
+		glViewport(0, 0, size.x, size.y);
 		Invalidate();
 	}
 

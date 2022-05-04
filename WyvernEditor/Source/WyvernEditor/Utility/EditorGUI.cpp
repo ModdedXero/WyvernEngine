@@ -159,4 +159,9 @@ namespace Wyvern::Editor
 	{
 		ImGui::InputFloat(label.c_str(), &value);
 	}
+
+	void EditorGUI::IntControl(const std::string& label, int& value, float columnWidth)
+	{
+		ImGui::InputInt(label.c_str(), &value);
+	}
 }

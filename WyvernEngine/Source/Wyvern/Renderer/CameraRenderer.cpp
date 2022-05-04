@@ -43,7 +43,6 @@ namespace Wyvern::Renderer
 		float lHeight = height < 1 ? 1 : height;
 
 		SetProjection(lWidth, lHeight);
-		glViewport(0, 0, lWidth, lHeight);
 	}
 
 	void CameraRenderer::SetShaderMatrices(Ref<Shader> shader, Matrix4x4& position)

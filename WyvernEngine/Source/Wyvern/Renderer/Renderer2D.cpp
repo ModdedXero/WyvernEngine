@@ -14,8 +14,6 @@
 
 namespace Wyvern::Renderer
 {
-	Framebuffer* Renderer2D::Framebuffer;
-
 	static const size_t MaxQuadCount = 1000;
 	static const size_t MaxVertexCount = MaxQuadCount * 4;
 	static const size_t MaxIndexCount = MaxQuadCount * 6;
@@ -163,12 +161,6 @@ namespace Wyvern::Renderer
 
 		FT_Done_Face(face);
 		FT_Done_FreeType(ft);
-
-		// Create Framebuffer
-		FrameBufferSpecs fbSpec;
-		fbSpec.Width = 1280;
-		fbSpec.Height = 720;
-		Framebuffer = new Renderer::Framebuffer(fbSpec);
 	}
 
 	void Renderer2D::OnDestroy()
@@ -189,8 +181,6 @@ namespace Wyvern::Renderer
 
 	void Renderer2D::EndScene()
 	{
-		Framebuffer->Bind();
-
 		for (auto& drawData : s_Data.VertexData)
 		{
 			drawData.second->material->shader->Use();
@@ -234,8 +224,6 @@ namespace Wyvern::Renderer
 		Flush();
 
 		s_Data.VertexData.clear();
-
-		Framebuffer->Unbind();
 	}
 
 	void Renderer2D::BeginBatch()

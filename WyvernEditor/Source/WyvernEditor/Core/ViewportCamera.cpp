@@ -5,7 +5,8 @@ namespace Wyvern::Editor
 	ViewportCamera::ViewportCamera()
 	{
 		transform = new Transform();
-		transform->position.z = 8;
+		transform->position.z = 0.5f;
+		if (CameraRenderer::GetActive() == this) CameraRenderer::SetActiveCamera(nullptr);
 	}
 
 	void ViewportCamera::MoveCamera()

@@ -109,6 +109,16 @@ namespace Wyvern
 
 	void Scene::OnFixedUpdate()
 	{
+		if (m_SceneState != SceneState::Play) return;
+
+		for (Entity* ent : EntityList<NativeScriptComponent>(true))
+		{
+			for (NativeScriptComponent* nsc : GetComponentsOfBase<NativeScriptComponent>(ent))
+			{
+				nsc->OnFixedUpdate();
+			}
+		}
+
 		for (Wizard* wizard : m_WizardStack)
 		{
 			wizard->OnFixedUpdate();

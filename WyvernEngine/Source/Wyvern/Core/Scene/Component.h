@@ -53,6 +53,7 @@ namespace Wyvern
 		virtual void OnAwake() {}
 		virtual void OnDestroy() {}
 		virtual void OnUpdate() {}
+		virtual void OnFixedUpdate() {}
 
 	private:
 		friend class Scene;

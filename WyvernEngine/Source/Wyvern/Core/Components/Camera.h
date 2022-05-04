@@ -9,6 +9,9 @@ namespace Wyvern
 	{
 		Renderer::CameraRenderer* GetRenderer() { return m_Renderer; }
 
+		WV_SERIALIZE_COMPONENT(Camera)
+		WV_SERIALIZE_COMPONENT_END
+
 	private:
 		Renderer::CameraRenderer* m_Renderer = new Renderer::CameraRenderer();
 	};

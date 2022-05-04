@@ -1,5 +1,7 @@
 #include "EditorLayer.h"
 
+#include <WyvernEditor/Utility/EditorGUI.h>
+
 #include "imgui.h"
 
 namespace Wyvern::Editor
@@ -16,12 +18,12 @@ namespace Wyvern::Editor
 
     void TestNativeComponent::OnUpdate()
     {
-        DEBUG_LOG("TEST adaddad");
+        Scene::GetComponent<RigidBody2D>(GetEntity())->force += Vector2(1, 0.16) * awesomeLevel;
     }
 
-    void Test2NativeComponent::OnUpdate()
+    void TestNativeComponent::DrawEditor()
     {
-        DEBUG_LOG("TEST opjokopkpo");
+        EditorGUI::IntControl("Awesome", awesomeLevel);
     }
 
 	void EditorLayer::OnAttach()
@@ -51,10 +53,25 @@ namespace Wyvern::Editor
 
 	void EditorLayer::OnUpdate()
 	{
+        for (EditorWindow* window : s_Windows)
+        {
+            window->OnPreRender();
+        }
+
         s_ActiveScene->OnRuntimeUpdate();
         s_ActiveScene->OnEditorUpdate(s_EditorCamera, s_EditorCamera->transform->GetTransform());
         Scene::FlushScene();
+
+        for (EditorWindow* window : s_Windows)
+        {
+            window->OnPostRender();
+        }
 	}
+
+    void EditorLayer::OnFixedUpdate()
+    {
+        s_ActiveScene->OnFixedUpdate();
+    }
 
 	void EditorLayer::OnUIRender()
 	{
@@ -166,6 +183,7 @@ namespace Wyvern::Editor
         if (s_ViewportWindow == nullptr)
         {
             s_ViewportWindow = new ViewportWindow();
+            s_ViewportWindow->OnAttach();
             s_Windows.push_back(s_ViewportWindow);
         }
     }
@@ -175,6 +193,7 @@ namespace Wyvern::Editor
         if (s_HierarchyWindow == nullptr)
         {
             s_HierarchyWindow = new HierarchyWindow();
+            s_HierarchyWindow->OnAttach();
             s_Windows.push_back(s_HierarchyWindow);
         }
     }
@@ -184,6 +203,7 @@ namespace Wyvern::Editor
         if (s_PropertiesWindow == nullptr)
         {
             s_PropertiesWindow = new PropertiesWindow();
+            s_PropertiesWindow->OnAttach();
             s_Windows.push_back(s_PropertiesWindow);
         }
     }

@@ -19,6 +19,8 @@ namespace Wyvern::Editor
 		virtual void OnAttach() {}
 		virtual void OnDetach() {}
 		virtual void OnGUI() {}
+		virtual void OnPreRender() {}
+		virtual void OnPostRender() {}
 		virtual void OnEvent(Events::Event& e) {}
 
 		Vector2 GetWindowSize();

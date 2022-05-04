@@ -24,9 +24,9 @@ namespace Wyvern::Renderer
 
 		unsigned int GetColorAttachmentRendererID() const { return m_ColorAttachment; }
 	private:
-		unsigned int m_RendererID = 0;
-		unsigned int m_ColorAttachment = 0;
-		unsigned int m_DepthAttachment = 0;
+		unsigned int m_RendererID;
+		unsigned int m_ColorAttachment;
+		unsigned int m_DepthAttachment;
 
 		FrameBufferSpecs m_Specs;
 	};

@@ -18,6 +18,11 @@ namespace Wyvern
 		EditorGUI::Vector3Control("Scale", this->scale, 1.0f);
 	}
 
+	void Camera::DrawEditor()
+	{
+
+	}
+
 	void SpriteRenderer::DrawEditor()
 	{
 		EditorGUI::Color4Control("Color", this->color);

@@ -16,6 +16,7 @@ namespace Wyvern::Editor
 		virtual void OnDetach() override;
 
 		virtual void OnUpdate() override;
+		virtual void OnFixedUpdate() override;
 		virtual void OnUIRender() override;
 		virtual void OnEvent(Events::Event& e) override;
 
@@ -46,10 +47,9 @@ namespace Wyvern::Editor
 		void OnUpdate() override;
 
 		int awesomeLevel = 1;
-	};
 
-	struct Test2NativeComponent : public NativeScriptComponent
-	{
-		void OnUpdate() override;
+		WV_SERIALIZE_COMPONENT(TestNativeComponent)
+		WV_SERIALIZE_VARIABLE(int, awesomeLevel)
+		WV_SERIALIZE_COMPONENT_END
 	};
 }

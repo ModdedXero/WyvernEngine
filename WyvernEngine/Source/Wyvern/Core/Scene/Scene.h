@@ -238,8 +238,6 @@ namespace Wyvern
 	template<typename T>
 	inline int Scene::GetComponentID()
 	{
-		DEBUG_CORE(this->m_ComponentPools.size());
-
 		for (ComponentPool* pool : this->m_ComponentPools)
 			if (pool->ComponentType == typeid(T).name())
 				return pool->ComponentID;
