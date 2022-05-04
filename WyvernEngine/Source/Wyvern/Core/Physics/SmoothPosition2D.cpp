@@ -11,8 +11,8 @@ namespace Wyvern
 	{
 		for (Ref<Collision2D> collision : collisions)
 		{
-			RigidBody2D* rbA = Scene::GetComponent<RigidBody2D>(collision->entityA);
-			RigidBody2D* rbB = Scene::GetComponent<RigidBody2D>(collision->entityB);
+			RigidBody2D* rbA = Scene::GetComponent<RigidBody2D>(collision->entA);
+			RigidBody2D* rbB = Scene::GetComponent<RigidBody2D>(collision->entB);
 
 			float aMass = rbA->GetInvMass();
 			float bMass = rbB->GetInvMass();
@@ -28,8 +28,8 @@ namespace Wyvern
 				(aMass + bMass) * percent :
 				collision->normal * fmax(collision->penetration - slop, 0.0f) / percent;
 
-			if (rbA->bodyType != RigidBody2D::PhysicsBody::Static) collision->entityA->GetTransform()->position -= correction * aMass;
-			if (rbB->bodyType != RigidBody2D::PhysicsBody::Static) collision->entityB->GetTransform()->position += correction * bMass;
+			if (rbA->bodyType != RigidBody2D::PhysicsBody::Static) collision->entA->GetTransform()->position -= correction * aMass;
+			if (rbB->bodyType != RigidBody2D::PhysicsBody::Static) collision->entB->GetTransform()->position += correction * bMass;
 		}
 	}
 }

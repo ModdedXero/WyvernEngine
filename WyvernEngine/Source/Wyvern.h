@@ -11,7 +11,7 @@
 
 // Scene
 #include <Wyvern/Core/Scene/Scene.h>
-#include <Wyvern/Core/Scene/SceneSerializer.h>
+#include <Wyvern/Core/Scene/Serializer.h>
 #include <Wyvern/Core/Scene/Entity.h>
 #include <Wyvern/Core/Scene/Wizard.h>
 #include <Wyvern/Core/Scene/EntityList.h>

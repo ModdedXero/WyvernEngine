@@ -186,7 +186,7 @@
     <ClInclude Include="Wyvern\Core\Scene\EntityConstants.h" />
     <ClInclude Include="Wyvern\Core\Scene\EntityList.h" />
     <ClInclude Include="Wyvern\Core\Scene\Scene.h" />
-    <ClInclude Include="Wyvern\Core\Scene\SceneSerializer.h" />
+    <ClInclude Include="Wyvern\Core\Scene\Serializer.h" />
     <ClInclude Include="Wyvern\Core\Scene\SerializeHelper.h" />
     <ClInclude Include="Wyvern\Core\Scene\Wizard.h" />
     <ClInclude Include="Wyvern\Core\Scene\WizardStack.h" />
@@ -236,7 +236,7 @@
     <ClCompile Include="Wyvern\Core\Scene\Component.cpp" />
     <ClCompile Include="Wyvern\Core\Scene\Entity.cpp" />
     <ClCompile Include="Wyvern\Core\Scene\Scene.cpp" />
-    <ClCompile Include="Wyvern\Core\Scene\SceneSerializer.cpp" />
+    <ClCompile Include="Wyvern\Core\Scene\Serializer.cpp" />
     <ClCompile Include="Wyvern\Core\Scene\SerializeHelper.cpp" />
     <ClCompile Include="Wyvern\Core\Scene\Wizard.cpp" />
     <ClCompile Include="Wyvern\Core\Scene\WizardStack.cpp" />

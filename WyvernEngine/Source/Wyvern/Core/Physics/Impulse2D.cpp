@@ -11,8 +11,8 @@ namespace Wyvern
 	{
 		for (Ref<Collision2D> collision : collisions)
 		{
-			RigidBody2D* rbA = Scene::GetComponent<RigidBody2D>(collision->entityA);
-			RigidBody2D* rbB = Scene::GetComponent<RigidBody2D>(collision->entityB);
+			RigidBody2D* rbA = Scene::GetComponent<RigidBody2D>(collision->entA);
+			RigidBody2D* rbB = Scene::GetComponent<RigidBody2D>(collision->entB);
 
 			float aInvMass = rbA->GetInvMass();
 			float bInvMass = rbB->GetInvMass();

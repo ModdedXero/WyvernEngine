@@ -1,9 +1,9 @@
 namespace glm
 {
 	template<typename genType>
-	GLM_FUNC_QUALIFIER GLM_CONSTEXPR genType identity()
+	GLM_FUNC_QUALIFIER GLM_CONSTEXPR genType ident()
 	{
-		return detail::init_gentype<genType, detail::genTypeTrait<genType>::GENTYPE>::identity();
+		return detail::init_gentype<genType, detail::genTypeTrait<genType>::GENTYPE>::ident();
 	}
 
 	template<typename T, qualifier Q>

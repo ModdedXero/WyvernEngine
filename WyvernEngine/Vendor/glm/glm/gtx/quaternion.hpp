@@ -33,11 +33,11 @@ namespace glm
 	/// @addtogroup gtx_quaternion
 	/// @{
 
-	/// Create an identity quaternion.
+	/// Create an ident quaternion.
 	///
 	/// @see gtx_quaternion
 	template<typename T, qualifier Q>
-	GLM_FUNC_DECL GLM_CONSTEXPR qua<T, Q> quat_identity();
+	GLM_FUNC_DECL GLM_CONSTEXPR qua<T, Q> quat_ident();
 
 	/// Compute a cross product between a quaternion and a vector.
 	///

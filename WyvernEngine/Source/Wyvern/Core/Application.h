@@ -8,8 +8,6 @@
 #include <Wyvern/Events/Event.h>
 #include <Wyvern/Events/WindowEvent.h>
 
-#include <Wyvern/Core/Scene/SceneSerializer.h>
-
 #include <Wyvern/ImGui/ImGuiLayer.h>
 
 #include <chrono>

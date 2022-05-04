@@ -41,15 +41,4 @@ namespace Wyvern::Editor
 
 		static std::vector<EditorWindow*> s_Windows;
 	};
-
-	struct TestNativeComponent : public NativeScriptComponent
-	{
-		void OnUpdate() override;
-
-		int awesomeLevel = 1;
-
-		WV_SERIALIZE_COMPONENT(TestNativeComponent)
-		WV_SERIALIZE_VARIABLE(int, awesomeLevel)
-		WV_SERIALIZE_COMPONENT_END
-	};
 }

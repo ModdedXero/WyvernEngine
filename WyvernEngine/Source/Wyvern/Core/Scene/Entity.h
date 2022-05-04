@@ -18,7 +18,7 @@ namespace Wyvern
 	class Entity
 	{
 		friend class Scene;
-		friend class SceneSerializer;
+		friend class Serializer;
 		friend class EntityWizard;
 	protected:
 		Entity()
@@ -47,14 +47,14 @@ namespace Wyvern
 
 		void DestroyEntity();
 
-		void AddChildEntity(Entity* ent);
-		void RemoveChildEntity(Entity* ent);
+		void AddChildEntity(Entity* entity);
+		void RemoveChildEntity(Entity* entity);
 
 		Entity* GetParent() { return m_Parent; }
 		std::vector<Entity*> GetChildren() { return m_Children; }
 
 		virtual void OnCollision2D(Ref<Collision2D> collision) {}
-	protected:
+	private:
 		EntityID m_ID;
 		Ref<Scene> m_Scene;
 		ComponentMask m_Components;
@@ -65,7 +65,5 @@ namespace Wyvern
 		Entity* m_Parent;
 		std::vector<Entity*> m_Children;
 		std::vector<Component*> m_ComponentPtrs;
-
-		virtual void OnAttach() {}
  	};
 }

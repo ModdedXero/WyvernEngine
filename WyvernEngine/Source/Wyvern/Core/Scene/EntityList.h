@@ -34,7 +34,7 @@ namespace Wyvern
 		struct Iterator
 		{
 			Iterator(EntityIndex index, size_t size, ComponentMask components, bool all)
-				: index(index), entitySize(size), components(components), all(all)
+				: index(index), entSize(size), components(components), all(all)
 			{}
 
 			Entity* operator*() const
@@ -44,12 +44,12 @@ namespace Wyvern
 
 			bool operator==(const Iterator& other) const
 			{
-				return index == other.index || index == entitySize;
+				return index == other.index || index == entSize;
 			}
 
 			bool operator!=(const Iterator& other) const
 			{
-				return index != other.index && index != entitySize;
+				return index != other.index && index != entSize;
 			}
 
 			Iterator& operator++()
@@ -57,7 +57,7 @@ namespace Wyvern
 				do
 				{
 					index++;
-				} while (index < entitySize && !isValidIndex());
+				} while (index < entSize && !isValidIndex());
 				return *this;
 			}
 
@@ -67,7 +67,7 @@ namespace Wyvern
 					(all || components == (components & Scene::GetActiveScene()->m_Entities[index]->GetMask()));
 			}
 
-			size_t entitySize;
+			size_t entSize;
 			EntityIndex index;
 			ComponentMask components;
 			bool all;

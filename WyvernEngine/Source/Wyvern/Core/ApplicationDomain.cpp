@@ -14,11 +14,11 @@ namespace Wyvern
         return false;
     }
 
-    Component* ApplicationDomain::CreateComponent(std::string name, unsigned long long ent)
+    Component* ApplicationDomain::CreateComponent(std::string name, unsigned long long entity)
     {
         if (auto it = s_Components.find(name); it != s_Components.end())
         {
-            return it->second(ent);
+            return it->second(entity);
         }
 
         return nullptr;

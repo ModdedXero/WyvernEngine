@@ -6,7 +6,7 @@
 
 namespace Wyvern::Editor
 {
-    void EditorGUIInternal::DrawComponent(const std::string label, Component* component, Entity* entity, bool isDefault)
+    void EditorGUIInternal::DrawComponent(const std::string label, Component* component, Entity* ent, bool isDefault)
     {
 		if (component)
 		{
@@ -38,7 +38,7 @@ namespace Wyvern::Editor
 				if (!isDefault)
 				{
 					if (ImGui::MenuItem("Remove"))
-						Scene::RemoveComponent(entity, component->GetID());
+						Scene::RemoveComponent(ent, component->GetID());
 				}
 
 				ImGui::EndPopup();

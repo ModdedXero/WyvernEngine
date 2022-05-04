@@ -27,14 +27,14 @@ namespace Wyvern
 	{
 		Collision2D(Entity* a, Entity* b, Vector2 normal, float penetration)
 		{
-			this->entityA = a;
-			this->entityB = b;
+			this->entA = a;
+			this->entB = b;
 			this->normal = normal;
 			this->penetration = penetration;
 		}
 
-		Entity* entityA;
-		Entity* entityB;
+		Entity* entA;
+		Entity* entB;
 		Vector2 normal;
 		float penetration;
 	};

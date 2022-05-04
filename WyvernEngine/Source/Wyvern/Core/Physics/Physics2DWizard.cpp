@@ -33,10 +33,10 @@ namespace Wyvern
 
 	void Physics2DWizard::OnFixedUpdate()
 	{
-		for (Entity* ent : EntityList<RigidBody2D>())
+		for (Entity* entity : EntityList<RigidBody2D>())
 		{
 			for (PhysicsSolver2D* solver : m_PhysicsSolvers)
-				solver->Solve(Scene::GetComponent<RigidBody2D>(ent), ent->GetTransform());
+				solver->Solve(Scene::GetComponent<RigidBody2D>(entity), entity->GetTransform());
 		}
 
 		std::vector<Ref<Collision2D>> collisions;
@@ -139,7 +139,7 @@ namespace Wyvern
 		return localPoint.Length() < otherCollider->radius;
 	}
 
-	Ref<Collision2D> Physics2DWizard::GetCollisionData(Entity* ent, BoxCollider2D* collider, Entity* otherEnt, BoxCollider2D* otherCollider)
+	Ref<Collision2D> Physics2DWizard::GetCollisionData(Entity* entity, BoxCollider2D* collider, Entity* otherEnt, BoxCollider2D* otherCollider)
 	{
 		static const Vector2 faces[4] =
 		{
@@ -149,8 +149,8 @@ namespace Wyvern
 			Vector2(0, 1)
 		};
 
-		Vector2 maxA = ent->GetTransform()->position + collider->size;
-		Vector2 minA = ent->GetTransform()->position - collider->size;
+		Vector2 maxA = entity->GetTransform()->position + collider->size;
+		Vector2 minA = entity->GetTransform()->position - collider->size;
 
 		Vector2 maxB = otherEnt->GetTransform()->position + otherCollider->size;
 		Vector2 minB = otherEnt->GetTransform()->position - otherCollider->size;
@@ -175,12 +175,12 @@ namespace Wyvern
 			}
 		}
 
-		return CreateRef<Collision2D>(Collision2D(ent, otherEnt, bestAxis, penetration));
+		return CreateRef<Collision2D>(Collision2D(entity, otherEnt, bestAxis, penetration));
 	}
 
-	Ref<Collision2D> Physics2DWizard::GetCollisionData(Entity* ent, BoxCollider2D* collider, Entity* otherEnt, SphereCollider2D* otherCollider)
+	Ref<Collision2D> Physics2DWizard::GetCollisionData(Entity* entity, BoxCollider2D* collider, Entity* otherEnt, SphereCollider2D* otherCollider)
 	{
-		Vector2 delta = otherEnt->GetTransform()->position - ent->GetTransform()->position;
+		Vector2 delta = otherEnt->GetTransform()->position - entity->GetTransform()->position;
 		Vector2 closest = Mathf::Clamp(delta, -collider->size, collider->size);
 		Vector2 localPoint = delta - closest;
 
@@ -189,12 +189,12 @@ namespace Wyvern
 		Vector2 normal = localPoint.Normalize();
 		float penetration = otherCollider->radius - distance;
 
-		return CreateRef<Collision2D>(ent, otherEnt, normal, penetration);
+		return CreateRef<Collision2D>(entity, otherEnt, normal, penetration);
 	}
 
-	Ref<Collision2D> Physics2DWizard::GetCollisionData(Entity* ent, SphereCollider2D* collider, Entity* otherEnt, BoxCollider2D* otherCollider)
+	Ref<Collision2D> Physics2DWizard::GetCollisionData(Entity* entity, SphereCollider2D* collider, Entity* otherEnt, BoxCollider2D* otherCollider)
 	{
-		Vector2 delta = ent->GetTransform()->position - otherEnt->GetTransform()->position;
+		Vector2 delta = entity->GetTransform()->position - otherEnt->GetTransform()->position;
 		Vector2 closest = Mathf::Clamp(delta, -otherCollider->size, otherCollider->size);
 		Vector2 localPoint = delta - closest;
 
@@ -203,6 +203,6 @@ namespace Wyvern
 		Vector2 normal = localPoint.Normalize();
 		float penetration = collider->radius - distance;
 
-		return CreateRef<Collision2D>(ent, otherEnt, -normal, penetration);
+		return CreateRef<Collision2D>(entity, otherEnt, -normal, penetration);
 	}
 }

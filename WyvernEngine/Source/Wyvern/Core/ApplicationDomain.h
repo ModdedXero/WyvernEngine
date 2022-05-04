@@ -10,13 +10,13 @@ namespace Wyvern
 	class ApplicationDomain
 	{
 	public:
-		using CreateComponentFn = Component*(*)(unsigned long long ent);
+		using CreateComponentFn = Component*(*)(unsigned long long entity);
 
 	public:
 		ApplicationDomain() = delete;
 
 		static bool RegisterComponent(std::string name, CreateComponentFn func);
-		static Component* CreateComponent(std::string name, unsigned long long ent);
+		static Component* CreateComponent(std::string name, unsigned long long entity);
 
 		static std::map<std::string, CreateComponentFn> GetComponents() { return s_Components; }
 

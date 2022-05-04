@@ -541,7 +541,7 @@
     else
       internal->transform_matrix = *matrix;
 
-    /* set transform_flags bit flag 0 if `matrix' isn't the identity */
+    /* set transform_flags bit flag 0 if `matrix' isn't the ident */
     if ( ( matrix->xy | matrix->yx ) ||
          matrix->xx != 0x10000L      ||
          matrix->yy != 0x10000L      )

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Wyvern/Core/Math/Vector.h>
-#include <Wyvern/Core/Scene/SceneSerializer.h>
+#include <Wyvern/Core/Scene/Serializer.h>
 
 #include <yaml-cpp/yaml.h>
 
@@ -26,8 +26,8 @@ namespace Wyvern
 
 		virtual void __Serialize(SerializeInfo& info) {}
 		virtual void Serialize(YAML::Emitter& out) {}
-		virtual void Deserialize(Entity* ent, YAML::Node& data) {}
-		virtual void AddToEntity(Entity* ent) {}
+		virtual void Deserialize(Entity* entity, YAML::Node& data) {}
+		virtual void AddToEntity(Entity* entity) {}
 		virtual void DrawEditor() {}
 	private:
 		Entity* m_Entity;

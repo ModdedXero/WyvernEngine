@@ -28,7 +28,7 @@ namespace Wyvern::Editor
 		if (ImGui::BeginPopupContextWindow(0, 1, false))
 		{
 			if (ImGui::MenuItem("Empty Entity"))
-				Scene::CreateEntity<Entity>(EditorLayer::GetActiveScene());
+				Scene::CreateEntity(EditorLayer::GetActiveScene());
 
 			ImGui::EndPopup();
 		}
@@ -52,11 +52,11 @@ namespace Wyvern::Editor
 
 		if (ImGui::BeginPopupContextItem())
 		{
-			if (ImGui::MenuItem("Create Child Entity"))
-				ent->AddChildEntity(Scene::CreateEntity<Entity>(EditorLayer::GetActiveScene()));
+			if (ImGui::MenuItem("Duplicate Entity"))
+				Scene::DuplicateEntity(ent);
 
-			//if (ImGui::MenuItem("List Components"))
-			//	Scene::ListComponents(ent);
+			if (ImGui::MenuItem("Create Child Entity"))
+				ent->AddChildEntity(Scene::CreateEntity(EditorLayer::GetActiveScene()));
 
 			if (ImGui::MenuItem("Delete Entity"))
 				ent->DestroyEntity();

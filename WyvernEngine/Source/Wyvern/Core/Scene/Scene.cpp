@@ -35,8 +35,8 @@ namespace Wyvern
 
 	void Scene::OnDestroy()
 	{
-		for (auto ent : m_Entities)
-			ent->DestroyEntity();
+		for (auto entity : m_Entities)
+			entity->DestroyEntity();
 
 		FlushScene();
 	}
@@ -47,9 +47,9 @@ namespace Wyvern
 
 		// Update Native Scripts
 
-		for (Entity* ent : EntityList<NativeScriptComponent>(true))
+		for (Entity* entity : EntityList<NativeScriptComponent>(true))
 		{
-			for (NativeScriptComponent* nsc : GetComponentsOfBase<NativeScriptComponent>(ent))
+			for (NativeScriptComponent* nsc : GetComponentsOfBase<NativeScriptComponent>(entity))
 			{
 				nsc->OnUpdate();
 			}
@@ -67,12 +67,12 @@ namespace Wyvern
 		Camera* mainCamera = nullptr;
 		Transform* cameraTransform = nullptr;
 
-		for (Entity* ent : EntityList<Camera>())
+		for (Entity* entity : EntityList<Camera>())
 		{
-			if (Renderer::CameraRenderer::GetActive() == Scene::GetComponent<Camera>(ent)->GetRenderer())
+			if (Renderer::CameraRenderer::GetActive() == Scene::GetComponent<Camera>(entity)->GetRenderer())
 			{
-				mainCamera = Scene::GetComponent<Camera>(ent);
-				cameraTransform = ent->GetTransform();
+				mainCamera = Scene::GetComponent<Camera>(entity);
+				cameraTransform = entity->GetTransform();
 			}
 		}
 
@@ -80,11 +80,11 @@ namespace Wyvern
 		{
 			Renderer::Renderer2D::BeginScene(mainCamera->GetRenderer(), cameraTransform->GetTransform());
 
-			for (Entity* ent : EntityList<SpriteRenderer>())
+			for (Entity* entity : EntityList<SpriteRenderer>())
 			{
-				SpriteRenderer* sRend = Scene::GetComponent<SpriteRenderer>(ent);
+				SpriteRenderer* sRend = Scene::GetComponent<SpriteRenderer>(entity);
 
-				Renderer::Renderer2D::DrawQuad(ent->GetTransform(), sRend->material, sRend->sprite, sRend->color);
+				Renderer::Renderer2D::DrawQuad(entity->GetTransform(), sRend->material, sRend->sprite, sRend->color);
 			}
 
 			Renderer::Renderer2D::EndScene();
@@ -97,11 +97,11 @@ namespace Wyvern
 
 		Renderer::Renderer2D::BeginScene(camera, position);
 
-		for (Entity* ent : EntityList<SpriteRenderer>())
+		for (Entity* entity : EntityList<SpriteRenderer>())
 		{
-			SpriteRenderer* sRend = Scene::GetComponent<SpriteRenderer>(ent);
+			SpriteRenderer* sRend = Scene::GetComponent<SpriteRenderer>(entity);
 
-			Renderer::Renderer2D::DrawQuad(ent->GetTransform(), sRend->material, sRend->sprite, sRend->color);
+			Renderer::Renderer2D::DrawQuad(entity->GetTransform(), sRend->material, sRend->sprite, sRend->color);
 		}
 
 		Renderer::Renderer2D::EndScene();
@@ -111,9 +111,9 @@ namespace Wyvern
 	{
 		if (m_SceneState != SceneState::Play) return;
 
-		for (Entity* ent : EntityList<NativeScriptComponent>(true))
+		for (Entity* entity : EntityList<NativeScriptComponent>(true))
 		{
-			for (NativeScriptComponent* nsc : GetComponentsOfBase<NativeScriptComponent>(ent))
+			for (NativeScriptComponent* nsc : GetComponentsOfBase<NativeScriptComponent>(entity))
 			{
 				nsc->OnFixedUpdate();
 			}
@@ -140,8 +140,8 @@ namespace Wyvern
 
 	void Scene::FlushScene()
 	{
-		for (Entity* ent : s_EntitiesToDelete)
-			PurgeEntity(ent);
+		for (Entity* entity : s_EntitiesToDelete)
+			PurgeEntity(entity);
 
 		for (auto& comp : s_ComponentsToDelete)
 			PurgeComponent(comp.first, comp.second);
@@ -150,10 +150,51 @@ namespace Wyvern
 		s_ComponentsToDelete.clear();
 	}
 
-	void Scene::DestoryEntity(Entity* ent)
+	Entity* Scene::CreateEntity(Ref<Scene> scene, std::string name)
 	{
-		s_EntitiesToDelete.push_back(ent);
-		for (Entity* child : ent->m_Children)
+		if (scene->m_Entities.size() >= MaxEntities)
+		{
+			DEBUG_LOG_ERROR("Scene: MaxEntity count reached; ", MaxEntities);
+			throw std::invalid_argument("Scene: MaxEntity count reached");
+			return nullptr;
+		}
+
+		if (!scene->m_FreeEntities.empty())
+		{
+			EntityIndex index = scene->m_FreeEntities.back();
+			scene->m_FreeEntities.pop_back();
+			EntityID id = CreateEntityID(index, GetEntityVersion(scene->m_Entities[index]->m_ID));
+			scene->m_Entities[index]->m_ID = id;
+			CreateEntityDefaults(scene, scene->m_Entities[index], name);
+
+			return scene->m_Entities[index];
+		}
+
+		Entity* entity = new Entity();
+		entity->m_ID = CreateEntityID((EntityIndex)scene->m_Entities.size(), 0);
+		entity->m_Components = ComponentMask();
+		scene->m_Entities.push_back(entity);
+
+		CreateEntityDefaults(scene, scene->m_Entities.back(), name);
+
+		return scene->m_Entities.back();
+	}
+
+	Entity* Scene::DuplicateEntity(Entity* entity)
+	{
+		Entity* newEnt = CreateEntity(entity->m_Scene, entity->m_Tag->name);
+
+		SerializeInfo& entData = Serializer::Serialize(entity);
+		Serializer::ConvertSerialToDeserial(entData);
+		Serializer::Deserialize(newEnt, entData);
+
+		return newEnt;
+	}
+
+	void Scene::DestoryEntity(Entity* entity)
+	{
+		s_EntitiesToDelete.push_back(entity);
+		for (Entity* child : entity->m_Children)
 			child->DestroyEntity();
 	}
 
@@ -172,15 +213,15 @@ namespace Wyvern
 		return (id >> 32) != EntityIndex(-1);
 	}
 
-	bool Scene::IsEntityValid(Entity* ent)
+	bool Scene::IsEntityValid(Entity* entity)
 	{
-		if (ent == nullptr) return false;
-		return IsEntityValid(ent->m_Scene, ent->m_ID);
+		if (entity == nullptr) return false;
+		return IsEntityValid(entity->m_Scene, entity->m_ID);
 	}
 
-	void Scene::RemoveComponent(Entity* ent, int component)
+	void Scene::RemoveComponent(Entity* entity, int component)
 	{
-		s_ComponentsToDelete[ent] = component;
+		s_ComponentsToDelete[entity] = component;
 	}
 
 	EntityID Scene::CreateEntityID(EntityIndex index, EntityVersion version)
@@ -188,24 +229,23 @@ namespace Wyvern
 		return ((EntityID)index << 32) | ((EntityID)version);
 	}
 
-	void Scene::CreateEntityDefaults(Ref<Scene> scene, Entity* ent, std::string name)
+	void Scene::CreateEntityDefaults(Ref<Scene> scene, Entity* entity, std::string name)
 	{
-		ent->m_Scene = scene;
-		ent->m_Components.reset();
-		ent->m_Transform = AddComponent<Transform>(ent);
-		ent->m_Tag = AddComponent<Tag>(ent);
-		ent->m_Tag->name = name;
-		ent->OnAttach();
+		entity->m_Scene = scene;
+		entity->m_Components.reset();
+		entity->m_Transform = AddComponent<Transform>(entity);
+		entity->m_Tag = AddComponent<Tag>(entity);
+		entity->m_Tag->name = name;
 	}
 
-	void Scene::PurgeEntity(Entity* ent)
+	void Scene::PurgeEntity(Entity* entity)
 	{
-		if (!IsEntityValid(ent)) return;
+		if (!IsEntityValid(entity)) return;
 
-		Ref<Scene> scene = ent->m_Scene;
+		Ref<Scene> scene = entity->m_Scene;
 
-		EntityIndex index = GetEntityIndex(ent->m_ID);
-		EntityID newID = CreateEntityID(EntityIndex(-1), GetEntityVersion(ent->m_ID) + 1);
+		EntityIndex index = GetEntityIndex(entity->m_ID);
+		EntityID newID = CreateEntityID(EntityIndex(-1), GetEntityVersion(entity->m_ID) + 1);
 
 		scene->m_Entities[index]->m_ID = newID;
 		scene->m_Entities[index]->m_Components.reset();
@@ -219,24 +259,24 @@ namespace Wyvern
 		scene->m_FreeEntities.push_back(index);
 	}
 
-	void Scene::PurgeComponent(Entity* ent, int component)
+	void Scene::PurgeComponent(Entity* entity, int component)
 	{
-		if (!IsEntityValid(ent)) return;
+		if (!IsEntityValid(entity)) return;
 
-		for (ComponentPool* pool : ent->m_Scene->m_ComponentPools)
+		for (ComponentPool* pool : entity->m_Scene->m_ComponentPools)
 		{
 			if (pool->ComponentID == component)
 			{
-				for (int i = 0; i < ent->m_ComponentPtrs.size(); i++)
+				for (int i = 0; i < entity->m_ComponentPtrs.size(); i++)
 				{
-					if (ent->m_ComponentPtrs[i] == pool->Get(GetEntityIndex(ent->m_ID)))
+					if (entity->m_ComponentPtrs[i] == pool->Get(GetEntityIndex(entity->m_ID)))
 					{
-						ent->m_ComponentPtrs.erase(ent->m_ComponentPtrs.begin() + i);
+						entity->m_ComponentPtrs.erase(entity->m_ComponentPtrs.begin() + i);
 					}
 				}
 			}
 		}
 
-		ent->m_Components.reset(component);
+		entity->m_Components.reset(component);
 	}
 }

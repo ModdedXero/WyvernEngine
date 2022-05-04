@@ -196,7 +196,7 @@
     <ClInclude Include="Wyvern\Core\Scene\Scene.h">
       <Filter>Wyvern\Core\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Wyvern\Core\Scene\SceneSerializer.h">
+    <ClInclude Include="Wyvern\Core\Scene\Serializer.h">
       <Filter>Wyvern\Core\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Wyvern\Core\Scene\SerializeHelper.h">
@@ -322,7 +322,7 @@
     <ClCompile Include="Wyvern\Core\Scene\Scene.cpp">
       <Filter>Wyvern\Core\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Wyvern\Core\Scene\SceneSerializer.cpp">
+    <ClCompile Include="Wyvern\Core\Scene\Serializer.cpp">
       <Filter>Wyvern\Core\Scene</Filter>
     </ClCompile>
     <ClCompile Include="Wyvern\Core\Scene\SerializeHelper.cpp">

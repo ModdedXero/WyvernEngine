@@ -150,7 +150,7 @@
 
 
     if ( cid )
-      *cid = glyph_index; /* identity mapping */
+      *cid = glyph_index; /* ident mapping */
 
     return error;
   }

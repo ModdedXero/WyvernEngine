@@ -1,1 +1,11 @@
-﻿  freetype.vcxproj -> E:\Programming\VisualStudio\Projects\WyvernEngine\WyvernEngine\Vendor\FreeType\bin\Debug-windows\freetype\freetype.lib
+﻿  autofit.c
+  ftbase.c
+  ftglyph.c
+  ftinit.c
+  ftstroke.c
+  bdf.c
+  cff.c
+  type1cid.c
+  psaux.c
+  Generating Code...
+  freetype.vcxproj -> E:\Programming\VisualStudio\Projects\WyvernEngine\WyvernEngine\Vendor\FreeType\bin\Debug-windows\freetype\freetype.lib

@@ -6,7 +6,7 @@
 namespace glm
 {
 	template<typename T, qualifier Q>
-	GLM_FUNC_QUALIFIER GLM_CONSTEXPR qua<T, Q> quat_identity()
+	GLM_FUNC_QUALIFIER GLM_CONSTEXPR qua<T, Q> quat_ident()
 	{
 		return qua<T, Q>(static_cast<T>(1), static_cast<T>(0), static_cast<T>(0), static_cast<T>(0));
 	}
@@ -126,7 +126,7 @@ namespace glm
 
 		if(cosTheta >= static_cast<T>(1) - epsilon<T>()) {
 			// orig and dest point in the same direction
-			return quat_identity<T,Q>();
+			return quat_ident<T,Q>();
 		}
 
 		if(cosTheta < static_cast<T>(-1) + epsilon<T>())

@@ -212,7 +212,7 @@ namespace detail
 	template<typename genType>
 	struct init_gentype<genType, GENTYPE_QUAT>
 	{
-		GLM_FUNC_QUALIFIER GLM_CONSTEXPR static genType identity()
+		GLM_FUNC_QUALIFIER GLM_CONSTEXPR static genType ident()
 		{
 			return genType(1, 0, 0, 0);
 		}
@@ -221,7 +221,7 @@ namespace detail
 	template<typename genType>
 	struct init_gentype<genType, GENTYPE_MAT>
 	{
-		GLM_FUNC_QUALIFIER GLM_CONSTEXPR static genType identity()
+		GLM_FUNC_QUALIFIER GLM_CONSTEXPR static genType ident()
 		{
 			return genType(1);
 		}

@@ -12,7 +12,7 @@
 /*  used, modified, and distributed under the FreeType Project License,    */
 /*  LICENSE.TXT.  Additionally, subject to the terms and conditions of the */
 /*  FreeType Project License, each contributor to the Work hereby grants   */
-/*  to any individual or legal entity exercising permissions granted by    */
+/*  to any individual or legal ent exercising permissions granted by    */
 /*  the FreeType Project License and this section (hereafter, "You" or     */
 /*  "Your") a perpetual, worldwide, non-exclusive, no-charge,              */
 /*  royalty-free, irrevocable (except as stated in this section) patent    */
@@ -21,7 +21,7 @@
 /*  patent claims licensable by such contributor that are necessarily      */
 /*  infringed by their contribution(s) alone or by combination of their    */
 /*  contribution(s) with the Work to which such contribution(s) was        */
-/*  submitted.  If You institute patent litigation against any entity      */
+/*  submitted.  If You institute patent litigation against any ent      */
 /*  (including a cross-claim or counterclaim in a lawsuit) alleging that   */
 /*  the Work or a contribution incorporated within the Work constitutes    */
 /*  direct or contributory patent infringement, then any patent licenses   */
@@ -340,7 +340,7 @@
       font->currentTransform.tx =
       font->currentTransform.ty = cf2_intToFixed( 0 );
 
-      /* TODO: FreeType transform is simple scalar; for now, use identity */
+      /* TODO: FreeType transform is simple scalar; for now, use ident */
       /*       for outer                                                  */
       font->innerTransform   = *transform;
       font->outerTransform.a =

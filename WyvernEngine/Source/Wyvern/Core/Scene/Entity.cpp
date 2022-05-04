@@ -10,17 +10,17 @@ namespace Wyvern
         return Scene::DestoryEntity(this);
     }
 
-    void Entity::AddChildEntity(Entity* ent)
+    void Entity::AddChildEntity(Entity* entity)
     {
-        m_Children.push_back(ent);
-        ent->m_Parent = this;
+        m_Children.push_back(entity);
+        entity->m_Parent = this;
     }
     
-    void Entity::RemoveChildEntity(Entity* ent)
+    void Entity::RemoveChildEntity(Entity* entity)
     {
         for (int i = 0; i < m_Children.size(); i++)
         {
-            if (m_Children[i] == ent)
+            if (m_Children[i] == entity)
                 m_Children.erase(m_Children.begin() + i);
         }
     }

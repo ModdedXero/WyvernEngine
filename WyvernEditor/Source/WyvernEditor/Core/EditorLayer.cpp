@@ -16,16 +16,6 @@ namespace Wyvern::Editor
 
     std::vector<EditorWindow*> EditorLayer::s_Windows;
 
-    void TestNativeComponent::OnUpdate()
-    {
-        Scene::GetComponent<RigidBody2D>(GetEntity())->force += Vector2(1, 0.16) * awesomeLevel;
-    }
-
-    void TestNativeComponent::DrawEditor()
-    {
-        EditorGUI::IntControl("Awesome", awesomeLevel);
-    }
-
 	void EditorLayer::OnAttach()
 	{
         s_ActiveScene = CreateRef<Scene>();
@@ -122,7 +112,7 @@ namespace Wyvern::Editor
                     if (!filePath.empty())
                     {
                         s_ActiveScene->OnDestroy();
-                        SceneSerializer::Deserialize(s_ActiveScene, filePath);
+                        Serializer::Deserialize(s_ActiveScene, filePath);
                     }
                 }
 
@@ -131,7 +121,7 @@ namespace Wyvern::Editor
                     std::string filePath = FileDialogs::SaveFile("Wyvern Scene (*.wyvern)\0*.wyvern\0", "wyvern");
                     if (!filePath.empty())
                     {
-                        SceneSerializer::Serialize(s_ActiveScene, filePath);
+                        Serializer::Serialize(Serializer::Serialize(s_ActiveScene), filePath);
                     }
                 }
 

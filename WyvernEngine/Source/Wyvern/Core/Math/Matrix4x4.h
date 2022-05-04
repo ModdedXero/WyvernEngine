@@ -11,9 +11,9 @@ namespace Wyvern
 {
 	struct Matrix4x4
 	{
-		Matrix4x4(float identity)
+		Matrix4x4(float ident)
 		{
-			m_Matrix = glm::mat4(identity);
+			m_Matrix = glm::mat4(ident);
 		}
 
 		Matrix4x4(glm::mat4 matrix)

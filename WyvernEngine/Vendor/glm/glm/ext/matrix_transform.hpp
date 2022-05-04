@@ -34,9 +34,9 @@ namespace glm
 	/// @addtogroup ext_matrix_transform
 	/// @{
 
-	/// Builds an identity matrix.
+	/// Builds an ident matrix.
 	template<typename genType>
-	GLM_FUNC_DECL GLM_CONSTEXPR genType identity();
+	GLM_FUNC_DECL GLM_CONSTEXPR genType ident();
 
 	/// Builds a translation 4 * 4 matrix created from a vector of 3 components.
 	///
