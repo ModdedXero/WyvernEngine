@@ -50,7 +50,7 @@ namespace Wyvern::Editor
         }
 
         s_ActiveScene->OnRuntimeUpdate();
-        s_ActiveScene->OnEditorUpdate(s_EditorCamera, s_EditorCamera->transform->GetTransform());
+        s_ActiveScene->OnEditorUpdate(s_EditorCamera, s_EditorCamera->transform);
         Scene::FlushScene();
 
         for (EditorWindow* window : s_Windows)

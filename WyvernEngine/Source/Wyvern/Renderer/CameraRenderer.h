@@ -5,6 +5,11 @@
 
 #include <glm/glm.hpp>
 
+namespace Wyvern
+{
+	struct Transform;
+}
+
 namespace Wyvern::Renderer
 {
 	enum class CameraMode
@@ -34,7 +39,7 @@ namespace Wyvern::Renderer
 		void SetClipSpaceFar(float far) { m_ClipFar = far; }
 
 		void ResizeView(float width, float height);
-		void SetShaderMatrices(Ref<Shader> shader, Matrix4x4& position);
+		void SetShaderMatrices(Ref<Shader> shader, Transform* position);
 
 		static Vector2 WorldToScreenPoint(Vector3& pos);
 	private:

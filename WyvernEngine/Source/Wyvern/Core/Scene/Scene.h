@@ -39,7 +39,7 @@ namespace Wyvern
 		void OnAwake();
 		void OnDestroy();
 		void OnRuntimeUpdate();
-		void OnEditorUpdate(Renderer::CameraRenderer* camera, const Matrix4x4& position);
+		void OnEditorUpdate(Renderer::CameraRenderer* camera, Transform* position);
 		void OnFixedUpdate();
 		void OnEvent(Events::Event& e);
 

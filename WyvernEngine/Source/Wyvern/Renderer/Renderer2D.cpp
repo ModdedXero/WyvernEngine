@@ -36,7 +36,7 @@ namespace Wyvern::Renderer
 		uint32_t WhiteTexture = 0;
 
 		CameraRenderer* Camera = nullptr;
-		Matrix4x4 CameraPosition = Matrix4x4(1.0f);
+		Transform* CameraPosition = nullptr;
 	};
 
 	struct Character
@@ -171,7 +171,7 @@ namespace Wyvern::Renderer
 
 		delete[] s_Data.QuadBuffer;
 	}
-	void Renderer2D::BeginScene(CameraRenderer* cameraRenderer, const Matrix4x4& cameraPosition)
+	void Renderer2D::BeginScene(CameraRenderer* cameraRenderer, Transform* cameraPosition)
 	{
 		s_Data.Camera = cameraRenderer;
 		s_Data.CameraPosition = cameraPosition;

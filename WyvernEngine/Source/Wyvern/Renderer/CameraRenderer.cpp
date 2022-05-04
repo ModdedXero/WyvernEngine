@@ -2,6 +2,7 @@
 #include "CameraRenderer.h"
 
 #include <Wyvern/Core/Application.h>
+#include <Wyvern/Core/Components/Transform.h>
 
 #include <glm/ext/matrix_clip_space.hpp>
 #include <glm/ext/matrix_transform.hpp>
@@ -41,14 +42,22 @@ namespace Wyvern::Renderer
 		SetProjection(lWidth, lHeight);
 	}
 
-	void CameraRenderer::SetShaderMatrices(Ref<Shader> shader, Matrix4x4& position)
+	void CameraRenderer::SetShaderMatrices(Ref<Shader> shader, Transform* position)
 	{
 		RecalculateProjection();
 
-		m_View = Matrix4x4::Inverse(position).GetNativeMatrix();
+		Vector3 pos = position->position;
+		pos.y = -pos.y;
+
+		Transform newTrans = Transform();
+		newTrans.position = pos;
+		newTrans.rotation = position->rotation;
+		newTrans.scale = position->scale;
+
+		m_View = Matrix4x4::Inverse(newTrans.GetTransform()).GetNativeMatrix();
 
 		shader->SetMatrix4("projection", m_Projection);
-		shader->SetMatrix4("viewModel", m_View * glm::mat4(1.0f));
+		shader->SetMatrix4("viewModel", m_View);
 	}
 
 	Vector2 CameraRenderer::WorldToScreenPoint(Vector3& pos)

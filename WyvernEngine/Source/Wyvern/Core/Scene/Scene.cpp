@@ -89,7 +89,7 @@ namespace Wyvern
 
 		if (mainCamera)
 		{
-			Renderer::Renderer2D::BeginScene(mainCamera->GetRenderer(), cameraTransform->GetTransform());
+			Renderer::Renderer2D::BeginScene(mainCamera->GetRenderer(), cameraTransform);
 
 			for (Entity* entity : EntityList<SpriteRenderer>(shared_from_this()))
 			{
@@ -102,7 +102,7 @@ namespace Wyvern
 		}
 	}
 
-	void Scene::OnEditorUpdate(Renderer::CameraRenderer* camera, const Matrix4x4& position)
+	void Scene::OnEditorUpdate(Renderer::CameraRenderer* camera, Transform* position)
 	{
 		if (m_SceneState != SceneState::Edit) return;
 
