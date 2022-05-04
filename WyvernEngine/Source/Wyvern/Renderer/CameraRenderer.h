@@ -36,12 +36,8 @@ namespace Wyvern::Renderer
 		void ResizeView(float width, float height);
 		void SetShaderMatrices(Ref<Shader> shader, Matrix4x4& position);
 
-		static CameraRenderer* GetActive() { return s_Active; }
-		static void SetActiveCamera(CameraRenderer* camera) { s_Active = camera; }
 		static Vector2 WorldToScreenPoint(Vector3& pos);
 	private:
-		static CameraRenderer* s_Active;
-
 		void RecalculateProjection();
 
 		CameraMode m_CameraMode = CameraMode::Orthographic;

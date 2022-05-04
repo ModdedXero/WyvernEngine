@@ -64,17 +64,8 @@ namespace Wyvern
 		fout << info.out.c_str();
 	}
 
-	bool Serializer::Deserialize(Ref<Scene> scene, const std::string& filepath)
+	bool Serializer::Deserialize(Ref<Scene> scene, SerializeInfo& info)
 	{
-		std::ifstream stream(filepath);
-		std::stringstream strStream;
-		strStream << stream.rdbuf();
-
-		SerializeInfo info(false);
-		info.in = YAML::Load(strStream.str());
-		if (!info.in["Scene"])
-			return false;
-
 		std::string sceneName = info.in["Scene"].as<std::string>();
 		DEBUG_CORE("Deserilizing scene ", sceneName);
 
@@ -102,12 +93,26 @@ namespace Wyvern
 			{
 				SerializeInfo compInfo(false);
 				compInfo.in = comp.second;
-				auto compBase = ApplicationDomain::CreateComponent(comp.first.as<std::string>(), entity->GetID());
+				auto compBase = ApplicationDomain::CreateComponent(comp.first.as<std::string>(), entity->m_Scene, entity->GetID());
 				compBase->__Serialize(compInfo);
 			}
 		}
 
 		return true;
+	}
+
+	bool Serializer::Deserialize(Ref<Scene> scene, const std::string& filepath)
+	{
+		std::ifstream stream(filepath);
+		std::stringstream strStream;
+		strStream << stream.rdbuf();
+
+		SerializeInfo info(false);
+		info.in = YAML::Load(strStream.str());
+		if (!info.in["Scene"])
+			return false;
+
+		return Deserialize(scene, info);
 	}
 
 	void Serializer::ConvertSerialToDeserial(SerializeInfo& info)

@@ -48,7 +48,7 @@ namespace Wyvern::Editor
 
 				if (ImGui::MenuItem(component.first.c_str()))
 				{
-					auto newComp = component.second(s_SelectedContext->GetID());
+					auto newComp = component.second(Scene::GetActiveScene(), s_SelectedContext->GetID());
 					newComp->AddToEntity(s_SelectedContext);
 					ImGui::CloseCurrentPopup();
 				}

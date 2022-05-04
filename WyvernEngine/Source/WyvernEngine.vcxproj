@@ -220,6 +220,7 @@
     <ClCompile Include="Wyvern\Core\Application.cpp" />
     <ClCompile Include="Wyvern\Core\ApplicationDomain.cpp" />
     <ClCompile Include="Wyvern\Core\AssetManager.cpp" />
+    <ClCompile Include="Wyvern\Core\Components\Camera.cpp" />
     <ClCompile Include="Wyvern\Core\Components\Transform.cpp" />
     <ClCompile Include="Wyvern\Core\Constants.cpp" />
     <ClCompile Include="Wyvern\Core\Graphics\Shader.cpp" />

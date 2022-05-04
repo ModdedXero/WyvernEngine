@@ -8,13 +8,9 @@
 
 namespace Wyvern::Renderer
 {
-	CameraRenderer* CameraRenderer::s_Active = nullptr;
-
 	CameraRenderer::CameraRenderer()
 		: m_Projection(1.0f), m_View(1.0f), m_OrthoSize(5.0f), m_FieldOfView(60.0f), m_ClipNear(0.3f), m_ClipFar(100.0f), m_AspectRatio(1.0f)
 	{
-		if (s_Active == nullptr) s_Active = this;
-
 		float aspectRatio = (float)Application::Get().GetWindow().GetWidth() / (float)Application::Get().GetWindow().GetHeight();
 
 		if (m_CameraMode == CameraMode::Perspective)
@@ -57,14 +53,16 @@ namespace Wyvern::Renderer
 
 	Vector2 CameraRenderer::WorldToScreenPoint(Vector3& pos)
 	{
-		Display::Window& window = Application::Get().GetWindow();
+		//Display::Window& window = Application::Get().GetWindow();
 
-		auto point = s_Active->m_Projection * s_Active->m_View * glm::mat4(1.0f) * glm::vec4(pos.x, pos.y, 1.0f, 1.0f);
+		//auto point = s_Active->m_Projection * s_Active->m_View * glm::mat4(1.0f) * glm::vec4(pos.x, pos.y, 1.0f, 1.0f);
 
-		float xPos = ((point.x + 8) / 16) * window.GetWidth();
-		float yPos = window.GetHeight() - (((point.y + 8) / 16) * window.GetHeight());
+		//float xPos = ((point.x + 8) / 16) * window.GetWidth();
+		//float yPos = window.GetHeight() - (((point.y + 8) / 16) * window.GetHeight());
 
-		return Vector2(xPos, yPos);
+		// Move to camera component and update window size method
+
+		return Vector2();
 	}
 
 	void CameraRenderer::RecalculateProjection()

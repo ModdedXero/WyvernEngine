@@ -27,8 +27,6 @@ namespace Wyvern::Editor
 			WindowSize = windowPanelSize;
 
 			EditorLayer::GetEditorCamera()->Resize(windowPanelSize.x, windowPanelSize.y);
-			if (Renderer::CameraRenderer::GetActive())
-				Renderer::CameraRenderer::GetActive()->ResizeView(windowPanelSize.x, windowPanelSize.y);
 		}
 
 		unsigned int textureID = m_Framebuffer->GetColorAttachmentRendererID();

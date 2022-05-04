@@ -47,7 +47,7 @@ namespace Wyvern
 
 		// Update Native Scripts
 
-		for (Entity* entity : EntityList<NativeScriptComponent>(true))
+		for (Entity* entity : EntityList<NativeScriptComponent>(shared_from_this(), true))
 		{
 			for (NativeScriptComponent* nsc : GetComponentsOfBase<NativeScriptComponent>(entity))
 			{
@@ -66,21 +66,32 @@ namespace Wyvern
 
 		Camera* mainCamera = nullptr;
 		Transform* cameraTransform = nullptr;
+		Entity* mainCameraCache = nullptr;
 
-		for (Entity* entity : EntityList<Camera>())
+		for (Entity* entity : EntityList<Camera>(shared_from_this()))
 		{
-			if (Renderer::CameraRenderer::GetActive() == Scene::GetComponent<Camera>(entity)->GetRenderer())
+			if (!mainCameraCache) mainCameraCache = entity;
+
+			if (Scene::GetComponent<Camera>(entity)->IsActive())
 			{
 				mainCamera = Scene::GetComponent<Camera>(entity);
 				cameraTransform = entity->GetTransform();
+				break;
 			}
+		}
+
+		if (!mainCamera && mainCameraCache)
+		{
+			mainCamera = Scene::GetComponent<Camera>(mainCameraCache);
+			cameraTransform = mainCameraCache->GetTransform();
+			mainCamera->SetActive();
 		}
 
 		if (mainCamera)
 		{
 			Renderer::Renderer2D::BeginScene(mainCamera->GetRenderer(), cameraTransform->GetTransform());
 
-			for (Entity* entity : EntityList<SpriteRenderer>())
+			for (Entity* entity : EntityList<SpriteRenderer>(shared_from_this()))
 			{
 				SpriteRenderer* sRend = Scene::GetComponent<SpriteRenderer>(entity);
 
@@ -97,7 +108,7 @@ namespace Wyvern
 
 		Renderer::Renderer2D::BeginScene(camera, position);
 
-		for (Entity* entity : EntityList<SpriteRenderer>())
+		for (Entity* entity : EntityList<SpriteRenderer>(shared_from_this()))
 		{
 			SpriteRenderer* sRend = Scene::GetComponent<SpriteRenderer>(entity);
 
@@ -111,7 +122,7 @@ namespace Wyvern
 	{
 		if (m_SceneState != SceneState::Play) return;
 
-		for (Entity* entity : EntityList<NativeScriptComponent>(true))
+		for (Entity* entity : EntityList<NativeScriptComponent>(shared_from_this(), true))
 		{
 			for (NativeScriptComponent* nsc : GetComponentsOfBase<NativeScriptComponent>(entity))
 			{

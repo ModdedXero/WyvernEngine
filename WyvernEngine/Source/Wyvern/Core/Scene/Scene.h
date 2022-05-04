@@ -27,7 +27,7 @@ namespace Wyvern
 		Edit
 	};
 
-	class Scene
+	class Scene : public std::enable_shared_from_this<Scene>
 	{
 		template <class... ComponentTypes>
 		friend struct EntityList;
@@ -57,8 +57,6 @@ namespace Wyvern
 
 		static Ref<Scene> GetActiveScene() { return s_ActiveScene; }
 		static void SetActiveScene(Ref<Scene> scene) { s_ActiveScene = scene; }
-
-	public:
 
 	public:
 		static Entity* CreateEntity(Ref<Scene> scene, std::string name = "Entity");

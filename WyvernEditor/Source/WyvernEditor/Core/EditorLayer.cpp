@@ -7,6 +7,7 @@
 namespace Wyvern::Editor
 {
     Ref<Scene> EditorLayer::s_ActiveScene;
+    Ref<Scene> EditorLayer::s_CachedScene;
     ViewportCamera* EditorLayer::s_EditorCamera = nullptr;
     Entity* EditorLayer::s_SelectedContext = nullptr;
 
@@ -136,9 +137,22 @@ namespace Wyvern::Editor
                 if (ImGui::MenuItem(s_ActiveScene->GetSceneState() == SceneState::Edit ? "Play" : "Stop"))
                 {
                     if (s_ActiveScene->GetSceneState() == SceneState::Edit)
+                    {
+                        Ref<Scene> runtimeScene = CreateRef<Scene>();
+                        SerializeInfo& info = Serializer::Serialize(s_ActiveScene);
+                        Serializer::ConvertSerialToDeserial(info);
+                        Serializer::Deserialize(runtimeScene, info);
+                        s_CachedScene = s_ActiveScene;
+                        s_ActiveScene = runtimeScene;
+                        Scene::SetActiveScene(s_ActiveScene);
                         s_ActiveScene->SetSceneState(SceneState::Play);
+                    }
                     else
+                    {
+                        s_ActiveScene = s_CachedScene;
+                        Scene::SetActiveScene(s_ActiveScene);
                         s_ActiveScene->SetSceneState(SceneState::Edit);
+                    }
                 }
 
                 ImGui::EndMenu();

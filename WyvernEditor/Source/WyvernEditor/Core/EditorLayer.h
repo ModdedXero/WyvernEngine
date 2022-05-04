@@ -25,13 +25,13 @@ namespace Wyvern::Editor
 		static void OpenPropertiesWindow();
 
 		static ViewportCamera* GetEditorCamera() { return s_EditorCamera; }
-		static Ref<Scene> GetActiveScene() { return s_ActiveScene; }
 
 		static Entity* GetSelectedContext() { return s_SelectedContext; }
 		static void SetSelectedContext(Entity* ent) { s_SelectedContext = ent; }
 
 	private:
 		static Ref<Scene> s_ActiveScene;
+		static Ref<Scene> s_CachedScene;
 		static ViewportCamera* s_EditorCamera;
 		static Entity* s_SelectedContext;
 

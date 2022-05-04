@@ -6,7 +6,6 @@ namespace Wyvern::Editor
 	{
 		transform = new Transform();
 		transform->position.z = 0.5f;
-		if (CameraRenderer::GetActive() == this) CameraRenderer::SetActiveCamera(nullptr);
 	}
 
 	void ViewportCamera::MoveCamera()

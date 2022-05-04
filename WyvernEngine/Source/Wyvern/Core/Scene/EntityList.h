@@ -8,15 +8,17 @@ namespace Wyvern
 	template <typename... ComponentTypes>
 	struct EntityList
 	{
-		EntityList(bool baseClass = false)
+		EntityList(Ref<Scene> scene, bool baseClass = false)
 		{
+			CurrentScene = scene;
+
 			if (sizeof...(ComponentTypes) == 0)
 			{
 				All = true;
 			}
 			else
 			{
-				int componentIDs[] = { 0, Scene::GetActiveScene()->FindComponentID<ComponentTypes>(baseClass)... };
+				int componentIDs[] = { 0, CurrentScene->FindComponentID<ComponentTypes>(baseClass)... };
 				for (int i = 1; i < (sizeof...(ComponentTypes) + 1); i++)
 				{
 					if (componentIDs[i] == -1)
@@ -28,18 +30,18 @@ namespace Wyvern
 				}
 			}
 
-			EntitySize = (EntityIndex)Scene::GetActiveScene()->m_Entities.size();
+			EntitySize = (EntityIndex)CurrentScene->m_Entities.size();
 		}
 
 		struct Iterator
 		{
-			Iterator(EntityIndex index, size_t size, ComponentMask components, bool all)
-				: index(index), entSize(size), components(components), all(all)
+			Iterator(Ref<Scene> scene, EntityIndex index, size_t size, ComponentMask components, bool all)
+				: currentScene (scene), index(index), entSize(size), components(components), all(all)
 			{}
 
 			Entity* operator*() const
 			{
-				return Scene::GetActiveScene()->m_Entities[index];
+				return currentScene->m_Entities[index];
 			}
 
 			bool operator==(const Iterator& other) const
@@ -63,12 +65,13 @@ namespace Wyvern
 
 			bool isValidIndex()
 			{
-				return Scene::IsEntityValid(Scene::GetActiveScene()->m_Entities[index]) &&
-					(all || components == (components & Scene::GetActiveScene()->m_Entities[index]->GetMask()));
+				return Scene::IsEntityValid(currentScene->m_Entities[index]) &&
+					(all || components == (components & currentScene->m_Entities[index]->GetMask()));
 			}
 
-			size_t entSize;
+			Ref<Scene> currentScene;
 			EntityIndex index;
+			size_t entSize;
 			ComponentMask components;
 			bool all;
 		};
@@ -77,20 +80,21 @@ namespace Wyvern
 		{
 			EntityIndex firstIndex = Invalid ? EntitySize : 0;
 			while (firstIndex < EntitySize &&
-				(Components != (Components & Scene::GetActiveScene()->m_Entities[firstIndex]->GetMask())
-					|| !Scene::IsEntityValid(Scene::GetActiveScene()->m_Entities[firstIndex])))
+				(Components != (Components & CurrentScene->m_Entities[firstIndex]->GetMask())
+					|| !Scene::IsEntityValid(CurrentScene->m_Entities[firstIndex])))
 			{
 				firstIndex++;
 			}
 
-			return Iterator(firstIndex, EntitySize, Components, All);
+			return Iterator(CurrentScene, firstIndex, EntitySize, Components, All);
 		}
 
 		const Iterator end() const
 		{
-			return Iterator(EntityIndex(EntitySize), EntitySize, Components, All);
+			return Iterator(CurrentScene, EntityIndex(EntitySize), EntitySize, Components, All);
 		}
 
+		Ref<Scene> CurrentScene;
 		EntityIndex EntitySize = 0;
 		EntityIndex Index = 0;
 		ComponentMask Components = 0;

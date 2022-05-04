@@ -33,7 +33,7 @@ namespace Wyvern
 
 	void Physics2DWizard::OnFixedUpdate()
 	{
-		for (Entity* entity : EntityList<RigidBody2D>())
+		for (Entity* entity : EntityList<RigidBody2D>(Scene::GetActiveScene()))
 		{
 			for (PhysicsSolver2D* solver : m_PhysicsSolvers)
 				solver->Solve(Scene::GetComponent<RigidBody2D>(entity), entity->GetTransform());
@@ -41,12 +41,12 @@ namespace Wyvern
 
 		std::vector<Ref<Collision2D>> collisions;
 
-		for (Entity* ent1 : EntityList<BoxCollider2D>())
+		for (Entity* ent1 : EntityList<BoxCollider2D>(Scene::GetActiveScene()))
 		{
 			BoxCollider2D* col1 = Scene::GetComponent<BoxCollider2D>(ent1);
 			RigidBody2D* rb1 = Scene::GetComponent<RigidBody2D>(ent1);
 
-			for (Entity* ent2 : EntityList<BoxCollider2D>())
+			for (Entity* ent2 : EntityList<BoxCollider2D>(Scene::GetActiveScene()))
 			{
 				BoxCollider2D* col2 = Scene::GetComponent<BoxCollider2D>(ent2);
 				RigidBody2D* rb2 = Scene::GetComponent<RigidBody2D>(ent2);
@@ -70,11 +70,11 @@ namespace Wyvern
 			}
 		}
 
-		for (Entity* ent1 : EntityList<BoxCollider2D>())
+		for (Entity* ent1 : EntityList<BoxCollider2D>(Scene::GetActiveScene()))
 		{
 			BoxCollider2D* col1 = Scene::GetComponent<BoxCollider2D>(ent1);
 
-			for (Entity* ent2 : EntityList<SphereCollider2D>())
+			for (Entity* ent2 : EntityList<SphereCollider2D>(Scene::GetActiveScene()))
 			{
 				SphereCollider2D* col2 = Scene::GetComponent<SphereCollider2D>(ent2);
 

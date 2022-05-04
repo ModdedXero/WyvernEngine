@@ -140,6 +140,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="TestMovement.h" />
     <ClInclude Include="WyvernEditor\Core\EditorLayer.h" />
     <ClInclude Include="WyvernEditor\Core\EditorWindow.h" />
     <ClInclude Include="WyvernEditor\Core\ViewportCamera.h" />
@@ -150,6 +151,7 @@
     <ClInclude Include="WyvernEditor\Windows\ViewportWindow.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="TestMovement.cpp" />
     <ClCompile Include="WyvernEditor\Core\ComponentUI.cpp" />
     <ClCompile Include="WyvernEditor\Core\EditorLayer.cpp" />
     <ClCompile Include="WyvernEditor\Core\EditorWindow.cpp" />

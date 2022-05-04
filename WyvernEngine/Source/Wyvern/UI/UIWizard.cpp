@@ -24,7 +24,7 @@ namespace Wyvern::UI
 
 	bool UIWizard::OnMouseMoveEvent(MouseMovedEvent& e)
 	{
-		for (Entity* entity : EntityList<Button>())
+		for (Entity* entity : EntityList<Button>(Scene::GetActiveScene()))
 		{
 			Button* button = Scene::GetComponent<Button>(entity);
 			Vector2 mousePos = Vector2(e.GetXPos(), e.GetYPos());
@@ -61,7 +61,7 @@ namespace Wyvern::UI
 
 	bool UIWizard::OnMouseClickEvent(MouseButtonPressedEvent& e)
 	{
-		for (Entity* entity : EntityList<Button>())
+		for (Entity* entity : EntityList<Button>(Scene::GetActiveScene()))
 		{
 			Button* button = Scene::GetComponent<Button>(entity);
 

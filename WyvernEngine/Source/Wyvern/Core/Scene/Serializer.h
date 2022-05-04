@@ -36,8 +36,9 @@ namespace Wyvern
 		static void Serialize(Entity* entity, SerializeInfo& info);
 		static void Serialize(SerializeInfo& info, const std::string& filepath);
 
-		static bool Deserialize(Ref<Scene> scene, const std::string& filepath);
+		static bool Deserialize(Ref<Scene> scene, SerializeInfo& info);
 		static bool Deserialize(Entity* entity, SerializeInfo& info);
+		static bool Deserialize(Ref<Scene> scene, const std::string& filepath);
 
 		static void ConvertSerialToDeserial(SerializeInfo& info);
 
@@ -45,7 +46,7 @@ namespace Wyvern
 		static bool DeserizlizeRuntime(Ref<Scene> scene, const std::string& filepath);
 	};
 
-#define WV_SERIALIZE_COMPONENT(CLASS_NAME)			static inline Component* __RegisterComponent(unsigned long long entity) { return Scene::AddComponent<CLASS_NAME>(Scene::GetActiveScene(), entity); }\
+#define WV_SERIALIZE_COMPONENT(CLASS_NAME)			static inline Component* __RegisterComponent(Ref<Scene> scene, unsigned long long entity) { return Scene::AddComponent<CLASS_NAME>(scene, entity); }\
 													static inline bool __IsRegistered = ApplicationDomain::RegisterComponent(#CLASS_NAME, __RegisterComponent);\
 													virtual void DrawEditor() override;\
 													virtual void __Serialize(SerializeInfo& info) override\

@@ -356,5 +356,6 @@
       <Filter>Wyvern\Utils</Filter>
     </ClCompile>
     <ClCompile Include="wvpch.cpp" />
+    <ClCompile Include="Wyvern\Core\Components\Camera.cpp" />
   </ItemGroup>
 </Project>
