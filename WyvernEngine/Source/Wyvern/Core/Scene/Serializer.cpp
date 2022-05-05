@@ -115,7 +115,7 @@ namespace Wyvern
 				SerializeInfo compInfo(false);
 				compInfo.in = comp.second;
 				auto compBase = ApplicationDomain::CreateComponent(comp.first.as<std::string>(), entity->m_Scene, entity->GetSceneID());
-				compBase->__Serialize(compInfo);
+				if (compBase) compBase->__Serialize(compInfo);
 			}
 		}
 
