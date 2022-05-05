@@ -43,8 +43,8 @@ namespace Wyvern
 	void Serializer::Serialize(Entity* entity, SerializeInfo& info)
 	{
 		info.out << YAML::BeginMap;
-		info.out << YAML::Key << "Entity";
-		info.out << YAML::Value << "707034759034570"; // TODO: Add UUID of Entity
+		info.out << YAML::Key << "Entity" << YAML::Value << entity->m_UUID;
+		if (entity->m_Parent) info.out << YAML::Key << "Parent" << YAML::Value << entity->m_Parent->m_UUID;
 
 		info.out << YAML::Key << "Components" << YAML::Value << YAML::BeginMap;
 
@@ -74,9 +74,19 @@ namespace Wyvern
 		{
 			for (auto ent : entities)
 			{
-				Entity* entity = Scene::CreateEntity(scene);
 				SerializeInfo* entInfo = new SerializeInfo(false);
 				entInfo->in = (YAML::Node)ent;
+				UUID entUUID = entInfo->in["Entity"].as<UUID>();
+
+				Entity* entity = Scene::CreateEntity(scene, entUUID);
+
+				if (entInfo->in["Parent"])
+				{
+					UUID parentUUID = entInfo->in["Parent"].as<UUID>();
+					Entity* parent = Scene::CreateEntity(scene, parentUUID);
+					parent->AddChildEntity(entity);
+				}
+
 				Deserialize(entity, *entInfo);
 			}
 		}
@@ -86,6 +96,17 @@ namespace Wyvern
 
 	bool Serializer::Deserialize(Entity* entity, SerializeInfo& info)
 	{
+		DEBUG_CORE(info.in);
+
+		if (info.in["Parent"])
+		{
+			if (!entity->m_Parent)
+			{
+				entity->m_Parent = Scene::CreateEntity(entity->m_Scene, info.in["Parent"].as<UUID>());
+				entity->m_Parent->AddChildEntity(entity);
+			}
+		}
+
 		auto components = info.in["Components"];
 		if (components)
 		{
@@ -93,7 +114,7 @@ namespace Wyvern
 			{
 				SerializeInfo compInfo(false);
 				compInfo.in = comp.second;
-				auto compBase = ApplicationDomain::CreateComponent(comp.first.as<std::string>(), entity->m_Scene, entity->GetID());
+				auto compBase = ApplicationDomain::CreateComponent(comp.first.as<std::string>(), entity->m_Scene, entity->GetSceneID());
 				compBase->__Serialize(compInfo);
 			}
 		}

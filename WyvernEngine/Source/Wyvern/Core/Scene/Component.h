@@ -22,7 +22,7 @@ namespace Wyvern
 		Entity* GetEntity() const { return m_Entity; }
 		Transform* GetTransform() const { return m_Transform; }
 		Tag* GetTag() const { return m_Tag; }
-		int GetID() { return m_ComponentID; }
+		int GetSceneID() { return m_ComponentID; }
 
 		virtual void __Serialize(SerializeInfo& info) {}
 		virtual void Serialize(YAML::Emitter& out) {}

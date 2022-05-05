@@ -188,6 +188,7 @@
     <ClInclude Include="Wyvern\Core\Scene\Scene.h" />
     <ClInclude Include="Wyvern\Core\Scene\Serializer.h" />
     <ClInclude Include="Wyvern\Core\Scene\SerializeHelper.h" />
+    <ClInclude Include="Wyvern\Core\Scene\UUID.h" />
     <ClInclude Include="Wyvern\Core\Scene\Wizard.h" />
     <ClInclude Include="Wyvern\Core\Scene\WizardStack.h" />
     <ClInclude Include="Wyvern\Core\Timestep.h" />
@@ -239,6 +240,7 @@
     <ClCompile Include="Wyvern\Core\Scene\Scene.cpp" />
     <ClCompile Include="Wyvern\Core\Scene\Serializer.cpp" />
     <ClCompile Include="Wyvern\Core\Scene\SerializeHelper.cpp" />
+    <ClCompile Include="Wyvern\Core\Scene\UUID.cpp" />
     <ClCompile Include="Wyvern\Core\Scene\Wizard.cpp" />
     <ClCompile Include="Wyvern\Core\Scene\WizardStack.cpp" />
     <ClCompile Include="Wyvern\Display\Window.cpp" />

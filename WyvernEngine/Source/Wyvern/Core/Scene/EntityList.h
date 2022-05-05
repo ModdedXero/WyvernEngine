@@ -30,12 +30,12 @@ namespace Wyvern
 				}
 			}
 
-			EntitySize = (EntityIndex)CurrentScene->m_Entities.size();
+			EntitySize = (SceneIndex)CurrentScene->m_Entities.size();
 		}
 
 		struct Iterator
 		{
-			Iterator(Ref<Scene> scene, EntityIndex index, size_t size, ComponentMask components, bool all)
+			Iterator(Ref<Scene> scene, SceneIndex index, size_t size, ComponentMask components, bool all)
 				: currentScene (scene), index(index), entSize(size), components(components), all(all)
 			{}
 
@@ -66,11 +66,11 @@ namespace Wyvern
 			bool isValidIndex()
 			{
 				return Scene::IsEntityValid(currentScene->m_Entities[index]) &&
-					(all || components == (components & currentScene->m_Entities[index]->GetMask()));
+					(all || components == (components & currentScene->m_Entities[index]->m_Components));
 			}
 
 			Ref<Scene> currentScene;
-			EntityIndex index;
+			SceneIndex index;
 			size_t entSize;
 			ComponentMask components;
 			bool all;
@@ -78,9 +78,9 @@ namespace Wyvern
 
 		const Iterator begin() const
 		{
-			EntityIndex firstIndex = Invalid ? EntitySize : 0;
+			SceneIndex firstIndex = Invalid ? EntitySize : 0;
 			while (firstIndex < EntitySize &&
-				(Components != (Components & CurrentScene->m_Entities[firstIndex]->GetMask())
+				(Components != (Components & CurrentScene->m_Entities[firstIndex]->m_Components)
 					|| !Scene::IsEntityValid(CurrentScene->m_Entities[firstIndex])))
 			{
 				firstIndex++;
@@ -91,12 +91,12 @@ namespace Wyvern
 
 		const Iterator end() const
 		{
-			return Iterator(CurrentScene, EntityIndex(EntitySize), EntitySize, Components, All);
+			return Iterator(CurrentScene, SceneIndex(EntitySize), EntitySize, Components, All);
 		}
 
 		Ref<Scene> CurrentScene;
-		EntityIndex EntitySize = 0;
-		EntityIndex Index = 0;
+		SceneIndex EntitySize = 0;
+		SceneIndex Index = 0;
 		ComponentMask Components = 0;
 		bool All = false;
 		bool Invalid = false;

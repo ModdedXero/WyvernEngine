@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Wyvern/Core/Math/Math.h>
+#include <Wyvern/Core/Scene/UUID.h>
 
 #include <yaml-cpp/yaml.h>
 #include <string>
@@ -75,6 +76,23 @@ namespace YAML
 			rhs.y = node[1].as<float>();
 			rhs.z = node[2].as<float>();
 			rhs.w = node[3].as<float>();
+			return true;
+		}
+	};
+
+	template<>
+	struct convert<Wyvern::UUID>
+	{
+		static YAML::Node encode(const Wyvern::UUID& rhs)
+		{
+			YAML::Node node;
+			node.push_back(rhs);
+			return node;
+		}
+
+		static bool decode(const YAML::Node& node, Wyvern::UUID& rhs)
+		{
+			rhs = Wyvern::UUID(node.as<uint64_t>());
 			return true;
 		}
 	};

@@ -1,5 +1,6 @@
 #pragma once
 
+#include "UUID.h"
 #include "EntityConstants.h"
 
 #include <Wyvern/Core/Base.h>
@@ -19,29 +20,18 @@ namespace Wyvern
 	{
 		friend class Scene;
 		friend class Serializer;
-		friend class EntityWizard;
+		template <typename... ComponentTypes>
+		friend class EntityList;
 	protected:
 		Entity()
-			: m_ID(0), m_Tag(nullptr), m_Transform(nullptr), m_Parent(nullptr)
+			: m_SceneID(0), m_Tag(nullptr), m_Transform(nullptr), m_Parent(nullptr)
 		{}
 	public:
-		EntityID GetID() { return m_ID; }
-		ComponentMask GetMask() { return m_Components; }
+		UUID GetUUID() { return m_UUID; }
+		SceneID GetSceneID() { return m_SceneID; }
 
 		Transform* GetTransform() { return m_Transform; }
 		Tag* GetTag() { return m_Tag; }
-
-		//template <typename T>
-		//inline T* AddComponent() { return Scene::AddComponent<T>(this); }
-
-		//template <typename T>
-		//inline T* GetComponent() { return Scene::GetComponent<T>(this); }
-		//template <typename T>
-		//inline std::vector<T*> GetComponentsOfBase() { return Scene::GetComponentsOfBase<T>(this); }
-
-		//template <typename T>
-		//inline void RemoveComponent() { Scene::RemoveComponent<T>(this); }
-		//inline void RemoveComponent(int component) { Scene::RemoveComponent(this, component); }
 
 		std::vector<Component*> GetAllComponents() { return m_ComponentPtrs; }
 
@@ -55,7 +45,8 @@ namespace Wyvern
 
 		virtual void OnCollision2D(Ref<Collision2D> collision) {}
 	private:
-		EntityID m_ID;
+		UUID m_UUID;
+		SceneID m_SceneID;
 		Ref<Scene> m_Scene;
 		ComponentMask m_Components;
 

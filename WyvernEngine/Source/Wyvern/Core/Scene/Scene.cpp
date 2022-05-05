@@ -172,23 +172,47 @@ namespace Wyvern
 
 		if (!scene->m_FreeEntities.empty())
 		{
-			EntityIndex index = scene->m_FreeEntities.back();
+			SceneIndex index = scene->m_FreeEntities.back();
 			scene->m_FreeEntities.pop_back();
-			EntityID id = CreateEntityID(index, GetEntityVersion(scene->m_Entities[index]->m_ID));
-			scene->m_Entities[index]->m_ID = id;
+			SceneID id = CreateSceneID(index, GetSceneVersion(scene->m_Entities[index]->m_SceneID));
+			scene->m_Entities[index]->m_SceneID = id;
 			CreateEntityDefaults(scene, scene->m_Entities[index], name);
 
 			return scene->m_Entities[index];
 		}
 
 		Entity* entity = new Entity();
-		entity->m_ID = CreateEntityID((EntityIndex)scene->m_Entities.size(), 0);
+		entity->m_SceneID = CreateSceneID((SceneIndex)scene->m_Entities.size(), 0);
 		entity->m_Components = ComponentMask();
 		scene->m_Entities.push_back(entity);
 
 		CreateEntityDefaults(scene, scene->m_Entities.back(), name);
 
 		return scene->m_Entities.back();
+	}
+
+	Entity* Scene::CreateEntity(Ref<Scene> scene, const UUID& uuid)
+	{
+		Entity* ent = FindEntity(scene, uuid);
+
+		if (!ent)
+		{
+			ent = CreateEntity(scene, "Entity");
+			ent->m_UUID = uuid;
+		}
+
+		return ent;
+	}
+
+	Entity* Scene::FindEntity(Ref<Scene> scene, const UUID& uuid)
+	{
+		for (Entity* entity : scene->m_Entities)
+		{
+			if (entity->m_UUID == uuid)
+				return entity;
+		}
+
+		return nullptr;
 	}
 
 	Entity* Scene::DuplicateEntity(Entity* entity)
@@ -209,25 +233,25 @@ namespace Wyvern
 			child->DestroyEntity();
 	}
 
-	EntityIndex Scene::GetEntityIndex(EntityID id)
+	SceneIndex Scene::GetSceneIndex(SceneID id)
 	{
 		return id >> 32;
 	}
 
-	EntityVersion Scene::GetEntityVersion(EntityID id)
+	SceneVersion Scene::GetSceneVersion(SceneID id)
 	{
-		return (EntityVersion)id;
+		return (SceneVersion)id;
 	}
 
-	bool Scene::IsEntityValid(Ref<Scene> scene, EntityID id)
+	bool Scene::IsEntityValid(Ref<Scene> scene, SceneID id)
 	{
-		return (id >> 32) != EntityIndex(-1);
+		return (id >> 32) != SceneIndex(-1);
 	}
 
 	bool Scene::IsEntityValid(Entity* entity)
 	{
 		if (entity == nullptr) return false;
-		return IsEntityValid(entity->m_Scene, entity->m_ID);
+		return IsEntityValid(entity->m_Scene, entity->m_SceneID);
 	}
 
 	void Scene::RemoveComponent(Entity* entity, int component)
@@ -235,9 +259,9 @@ namespace Wyvern
 		s_ComponentsToDelete[entity] = component;
 	}
 
-	EntityID Scene::CreateEntityID(EntityIndex index, EntityVersion version)
+	SceneID Scene::CreateSceneID(SceneIndex index, SceneVersion version)
 	{
-		return ((EntityID)index << 32) | ((EntityID)version);
+		return ((SceneID)index << 32) | ((SceneID)version);
 	}
 
 	void Scene::CreateEntityDefaults(Ref<Scene> scene, Entity* entity, std::string name)
@@ -247,6 +271,7 @@ namespace Wyvern
 		entity->m_Transform = AddComponent<Transform>(entity);
 		entity->m_Tag = AddComponent<Tag>(entity);
 		entity->m_Tag->name = name;
+		entity->m_UUID = UUID();
 	}
 
 	void Scene::PurgeEntity(Entity* entity)
@@ -255,10 +280,10 @@ namespace Wyvern
 
 		Ref<Scene> scene = entity->m_Scene;
 
-		EntityIndex index = GetEntityIndex(entity->m_ID);
-		EntityID newID = CreateEntityID(EntityIndex(-1), GetEntityVersion(entity->m_ID) + 1);
+		SceneIndex index = GetSceneIndex(entity->m_SceneID);
+		SceneID newID = CreateSceneID(SceneIndex(-1), GetSceneVersion(entity->m_SceneID) + 1);
 
-		scene->m_Entities[index]->m_ID = newID;
+		scene->m_Entities[index]->m_SceneID = newID;
 		scene->m_Entities[index]->m_Components.reset();
 		scene->m_Entities[index]->m_Children.clear();
 		scene->m_Entities[index]->m_ComponentPtrs.clear();
@@ -280,7 +305,7 @@ namespace Wyvern
 			{
 				for (int i = 0; i < entity->m_ComponentPtrs.size(); i++)
 				{
-					if (entity->m_ComponentPtrs[i] == pool->Get(GetEntityIndex(entity->m_ID)))
+					if (entity->m_ComponentPtrs[i] == pool->Get(GetSceneIndex(entity->m_SceneID)))
 					{
 						entity->m_ComponentPtrs.erase(entity->m_ComponentPtrs.begin() + i);
 					}

@@ -118,30 +118,30 @@ void PongLayer::CheckScore()
 {
 	if (state->player1Lives == 2)
 	{
-		Scene::DestroyEntity(p1Score1->GetID());
+		Scene::DestroyEntity(p1Score1->GetSceneID());
 	}
 	if (state->player1Lives == 1)
 	{
-		Scene::DestroyEntity(p1Score2->GetID());
+		Scene::DestroyEntity(p1Score2->GetSceneID());
 	}
 	if (state->player1Lives == 0)
 	{
-		Scene::DestroyEntity(p1Score3->GetID());
-		Scene::DestroyEntity(ball->GetID());
+		Scene::DestroyEntity(p1Score3->GetSceneID());
+		Scene::DestroyEntity(ball->GetSceneID());
 	}
 
 	if (state->player2Lives == 2)
 	{
-		Scene::DestroyEntity(p2Score3->GetID());
+		Scene::DestroyEntity(p2Score3->GetSceneID());
 	}
 	if (state->player2Lives == 1)
 	{
-		Scene::DestroyEntity(p2Score2->GetID());
+		Scene::DestroyEntity(p2Score2->GetSceneID());
 	}
 	if (state->player2Lives == 0)
 	{
-		Scene::DestroyEntity(p2Score1->GetID());
-		Scene::DestroyEntity(ball->GetID());
+		Scene::DestroyEntity(p2Score1->GetSceneID());
+		Scene::DestroyEntity(ball->GetSceneID());
 	}
 }
 

@@ -60,19 +60,21 @@ namespace Wyvern
 
 	public:
 		static Entity* CreateEntity(Ref<Scene> scene, std::string name = "Entity");
+		static Entity* CreateEntity(Ref<Scene> scene, const UUID& uuid);
+		static Entity* FindEntity(Ref<Scene> scene, const UUID& uuid);
 		static Entity* DuplicateEntity(Entity* entity);
 		static void DestoryEntity(Entity* entity);
 
-		static EntityIndex GetEntityIndex(EntityID id);
-		static EntityVersion GetEntityVersion(EntityID id);
-		static bool IsEntityValid(Ref<Scene> scene, EntityID id);
+		static SceneIndex GetSceneIndex(SceneID id);
+		static SceneVersion GetSceneVersion(SceneID id);
+		static bool IsEntityValid(Ref<Scene> scene, SceneID id);
 		static bool IsEntityValid(Entity* entity);
 
 	public:
 		template <typename T>
 		static T* AddComponent(Entity* entity);
 		template <typename T>
-		static T* AddComponent(Ref<Scene> scene, EntityID entID);
+		static T* AddComponent(Ref<Scene> scene, SceneID entID);
 		template <typename T>
 		static T* GetComponent(Entity* entity);
 		template <typename T>
@@ -87,10 +89,10 @@ namespace Wyvern
 		inline int FindComponentID(bool isBase = false);
 
 	private:
-		SceneState m_SceneState;
+		SceneState m_SceneState = SceneState::Edit;
 
 		std::vector<Entity*> m_Entities;
-		std::vector<EntityIndex> m_FreeEntities;
+		std::vector<SceneIndex> m_FreeEntities;
 		std::vector<ComponentPool*> m_ComponentPools;
 
 		WizardStack m_WizardStack;
@@ -103,7 +105,7 @@ namespace Wyvern
 		static inline std::vector<Entity*> s_EntitiesToDelete;
 		static inline std::unordered_map<Entity*, int> s_ComponentsToDelete;
 
-		static EntityID CreateEntityID(EntityIndex index, EntityVersion version);
+		static SceneID CreateSceneID(SceneIndex index, SceneVersion version);
 		static void CreateEntityDefaults(Ref<Scene> scene, Entity* entity, std::string name = "Entity");
 
 		static void PurgeEntity(Entity* entity);
@@ -113,11 +115,11 @@ namespace Wyvern
 	template <typename T>
 	inline T* Scene::AddComponent(Entity* entity)
 	{
-		return AddComponent<T>(entity->m_Scene, entity->m_ID);
+		return AddComponent<T>(entity->m_Scene, entity->m_SceneID);
 	}
 
 	template<typename T>
-	inline T* Scene::AddComponent(Ref<Scene> scene, EntityID entID)
+	inline T* Scene::AddComponent(Ref<Scene> scene, SceneID entID)
 	{
 		if (!IsEntityValid(scene, entID)) return nullptr;
 
@@ -130,10 +132,9 @@ namespace Wyvern
 
 		int componentID = scene->GetComponentID<T>();
 
-		if (scene->m_Entities[GetEntityIndex(entID)]->m_Components.test(componentID))
+		if (scene->m_Entities[GetSceneIndex(entID)]->m_Components.test(componentID))
 		{
-			DEBUG_CORE_ERROR("Scene: Component ", typeid(T).name(), " already exists on this entity");
-			return GetComponent<T>(scene->m_Entities[GetEntityIndex(entID)]);
+			return GetComponent<T>(scene->m_Entities[GetSceneIndex(entID)]);
 		}
 
 		if (scene->m_ComponentPools.size() <= componentID)
@@ -146,17 +147,17 @@ namespace Wyvern
 			scene->m_ComponentPools[componentID] = new ComponentPool(sizeof(T), typeid(T).name(), typeid(T::base).name(), componentID);
 		}
 
-		T* component = new (scene->m_ComponentPools[componentID]->Get(GetEntityIndex(entID))) T();
-		component->m_Entity = scene->m_Entities[GetEntityIndex(entID)];
-		component->m_Transform = scene->m_Entities[GetEntityIndex(entID)]->m_Transform;
-		component->m_Tag = scene->m_Entities[GetEntityIndex(entID)]->m_Tag;
+		T* component = new (scene->m_ComponentPools[componentID]->Get(GetSceneIndex(entID))) T();
+		component->m_Entity = scene->m_Entities[GetSceneIndex(entID)];
+		component->m_Transform = scene->m_Entities[GetSceneIndex(entID)]->m_Transform;
+		component->m_Tag = scene->m_Entities[GetSceneIndex(entID)]->m_Tag;
 		component->m_ComponentID = componentID;
 
-		scene->m_Entities[GetEntityIndex(entID)]->m_Components.set(componentID);
+		scene->m_Entities[GetSceneIndex(entID)]->m_Components.set(componentID);
 
 		// Do not add default components of Tag and Transform to entity component list
 		if (!std::is_same<T, Tag>().value && !std::is_same<T, Transform>().value)
-			scene->m_Entities[GetEntityIndex(entID)]->m_ComponentPtrs.push_back(component);
+			scene->m_Entities[GetSceneIndex(entID)]->m_ComponentPtrs.push_back(component);
 
 		return component;
 	}
@@ -171,7 +172,7 @@ namespace Wyvern
 		if (componentID == -1 || !entity->m_Components.test(componentID))
 			return nullptr;
 
-		T* component = static_cast<T*>(entity->m_Scene->m_ComponentPools[componentID]->Get(GetEntityIndex(entity->m_ID)));
+		T* component = static_cast<T*>(entity->m_Scene->m_ComponentPools[componentID]->Get(GetSceneIndex(entity->m_SceneID)));
 		return component;
 	}
 
@@ -184,7 +185,7 @@ namespace Wyvern
 		{
 			if (pool->ComponentBaseType == typeid(T).name())
 				if (entity->m_Components.test(pool->ComponentID))
-					components.push_back(static_cast<T*>(pool->Get(GetEntityIndex(entity->m_ID))));
+					components.push_back(static_cast<T*>(pool->Get(GetSceneIndex(entity->m_SceneID))));
 		}
 
 		return components;

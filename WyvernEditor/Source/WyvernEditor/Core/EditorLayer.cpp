@@ -19,8 +19,7 @@ namespace Wyvern::Editor
 
 	void EditorLayer::OnAttach()
 	{
-        s_ActiveScene = CreateRef<Scene>();
-        Scene::SetActiveScene(s_ActiveScene);
+        SetActiveScene(CreateRef<Scene>());
 
         s_ActiveScene->CreateWizard<Physics2DWizard>();
 
@@ -104,26 +103,17 @@ namespace Wyvern::Editor
             {
                 if (ImGui::MenuItem("New", "Ctrl+N"))
                 {
-                    s_ActiveScene->OnDestroy();
+                    SetActiveScene(CreateRef<Scene>());
                 }
 
                 if (ImGui::MenuItem("Open...", "Ctrl+O"))
                 {
-                    std::string filePath = FileDialogs::OpenFile("Wyvern Scene (*.wyvern)\0*.wyvern\0");
-                    if (!filePath.empty())
-                    {
-                        s_ActiveScene->OnDestroy();
-                        Serializer::Deserialize(s_ActiveScene, filePath);
-                    }
+                    LoadScene();
                 }
 
                 if (ImGui::MenuItem("Save As...", "Ctrl+Shift+S"))
                 {
-                    std::string filePath = FileDialogs::SaveFile("Wyvern Scene (*.wyvern)\0*.wyvern\0", "wyvern");
-                    if (!filePath.empty())
-                    {
-                        Serializer::Serialize(Serializer::Serialize(s_ActiveScene), filePath);
-                    }
+                    SaveScene();
                 }
 
                 if (ImGui::MenuItem("Exit")) 
@@ -143,14 +133,12 @@ namespace Wyvern::Editor
                         Serializer::ConvertSerialToDeserial(info);
                         Serializer::Deserialize(runtimeScene, info);
                         s_CachedScene = s_ActiveScene;
-                        s_ActiveScene = runtimeScene;
-                        Scene::SetActiveScene(s_ActiveScene);
+                        SetActiveScene(runtimeScene);
                         s_ActiveScene->SetSceneState(SceneState::Play);
                     }
                     else
                     {
-                        s_ActiveScene = s_CachedScene;
-                        Scene::SetActiveScene(s_ActiveScene);
+                        SetActiveScene(s_CachedScene);
                         s_ActiveScene->SetSceneState(SceneState::Edit);
                     }
                 }
@@ -210,5 +198,30 @@ namespace Wyvern::Editor
             s_PropertiesWindow->OnAttach();
             s_Windows.push_back(s_PropertiesWindow);
         }
+    }
+
+    void EditorLayer::SaveScene()
+    {
+        std::string filePath = FileDialogs::SaveFile("Wyvern Scene (*.wyvern)\0*.wyvern\0", "wyvern");
+        if (!filePath.empty())
+        {
+            Serializer::Serialize(Serializer::Serialize(s_ActiveScene), filePath);
+        }
+    }
+
+    void EditorLayer::LoadScene()
+    {
+        std::string filePath = FileDialogs::OpenFile("Wyvern Scene (*.wyvern)\0*.wyvern\0");
+        if (!filePath.empty())
+        {
+            SetActiveScene(CreateRef<Scene>());
+            Serializer::Deserialize(s_ActiveScene, filePath);
+        }
+    }
+
+    void EditorLayer::SetActiveScene(Ref<Scene> scene)
+    {
+        s_ActiveScene = scene;
+        Scene::SetActiveScene(scene);
     }
 }

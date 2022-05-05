@@ -248,6 +248,7 @@
       <Filter>Wyvern\Utils</Filter>
     </ClInclude>
     <ClInclude Include="wvpch.h" />
+    <ClInclude Include="Wyvern\Core\Scene\UUID.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Vendor\ImGuizmo\ImGuizmo.cpp">
@@ -357,5 +358,6 @@
     </ClCompile>
     <ClCompile Include="wvpch.cpp" />
     <ClCompile Include="Wyvern\Core\Components\Camera.cpp" />
+    <ClCompile Include="Wyvern\Core\Scene\UUID.cpp" />
   </ItemGroup>
 </Project>

@@ -40,5 +40,9 @@ namespace Wyvern::Editor
 		static PropertiesWindow* s_PropertiesWindow;
 
 		static std::vector<EditorWindow*> s_Windows;
+
+		static void SaveScene();
+		static void LoadScene();
+		static void SetActiveScene(Ref<Scene> scene);
 	};
 }
