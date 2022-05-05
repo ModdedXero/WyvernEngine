@@ -141,12 +141,12 @@ namespace Wyvern
 
 	void Serializer::SerializeRuntime(Ref<Scene> scene, const std::string& filepath)
 	{
-		ML_CORE_ASSERT(false, "Not Implemented!");
+		WV_CORE_ASSERT(false, "Not Implemented!");
 	}
 
 	bool Serializer::DeserizlizeRuntime(Ref<Scene> scene, const std::string& filepath)
 	{
-		ML_CORE_ASSERT(false, "Not Implemented!");
+		WV_CORE_ASSERT(false, "Not Implemented!");
 		return false;
 	}
 }

@@ -56,10 +56,10 @@ namespace Wyvern
 				if (CheckCollision(col1, ent1->GetTransform(), col2, ent2->GetTransform()))
 				{
 					if (Scene::IsEntityValid(ent1) && Scene::IsEntityValid(ent2) &&
-						rb1->bodyType != RigidBody2D::PhysicsBody::Kinematic &&
-						rb2->bodyType != RigidBody2D::PhysicsBody::Kinematic &&
-						!(rb1->bodyType == RigidBody2D::PhysicsBody::Static &&
-							rb2->bodyType == RigidBody2D::PhysicsBody::Static))
+						rb1->bodyType != PhysicsBody::Kinematic &&
+						rb2->bodyType != PhysicsBody::Kinematic &&
+						!(rb1->bodyType == PhysicsBody::Static &&
+							rb2->bodyType == PhysicsBody::Static))
 					{
 						Ref<Collision2D> collision = GetCollisionData(ent1, col1, ent2, col2);
 
@@ -81,8 +81,8 @@ namespace Wyvern
 				if (CheckCollision(col1, ent1->GetTransform(), col2, ent2->GetTransform()))
 				{
 					if (Scene::IsEntityValid(ent1) && Scene::IsEntityValid(ent2) &&
-						Scene::GetComponent<RigidBody2D>(ent1)->bodyType != RigidBody2D::PhysicsBody::Kinematic &&
-						Scene::GetComponent<RigidBody2D>(ent2)->bodyType != RigidBody2D::PhysicsBody::Kinematic)
+						Scene::GetComponent<RigidBody2D>(ent1)->bodyType != PhysicsBody::Kinematic &&
+						Scene::GetComponent<RigidBody2D>(ent2)->bodyType != PhysicsBody::Kinematic)
 					{
 						// Box vs Sphere
 						Ref<Collision2D> collision = GetCollisionData(ent1, col1, ent2, col2);

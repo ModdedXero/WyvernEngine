@@ -16,11 +16,11 @@ namespace Wyvern::Display
 		// Check if GLFW is Initialized
 		if (!glfwInit())
 		{
-			ML_CORE_ASSERT(false, "Failed to initialize GLFW library!");
+			WV_CORE_ASSERT(false, "Failed to initialize GLFW library!");
 		}
 
 		m_Window = glfwCreateWindow(props.Width, props.Height, props.Title, NULL, NULL);
-		ML_CORE_ASSERT(m_Window, "Failed to create GLFW Window instance!");
+		WV_CORE_ASSERT(m_Window, "Failed to create GLFW Window instance!");
 
 		glfwSetWindowAspectRatio(m_Window, 16, 9);
 

@@ -4,21 +4,22 @@
 
 #include <memory>
 #include <filesystem>
+#include <initializer_list>
 
-#ifdef ML_DEBUG
-	#if defined (ML_PLATFORM_WINDOWS)
-		#define ML_DEBUGBREAK() __debugbreak()
+#ifdef WV_DEBUG
+	#if defined (WV_PLATFORM_WINDOWS)
+		#define WV_DEBUGBREAK() __debugbreak()
 	#else
 		#error "Platform doesn't support debugbreak yet!"
 	#endif
 #endif
 
-#ifdef ML_DEBUG
-	#define ML_ASSERT(check, ...) { if(!(check)) {DEBUG_LOG_ERROR("Assertion failed at ", std::filesystem::path(__FILE__).filename().string(), ":", __LINE__, " (", __VA_ARGS__, ")"); ML_DEBUGBREAK(); } }
-	#define ML_CORE_ASSERT(check, ...) { if(!(check)) {DEBUG_CORE_ERROR("Assertion failed at ", std::filesystem::path(__FILE__).filename().string(), ":", __LINE__, " (", __VA_ARGS__, ")"); ML_DEBUGBREAK(); } }
+#ifdef WV_DEBUG
+	#define WV_ASSERT(check, ...) { if(!(check)) {DEBUG_LOG_ERROR("Assertion failed at ", std::filesystem::path(__FILE__).filename().string(), ":", __LINE__, " (", __VA_ARGS__, ")"); WV_DEBUGBREAK(); } }
+	#define WV_CORE_ASSERT(check, ...) { if(!(check)) {DEBUG_CORE_ERROR("Assertion failed at ", std::filesystem::path(__FILE__).filename().string(), ":", __LINE__, " (", __VA_ARGS__, ")"); WV_DEBUGBREAK(); } }
 #else
-	#define ML_ASSERT(check, ...) {(check);}
-	#define ML_CORE_ASSERT(check, ...) {(check);}
+	#define WV_ASSERT(check, ...) {(check);}
+	#define WV_CORE_ASSERT(check, ...) {(check);}
 #endif
 
 #define BIND_EVENT_FN(fn) [this](auto&&... args) -> decltype(auto) { return this->fn(std::forward<decltype(args)>(args)...); }

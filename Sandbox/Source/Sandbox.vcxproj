@@ -140,30 +140,6 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="ArenaExample\ArenaLayer.h" />
-    <ClInclude Include="ArenaExample\PlayerEntity.h" />
-    <ClInclude Include="PongExample\BottomWall.h" />
-    <ClInclude Include="PongExample\GameState.h" />
-    <ClInclude Include="PongExample\LeftWall.h" />
-    <ClInclude Include="PongExample\PlayerPaddle.h" />
-    <ClInclude Include="PongExample\PongLayer.h" />
-    <ClInclude Include="PongExample\PongWall.h" />
-    <ClInclude Include="PongExample\RightWall.h" />
-    <ClInclude Include="PongExample\TopWall.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="ArenaExample\ArenaLayer.cpp" />
-    <ClCompile Include="ArenaExample\PlayerEntity.cpp" />
-    <ClCompile Include="PongExample\BottomWall.cpp" />
-    <ClCompile Include="PongExample\LeftWall.cpp" />
-    <ClCompile Include="PongExample\PlayerPaddle.cpp" />
-    <ClCompile Include="PongExample\PongLayer.cpp" />
-    <ClCompile Include="PongExample\PongWall.cpp" />
-    <ClCompile Include="PongExample\RightWall.cpp" />
-    <ClCompile Include="PongExample\TopWall.cpp" />
-    <ClCompile Include="SandboxApp.cpp" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\WyvernEngine\Source\WyvernEngine.vcxproj">
       <Project>{0651ECC7-F2B3-7B6C-9B39-B422877B47EF}</Project>
     </ProjectReference>

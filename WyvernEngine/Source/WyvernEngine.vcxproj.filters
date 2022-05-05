@@ -154,7 +154,7 @@
     <ClInclude Include="Wyvern\Core\MouseCodes.h">
       <Filter>Wyvern\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Wyvern\Core\Physics\Collider2D.h">
+    <ClInclude Include="Wyvern\Core\Components\Collider2D.h">
       <Filter>Wyvern\Core\Physics</Filter>
     </ClInclude>
     <ClInclude Include="Wyvern\Core\Physics\CollisionSolver2D.h">
@@ -249,6 +249,7 @@
     </ClInclude>
     <ClInclude Include="wvpch.h" />
     <ClInclude Include="Wyvern\Core\Scene\UUID.h" />
+    <ClInclude Include="Wyvern\Core\Physics\Collision2D.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Vendor\ImGuizmo\ImGuizmo.cpp">

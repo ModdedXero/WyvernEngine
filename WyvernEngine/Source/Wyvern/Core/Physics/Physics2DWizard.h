@@ -1,11 +1,12 @@
 #pragma once
 
-#include "Collider2D.h"
+#include "Collision2D.h"
 #include "CollisionSolver2D.h"
 #include "PhysicsSolver2D.h"
 
 #include <Wyvern/Core/Scene/Wizard.h>
 #include <Wyvern/Core/Components/RigidBody2D.h>
+#include <Wyvern/Core/Components/Collider2D.h>
 
 namespace Wyvern
 {

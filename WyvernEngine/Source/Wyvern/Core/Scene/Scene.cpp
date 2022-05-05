@@ -9,6 +9,7 @@
 #include <Wyvern/Core/Components/Transform.h>
 #include <Wyvern/Core/Components/SpriteRenderer.h>
 #include <Wyvern/Renderer/Renderer2D.h>
+#include <Wyvern/Core/Physics/Physics2DWizard.h>
 
 namespace Wyvern
 {
@@ -20,7 +21,7 @@ namespace Wyvern
 	Scene::Scene()
 		: m_ComponentCounter(0)
 	{
-
+		CreateWizard<Physics2DWizard>();
 	}
 
 	Scene::~Scene()
