@@ -143,6 +143,7 @@
     <ClInclude Include="WyvernEditor\Core\EditorLayer.h" />
     <ClInclude Include="WyvernEditor\Core\EditorWindow.h" />
     <ClInclude Include="WyvernEditor\Core\ViewportCamera.h" />
+    <ClInclude Include="WyvernEditor\SandboxScirpts\PlayerPaddleOne.h" />
     <ClInclude Include="WyvernEditor\Utility\EditorGUI.h" />
     <ClInclude Include="WyvernEditor\Utility\EditorGUIInternal.h" />
     <ClInclude Include="WyvernEditor\Windows\HierarchyWindow.h" />
@@ -155,6 +156,7 @@
     <ClCompile Include="WyvernEditor\Core\EditorWindow.cpp" />
     <ClCompile Include="WyvernEditor\Core\WyvernEditor.cpp" />
     <ClCompile Include="WyvernEditor\Core\ViewportCamera.cpp" />
+    <ClCompile Include="WyvernEditor\SandboxScirpts\PlayerPaddleOne.cpp" />
     <ClCompile Include="WyvernEditor\Utility\EditorGUI.cpp" />
     <ClCompile Include="WyvernEditor\Utility\EditorGUIInternal.cpp" />
     <ClCompile Include="WyvernEditor\Windows\HierarchyWindow.cpp" />

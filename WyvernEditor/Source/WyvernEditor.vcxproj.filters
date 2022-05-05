@@ -36,6 +36,7 @@
     <ClInclude Include="WyvernEditor\Windows\ViewportWindow.h">
       <Filter>Windows</Filter>
     </ClInclude>
+    <ClInclude Include="WyvernEditor\SandboxScirpts\PlayerPaddleOne.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WyvernEditor\Core\ComponentUI.cpp">
@@ -68,5 +69,6 @@
     <ClCompile Include="WyvernEditor\Windows\ViewportWindow.cpp">
       <Filter>Windows</Filter>
     </ClCompile>
+    <ClCompile Include="WyvernEditor\SandboxScirpts\PlayerPaddleOne.cpp" />
   </ItemGroup>
 </Project>
