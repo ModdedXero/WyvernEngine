@@ -215,13 +215,25 @@ namespace Wyvern
 		return nullptr;
 	}
 
-	Entity* Scene::DuplicateEntity(Entity* entity)
+	Entity* Scene::DuplicateEntity(Entity* entity, Entity* parent)
 	{
 		Entity* newEnt = CreateEntity(entity->m_Scene, entity->m_Tag->name);
 
 		SerializeInfo& entData = Serializer::Serialize(entity);
 		Serializer::ConvertSerialToDeserial(entData);
+
+		if (parent)
+		{
+			if (entData.in["Parent"])
+				entData.in["Parent"] = (uint64_t)parent->m_UUID;
+		}
+
 		Serializer::Deserialize(newEnt, entData);
+
+		for (Entity* child : entity->m_Children)
+		{
+			DuplicateEntity(child, newEnt);
+		}
 
 		return newEnt;
 	}

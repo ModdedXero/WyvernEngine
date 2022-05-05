@@ -96,8 +96,6 @@ namespace Wyvern
 
 	bool Serializer::Deserialize(Entity* entity, SerializeInfo& info)
 	{
-		DEBUG_CORE(info.in);
-
 		if (info.in["Parent"])
 		{
 			if (!entity->m_Parent)
