@@ -7,9 +7,6 @@
     <Filter Include="SandboxScirpts">
       <UniqueIdentifier>{3C6C9D26-283A-912C-11CE-0153FD3A6D91}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Utility">
-      <UniqueIdentifier>{594615A9-C525-9444-CE3D-1F1B3A9CFAA5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Windows">
       <UniqueIdentifier>{5032B729-BC11-36C5-C529-C19B31889C26}</UniqueIdentifier>
     </Filter>
@@ -35,10 +32,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="WyvernBuilder\Core\ComponentUI.cpp">
+    <ClCompile Include="WyvernBuilder\Core\BuilderLayer.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="WyvernBuilder\Core\BuilderLayer.cpp">
+    <ClCompile Include="WyvernBuilder\Core\ComponentUI.cpp">
       <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="WyvernBuilder\Core\ViewportCamera.cpp">

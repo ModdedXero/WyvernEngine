@@ -151,8 +151,8 @@ IF EXIST ..\..\bin\Dist-windows\WyvernEditor\*.dll\ (xcopy /Q /E /Y /I ..\..\bin
     <ClInclude Include="WyvernBuilder\Windows\ViewportWindow.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="WyvernBuilder\Core\ComponentUI.cpp" />
     <ClCompile Include="WyvernBuilder\Core\BuilderLayer.cpp" />
+    <ClCompile Include="WyvernBuilder\Core\ComponentUI.cpp" />
     <ClCompile Include="WyvernBuilder\Core\ViewportCamera.cpp" />
     <ClCompile Include="WyvernBuilder\Core\WyvernBuilder.cpp" />
     <ClCompile Include="WyvernBuilder\SandboxScirpts\PlayerPaddleOne.cpp" />
