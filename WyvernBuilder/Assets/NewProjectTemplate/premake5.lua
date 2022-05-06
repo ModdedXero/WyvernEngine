@@ -1,4 +1,15 @@
-ProjectName = "$PROJECT_NAME$"
+newoption {
+   trigger = "projname",
+   description = "VS Project Name"
+}
+
+newoption {
+   trigger = "projdir",
+   description = "VS Project Dir"
+}
+
+ProjectName = _OPTIONS["projname"] or "Default"
+ProjectDir = _OPTIONS["projdir"] or ""
 WyvernRootDir = os.getenv("WYVERN_DIR")
 
 workspace "%{ProjectName}"
@@ -26,24 +37,24 @@ IncludeDir["YamlCPP"] = "%{WyvernRootDir}/WyvernEngine/Vendor/yaml-cpp/include"
 IncludeDir["ImGUIzmo"] = "%{WyvernRootDir}/WyvernEngine/Vendor/ImGuizmo"
 
 project "%{ProjectName}"
-	location "%{ProjectName}/Source"
+	location "%{ProjectDir}/%{ProjectName}/Source"
 	kind "StaticLib"
 	language "C++"
 	cppdialect "C++17"
 	staticruntime "off"
 
-	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
-	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+	targetdir ("%{ProjectDir}/bin/" .. outputdir .. "/%{prj.name}")
+	objdir ("%{ProjectDir}/bin-int/" .. outputdir .. "/%{prj.name}")
 	
 	files
 	{
-		"%{ProjectName}/Source/**.h",
-		"%{ProjectName}/Source/**.cpp"
+		"%{ProjectDir}/%{ProjectName}/Source/**.h",
+		"%{ProjectDir}/%{ProjectName}/Source/**.cpp"
 	}
 
 	includedirs
 	{
-		"%{ProjectName}/Source",
+		"%{ProjectDir}/%{ProjectName}/Source",
 		"%{WyvernRootDir}/WyvernEngine/Source",
 		"%{WyvernRootDir}/WyvernEditor/Source",
 		"%{IncludeDir.GLFW}",
