@@ -23,19 +23,19 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v143</PlatformToolset>
@@ -54,51 +54,45 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LinkIncremental>true</LinkIncremental>
     <OutDir>..\..\bin\Debug-windows\WyvernEditor\</OutDir>
     <IntDir>..\..\bin-int\Debug-windows\WyvernEditor\</IntDir>
     <TargetName>WyvernEditor</TargetName>
-    <TargetExt>.exe</TargetExt>
+    <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <LinkIncremental>false</LinkIncremental>
     <OutDir>..\..\bin\Release-windows\WyvernEditor\</OutDir>
     <IntDir>..\..\bin-int\Release-windows\WyvernEditor\</IntDir>
     <TargetName>WyvernEditor</TargetName>
-    <TargetExt>.exe</TargetExt>
+    <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
-    <LinkIncremental>false</LinkIncremental>
     <OutDir>..\..\bin\Dist-windows\WyvernEditor\</OutDir>
     <IntDir>..\..\bin-int\Dist-windows\WyvernEditor\</IntDir>
     <TargetName>WyvernEditor</TargetName>
-    <TargetExt>.exe</TargetExt>
+    <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WV_PLATFORM_WINDOWS;WV_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\WyvernEngine\Source;.;..\..\WyvernEngine\Vendor\GLFW\include;..\..\WyvernEngine\Vendor\glm;..\..\WyvernEngine\Vendor\imgui;..\..\WyvernEngine\Vendor\glad\include;..\..\WyvernEngine\Vendor\freetype\include;..\..\WyvernEngine\Vendor\freetype\include\freetype;..\..\WyvernEngine\Vendor\yaml-cpp\include;..\..\WyvernEngine\Vendor\ImGuizmo;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..\..\WyvernEngine\Source;..\..\WyvernEngine\Vendor\imgui;..\..\WyvernEngine\Vendor\glm;..\..\WyvernEngine\Vendor\ImGuizmo;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
-    <PostBuildEvent>
-      <Command>IF EXIST ..\..\bin\Debug-windows\WyvernEngine\*.dll\ (xcopy /Q /E /Y /I ..\..\bin\Debug-windows\WyvernEngine\*.dll ..\..\bin\Debug-windows\WyvernEditor &gt; nul) ELSE (xcopy /Q /Y /I ..\..\bin\Debug-windows\WyvernEngine\*.dll ..\..\bin\Debug-windows\WyvernEditor &gt; nul)</Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WV_PLATFORM_WINDOWS;WV_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\WyvernEngine\Source;.;..\..\WyvernEngine\Vendor\GLFW\include;..\..\WyvernEngine\Vendor\glm;..\..\WyvernEngine\Vendor\imgui;..\..\WyvernEngine\Vendor\glad\include;..\..\WyvernEngine\Vendor\freetype\include;..\..\WyvernEngine\Vendor\freetype\include\freetype;..\..\WyvernEngine\Vendor\yaml-cpp\include;..\..\WyvernEngine\Vendor\ImGuizmo;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..\..\WyvernEngine\Source;..\..\WyvernEngine\Vendor\imgui;..\..\WyvernEngine\Vendor\glm;..\..\WyvernEngine\Vendor\ImGuizmo;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -108,20 +102,17 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
-    <PostBuildEvent>
-      <Command>IF EXIST ..\..\bin\Release-windows\WyvernEngine\*.dll\ (xcopy /Q /E /Y /I ..\..\bin\Release-windows\WyvernEngine\*.dll ..\..\bin\Release-windows\WyvernEditor &gt; nul) ELSE (xcopy /Q /Y /I ..\..\bin\Release-windows\WyvernEngine\*.dll ..\..\bin\Release-windows\WyvernEditor &gt; nul)</Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WV_PLATFORM_WINDOWS;WV_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\WyvernEngine\Source;.;..\..\WyvernEngine\Vendor\GLFW\include;..\..\WyvernEngine\Vendor\glm;..\..\WyvernEngine\Vendor\imgui;..\..\WyvernEngine\Vendor\glad\include;..\..\WyvernEngine\Vendor\freetype\include;..\..\WyvernEngine\Vendor\freetype\include\freetype;..\..\WyvernEngine\Vendor\yaml-cpp\include;..\..\WyvernEngine\Vendor\ImGuizmo;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..\..\WyvernEngine\Source;..\..\WyvernEngine\Vendor\imgui;..\..\WyvernEngine\Vendor\glm;..\..\WyvernEngine\Vendor\ImGuizmo;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -131,37 +122,21 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
-    <PostBuildEvent>
-      <Command>IF EXIST ..\..\bin\Dist-windows\WyvernEngine\*.dll\ (xcopy /Q /E /Y /I ..\..\bin\Dist-windows\WyvernEngine\*.dll ..\..\bin\Dist-windows\WyvernEditor &gt; nul) ELSE (xcopy /Q /Y /I ..\..\bin\Dist-windows\WyvernEngine\*.dll ..\..\bin\Dist-windows\WyvernEditor &gt; nul)</Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="WyvernEditor\Core\EditorLayer.h" />
+    <ClInclude Include="WyvernEditor.h" />
+    <ClInclude Include="WyvernEditor\Core\EditorGUI.h" />
+    <ClInclude Include="WyvernEditor\Core\EditorGUIInternal.h" />
     <ClInclude Include="WyvernEditor\Core\EditorWindow.h" />
-    <ClInclude Include="WyvernEditor\Core\ViewportCamera.h" />
-    <ClInclude Include="WyvernEditor\SandboxScirpts\PlayerPaddleOne.h" />
-    <ClInclude Include="WyvernEditor\Utility\EditorGUI.h" />
-    <ClInclude Include="WyvernEditor\Utility\EditorGUIInternal.h" />
-    <ClInclude Include="WyvernEditor\Windows\HierarchyWindow.h" />
-    <ClInclude Include="WyvernEditor\Windows\PropertiesWindow.h" />
-    <ClInclude Include="WyvernEditor\Windows\ViewportWindow.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="WyvernEditor\Core\ComponentUI.cpp" />
-    <ClCompile Include="WyvernEditor\Core\EditorLayer.cpp" />
+    <ClCompile Include="WyvernEditor\Core\EditorGUI.cpp" />
+    <ClCompile Include="WyvernEditor\Core\EditorGUIInternal.cpp" />
     <ClCompile Include="WyvernEditor\Core\EditorWindow.cpp" />
-    <ClCompile Include="WyvernEditor\Core\WyvernEditor.cpp" />
-    <ClCompile Include="WyvernEditor\Core\ViewportCamera.cpp" />
-    <ClCompile Include="WyvernEditor\SandboxScirpts\PlayerPaddleOne.cpp" />
-    <ClCompile Include="WyvernEditor\Utility\EditorGUI.cpp" />
-    <ClCompile Include="WyvernEditor\Utility\EditorGUIInternal.cpp" />
-    <ClCompile Include="WyvernEditor\Windows\HierarchyWindow.cpp" />
-    <ClCompile Include="WyvernEditor\Windows\PropertiesWindow.cpp" />
-    <ClCompile Include="WyvernEditor\Windows\ViewportWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\WyvernEngine\Source\WyvernEngine.vcxproj">

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Core">
+      <UniqueIdentifier>{2EB4837C-1AEB-840D-C3D7-6A10AFED000F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SandboxScirpts">
+      <UniqueIdentifier>{3C6C9D26-283A-912C-11CE-0153FD3A6D91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility">
+      <UniqueIdentifier>{594615A9-C525-9444-CE3D-1F1B3A9CFAA5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Windows">
+      <UniqueIdentifier>{5032B729-BC11-36C5-C529-C19B31889C26}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="WyvernBuilder\Core\BuilderLayer.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="WyvernBuilder\Core\ViewportCamera.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="WyvernBuilder\SandboxScirpts\PlayerPaddleOne.h">
+      <Filter>SandboxScirpts</Filter>
+    </ClInclude>
+    <ClInclude Include="WyvernBuilder\Windows\HierarchyWindow.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="WyvernBuilder\Windows\PropertiesWindow.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="WyvernBuilder\Windows\ViewportWindow.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="WyvernBuilder\Core\ComponentUI.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="WyvernBuilder\Core\BuilderLayer.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="WyvernBuilder\Core\ViewportCamera.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="WyvernBuilder\Core\WyvernBuilder.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="WyvernBuilder\SandboxScirpts\PlayerPaddleOne.cpp">
+      <Filter>SandboxScirpts</Filter>
+    </ClCompile>
+    <ClCompile Include="WyvernBuilder\Windows\HierarchyWindow.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="WyvernBuilder\Windows\PropertiesWindow.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="WyvernBuilder\Windows\ViewportWindow.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

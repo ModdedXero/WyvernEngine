@@ -152,6 +152,7 @@
     <ClInclude Include="Wyvern\Core\Base.h" />
     <ClInclude Include="Wyvern\Core\Components\Button.h" />
     <ClInclude Include="Wyvern\Core\Components\Camera.h" />
+    <ClInclude Include="Wyvern\Core\Components\Collider2D.h" />
     <ClInclude Include="Wyvern\Core\Components\Components.h" />
     <ClInclude Include="Wyvern\Core\Components\RigidBody2D.h" />
     <ClInclude Include="Wyvern\Core\Components\SpriteRenderer.h" />
@@ -172,7 +173,6 @@
     <ClInclude Include="Wyvern\Core\Math\Matrix4x4.h" />
     <ClInclude Include="Wyvern\Core\Math\Vector.h" />
     <ClInclude Include="Wyvern\Core\MouseCodes.h" />
-    <ClInclude Include="Wyvern\Core\Components\Collider2D.h" />
     <ClInclude Include="Wyvern\Core\Physics\Collision2D.h" />
     <ClInclude Include="Wyvern\Core\Physics\CollisionSolver2D.h" />
     <ClInclude Include="Wyvern\Core\Physics\Impulse2D.h" />
@@ -187,8 +187,8 @@
     <ClInclude Include="Wyvern\Core\Scene\EntityConstants.h" />
     <ClInclude Include="Wyvern\Core\Scene\EntityList.h" />
     <ClInclude Include="Wyvern\Core\Scene\Scene.h" />
-    <ClInclude Include="Wyvern\Core\Scene\Serializer.h" />
     <ClInclude Include="Wyvern\Core\Scene\SerializeHelper.h" />
+    <ClInclude Include="Wyvern\Core\Scene\Serializer.h" />
     <ClInclude Include="Wyvern\Core\Scene\UUID.h" />
     <ClInclude Include="Wyvern\Core\Scene\Wizard.h" />
     <ClInclude Include="Wyvern\Core\Scene\WizardStack.h" />
@@ -239,8 +239,8 @@
     <ClCompile Include="Wyvern\Core\Scene\Component.cpp" />
     <ClCompile Include="Wyvern\Core\Scene\Entity.cpp" />
     <ClCompile Include="Wyvern\Core\Scene\Scene.cpp" />
-    <ClCompile Include="Wyvern\Core\Scene\Serializer.cpp" />
     <ClCompile Include="Wyvern\Core\Scene\SerializeHelper.cpp" />
+    <ClCompile Include="Wyvern\Core\Scene\Serializer.cpp" />
     <ClCompile Include="Wyvern\Core\Scene\UUID.cpp" />
     <ClCompile Include="Wyvern\Core\Scene\Wizard.cpp" />
     <ClCompile Include="Wyvern\Core\Scene\WizardStack.cpp" />

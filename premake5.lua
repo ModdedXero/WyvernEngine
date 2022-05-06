@@ -1,6 +1,6 @@
 workspace "WyvernEngine"
 	architecture "x64"
-	startproject  "WyvernEditor"
+	startproject  "WyvernBuilder"
 	
 	configurations
 	{
@@ -37,8 +37,8 @@ project "WyvernEngine"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 	
-	pchheader "wvpch.h"
 	pchsource "wvpch.cpp"
+	pchheader "wvpch.h"
 
 	files
 	{
@@ -80,7 +80,57 @@ project "WyvernEngine"
 		flags { "NoPCH" }
 
 	filter "system:windows"
-		cppdialect "C++17"
+		staticruntime "On"
+		systemversion "latest"
+
+		defines
+		{
+			"WV_PLATFORM_WINDOWS"
+		}
+
+	filter "configurations:Debug"
+		defines "WV_DEBUG"
+		symbols "On"
+
+	filter "configurations:Release"
+		defines "WV_RELEASE"
+		optimize "On"
+
+	filter "configurations:Dist"
+		defines "WV_DIST"
+		optimize "On"
+	
+project "WyvernEditor"
+	location "WyvernEditor/Source"
+	kind "StaticLib"
+	language "C++"
+	cppdialect "C++17"
+	staticruntime "off"
+	
+	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+	
+	files
+	{
+		"WyvernEditor/Source/**.h",
+		"WyvernEditor/Source/**.cpp"
+	}
+	
+	includedirs
+	{
+		"WyvernEditor/Source",
+		"WyvernEngine/Source",
+		"%{IncludeDir.ImGUI}",
+		"%{IncludeDir.GLM}",
+		"%{IncludeDir.ImGUIzmo}"
+	}
+	
+	links
+	{
+		"WyvernEngine"
+	}
+	
+	filter "system:windows"
 		staticruntime "On"
 		systemversion "latest"
 
@@ -101,8 +151,8 @@ project "WyvernEngine"
 		defines "WV_DIST"
 		optimize "On"
 
-project "WyvernEditor"
-	location "WyvernEditor/Source"
+project "WyvernBuilder"
+	location "WyvernBuilder/Source"
 	kind "ConsoleApp"
 	language "C++"
 
@@ -111,14 +161,15 @@ project "WyvernEditor"
 
 	files
 	{
-		"WyvernEditor/Source/**.h",
-		"WyvernEditor/Source/**.cpp"
+		"WyvernBuilder/Source/**.h",
+		"WyvernBuilder/Source/**.cpp"
 	}
 
 	includedirs
 	{
 		"WyvernEngine/Source",
 		"WyvernEditor/Source",
+		"WyvernBuilder/Source",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.GLM}",
 		"%{IncludeDir.ImGUI}",
@@ -131,12 +182,14 @@ project "WyvernEditor"
 
 	links
 	{
-		"WyvernEngine"
+		"WyvernEngine",
+		"WyvernEditor"
 	}
 	
 	postbuildcommands
 	{
-		"{COPY} ../../bin/" .. outputdir .. "/WyvernEngine/*.dll ../../bin/" .. outputdir .. "/WyvernEditor"
+		"{COPY} ../../bin/" .. outputdir .. "/WyvernEngine/*.dll ../../bin/" .. outputdir .. "/WyvernBuilder",
+		"{COPY} ../../bin/" .. outputdir .. "/WyvernEditor/*.dll ../../bin/" .. outputdir .. "/WyvernBuilder",
 	}
 
 	filter "system:windows"
@@ -161,8 +214,8 @@ project "WyvernEditor"
 		defines "WV_DIST"
 		optimize "On"
 		
-project "Sandbox"
-	location "Sandbox/Source"
+project "WyvernRuntime"
+	location "WyvernRuntime/Source"
 	kind "ConsoleApp"
 	language "C++"
 
@@ -171,14 +224,14 @@ project "Sandbox"
 
 	files
 	{
-		"Sandbox/Source/**.h",
-		"Sandbox/Source/**.cpp"
+		"WyvernRuntime/Source/**.h",
+		"WyvernRuntime/Source/**.cpp"
 	}
 
 	includedirs
 	{
 		"WyvernEngine/Source",
-		"Sandbox/Source",
+		"WyvernRuntime/Source",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.GLM}",
 		"%{IncludeDir.ImGUI}",
@@ -194,7 +247,7 @@ project "Sandbox"
 	
 	postbuildcommands
 	{
-		"{COPY} ../../bin/" .. outputdir .. "/WyvernEngine/*.dll ../../bin/" .. outputdir .. "/Sandbox"
+		"{COPY} ../../bin/" .. outputdir .. "/WyvernEngine/*.dll ../../bin/" .. outputdir .. "/WyvernRuntime"
 	}
 
 	filter "system:windows"

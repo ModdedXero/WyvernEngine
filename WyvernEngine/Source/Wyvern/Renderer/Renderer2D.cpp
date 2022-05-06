@@ -118,7 +118,7 @@ namespace Wyvern::Renderer
 		}
 
 		FT_Face face;
-		if (FT_New_Face(ft, "..\\..\\WyvernEditor\\Assets\\Fonts\\Times.TTF", 0, &face))
+		if (FT_New_Face(ft, "..\\..\\WyvernBuilder\\Assets\\Fonts\\Times.TTF", 0, &face))
 		{
 			DEBUG_LOG_ERROR("Error: FreeType failed to load font");
 		}

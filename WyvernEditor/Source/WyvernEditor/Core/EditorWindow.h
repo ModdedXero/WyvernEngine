@@ -1,6 +1,7 @@
 #pragma once
 
-#include <Wyvern.h>
+#include <Wyvern/Events/Event.h>
+#include <Wyvern/Core/Math/Vector.h>
 
 #include <string>
 
@@ -8,7 +9,7 @@ namespace Wyvern::Editor
 {
 	class EditorWindow
 	{
-		friend class EditorLayer;
+		friend class BuilderLayer;
 	public:
 		virtual const char* GetWindowTitle() const = 0;
 

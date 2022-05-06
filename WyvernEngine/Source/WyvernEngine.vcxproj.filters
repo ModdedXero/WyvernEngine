@@ -94,6 +94,9 @@
     <ClInclude Include="Wyvern\Core\Components\Camera.h">
       <Filter>Wyvern\Core\Components</Filter>
     </ClInclude>
+    <ClInclude Include="Wyvern\Core\Components\Collider2D.h">
+      <Filter>Wyvern\Core\Components</Filter>
+    </ClInclude>
     <ClInclude Include="Wyvern\Core\Components\Components.h">
       <Filter>Wyvern\Core\Components</Filter>
     </ClInclude>
@@ -154,7 +157,7 @@
     <ClInclude Include="Wyvern\Core\MouseCodes.h">
       <Filter>Wyvern\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Wyvern\Core\Components\Collider2D.h">
+    <ClInclude Include="Wyvern\Core\Physics\Collision2D.h">
       <Filter>Wyvern\Core\Physics</Filter>
     </ClInclude>
     <ClInclude Include="Wyvern\Core\Physics\CollisionSolver2D.h">
@@ -196,10 +199,13 @@
     <ClInclude Include="Wyvern\Core\Scene\Scene.h">
       <Filter>Wyvern\Core\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="Wyvern\Core\Scene\SerializeHelper.h">
+      <Filter>Wyvern\Core\Scene</Filter>
+    </ClInclude>
     <ClInclude Include="Wyvern\Core\Scene\Serializer.h">
       <Filter>Wyvern\Core\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Wyvern\Core\Scene\SerializeHelper.h">
+    <ClInclude Include="Wyvern\Core\Scene\UUID.h">
       <Filter>Wyvern\Core\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Wyvern\Core\Scene\Wizard.h">
@@ -248,8 +254,6 @@
       <Filter>Wyvern\Utils</Filter>
     </ClInclude>
     <ClInclude Include="wvpch.h" />
-    <ClInclude Include="Wyvern\Core\Scene\UUID.h" />
-    <ClInclude Include="Wyvern\Core\Physics\Collision2D.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Vendor\ImGuizmo\ImGuizmo.cpp">
@@ -275,6 +279,9 @@
     </ClCompile>
     <ClCompile Include="Wyvern\Core\AssetManager.cpp">
       <Filter>Wyvern\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Wyvern\Core\Components\Camera.cpp">
+      <Filter>Wyvern\Core\Components</Filter>
     </ClCompile>
     <ClCompile Include="Wyvern\Core\Components\Transform.cpp">
       <Filter>Wyvern\Core\Components</Filter>
@@ -324,10 +331,13 @@
     <ClCompile Include="Wyvern\Core\Scene\Scene.cpp">
       <Filter>Wyvern\Core\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="Wyvern\Core\Scene\SerializeHelper.cpp">
+      <Filter>Wyvern\Core\Scene</Filter>
+    </ClCompile>
     <ClCompile Include="Wyvern\Core\Scene\Serializer.cpp">
       <Filter>Wyvern\Core\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Wyvern\Core\Scene\SerializeHelper.cpp">
+    <ClCompile Include="Wyvern\Core\Scene\UUID.cpp">
       <Filter>Wyvern\Core\Scene</Filter>
     </ClCompile>
     <ClCompile Include="Wyvern\Core\Scene\Wizard.cpp">
@@ -358,7 +368,5 @@
       <Filter>Wyvern\Utils</Filter>
     </ClCompile>
     <ClCompile Include="wvpch.cpp" />
-    <ClCompile Include="Wyvern\Core\Components\Camera.cpp" />
-    <ClCompile Include="Wyvern\Core\Scene\UUID.cpp" />
   </ItemGroup>
 </Project>

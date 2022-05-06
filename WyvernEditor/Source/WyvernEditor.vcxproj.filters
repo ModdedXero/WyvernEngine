@@ -1,74 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Core">
-      <UniqueIdentifier>{2EB4837C-1AEB-840D-C3D7-6A10AFED000F}</UniqueIdentifier>
+    <Filter Include="WyvernEditor">
+      <UniqueIdentifier>{B7A338C7-A306-C86B-4C8C-002238CE93EE}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Utility">
-      <UniqueIdentifier>{594615A9-C525-9444-CE3D-1F1B3A9CFAA5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Windows">
-      <UniqueIdentifier>{5032B729-BC11-36C5-C529-C19B31889C26}</UniqueIdentifier>
+    <Filter Include="WyvernEditor\Core">
+      <UniqueIdentifier>{6FB26FF1-DBC8-6D87-2440-F9A890953E0F}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="WyvernEditor\Core\EditorLayer.h">
-      <Filter>Core</Filter>
+    <ClInclude Include="WyvernEditor.h" />
+    <ClInclude Include="WyvernEditor\Core\EditorGUI.h">
+      <Filter>WyvernEditor\Core</Filter>
     </ClInclude>
-    <ClInclude Include="WyvernEditor\Core\EditorWindow.h">
-      <Filter>Core</Filter>
+    <ClInclude Include="WyvernEditor\Core\EditorGUIInternal.h">
+      <Filter>WyvernEditor\Core</Filter>
     </ClInclude>
-    <ClInclude Include="WyvernEditor\Core\ViewportCamera.h">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="WyvernEditor\Utility\EditorGUI.h">
-      <Filter>Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="WyvernEditor\Utility\EditorGUIInternal.h">
-      <Filter>Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="WyvernEditor\Windows\HierarchyWindow.h">
-      <Filter>Windows</Filter>
-    </ClInclude>
-    <ClInclude Include="WyvernEditor\Windows\PropertiesWindow.h">
-      <Filter>Windows</Filter>
-    </ClInclude>
-    <ClInclude Include="WyvernEditor\Windows\ViewportWindow.h">
-      <Filter>Windows</Filter>
-    </ClInclude>
-    <ClInclude Include="WyvernEditor\SandboxScirpts\PlayerPaddleOne.h" />
+    <ClInclude Include="WyvernEditor\Core\EditorWindow.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="WyvernEditor\Core\ComponentUI.cpp">
-      <Filter>Core</Filter>
+    <ClCompile Include="WyvernEditor\Core\EditorGUI.cpp">
+      <Filter>WyvernEditor\Core</Filter>
     </ClCompile>
-    <ClCompile Include="WyvernEditor\Core\EditorLayer.cpp">
-      <Filter>Core</Filter>
+    <ClCompile Include="WyvernEditor\Core\EditorGUIInternal.cpp">
+      <Filter>WyvernEditor\Core</Filter>
     </ClCompile>
-    <ClCompile Include="WyvernEditor\Core\EditorWindow.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="WyvernEditor\Core\WyvernEditor.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="WyvernEditor\Core\ViewportCamera.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="WyvernEditor\Utility\EditorGUI.cpp">
-      <Filter>Utility</Filter>
-    </ClCompile>
-    <ClCompile Include="WyvernEditor\Utility\EditorGUIInternal.cpp">
-      <Filter>Utility</Filter>
-    </ClCompile>
-    <ClCompile Include="WyvernEditor\Windows\HierarchyWindow.cpp">
-      <Filter>Windows</Filter>
-    </ClCompile>
-    <ClCompile Include="WyvernEditor\Windows\PropertiesWindow.cpp">
-      <Filter>Windows</Filter>
-    </ClCompile>
-    <ClCompile Include="WyvernEditor\Windows\ViewportWindow.cpp">
-      <Filter>Windows</Filter>
-    </ClCompile>
-    <ClCompile Include="WyvernEditor\SandboxScirpts\PlayerPaddleOne.cpp" />
+    <ClCompile Include="WyvernEditor\Core\EditorWindow.cpp" />
   </ItemGroup>
 </Project>
