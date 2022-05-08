@@ -211,4 +211,21 @@ namespace Wyvern::Editor
 	{
 		ImGui::InputInt(label.c_str(), &value);
 	}
+
+	void EditorGUI::ComboControl(const std::string& label, const char* values[], int& valueIndex, int arraySize)
+	{
+		if (ImGui::BeginCombo(label.c_str(), values[valueIndex]))
+		{
+			for (int i = 0; i < arraySize; i++)
+			{
+				bool isSelected = (values[valueIndex] == values[i]);
+				if (ImGui::Selectable(values[i], isSelected))
+					valueIndex = i;
+				if (isSelected)
+					ImGui::SetItemDefaultFocus();
+			}
+
+			ImGui::EndCombo();
+		}
+	}
 }

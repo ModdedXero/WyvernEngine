@@ -33,9 +33,12 @@ namespace Wyvern
 		EditorGUI::FloatControl("Mass", this->mass);
 		EditorGUI::FloatControl("Drag", this->drag);
 		EditorGUI::FloatControl("Bounce", this->bounce);
-		EditorGUI::IntControl("BodyType", this->m_BodyType);
+		
+		int index = (int)bodyType;
+		const char* values[] = { "Dynamic", "Kinematic", "Static" };
 
-		bodyType = (PhysicsBody)m_BodyType;
+		EditorGUI::ComboControl("Body Type", values, index, 3);
+		bodyType = (PhysicsBody)index;
 	}
 
 	void BoxCollider2D::DrawEditor()

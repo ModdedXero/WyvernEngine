@@ -55,7 +55,8 @@ namespace Wyvern
 														info.out << YAML::BeginMap;
 
 #define WV_SERIALIZE_VARIABLE(VAR_TYPE, VAR_NAME)		if (info.IsSerialize()) info.out << YAML::Key << #VAR_NAME << YAML::Value << VAR_NAME;\
-														else VAR_NAME = info.in[#VAR_NAME].as<VAR_TYPE>();
+														else\
+														{if (info.in[#VAR_NAME]) VAR_NAME = info.in[#VAR_NAME].as<VAR_TYPE>();}
 
 #define WV_SERIALIZE_COMPONENT_END						info.out << YAML::EndMap;\
 													}

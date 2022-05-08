@@ -176,6 +176,7 @@
     <ClInclude Include="Wyvern\Core\Physics\Collision2D.h" />
     <ClInclude Include="Wyvern\Core\Physics\CollisionSolver2D.h" />
     <ClInclude Include="Wyvern\Core\Physics\Impulse2D.h" />
+    <ClInclude Include="Wyvern\Core\Physics\Physics.h" />
     <ClInclude Include="Wyvern\Core\Physics\Physics2DWizard.h" />
     <ClInclude Include="Wyvern\Core\Physics\PhysicsSolver2D.h" />
     <ClInclude Include="Wyvern\Core\Physics\SmoothPosition2D.h" />

@@ -23,4 +23,10 @@ namespace Wyvern
 		out << YAML::BeginSeq << vec.x << vec.y << vec.z << vec.w << YAML::EndSeq;
 		return out;
 	}
+
+	YAML::Emitter& operator<<(YAML::Emitter& out, const PhysicsBody& body)
+	{
+		out << (int)body;
+		return out;
+	}
 }

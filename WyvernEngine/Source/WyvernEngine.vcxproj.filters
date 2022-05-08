@@ -254,6 +254,7 @@
       <Filter>Wyvern\Utils</Filter>
     </ClInclude>
     <ClInclude Include="wvpch.h" />
+    <ClInclude Include="Wyvern\Core\Physics\Physics.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Vendor\ImGuizmo\ImGuizmo.cpp">
