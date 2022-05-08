@@ -50,7 +50,7 @@ namespace Wyvern::Renderer
 	static std::unordered_map<GLchar, Character> Characters;
 	static RenderData s_Data;
 
-	void Renderer2D::OnAwake()
+	void Renderer2D::OnAttach()
 	{
 		// Quad Renderer
 

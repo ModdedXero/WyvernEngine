@@ -29,7 +29,7 @@ namespace Wyvern
 		m_StartTime = Time::now();
 		m_FixedLoop = Time::now();
 
-		Renderer2D::OnAwake();
+		Renderer2D::OnAttach();
 
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);

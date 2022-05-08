@@ -36,7 +36,7 @@ namespace Wyvern
 		Scene();
 		~Scene();
 
-		void OnAwake();
+		void OnAttach();
 		void OnDestroy();
 		void OnRuntimeUpdate();
 		void OnEditorUpdate(Renderer::CameraRenderer* camera, Transform* position);
@@ -86,7 +86,9 @@ namespace Wyvern
 		template <typename T>
 		inline int GetComponentID();
 		template <typename T>
-		inline int FindComponentID(bool isBase = false);
+		inline int FindComponentID();
+		template <typename T>
+		inline std::vector<int> FindComponentIDs();
 
 	private:
 		SceneState m_SceneState = SceneState::Edit;
@@ -183,7 +185,7 @@ namespace Wyvern
 
 		for (ComponentPool* pool : entity->m_Scene->m_ComponentPools)
 		{
-			if (pool->ComponentBaseType == typeid(T).name())
+			if (pool->ComponentBaseType == typeid(T::base).name())
 				if (entity->m_Components.test(pool->ComponentID))
 					components.push_back(static_cast<T*>(pool->Get(GetSceneIndex(entity->m_SceneID))));
 		}
@@ -209,13 +211,24 @@ namespace Wyvern
 	}
 
 	template <typename T>
-	inline int Scene::FindComponentID(bool isBase)
+	inline int Scene::FindComponentID()
 	{
 		for (ComponentPool* pool : m_ComponentPools)
-			if (isBase ? pool->ComponentBaseType == typeid(T::base).name() : pool->ComponentType == typeid(T).name())
+			if (pool->ComponentType == typeid(T).name())
 				return pool->ComponentID;
 
 		return -1;
+	}
+
+	template <typename T>
+	inline std::vector<int> Scene::FindComponentIDs()
+	{
+		std::vector<int> ids;
+		for (ComponentPool* pool : m_ComponentPools)
+			if (pool->ComponentBaseType == typeid(T::base).name())
+				ids.push_back(pool->ComponentID);
+
+		return ids;
 	}
 
 	template<typename T>

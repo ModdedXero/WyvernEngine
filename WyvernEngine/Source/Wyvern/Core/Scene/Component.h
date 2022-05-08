@@ -50,7 +50,7 @@ namespace Wyvern
 		{}
 		virtual ~NativeScriptComponent() = 0;
 
-		virtual void OnAwake() {}
+		virtual void OnAttach() {}
 		virtual void OnDestroy() {}
 		virtual void OnUpdate() {}
 		virtual void OnFixedUpdate() {}

@@ -13,7 +13,7 @@ namespace Wyvern::Renderer
 	class Renderer2D
 	{
 	public:
-		static void OnAwake();
+		static void OnAttach();
 		static void OnDestroy();
 
 		static void BeginScene(CameraRenderer* cameraRenderer, Transform* cameraPosition);

@@ -21,7 +21,6 @@ namespace Wyvern::Editor
 
         s_ActiveScene->CreateWizard<Physics2DWizard>();
 
-        s_ActiveScene->OnAwake();
         ImGui::SetCurrentContext(Application::Get().GetImGuiLayer()->GetImGuiContext());
 
         s_EditorCamera = new ViewportCamera();
@@ -131,8 +130,8 @@ namespace Wyvern::Editor
                         Serializer::ConvertSerialToDeserial(info);
                         Serializer::Deserialize(runtimeScene, info);
                         s_CachedScene = s_ActiveScene;
+                        runtimeScene->SetSceneState(SceneState::Play);
                         SetActiveScene(runtimeScene);
-                        s_ActiveScene->SetSceneState(SceneState::Play);
                     }
                     else
                     {
@@ -212,8 +211,9 @@ namespace Wyvern::Editor
         std::string filePath = FileDialogs::OpenFile("Wyvern Scene (*.wyvern)\0*.wyvern\0");
         if (!filePath.empty())
         {
-            SetActiveScene(CreateRef<Scene>());
-            Serializer::Deserialize(s_ActiveScene, filePath);
+            Ref<Scene> loadScene = CreateRef<Scene>();
+            Serializer::Deserialize(loadScene, filePath);
+            SetActiveScene(loadScene);
         }
     }
 
@@ -221,5 +221,6 @@ namespace Wyvern::Editor
     {
         s_ActiveScene = scene;
         Scene::SetActiveScene(scene);
+        s_ActiveScene->OnAttach();
     }
 }

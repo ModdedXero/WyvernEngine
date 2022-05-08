@@ -29,9 +29,18 @@ namespace Wyvern
 
 	}
 
-	void Scene::OnAwake()
+	void Scene::OnAttach()
 	{
-		m_SceneState = SceneState::Edit;
+		if (m_SceneState == SceneState::Play)
+		{
+			for (Entity* entity : EntityList<NativeScriptComponent>(shared_from_this(), true))
+			{
+				for (NativeScriptComponent* nsc : GetComponentsOfBase<NativeScriptComponent>(entity))
+				{
+					nsc->OnAttach();
+				}
+			}
+		}
 	}
 
 	void Scene::OnDestroy()
