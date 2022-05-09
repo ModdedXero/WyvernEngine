@@ -44,8 +44,8 @@ namespace Wyvern
 			SetActiveCamera(nullptr);
 		SetOrthoSize(orthoSize);
 		SetFieldOfView(fov);
-		SetClipSpaceNear(clipNear);
-		SetClipSpaceFar(clipFar);
+		SetClipNear(clipNear);
+		SetClipFar(clipFar);
 	}
 
 	void SpriteRenderer::DrawEditor()

@@ -21,6 +21,11 @@ namespace Wyvern
 		static void SetActiveCamera(Camera* camera) { s_ActiveCamera = camera; }
 
 		WV_SERIALIZE_COMPONENT(Camera)
+		WV_SERIALIZE_PROPERTY(Renderer::CameraMode, "cameraMode", GetCameraMode, SetCameraMode)
+		WV_SERIALIZE_PROPERTY(float, "orthoSize", GetOrthoSize, SetOrthoSize)
+		WV_SERIALIZE_PROPERTY(float, "fieldOfView", GetFieldOfView, SetFieldOfView)
+		WV_SERIALIZE_PROPERTY(float, "clipNear", GetClipNear, SetClipNear)
+		WV_SERIALIZE_PROPERTY(float, "clipFar", GetClipFar, SetClipFar)
 		WV_SERIALIZE_COMPONENT_END
 
 	public:
@@ -36,8 +41,8 @@ namespace Wyvern
 		void SetProjection(float width, float height) { m_Renderer->SetProjection(width, height); }
 		void SetOrthoSize(float orthoSize) { m_Renderer->SetOrthoSize(orthoSize); }
 		void SetFieldOfView(float fov) { m_Renderer->SetFieldOfView(fov); }
-		void SetClipSpaceNear(float near) { m_Renderer->SetClipSpaceNear(near); }
-		void SetClipSpaceFar(float far) { m_Renderer->SetClipSpaceFar(far); }
+		void SetClipNear(float near) { m_Renderer->SetClipNear(near); }
+		void SetClipFar(float far) { m_Renderer->SetClipFar(far); }
 
 	private:
 		Renderer::CameraRenderer* m_Renderer = new Renderer::CameraRenderer();

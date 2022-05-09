@@ -148,4 +148,8 @@ Entities:
         rotation: [0, 0, 0]
         scale: [1.39999998, 1, 1]
       Camera:
-        m_IsActiveCamera: false
+        cameraMode: 1
+        orthoSize: 6
+        fieldOfView: 60
+        clipNear: 0.300000012
+        clipFar: 100

@@ -3,6 +3,7 @@
 #include <Wyvern/Core/Math/Math.h>
 #include <Wyvern/Core/Scene/UUID.h>
 #include <Wyvern/Core/Physics/Physics.h>
+#include <Wyvern/Renderer/CameraRenderer.h>
 
 #include <yaml-cpp/yaml.h>
 #include <string>
@@ -99,6 +100,23 @@ namespace YAML
 	};
 
 	template<>
+	struct convert<Wyvern::Renderer::CameraMode>
+	{
+		static YAML::Node encode(const Wyvern::Renderer::CameraMode& rhs)
+		{
+			YAML::Node node;
+			node.push_back((int)rhs);
+			return node;
+		}
+
+		static bool decode(const YAML::Node& node, Wyvern::Renderer::CameraMode& rhs)
+		{
+			rhs = (Wyvern::Renderer::CameraMode)node.as<int>();
+			return true;
+		}
+	};
+
+	template<>
 	struct convert<Wyvern::UUID>
 	{
 		static YAML::Node encode(const Wyvern::UUID& rhs)
@@ -123,4 +141,5 @@ namespace Wyvern
 	YAML::Emitter& operator <<(YAML::Emitter& out, const Vector4& vec);
 
 	YAML::Emitter& operator <<(YAML::Emitter& out, const PhysicsBody& body);
+	YAML::Emitter& operator <<(YAML::Emitter& out, const Renderer::CameraMode& cameraMode);
 }

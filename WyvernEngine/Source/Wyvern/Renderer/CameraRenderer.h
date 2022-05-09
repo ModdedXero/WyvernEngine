@@ -35,8 +35,8 @@ namespace Wyvern::Renderer
 		void SetProjection(float width, float height);
 		void SetOrthoSize(float orthoSize) { m_OrthoSize = orthoSize; }
 		void SetFieldOfView(float fov) { m_FieldOfView = fov; }
-		void SetClipSpaceNear(float near) { m_ClipNear = near; }
-		void SetClipSpaceFar(float far) { m_ClipFar = far; }
+		void SetClipNear(float near) { m_ClipNear = near; }
+		void SetClipFar(float far) { m_ClipFar = far; }
 
 		void ResizeView(float width, float height);
 		void SetShaderMatrices(Ref<Shader> shader, Transform* position);
