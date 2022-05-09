@@ -32,7 +32,7 @@ Entities:
       Tag:
         name: Top
       Transform:
-        position: [0, 4.18338013, 0]
+        position: [0, 4.16792393, 0]
         rotation: [0, 0, 0]
         scale: [5.50280046, 0.152778134, 1]
       SpriteRenderer:
@@ -68,7 +68,7 @@ Entities:
       Tag:
         name: Bottom
       Transform:
-        position: [0, -4.18338203, 0]
+        position: [0, -4.16792583, 0]
         rotation: [0, 0, 0]
         scale: [5.50280046, 0.152778134, 1]
       SpriteRenderer:

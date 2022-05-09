@@ -15,6 +15,7 @@ namespace Wyvern::Editor
 
 		static void FloatControl(const std::string& label, float& value, float columnWidth = 80.0f);
 		static void IntControl(const std::string& label, int& value, float columnWidth = 80.0f);
+		static void BoolControl(const std::string& label, bool& value, float columnWidth = 80.0f);
 		
 		static void ComboControl(const std::string& label, const char* values[], int& valueIndex, int arraySize);
 	};

@@ -212,6 +212,11 @@ namespace Wyvern::Editor
 		ImGui::InputInt(label.c_str(), &value);
 	}
 
+	void EditorGUI::BoolControl(const std::string& label, bool& value, float columnWidth)
+	{
+		ImGui::Checkbox(label.c_str(), &value);
+	}
+
 	void EditorGUI::ComboControl(const std::string& label, const char* values[], int& valueIndex, int arraySize)
 	{
 		if (ImGui::BeginCombo(label.c_str(), values[valueIndex]))
