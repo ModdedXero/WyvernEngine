@@ -38,7 +38,7 @@ namespace Wyvern::Editor
 		}
 
 		unsigned int textureID = m_Framebuffer->GetColorAttachmentRendererID();
-		ImGui::Image((void*)textureID, ImVec2{ m_WindowSize.x, m_WindowSize.y });
+		ImGui::Image((void*)textureID, ImVec2{ m_WindowSize.x, m_WindowSize.y }, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
 
 		// Gizmos
 
@@ -110,7 +110,7 @@ namespace Wyvern::Editor
 		{
 			int index = m_Framebuffer->ReadPixel(1, GetCursorPosition().x, GetCursorPosition().y);
 			Entity* ent = Scene::GetEntityAtIndex(Scene::GetActiveScene(), index);
-			if (ent) DEBUG_CORE(ent->GetTag()->name);
+			m_HoverEntity = ent;
 		}
 		m_Framebuffer->Unbind();
 	}
@@ -121,6 +121,7 @@ namespace Wyvern::Editor
 
 		dispatch.Distpatch<Events::KeyPressedEvent>(BIND_EVENT_FN(OnKeyPressedEvent));
 		dispatch.Distpatch<Events::KeyReleasedEvent>(BIND_EVENT_FN(OnKeyReleasedEvent));
+		dispatch.Distpatch<Events::MouseButtonPressedEvent>(BIND_EVENT_FN(OnMouseButtonPressed));
 	}
 
 	bool ViewportWindow::OnKeyPressedEvent(Events::KeyPressedEvent& e)
@@ -158,6 +159,17 @@ namespace Wyvern::Editor
 		if (e.GetKeyCode() == KeyCode::LeftControl)
 		{
 			m_IsSnap = false;
+		}
+
+		return true;
+	}
+
+	bool ViewportWindow::OnMouseButtonPressed(Events::MouseButtonPressedEvent& e)
+	{
+		if (e.GetKey() == MouseCode::MOUSE_BUTTON_LEFT)
+		{
+			if (IsHovered() && !ImGuizmo::IsOver()) 
+				BuilderLayer::SetSelectedContext(m_HoverEntity);
 		}
 
 		return true;

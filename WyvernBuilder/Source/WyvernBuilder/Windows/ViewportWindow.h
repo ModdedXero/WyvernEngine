@@ -22,6 +22,7 @@ namespace Wyvern::Editor
 		Vector2 m_WindowSize;
 
 		Renderer::Framebuffer* m_Framebuffer;
+		Entity* m_HoverEntity;
 
 		int m_GizmoSelection = -1;
 		float m_SnapValue = 0.5f;
@@ -29,5 +30,6 @@ namespace Wyvern::Editor
 
 		bool OnKeyPressedEvent(Events::KeyPressedEvent& e);
 		bool OnKeyReleasedEvent(Events::KeyReleasedEvent& e);
+		bool OnMouseButtonPressed(Events::MouseButtonPressedEvent& e);
 	};
 }

@@ -196,33 +196,15 @@ namespace Wyvern::Renderer
 				BeginBatch();
 			}
 
-			s_Data.QuadBufferPtr->Position = drawData.second->vertices[0].Position;
-			s_Data.QuadBufferPtr->Color = drawData.second->vertices[0].Color;
-			s_Data.QuadBufferPtr->TexCoords = drawData.second->vertices[0].TexCoords;
-			s_Data.QuadBufferPtr->TexID = drawData.second->vertices[0].TexID;
-			s_Data.QuadBufferPtr->EntityID = drawData.second->vertices[0].EntityID;
-			s_Data.QuadBufferPtr++;
-
-			s_Data.QuadBufferPtr->Position = drawData.second->vertices[1].Position;
-			s_Data.QuadBufferPtr->Color = drawData.second->vertices[1].Color;
-			s_Data.QuadBufferPtr->TexCoords = drawData.second->vertices[1].TexCoords;
-			s_Data.QuadBufferPtr->TexID = drawData.second->vertices[1].TexID;
-			s_Data.QuadBufferPtr->EntityID = drawData.second->vertices[1].EntityID;
-			s_Data.QuadBufferPtr++;
-
-			s_Data.QuadBufferPtr->Position = drawData.second->vertices[2].Position;
-			s_Data.QuadBufferPtr->Color = drawData.second->vertices[2].Color;
-			s_Data.QuadBufferPtr->TexCoords = drawData.second->vertices[2].TexCoords;
-			s_Data.QuadBufferPtr->TexID = drawData.second->vertices[2].TexID;
-			s_Data.QuadBufferPtr->EntityID = drawData.second->vertices[2].EntityID;
-			s_Data.QuadBufferPtr++;
-
-			s_Data.QuadBufferPtr->Position = drawData.second->vertices[3].Position;
-			s_Data.QuadBufferPtr->Color = drawData.second->vertices[3].Color;
-			s_Data.QuadBufferPtr->TexCoords = drawData.second->vertices[3].TexCoords;
-			s_Data.QuadBufferPtr->TexID = drawData.second->vertices[3].TexID;
-			s_Data.QuadBufferPtr->EntityID = drawData.second->vertices[3].EntityID;
-			s_Data.QuadBufferPtr++;
+			for (int i = 0; i < 4; i++)
+			{
+				s_Data.QuadBufferPtr->Position = drawData.second->vertices[i].Position;
+				s_Data.QuadBufferPtr->Color = drawData.second->vertices[i].Color;
+				s_Data.QuadBufferPtr->TexCoords = drawData.second->vertices[i].TexCoords;
+				s_Data.QuadBufferPtr->TexID = drawData.second->vertices[i].TexID;
+				s_Data.QuadBufferPtr->EntityID = drawData.second->vertices[i].EntityID;
+				s_Data.QuadBufferPtr++;
+			}
 
 			s_Data.IndexCount += 6;
 		}

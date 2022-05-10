@@ -46,6 +46,7 @@
 #include <Wyvern/Events/Event.h>
 #include <Wyvern/Events/KeyEvent.h>
 #include <Wyvern/Events/WindowEvent.h>
+#include <Wyvern/Events/MouseEvent.h>
 
 // Utility
 #include <Wyvern/Core/Debug.h>
