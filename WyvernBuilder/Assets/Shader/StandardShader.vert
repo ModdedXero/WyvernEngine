@@ -6,10 +6,10 @@ layout (location = 2) in vec2 aTexCoords;
 layout (location = 3) in float aTexID;
 layout (location = 4) in int aEntityID;
 
-out vec4 vColor;
-out vec2 vTexCoord;
-out float vTexIndex;
-out int vEntityID;
+layout (location = 0) out vec4 vColor;
+layout (location = 1) out vec2 vTexCoord;
+layout (location = 2) out flat float vTexIndex;
+layout (location = 3) out flat int vEntityID;
 
 uniform mat4 projection;
 uniform mat4 viewModel;

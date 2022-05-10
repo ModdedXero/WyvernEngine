@@ -62,6 +62,7 @@ namespace Wyvern
 		static Entity* CreateEntity(Ref<Scene> scene, std::string name = "Entity");
 		static Entity* CreateEntity(Ref<Scene> scene, const UUID& uuid);
 		static Entity* FindEntity(Ref<Scene> scene, const UUID& uuid);
+		static Entity* GetEntityAtIndex(Ref<Scene> scene, int index);
 		static Entity* DuplicateEntity(Entity* entity, Entity* parent = nullptr);
 		static void DestoryEntity(Entity* entity);
 

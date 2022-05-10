@@ -76,7 +76,7 @@ namespace Wyvern::Renderer
 		glVertexAttribPointer(3, 1, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const void*)offsetof(Vertex, TexID));
 
 		glEnableVertexArrayAttrib(s_Data.VAO, 4);
-		glVertexAttribPointer(4, 1, GL_INT, GL_FALSE, sizeof(Vertex), (const void*)offsetof(Vertex, EntityID));
+		glVertexAttribIPointer(4, 1, GL_INT, sizeof(Vertex), (const void*)offsetof(Vertex, EntityID));
 
 		uint32_t indices[MaxIndexCount];
 		uint32_t offset = 0;

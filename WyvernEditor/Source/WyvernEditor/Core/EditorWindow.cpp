@@ -27,10 +27,10 @@ namespace Wyvern::Editor
 		// Cursor Position
 		auto [mx, my] = ImGui::GetMousePos();
 		mx -= m_WindowBounds.x;
-		my -= m_WindowBounds.w;
+		my -= m_WindowBounds.y;
 		Vector2 viewport = Vector2(m_WindowBounds.x, m_WindowBounds.y) - Vector2(m_WindowBounds.z, m_WindowBounds.w);
 
-		m_CursorPosition = { mx, -my };
+		m_CursorPosition = { mx, my };
 
 		// Window States
 		m_IsFocused = ImGui::IsWindowFocused();

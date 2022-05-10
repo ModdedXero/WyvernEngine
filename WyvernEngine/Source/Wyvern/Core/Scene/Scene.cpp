@@ -105,7 +105,7 @@ namespace Wyvern
 			{
 				SpriteRenderer* sRend = Scene::GetComponent<SpriteRenderer>(entity);
 
-				Renderer::Renderer2D::DrawQuad(entity->GetTransform(), sRend->material, sRend->sprite, sRend->color, (SceneIndex)entity->m_SceneID);
+				Renderer::Renderer2D::DrawQuad(entity->GetTransform(), sRend->material, sRend->sprite, sRend->color, GetSceneIndex(entity->m_SceneID));
 			}
 
 			Renderer::Renderer2D::EndScene();
@@ -122,7 +122,7 @@ namespace Wyvern
 		{
 			SpriteRenderer* sRend = Scene::GetComponent<SpriteRenderer>(entity);
 
-			Renderer::Renderer2D::DrawQuad(entity->GetTransform(), sRend->material, sRend->sprite, sRend->color, (SceneIndex)entity->m_SceneID);
+			Renderer::Renderer2D::DrawQuad(entity->GetTransform(), sRend->material, sRend->sprite, sRend->color, GetSceneIndex(entity->m_SceneID));
 		}
 
 		Renderer::Renderer2D::EndScene();
@@ -221,6 +221,14 @@ namespace Wyvern
 			if (entity->m_UUID == uuid)
 				return entity;
 		}
+
+		return nullptr;
+	}
+
+	Entity* Scene::GetEntityAtIndex(Ref<Scene> scene, int index)
+	{
+		if (index >= 0 && index < scene->m_Entities.size() && IsEntityValid(scene->m_Entities[index]))
+			return scene->m_Entities[index];
 
 		return nullptr;
 	}

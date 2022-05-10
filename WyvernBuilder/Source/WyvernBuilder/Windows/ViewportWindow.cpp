@@ -101,11 +101,17 @@ namespace Wyvern::Editor
 	{
 		m_Framebuffer->Bind();
 		m_Framebuffer->ClearColorAttachment(1, -1);
-		DEBUG_LOG(m_Framebuffer->ReadPixel(1, GetCursorPosition().x, GetCursorPosition().y));
+		
 	}
 
 	void ViewportWindow::OnPostRender()
 	{
+		if (IsHovered())
+		{
+			int index = m_Framebuffer->ReadPixel(1, GetCursorPosition().x, GetCursorPosition().y);
+			Entity* ent = Scene::GetEntityAtIndex(Scene::GetActiveScene(), index);
+			if (ent) DEBUG_CORE(ent->GetTag()->name);
+		}
 		m_Framebuffer->Unbind();
 	}
 
