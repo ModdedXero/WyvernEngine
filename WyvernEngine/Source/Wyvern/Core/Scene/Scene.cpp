@@ -105,7 +105,7 @@ namespace Wyvern
 			{
 				SpriteRenderer* sRend = Scene::GetComponent<SpriteRenderer>(entity);
 
-				Renderer::Renderer2D::DrawQuad(entity->GetTransform(), sRend->material, sRend->sprite, sRend->color);
+				Renderer::Renderer2D::DrawQuad(entity->GetTransform(), sRend->material, sRend->sprite, sRend->color, (SceneIndex)entity->m_SceneID);
 			}
 
 			Renderer::Renderer2D::EndScene();
@@ -122,7 +122,7 @@ namespace Wyvern
 		{
 			SpriteRenderer* sRend = Scene::GetComponent<SpriteRenderer>(entity);
 
-			Renderer::Renderer2D::DrawQuad(entity->GetTransform(), sRend->material, sRend->sprite, sRend->color);
+			Renderer::Renderer2D::DrawQuad(entity->GetTransform(), sRend->material, sRend->sprite, sRend->color, (SceneIndex)entity->m_SceneID);
 		}
 
 		Renderer::Renderer2D::EndScene();

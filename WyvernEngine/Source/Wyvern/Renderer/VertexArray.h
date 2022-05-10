@@ -8,18 +8,20 @@ namespace Wyvern::Renderer
 	{
 		Vertex() {}
 
-		Vertex(Vector3 pos, Vector4 col, Vector2 coords, float texID)
+		Vertex(Vector3 pos, Vector4 col, Vector2 coords, float texID, int entityID = -1)
 		{
 			this->Position = pos;
 			this->Color = col;
 			this->TexCoords = coords;
 			this->TexID = texID;
+			this->EntityID = entityID;
 		}
 
 		Vector3 Position;
 		Vector4 Color;
 		Vector2 TexCoords;
 		float TexID = 0;
+		int EntityID = -1;
 
 		bool operator<(const Vertex& other)
 		{

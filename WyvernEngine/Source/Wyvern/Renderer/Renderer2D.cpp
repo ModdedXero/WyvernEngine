@@ -75,6 +75,9 @@ namespace Wyvern::Renderer
 		glEnableVertexArrayAttrib(s_Data.VAO, 3);
 		glVertexAttribPointer(3, 1, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const void*)offsetof(Vertex, TexID));
 
+		glEnableVertexArrayAttrib(s_Data.VAO, 4);
+		glVertexAttribPointer(4, 1, GL_INT, GL_FALSE, sizeof(Vertex), (const void*)offsetof(Vertex, EntityID));
+
 		uint32_t indices[MaxIndexCount];
 		uint32_t offset = 0;
 		for (size_t i = 0; i < MaxIndexCount; i += 6)
@@ -197,24 +200,28 @@ namespace Wyvern::Renderer
 			s_Data.QuadBufferPtr->Color = drawData.second->vertices[0].Color;
 			s_Data.QuadBufferPtr->TexCoords = drawData.second->vertices[0].TexCoords;
 			s_Data.QuadBufferPtr->TexID = drawData.second->vertices[0].TexID;
+			s_Data.QuadBufferPtr->EntityID = drawData.second->vertices[0].EntityID;
 			s_Data.QuadBufferPtr++;
 
 			s_Data.QuadBufferPtr->Position = drawData.second->vertices[1].Position;
 			s_Data.QuadBufferPtr->Color = drawData.second->vertices[1].Color;
 			s_Data.QuadBufferPtr->TexCoords = drawData.second->vertices[1].TexCoords;
 			s_Data.QuadBufferPtr->TexID = drawData.second->vertices[1].TexID;
+			s_Data.QuadBufferPtr->EntityID = drawData.second->vertices[1].EntityID;
 			s_Data.QuadBufferPtr++;
 
 			s_Data.QuadBufferPtr->Position = drawData.second->vertices[2].Position;
 			s_Data.QuadBufferPtr->Color = drawData.second->vertices[2].Color;
 			s_Data.QuadBufferPtr->TexCoords = drawData.second->vertices[2].TexCoords;
 			s_Data.QuadBufferPtr->TexID = drawData.second->vertices[2].TexID;
+			s_Data.QuadBufferPtr->EntityID = drawData.second->vertices[2].EntityID;
 			s_Data.QuadBufferPtr++;
 
 			s_Data.QuadBufferPtr->Position = drawData.second->vertices[3].Position;
 			s_Data.QuadBufferPtr->Color = drawData.second->vertices[3].Color;
 			s_Data.QuadBufferPtr->TexCoords = drawData.second->vertices[3].TexCoords;
 			s_Data.QuadBufferPtr->TexID = drawData.second->vertices[3].TexID;
+			s_Data.QuadBufferPtr->EntityID = drawData.second->vertices[3].EntityID;
 			s_Data.QuadBufferPtr++;
 
 			s_Data.IndexCount += 6;
@@ -249,7 +256,7 @@ namespace Wyvern::Renderer
 		s_Data.IndexCount = 0;
 	}
 
-	void Renderer2D::DrawQuad(Transform* transform, Ref<Material> material, Ref<Sprite> sprite, const Vector4& color)
+	void Renderer2D::DrawQuad(Transform* transform, Ref<Material> material, Ref<Sprite> sprite, const Vector4& color, int entityID)
 	{
 		if (material == nullptr) return;
 
@@ -297,25 +304,29 @@ namespace Wyvern::Renderer
 				v1,
 				color,
 				coords[3],
-				textureIndex
+				textureIndex,
+				entityID
 			),
 			Vertex(
 				v2,
 				color,
 				coords[2],
-				textureIndex
+				textureIndex,
+				entityID
 			),
 			Vertex(
 				v3,
 				color,
 				coords[1],
-				textureIndex
+				textureIndex,
+				entityID
 			),
 			Vertex(
 				v4,
 				color,
 				coords[0],
-				textureIndex
+				textureIndex,
+				entityID
 			)
 		};
 		
