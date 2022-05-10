@@ -2,9 +2,43 @@
 
 namespace Wyvern::Renderer
 {
-	struct FrameBufferSpecs
+	enum class FramebufferTextureFormat
+	{
+		None = 0,
+
+		// Color
+		RGBA8,
+		RED_INTEGER,
+
+		// Depth
+		DEPTH24STENCIL8,
+
+		// Defaults
+		Depth = DEPTH24STENCIL8
+	};
+
+	struct FramebufferTextureSpecification
+	{
+		FramebufferTextureSpecification() = default;
+		FramebufferTextureSpecification(FramebufferTextureFormat format)
+			: TextureFormat(format) {}
+
+		FramebufferTextureFormat TextureFormat = FramebufferTextureFormat::None;
+	};
+
+	struct FramebufferAttachmentSpecification
+	{
+		FramebufferAttachmentSpecification() = default;
+		FramebufferAttachmentSpecification(std::initializer_list<FramebufferTextureSpecification> attachments)
+			: Attachments(attachments) {}
+
+		std::vector<FramebufferTextureSpecification> Attachments;
+	};
+
+	struct FramebufferSpecification
 	{
 		unsigned int Width, Height;
+		FramebufferAttachmentSpecification Attachments;
 		unsigned int Samples = 1;
 
 		bool SwapChainTarget = false;
@@ -13,21 +47,29 @@ namespace Wyvern::Renderer
 	class Framebuffer
 	{
 	public:
-		Framebuffer(const FrameBufferSpecs& specs);
+		Framebuffer(const FramebufferSpecification& specs);
 		~Framebuffer();
 
 		void Invalidate();
+
 		void Resize(const Vector2& size);
+		int ReadPixel(unsigned int attachmentIndex, int x, int y);
 
 		void Bind();
 		void Unbind();
 
-		unsigned int GetColorAttachmentRendererID() const { return m_ColorAttachment; }
+		unsigned int GetColorAttachmentRendererID(unsigned int index = 0) const 
+		{
+			WV_CORE_ASSERT(index < m_ColorAttachments.size(), ""); return m_ColorAttachments[index];
+		}
 	private:
 		unsigned int m_RendererID;
-		unsigned int m_ColorAttachment;
-		unsigned int m_DepthAttachment;
+		FramebufferSpecification m_Specification;
 
-		FrameBufferSpecs m_Specs;
+		std::vector<FramebufferTextureSpecification> m_ColorAttachmentSpecs;
+		FramebufferTextureSpecification m_DepthAttachmentSpec;
+
+		std::vector<unsigned int> m_ColorAttachments;
+		unsigned int m_DepthAttachment;
 	};
 }

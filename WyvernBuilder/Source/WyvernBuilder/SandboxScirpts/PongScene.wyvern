@@ -14,7 +14,7 @@ Entities:
       Tag:
         name: Left
       Transform:
-        position: [-5.54022121, 0, 0]
+        position: [-5.5250001, 0, 0]
         rotation: [0, 0, 0]
         scale: [0.175675601, 4.3333354, 1]
       SpriteRenderer:
@@ -32,7 +32,7 @@ Entities:
       Tag:
         name: Top
       Transform:
-        position: [0, 4.16792393, 0]
+        position: [0, 4.1822505, 0]
         rotation: [0, 0, 0]
         scale: [5.50280046, 0.152778134, 1]
       SpriteRenderer:
@@ -68,7 +68,7 @@ Entities:
       Tag:
         name: Bottom
       Transform:
-        position: [0, -4.16792583, 0]
+        position: [0, -4.18225241, 0]
         rotation: [0, 0, 0]
         scale: [5.50280046, 0.152778134, 1]
       SpriteRenderer:
@@ -85,7 +85,7 @@ Entities:
       Tag:
         name: Player1
       Transform:
-        position: [-5.22746706, 0, 0]
+        position: [-5.19799995, 0, 0]
         rotation: [0, 0, 0]
         scale: [0.121621273, 0.560846627, 1]
       SpriteRenderer:
@@ -146,7 +146,7 @@ Entities:
       Transform:
         position: [0, 0, 0.5]
         rotation: [0, 0, 0]
-        scale: [1.39999998, 1, 1]
+        scale: [1, 1, 1]
       Camera:
         cameraMode: 1
         orthoSize: 6

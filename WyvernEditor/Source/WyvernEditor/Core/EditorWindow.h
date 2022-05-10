@@ -24,12 +24,18 @@ namespace Wyvern::Editor
 		virtual void OnPostRender() {}
 		virtual void OnEvent(Events::Event& e) {}
 
-		Vector2 GetWindowSize();
-		bool IsFocused();
-		bool IsHovered();
+		Vector2 GetWindowSize() { return m_WindowSize; }
+		Vector4 GetWindowBounds() { return m_WindowBounds; }
+		Vector2 GetCursorPosition() { return m_CursorPosition; }
 
-		Vector2 WindowSize;
+		bool IsFocused() { return m_IsFocused; }
+		bool IsHovered() { return m_IsHovered; }
+
 	private:
+		Vector2 m_WindowSize;
+		Vector4 m_WindowBounds;
+		Vector2 m_CursorPosition;
+
 		bool m_IsFocused = false;
 		bool m_IsHovered = false;
 	};

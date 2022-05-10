@@ -85,7 +85,7 @@ namespace Wyvern::Editor
         ImGuiIO& io = ImGui::GetIO();
         ImGuiStyle& style = ImGui::GetStyle();
         float minWinSize = style.WindowMinSize.x;
-        style.WindowMinSize.x = 340.0f;
+        style.WindowMinSize.x = 280.0f;
         if (io.ConfigFlags & ImGuiConfigFlags_DockingEnable)
         {
             ImGuiID dockspace_id = ImGui::GetID("MyDockSpace");

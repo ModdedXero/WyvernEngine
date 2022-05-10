@@ -19,6 +19,8 @@ namespace Wyvern::Editor
 		virtual void OnEvent(Events::Event& e) override;
 		
 	private:
+		Vector2 m_WindowSize;
+
 		Renderer::Framebuffer* m_Framebuffer;
 
 		int m_GizmoSelection = -1;

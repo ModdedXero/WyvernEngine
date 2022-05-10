@@ -9,7 +9,13 @@ namespace Wyvern::Editor
 {
 	void ViewportWindow::OnAttach()
 	{
-		Renderer::FrameBufferSpecs fbSpec;
+		Renderer::FramebufferSpecification fbSpec;
+		fbSpec.Attachments = 
+		{ 
+			Renderer::FramebufferTextureFormat::RGBA8,
+			Renderer::FramebufferTextureFormat::RED_INTEGER,
+			Renderer::FramebufferTextureFormat::Depth 
+		};
 		fbSpec.Width = 1280;
 		fbSpec.Height = 720;
 		m_Framebuffer = new Renderer::Framebuffer(fbSpec);
@@ -21,10 +27,10 @@ namespace Wyvern::Editor
 			BuilderLayer::GetEditorCamera()->MoveCamera();
 
 		Vector2 windowPanelSize = GetWindowSize();
-		if (WindowSize != windowPanelSize)
+		if (m_WindowSize != windowPanelSize)
 		{
 			m_Framebuffer->Resize(windowPanelSize);
-			WindowSize = windowPanelSize;
+			m_WindowSize = windowPanelSize;
 
 			BuilderLayer::GetEditorCamera()->Resize(windowPanelSize.x, windowPanelSize.y);
 			if (Camera::GetActiveCamera())
@@ -32,21 +38,27 @@ namespace Wyvern::Editor
 		}
 
 		unsigned int textureID = m_Framebuffer->GetColorAttachmentRendererID();
-		ImGui::Image((void*)textureID, ImVec2{ WindowSize.x, WindowSize.y });
+		ImGui::Image((void*)textureID, ImVec2{ m_WindowSize.x, m_WindowSize.y });
+
+		if (IsHovered()) DEBUG_LOG(m_Framebuffer->ReadPixel(1, GetCursorPosition().x, GetCursorPosition().y));
 
 		// Gizmos
 
 		Entity* selectedContext = BuilderLayer::GetSelectedContext();
-		if (selectedContext && m_GizmoSelection != -1)
+		if (selectedContext && m_GizmoSelection != -1 && Scene::GetActiveScene()->GetSceneState() == SceneState::Edit)
 		{
-			ImGuizmo::SetOrthographic(false);
+			ViewportCamera* camera = BuilderLayer::GetEditorCamera();
+
+			if (camera->GetCameraMode() == Renderer::CameraMode::Orthographic)
+				ImGuizmo::SetOrthographic(true);
+			else
+				ImGuizmo::SetOrthographic(false);
 			ImGuizmo::SetDrawlist();
 
 			float windowWidth = (float)ImGui::GetWindowWidth();
 			float windowHeight = (float)ImGui::GetWindowHeight();
 			ImGuizmo::SetRect(ImGui::GetWindowPos().x, ImGui::GetWindowPos().y, windowWidth, windowHeight);
 
-			ViewportCamera* camera = BuilderLayer::GetEditorCamera();
 			Transform cameraTransform = *camera->transform;
 			cameraTransform.position.y = -cameraTransform.position.y;
 			glm::mat4 cameraView = Matrix4x4::Inverse(cameraTransform.GetTransform()).GetNativeMatrix();
@@ -62,11 +74,6 @@ namespace Wyvern::Editor
 				snapValues[1] = 45.0f;
 				snapValues[2] = 45.0f;
 			}
-
-			if (camera->GetCameraMode() == Renderer::CameraMode::Orthographic)
-				ImGuizmo::SetOrthographic(true);
-			else
-				ImGuizmo::SetOrthographic(false);
 
 			ImGuizmo::Manipulate(glm::value_ptr(cameraView), glm::value_ptr(cameraProjection),
 				(ImGuizmo::OPERATION)m_GizmoSelection, ImGuizmo::LOCAL, glm::value_ptr(transform),
