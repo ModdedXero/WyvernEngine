@@ -40,8 +40,6 @@ namespace Wyvern::Editor
 		unsigned int textureID = m_Framebuffer->GetColorAttachmentRendererID();
 		ImGui::Image((void*)textureID, ImVec2{ m_WindowSize.x, m_WindowSize.y });
 
-		if (IsHovered()) DEBUG_LOG(m_Framebuffer->ReadPixel(1, GetCursorPosition().x, GetCursorPosition().y));
-
 		// Gizmos
 
 		Entity* selectedContext = BuilderLayer::GetSelectedContext();
@@ -102,6 +100,8 @@ namespace Wyvern::Editor
 	void ViewportWindow::OnPreRender()
 	{
 		m_Framebuffer->Bind();
+		m_Framebuffer->ClearColorAttachment(1, -1);
+		DEBUG_LOG(m_Framebuffer->ReadPixel(1, GetCursorPosition().x, GetCursorPosition().y));
 	}
 
 	void ViewportWindow::OnPostRender()

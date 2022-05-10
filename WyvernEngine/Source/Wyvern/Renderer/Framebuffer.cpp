@@ -24,6 +24,24 @@ namespace Wyvern::Renderer
 			return false;
 		}
 
+		static GLenum TextureFormat(FramebufferTextureFormat format)
+		{
+			switch (format)
+			{
+			case Wyvern::Renderer::FramebufferTextureFormat::RGBA8:
+				return GL_RGBA8;
+				break;
+			case Wyvern::Renderer::FramebufferTextureFormat::RED_INTEGER:
+				return GL_RED_INTEGER;
+				break;
+			case Wyvern::Renderer::FramebufferTextureFormat::DEPTH24STENCIL8:
+				return GL_DEPTH24_STENCIL8;
+				break;
+			}
+
+			return GL_NONE;
+		}
+
 		static void CreateTextures(bool multisampled, unsigned int* outID, unsigned int count)
 		{
 			glCreateTextures(TextureTarget(multisampled), count, outID);
@@ -196,5 +214,13 @@ namespace Wyvern::Renderer
 	void Framebuffer::Unbind()
 	{
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	}
+
+	void Framebuffer::ClearColorAttachment(unsigned int attachmentIndex, int value)
+	{
+		WV_CORE_ASSERT(attachmentIndex < m_ColorAttachments.size(), "");
+
+		auto& spec = m_ColorAttachmentSpecs[attachmentIndex];
+		glClearTexImage(m_ColorAttachments[attachmentIndex], 0, Utils::TextureFormat(spec.TextureFormat), GL_INT, &value);
 	}
 }

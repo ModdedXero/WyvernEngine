@@ -58,10 +58,13 @@ namespace Wyvern::Renderer
 		void Bind();
 		void Unbind();
 
+		void ClearColorAttachment(unsigned int attachmentIndex, int value);
+
 		unsigned int GetColorAttachmentRendererID(unsigned int index = 0) const 
 		{
 			WV_CORE_ASSERT(index < m_ColorAttachments.size(), ""); return m_ColorAttachments[index];
 		}
+
 	private:
 		unsigned int m_RendererID;
 		FramebufferSpecification m_Specification;
