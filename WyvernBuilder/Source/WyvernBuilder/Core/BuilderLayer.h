@@ -33,6 +33,8 @@ namespace Wyvern
 		static Entity* GetSelectedContext() { return s_SelectedContext; }
 		static void SetSelectedContext(Entity* ent) { s_SelectedContext = ent; }
 
+		static void SaveScene();
+		static void LoadScene(std::string filePath);
 	private:
 		static Ref<Scene> s_ActiveScene;
 		static Ref<Scene> s_CachedScene;
@@ -46,8 +48,7 @@ namespace Wyvern
 
 		static std::vector<EditorWindow*> s_Windows;
 
-		static void SaveScene();
-		static void LoadScene();
+		static void LoadSceneDialog();
 		static void SetActiveScene(Ref<Scene> scene);
 	};
 }

@@ -42,8 +42,12 @@ namespace Wyvern
 
 		if (ImGui::BeginDragDropTarget())
 		{
-			const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("CONTENT_BROWSER_ITEM");
-			const wchar_t* path = (const wchar_t*)payload->Data;
+			if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("CONTENT_BROWSER_ITEM"))
+			{
+				std::filesystem::path* pathPtr = (std::filesystem::path*)payload->Data;
+				std::filesystem::path path = std::filesystem::path(*pathPtr);
+				BuilderLayer::LoadScene(path.string());
+			}
 
 			ImGui::EndDragDropTarget();
 		}

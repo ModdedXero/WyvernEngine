@@ -107,7 +107,7 @@ namespace Wyvern
 
                 if (ImGui::MenuItem("Open...", "Ctrl+O"))
                 {
-                    LoadScene();
+                    LoadSceneDialog();
                 }
 
                 if (ImGui::MenuItem("Save As...", "Ctrl+Shift+S"))
@@ -218,19 +218,25 @@ namespace Wyvern
         }
     }
 
-    void BuilderLayer::LoadScene()
+    void BuilderLayer::LoadScene(std::string filePath)
+    {
+        Ref<Scene> loadScene = CreateRef<Scene>();
+        Serializer::Deserialize(loadScene, filePath);
+        SetActiveScene(loadScene);
+    }
+
+    void BuilderLayer::LoadSceneDialog()
     {
         std::string filePath = FileDialogs::OpenFile("Wyvern Scene (*.wyvern)\0*.wyvern\0");
         if (!filePath.empty())
         {
-            Ref<Scene> loadScene = CreateRef<Scene>();
-            Serializer::Deserialize(loadScene, filePath);
-            SetActiveScene(loadScene);
+            LoadScene(filePath);
         }
     }
 
     void BuilderLayer::SetActiveScene(Ref<Scene> scene)
     {
+        s_SelectedContext = nullptr;
         s_ActiveScene = scene;
         Scene::SetActiveScene(scene);
         s_ActiveScene->OnAttach();

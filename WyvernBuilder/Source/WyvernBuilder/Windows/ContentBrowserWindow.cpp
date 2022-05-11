@@ -3,7 +3,7 @@
 namespace Wyvern
 {
 	// Update with project settings
-	static const std::filesystem::path s_AssetsPath = "wyvernbuilder\\sandboxscripts";
+	static const std::filesystem::path s_AssetsPath = ".\\wyvernbuilder\\sandboxscripts";
 
 	void ContentBrowserWindow::OnAttach()
 	{
@@ -33,14 +33,15 @@ namespace Wyvern
 
 			Ref<Texture2D> icon = dir.is_directory() ? m_DirectoryIcon : m_FileIcon;
 
+			ImGui::PushID(fileString.c_str());
 			ImGui::PushStyleColor(ImGuiCol_Button, ImVec4{ 0,0,0,0 });
 			ImGui::ImageButton((ImTextureID)icon->GetID(), { thumbnailSize, thumbnailSize }, { 0, 1 }, { 1,0 });
 			ImGui::PopStyleColor();
 
 			if (ImGui::BeginDragDropSource())
 			{
-				const wchar_t* itemPath = relPath.c_str();
-				ImGui::SetDragDropPayload("CONTENT_BROWSER_ITEM", itemPath, wcslen(itemPath) * sizeof(wchar_t), ImGuiCond_Once);
+				const std::filesystem::path* itemPath = new std::filesystem::path(dir.path());
+				ImGui::SetDragDropPayload("CONTENT_BROWSER_ITEM", itemPath, sizeof(std::filesystem::path), ImGuiCond_Once);
 				ImGui::EndDragDropSource();
 			}
 
@@ -50,6 +51,7 @@ namespace Wyvern
 					m_CurrentDirectory /= relPath.filename();
 			}
 			ImGui::TextWrapped(fileString.c_str());
+			ImGui::PopID();
 
 			ImGui::NextColumn();
 		}
