@@ -3,8 +3,6 @@
 #include <Wyvern.h>
 #include <WyvernEditor.h>
 
-#include <filesystem>
-
 using namespace Wyvern::Editor;
 
 namespace Wyvern
@@ -18,7 +16,7 @@ namespace Wyvern
 		virtual void OnGUI() override;
 
 	private:
-		std::filesystem::path m_CurrentDirectory;
+		Utils::FileSystem m_CurrentDirectory;
 
 		Ref<Texture2D> m_DirectoryIcon;
 		Ref<Texture2D> m_FileIcon;

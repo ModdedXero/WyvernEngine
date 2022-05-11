@@ -1,8 +1,8 @@
 #include "wvpch.h"
 #include "CameraRenderer.h"
 
-#include <Wyvern/Core/Application.h>
 #include <Wyvern/Core/Components/Transform.h>
+#include <Wyvern/Core/Application/Application.h>
 
 #include <glm/ext/matrix_clip_space.hpp>
 #include <glm/ext/matrix_transform.hpp>

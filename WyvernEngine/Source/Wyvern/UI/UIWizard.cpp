@@ -4,7 +4,7 @@
 #include <Wyvern/Core/Components/Button.h>
 #include <Wyvern/Core/Components/Transform.h>
 #include <Wyvern/Renderer/CameraRenderer.h>
-#include <Wyvern/Core/Input.h>
+#include <Wyvern/Core/Input/Input.h>
 #include <Wyvern/Core/Scene/Entity.h>
 #include <Wyvern/Core/Scene/EntityList.h>
 

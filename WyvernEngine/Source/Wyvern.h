@@ -51,3 +51,4 @@
 
 // Utility
 #include <Wyvern/Utils/PlatformUtils.h>
+#include <Wyvern/Utils/FileSystem.h>

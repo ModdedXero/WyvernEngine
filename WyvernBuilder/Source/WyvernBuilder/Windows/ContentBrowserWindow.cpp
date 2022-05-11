@@ -1,9 +1,11 @@
 #include "ContentBrowserWindow.h"
 
+using namespace Wyvern::Utils;
+
 namespace Wyvern
 {
 	// Update with project settings
-	static const std::filesystem::path s_AssetsPath = ".\\wyvernbuilder\\sandboxscripts";
+	static const FileSystem s_AssetsPath = ".\\wyvernbuilder\\sandboxscripts";
 
 	void ContentBrowserWindow::OnAttach()
 	{
@@ -26,35 +28,68 @@ namespace Wyvern
 
 		ImGui::Columns(columnCount, 0, false);
 
-		for (auto& dir : std::filesystem::directory_iterator(m_CurrentDirectory))
+		for (FileSystem dir : m_CurrentDirectory)
 		{
-			auto relPath = std::filesystem::relative(dir.path(), s_AssetsPath);
-			std::string fileString = relPath.filename().string();
+			FileSystem relative = FileSystem::RelativePath(dir, m_CurrentDirectory);
+			std::string filename = relative.Filename();
+			
+			Ref<Texture2D> icon = dir.IsDirectory() ? m_DirectoryIcon : m_FileIcon;
 
-			Ref<Texture2D> icon = dir.is_directory() ? m_DirectoryIcon : m_FileIcon;
-
-			ImGui::PushID(fileString.c_str());
+			ImGui::PushID(filename.c_str());
 			ImGui::PushStyleColor(ImGuiCol_Button, ImVec4{ 0,0,0,0 });
 			ImGui::ImageButton((ImTextureID)icon->GetID(), { thumbnailSize, thumbnailSize }, { 0, 1 }, { 1,0 });
 			ImGui::PopStyleColor();
 
+
 			if (ImGui::BeginDragDropSource())
 			{
-				const std::filesystem::path* itemPath = new std::filesystem::path(dir.path());
-				ImGui::SetDragDropPayload("CONTENT_BROWSER_ITEM", itemPath, sizeof(std::filesystem::path), ImGuiCond_Once);
+				const FileSystem* sourcePath = new FileSystem(dir);
+				ImGui::SetDragDropPayload("CONTENT_BROWSER_ITEM", sourcePath, sizeof(FileSystem), ImGuiCond_Once);
 				ImGui::EndDragDropSource();
 			}
 
 			if (ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left))
 			{
-				if (dir.is_directory())
-					m_CurrentDirectory /= relPath.filename();
+				if (dir.IsDirectory())
+				{
+					m_CurrentDirectory /= relative;
+				}
 			}
-			ImGui::TextWrapped(fileString.c_str());
+			ImGui::TextWrapped(filename.c_str());
 			ImGui::PopID();
 
 			ImGui::NextColumn();
 		}
+
+		//for (auto& dir : std::filesystem::directory_iterator(m_CurrentDirectory))
+		//{
+		//	auto relPath = std::filesystem::relative(dir.path(), s_AssetsPath);
+		//	std::string fileString = relPath.filename().string();
+
+		//	Ref<Texture2D> icon = dir.is_directory() ? m_DirectoryIcon : m_FileIcon;
+
+		//	ImGui::PushID(fileString.c_str());
+		//	ImGui::PushStyleColor(ImGuiCol_Button, ImVec4{ 0,0,0,0 });
+		//	ImGui::ImageButton((ImTextureID)icon->GetID(), { thumbnailSize, thumbnailSize }, { 0, 1 }, { 1,0 });
+		//	ImGui::PopStyleColor();
+
+		//	if (ImGui::BeginDragDropSource())
+		//	{
+		//		const std::filesystem::path* itemPath = new std::filesystem::path(dir.path());
+		//		ImGui::SetDragDropPayload("CONTENT_BROWSER_ITEM", itemPath, sizeof(std::filesystem::path), ImGuiCond_Once);
+		//		ImGui::EndDragDropSource();
+		//	}
+
+		//	if (ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left))
+		//	{
+		//		if (dir.is_directory())
+		//			m_CurrentDirectory /= relPath.filename();
+		//	}
+		//	ImGui::TextWrapped(fileString.c_str());
+		//	ImGui::PopID();
+
+		//	ImGui::NextColumn();
+		//}
 
 		ImGui::Columns(1);
 

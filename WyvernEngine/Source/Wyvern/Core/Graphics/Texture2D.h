@@ -1,5 +1,10 @@
 #pragma once
 
+namespace Wyvern::Utils
+{
+	class FileSystem;
+}
+
 namespace Wyvern
 {
 	enum class Texture2DFormat
@@ -38,7 +43,7 @@ namespace Wyvern
 	class Texture2D
 	{
 	public:
-		Texture2D(const char* file, const Texture2DSpecifications& specs);
+		Texture2D(std::string file, const Texture2DSpecifications& specs);
 
 		void Bind() const;
 
@@ -46,7 +51,7 @@ namespace Wyvern
 		int GetWidth() const { return m_Width; }
 		int GetHeight() const { return m_Height; }
 
-		static Ref<Texture2D> Create(const char* file, Texture2DSpecifications specs = Texture2DSpecifications());
+		static Ref<Texture2D> Create(const Utils::FileSystem& file, Texture2DSpecifications specs = Texture2DSpecifications());
 	private:
 		Texture2DSpecifications m_Specs;
 

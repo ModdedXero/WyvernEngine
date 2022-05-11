@@ -1,6 +1,8 @@
 #include "wvpch.h"
 #include "Texture2D.h"
 
+#include <Wyvern/Utils/FileSystem.h>
+
 #include <glad.h>
 #include <stb_image.h>
 
@@ -46,14 +48,14 @@ namespace Wyvern
 		}
 	}
 
-	Texture2D::Texture2D(const char* file, const Texture2DSpecifications& specs)
+	Texture2D::Texture2D(std::string file, const Texture2DSpecifications& specs)
 		: m_Specs(specs), m_ID(0), m_Width(0), m_Height(0)
 	{
 		glGenTextures(1, &m_ID);
 
 		int nrChannels;
 		stbi_set_flip_vertically_on_load(!specs.FlipVeritcally);
-		unsigned char* data = stbi_load(file, &m_Width, &m_Height, &nrChannels, 0);
+		unsigned char* data = stbi_load(file.c_str(), &m_Width, &m_Height, &nrChannels, 0);
 
 		glBindTexture(GL_TEXTURE_2D, m_ID);
 		glTexImage2D(GL_TEXTURE_2D, 0, Utils::TextureFormat(specs.InternalFormat), m_Width, m_Height, 
@@ -72,7 +74,7 @@ namespace Wyvern
 		glBindTexture(GL_TEXTURE_2D, m_ID);
 	}
 
-	Ref<Texture2D> Texture2D::Create(const char* file, Texture2DSpecifications specs)
+	Ref<Texture2D> Texture2D::Create(const Utils::FileSystem& file, Texture2DSpecifications specs)
 	{
 		return CreateRef<Texture2D>(file, specs);
 	}

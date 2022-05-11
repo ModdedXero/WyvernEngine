@@ -1,7 +1,7 @@
 #include "wvpch.h"
 #include "PlatformUtils.h"
 
-#include <Wyvern/Core/Application.h>
+#include <Wyvern/Core/Application/Application.h>
 
 #include <GLFW/glfw3.h>
 
