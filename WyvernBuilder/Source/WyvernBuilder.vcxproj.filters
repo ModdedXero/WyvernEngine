@@ -18,7 +18,7 @@
     <ClInclude Include="WyvernBuilder\Core\ViewportCamera.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="WyvernBuilder\SandboxScirpts\PlayerPaddleOne.h">
+    <ClInclude Include="WyvernBuilder\SandboxScripts\PlayerPaddleOne.h">
       <Filter>SandboxScirpts</Filter>
     </ClInclude>
     <ClInclude Include="WyvernBuilder\Windows\HierarchyWindow.h">
@@ -30,7 +30,8 @@
     <ClInclude Include="WyvernBuilder\Windows\ViewportWindow.h">
       <Filter>Windows</Filter>
     </ClInclude>
-    <ClInclude Include="WyvernBuilder\SandboxScirpts\PongBall.h" />
+    <ClInclude Include="WyvernBuilder\SandboxScripts\PongBall.h" />
+    <ClInclude Include="WyvernBuilder\Windows\ContentBrowserWindow.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WyvernBuilder\Core\BuilderLayer.cpp">
@@ -45,7 +46,7 @@
     <ClCompile Include="WyvernBuilder\Core\WyvernBuilder.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="WyvernBuilder\SandboxScirpts\PlayerPaddleOne.cpp">
+    <ClCompile Include="WyvernBuilder\SandboxScripts\PlayerPaddleOne.cpp">
       <Filter>SandboxScirpts</Filter>
     </ClCompile>
     <ClCompile Include="WyvernBuilder\Windows\HierarchyWindow.cpp">
@@ -57,6 +58,7 @@
     <ClCompile Include="WyvernBuilder\Windows\ViewportWindow.cpp">
       <Filter>Windows</Filter>
     </ClCompile>
-    <ClCompile Include="WyvernBuilder\SandboxScirpts\PongBall.cpp" />
+    <ClCompile Include="WyvernBuilder\SandboxScripts\PongBall.cpp" />
+    <ClCompile Include="WyvernBuilder\Windows\ContentBrowserWindow.cpp" />
   </ItemGroup>
 </Project>

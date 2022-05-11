@@ -19,7 +19,7 @@ namespace Wyvern
 		static Ref<Shader> LoadShader(const char* vShaderFile, const char* fShaderFile, const char* gShaderFile, const char* name);
 		static Ref<Shader> GetShader(const char* name);
 
-		static Ref<Texture2D> LoadTexture(const char* file, bool alpha, bool pixel, const char* name);
+		static Ref<Texture2D> LoadTexture(Ref<Texture2D> texture, const char* name);
 		static Ref<Texture2D> GetTexture(const char* name);
 
 		static Ref<Sprite> LoadSprite(const char* name, const char* textureName, const Vector2& coords, const Vector2& tileSize, const Vector2& spriteSize);
@@ -27,6 +27,7 @@ namespace Wyvern
 
 		static Ref<Material> LoadMaterial(const char* shader, const char* name);
 		static Ref<Material> GetMaterial(const char* name);
+
 		static Ref<Material> GetDefaultMaterial();
 
 		static void Clear();
@@ -34,6 +35,5 @@ namespace Wyvern
 		AssetManager() {}
 
 		static Ref<Shader> loadShaderFromFile(const char* vShaderPath, const char* fShaderPath, const char* gShaderPath = nullptr);
-		static Ref<Texture2D> loadTexture2DFromFile(const char* texturePath, bool alpha, bool pixel);
 	};
 }

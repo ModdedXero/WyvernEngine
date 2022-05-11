@@ -6,8 +6,11 @@
 #include <WyvernBuilder/Windows/ViewportWindow.h>
 #include <WyvernBuilder/Windows/HierarchyWindow.h>
 #include <WyvernBuilder/Windows/PropertiesWindow.h>
+#include <WyvernBuilder/Windows/ContentBrowserWindow.h>
 
-namespace Wyvern::Editor
+using namespace Wyvern::Editor;
+
+namespace Wyvern
 {
 	class BuilderLayer : public Layer
 	{
@@ -23,6 +26,7 @@ namespace Wyvern::Editor
 		static void OpenViewportWindow();
 		static void OpenHierarchyWindow();
 		static void OpenPropertiesWindow();
+		static void OpenContentBrowserWindow();
 
 		static ViewportCamera* GetEditorCamera() { return s_EditorCamera; }
 
@@ -38,6 +42,7 @@ namespace Wyvern::Editor
 		static ViewportWindow* s_ViewportWindow;
 		static HierarchyWindow* s_HierarchyWindow;
 		static PropertiesWindow* s_PropertiesWindow;
+		static ContentBrowserWindow* s_ContentBrowserWindow;
 
 		static std::vector<EditorWindow*> s_Windows;
 

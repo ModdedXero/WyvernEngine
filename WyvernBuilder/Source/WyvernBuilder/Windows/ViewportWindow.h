@@ -5,7 +5,9 @@
 #include <WyvernEditor.h>
 #include <WyvernBuilder/Core/ViewportCamera.h>
 
-namespace Wyvern::Editor
+using namespace Wyvern::Editor;
+
+namespace Wyvern
 {
 	class ViewportWindow : public EditorWindow
 	{

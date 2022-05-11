@@ -26,9 +26,9 @@ namespace Wyvern
 		return s_Shaders[name];
 	}
 
-	Ref<Texture2D> AssetManager::LoadTexture(const char* file, bool alpha, bool pixel, const char* name)
+	Ref<Texture2D> AssetManager::LoadTexture(Ref<Texture2D> texture, const char* name)
 	{
-		s_Textures[name] = loadTexture2DFromFile(file, alpha, pixel);
+		s_Textures[name] = texture;
 		return s_Textures[name];
 	}
 
@@ -72,7 +72,7 @@ namespace Wyvern
 			glDeleteProgram(iter.second->ID);
 
 		for (auto& iter : s_Textures)
-			glDeleteProgram(iter.second->ID);
+			glDeleteProgram(iter.second->GetID());
 	}
 
 	Ref<Shader> AssetManager::loadShaderFromFile(const char* vShaderPath, const char* fShaderPath, const char* gShaderPath)
@@ -114,30 +114,4 @@ namespace Wyvern
 
 		return CreateRef<Shader>(vShaderCode, fShaderCode, gShaderPath != nullptr ? gShaderCode : nullptr);
 	}
-
-	Ref<Texture2D> AssetManager::loadTexture2DFromFile(const char* texturePath, bool alpha, bool pixel)
-	{
-		Ref<Texture2D> texture = CreateRef<Texture2D>();
-
-		if (alpha)
-		{
-			texture->InternalFormat = GL_RGBA;
-			texture->ImageFormat = GL_RGBA;
-		}
-
-		if (pixel)
-		{
-			texture->FilterMin = GL_NEAREST;
-			texture->FilterMax = GL_NEAREST;
-		}
-
-		int width, height, nrChannels;
-		unsigned char* data = stbi_load(texturePath, &width, &height, &nrChannels, 0);
-
-		texture->Generate(width, height, data);
-
-		stbi_image_free(data);
-		return texture;
-	}
-
 }

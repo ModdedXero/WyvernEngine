@@ -1,6 +1,6 @@
 #include "ViewportCamera.h"
 
-namespace Wyvern::Editor
+namespace Wyvern
 {
 	ViewportCamera::ViewportCamera()
 	{

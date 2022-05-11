@@ -254,7 +254,7 @@ namespace Wyvern::Renderer
 		{
 			for (uint32_t i = 1; i < s_Data.TextureSlotIndex; i++)
 			{
-				if (s_Data.TextureSlots[i] == sprite->GetTexture()->ID)
+				if (s_Data.TextureSlots[i] == sprite->GetTexture()->GetID())
 				{
 					textureIndex = (float)i;
 					break;
@@ -264,7 +264,7 @@ namespace Wyvern::Renderer
 			if (textureIndex == 0.0f)
 			{
 				textureIndex = (float)s_Data.TextureSlotIndex;
-				s_Data.TextureSlots[s_Data.TextureSlotIndex] = sprite->GetTexture()->ID;
+				s_Data.TextureSlots[s_Data.TextureSlotIndex] = sprite->GetTexture()->GetID();
 				s_Data.TextureSlotIndex++;
 			}
 

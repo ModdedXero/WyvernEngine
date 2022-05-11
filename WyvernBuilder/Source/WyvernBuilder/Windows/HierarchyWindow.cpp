@@ -4,7 +4,7 @@
 
 #include <imgui.h>
 
-namespace Wyvern::Editor
+namespace Wyvern
 {
 	struct EntityNode
 	{

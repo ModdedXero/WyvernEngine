@@ -5,7 +5,7 @@
 #include <imgui.h>
 #include <ImGuizmo.h>
 
-namespace Wyvern::Editor
+namespace Wyvern
 {
 	void ViewportWindow::OnAttach()
 	{
@@ -39,6 +39,14 @@ namespace Wyvern::Editor
 
 		unsigned int textureID = m_Framebuffer->GetColorAttachmentRendererID();
 		ImGui::Image((void*)textureID, ImVec2{ m_WindowSize.x, m_WindowSize.y }, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
+
+		if (ImGui::BeginDragDropTarget())
+		{
+			const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("CONTENT_BROWSER_ITEM");
+			const wchar_t* path = (const wchar_t*)payload->Data;
+
+			ImGui::EndDragDropTarget();
+		}
 
 		// Gizmos
 

@@ -9,11 +9,9 @@ namespace Wyvern::Editor
 {
 	class EditorWindow
 	{
-		friend class BuilderLayer;
 	public:
 		virtual const char* GetWindowTitle() const = 0;
 
-	protected:
 		void BeginRender();
 		void EndRender();
 

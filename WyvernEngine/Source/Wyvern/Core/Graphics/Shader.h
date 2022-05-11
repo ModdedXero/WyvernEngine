@@ -12,10 +12,11 @@ namespace Wyvern
 	class Shader
 	{
 	public:
-		unsigned int ID;
 
 		Shader();
 		Shader(const char* vertSource, const char* fragSource, const char* geoSource = nullptr);
+
+		unsigned int ID;
 
 		Shader& Use();
 		static void Use(unsigned int id);

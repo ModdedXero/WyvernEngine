@@ -3,7 +3,9 @@
 #include <Wyvern.h>
 #include <WyvernEditor.h>
 
-namespace Wyvern::Editor
+using namespace Wyvern::Editor;
+
+namespace Wyvern
 {
 	class HierarchyWindow : public EditorWindow
 	{

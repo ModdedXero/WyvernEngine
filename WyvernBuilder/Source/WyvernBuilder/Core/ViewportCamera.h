@@ -1,7 +1,7 @@
 #pragma once
 #include <Wyvern.h>
 
-namespace Wyvern::Editor
+namespace Wyvern
 {
 	class ViewportCamera : public Renderer::CameraRenderer
 	{

@@ -5,7 +5,7 @@
 #include <imgui.h>
 #include <imgui_internal.h>
 
-namespace Wyvern::Editor
+namespace Wyvern
 {
 	void PropertiesWindow::OnGUI()
 	{

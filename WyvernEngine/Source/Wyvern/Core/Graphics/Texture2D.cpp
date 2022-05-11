@@ -1,32 +1,79 @@
 #include "wvpch.h"
 #include "Texture2D.h"
 
+#include <glad.h>
+#include <stb_image.h>
+
 namespace Wyvern
 {
-	Texture2D::Texture2D()
-		: Width(0), Height(0), InternalFormat(GL_RGB), ImageFormat(GL_RGB), WrapS(GL_REPEAT), WrapT(GL_REPEAT), FilterMin(GL_LINEAR), FilterMax(GL_LINEAR)
+	namespace Utils
 	{
-		glGenTextures(1, &this->ID);
+		static GLenum TextureFormat(Texture2DFormat format)
+		{
+			switch (format)
+			{
+			case Wyvern::Texture2DFormat::RGBA: return GL_RGBA;
+			default:
+				break;
+			}
+
+			return GL_NONE;
+		}
+
+		static GLenum TextureWrap(Texture2DWrap wrap)
+		{
+			switch (wrap)
+			{
+			case Wyvern::Texture2DWrap::REPEAT: return GL_REPEAT;
+			default:
+				break;
+			}
+
+			return GL_NONE;
+		}
+
+		static GLenum TextureFilter(Texture2DFilter filter)
+		{
+			switch (filter)
+			{
+			case Wyvern::Texture2DFilter::NEAREST: return GL_NEAREST;
+			case Wyvern::Texture2DFilter::LINEAR: return GL_LINEAR;
+			default:
+				break;
+			}
+
+			return GL_NONE;
+		}
 	}
 
-	void Texture2D::Generate(unsigned int width, unsigned int height, unsigned char* data)
+	Texture2D::Texture2D(const char* file, const Texture2DSpecifications& specs)
+		: m_Specs(specs), m_ID(0), m_Width(0), m_Height(0)
 	{
-		Width = width;
-		Height = height;
+		glGenTextures(1, &m_ID);
 
-		glBindTexture(GL_TEXTURE_2D, this->ID);
-		glTexImage2D(GL_TEXTURE_2D, 0, InternalFormat, width, height, 0, ImageFormat, GL_UNSIGNED_BYTE, data);
+		int nrChannels;
+		stbi_set_flip_vertically_on_load(!specs.FlipVeritcally);
+		unsigned char* data = stbi_load(file, &m_Width, &m_Height, &nrChannels, 0);
 
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, WrapS);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, WrapT);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, FilterMin);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, FilterMax);
+		glBindTexture(GL_TEXTURE_2D, m_ID);
+		glTexImage2D(GL_TEXTURE_2D, 0, Utils::TextureFormat(specs.InternalFormat), m_Width, m_Height, 
+			0, Utils::TextureFormat(specs.ImageFormat), GL_UNSIGNED_BYTE, data);
 
-		glBindTexture(GL_TEXTURE_2D, 0);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, Utils::TextureWrap(specs.Wrap));
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, Utils::TextureWrap(specs.Wrap));
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, Utils::TextureFilter(specs.Filter));
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, Utils::TextureFilter(specs.Filter));
+
+		stbi_image_free(data);
 	}
 
 	void Texture2D::Bind() const
 	{
-		glBindTexture(GL_TEXTURE_2D, this->ID);
+		glBindTexture(GL_TEXTURE_2D, m_ID);
+	}
+
+	Ref<Texture2D> Texture2D::Create(const char* file, Texture2DSpecifications specs)
+	{
+		return CreateRef<Texture2D>(file, specs);
 	}
 }

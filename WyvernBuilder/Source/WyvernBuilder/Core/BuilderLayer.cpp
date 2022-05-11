@@ -2,7 +2,7 @@
 
 #include "imgui.h"
 
-namespace Wyvern::Editor
+namespace Wyvern
 {
     Ref<Scene> BuilderLayer::s_ActiveScene;
     Ref<Scene> BuilderLayer::s_CachedScene;
@@ -12,6 +12,7 @@ namespace Wyvern::Editor
     ViewportWindow* BuilderLayer::s_ViewportWindow = nullptr;
     HierarchyWindow* BuilderLayer::s_HierarchyWindow = nullptr;
     PropertiesWindow* BuilderLayer::s_PropertiesWindow = nullptr;
+    ContentBrowserWindow* BuilderLayer::s_ContentBrowserWindow = nullptr;
 
     std::vector<EditorWindow*> BuilderLayer::s_Windows;
 
@@ -28,6 +29,7 @@ namespace Wyvern::Editor
         OpenViewportWindow();
         OpenHierarchyWindow();
         OpenPropertiesWindow();
+        OpenContentBrowserWindow();
 	}
 
 	void BuilderLayer::OnDetach()
@@ -194,6 +196,16 @@ namespace Wyvern::Editor
             s_PropertiesWindow = new PropertiesWindow();
             s_PropertiesWindow->OnAttach();
             s_Windows.push_back(s_PropertiesWindow);
+        }
+    }
+
+    void BuilderLayer::OpenContentBrowserWindow()
+    {
+        if (s_ContentBrowserWindow == nullptr)
+        {
+            s_ContentBrowserWindow = new ContentBrowserWindow();
+            s_ContentBrowserWindow->OnAttach();
+            s_Windows.push_back(s_ContentBrowserWindow);
         }
     }
 
