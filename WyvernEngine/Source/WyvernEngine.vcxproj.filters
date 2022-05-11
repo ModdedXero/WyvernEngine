@@ -252,6 +252,7 @@
     </ClInclude>
     <ClInclude Include="wvpch.h" />
     <ClInclude Include="Wyvern\Core\Physics\Physics.h" />
+    <ClInclude Include="Wyvern\Utils\FileSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Vendor\ImGuizmo\ImGuizmo.cpp">
@@ -360,5 +361,6 @@
       <Filter>Wyvern\Utils</Filter>
     </ClCompile>
     <ClCompile Include="wvpch.cpp" />
+    <ClCompile Include="Wyvern\Utils\FileSystem.cpp" />
   </ItemGroup>
 </Project>
