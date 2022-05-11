@@ -11,10 +11,10 @@ namespace Wyvern
     Sprite::Sprite(Ref<Texture2D> texture, const Vector2& min, const Vector2& max)
         : m_Texture(texture)
     {
-        m_TexCoords[0] = { min.x, min.y };
-        m_TexCoords[1] = { max.x, min.y };
-        m_TexCoords[2] = { max.x, max.y };
-        m_TexCoords[3] = { min.x, max.y };
+        m_TexCoords.push_back({ min.x, min.y });
+        m_TexCoords.push_back({ max.x, min.y });
+        m_TexCoords.push_back({ max.x, max.y });
+        m_TexCoords.push_back({ min.x, max.y });
     }
 
     Ref<Sprite> Sprite::CreateFromCoords(Ref<Texture2D> texture, const Vector2& coords, const Vector2& tileSize, const Vector2& spriteSize)

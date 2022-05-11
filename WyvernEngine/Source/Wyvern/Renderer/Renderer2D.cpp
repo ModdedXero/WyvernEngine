@@ -250,7 +250,7 @@ namespace Wyvern::Renderer
 			Vector2(0.0f, 0.0f)
 		};
 
-		if (sprite != nullptr)
+		if (sprite && sprite->GetTexture())
 		{
 			for (uint32_t i = 1; i < s_Data.TextureSlotIndex; i++)
 			{

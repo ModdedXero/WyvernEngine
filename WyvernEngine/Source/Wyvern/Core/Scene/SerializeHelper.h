@@ -4,6 +4,8 @@
 #include <Wyvern/Core/Scene/UUID.h>
 #include <Wyvern/Core/Physics/Physics.h>
 #include <Wyvern/Renderer/CameraRenderer.h>
+#include <Wyvern/Utils/FileSystem.h>
+#include <Wyvern/Core/Graphics/Sprite.h>
 
 #include <yaml-cpp/yaml.h>
 #include <string>
@@ -132,6 +134,43 @@ namespace YAML
 			return true;
 		}
 	};
+
+	template<>
+	struct convert<Wyvern::Sprite>
+	{
+		static YAML::Node encode(const Wyvern::Sprite& rhs)
+		{
+			YAML::Node node;
+
+			node.push_back(rhs.GetTexture()->GetPath());
+			for (auto& vec : rhs.GetTexCoords())
+			{
+				node.push_back(vec);
+			}
+
+			return node;
+		}
+
+		static bool decode(const YAML::Node& node, Wyvern::Sprite& rhs)
+		{
+			if (!node.IsSequence() || node.size() != 5)
+				return false;
+
+			if (!node[0].as<std::string>().empty())
+			{
+				std::vector<Wyvern::Vector2> coords;
+				coords.push_back(node[1].as<Wyvern::Vector2>());
+				coords.push_back(node[2].as<Wyvern::Vector2>());
+				coords.push_back(node[3].as<Wyvern::Vector2>());
+				coords.push_back(node[4].as<Wyvern::Vector2>());
+
+				rhs.SetTexture(Wyvern::Texture2D::Create(node[0].as<std::string>()));
+				rhs.SetTexCoords(coords);
+			}
+
+			return true;
+		}
+	};
 }
 
 namespace Wyvern
@@ -142,4 +181,5 @@ namespace Wyvern
 
 	YAML::Emitter& operator <<(YAML::Emitter& out, const PhysicsBody& body);
 	YAML::Emitter& operator <<(YAML::Emitter& out, const Renderer::CameraMode& cameraMode);
+	YAML::Emitter& operator <<(YAML::Emitter& out, const Sprite* sprite);
 }

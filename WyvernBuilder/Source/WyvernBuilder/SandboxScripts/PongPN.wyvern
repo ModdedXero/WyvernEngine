@@ -133,7 +133,7 @@ Entities:
       Transform:
         position: [0, 0, 0]
         rotation: [0, 0, 0]
-        scale: [0.430000007, 0.430000007, 0.430000007]
+        scale: [0.300000012, 0.300000012, 0.283799976]
       SpriteRenderer:
         sprite: [.\wyvernbuilder\sandboxscripts\Ball.png, [0, 0], [1, 0], [1, 1], [0, 1]]
         color: [1, 1, 1, 1]
@@ -143,7 +143,7 @@ Entities:
         bounce: 1
         bodyType: 0
       SphereCollider2D:
-        radius: 0.300000012
+        radius: 0.150000006
       PongBall:
         initialForce: [20, 24]
   - Entity: 5998727893487774253

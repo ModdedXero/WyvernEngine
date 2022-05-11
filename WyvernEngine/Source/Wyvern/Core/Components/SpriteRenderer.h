@@ -19,6 +19,7 @@ namespace Wyvern
 		uint32_t zIndex = 0; // Not implemented yet
 
 		WV_SERIALIZE_COMPONENT(SpriteRenderer)
+		WV_SERIALIZE_ASSET(Sprite, sprite)
 		WV_SERIALIZE_VARIABLE(Vector4, color)
 		WV_SERIALIZE_COMPONENT_END
 	};
