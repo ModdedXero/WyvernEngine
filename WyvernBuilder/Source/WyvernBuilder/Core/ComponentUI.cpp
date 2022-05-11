@@ -51,6 +51,18 @@ namespace Wyvern
 	void SpriteRenderer::DrawEditor()
 	{
 		EditorGUI::Color4Control("Color", this->color);
+		ImGui::Button("Sprite");
+		if (ImGui::BeginDragDropTarget())
+		{
+			if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("CONTENT_BROWSER_ITEM"))
+			{
+				std::filesystem::path* pathPtr = (std::filesystem::path*)payload->Data;
+				std::filesystem::path path = std::filesystem::path(*pathPtr);
+				sprite = Sprite::CreateFromCoords(Texture2D::Create(path.string().c_str()), { 0,0 }, { 1,1 }, { 32,32 });
+			}
+
+			ImGui::EndDragDropTarget();
+		}
 	}
 
 	void RigidBody2D::DrawEditor()
