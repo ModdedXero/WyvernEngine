@@ -3,7 +3,7 @@
 #include "Scene.h"
 #include "SerializeHelper.h"
 
-#include <Wyvern/Core/ApplicationDomain.h>
+#include <Wyvern/Core/Application/ApplicationDomain.h>
 
 #include <memory>
 #include <yaml-cpp/yaml.h>

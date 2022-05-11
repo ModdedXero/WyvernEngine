@@ -1,7 +1,6 @@
 #pragma once
 
-#include "Timestep.h"
-
+#include <Wyvern/Core/Timestep.h>
 #include <Wyvern/Events/Event.h>
 
 #include <string>

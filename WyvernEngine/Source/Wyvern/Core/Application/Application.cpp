@@ -1,8 +1,7 @@
 #include "wvpch.h"
 #include "Application.h"
 
-#include "Timestep.h"
-
+#include <Wyvern/Core/Timestep.h>
 #include <Wyvern/Renderer/Renderer2D.h>
 
 #include <iostream>

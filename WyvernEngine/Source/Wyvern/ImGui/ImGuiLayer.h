@@ -1,7 +1,7 @@
 #pragma once
 
-#include <Wyvern/Core/Layer.h>
 #include <Wyvern/Core/Timestep.h>
+#include <Wyvern/Core/Application/Layer.h>
 
 #include <Platform/OpenGL/ImGuiOpenGLRenderer.h>
 #include <Platform/OpenGL/ImGuiGLFWRenderer.h>

@@ -1,7 +1,7 @@
 #include "wvpch.h"
 #include "Input.h"
 
-#include "Application.h"
+#include <Wyvern/Core/Application/Application.h>
 
 #include <GLFW/glfw3.h>
 

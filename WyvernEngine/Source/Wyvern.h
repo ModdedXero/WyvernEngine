@@ -4,10 +4,14 @@
 #include <stdio.h>
 
 // Application
-#include <Wyvern/Core/Application.h>
-#include <Wyvern/Core/ApplicationDomain.h>
-#include <Wyvern/Core/Layer.h>
+#include <Wyvern/Core/Application/Layer.h>
+#include <Wyvern/Core/Application/Application.h>
+
+// Core
+#include <Wyvern/Core/Base.h>
+#include <Wyvern/Core/Debug.h>
 #include <Wyvern/Core/Timestep.h>
+#include <Wyvern/Core/AssetManager.h>
 
 // Scene
 #include <Wyvern/Core/Scene/Scene.h>
@@ -36,11 +40,8 @@
 #include <Wyvern/Renderer/Framebuffer.h>
 #include <Wyvern/Renderer/CameraRenderer.h>
 
-// Resources
-#include <Wyvern/Core/AssetManager.h>
-
 // Input
-#include <Wyvern/Core/Input.h>
+#include <Wyvern/Core/Input/Input.h>
 
 // Events
 #include <Wyvern/Events/Event.h>
@@ -49,6 +50,4 @@
 #include <Wyvern/Events/MouseEvent.h>
 
 // Utility
-#include <Wyvern/Core/Debug.h>
-#include <Wyvern/Core/Base.h>
 #include <Wyvern/Utils/PlatformUtils.h>
