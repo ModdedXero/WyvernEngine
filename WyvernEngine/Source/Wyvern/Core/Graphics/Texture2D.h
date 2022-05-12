@@ -1,9 +1,6 @@
 #pragma once
 
-namespace Wyvern::Utils
-{
-	class FileSystem;
-}
+#include <Wyvern/Utils/FileSystem.h>
 
 namespace Wyvern
 {
@@ -50,12 +47,12 @@ namespace Wyvern
 		unsigned int GetID() const { return m_ID; }
 		int GetWidth() const { return m_Width; }
 		int GetHeight() const { return m_Height; }
-		std::string GetPath() const { return m_Path; }
+		Utils::FileSystem GetPath() const { return m_Path; }
 
 		static Ref<Texture2D> Create(const Utils::FileSystem& file, Texture2DSpecifications specs = Texture2DSpecifications());
 	private:
 		Texture2DSpecifications m_Specs;
-		std::string m_Path;
+		Utils::FileSystem m_Path;
 
 		unsigned int m_ID;
 		int m_Width, m_Height;

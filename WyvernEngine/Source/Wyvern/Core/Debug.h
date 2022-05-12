@@ -2,8 +2,6 @@
 
 #include <Wyvern/Core/Math/Vector.h>
 
-#include <glad.h>
-
 #include <string>
 #include <iostream>
 

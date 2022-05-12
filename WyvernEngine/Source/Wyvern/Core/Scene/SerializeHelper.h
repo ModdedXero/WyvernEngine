@@ -168,6 +168,23 @@ namespace YAML
 			return true;
 		}
 	};
+
+	template<>
+	struct convert<Wyvern::Utils::FileSystem>
+	{
+		static YAML::Node encode(const Wyvern::Utils::FileSystem& rhs)
+		{
+			YAML::Node node;
+			node.push_back(rhs);
+			return node;
+		}
+
+		static bool decode(const YAML::Node& node, Wyvern::Utils::FileSystem& rhs)
+		{
+			rhs = Wyvern::Utils::FileSystem(node[0].as<std::string>());
+			return true;
+		}
+	};
 }
 
 namespace Wyvern

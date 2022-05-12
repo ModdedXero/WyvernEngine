@@ -1,5 +1,4 @@
-#include "Wyvern.h"
-
+#include <Wyvern.h>
 #include <WyvernEditor.h>
 
 using namespace Wyvern::Editor;
@@ -51,16 +50,15 @@ namespace Wyvern
 	void SpriteRenderer::DrawEditor()
 	{
 		EditorGUI::Color4Control("Color", this->color);
-		ImGui::Button("Sprite");
-		if (ImGui::BeginDragDropTarget())
-		{
-			if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("CONTENT_BROWSER_ITEM"))
-			{
-				Utils::FileSystem* pathPtr = (Utils::FileSystem*)payload->Data;
-				sprite = Sprite::CreateFromCoords(Texture2D::Create(*pathPtr), { 0,0 }, { 1,1 }, { 32,32 });
-			}
 
-			ImGui::EndDragDropTarget();
+		if (const Utils::FileSystem* target = EditorGUIInternal::DragDropTarget(sprite ? sprite->GetTexture()->GetPath().Filename().c_str() : "None", "CONTENT_BROWSER_ITEM"))
+		{
+			sprite = Sprite::CreateFromCoords(Texture2D::Create(*target), { 0,0 }, { 1,1 }, { 32,32 });
+		}
+
+		if (ImGui::IsMouseDoubleClicked(0))
+		{
+			sprite = nullptr;
 		}
 	}
 

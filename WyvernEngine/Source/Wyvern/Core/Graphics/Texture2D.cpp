@@ -55,7 +55,8 @@ namespace Wyvern
 
 		int nrChannels;
 		stbi_set_flip_vertically_on_load(!specs.FlipVeritcally);
-		unsigned char* data = stbi_load(m_Path.c_str(), &m_Width, &m_Height, &nrChannels, 0);
+		std::string path = m_Path;
+		unsigned char* data = stbi_load(path.c_str(), &m_Width, &m_Height, &nrChannels, 0);
 
 		glBindTexture(GL_TEXTURE_2D, m_ID);
 		glTexImage2D(GL_TEXTURE_2D, 0, Utils::TextureFormat(specs.InternalFormat), m_Width, m_Height, 
