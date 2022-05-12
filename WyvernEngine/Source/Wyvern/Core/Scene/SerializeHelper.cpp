@@ -36,32 +36,16 @@ namespace Wyvern
 		return out;
 	}
 
-	YAML::Emitter& operator<<(YAML::Emitter& out, const Sprite* sprite)
+	YAML::Emitter& operator<<(YAML::Emitter& out, const Sprite& sprite)
 	{
-		if (!sprite || !sprite->GetTexture())
-		{
-			out << YAML::Flow;
-			out << YAML::BeginSeq;
-
-			std::string empt("");
-			out << empt;
-			out << empt;
-			out << empt;
-			out << empt;
-			out << empt;
-
-			out << YAML::EndSeq;
-			return out;
-		}
-
 		out << YAML::Flow;
 		out << YAML::BeginSeq;
 
-		out << sprite->GetTexture()->GetPath();
-		out << sprite->GetTexCoords()[0];
-		out << sprite->GetTexCoords()[1];
-		out << sprite->GetTexCoords()[2];
-		out << sprite->GetTexCoords()[3];
+		out << sprite.GetTexture()->GetPath();
+		out << sprite.GetTexCoords()[0];
+		out << sprite.GetTexCoords()[1];
+		out << sprite.GetTexCoords()[2];
+		out << sprite.GetTexCoords()[3];
 
 		out << YAML::EndSeq;
 		return out;

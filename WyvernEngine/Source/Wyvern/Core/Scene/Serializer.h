@@ -57,7 +57,7 @@ namespace Wyvern
 #define WV_SERIALIZE_VARIABLE(VAR_TYPE, VAR_NAME)						if (info.IsSerialize()) info.out << YAML::Key << #VAR_NAME << YAML::Value << VAR_NAME;\
 																		else {if (info.in[#VAR_NAME]) VAR_NAME = info.in[#VAR_NAME].as<VAR_TYPE>();}
 
-#define WV_SERIALIZE_ASSET(VAR_TYPE, VAR_NAME)							if (info.IsSerialize()) info.out << YAML::Key << #VAR_NAME << YAML::Value << VAR_NAME.get();\
+#define WV_SERIALIZE_ASSET(VAR_TYPE, VAR_NAME)							if (info.IsSerialize() && VAR_NAME) info.out << YAML::Key << #VAR_NAME << YAML::Value << *VAR_NAME.get();\
 																		else {if (info.in[#VAR_NAME]) VAR_NAME = CreateRef<VAR_TYPE>(info.in[#VAR_NAME].as<VAR_TYPE>());}
 
 #define WV_SERIALIZE_PROPERTY(VAR_TYPE, VAR_NAME, GETTER, SETTER)		if (info.IsSerialize()) info.out << YAML::Key << VAR_NAME << YAML::Value << GETTER();\

@@ -156,17 +156,14 @@ namespace YAML
 			if (!node.IsSequence() || node.size() != 5)
 				return false;
 
-			if (!node[0].as<std::string>().empty())
-			{
-				std::vector<Wyvern::Vector2> coords;
-				coords.push_back(node[1].as<Wyvern::Vector2>());
-				coords.push_back(node[2].as<Wyvern::Vector2>());
-				coords.push_back(node[3].as<Wyvern::Vector2>());
-				coords.push_back(node[4].as<Wyvern::Vector2>());
+			std::vector<Wyvern::Vector2> coords;
+			coords.push_back(node[1].as<Wyvern::Vector2>());
+			coords.push_back(node[2].as<Wyvern::Vector2>());
+			coords.push_back(node[3].as<Wyvern::Vector2>());
+			coords.push_back(node[4].as<Wyvern::Vector2>());
 
-				rhs.SetTexture(Wyvern::Texture2D::Create(node[0].as<std::string>()));
-				rhs.SetTexCoords(coords);
-			}
+			rhs.SetTexture(Wyvern::Texture2D::Create(node[0].as<std::string>()));
+			rhs.SetTexCoords(coords);
 
 			return true;
 		}
@@ -181,5 +178,5 @@ namespace Wyvern
 
 	YAML::Emitter& operator <<(YAML::Emitter& out, const PhysicsBody& body);
 	YAML::Emitter& operator <<(YAML::Emitter& out, const Renderer::CameraMode& cameraMode);
-	YAML::Emitter& operator <<(YAML::Emitter& out, const Sprite* sprite);
+	YAML::Emitter& operator <<(YAML::Emitter& out, const Sprite& sprite);
 }

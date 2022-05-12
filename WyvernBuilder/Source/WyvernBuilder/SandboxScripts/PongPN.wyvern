@@ -18,7 +18,6 @@ Entities:
         rotation: [0, 0, 0]
         scale: [0.175675601, 4.3333354, 1]
       SpriteRenderer:
-        sprite: ["", "", "", "", ""]
         color: [1, 1, 1, 1]
       RigidBody2D:
         mass: 0
@@ -37,7 +36,6 @@ Entities:
         rotation: [0, 0, 0]
         scale: [5.50280046, 0.152778134, 1]
       SpriteRenderer:
-        sprite: ["", "", "", "", ""]
         color: [1, 1, 1, 1]
       RigidBody2D:
         mass: 0
@@ -56,7 +54,6 @@ Entities:
         rotation: [0, 0, 0]
         scale: [0.175675601, 4.3333354, 1]
       SpriteRenderer:
-        sprite: ["", "", "", "", ""]
         color: [1, 1, 1, 1]
       RigidBody2D:
         mass: 0
@@ -75,7 +72,6 @@ Entities:
         rotation: [0, 0, 0]
         scale: [5.50280046, 0.152778134, 1]
       SpriteRenderer:
-        sprite: ["", "", "", "", ""]
         color: [1, 1, 1, 1]
       RigidBody2D:
         mass: 0
@@ -93,7 +89,6 @@ Entities:
         rotation: [0, 0, 0]
         scale: [0.121621273, 0.560846627, 1]
       SpriteRenderer:
-        sprite: ["", "", "", "", ""]
         color: [0.23607327, 0.822784781, 0.696530342, 1]
       RigidBody2D:
         mass: 10000
@@ -114,7 +109,6 @@ Entities:
         rotation: [0, 0, 0]
         scale: [0.121621273, 0.560846627, 1]
       SpriteRenderer:
-        sprite: ["", "", "", "", ""]
         color: [0.23607327, 0.822784781, 0.696530342, 1]
       RigidBody2D:
         mass: 10000
@@ -133,7 +127,7 @@ Entities:
       Transform:
         position: [0, 0, 0]
         rotation: [0, 0, 0]
-        scale: [0.300000012, 0.300000012, 0.283799976]
+        scale: [0.300000012, 0.300000012, 0.430000007]
       SpriteRenderer:
         sprite: [.\wyvernbuilder\sandboxscripts\Ball.png, [0, 0], [1, 0], [1, 1], [0, 1]]
         color: [1, 1, 1, 1]
