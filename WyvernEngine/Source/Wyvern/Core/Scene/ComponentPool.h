@@ -18,7 +18,6 @@ namespace Wyvern
 		~ComponentPool()
 		{
 			delete[] Data;
-			delete ComponentType;
 		}
 
 		inline void* Get(size_t index)

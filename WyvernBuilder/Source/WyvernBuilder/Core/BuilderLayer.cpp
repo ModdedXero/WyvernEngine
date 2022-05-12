@@ -137,6 +137,7 @@ namespace Wyvern
                     }
                     else
                     {
+                        s_ActiveScene->OnDestroy();
                         SetActiveScene(s_CachedScene);
                         s_ActiveScene->SetSceneState(SceneState::Edit);
                     }
@@ -222,6 +223,7 @@ namespace Wyvern
     {
         Ref<Scene> loadScene = CreateRef<Scene>();
         Serializer::Deserialize(loadScene, filePath);
+        s_ActiveScene->OnDestroy();
         SetActiveScene(loadScene);
     }
 

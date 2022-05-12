@@ -184,7 +184,7 @@ namespace Wyvern
 	{
 		std::vector<T*> components;
 
-		for (ComponentPool* pool : entity->m_Scene->m_ComponentPools)
+		for (auto& pool : entity->m_Scene->m_ComponentPools)
 		{
 			if (pool->ComponentBaseType == typeid(T::base).name())
 				if (entity->m_Components.test(pool->ComponentID))
@@ -203,7 +203,7 @@ namespace Wyvern
 	template<typename T>
 	inline int Scene::GetComponentID()
 	{
-		for (ComponentPool* pool : this->m_ComponentPools)
+		for (auto& pool : this->m_ComponentPools)
 			if (pool->ComponentType == typeid(T).name())
 				return pool->ComponentID;
 
@@ -214,7 +214,7 @@ namespace Wyvern
 	template <typename T>
 	inline int Scene::FindComponentID()
 	{
-		for (ComponentPool* pool : m_ComponentPools)
+		for (auto& pool : m_ComponentPools)
 			if (pool->ComponentType == typeid(T).name())
 				return pool->ComponentID;
 
@@ -225,7 +225,7 @@ namespace Wyvern
 	inline std::vector<int> Scene::FindComponentIDs()
 	{
 		std::vector<int> ids;
-		for (ComponentPool* pool : m_ComponentPools)
+		for (auto& pool : m_ComponentPools)
 			if (pool->ComponentBaseType == typeid(T::base).name())
 				ids.push_back(pool->ComponentID);
 

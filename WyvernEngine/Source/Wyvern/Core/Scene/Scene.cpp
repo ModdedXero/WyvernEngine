@@ -45,8 +45,11 @@ namespace Wyvern
 
 	void Scene::OnDestroy()
 	{
-		for (auto entity : m_Entities)
+		for (auto& entity : m_Entities)
 			entity->DestroyEntity();
+
+		for (auto& pool : m_ComponentPools)
+			delete pool;
 
 		FlushScene();
 	}
@@ -317,6 +320,7 @@ namespace Wyvern
 		scene->m_Entities[index]->m_Components.reset();
 		scene->m_Entities[index]->m_Children.clear();
 		scene->m_Entities[index]->m_ComponentPtrs.clear();
+		scene->m_Entities[index]->m_Scene = nullptr;
 
 		if (scene->m_Entities[index]->m_Parent != nullptr)
 			scene->m_Entities[index]->m_Parent->RemoveChildEntity(scene->m_Entities[index]);
@@ -329,7 +333,7 @@ namespace Wyvern
 	{
 		if (!IsEntityValid(entity)) return;
 
-		for (ComponentPool* pool : entity->m_Scene->m_ComponentPools)
+		for (auto& pool : entity->m_Scene->m_ComponentPools)
 		{
 			if (pool->ComponentID == component)
 			{
