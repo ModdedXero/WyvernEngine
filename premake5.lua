@@ -233,11 +233,14 @@ project "WyvernRuntime"
 		"WyvernEngine/Source",
 		"WyvernRuntime/Source",
 		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.GLAD}",
 		"%{IncludeDir.GLM}",
 		"%{IncludeDir.ImGUI}",
-		"%{IncludeDir.GLAD}",
+		"%{IncludeDir.STB}",
 		"%{IncludeDir.FreeType}",
-		"%{IncludeDir.FreeTypeSub}"
+		"%{IncludeDir.FreeTypeSub}",
+		"%{IncludeDir.YamlCPP}",
+		"%{IncludeDir.ImGUIzmo}"
 	}
 
 	links

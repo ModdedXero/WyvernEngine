@@ -14,10 +14,12 @@ namespace Wyvern::Utils
 		FileSystem(std::filesystem::path path);
 		~FileSystem();
 
+
 		std::string Filename() const { return m_CurrentPath.filename().string(); }
 		bool IsDirectory() const { return m_IsDirectory; }
 
 		static FileSystem RelativePath(const FileSystem& path, const FileSystem& base);
+		static void CreateDirectory(FileSystem path);
 
 		iterator begin() { return iterator(m_CurrentPath); }
 		iterator end() { return {}; }
@@ -30,6 +32,16 @@ namespace Wyvern::Utils
 		void operator =(const std::filesystem::directory_entry& rhs)
 		{
 			m_CurrentPath = rhs;
+		}
+
+		void operator /(const std::string& rhs)
+		{
+			m_CurrentPath / rhs;
+		}
+
+		operator std::filesystem::path() const
+		{
+			return m_CurrentPath;
 		}
 
 		operator std::string () const

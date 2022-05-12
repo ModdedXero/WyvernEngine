@@ -148,6 +148,8 @@
     <ClInclude Include="Wyvern.h" />
     <ClInclude Include="Wyvern\Core\Application\Application.h" />
     <ClInclude Include="Wyvern\Core\Application\ApplicationDomain.h" />
+    <ClInclude Include="Wyvern\Core\Application\Layer.h" />
+    <ClInclude Include="Wyvern\Core\Application\LayerStack.h" />
     <ClInclude Include="Wyvern\Core\AssetManager.h" />
     <ClInclude Include="Wyvern\Core\Base.h" />
     <ClInclude Include="Wyvern\Core\Components\Button.h" />
@@ -166,13 +168,11 @@
     <ClInclude Include="Wyvern\Core\Graphics\Texture2D.h" />
     <ClInclude Include="Wyvern\Core\Input\Input.h" />
     <ClInclude Include="Wyvern\Core\Input\KeyCodes.h" />
-    <ClInclude Include="Wyvern\Core\Application\Layer.h" />
-    <ClInclude Include="Wyvern\Core\Application\LayerStack.h" />
+    <ClInclude Include="Wyvern\Core\Input\MouseCodes.h" />
     <ClInclude Include="Wyvern\Core\Math\Math.h" />
     <ClInclude Include="Wyvern\Core\Math\Mathf.h" />
     <ClInclude Include="Wyvern\Core\Math\Matrix4x4.h" />
     <ClInclude Include="Wyvern\Core\Math\Vector.h" />
-    <ClInclude Include="Wyvern\Core\Input\MouseCodes.h" />
     <ClInclude Include="Wyvern\Core\Physics\Collision2D.h" />
     <ClInclude Include="Wyvern\Core\Physics\CollisionSolver2D.h" />
     <ClInclude Include="Wyvern\Core\Physics\Impulse2D.h" />
@@ -192,6 +192,7 @@
     <ClInclude Include="Wyvern\Core\Scene\UUID.h" />
     <ClInclude Include="Wyvern\Core\Scene\Wizard.h" />
     <ClInclude Include="Wyvern\Core\Scene\WizardStack.h" />
+    <ClInclude Include="Wyvern\Core\Scripting\ScriptCoreManager.h" />
     <ClInclude Include="Wyvern\Core\Timestep.h" />
     <ClInclude Include="Wyvern\Display\Window.h" />
     <ClInclude Include="Wyvern\Events\Event.h" />
@@ -222,6 +223,8 @@
     <ClCompile Include="Platform\OpenGL\ImGuiOpenGLRenderer.cpp" />
     <ClCompile Include="Wyvern\Core\Application\Application.cpp" />
     <ClCompile Include="Wyvern\Core\Application\ApplicationDomain.cpp" />
+    <ClCompile Include="Wyvern\Core\Application\Layer.cpp" />
+    <ClCompile Include="Wyvern\Core\Application\LayerStack.cpp" />
     <ClCompile Include="Wyvern\Core\AssetManager.cpp" />
     <ClCompile Include="Wyvern\Core\Components\Transform.cpp" />
     <ClCompile Include="Wyvern\Core\Constants.cpp" />
@@ -229,8 +232,6 @@
     <ClCompile Include="Wyvern\Core\Graphics\Sprite.cpp" />
     <ClCompile Include="Wyvern\Core\Graphics\Texture2D.cpp" />
     <ClCompile Include="Wyvern\Core\Input\Input.cpp" />
-    <ClCompile Include="Wyvern\Core\Application\Layer.cpp" />
-    <ClCompile Include="Wyvern\Core\Application\LayerStack.cpp" />
     <ClCompile Include="Wyvern\Core\Physics\Impulse2D.cpp" />
     <ClCompile Include="Wyvern\Core\Physics\Physics2DWizard.cpp" />
     <ClCompile Include="Wyvern\Core\Physics\SmoothPosition2D.cpp" />
@@ -243,6 +244,7 @@
     <ClCompile Include="Wyvern\Core\Scene\UUID.cpp" />
     <ClCompile Include="Wyvern\Core\Scene\Wizard.cpp" />
     <ClCompile Include="Wyvern\Core\Scene\WizardStack.cpp" />
+    <ClCompile Include="Wyvern\Core\Scripting\ScriptCoreManager.cpp" />
     <ClCompile Include="Wyvern\Display\Window.cpp" />
     <ClCompile Include="Wyvern\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="Wyvern\Renderer\CameraRenderer.cpp" />

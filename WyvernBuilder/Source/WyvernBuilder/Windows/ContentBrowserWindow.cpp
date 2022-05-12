@@ -4,12 +4,9 @@ using namespace Wyvern::Utils;
 
 namespace Wyvern
 {
-	// Update with project settings
-	static const FileSystem s_AssetsPath = ".\\wyvernbuilder\\sandboxscripts";
-
 	void ContentBrowserWindow::OnAttach()
 	{
-		m_CurrentDirectory = s_AssetsPath;
+		m_CurrentDirectory = std::string(Application::Get().GetProjectPath()) + "/" + Application::Get().GetSpecification().ProjectName + "/Assets";
 
 		m_DirectoryIcon = Texture2D::Create("../Assets/Icons/ContentBrowser/Directory.png");
 		m_FileIcon = Texture2D::Create("../Assets/Icons/ContentBrowser/File.png");

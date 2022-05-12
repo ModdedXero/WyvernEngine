@@ -1,4 +1,4 @@
-#include "Wyvern.h"
+#include <Wyvern.h>
 
 #include "BuilderLayer.h"
 
@@ -7,8 +7,11 @@ using namespace Wyvern;
 class WyvernBuilder : public Application
 {
 public:
-	WyvernBuilder()
+	WyvernBuilder(const ApplicationSpecification& specification)
+		: Application(specification)
 	{
+		ScriptCoreMangager::GenerateScriptCore(specification.ProjectPath);
+
 		AssetManager::LoadShader("../assets/shader/standardshader.vert",
 			"../assets/shader/standardshader.frag", nullptr, "StandardShader");
 		AssetManager::LoadShader("../assets/shader/fontshader.vert",
@@ -25,8 +28,19 @@ public:
 	}
 };
 
-int main()
+int main(int argc, char** argv)
 {
-	Scope<WyvernBuilder> app = CreateScope<WyvernBuilder>();
+	ApplicationSpecification specification;
+
+	specification.Name = "Wyvern Builder";
+
+	if (argc > 1)
+	{
+		specification.ProjectName = argv[1];
+		specification.ProjectPath = argv[2];
+	}
+
+	Scope<WyvernBuilder> app = CreateScope<WyvernBuilder>(specification);
 	app->Run();
+	return 0;
 }

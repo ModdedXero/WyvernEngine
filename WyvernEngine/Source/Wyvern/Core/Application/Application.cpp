@@ -18,11 +18,13 @@ namespace Wyvern
 	
 	Application* Application::s_Instance = nullptr;
 
-	Application::Application()
+	Application::Application(const ApplicationSpecification& specification)
+		: m_Specification(specification)
 	{
 		s_Instance = this;
 
-		m_Window = Window::Create();
+		WindowProps props = { specification.Name.c_str(), specification.WindowWidth, specification.WindowHeight};
+		m_Window = Window::Create(props);
 		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
 
 		m_StartTime = Time::now();
