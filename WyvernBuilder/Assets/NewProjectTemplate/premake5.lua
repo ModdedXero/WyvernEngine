@@ -36,7 +36,7 @@ IncludeDir["FreeTypeSub"] = "%{WyvernRootDir}/WyvernEngine/Vendor/freetype/inclu
 IncludeDir["YamlCPP"] = "%{WyvernRootDir}/WyvernEngine/Vendor/yaml-cpp/include"
 IncludeDir["ImGUIzmo"] = "%{WyvernRootDir}/WyvernEngine/Vendor/ImGuizmo"
 
-project "%{ProjectName}"
+project "%{ProjectDir}/%{ProjectName}"
 	location "%{ProjectDir}/%{ProjectName}"
 	kind "StaticLib"
 	language "C++"
@@ -48,13 +48,13 @@ project "%{ProjectName}"
 	
 	files
 	{
-		"%{ProjectDir}/%{ProjectName}/Source/**.h",
-		"%{ProjectDir}/%{ProjectName}/Source/**.cpp"
+		"%{ProjectDir}/%{ProjectName}/Assets/**.h",
+		"%{ProjectDir}/%{ProjectName}/Assets/**.cpp"
 	}
 
 	includedirs
 	{
-		"%{ProjectDir}/%{ProjectName}/Source",
+		"%{ProjectDir}/%{ProjectName}/Assets",
 		"%{WyvernRootDir}/WyvernEngine/Source",
 		"%{WyvernRootDir}/WyvernEditor/Source",
 		"%{IncludeDir.GLFW}",

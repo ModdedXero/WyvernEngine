@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="SandboxScripts">
+      <UniqueIdentifier>{5C593B27-4827-2F2D-31BB-9F531D280B92}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Assets\NewScript.h" />
+    <ClInclude Include="Assets\SandboxScripts\PlayerPaddleOne.h">
+      <Filter>SandboxScripts</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\SandboxScripts\PongBall.h">
+      <Filter>SandboxScripts</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Assets\NewScript.cpp" />
+    <ClCompile Include="Assets\SandboxScripts\PlayerPaddleOne.cpp">
+      <Filter>SandboxScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\SandboxScripts\PongBall.cpp">
+      <Filter>SandboxScripts</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

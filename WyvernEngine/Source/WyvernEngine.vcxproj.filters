@@ -46,6 +46,9 @@
     <Filter Include="Wyvern\Core\Scene">
       <UniqueIdentifier>{65370F3D-D14D-0DD3-1AC5-98F4861ADE5A}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Wyvern\Core\Scripting">
+      <UniqueIdentifier>{4A230AF5-B68F-C5EF-7F83-5D4DEBAEE757}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Wyvern\Display">
       <UniqueIdentifier>{55F1EE8A-41BF-E290-2A53-53B716C0BEF5}</UniqueIdentifier>
     </Filter>
@@ -220,6 +223,9 @@
     <ClInclude Include="Wyvern\Core\Scene\WizardStack.h">
       <Filter>Wyvern\Core\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="Wyvern\Core\Scripting\ScriptCoreManager.h">
+      <Filter>Wyvern\Core\Scripting</Filter>
+    </ClInclude>
     <ClInclude Include="Wyvern\Core\Timestep.h">
       <Filter>Wyvern\Core</Filter>
     </ClInclude>
@@ -263,7 +269,6 @@
       <Filter>Wyvern\Utils</Filter>
     </ClInclude>
     <ClInclude Include="wvpch.h" />
-    <ClInclude Include="Wyvern\Core\Scripting\ScriptCoreManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Vendor\ImGuizmo\ImGuizmo.cpp">
@@ -350,6 +355,9 @@
     <ClCompile Include="Wyvern\Core\Scene\WizardStack.cpp">
       <Filter>Wyvern\Core\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="Wyvern\Core\Scripting\ScriptCoreManager.cpp">
+      <Filter>Wyvern\Core\Scripting</Filter>
+    </ClCompile>
     <ClCompile Include="Wyvern\Display\Window.cpp">
       <Filter>Wyvern\Display</Filter>
     </ClCompile>
@@ -375,6 +383,5 @@
       <Filter>Wyvern\Utils</Filter>
     </ClCompile>
     <ClCompile Include="wvpch.cpp" />
-    <ClCompile Include="Wyvern\Core\Scripting\ScriptCoreManager.cpp" />
   </ItemGroup>
 </Project>

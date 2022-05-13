@@ -140,6 +140,9 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="RuntimeLayer.h" />
+  </ItemGroup>
+  <ItemGroup>
     <ClCompile Include="RuntimeLayer.cpp" />
     <ClCompile Include="WyvernRuntime.cpp" />
   </ItemGroup>
@@ -147,9 +150,6 @@
     <ProjectReference Include="..\..\WyvernEngine\Source\WyvernEngine.vcxproj">
       <Project>{0651ECC7-F2B3-7B6C-9B39-B422877B47EF}</Project>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="RuntimeLayer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

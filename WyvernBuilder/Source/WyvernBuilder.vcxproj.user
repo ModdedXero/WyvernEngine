@@ -4,7 +4,7 @@
     <ShowAllFiles>true</ShowAllFiles>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LocalDebuggerCommandArguments>Sandbox C:\Programming\VisualStudio\Projects\WyvernEngine\Sandbox</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>Sandbox E:\Programming\VisualStudio\Projects\WyvernEngine\Sandbox</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
 </Project>

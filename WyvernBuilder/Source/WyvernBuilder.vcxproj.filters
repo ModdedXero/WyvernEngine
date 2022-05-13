@@ -4,9 +4,6 @@
     <Filter Include="Core">
       <UniqueIdentifier>{2EB4837C-1AEB-840D-C3D7-6A10AFED000F}</UniqueIdentifier>
     </Filter>
-    <Filter Include="SandboxScripts">
-      <UniqueIdentifier>{5C593B27-4827-2F2D-31BB-9F531D280B92}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Windows">
       <UniqueIdentifier>{5032B729-BC11-36C5-C529-C19B31889C26}</UniqueIdentifier>
     </Filter>
@@ -17,12 +14,6 @@
     </ClInclude>
     <ClInclude Include="WyvernBuilder\Core\ViewportCamera.h">
       <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="WyvernBuilder\SandboxScripts\PlayerPaddleOne.h">
-      <Filter>SandboxScripts</Filter>
-    </ClInclude>
-    <ClInclude Include="WyvernBuilder\SandboxScripts\PongBall.h">
-      <Filter>SandboxScripts</Filter>
     </ClInclude>
     <ClInclude Include="WyvernBuilder\Windows\ContentBrowserWindow.h">
       <Filter>Windows</Filter>
@@ -49,12 +40,6 @@
     </ClCompile>
     <ClCompile Include="WyvernBuilder\Core\WyvernBuilder.cpp">
       <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="WyvernBuilder\SandboxScripts\PlayerPaddleOne.cpp">
-      <Filter>SandboxScripts</Filter>
-    </ClCompile>
-    <ClCompile Include="WyvernBuilder\SandboxScripts\PongBall.cpp">
-      <Filter>SandboxScripts</Filter>
     </ClCompile>
     <ClCompile Include="WyvernBuilder\Windows\ContentBrowserWindow.cpp">
       <Filter>Windows</Filter>

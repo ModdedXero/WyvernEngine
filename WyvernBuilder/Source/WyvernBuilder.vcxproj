@@ -145,8 +145,6 @@ IF EXIST ..\..\bin\Dist-windows\WyvernEditor\*.dll\ (xcopy /Q /E /Y /I ..\..\bin
   <ItemGroup>
     <ClInclude Include="WyvernBuilder\Core\BuilderLayer.h" />
     <ClInclude Include="WyvernBuilder\Core\ViewportCamera.h" />
-    <ClInclude Include="WyvernBuilder\SandboxScripts\PlayerPaddleOne.h" />
-    <ClInclude Include="WyvernBuilder\SandboxScripts\PongBall.h" />
     <ClInclude Include="WyvernBuilder\Windows\ContentBrowserWindow.h" />
     <ClInclude Include="WyvernBuilder\Windows\HierarchyWindow.h" />
     <ClInclude Include="WyvernBuilder\Windows\PropertiesWindow.h" />
@@ -157,8 +155,6 @@ IF EXIST ..\..\bin\Dist-windows\WyvernEditor\*.dll\ (xcopy /Q /E /Y /I ..\..\bin
     <ClCompile Include="WyvernBuilder\Core\ComponentUI.cpp" />
     <ClCompile Include="WyvernBuilder\Core\ViewportCamera.cpp" />
     <ClCompile Include="WyvernBuilder\Core\WyvernBuilder.cpp" />
-    <ClCompile Include="WyvernBuilder\SandboxScripts\PlayerPaddleOne.cpp" />
-    <ClCompile Include="WyvernBuilder\SandboxScripts\PongBall.cpp" />
     <ClCompile Include="WyvernBuilder\Windows\ContentBrowserWindow.cpp" />
     <ClCompile Include="WyvernBuilder\Windows\HierarchyWindow.cpp" />
     <ClCompile Include="WyvernBuilder\Windows\PropertiesWindow.cpp" />
