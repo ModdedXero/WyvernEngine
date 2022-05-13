@@ -38,4 +38,9 @@ namespace Wyvern::Utils
 		fs.m_IsDirectory = path.IsDirectory();
 		return fs;
 	}
+
+	void FileSystem::CreateDirectory(FileSystem path)
+	{
+		std::filesystem::create_directory(path);
+	}
 }

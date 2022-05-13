@@ -4,8 +4,8 @@
     <Filter Include="Core">
       <UniqueIdentifier>{2EB4837C-1AEB-840D-C3D7-6A10AFED000F}</UniqueIdentifier>
     </Filter>
-    <Filter Include="SandboxScirpts">
-      <UniqueIdentifier>{3C6C9D26-283A-912C-11CE-0153FD3A6D91}</UniqueIdentifier>
+    <Filter Include="SandboxScripts">
+      <UniqueIdentifier>{5C593B27-4827-2F2D-31BB-9F531D280B92}</UniqueIdentifier>
     </Filter>
     <Filter Include="Windows">
       <UniqueIdentifier>{5032B729-BC11-36C5-C529-C19B31889C26}</UniqueIdentifier>
@@ -19,7 +19,13 @@
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="WyvernBuilder\SandboxScripts\PlayerPaddleOne.h">
-      <Filter>SandboxScirpts</Filter>
+      <Filter>SandboxScripts</Filter>
+    </ClInclude>
+    <ClInclude Include="WyvernBuilder\SandboxScripts\PongBall.h">
+      <Filter>SandboxScripts</Filter>
+    </ClInclude>
+    <ClInclude Include="WyvernBuilder\Windows\ContentBrowserWindow.h">
+      <Filter>Windows</Filter>
     </ClInclude>
     <ClInclude Include="WyvernBuilder\Windows\HierarchyWindow.h">
       <Filter>Windows</Filter>
@@ -30,8 +36,6 @@
     <ClInclude Include="WyvernBuilder\Windows\ViewportWindow.h">
       <Filter>Windows</Filter>
     </ClInclude>
-    <ClInclude Include="WyvernBuilder\SandboxScripts\PongBall.h" />
-    <ClInclude Include="WyvernBuilder\Windows\ContentBrowserWindow.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WyvernBuilder\Core\BuilderLayer.cpp">
@@ -47,7 +51,13 @@
       <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="WyvernBuilder\SandboxScripts\PlayerPaddleOne.cpp">
-      <Filter>SandboxScirpts</Filter>
+      <Filter>SandboxScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="WyvernBuilder\SandboxScripts\PongBall.cpp">
+      <Filter>SandboxScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="WyvernBuilder\Windows\ContentBrowserWindow.cpp">
+      <Filter>Windows</Filter>
     </ClCompile>
     <ClCompile Include="WyvernBuilder\Windows\HierarchyWindow.cpp">
       <Filter>Windows</Filter>
@@ -58,7 +68,5 @@
     <ClCompile Include="WyvernBuilder\Windows\ViewportWindow.cpp">
       <Filter>Windows</Filter>
     </ClCompile>
-    <ClCompile Include="WyvernBuilder\SandboxScripts\PongBall.cpp" />
-    <ClCompile Include="WyvernBuilder\Windows\ContentBrowserWindow.cpp" />
   </ItemGroup>
 </Project>

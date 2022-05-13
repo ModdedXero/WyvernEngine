@@ -12,7 +12,7 @@ ProjectName = _OPTIONS["projname"] or "Default"
 ProjectDir = _OPTIONS["projdir"] or ""
 WyvernRootDir = os.getenv("WYVERN_DIR")
 
-workspace "%{ProjectName}"
+workspace "%{ProjectDir}/%{ProjectName}"
 	targetdir "build"
 	startproject "%{ProjectName}"
 
@@ -37,7 +37,7 @@ IncludeDir["YamlCPP"] = "%{WyvernRootDir}/WyvernEngine/Vendor/yaml-cpp/include"
 IncludeDir["ImGUIzmo"] = "%{WyvernRootDir}/WyvernEngine/Vendor/ImGuizmo"
 
 project "%{ProjectName}"
-	location "%{ProjectDir}/%{ProjectName}/Source"
+	location "%{ProjectDir}/%{ProjectName}"
 	kind "StaticLib"
 	language "C++"
 	cppdialect "C++17"

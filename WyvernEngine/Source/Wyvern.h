@@ -1,11 +1,14 @@
 #pragma once
 
-// For use by Thorn Applications
+// For use by Wyvern Applications
 #include <stdio.h>
 
 // Application
 #include <Wyvern/Core/Application/Layer.h>
 #include <Wyvern/Core/Application/Application.h>
+
+// Scripting
+#include <Wyvern/Core/Scripting/ScriptCoreManager.h>
 
 // Core
 #include <Wyvern/Core/Base.h>
