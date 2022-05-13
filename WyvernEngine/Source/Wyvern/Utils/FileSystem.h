@@ -22,13 +22,14 @@ namespace Wyvern::Utils
 
 		static FileSystem RelativePath(const FileSystem& path, const FileSystem& base);
 		static void CreateDirectory(FileSystem path);
+		static void CopyFile(FileSystem original, FileSystem copy);
 
 		iterator begin() { return iterator(m_CurrentPath); }
 		iterator end() { return {}; }
 
-		void operator /=(const FileSystem& rhs)
+		FileSystem operator /=(const FileSystem& rhs)
 		{
-			m_CurrentPath /= rhs.m_CurrentPath.filename();
+			return m_CurrentPath /= rhs.m_CurrentPath.filename();
 		}
 
 		void operator =(const std::filesystem::directory_entry& rhs)
@@ -36,9 +37,9 @@ namespace Wyvern::Utils
 			m_CurrentPath = rhs;
 		}
 
-		void operator /(const std::string& rhs)
+		FileSystem operator /(const FileSystem& rhs)
 		{
-			m_CurrentPath / rhs;
+			return m_CurrentPath / rhs.m_CurrentPath.filename();
 		}
 
 		operator std::filesystem::path() const
@@ -46,7 +47,7 @@ namespace Wyvern::Utils
 			return m_CurrentPath;
 		}
 
-		operator std::string () const
+		operator std::string() const
 		{
 			return m_CurrentPath.string();
 		}

@@ -36,7 +36,7 @@ IncludeDir["FreeTypeSub"] = "%{WyvernRootDir}/WyvernEngine/Vendor/freetype/inclu
 IncludeDir["YamlCPP"] = "%{WyvernRootDir}/WyvernEngine/Vendor/yaml-cpp/include"
 IncludeDir["ImGUIzmo"] = "%{WyvernRootDir}/WyvernEngine/Vendor/ImGuizmo"
 
-project "ScriptCore-DLL"
+project "CppProject"
 	location "%{ProjectName}"
 	kind "SharedLib"
 	language "C++"

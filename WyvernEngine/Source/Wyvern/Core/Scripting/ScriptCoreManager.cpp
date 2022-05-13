@@ -8,9 +8,13 @@ namespace Wyvern
 	void ScriptCoreManager::GenerateScriptCore()
 	{
 		ApplicationSpecification specs = Application::Get().GetSpecification();
+		Utils::FileSystem premakeScript = "../Assets/NewProjectTemplate/premake5.lua";
+
+		Utils::FileSystem::CopyFile(premakeScript, specs.ProjectPath / "premake5.lua");
+		premakeScript = specs.ProjectPath / "premake5.lua";
 
 		std::string premakeCommand;
-		premakeCommand = std::string("call %WYVERN_DIR%\\vendor\\premake\\premake5.exe vs2022 --file=../Assets/NewProjectTemplate/premake5.lua ") + "--projname=" + specs.ProjectName + " --projdir=" + (std::string)specs.ProjectPath;
+		premakeCommand = std::string("call %WYVERN_DIR%\\vendor\\premake\\premake5.exe vs2022 --file=") + (std::string)premakeScript + " " + "--projname=" + specs.ProjectName + " --projdir=" + (std::string)specs.ProjectPath;
 
 		system(premakeCommand.c_str());
 

@@ -65,4 +65,10 @@ namespace Wyvern::Utils
 	{
 		std::filesystem::create_directory(path);
 	}
+
+	void FileSystem::CopyFile(FileSystem original, FileSystem copy)
+	{
+		if (!std::filesystem::exists(copy))
+			std::filesystem::copy_file(original, copy);
+	}
 }
