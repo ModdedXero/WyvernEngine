@@ -4,9 +4,10 @@
 
 namespace Wyvern
 {
-	class ScriptCoreMangager
+	class ScriptCoreManager
 	{
 	public:
-		static void GenerateScriptCore(Utils::FileSystem projectPath);
+		static void GenerateScriptCore();
+		static void CreateNewScript(Utils::FileSystem path, Utils::FileSystem script);
 	};
 }

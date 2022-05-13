@@ -14,9 +14,11 @@ namespace Wyvern::Utils
 		FileSystem(std::filesystem::path path);
 		~FileSystem();
 
+		std::string ReadFile();
+		void WriteFile(std::string data);
 
 		std::string Filename() const { return m_CurrentPath.filename().string(); }
-		bool IsDirectory() const { return m_IsDirectory; }
+		bool IsDirectory() const { return std::filesystem::is_directory(m_CurrentPath);; }
 
 		static FileSystem RelativePath(const FileSystem& path, const FileSystem& base);
 		static void CreateDirectory(FileSystem path);
@@ -51,7 +53,6 @@ namespace Wyvern::Utils
 
 	private:
 		std::filesystem::path m_CurrentPath;
-		bool m_IsDirectory;
 	};
 
 	inline std::ostream& operator <<(std::ostream& os, const FileSystem& rhs)

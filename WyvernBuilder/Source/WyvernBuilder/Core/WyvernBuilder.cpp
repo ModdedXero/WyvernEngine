@@ -10,7 +10,7 @@ public:
 	WyvernBuilder(const ApplicationSpecification& specification)
 		: Application(specification)
 	{
-		ScriptCoreMangager::GenerateScriptCore(specification.ProjectPath);
+		ScriptCoreManager::GenerateScriptCore();
 
 		AssetManager::LoadShader("../assets/shader/standardshader.vert",
 			"../assets/shader/standardshader.frag", nullptr, "StandardShader");

@@ -25,7 +25,7 @@ namespace Wyvern
 		}
 
 		// Right click menu
-		if (ImGui::BeginPopupContextWindow(0, 1, false))
+		if (ImGui::BeginPopupContextWindow(0))
 		{
 			if (ImGui::MenuItem("Empty Entity"))
 				Scene::CreateEntity(Scene::GetActiveScene());

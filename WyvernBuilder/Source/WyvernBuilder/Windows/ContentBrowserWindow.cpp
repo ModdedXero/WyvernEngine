@@ -58,39 +58,22 @@ namespace Wyvern
 			ImGui::NextColumn();
 		}
 
-		//for (auto& dir : std::filesystem::directory_iterator(m_CurrentDirectory))
-		//{
-		//	auto relPath = std::filesystem::relative(dir.path(), s_AssetsPath);
-		//	std::string fileString = relPath.filename().string();
+		if (ImGui::BeginPopupContextWindow(0))
+		{
+			if (ImGui::BeginMenu("Create File"))
+			{
+				if (ImGui::MenuItem("C++ Class"))
+					ScriptCoreManager::CreateNewScript(m_CurrentDirectory, "../Assets/NewProjectTemplate/NewScript++.template");
 
-		//	Ref<Texture2D> icon = dir.is_directory() ? m_DirectoryIcon : m_FileIcon;
+				ImGui::EndMenu();
+			}
 
-		//	ImGui::PushID(fileString.c_str());
-		//	ImGui::PushStyleColor(ImGuiCol_Button, ImVec4{ 0,0,0,0 });
-		//	ImGui::ImageButton((ImTextureID)icon->GetID(), { thumbnailSize, thumbnailSize }, { 0, 1 }, { 1,0 });
-		//	ImGui::PopStyleColor();
+			ImGui::EndPopup();
+		}
 
-		//	if (ImGui::BeginDragDropSource())
-		//	{
-		//		const std::filesystem::path* itemPath = new std::filesystem::path(dir.path());
-		//		ImGui::SetDragDropPayload("CONTENT_BROWSER_ITEM", itemPath, sizeof(std::filesystem::path), ImGuiCond_Once);
-		//		ImGui::EndDragDropSource();
-		//	}
+		//ImGui::Columns(1);
 
-		//	if (ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left))
-		//	{
-		//		if (dir.is_directory())
-		//			m_CurrentDirectory /= relPath.filename();
-		//	}
-		//	ImGui::TextWrapped(fileString.c_str());
-		//	ImGui::PopID();
-
-		//	ImGui::NextColumn();
-		//}
-
-		ImGui::Columns(1);
-
-		ImGui::SliderFloat("Thumbnail Size", &thumbnailSize, 16, 512);
-		ImGui::SliderFloat("Padding", &padding, 0, 32);
+		//ImGui::SliderFloat("Thumbnail Size", &thumbnailSize, 16, 512);
+		//ImGui::SliderFloat("Padding", &padding, 0, 32);
 	}
 }
