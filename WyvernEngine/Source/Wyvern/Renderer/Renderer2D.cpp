@@ -6,6 +6,7 @@
 
 #include <Wyvern/Core/AssetManager.h>
 #include <Wyvern/Core/Math/Matrix4x4.h>
+#include <Wyvern/Core/Application/Application.h>
 
 #include <glad.h>
 
@@ -120,8 +121,9 @@ namespace Wyvern::Renderer
 			DEBUG_LOG_ERROR("Error: FreeType could not init Library");
 		}
 
+		std::string resources = Application::GetResourcesPath();
 		FT_Face face;
-		if (FT_New_Face(ft, "..\\..\\WyvernBuilder\\Assets\\Fonts\\Times.TTF", 0, &face))
+		if (FT_New_Face(ft, (resources + "\\Fonts\\Times.TTF").c_str(), 0, &face))
 		{
 			DEBUG_LOG_ERROR("Error: FreeType failed to load font");
 		}

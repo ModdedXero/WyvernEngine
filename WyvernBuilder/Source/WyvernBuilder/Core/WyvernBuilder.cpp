@@ -3,6 +3,7 @@
 #include "BuilderLayer.h"
 
 using namespace Wyvern;
+using namespace Wyvern::Utils;
 
 class WyvernBuilder : public Application
 {
@@ -10,12 +11,10 @@ public:
 	WyvernBuilder(const ApplicationSpecification& specification)
 		: Application(specification)
 	{
-		ScriptCoreManager::GenerateScriptCore();
-
-		AssetManager::LoadShader("../assets/shader/standardshader.vert",
-			"../assets/shader/standardshader.frag", nullptr, "StandardShader");
-		AssetManager::LoadShader("../assets/shader/fontshader.vert",
-			"../assets/shader/fontshader.frag", nullptr, "FontShader");
+		AssetManager::LoadShader(specification.ResourcesPath / "/shader/standardshader.vert",
+			specification.ResourcesPath / "/shader/standardshader.frag", "", "StandardShader");
+		AssetManager::LoadShader(specification.ResourcesPath / "/shader/fontshader.vert",
+			specification.ResourcesPath / "/shader/fontshader.frag", "", "FontShader");
 
 		AssetManager::LoadMaterial("StandardShader", "StandardMaterial");
 
@@ -33,12 +32,6 @@ int main(int argc, char** argv)
 	ApplicationSpecification specification;
 
 	specification.Name = "Wyvern Builder";
-
-	if (argc > 1)
-	{
-		specification.ProjectName = argv[1];
-		specification.ProjectPath = argv[2];
-	}
 
 	Scope<WyvernBuilder> app = CreateScope<WyvernBuilder>(specification);
 	app->Run();
