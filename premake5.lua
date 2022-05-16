@@ -152,7 +152,7 @@ project "WyvernEditor"
 		optimize "On"
 
 project "WyvernBuilder"
-	location "WyvernBuilder/Source"
+	location "WyvernBuilder"
 	kind "ConsoleApp"
 	language "C++"
 
@@ -161,8 +161,8 @@ project "WyvernBuilder"
 
 	files
 	{
-		"WyvernBuilder/Source/**.h",
-		"WyvernBuilder/Source/**.cpp"
+		"WyvernBuilder/**.h",
+		"WyvernBuilder/**.cpp"
 	}
 
 	includedirs
@@ -184,73 +184,6 @@ project "WyvernBuilder"
 	{
 		"WyvernEngine",
 		"WyvernEditor"
-	}
-	
-	postbuildcommands
-	{
-		"{COPY} ../../bin/" .. outputdir .. "/WyvernEngine/*.dll ../../bin/" .. outputdir .. "/WyvernBuilder",
-		"{COPY} ../../bin/" .. outputdir .. "/WyvernEditor/*.dll ../../bin/" .. outputdir .. "/WyvernBuilder",
-	}
-
-	filter "system:windows"
-		cppdialect "C++17"
-		staticruntime "On"
-		systemversion "latest"
-
-		defines
-		{
-			"WV_PLATFORM_WINDOWS"
-		}
-
-	filter "configurations:Debug"
-		defines "WV_DEBUG"
-		symbols "On"
-
-	filter "configurations:Release"
-		defines "WV_RELEASE"
-		optimize "On"
-
-	filter "configurations:Dist"
-		defines "WV_DIST"
-		optimize "On"
-		
-project "WyvernRuntime"
-	location "WyvernRuntime/Source"
-	kind "ConsoleApp"
-	language "C++"
-
-	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
-	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
-
-	files
-	{
-		"WyvernRuntime/Source/**.h",
-		"WyvernRuntime/Source/**.cpp"
-	}
-
-	includedirs
-	{
-		"WyvernEngine/Source",
-		"WyvernRuntime/Source",
-		"%{IncludeDir.GLFW}",
-		"%{IncludeDir.GLAD}",
-		"%{IncludeDir.GLM}",
-		"%{IncludeDir.ImGUI}",
-		"%{IncludeDir.STB}",
-		"%{IncludeDir.FreeType}",
-		"%{IncludeDir.FreeTypeSub}",
-		"%{IncludeDir.YamlCPP}",
-		"%{IncludeDir.ImGUIzmo}"
-	}
-
-	links
-	{
-		"WyvernEngine"
-	}
-	
-	postbuildcommands
-	{
-		"{COPY} ../../bin/" .. outputdir .. "/WyvernEngine/*.dll ../../bin/" .. outputdir .. "/WyvernRuntime"
 	}
 
 	filter "system:windows"

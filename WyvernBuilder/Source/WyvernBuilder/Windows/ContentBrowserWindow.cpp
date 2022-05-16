@@ -6,10 +6,9 @@ namespace Wyvern
 {
 	void ContentBrowserWindow::OnAttach()
 	{
-		m_CurrentDirectory = std::string(Application::Get().GetProjectPath()) + "/" + Application::Get().GetSpecification().ProjectName + "/Assets";
-
-		m_DirectoryIcon = Texture2D::Create("../Assets/Icons/ContentBrowser/Directory.png");
-		m_FileIcon = Texture2D::Create("../Assets/Icons/ContentBrowser/File.png");
+		m_CurrentDirectory = Application::GetAssetsPath();
+		m_DirectoryIcon = Texture2D::Create(Application::GetResourcesPath() / "/Icons/ContentBrowser/Directory.png");
+		m_FileIcon = Texture2D::Create(Application::GetResourcesPath() / "/Icons/ContentBrowser/File.png");
 	}
 
 	void ContentBrowserWindow::OnGUI()
@@ -56,19 +55,6 @@ namespace Wyvern
 			ImGui::PopID();
 
 			ImGui::NextColumn();
-		}
-
-		if (ImGui::BeginPopupContextWindow(0))
-		{
-			if (ImGui::BeginMenu("Create File"))
-			{
-				if (ImGui::MenuItem("C++ Class"))
-					ScriptCoreManager::CreateNewScript(m_CurrentDirectory, "../Assets/NewProjectTemplate/NewScript++.template");
-
-				ImGui::EndMenu();
-			}
-
-			ImGui::EndPopup();
 		}
 
 		//ImGui::Columns(1);

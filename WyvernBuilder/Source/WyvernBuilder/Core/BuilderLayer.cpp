@@ -121,16 +121,6 @@ namespace Wyvern
                 ImGui::EndMenu();
             }
 
-            if (ImGui::BeginMenu("Project"))
-            {
-                if (ImGui::MenuItem("Rebuild"))
-                {
-                    ScriptCoreManager::GenerateScriptCore();
-                }
-
-                ImGui::EndMenu();
-            }
-
             if (ImGui::BeginMenu("Scene"))
             {
                 if (ImGui::MenuItem(s_ActiveScene->GetSceneState() == SceneState::Edit ? "Play" : "Stop"))

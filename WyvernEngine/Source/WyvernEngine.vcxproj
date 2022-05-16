@@ -192,7 +192,6 @@
     <ClInclude Include="Wyvern\Core\Scene\UUID.h" />
     <ClInclude Include="Wyvern\Core\Scene\Wizard.h" />
     <ClInclude Include="Wyvern\Core\Scene\WizardStack.h" />
-    <ClInclude Include="Wyvern\Core\Scripting\ScriptCoreManager.h" />
     <ClInclude Include="Wyvern\Core\Timestep.h" />
     <ClInclude Include="Wyvern\Display\Window.h" />
     <ClInclude Include="Wyvern\Events\Event.h" />
@@ -244,7 +243,6 @@
     <ClCompile Include="Wyvern\Core\Scene\UUID.cpp" />
     <ClCompile Include="Wyvern\Core\Scene\Wizard.cpp" />
     <ClCompile Include="Wyvern\Core\Scene\WizardStack.cpp" />
-    <ClCompile Include="Wyvern\Core\Scripting\ScriptCoreManager.cpp" />
     <ClCompile Include="Wyvern\Display\Window.cpp" />
     <ClCompile Include="Wyvern\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="Wyvern\Renderer\CameraRenderer.cpp" />

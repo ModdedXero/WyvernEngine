@@ -7,9 +7,6 @@
 #include <Wyvern/Core/Application/Layer.h>
 #include <Wyvern/Core/Application/Application.h>
 
-// Scripting
-#include <Wyvern/Core/Scripting/ScriptCoreManager.h>
-
 // Core
 #include <Wyvern/Core/Base.h>
 #include <Wyvern/Core/Debug.h>

@@ -5,12 +5,12 @@
 
 namespace Wyvern
 {
-	std::unordered_map<const char*, Ref<Shader>> s_Shaders;
-	std::unordered_map<const char*, Ref<Texture2D>> s_Textures;
-	std::unordered_map<const char*, Ref<Sprite>> s_SubTextures;
-	std::unordered_map<const char*, Ref<Material>> s_Materials;
+	std::unordered_map<std::string, Ref<Shader>> s_Shaders;
+	std::unordered_map<std::string, Ref<Texture2D>> s_Textures;
+	std::unordered_map<std::string, Ref<Sprite>> s_SubTextures;
+	std::unordered_map<std::string, Ref<Material>> s_Materials;
 
-	Ref<Shader> AssetManager::LoadShader(const char* vShaderFile, const char* fShaderFile, const char* gShaderFile, const char* name)
+	Ref<Shader> AssetManager::LoadShader(Utils::FileSystem vShaderFile, Utils::FileSystem fShaderFile, Utils::FileSystem gShaderFile, std::string name)
 	{
 		s_Shaders[name] = loadShaderFromFile(vShaderFile, fShaderFile, gShaderFile);
 		s_Shaders[name]->Use();
@@ -21,34 +21,34 @@ namespace Wyvern
 		return s_Shaders[name];
 	}
 
-	Ref<Shader> AssetManager::GetShader(const char* name)
+	Ref<Shader> AssetManager::GetShader(std::string name)
 	{
 		return s_Shaders[name];
 	}
 
-	Ref<Texture2D> AssetManager::LoadTexture(Ref<Texture2D> texture, const char* name)
+	Ref<Texture2D> AssetManager::LoadTexture(Ref<Texture2D> texture, std::string name)
 	{
 		s_Textures[name] = texture;
 		return s_Textures[name];
 	}
 
-	Ref<Texture2D> AssetManager::GetTexture(const char* name)
+	Ref<Texture2D> AssetManager::GetTexture(std::string name)
 	{
 		return s_Textures[name];
 	}
 
-	Ref<Sprite> AssetManager::LoadSprite(const char* name, const char* textureName, const Vector2& coords, const Vector2& tileSize, const Vector2& spriteSize)
+	Ref<Sprite> AssetManager::LoadSprite(std::string name, std::string textureName, const Vector2& coords, const Vector2& tileSize, const Vector2& spriteSize)
 	{
 		s_SubTextures[name] = Sprite::CreateFromCoords(GetTexture(textureName), coords, tileSize, spriteSize);
 		return s_SubTextures[name];
 	}
 
-	Ref<Sprite> AssetManager::GetSprite(const char* name)
+	Ref<Sprite> AssetManager::GetSprite(std::string name)
 	{
 		return s_SubTextures[name];
 	}
 
-	Ref<Material> AssetManager::LoadMaterial(const char* shader, const char* name)
+	Ref<Material> AssetManager::LoadMaterial(std::string shader, std::string name)
 	{
 		Ref<Material> mat = CreateRef<Material>();
 		mat->shader = GetShader(shader);
@@ -56,7 +56,7 @@ namespace Wyvern
 		return s_Materials[name];
 	}
 
-	Ref<Material> AssetManager::GetMaterial(const char* name)
+	Ref<Material> AssetManager::GetMaterial(std::string name)
 	{
 		return s_Materials[name];
 	}
@@ -75,7 +75,7 @@ namespace Wyvern
 			glDeleteProgram(iter.second->GetID());
 	}
 
-	Ref<Shader> AssetManager::loadShaderFromFile(const char* vShaderPath, const char* fShaderPath, const char* gShaderPath)
+	Ref<Shader> AssetManager::loadShaderFromFile(std::string vShaderPath, std::string fShaderPath, std::string gShaderPath)
 	{
 		std::string vertCode, fragCode, geoCode;
 
@@ -94,7 +94,7 @@ namespace Wyvern
 			vertCode = vs_Shaderstream.str();
 			fragCode = fs_Shaderstream.str();
 
-			if (gShaderPath != nullptr)
+			if (!gShaderPath.empty())
 			{
 				std::ifstream geoShaderFile(gShaderPath);
 				std::stringstream gs_Shaderstream;
@@ -112,6 +112,6 @@ namespace Wyvern
 		const char* fShaderCode = fragCode.c_str();
 		const char* gShaderCode = geoCode.c_str();
 
-		return CreateRef<Shader>(vShaderCode, fShaderCode, gShaderPath != nullptr ? gShaderCode : nullptr);
+		return CreateRef<Shader>(vShaderCode, fShaderCode, !gShaderPath.empty() ? gShaderCode : nullptr);
 	}
 }

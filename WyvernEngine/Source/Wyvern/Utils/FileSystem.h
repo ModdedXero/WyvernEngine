@@ -1,6 +1,7 @@
 #pragma once
 
 #include <filesystem>
+#include <iostream>
 
 namespace Wyvern::Utils
 {
@@ -20,6 +21,8 @@ namespace Wyvern::Utils
 		std::string Filename() const { return m_CurrentPath.filename().string(); }
 		bool IsDirectory() const { return std::filesystem::is_directory(m_CurrentPath);; }
 
+		std::string ToString() const { return m_CurrentPath.string(); }
+
 		static FileSystem RelativePath(const FileSystem& path, const FileSystem& base);
 		static void CreateDirectory(FileSystem path);
 		static void CopyFile(FileSystem original, FileSystem copy);
@@ -37,9 +40,10 @@ namespace Wyvern::Utils
 			m_CurrentPath = rhs;
 		}
 
-		FileSystem operator /(const FileSystem& rhs)
+		FileSystem operator /(const FileSystem& rhs) const
 		{
-			return m_CurrentPath / rhs.m_CurrentPath.filename();
+			std::string path = m_CurrentPath.string() + rhs.m_CurrentPath.string();
+			return FileSystem(path);
 		}
 
 		operator std::filesystem::path() const

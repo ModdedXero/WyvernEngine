@@ -29,8 +29,8 @@ namespace Wyvern
 		io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 		io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
 
-		io.Fonts->AddFontFromFileTTF("../assets/fonts/dmsans/DMSans-Bold.TTF", 14.5f);
-		io.FontDefault = io.Fonts->AddFontFromFileTTF("../assets/fonts/dmsans/DMSans-Regular.TTF", 14.5f);
+		io.Fonts->AddFontFromFileTTF(((std::string)Application::GetResourcesPath() + "/fonts/dmsans/DMSans-Bold.TTF").c_str(), 14.5f);
+		io.FontDefault = io.Fonts->AddFontFromFileTTF(((std::string)Application::GetResourcesPath() + "/fonts/dmsans/DMSans-Regular.TTF").c_str(), 14.5f);
 
 		ImGui::StyleColorsDark();
 

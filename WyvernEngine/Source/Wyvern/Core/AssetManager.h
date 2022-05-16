@@ -8,6 +8,7 @@
 #include <Wyvern/Core/Graphics/Material.h>
 
 #include <Wyvern/Core/Math/Vector.h>
+#include <Wyvern/Utils/FileSystem.h>
 
 #include <glad.h>
 
@@ -16,17 +17,17 @@ namespace Wyvern
 	class AssetManager
 	{
 	public:
-		static Ref<Shader> LoadShader(const char* vShaderFile, const char* fShaderFile, const char* gShaderFile, const char* name);
-		static Ref<Shader> GetShader(const char* name);
+		static Ref<Shader> LoadShader(Utils::FileSystem vShaderFile, Utils::FileSystem fShaderFile, Utils::FileSystem gShaderFile, std::string name);
+		static Ref<Shader> GetShader(std::string name);
 
-		static Ref<Texture2D> LoadTexture(Ref<Texture2D> texture, const char* name);
-		static Ref<Texture2D> GetTexture(const char* name);
+		static Ref<Texture2D> LoadTexture(Ref<Texture2D> texture, std::string name);
+		static Ref<Texture2D> GetTexture(std::string name);
 
-		static Ref<Sprite> LoadSprite(const char* name, const char* textureName, const Vector2& coords, const Vector2& tileSize, const Vector2& spriteSize);
-		static Ref<Sprite> GetSprite(const char* name);
+		static Ref<Sprite> LoadSprite(std::string name, std::string textureName, const Vector2& coords, const Vector2& tileSize, const Vector2& spriteSize);
+		static Ref<Sprite> GetSprite(std::string name);
 
-		static Ref<Material> LoadMaterial(const char* shader, const char* name);
-		static Ref<Material> GetMaterial(const char* name);
+		static Ref<Material> LoadMaterial(std::string shader, std::string name);
+		static Ref<Material> GetMaterial(std::string name);
 
 		static Ref<Material> GetDefaultMaterial();
 
@@ -34,6 +35,6 @@ namespace Wyvern
 	private:
 		AssetManager() {}
 
-		static Ref<Shader> loadShaderFromFile(const char* vShaderPath, const char* fShaderPath, const char* gShaderPath = nullptr);
+		static Ref<Shader> loadShaderFromFile(std::string vShaderPath, std::string fShaderPath, std::string gShaderPath = std::string());
 	};
 }
