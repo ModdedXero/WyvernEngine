@@ -36,9 +36,9 @@ project "WyvernEngine"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
-	
-	pchsource "wvpch.cpp"
+
 	pchheader "wvpch.h"
+	pchsource "WyvernEngine/Source/wvpch.cpp"
 
 	files
 	{

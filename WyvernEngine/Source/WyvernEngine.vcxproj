@@ -252,7 +252,7 @@
     <ClCompile Include="Wyvern\Utils\FileSystem.cpp" />
     <ClCompile Include="Wyvern\Utils\WindowsPlatformUtils.cpp" />
     <ClCompile Include="wvpch.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
