@@ -76,7 +76,7 @@ namespace Wyvern
 				glm::vec3 position, rotation, scale;
 				Matrix4x4::Decompose(transform, position, rotation, scale);
 
-				glm::vec3 deltaRotation = glm::degrees(rotation) - transformComp->rotation.glmPosition();
+				glm::vec3 deltaRotation = glm::degrees(rotation) - (glm::vec3)transformComp->rotation;
 
 				if (camera->GetCameraMode() == Renderer::CameraMode::Orthographic)
 				{

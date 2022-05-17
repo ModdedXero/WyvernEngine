@@ -7,11 +7,22 @@
 namespace Wyvern
 {
 	struct Vector2Int;
+	struct Vector3Int;
+	struct Vector4Int;
+
+	struct Vector3;
+	struct Vector4;
 
 	struct Vector2
 	{
-		float x = 0.0f;
-		float y = 0.0f;
+		float x = 0;
+		float y = 0;
+
+		Vector2()
+		{
+			x = 0;
+			y = 0;
+		}
 
 		Vector2(float x, float y)
 		{
@@ -19,120 +30,202 @@ namespace Wyvern
 			this->y = y;
 		}
 
-		Vector2()
-		{
-			this->x = 0.0f;
-			this->y = 0.0f;
-		}
+		// Functions
 
-		// Local Functions
-
-		Vector2 Normalize()
+		Vector2 Normalize() const
 		{
 			return *this / Length();
 		}
 
-		float Length()
+		float Length() const
 		{
 			return sqrt(Dot(*this, *this));
 		}
 
-		// Static Functions
-
-		static float Dot(const Vector2& vec1, const Vector2& vec2)
+		static float Dot(const Vector2& lhs, const Vector2& rhs)
 		{
-			return vec1.x * vec2.x + vec1.y * vec2.y;
+			return lhs.x * rhs.x + lhs.y * rhs.y;
 		}
 
 		// Vector2 Operators
-
-		Vector2& operator +=(const Vector2& other)
-		{
-			x = x + other.x;
-			y = y + other.y;
-			return *this;
-		}
-
-		Vector2& operator -=(const Vector2& other)
-		{
-			x = x - other.x;
-			y = y - other.y;
-			return *this;
-		}
-
-		Vector2& operator *=(const Vector2& other)
-		{
-			x = x * other.x;
-			y = y * other.y;
-			return *this;
-		}
-
 
 		Vector2 operator -() const
 		{
 			return *this * -1;
 		}
 
-		Vector2 operator +(const Vector2& other) const
+		void operator += (const Vector2& rhs)
 		{
-			return Vector2(x + other.x, y + other.y);
+			x += rhs.x;
+			y += rhs.y;
 		}
 
-		Vector2 operator -(const Vector2& other) const
+		void operator -=(const Vector2& rhs)
 		{
-			return Vector2(x - other.x, y - other.y);
+			x -= rhs.x;
+			y -= rhs.x;
 		}
 
-		Vector2 operator *(const Vector2& other) const
+		void operator *=(const Vector2& rhs)
 		{
-			return Vector2(x * other.x, y * other.y);
+			x *= rhs.x;
+			y *= rhs.y;
 		}
 
-		bool operator ==(const Vector2& other) const
+		void operator /=(const Vector2& rhs)
 		{
-			return (x == other.x) && (y == other.y);
+			x /= rhs.x;
+			y /= rhs.y;
 		}
 
-		bool operator !=(const Vector2& other) const
+		Vector2 operator +(const Vector2& rhs) const
 		{
-			return (x != other.x) || (y != other.y);
+			return Vector2(x + rhs.x, y + rhs.y);
 		}
 
-		bool operator >(const Vector2& other) const
+		Vector2 operator -(const Vector2& rhs) const
 		{
-			return sqrt(Dot(*this, *this)) < sqrt(Dot(other, other));
+			return Vector2(x - rhs.x, y - rhs.y);
 		}
 
-		bool operator <(const Vector2& other) const
+		Vector2 operator *(const Vector2& rhs) const
 		{
-			return sqrt(Dot(*this, *this)) < sqrt(Dot(other, other));
+			return Vector2(x * rhs.x, y * rhs.y);
+		}
+
+		Vector2 operator /(const Vector2& rhs) const
+		{
+			return Vector2(x / rhs.x, y / rhs.y);
+		}
+
+		bool operator ==(const Vector2& rhs) const
+		{
+			return x == rhs.x && y == rhs.y;
+		}
+
+		bool operator !=(const Vector2& rhs) const
+		{
+			return x != rhs.x || y != rhs.y;
+		}
+
+		bool operator >=(const Vector2& rhs) const
+		{
+			return Length() >= rhs.Length();
+		}
+
+		bool operator <=(const Vector2& rhs) const
+		{
+			return Length() <= rhs.Length();
+		}
+
+		bool operator >(const Vector2& rhs) const
+		{
+			return Length() > rhs.Length();
+		}
+
+		bool operator <(const Vector2& rhs) const
+		{
+			return Length() < rhs.Length();
 		}
 
 		// Float Operators
 
-		Vector2 operator +(const float& other) const
+		void operator += (const float& rhs)
 		{
-			return Vector2(x + other, y + other);
+			x += rhs;
+			y += rhs;
 		}
 
-		Vector2 operator *(const float& other) const
+		void operator -=(const float& rhs)
 		{
-			return Vector2(x * other, y * other);
+			x -= rhs;
+			y -= rhs;
 		}
 
-		Vector2 operator /(const float& other) const
+		void operator *=(const float& rhs)
 		{
-			return Vector2(x / other, y / other);
+			x *= rhs;
+			y *= rhs;
 		}
+
+		void operator /=(const float& rhs)
+		{
+			x /= rhs;
+			y /= rhs;
+		}
+
+		Vector2 operator +(const float& rhs) const
+		{
+			return Vector2(x + rhs, y + rhs);
+		}
+
+		Vector2 operator -(const float& rhs) const
+		{
+			return Vector2(x - rhs, y - rhs);
+		}
+
+		Vector2 operator *(const float& rhs) const
+		{
+			return Vector2(x * rhs, y * rhs);
+		}
+
+		Vector2 operator /(const float& rhs) const
+		{
+			return Vector2(x / rhs, y / rhs);
+		}
+
+		bool operator ==(const float& rhs) const
+		{
+			return Length() == rhs;
+		}
+
+		bool operator !=(const float& rhs) const
+		{
+			return Length() != rhs;
+		}
+
+		bool operator >=(const float& rhs) const
+		{
+			return Length() >= rhs;
+		}
+
+		bool operator <=(const float& rhs) const
+		{
+			return Length() <= rhs;
+		}
+
+		bool operator >(const float& rhs) const
+		{
+			return Length() > rhs;
+		}
+
+		bool operator <(const float& rhs) const
+		{
+			return Length() < rhs;
+		}
+
+		// Conversions
+
+		operator Vector3() const;
+		operator Vector4() const;
 
 		operator Vector2Int() const;
+		operator Vector3Int() const;
+		operator Vector4Int() const;
 	};
 
 	struct Vector3
 	{
-		float x = 0.0f;
-		float y = 0.0f;
-		float z = 0.0f;
+		float x = 0;
+		float y = 0;
+		float z = 0;
+
+		Vector3()
+		{
+			x = 0;
+			y = 0;
+			z = 0;
+		}
 
 		Vector3(float x, float y, float z)
 		{
@@ -141,14 +234,189 @@ namespace Wyvern
 			this->z = z;
 		}
 
-		Vector3()
+		// Functions
+
+		Vector3 Normalize() const
 		{
-			this->x = 0.0f;
-			this->y = 0.0f;
-			this->y = 0.0f;
+			return *this / Length();
 		}
 
-		// GLM Operations
+		float Length() const
+		{
+			return sqrt(Dot(*this, *this));
+		}
+
+		static float Dot(const Vector3& lhs, const Vector3& rhs)
+		{
+			return lhs.x * rhs.x + lhs.y * rhs.y + lhs.z * rhs.z;
+		}
+
+		// Vector3 Operators
+
+		Vector3 operator -() const
+		{
+			return *this * -1;
+		}
+
+		void operator += (const Vector3& rhs)
+		{
+			x += rhs.x;
+			y += rhs.y;
+			z += rhs.z;
+		}
+
+		void operator -=(const Vector3& rhs)
+		{
+			x -= rhs.x;
+			y -= rhs.x;
+			z -= rhs.z;
+		}
+
+		void operator *=(const Vector3& rhs)
+		{
+			x *= rhs.x;
+			y *= rhs.y;
+			z *= rhs.z;
+		}
+
+		void operator /=(const Vector3& rhs)
+		{
+			x /= rhs.x;
+			y /= rhs.y;
+			z /= rhs.z;
+		}
+
+		Vector3 operator +(const Vector3& rhs) const
+		{
+			return Vector3(x + rhs.x, y + rhs.y, z + rhs.z);
+		}
+
+		Vector3 operator -(const Vector3& rhs) const
+		{
+			return Vector3(x - rhs.x, y - rhs.y, z - rhs.z);
+		}
+
+		Vector3 operator *(const Vector3& rhs) const
+		{
+			return Vector3(x * rhs.x, y * rhs.y, z * rhs.z);
+		}
+
+		Vector3 operator /(const Vector3& rhs) const
+		{
+			return Vector3(x / rhs.x, y / rhs.y, z / rhs.z);
+		}
+
+		bool operator ==(const Vector3& rhs) const
+		{
+			return x == rhs.x && y == rhs.y && z == rhs.z;
+		}
+
+		bool operator !=(const Vector3& rhs) const
+		{
+			return x != rhs.x || y != rhs.y || z != rhs.z;
+		}
+
+		bool operator >=(const Vector3& rhs) const
+		{
+			return Length() >= rhs.Length();
+		}
+
+		bool operator <=(const Vector3& rhs) const
+		{
+			return Length() <= rhs.Length();
+		}
+
+		bool operator >(const Vector3& rhs) const
+		{
+			return Length() > rhs.Length();
+		}
+
+		bool operator <(const Vector3& rhs) const
+		{
+			return Length() < rhs.Length();
+		}
+
+		// Float Operators
+
+		void operator += (const float& rhs)
+		{
+			x += rhs;
+			y += rhs;
+			z += rhs;
+		}
+
+		void operator -=(const float& rhs)
+		{
+			x -= rhs;
+			y -= rhs;
+			z -= rhs;
+		}
+
+		void operator *=(const float& rhs)
+		{
+			x *= rhs;
+			y *= rhs;
+			z *= rhs;
+		}
+
+		void operator /=(const float& rhs)
+		{
+			x /= rhs;
+			y /= rhs;
+			z /= rhs;
+		}
+
+		Vector3 operator +(const float& rhs) const
+		{
+			return Vector3(x + rhs, y + rhs, z + rhs);
+		}
+
+		Vector3 operator -(const float& rhs) const
+		{
+			return Vector3(x - rhs, y - rhs, z - rhs);
+		}
+
+		Vector3 operator *(const float& rhs) const
+		{
+			return Vector3(x * rhs, y * rhs, z * rhs);
+		}
+
+		Vector3 operator /(const float& rhs) const
+		{
+			return Vector3(x / rhs, y / rhs, z / rhs);
+		}
+
+		bool operator ==(const float& rhs) const
+		{
+			return Length() == rhs;
+		}
+
+		bool operator !=(const float& rhs) const
+		{
+			return Length() != rhs;
+		}
+
+		bool operator >=(const float& rhs) const
+		{
+			return Length() >= rhs;
+		}
+
+		bool operator <=(const float& rhs) const
+		{
+			return Length() <= rhs;
+		}
+
+		bool operator >(const float& rhs) const
+		{
+			return Length() > rhs;
+		}
+
+		bool operator <(const float& rhs) const
+		{
+			return Length() < rhs;
+		}
+
+		// Temporary Conversions
 
 		Vector3(glm::vec<4, float, glm::packed_highp> vec)
 		{
@@ -157,9 +425,7 @@ namespace Wyvern
 			this->z = vec.z;
 		}
 
-		glm::vec3 glmPosition() { return glm::vec3(x, y, z); }
-
-		// GLM Operators
+		operator glm::vec3() const;
 
 		void operator =(const glm::vec3& other)
 		{
@@ -176,89 +442,31 @@ namespace Wyvern
 			return *this;
 		}
 
-		Vector3& operator +=(const Vector3& other)
-		{
-			x = x + other.x;
-			y = y + other.y;
-			z = z + other.z;
-			return *this;
-		}
+		// Conversions
 
-		Vector3& operator -=(const Vector3& other)
-		{
-			x = x - other.x;
-			y = y - other.y;
-			z = z - other.z;
-			return *this;
-		}
+		operator Vector2() const;
+		operator Vector4() const;
 
-		Vector3 operator -() const
-		{
-			return *this * -1;
-		}
-
-		Vector3 operator +(const Vector3& other) const
-		{
-			return Vector3(x + other.x, y + other.y, z + other.z);
-		}
-
-		Vector3 operator -(const Vector3& other) const
-		{
-			return Vector3(x - other.x, y - other.y, z - other.z);
-		}
-
-		Vector3 operator *(const Vector3& other) const
-		{
-			return Vector3(x * other.x, y * other.y, z * other.z);
-		}
-
-		Vector3 operator *(const float& other) const
-		{
-			return Vector3(x * other, y * other, z * other);
-		}
-
-		Vector3 operator /(const float& other) const
-		{
-			return Vector3(x / other, y / other, z / other);
-		}
-
-		operator Vector2() const
-		{
-			return Vector2(x, y);
-		}
-
-		Vector3& operator +=(const Vector2& other)
-		{
-			x = x + other.x;
-			y = y + other.y;
-			return *this;
-		}
-
-		Vector3& operator -=(const Vector2& other)
-		{
-			x = x - other.x;
-			y = y - other.y;
-			return *this;
-		}
-
-		Vector3 operator +(const Vector2& other) const
-		{
-			return Vector3(x + other.x, y + other.y, z);
-		}
-
-		Vector3 operator -(const Vector2& other) const
-		{
-			return Vector3(x - other.x, y - other.y, z);
-		}
-
-		Vector3 operator *(const Vector2& other) const
-		{
-			return Vector3(x * other.x, y * other.y, z);
-		}
+		operator Vector2Int() const;
+		operator Vector3Int() const;
+		operator Vector4Int() const;
 	};
 
 	struct Vector4
 	{
+		float x = 0;
+		float y = 0;
+		float z = 0;
+		float w = 0;
+
+		Vector4()
+		{
+			x = 0;
+			y = 0;
+			z = 0;
+			w = 0;
+		}
+
 		Vector4(float x, float y, float z, float w)
 		{
 			this->x = x;
@@ -267,36 +475,221 @@ namespace Wyvern
 			this->w = w;
 		}
 
-		Vector4()
+		// Functions
+
+		Vector4 Normalize() const
 		{
-			this->x = 0.0f;
-			this->y = 0.0f;
-			this->z = 0.0f;
-			this->w = 0.0f;
+			return *this / Length();
 		}
 
-		float x = 0.0f;
-		float y = 0.0f;
-		float z = 0.0f;
-		float w = 0.0f;
+		float Length() const
+		{
+			return sqrt(Dot(*this, *this));
+		}
+
+		static float Dot(const Vector4& lhs, const Vector4& rhs)
+		{
+			return lhs.x * rhs.x + lhs.y * rhs.y + lhs.z * rhs.z + lhs.w * rhs.w;
+		}
 
 		// Vector4 Operators
 
-		Vector4 operator *(const Vector4& other) const
+		Vector4 operator -() const
 		{
-			return Vector4(x * other.x, y * other.y, z * other.z, w * other.w);
+			return *this * -1;
 		}
+
+		void operator += (const Vector4& rhs)
+		{
+			x += rhs.x;
+			y += rhs.y;
+			z += rhs.z;
+			w += rhs.w;
+		}
+
+		void operator -=(const Vector4& rhs)
+		{
+			x -= rhs.x;
+			y -= rhs.x;
+			z -= rhs.z;
+			w -= rhs.w;
+		}
+
+		void operator *=(const Vector4& rhs)
+		{
+			x *= rhs.x;
+			y *= rhs.y;
+			z *= rhs.z;
+			w *= rhs.w;
+		}
+
+		void operator /=(const Vector4& rhs)
+		{
+			x /= rhs.x;
+			y /= rhs.y;
+			z /= rhs.z;
+			z /= rhs.w;
+		}
+
+		Vector4 operator +(const Vector4& rhs) const
+		{
+			return Vector4(x + rhs.x, y + rhs.y, z + rhs.z, w + rhs.w);
+		}
+
+		Vector4 operator -(const Vector4& rhs) const
+		{
+			return Vector4(x - rhs.x, y - rhs.y, z - rhs.z, w - rhs.w);
+		}
+
+		Vector4 operator *(const Vector4& rhs) const
+		{
+			return Vector4(x * rhs.x, y * rhs.y, z * rhs.z, w * rhs.w);
+		}
+
+		Vector4 operator /(const Vector4& rhs) const
+		{
+			return Vector4(x / rhs.x, y / rhs.y, z / rhs.z, w / rhs.w);
+		}
+
+		bool operator ==(const Vector4& rhs) const
+		{
+			return x == rhs.x && y == rhs.y && z == rhs.z && w == rhs.w;
+		}
+
+		bool operator !=(const Vector4& rhs) const
+		{
+			return x != rhs.x || y != rhs.y || z != rhs.z || w != rhs.w;
+		}
+
+		bool operator >=(const Vector4& rhs) const
+		{
+			return Length() >= rhs.Length();
+		}
+
+		bool operator <=(const Vector4& rhs) const
+		{
+			return Length() <= rhs.Length();
+		}
+
+		bool operator >(const Vector4& rhs) const
+		{
+			return Length() > rhs.Length();
+		}
+
+		bool operator <(const Vector4& rhs) const
+		{
+			return Length() < rhs.Length();
+		}
+
+		// Float Operators
+
+		void operator += (const float& rhs)
+		{
+			x += rhs;
+			y += rhs;
+			z += rhs;
+			w += rhs;
+		}
+
+		void operator -=(const float& rhs)
+		{
+			x -= rhs;
+			y -= rhs;
+			z -= rhs;
+			w -= rhs;
+		}
+
+		void operator *=(const float& rhs)
+		{
+			x *= rhs;
+			y *= rhs;
+			z *= rhs;
+			w *= rhs;
+		}
+
+		void operator /=(const float& rhs)
+		{
+			x /= rhs;
+			y /= rhs;
+			z /= rhs;
+			w /= rhs;
+		}
+
+		Vector4 operator +(const float& rhs) const
+		{
+			return Vector4(x + rhs, y + rhs, z + rhs, w + rhs);
+		}
+
+		Vector4 operator -(const float& rhs) const
+		{
+			return Vector4(x - rhs, y - rhs, z - rhs, w - rhs);
+		}
+
+		Vector4 operator *(const float& rhs) const
+		{
+			return Vector4(x * rhs, y * rhs, z * rhs, w * rhs);
+		}
+
+		Vector4 operator /(const float& rhs) const
+		{
+			return Vector4(x / rhs, y / rhs, z / rhs, w / rhs);
+		}
+
+		bool operator ==(const float& rhs) const
+		{
+			return Length() == rhs;
+		}
+
+		bool operator !=(const float& rhs) const
+		{
+			return Length() != rhs;
+		}
+
+		bool operator >=(const float& rhs) const
+		{
+			return Length() >= rhs;
+		}
+
+		bool operator <=(const float& rhs) const
+		{
+			return Length() <= rhs;
+		}
+
+		bool operator >(const float& rhs) const
+		{
+			return Length() > rhs;
+		}
+
+		bool operator <(const float& rhs) const
+		{
+			return Length() < rhs;
+		}
+
+		// Conversions
+
+		operator Vector2() const;
+		operator Vector3() const;
+
+		operator Vector2Int() const;
+		operator Vector3Int() const;
+		operator Vector4Int() const;
 	};
 
-	inline std::ostream& operator <<(std::ostream& os, const Vector2& vec)
+	inline std::ostream& operator <<(std::ostream& os, const Vector2& rhs)
 	{
-		os << "(" << vec.x << ", " << vec.y << ")";
+		os << "(" << rhs.x << ", " << rhs.y << ")";
 		return os;
 	}
 
-	inline std::ostream& operator <<(std::ostream& os, const Vector3& vec)
+	inline std::ostream& operator <<(std::ostream& os, const Vector3& rhs)
 	{
-		os << "(" << vec.x << ", " << vec.y << ", " << vec.z << ")";
+		os << "(" << rhs.x << ", " << rhs.y << ", " << rhs.z << ")";
+		return os;
+	}
+
+	inline std::ostream& operator <<(std::ostream& os, const Vector4& rhs)
+	{
+		os << "(" << rhs.x << ", " << rhs.y << ", " << rhs.z << ", " << rhs.w << ")";
 		return os;
 	}
 }
