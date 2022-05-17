@@ -23,7 +23,7 @@ namespace Wyvern
 	private:
 		Vector2 m_WindowSize;
 
-		Renderer::Framebuffer* m_Framebuffer;
+		Ref<Renderer::Framebuffer> m_Framebuffer;
 		Entity* m_HoverEntity;
 
 		int m_GizmoSelection = -1;

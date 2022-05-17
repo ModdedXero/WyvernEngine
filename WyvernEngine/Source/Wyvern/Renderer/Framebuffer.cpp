@@ -1,6 +1,8 @@
 #include "wvpch.h"
 #include "Framebuffer.h"
 
+#include <Wyvern/Core/Math/VectorInt.h>
+
 #include "glad.h"
 
 namespace Wyvern::Renderer
@@ -184,12 +186,14 @@ namespace Wyvern::Renderer
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	}
 
-	void Framebuffer::Resize(const Vector2& size)
+	void Framebuffer::Resize(const Vector2Int& size)
 	{
+		if (size.x == m_Specification.Width && size.y == m_Specification.Height) return;
+
 		m_Specification.Width = size.x < 1 ? 1 : size.x;
 		m_Specification.Height = size.y < 1 ? 1 : size.y;
 
-		glViewport(0, 0, size.x, size.y);
+		glViewport(0, 0, m_Specification.Width, m_Specification.Height);
 		Invalidate();
 	}
 
@@ -205,6 +209,14 @@ namespace Wyvern::Renderer
 		return pixelData;
 	}
 
+	void Framebuffer::ClearColorAttachment(unsigned int attachmentIndex, int value)
+	{
+		WV_CORE_ASSERT(attachmentIndex < m_ColorAttachments.size(), "");
+
+		auto& spec = m_ColorAttachmentSpecs[attachmentIndex];
+		glClearTexImage(m_ColorAttachments[attachmentIndex], 0, Utils::TextureFormat(spec.TextureFormat), GL_INT, &value);
+	}
+
 	void Framebuffer::Bind()
 	{
 		Invalidate();
@@ -214,13 +226,5 @@ namespace Wyvern::Renderer
 	void Framebuffer::Unbind()
 	{
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
-	}
-
-	void Framebuffer::ClearColorAttachment(unsigned int attachmentIndex, int value)
-	{
-		WV_CORE_ASSERT(attachmentIndex < m_ColorAttachments.size(), "");
-
-		auto& spec = m_ColorAttachmentSpecs[attachmentIndex];
-		glClearTexImage(m_ColorAttachments[attachmentIndex], 0, Utils::TextureFormat(spec.TextureFormat), GL_INT, &value);
 	}
 }

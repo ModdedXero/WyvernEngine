@@ -15,6 +15,8 @@
 
 namespace Wyvern::Renderer
 {
+	Ref<Framebuffer> Renderer2D::s_Framebuffer;
+
 	static const size_t MaxQuadCount = 1000;
 	static const size_t MaxVertexCount = MaxQuadCount * 4;
 	static const size_t MaxIndexCount = MaxQuadCount * 6;
@@ -53,6 +55,19 @@ namespace Wyvern::Renderer
 
 	void Renderer2D::OnAttach()
 	{
+		// Framebuffer
+
+		FramebufferSpecification fbSpec;
+		fbSpec.Attachments =
+		{
+			FramebufferTextureFormat::RGBA8,
+			FramebufferTextureFormat::RED_INTEGER,
+			FramebufferTextureFormat::Depth
+		};
+		fbSpec.Width = 1280;
+		fbSpec.Height = 720;
+		s_Framebuffer = CreateRef<Framebuffer>(fbSpec);
+
 		// Quad Renderer
 
 		s_Data.QuadBuffer = new Vertex[MaxVertexCount];
@@ -180,6 +195,7 @@ namespace Wyvern::Renderer
 	{
 		s_Data.Camera = cameraRenderer;
 		s_Data.CameraPosition = cameraPosition;
+		s_Data.Camera->Resize(s_Framebuffer->GetSpecification().Width, s_Framebuffer->GetSpecification().Height);
 
 		BeginBatch();
 	}

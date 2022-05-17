@@ -6,7 +6,7 @@ namespace Wyvern
 {
     Ref<Scene> BuilderLayer::s_ActiveScene;
     Ref<Scene> BuilderLayer::s_CachedScene;
-    ViewportCamera* BuilderLayer::s_EditorCamera = nullptr;
+    ViewportCamera* BuilderLayer::s_ViewportCamera = nullptr;
     Entity* BuilderLayer::s_SelectedContext = nullptr;
 
     ViewportWindow* BuilderLayer::s_ViewportWindow = nullptr;
@@ -24,7 +24,7 @@ namespace Wyvern
 
         ImGui::SetCurrentContext(Application::Get().GetImGuiLayer()->GetImGuiContext());
 
-        s_EditorCamera = new ViewportCamera();
+        s_ViewportCamera = new ViewportCamera();
 
         OpenViewportWindow();
         OpenHierarchyWindow();
@@ -48,7 +48,7 @@ namespace Wyvern
         }
 
         s_ActiveScene->OnRuntimeUpdate();
-        s_ActiveScene->OnEditorUpdate(s_EditorCamera, s_EditorCamera->transform);
+        s_ActiveScene->OnEditorUpdate(s_ViewportCamera, s_ViewportCamera->transform);
         Scene::FlushScene();
 
         for (EditorWindow* window : s_Windows)

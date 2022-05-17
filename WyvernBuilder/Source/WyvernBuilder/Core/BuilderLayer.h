@@ -28,7 +28,7 @@ namespace Wyvern
 		static void OpenPropertiesWindow();
 		static void OpenContentBrowserWindow();
 
-		static ViewportCamera* GetEditorCamera() { return s_EditorCamera; }
+		static ViewportCamera* GetViewportCamera() { return s_ViewportCamera; }
 
 		static Entity* GetSelectedContext() { return s_SelectedContext; }
 		static void SetSelectedContext(Entity* ent) { s_SelectedContext = ent; }
@@ -38,7 +38,7 @@ namespace Wyvern
 	private:
 		static Ref<Scene> s_ActiveScene;
 		static Ref<Scene> s_CachedScene;
-		static ViewportCamera* s_EditorCamera;
+		static ViewportCamera* s_ViewportCamera;
 		static Entity* s_SelectedContext;
 
 		static ViewportWindow* s_ViewportWindow;

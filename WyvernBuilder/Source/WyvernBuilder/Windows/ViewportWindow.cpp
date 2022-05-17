@@ -9,36 +9,19 @@ namespace Wyvern
 {
 	void ViewportWindow::OnAttach()
 	{
-		Renderer::FramebufferSpecification fbSpec;
-		fbSpec.Attachments = 
-		{ 
-			Renderer::FramebufferTextureFormat::RGBA8,
-			Renderer::FramebufferTextureFormat::RED_INTEGER,
-			Renderer::FramebufferTextureFormat::Depth 
-		};
-		fbSpec.Width = 1280;
-		fbSpec.Height = 720;
-		m_Framebuffer = new Renderer::Framebuffer(fbSpec);
+		m_Framebuffer = Renderer::Renderer2D::GetFramebuffer();
 	}
 
 	void ViewportWindow::OnGUI()
 	{
 		if (IsFocused() && IsHovered())
-			BuilderLayer::GetEditorCamera()->MoveCamera();
+			BuilderLayer::GetViewportCamera()->MoveCamera();
 
 		Vector2 windowPanelSize = GetWindowSize();
-		if (m_WindowSize != windowPanelSize)
-		{
-			m_Framebuffer->Resize(windowPanelSize);
-			m_WindowSize = windowPanelSize;
-
-			BuilderLayer::GetEditorCamera()->Resize(windowPanelSize.x, windowPanelSize.y);
-			if (Camera::GetActiveCamera())
-				Camera::GetActiveCamera()->GetRenderer()->ResizeView(windowPanelSize.x, windowPanelSize.y);
-		}
+		m_Framebuffer->Resize(windowPanelSize);
 
 		unsigned int textureID = m_Framebuffer->GetColorAttachmentRendererID();
-		ImGui::Image((void*)textureID, ImVec2{ m_WindowSize.x, m_WindowSize.y }, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
+		ImGui::Image((void*)textureID, ImVec2{ (float)m_Framebuffer->GetSpecification().Width, (float)m_Framebuffer->GetSpecification().Height }, ImVec2{0, 1}, ImVec2{1, 0});
 
 		if (ImGui::BeginDragDropTarget())
 		{
@@ -56,7 +39,7 @@ namespace Wyvern
 		Entity* selectedContext = BuilderLayer::GetSelectedContext();
 		if (selectedContext && m_GizmoSelection != -1 && Scene::GetActiveScene()->GetSceneState() == SceneState::Edit)
 		{
-			ViewportCamera* camera = BuilderLayer::GetEditorCamera();
+			ViewportCamera* camera = BuilderLayer::GetViewportCamera();
 
 			if (camera->GetCameraMode() == Renderer::CameraMode::Orthographic)
 				ImGuizmo::SetOrthographic(true);

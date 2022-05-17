@@ -6,8 +6,13 @@
 
 namespace Wyvern
 {
+	struct Vector2Int;
+
 	struct Vector2
 	{
+		float x = 0.0f;
+		float y = 0.0f;
+
 		Vector2(float x, float y)
 		{
 			this->x = x;
@@ -19,9 +24,6 @@ namespace Wyvern
 			this->x = 0.0f;
 			this->y = 0.0f;
 		}
-
-		float x = 0.0f;
-		float y = 0.0f;
 
 		// Local Functions
 
@@ -122,6 +124,8 @@ namespace Wyvern
 		{
 			return Vector2(x / other, y / other);
 		}
+
+		operator Vector2Int() const;
 	};
 
 	struct Vector3

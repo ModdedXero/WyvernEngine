@@ -38,7 +38,7 @@ namespace Wyvern::Renderer
 		void SetClipNear(float near) { m_ClipNear = near; }
 		void SetClipFar(float far) { m_ClipFar = far; }
 
-		void ResizeView(float width, float height);
+		void Resize(float width, float height) { SetProjection(width, height); }
 		void SetShaderMatrices(Ref<Shader> shader, Transform* position);
 
 		static Vector2 WorldToScreenPoint(Vector3& pos);

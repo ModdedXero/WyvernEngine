@@ -52,13 +52,13 @@ namespace Wyvern::Renderer
 
 		void Invalidate();
 
-		void Resize(const Vector2& size);
+		void Resize(const Vector2Int& size);
 		int ReadPixel(unsigned int attachmentIndex, int x, int y);
+		void ClearColorAttachment(unsigned int attachmentIndex, int value);
+		FramebufferSpecification& GetSpecification() { return m_Specification; }
 
 		void Bind();
 		void Unbind();
-
-		void ClearColorAttachment(unsigned int attachmentIndex, int value);
 
 		unsigned int GetColorAttachmentRendererID(unsigned int index = 0) const 
 		{

@@ -9,7 +9,6 @@ namespace Wyvern
 		ViewportCamera();
 
 		void MoveCamera();
-		void Resize(float width, float height);
 
 		Transform* transform;
 		float cameraSpeed = 2.0f;

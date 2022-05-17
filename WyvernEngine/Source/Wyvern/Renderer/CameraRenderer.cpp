@@ -29,17 +29,12 @@ namespace Wyvern::Renderer
 
 	void CameraRenderer::SetProjection(float width, float height)
 	{
-		m_AspectRatio = width / height > 0 ? width / height : 0.0001f;
-
-		RecalculateProjection();
-	}
-
-	void CameraRenderer::ResizeView(float width, float height)
-	{
 		float lWidth = width < 1 ? 1 : width;
 		float lHeight = height < 1 ? 1 : height;
 
-		SetProjection(lWidth, lHeight);
+		m_AspectRatio = lWidth / lHeight;
+
+		RecalculateProjection();
 	}
 
 	void CameraRenderer::SetShaderMatrices(Ref<Shader> shader, Transform* position)

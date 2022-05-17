@@ -173,6 +173,7 @@
     <ClInclude Include="Wyvern\Core\Math\Mathf.h" />
     <ClInclude Include="Wyvern\Core\Math\Matrix4x4.h" />
     <ClInclude Include="Wyvern\Core\Math\Vector.h" />
+    <ClInclude Include="Wyvern\Core\Math\VectorInt.h" />
     <ClInclude Include="Wyvern\Core\Physics\Collision2D.h" />
     <ClInclude Include="Wyvern\Core\Physics\CollisionSolver2D.h" />
     <ClInclude Include="Wyvern\Core\Physics\Impulse2D.h" />
@@ -231,6 +232,8 @@
     <ClCompile Include="Wyvern\Core\Graphics\Sprite.cpp" />
     <ClCompile Include="Wyvern\Core\Graphics\Texture2D.cpp" />
     <ClCompile Include="Wyvern\Core\Input\Input.cpp" />
+    <ClCompile Include="Wyvern\Core\Math\Vector.cpp" />
+    <ClCompile Include="Wyvern\Core\Math\VectorInt.cpp" />
     <ClCompile Include="Wyvern\Core\Physics\Impulse2D.cpp" />
     <ClCompile Include="Wyvern\Core\Physics\Physics2DWizard.cpp" />
     <ClCompile Include="Wyvern\Core\Physics\SmoothPosition2D.cpp" />

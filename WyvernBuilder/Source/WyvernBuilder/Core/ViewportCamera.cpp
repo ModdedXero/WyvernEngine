@@ -33,9 +33,4 @@ namespace Wyvern
 			}
 		}
 	}
-
-	void ViewportCamera::Resize(float width, float height)
-	{
-		ResizeView(width, height);
-	}
 }
