@@ -20,6 +20,7 @@ namespace Wyvern::Utils
 
 		std::string Filename() const { return m_CurrentPath.filename().string(); }
 		bool IsDirectory() const { return std::filesystem::is_directory(m_CurrentPath);; }
+		bool HasDirectoryChildren() const;
 
 		std::string ToString() const { return m_CurrentPath.string(); }
 

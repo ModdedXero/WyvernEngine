@@ -4,6 +4,35 @@ using namespace Wyvern::Utils;
 
 namespace Wyvern
 {
+	namespace Utils
+	{
+		static void DrawDirectoryTree(Utils::FileSystem& currentDir, Utils::FileSystem directory)
+		{
+			for (Utils::FileSystem path : directory)
+			{
+				if (!path.IsDirectory()) continue;
+				bool hasChildren = path.HasDirectoryChildren();
+
+				std::string pathID = path;
+
+				ImGuiTreeNodeFlags flags = ImGuiTreeNodeFlags_SpanAvailWidth;
+				flags |= (hasChildren) ? ImGuiTreeNodeFlags_OpenOnArrow : ImGuiTreeNodeFlags_Leaf;
+				bool open = ImGui::TreeNodeEx((void*)pathID.c_str(), flags, path.Filename().c_str());
+
+				if (ImGui::IsItemClicked())
+				{
+					currentDir = path;
+				}
+
+				if (open)
+				{
+					if (hasChildren) DrawDirectoryTree(currentDir, path);
+					ImGui::TreePop();
+				}
+			}
+		}
+	}
+
 	void ContentBrowserWindow::OnAttach()
 	{
 		m_CurrentDirectory = Application::GetAssetsPath();
@@ -17,12 +46,33 @@ namespace Wyvern
 		static float thumbnailSize = 90.0f;
 		float cellSize = thumbnailSize + padding;
 
+		ImGui::Columns(2);
+
+		static float initial_spacing = 150.0f; if (initial_spacing) ImGui::SetColumnWidth(0, initial_spacing), initial_spacing = 0;
+		
+		ImGuiTreeNodeFlags flags = ImGuiTreeNodeFlags_DefaultOpen | ImGuiTreeNodeFlags_OpenOnArrow;
+		bool open = ImGui::TreeNodeEx((void*)Application::GetAssetsPath().Filename().c_str(), flags, Application::GetAssetsPath().Filename().c_str());
+
+		if (ImGui::IsItemClicked())
+		{
+			m_CurrentDirectory = Application::GetAssetsPath();
+		}
+
+		if (open)
+		{
+			Utils::DrawDirectoryTree(m_CurrentDirectory, Application::GetAssetsPath());
+			ImGui::TreePop();
+		}
+
+		ImGui::NextColumn();
+		ImGui::BeginChild("Content");
+
 		float panelWidth = ImGui::GetContentRegionAvail().x;
 		int columnCount = (int)(panelWidth / cellSize);
 		if (columnCount < 1)
 			columnCount = 1;
 
-		ImGui::Columns(columnCount, 0, false);
+		ImGui::Columns(columnCount, "1", false);
 
 		for (FileSystem dir : m_CurrentDirectory)
 		{
@@ -56,6 +106,8 @@ namespace Wyvern
 
 			ImGui::NextColumn();
 		}
+
+		ImGui::EndChild();
 
 		//ImGui::Columns(1);
 

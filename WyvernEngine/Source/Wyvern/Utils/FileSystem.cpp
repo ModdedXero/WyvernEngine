@@ -55,6 +55,17 @@ namespace Wyvern::Utils
 		out.close();
 	}
 
+	bool FileSystem::HasDirectoryChildren() const
+	{
+		Utils::FileSystem temp = *this;
+		for (Utils::FileSystem child : temp)
+		{
+			if (child.IsDirectory()) return true;
+		}
+
+		return false;
+	}
+
 	FileSystem FileSystem::RelativePath(const FileSystem& path, const FileSystem& base)
 	{
 		FileSystem fs = std::filesystem::relative(path.m_CurrentPath, base.m_CurrentPath);
