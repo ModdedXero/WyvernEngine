@@ -18,10 +18,9 @@ namespace Wyvern
 
 	void BuilderLayer::OnAttach()
 	{
-        SetActiveScene(CreateRef<Scene>());
+        SetActiveScene(Project::LoadStartScene());
 
-        s_ActiveScene->CreateWizard<Physics2DWizard>();
-
+#ifdef WV_DEBUG
         ImGui::SetCurrentContext(Application::Get().GetImGuiLayer()->GetImGuiContext());
 
         s_ViewportCamera = new ViewportCamera();
@@ -30,6 +29,7 @@ namespace Wyvern
         OpenHierarchyWindow();
         OpenPropertiesWindow();
         OpenContentBrowserWindow();
+#endif
 	}
 
 	void BuilderLayer::OnDetach()
@@ -48,13 +48,14 @@ namespace Wyvern
         }
 
         s_ActiveScene->OnRuntimeUpdate();
-        s_ActiveScene->OnEditorUpdate(s_ViewportCamera, s_ViewportCamera->transform);
-        Scene::FlushScene();
+        if (s_ViewportCamera) s_ActiveScene->OnEditorUpdate(s_ViewportCamera, s_ViewportCamera->transform);
 
         for (EditorWindow* window : s_Windows)
         {
             window->OnPostRender();
         }
+
+        Scene::FlushScene();
 	}
 
     void BuilderLayer::OnFixedUpdate()
@@ -115,8 +116,11 @@ namespace Wyvern
                     SaveScene();
                 }
 
-                if (ImGui::MenuItem("Exit")) 
+                if (ImGui::MenuItem("Exit"))
+                {
+                    Project::SaveProject();
                     Application::Get().Close();
+                }
                     
                 ImGui::EndMenu();
             }
@@ -141,6 +145,17 @@ namespace Wyvern
                         SetActiveScene(s_CachedScene);
                         s_ActiveScene->SetSceneState(SceneState::Edit);
                     }
+                }
+
+                ImGui::EndMenu();
+            }
+
+            if (ImGui::BeginMenu("Project"))
+            {
+                if (ImGui::MenuItem("Set Start Scene"))
+                {
+                    if (s_ActiveScene->GetSceneState() == SceneState::Edit)
+                        Project::SetStartScene(s_ActiveScene);
                 }
 
                 ImGui::EndMenu();
@@ -219,7 +234,7 @@ namespace Wyvern
         }
     }
 
-    void BuilderLayer::LoadScene(std::string filePath)
+    void BuilderLayer::LoadScene(Utils::FileSystem filePath)
     {
         Ref<Scene> loadScene = CreateRef<Scene>();
         Serializer::Deserialize(loadScene, filePath);

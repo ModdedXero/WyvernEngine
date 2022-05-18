@@ -150,6 +150,7 @@
     <ClInclude Include="Wyvern\Core\Application\ApplicationDomain.h" />
     <ClInclude Include="Wyvern\Core\Application\Layer.h" />
     <ClInclude Include="Wyvern\Core\Application\LayerStack.h" />
+    <ClInclude Include="Wyvern\Core\Application\Project.h" />
     <ClInclude Include="Wyvern\Core\AssetManager.h" />
     <ClInclude Include="Wyvern\Core\Base.h" />
     <ClInclude Include="Wyvern\Core\Components\Button.h" />
@@ -225,6 +226,7 @@
     <ClCompile Include="Wyvern\Core\Application\ApplicationDomain.cpp" />
     <ClCompile Include="Wyvern\Core\Application\Layer.cpp" />
     <ClCompile Include="Wyvern\Core\Application\LayerStack.cpp" />
+    <ClCompile Include="Wyvern\Core\Application\Project.cpp" />
     <ClCompile Include="Wyvern\Core\AssetManager.cpp" />
     <ClCompile Include="Wyvern\Core\Components\Transform.cpp" />
     <ClCompile Include="Wyvern\Core\Constants.cpp" />

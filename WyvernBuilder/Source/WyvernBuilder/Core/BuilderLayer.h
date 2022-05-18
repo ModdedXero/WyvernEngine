@@ -34,7 +34,7 @@ namespace Wyvern
 		static void SetSelectedContext(Entity* ent) { s_SelectedContext = ent; }
 
 		static void SaveScene();
-		static void LoadScene(std::string filePath);
+		static void LoadScene(Utils::FileSystem filePath);
 	private:
 		static Ref<Scene> s_ActiveScene;
 		static Ref<Scene> s_CachedScene;

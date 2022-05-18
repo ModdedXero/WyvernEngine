@@ -120,7 +120,7 @@ namespace Wyvern
 		return true;
 	}
 
-	bool Serializer::Deserialize(Ref<Scene> scene, const std::string& filepath)
+	bool Serializer::Deserialize(Ref<Scene> scene, const Utils::FileSystem& filepath)
 	{
 		std::ifstream stream(filepath);
 		std::stringstream strStream;
@@ -131,6 +131,7 @@ namespace Wyvern
 		if (!info.in["Scene"])
 			return false;
 
+		scene->m_ScenePath = filepath;
 		return Deserialize(scene, info);
 	}
 

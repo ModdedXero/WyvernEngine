@@ -1,6 +1,8 @@
 #include "wvpch.h"
 #include "Application.h"
 
+#include "Project.h"
+
 #include <Wyvern/Core/Timestep.h>
 #include <Wyvern/Renderer/Renderer2D.h>
 
@@ -35,6 +37,8 @@ namespace Wyvern
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);
 
+		Project::LoadProject();
+
 		DEBUG_CORE("Wyvern Engine Started");
 	}
 
@@ -66,10 +70,12 @@ namespace Wyvern
 				m_FixedLoop = Time::now();
 			}
 
+#ifdef WV_DEBUG
 			m_ImGuiLayer->Begin();
 			for (Layer* layer : m_LayerStack)
 				layer->OnUIRender();
 			m_ImGuiLayer->End();
+#endif
 
 			m_Window->OnRender();
 		}

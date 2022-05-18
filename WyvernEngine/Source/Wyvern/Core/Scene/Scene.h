@@ -5,6 +5,7 @@
 #include "WizardStack.h"
 #include "Entity.h"
 
+#include <Wyvern/Utils/FileSystem.h>
 #include <Wyvern/Events/Event.h>
 #include <Wyvern/Core/Debug.h>
 #include <Wyvern/Renderer/CameraRenderer.h>
@@ -32,6 +33,7 @@ namespace Wyvern
 		template <class... ComponentTypes>
 		friend struct EntityList;
 		friend class Serializer;
+		friend class Project;
 	public:
 		Scene();
 		~Scene();
@@ -92,6 +94,7 @@ namespace Wyvern
 		inline std::vector<int> FindComponentIDs();
 
 	private:
+		Utils::FileSystem m_ScenePath;
 		SceneState m_SceneState = SceneState::Edit;
 
 		std::vector<Entity*> m_Entities;

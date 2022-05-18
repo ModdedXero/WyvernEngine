@@ -264,6 +264,7 @@
     </ClInclude>
     <ClInclude Include="wvpch.h" />
     <ClInclude Include="Wyvern\Core\Math\VectorInt.h" />
+    <ClInclude Include="Wyvern\Core\Application\Project.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Vendor\ImGuizmo\ImGuizmo.cpp">
@@ -377,5 +378,6 @@
     <ClCompile Include="wvpch.cpp" />
     <ClCompile Include="Wyvern\Core\Math\VectorInt.cpp" />
     <ClCompile Include="Wyvern\Core\Math\Vector.cpp" />
+    <ClCompile Include="Wyvern\Core\Application\Project.cpp" />
   </ItemGroup>
 </Project>

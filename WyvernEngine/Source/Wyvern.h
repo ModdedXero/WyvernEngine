@@ -6,6 +6,7 @@
 // Application
 #include <Wyvern/Core/Application/Layer.h>
 #include <Wyvern/Core/Application/Application.h>
+#include <Wyvern/Core/Application/Project.h>
 
 // Core
 #include <Wyvern/Core/Base.h>
