@@ -15,6 +15,8 @@ public:
 			specification.ResourcesPath / "/shader/standardshader.frag", "", "StandardShader");
 		AssetManager::LoadShader(specification.ResourcesPath / "/shader/fontshader.vert",
 			specification.ResourcesPath / "/shader/fontshader.frag", "", "FontShader");
+		AssetManager::LoadShader(specification.ResourcesPath / "/shader/screenshader.vert",
+			specification.ResourcesPath / "/shader/screenshader.frag", "", "ScreenShader");
 
 		AssetManager::LoadMaterial("StandardShader", "StandardMaterial");
 

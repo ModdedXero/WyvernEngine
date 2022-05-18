@@ -33,6 +33,7 @@ namespace Wyvern
 		m_FixedLoop = Time::now();
 
 		Renderer2D::OnAttach();
+		Renderer2D::GetFramebuffer()->Resize(Vector2Int(specification.WindowWidth, specification.WindowHeight));
 
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);
@@ -109,6 +110,10 @@ namespace Wyvern
 
 		m_Minimized = false;
 		glfwSetWindowSize(m_Window->GetNativeWindow(), m_Window->GetWidth(), m_Window->GetHeight());
+
+#ifndef WV_DEBUG
+		Renderer2D::GetFramebuffer()->Resize(Vector2Int(m_Window->GetWidth(), m_Window->GetHeight()));
+#endif
 
 		return true;
 	}

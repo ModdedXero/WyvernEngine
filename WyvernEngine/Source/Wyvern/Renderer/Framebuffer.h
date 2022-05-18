@@ -59,6 +59,7 @@ namespace Wyvern::Renderer
 
 		void Bind();
 		void Unbind();
+		void BindColorAttachmentTexture(unsigned int index = 0);
 
 		unsigned int GetColorAttachmentRendererID(unsigned int index = 0) const 
 		{

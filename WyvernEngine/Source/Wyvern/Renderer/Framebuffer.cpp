@@ -226,4 +226,9 @@ namespace Wyvern::Renderer
 	{
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	}
+
+	void Framebuffer::BindColorAttachmentTexture(unsigned int index)
+	{
+		glBindTexture(GL_TEXTURE_2D, GetColorAttachmentRendererID(index));
+	}
 }

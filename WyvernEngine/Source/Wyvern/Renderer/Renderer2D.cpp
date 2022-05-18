@@ -28,6 +28,9 @@ namespace Wyvern::Renderer
 		GLuint VBO = 0;
 		GLuint IBO = 0;
 
+		GLuint SVAO = 0;
+		GLuint SVBO = 0;
+
 		Vertex* QuadBuffer = nullptr;
 		Vertex* QuadBufferPtr = nullptr;
 		std::multimap<float, Ref<VertexArray>> VertexData;
@@ -117,7 +120,34 @@ namespace Wyvern::Renderer
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
+		// Screen Renderer
+
+		float quadVertices[] = { // vertex attributes for a quad that fills the entire screen in Normalized Device Coordinates.
+	// positions   // texCoords
+	-1.0f,  1.0f,  0.0f, 1.0f,
+	-1.0f, -1.0f,  0.0f, 0.0f,
+	 1.0f, -1.0f,  1.0f, 0.0f,
+
+	-1.0f,  1.0f,  0.0f, 1.0f,
+	 1.0f, -1.0f,  1.0f, 0.0f,
+	 1.0f,  1.0f,  1.0f, 1.0f
+		};
+
+		glGenVertexArrays(1, &s_Data.SVAO);
+		glGenBuffers(1, &s_Data.SVBO);
+		glBindVertexArray(s_Data.SVAO);
+		glBindBuffer(GL_ARRAY_BUFFER, s_Data.SVBO);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(quadVertices), &quadVertices, GL_STATIC_DRAW);
+		glEnableVertexAttribArray(0);
+		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
+		glEnableVertexAttribArray(1);
+		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
+
+		glBindVertexArray(0);
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
+
 		// Setup default texture
+
 		glCreateTextures(GL_TEXTURE_2D, 1, &s_Data.WhiteTexture);
 		glBindTexture(GL_TEXTURE_2D, s_Data.WhiteTexture);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
@@ -200,6 +230,7 @@ namespace Wyvern::Renderer
 		s_Framebuffer->Invalidate();
 		s_Framebuffer->Bind();
 		s_Framebuffer->ClearColorAttachment(1, -1);
+		AssetManager::GetShader("ScreenShader")->SetInteger("screenTexture", 0);
 
 		s_Data.Camera = cameraRenderer;
 		s_Data.CameraPosition = cameraPosition;
@@ -240,6 +271,16 @@ namespace Wyvern::Renderer
 
 		s_Data.VertexData.clear();
 		s_Framebuffer->Unbind();
+
+#ifndef WV_DEBUG
+		glDisable(GL_DEPTH_TEST);
+		glClear(GL_COLOR_BUFFER_BIT);
+		AssetManager::GetShader("ScreenShader")->Use();
+		glBindVertexArray(s_Data.SVAO);
+		s_Framebuffer->BindColorAttachmentTexture();
+		glDrawArrays(GL_TRIANGLES, 0, 6);
+		glBindVertexArray(0);
+#endif
 	}
 
 	void Renderer2D::BeginBatch()
