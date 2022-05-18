@@ -113,6 +113,10 @@ namespace Wyvern::Renderer
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, s_Data.IBO);
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
+		glBindVertexArray(0);
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
 		// Setup default texture
 		glCreateTextures(GL_TEXTURE_2D, 1, &s_Data.WhiteTexture);
 		glBindTexture(GL_TEXTURE_2D, s_Data.WhiteTexture);
@@ -240,6 +244,7 @@ namespace Wyvern::Renderer
 
 	void Renderer2D::BeginBatch()
 	{
+		glClear(GL_COLOR_BUFFER_BIT);
 		s_Data.QuadBufferPtr = s_Data.QuadBuffer;
 	}
 
@@ -257,6 +262,9 @@ namespace Wyvern::Renderer
 
 		glBindVertexArray(s_Data.VAO);
 		glDrawElements(GL_TRIANGLES, s_Data.IndexCount, GL_UNSIGNED_INT, nullptr);
+
+		glBindVertexArray(0);
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 		s_Data.IndexCount = 0;
 	}

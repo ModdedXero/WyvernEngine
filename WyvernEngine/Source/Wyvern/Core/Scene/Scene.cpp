@@ -174,6 +174,14 @@ namespace Wyvern
 		s_ComponentsToDelete.clear();
 	}
 
+	void Scene::SetActiveScene(Ref<Scene> scene)
+	{
+		s_ActiveScene = scene;
+#ifndef WV_DEBUG
+		s_ActiveScene->m_SceneState = SceneState::Play;
+#endif
+	}
+
 	Entity* Scene::CreateEntity(Ref<Scene> scene, std::string name)
 	{
 		if (scene->m_Entities.size() >= MaxEntities)

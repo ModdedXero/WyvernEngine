@@ -58,7 +58,7 @@ namespace Wyvern
 		static void FlushScene();
 
 		static Ref<Scene> GetActiveScene() { return s_ActiveScene; }
-		static void SetActiveScene(Ref<Scene> scene) { s_ActiveScene = scene; }
+		static void SetActiveScene(Ref<Scene> scene);
 
 	public:
 		static Entity* CreateEntity(Ref<Scene> scene, std::string name = "Entity");
