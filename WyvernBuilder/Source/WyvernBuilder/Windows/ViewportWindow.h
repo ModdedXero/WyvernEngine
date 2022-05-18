@@ -16,8 +16,6 @@ namespace Wyvern
 
 		virtual void OnAttach() override;
 		virtual void OnGUI() override;
-		virtual void OnPreRender() override;
-		virtual void OnPostRender() override;
 		virtual void OnEvent(Events::Event& e) override;
 		
 	private:

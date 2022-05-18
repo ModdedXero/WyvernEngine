@@ -23,6 +23,15 @@ namespace Wyvern
 		unsigned int textureID = m_Framebuffer->GetColorAttachmentRendererID();
 		ImGui::Image((void*)textureID, ImVec2{ (float)m_Framebuffer->GetSpecification().Width, (float)m_Framebuffer->GetSpecification().Height }, ImVec2{0, 1}, ImVec2{1, 0});
 
+		m_Framebuffer->Bind();
+		if (IsHovered())
+		{
+			int index = m_Framebuffer->ReadPixel(1, GetCursorPosition().x, GetCursorPosition().y);
+			Entity* ent = Scene::GetEntityAtIndex(Scene::GetActiveScene(), index);
+			m_HoverEntity = ent;
+		}
+		m_Framebuffer->Unbind();
+
 		if (ImGui::BeginDragDropTarget())
 		{
 			if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("CONTENT_BROWSER_ITEM"))
@@ -89,24 +98,6 @@ namespace Wyvern
 				transformComp->scale = scale;
 			}
 		}
-	}
-
-	void ViewportWindow::OnPreRender()
-	{
-		m_Framebuffer->Bind();
-		m_Framebuffer->ClearColorAttachment(1, -1);
-		
-	}
-
-	void ViewportWindow::OnPostRender()
-	{
-		if (IsHovered())
-		{
-			int index = m_Framebuffer->ReadPixel(1, GetCursorPosition().x, GetCursorPosition().y);
-			Entity* ent = Scene::GetEntityAtIndex(Scene::GetActiveScene(), index);
-			m_HoverEntity = ent;
-		}
-		m_Framebuffer->Unbind();
 	}
 
 	void ViewportWindow::OnEvent(Events::Event& e)

@@ -42,18 +42,8 @@ namespace Wyvern
 
 	void BuilderLayer::OnUpdate()
 	{
-        for (EditorWindow* window : s_Windows)
-        {
-            window->OnPreRender();
-        }
-
         s_ActiveScene->OnRuntimeUpdate();
         if (s_ViewportCamera) s_ActiveScene->OnEditorUpdate(s_ViewportCamera, s_ViewportCamera->transform);
-
-        for (EditorWindow* window : s_Windows)
-        {
-            window->OnPostRender();
-        }
 
         Scene::FlushScene();
 	}

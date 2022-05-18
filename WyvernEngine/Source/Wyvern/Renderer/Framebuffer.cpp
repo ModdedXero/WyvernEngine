@@ -219,7 +219,6 @@ namespace Wyvern::Renderer
 
 	void Framebuffer::Bind()
 	{
-		Invalidate();
 		glBindFramebuffer(GL_FRAMEBUFFER, m_RendererID);
 	}
 

@@ -193,6 +193,10 @@ namespace Wyvern::Renderer
 	}
 	void Renderer2D::BeginScene(CameraRenderer* cameraRenderer, Transform* cameraPosition)
 	{
+		s_Framebuffer->Invalidate();
+		s_Framebuffer->Bind();
+		s_Framebuffer->ClearColorAttachment(1, -1);
+
 		s_Data.Camera = cameraRenderer;
 		s_Data.CameraPosition = cameraPosition;
 		s_Data.Camera->Resize(s_Framebuffer->GetSpecification().Width, s_Framebuffer->GetSpecification().Height);
@@ -231,6 +235,7 @@ namespace Wyvern::Renderer
 		Flush();
 
 		s_Data.VertexData.clear();
+		s_Framebuffer->Unbind();
 	}
 
 	void Renderer2D::BeginBatch()
