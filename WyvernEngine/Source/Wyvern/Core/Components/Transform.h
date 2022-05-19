@@ -21,8 +21,11 @@ namespace Wyvern
 		Matrix4x4 GetTransform();
 
 		Vector3 Forward();
+		Vector3 Back();
 		Vector3 Right();
+		Vector3 Left();
 		Vector3 Up();
+		Vector3 Down();
 
 		WV_SERIALIZE_COMPONENT(Transform)
 		WV_SERIALIZE_VARIABLE(Vector3, position)

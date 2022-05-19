@@ -13,8 +13,10 @@ namespace Wyvern
 
 	void ViewportCamera::MoveCamera()
 	{
-		if (Input::IsMouseButton(MouseCode::MOUSE_BUTTON_RIGHT))
+		if (Input::IsKey(KeyCode::LeftShift))
 		{
+			ImGui::GetIO().MousePos = { m_InitialMousePosition.x, m_InitialMousePosition.y };
+
 			glfwSetInputMode(Application::Get().GetWindow().GetNativeWindow(), GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
 			const Vector2& mouse = Input::MousePosition();
@@ -32,13 +34,13 @@ namespace Wyvern
 
 			if (Input::IsKey(KeyCode::S))
 			{
-				transform->position -= transform->Forward() * 0.5f;
+				transform->position += transform->Back() * 0.5f;
 			}
 
 
 			if (Input::IsKey(KeyCode::A))
 			{
-				transform->position -= transform->Right() * 0.5f;
+				transform->position += transform->Left() * 0.5f;
 			}
 
 

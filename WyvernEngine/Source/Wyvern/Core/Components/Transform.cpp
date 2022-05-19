@@ -57,13 +57,27 @@ namespace Wyvern
 		return (glm::vec3)glm::rotate(GetOrientation(rotation), glm::vec3(0.0f, 0.0f, -1.0f));
 	}
 
+	Vector3 Transform::Back()
+	{
+		return (glm::vec3)glm::rotate(GetOrientation(rotation), glm::vec3(0.0f, 0.0f, 1.0f));
+	}
+
 	Vector3 Transform::Right()
 	{
 		return (glm::vec3)glm::rotate(GetOrientation(rotation), glm::vec3(1.0f, 0.0f, 0.0f));
 	}
 
+	Vector3 Transform::Left()
+	{
+		return (glm::vec3)glm::rotate(GetOrientation(rotation), glm::vec3(-1.0f, 0.0f, 0.0f));
+	}
+
 	Vector3 Transform::Up()
 	{
 		return (glm::vec3)glm::rotate(GetOrientation(rotation), glm::vec3(0.0f, 1.0f, 0.0f));
+	}
+	Vector3 Transform::Down()
+	{
+		return (glm::vec3)glm::rotate(GetOrientation(rotation), glm::vec3(0.0f, -1.0f, 0.0f));
 	}
 }
