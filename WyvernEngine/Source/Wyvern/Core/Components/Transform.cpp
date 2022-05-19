@@ -3,6 +3,9 @@
 
 #include <Wyvern/Core/Scene/Entity.h>
 
+#define GLM_ENABLE_EXPERIMENTAL
+#include <glm/gtx/quaternion.hpp>
+
 namespace Wyvern
 {
 	Vector3 Transform::GlobalPosition()
@@ -44,16 +47,23 @@ namespace Wyvern
 		return trans;
 	}
 
-	Matrix4x4 Transform::GetGlobalTransform()
+	static glm::quat GetOrientation(const Vector3& rotation)
 	{
-		if (GetEntity()->GetParent())
-		{
-			Matrix4x4 trans = Matrix4x4::Translate(GetEntity()->GetParent()->GetTransform()->GlobalPosition() + position)
-				* Matrix4x4::Rotate(GetEntity()->GetParent()->GetTransform()->GlobalRotation() + rotation)
-				* Matrix4x4::Scale(GetEntity()->GetParent()->GetTransform()->GlobalScale() * scale);
-			return trans;
-		}
+		return glm::quat(glm::radians(glm::vec3(-rotation.x, rotation.y, 0.0f)));
+	}
 
-		return GetTransform();
+	Vector3 Transform::Forward()
+	{
+		return (glm::vec3)glm::rotate(GetOrientation(rotation), glm::vec3(0.0f, 0.0f, -1.0f));
+	}
+
+	Vector3 Transform::Right()
+	{
+		return (glm::vec3)glm::rotate(GetOrientation(rotation), glm::vec3(1.0f, 0.0f, 0.0f));
+	}
+
+	Vector3 Transform::Up()
+	{
+		return (glm::vec3)glm::rotate(GetOrientation(rotation), glm::vec3(0.0f, 1.0f, 0.0f));
 	}
 }

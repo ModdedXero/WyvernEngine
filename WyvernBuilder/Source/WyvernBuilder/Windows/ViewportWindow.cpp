@@ -107,6 +107,7 @@ namespace Wyvern
 		dispatch.Distpatch<Events::KeyPressedEvent>(BIND_EVENT_FN(OnKeyPressedEvent));
 		dispatch.Distpatch<Events::KeyReleasedEvent>(BIND_EVENT_FN(OnKeyReleasedEvent));
 		dispatch.Distpatch<Events::MouseButtonPressedEvent>(BIND_EVENT_FN(OnMouseButtonPressed));
+		dispatch.Distpatch<Events::MouseScrolledEvent>(BIND_EVENT_FN(OnMouseScrolledEvent));
 	}
 
 	bool ViewportWindow::OnKeyPressedEvent(Events::KeyPressedEvent& e)
@@ -156,6 +157,13 @@ namespace Wyvern
 			if (IsHovered() && !ImGuizmo::IsOver()) 
 				BuilderLayer::SetSelectedContext(m_HoverEntity);
 		}
+
+		return true;
+	}
+
+	bool ViewportWindow::OnMouseScrolledEvent(Events::MouseScrolledEvent& e)
+	{
+		BuilderLayer::GetViewportCamera()->OnScroll(e);
 
 		return true;
 	}

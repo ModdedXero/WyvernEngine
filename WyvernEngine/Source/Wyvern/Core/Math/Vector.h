@@ -425,6 +425,13 @@ namespace Wyvern
 			this->z = vec.z;
 		}
 
+		Vector3(glm::vec<3, float, glm::packed_highp> vec)
+		{
+			this->x = vec.x;
+			this->y = vec.y;
+			this->z = vec.z;
+		}
+
 		operator glm::vec3() const;
 
 		void operator =(const glm::vec3& other)

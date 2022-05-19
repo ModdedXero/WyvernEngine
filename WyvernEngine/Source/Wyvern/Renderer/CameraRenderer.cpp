@@ -33,6 +33,7 @@ namespace Wyvern::Renderer
 		float lHeight = height < 1 ? 1 : height;
 
 		m_AspectRatio = lWidth / lHeight;
+		m_CameraSize = { lWidth, lHeight };
 
 		RecalculateProjection();
 	}

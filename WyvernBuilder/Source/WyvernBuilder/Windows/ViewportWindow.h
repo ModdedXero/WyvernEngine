@@ -31,5 +31,6 @@ namespace Wyvern
 		bool OnKeyPressedEvent(Events::KeyPressedEvent& e);
 		bool OnKeyReleasedEvent(Events::KeyReleasedEvent& e);
 		bool OnMouseButtonPressed(Events::MouseButtonPressedEvent& e);
+		bool OnMouseScrolledEvent(Events::MouseScrolledEvent& e);
 	};
 }

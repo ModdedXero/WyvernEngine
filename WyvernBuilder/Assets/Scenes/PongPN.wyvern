@@ -129,7 +129,7 @@ Entities:
         rotation: [0, 0, 0]
         scale: [0.300000012, 0.300000012, 0.430000007]
       SpriteRenderer:
-        sprite: [.\wyvernbuilder\sandboxscripts\Ball.png, [0, 0], [1, 0], [1, 1], [0, 1]]
+        sprite: [./assets\Sprites\Ball.png, [0, 0], [1, 0], [1, 1], [0, 1]]
         color: [1, 1, 1, 1]
       RigidBody2D:
         mass: 0.100000001
@@ -150,7 +150,7 @@ Entities:
         scale: [1, 1, 1]
       Camera:
         cameraMode: 1
-        orthoSize: 6
+        orthoSize: 5
         fieldOfView: 60
         clipNear: 0.300000012
         clipFar: 100

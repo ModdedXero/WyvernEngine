@@ -19,7 +19,10 @@ namespace Wyvern
 		Vector3 GlobalScale();
 
 		Matrix4x4 GetTransform();
-		Matrix4x4 GetGlobalTransform();
+
+		Vector3 Forward();
+		Vector3 Right();
+		Vector3 Up();
 
 		WV_SERIALIZE_COMPONENT(Transform)
 		WV_SERIALIZE_VARIABLE(Vector3, position)

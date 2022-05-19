@@ -85,6 +85,14 @@ namespace Wyvern::Display
 				Events::MouseButtonPressedEvent event(button, action);
 				data.EventCallback(event);
 			});
+
+		glfwSetScrollCallback(m_Window, [](GLFWwindow* window, double xoffset, double yoffset)
+			{
+				WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+
+				Events::MouseScrolledEvent event(yoffset);
+				data.EventCallback(event);
+			});
 	}
 
 	void Window::OnUpdate()

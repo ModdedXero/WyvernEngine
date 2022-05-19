@@ -24,6 +24,7 @@ namespace Wyvern::Events
 			ss << "MouseMoved Event: (" << m_xPos << ", " << m_yPos << ")";
 			return ss.str();
 		}
+
 	private:
 		int m_xPos, m_yPos;
 	};
@@ -46,7 +47,30 @@ namespace Wyvern::Events
 			ss << "MouseButtonPressed Event: " << m_Keycode << " Pressed";
 			return ss.str();
 		}
+
 	private:
 		int m_Keycode, m_State;
+	};
+
+	class MouseScrolledEvent : public Event
+	{
+	public:
+		MouseScrolledEvent(int direction)
+			: m_Direction(direction)
+		{}
+
+		inline int GetDirection() const { return m_Direction; }
+
+		EVENT_CLASS_TYPE(MouseScrolled);
+
+		std::string ToString() const override
+		{
+			std::stringstream ss;
+			ss << "MouseScrolled Event: " << (m_Direction == 1 ? "Up" : "Down") << std::endl;
+			return ss.str();
+		}
+
+	private:
+		int m_Direction;
 	};
 }

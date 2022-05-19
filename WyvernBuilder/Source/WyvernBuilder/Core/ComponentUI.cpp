@@ -56,7 +56,7 @@ namespace Wyvern
 			sprite = Sprite::CreateFromCoords(Texture2D::Create(*target), { 0,0 }, { 1,1 }, { 32,32 });
 		}
 
-		if (ImGui::IsMouseDoubleClicked(0))
+		if (ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0))
 		{
 			sprite = nullptr;
 		}

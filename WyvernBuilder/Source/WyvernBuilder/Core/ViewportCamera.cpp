@@ -1,36 +1,63 @@
 #include "ViewportCamera.h"
 
+#include <glm/glm.hpp>
+
 namespace Wyvern
 {
 	ViewportCamera::ViewportCamera()
 	{
 		transform = new Transform();
-		transform->position.z = 0.5f;
+		SetCameraMode(Renderer::CameraMode::Perspective);
+		transform->position.z = 10.0f;
 	}
 
 	void ViewportCamera::MoveCamera()
 	{
 		if (Input::IsMouseButton(MouseCode::MOUSE_BUTTON_RIGHT))
 		{
+			glfwSetInputMode(Application::Get().GetWindow().GetNativeWindow(), GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+
+			const Vector2& mouse = Input::MousePosition();
+			Vector2 delta = (mouse - m_InitialMousePosition) * 0.3f;
+			m_InitialMousePosition = mouse;
+
+			transform->rotation.x -= delta.y;
+			transform->rotation.y -= delta.x;
+
 			if (Input::IsKey(KeyCode::W))
 			{
-				transform->position.y -= cameraSpeed * Timestep::GetDeltaTime();
+				transform->position += transform->Forward() * 0.5f;
 			}
+
 
 			if (Input::IsKey(KeyCode::S))
 			{
-				transform->position.y += cameraSpeed * Timestep::GetDeltaTime();
+				transform->position -= transform->Forward() * 0.5f;
 			}
+
 
 			if (Input::IsKey(KeyCode::A))
 			{
-				transform->position.x -= cameraSpeed * Timestep::GetDeltaTime();
+				transform->position -= transform->Right() * 0.5f;
 			}
+
 
 			if (Input::IsKey(KeyCode::D))
 			{
-				transform->position.x += cameraSpeed * Timestep::GetDeltaTime();
+				transform->position += transform->Right() * 0.5f;
 			}
 		}
+		else
+		{
+			glfwSetInputMode(Application::Get().GetWindow().GetNativeWindow(), GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+		}
+
+		m_InitialMousePosition = Input::MousePosition();
+	}
+
+	void ViewportCamera::OnScroll(Events::MouseScrolledEvent& e)
+	{
+		if (Input::IsMouseButton(MouseCode::MOUSE_BUTTON_RIGHT))
+			transform->position.z -= e.GetDirection();
 	}
 }

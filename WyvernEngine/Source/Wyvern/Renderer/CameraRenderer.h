@@ -23,13 +23,14 @@ namespace Wyvern::Renderer
 		CameraRenderer();
 		~CameraRenderer() {}
 
-		CameraMode GetCameraMode() { return m_CameraMode; }
-		float GetOrthoSize() { return m_OrthoSize; }
-		float GetFieldOfView() { return m_FieldOfView; }
-		float GetClipNear() { return m_ClipNear; }
-		float GetClipFar() { return m_ClipFar; }
-		glm::mat4 GetProjection() { return m_Projection; }
-		glm::mat4 GetView() { return m_View; }
+		CameraMode GetCameraMode() const	{ return m_CameraMode; }
+		float GetOrthoSize() const			{ return m_OrthoSize; }
+		float GetFieldOfView() const		{ return m_FieldOfView; }
+		float GetClipNear() const			{ return m_ClipNear; }
+		float GetClipFar() const			{ return m_ClipFar; }
+		glm::mat4 GetProjection() const		{ return m_Projection; }
+		glm::mat4 GetView() const			{ return m_View; }
+		Vector2 GetCameraSize() const		{ return m_CameraSize; }
 
 		void SetCameraMode(CameraMode mode);
 		void SetProjection(float width, float height);
@@ -49,6 +50,8 @@ namespace Wyvern::Renderer
 
 		glm::mat4 m_View;
 		glm::mat4 m_Projection;
+
+		Vector2 m_CameraSize;
 
 		float m_OrthoSize;
 		float m_FieldOfView;
