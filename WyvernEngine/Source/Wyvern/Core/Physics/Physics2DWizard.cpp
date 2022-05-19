@@ -120,10 +120,10 @@ namespace Wyvern
 		BoxCollider2D* otherCollider,
 		Transform* otherTransform)
 	{
-		return (transform->position.x - collider->size.x < otherTransform->position.x + otherCollider->size.x &&
-			transform->position.x + collider->size.x > otherTransform->position.x - otherCollider->size.x &&
-			transform->position.y - collider->size.y < otherTransform->position.y + otherCollider->size.y &&
-			transform->position.y + collider->size.y > otherTransform->position.y - otherCollider->size.y);
+		return (transform->GlobalPosition().x - collider->size.x < otherTransform->GlobalPosition().x + otherCollider->size.x &&
+			transform->GlobalPosition().x + collider->size.x > otherTransform->GlobalPosition().x - otherCollider->size.x &&
+			transform->GlobalPosition().y - collider->size.y < otherTransform->GlobalPosition().y + otherCollider->size.y &&
+			transform->GlobalPosition().y + collider->size.y > otherTransform->GlobalPosition().y - otherCollider->size.y);
 	}
 
 	bool Physics2DWizard::CheckCollision(
@@ -132,7 +132,7 @@ namespace Wyvern
 		SphereCollider2D* otherCollider,
 		Transform* otherTransform)
 	{
-		Vector2 delta = otherTransform->position - transform->position;
+		Vector2 delta = otherTransform->GlobalPosition() - transform->GlobalPosition();
 		Vector2 closest = Mathf::Clamp(delta, -collider->size, collider->size);
 		Vector2 localPoint = delta - closest;
 
@@ -149,11 +149,11 @@ namespace Wyvern
 			Vector2(0, 1)
 		};
 
-		Vector2 maxA = entity->GetTransform()->position + collider->size;
-		Vector2 minA = entity->GetTransform()->position - collider->size;
+		Vector2 maxA = entity->GetTransform()->GlobalPosition() + collider->size;
+		Vector2 minA = entity->GetTransform()->GlobalPosition() - collider->size;
 
-		Vector2 maxB = otherEnt->GetTransform()->position + otherCollider->size;
-		Vector2 minB = otherEnt->GetTransform()->position - otherCollider->size;
+		Vector2 maxB = otherEnt->GetTransform()->GlobalPosition() + otherCollider->size;
+		Vector2 minB = otherEnt->GetTransform()->GlobalPosition() - otherCollider->size;
 
 		float distances[4] =
 		{
@@ -180,7 +180,7 @@ namespace Wyvern
 
 	Ref<Collision2D> Physics2DWizard::GetCollisionData(Entity* entity, BoxCollider2D* collider, Entity* otherEnt, SphereCollider2D* otherCollider)
 	{
-		Vector2 delta = otherEnt->GetTransform()->position - entity->GetTransform()->position;
+		Vector2 delta = otherEnt->GetTransform()->GlobalPosition() - entity->GetTransform()->GlobalPosition();
 		Vector2 closest = Mathf::Clamp(delta, -collider->size, collider->size);
 		Vector2 localPoint = delta - closest;
 
@@ -194,7 +194,7 @@ namespace Wyvern
 
 	Ref<Collision2D> Physics2DWizard::GetCollisionData(Entity* entity, SphereCollider2D* collider, Entity* otherEnt, BoxCollider2D* otherCollider)
 	{
-		Vector2 delta = entity->GetTransform()->position - otherEnt->GetTransform()->position;
+		Vector2 delta = entity->GetTransform()->GlobalPosition() - otherEnt->GetTransform()->GlobalPosition();
 		Vector2 closest = Mathf::Clamp(delta, -otherCollider->size, otherCollider->size);
 		Vector2 localPoint = delta - closest;
 

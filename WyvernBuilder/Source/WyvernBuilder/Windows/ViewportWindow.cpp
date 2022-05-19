@@ -14,7 +14,7 @@ namespace Wyvern
 
 	void ViewportWindow::OnGUI()
 	{
-		if (IsFocused() && IsHovered())
+		if (IsFocused() && IsHovered() && Scene::GetActiveScene()->GetSceneState() != SceneState::Play)
 			BuilderLayer::GetViewportCamera()->MoveCamera();
 
 		Vector2 windowPanelSize = GetWindowSize();
