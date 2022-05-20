@@ -2,6 +2,8 @@
 
 #include <Wyvern/Core/Math/Math.h>
 #include <Wyvern/Core/Scene/UUID.h>
+#include <Wyvern/Core/Scene/Entity.h>
+#include <Wyvern/Core/Scene/Scene.h>
 #include <Wyvern/Core/Physics/Physics.h>
 #include <Wyvern/Renderer/CameraRenderer.h>
 #include <Wyvern/Utils/FileSystem.h>
@@ -136,6 +138,25 @@ namespace YAML
 	};
 
 	template<>
+	struct convert<Wyvern::Entity>
+	{
+		static YAML::Node encode(const Wyvern::Entity& rhs)
+		{
+			YAML::Node node;
+			node.push_back(rhs.GetUUID());
+			return node;
+		}
+
+		static bool decode(const YAML::Node& node, Wyvern::Entity& rhs)
+		{
+			if (node.as<uint64_t>() == 0) return true;
+
+			rhs = *Wyvern::Scene::CreateEntity(Wyvern::Scene::GetActiveScene(), Wyvern::UUID(node.as<uint64_t>()));
+			return true;
+		}
+	};
+
+	template<>
 	struct convert<Wyvern::Sprite>
 	{
 		static YAML::Node encode(const Wyvern::Sprite& rhs)
@@ -196,4 +217,5 @@ namespace Wyvern
 	YAML::Emitter& operator <<(YAML::Emitter& out, const PhysicsBody& body);
 	YAML::Emitter& operator <<(YAML::Emitter& out, const Renderer::CameraMode& cameraMode);
 	YAML::Emitter& operator <<(YAML::Emitter& out, const Sprite& sprite);
+	YAML::Emitter& operator <<(YAML::Emitter& out, const Entity& entity);
 }

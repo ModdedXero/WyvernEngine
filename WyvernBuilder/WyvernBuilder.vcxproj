@@ -133,6 +133,7 @@
   <ItemGroup>
     <ClInclude Include="Assets\Scripts\PlayerPaddleOne.h" />
     <ClInclude Include="Assets\Scripts\PongBall.h" />
+    <ClInclude Include="Assets\Scripts\ScoreKeeper.h" />
     <ClInclude Include="Source\WyvernBuilder\Core\BuilderLayer.h" />
     <ClInclude Include="Source\WyvernBuilder\Core\ViewportCamera.h" />
     <ClInclude Include="Source\WyvernBuilder\Windows\ContentBrowserWindow.h" />
@@ -143,6 +144,7 @@
   <ItemGroup>
     <ClCompile Include="Assets\Scripts\PlayerPaddleOne.cpp" />
     <ClCompile Include="Assets\Scripts\PongBall.cpp" />
+    <ClCompile Include="Assets\Scripts\ScoreKeeper.cpp" />
     <ClCompile Include="Source\WyvernBuilder\Core\BuilderLayer.cpp" />
     <ClCompile Include="Source\WyvernBuilder\Core\ComponentUI.cpp" />
     <ClCompile Include="Source\WyvernBuilder\Core\ViewportCamera.cpp" />

@@ -196,6 +196,8 @@ namespace Wyvern
 
 	Entity* Scene::CreateEntity(Ref<Scene> scene, const UUID& uuid)
 	{
+		if ((uint64_t)uuid == 0) return nullptr;
+
 		Entity* ent = FindEntity(scene, uuid);
 
 		if (!ent)
@@ -209,6 +211,8 @@ namespace Wyvern
 
 	Entity* Scene::FindEntity(Ref<Scene> scene, const UUID& uuid)
 	{
+		if ((uint64_t)uuid == 0) return nullptr;
+
 		for (Entity* entity : scene->m_Entities)
 		{
 			if (entity->m_UUID == uuid)

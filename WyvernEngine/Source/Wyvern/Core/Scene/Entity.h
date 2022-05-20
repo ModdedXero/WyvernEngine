@@ -22,12 +22,13 @@ namespace Wyvern
 		friend class Serializer;
 		template <typename... ComponentTypes>
 		friend class EntityList;
-	protected:
-		Entity()
-			: m_SceneID(0), m_Tag(nullptr), m_Transform(nullptr), m_Parent(nullptr)
-		{}
+
 	public:
-		UUID GetUUID() { return m_UUID; }
+		Entity()
+			: m_SceneID(SceneIndex(-1)), m_Tag(nullptr), m_Transform(nullptr), m_Parent(nullptr), m_UUID(0)
+		{}
+
+		UUID GetUUID() const { return m_UUID; }
 		SceneID GetSceneID() { return m_SceneID; }
 
 		Transform* GetTransform() { return m_Transform; }
@@ -44,6 +45,7 @@ namespace Wyvern
 		std::vector<Entity*> GetChildren() { return m_Children; }
 
 		virtual void OnCollision2D(Ref<Collision2D> collision) {}
+
 	private:
 		UUID m_UUID;
 		SceneID m_SceneID;

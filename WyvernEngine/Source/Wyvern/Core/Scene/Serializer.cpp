@@ -43,8 +43,8 @@ namespace Wyvern
 	void Serializer::Serialize(Entity* entity, SerializeInfo& info)
 	{
 		info.out << YAML::BeginMap;
-		info.out << YAML::Key << "Entity" << YAML::Value << entity->m_UUID;
-		if (entity->m_Parent) info.out << YAML::Key << "Parent" << YAML::Value << entity->m_Parent->m_UUID;
+		info.out << YAML::Key << "Entity" << YAML::Value << (uint64_t)entity->m_UUID;
+		if (entity->m_Parent) info.out << YAML::Key << "Parent" << YAML::Value << (uint64_t)entity->m_Parent->m_UUID;
 
 		info.out << YAML::Key << "Components" << YAML::Value << YAML::BeginMap;
 

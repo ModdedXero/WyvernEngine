@@ -45,6 +45,7 @@
     <ClInclude Include="Source\WyvernBuilder\Windows\ViewportWindow.h">
       <Filter>Source\WyvernBuilder\Windows</Filter>
     </ClInclude>
+    <ClInclude Include="Assets\Scripts\ScoreKeeper.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Assets\Scripts\PlayerPaddleOne.cpp">
@@ -77,5 +78,6 @@
     <ClCompile Include="Source\WyvernBuilder\Windows\ViewportWindow.cpp">
       <Filter>Source\WyvernBuilder\Windows</Filter>
     </ClCompile>
+    <ClCompile Include="Assets\Scripts\ScoreKeeper.cpp" />
   </ItemGroup>
 </Project>

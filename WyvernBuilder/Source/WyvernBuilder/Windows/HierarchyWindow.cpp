@@ -44,7 +44,8 @@ namespace Wyvern
 		flags |= ((ent->GetChildren().size() > 0) ? ImGuiTreeNodeFlags_OpenOnArrow : ImGuiTreeNodeFlags_Leaf);
 		flags |= ImGuiTreeNodeFlags_SpanAvailWidth;
 
-		bool opened = ImGui::TreeNodeEx((void*)ent->GetSceneID(), flags, tag->name.c_str());
+		std::string name = tag->name + std::to_string(Scene::GetSceneIndex(ent->GetSceneID()));
+		bool opened = ImGui::TreeNodeEx((void*)ent->GetSceneID(), flags, name.c_str());
 		if (ImGui::IsItemClicked())
 		{
 			BuilderLayer::SetSelectedContext(ent);

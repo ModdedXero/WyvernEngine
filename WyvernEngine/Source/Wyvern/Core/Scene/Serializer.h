@@ -47,10 +47,10 @@ namespace Wyvern
 		static bool DeserizlizeRuntime(Ref<Scene> scene, const std::string& filepath);
 	};
 
-#define WV_SERIALIZE_COMPONENT(CLASS_NAME)							static inline Component* __RegisterComponent(Ref<Scene> scene, unsigned long long entity) { return Scene::AddComponent<CLASS_NAME>(scene, entity); }\
-																	static inline bool __IsRegistered = ApplicationDomain::RegisterComponent(#CLASS_NAME, __RegisterComponent);\
+#define WV_SERIALIZE_COMPONENT(CLASS_NAME)							static inline Component* __RegisterComponent(Wyvern::Ref<Wyvern::Scene> scene, unsigned long long entity) { return Wyvern::Scene::AddComponent<CLASS_NAME>(scene, entity); }\
+																	static inline bool __IsRegistered = Wyvern::ApplicationDomain::RegisterComponent(#CLASS_NAME, __RegisterComponent);\
 																	virtual void DrawEditor() override;\
-																	virtual void __Serialize(SerializeInfo& info) override\
+																	virtual void __Serialize(Wyvern::SerializeInfo& info) override\
 																	{\
 																		info.out << YAML::Key << #CLASS_NAME;\
 																		info.out << YAML::BeginMap;

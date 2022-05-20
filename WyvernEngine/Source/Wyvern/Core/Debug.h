@@ -37,11 +37,11 @@ namespace Wyvern
 		}
 	};
 
-#define DEBUG_LOG(...)							Debug::Log("Application: ", __VA_ARGS__)
-#define DEBUG_LOG_WARN(...)						Debug::LogWarn("Application: ", __VA_ARGS__)
-#define DEBUG_LOG_ERROR(...)					Debug::LogError("Application: ", __VA_ARGS__)
-
-#define DEBUG_CORE(...)							Debug::Log("Wyvern Engine: ", __VA_ARGS__)
-#define DEBUG_CORE_WARN(...)					Debug::LogWarn("Wyvern Engine: ", __VA_ARGS__)
-#define DEBUG_CORE_ERROR(...)					Debug::LogError("Wyvern Engine: ", __VA_ARGS__)
+#define DEBUG_LOG(...)							Wyvern::Debug::Log("Application: ", __VA_ARGS__)
+#define DEBUG_LOG_WARN(...)						Wyvern::Debug::LogWarn("Application: ", __VA_ARGS__)
+#define DEBUG_LOG_ERROR(...)					Wyvern::Debug::LogError("Application: ", __VA_ARGS__)
+											
+#define DEBUG_CORE(...)							Wyvern::Debug::Log("Wyvern Engine: ", __VA_ARGS__)
+#define DEBUG_CORE_WARN(...)					Wyvern::Debug::LogWarn("Wyvern Engine: ", __VA_ARGS__)
+#define DEBUG_CORE_ERROR(...)					Wyvern::Debug::LogError("Wyvern Engine: ", __VA_ARGS__)
 }

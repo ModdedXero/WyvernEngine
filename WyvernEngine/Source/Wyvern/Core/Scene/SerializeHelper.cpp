@@ -50,4 +50,10 @@ namespace Wyvern
 		out << YAML::EndSeq;
 		return out;
 	}
+
+	YAML::Emitter& operator<<(YAML::Emitter& out, const Entity& entity)
+	{
+		out << (uint64_t)entity.GetUUID();
+		return out;
+	}
 }
