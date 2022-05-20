@@ -43,6 +43,7 @@ namespace Wyvern::Renderer
 
 		CameraRenderer* Camera = nullptr;
 		Transform* CameraPosition = nullptr;
+		Vector4 CameraClearColor = Vector4();
 	};
 
 	struct Character
@@ -225,7 +226,7 @@ namespace Wyvern::Renderer
 
 		delete[] s_Data.QuadBuffer;
 	}
-	void Renderer2D::BeginScene(CameraRenderer* cameraRenderer, Transform* cameraPosition)
+	void Renderer2D::BeginScene(CameraRenderer* cameraRenderer, Transform* cameraPosition, Vector4 clearColor)
 	{
 		s_Framebuffer->Invalidate();
 		s_Framebuffer->Bind();
@@ -234,6 +235,7 @@ namespace Wyvern::Renderer
 
 		s_Data.Camera = cameraRenderer;
 		s_Data.CameraPosition = cameraPosition;
+		s_Data.CameraClearColor = clearColor;
 		s_Data.Camera->Resize(s_Framebuffer->GetSpecification().Width, s_Framebuffer->GetSpecification().Height);
 
 		BeginBatch();
@@ -241,6 +243,8 @@ namespace Wyvern::Renderer
 
 	void Renderer2D::EndScene()
 	{
+		glClearColor(s_Data.CameraClearColor.x, s_Data.CameraClearColor.y, s_Data.CameraClearColor.z, s_Data.CameraClearColor.w);
+
 		for (auto& drawData : s_Data.VertexData)
 		{
 			drawData.second->material->shader->Use();

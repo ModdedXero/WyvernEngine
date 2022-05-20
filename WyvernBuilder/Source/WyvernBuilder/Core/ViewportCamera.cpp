@@ -13,7 +13,7 @@ namespace Wyvern
 
 	void ViewportCamera::MoveCamera()
 	{
-		if (Input::IsKey(KeyCode::LeftShift))
+		if (Input::IsMouseButton(MouseCode::MOUSE_BUTTON_RIGHT))
 		{
 			ImGui::GetIO().MousePos = { m_InitialMousePosition.x, m_InitialMousePosition.y };
 

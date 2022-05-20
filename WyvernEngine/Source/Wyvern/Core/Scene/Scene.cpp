@@ -102,7 +102,7 @@ namespace Wyvern
 
 		if (mainCamera)
 		{
-			Renderer::Renderer2D::BeginScene(mainCamera->GetRenderer(), cameraTransform);
+			Renderer::Renderer2D::BeginScene(mainCamera->GetRenderer(), cameraTransform, mainCamera->clearColor);
 
 			for (Entity* entity : EntityList<SpriteRenderer>(shared_from_this()))
 			{
@@ -119,7 +119,10 @@ namespace Wyvern
 	{
 		if (m_SceneState != SceneState::Edit) return;
 
-		Renderer::Renderer2D::BeginScene(camera, position);
+		if (Camera::GetActiveCamera())
+			Renderer::Renderer2D::BeginScene(camera, position, Camera::GetActiveCamera()->clearColor);
+		else
+			Renderer::Renderer2D::BeginScene(camera, position);
 
 		for (Entity* entity : EntityList<SpriteRenderer>(shared_from_this()))
 		{

@@ -7,20 +7,18 @@ namespace Wyvern
 {
 	struct Camera : public Component
 	{
-		Camera()
-		{
-			if (!s_ActiveCamera) SetActiveCamera(this);
-		}
+		Vector4 clearColor = { 0.1f, 0.1f, 0.2f, 1.0f };
 
 		Renderer::CameraRenderer* GetRenderer() { return m_Renderer; }
 
-		bool IsActive() { return s_ActiveCamera == this; }
+		bool IsActive() { return m_ActiveCamera; }
 		void SetActive() { SetActiveCamera(this); }
 
-		static Camera* GetActiveCamera() { return s_ActiveCamera; }
-		static void SetActiveCamera(Camera* camera) { s_ActiveCamera = camera; }
+		static Camera* GetActiveCamera();
+		static void SetActiveCamera(Camera* camera);
 
 		WV_SERIALIZE_COMPONENT(Camera)
+		WV_SERIALIZE_VARIABLE(Vector4, clearColor)
 		WV_SERIALIZE_PROPERTY(Renderer::CameraMode, "cameraMode", GetCameraMode, SetCameraMode)
 		WV_SERIALIZE_PROPERTY(float, "orthoSize", GetOrthoSize, SetOrthoSize)
 		WV_SERIALIZE_PROPERTY(float, "fieldOfView", GetFieldOfView, SetFieldOfView)
@@ -46,7 +44,6 @@ namespace Wyvern
 
 	private:
 		Renderer::CameraRenderer* m_Renderer = new Renderer::CameraRenderer();
-
-		static inline Camera* s_ActiveCamera = nullptr;
+		bool m_ActiveCamera;
 	};
 }

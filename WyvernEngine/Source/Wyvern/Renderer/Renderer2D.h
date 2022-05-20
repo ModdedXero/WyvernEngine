@@ -16,7 +16,7 @@ namespace Wyvern::Renderer
 		static void OnAttach();
 		static void OnDestroy();
 
-		static void BeginScene(CameraRenderer* cameraRenderer, Transform* cameraPosition);
+		static void BeginScene(CameraRenderer* cameraRenderer, Transform* cameraPosition, Vector4 clearColor = { 0.1f, 0.1f, 0.25f, 1.0f });
 		static void EndScene();
 
 		static void DrawQuad(Transform* transform, Ref<Material> material, Ref<Sprite> sprite, const Vector4& color, int entityID);

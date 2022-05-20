@@ -379,5 +379,6 @@
     <ClCompile Include="Wyvern\Core\Math\VectorInt.cpp" />
     <ClCompile Include="Wyvern\Core\Math\Vector.cpp" />
     <ClCompile Include="Wyvern\Core\Application\Project.cpp" />
+    <ClCompile Include="Wyvern\Core\Components\Camera.cpp" />
   </ItemGroup>
 </Project>
