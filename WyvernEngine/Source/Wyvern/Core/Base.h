@@ -41,4 +41,12 @@ namespace Wyvern
 	{
 		return std::make_shared<T>(std::forward<Args>(args)...);
 	}
+
+	template <typename T>
+	using Link = std::weak_ptr<T>;
+	template <typename T>
+	constexpr Link<T> CreateLink(T arg)
+	{
+		return std::weak_ptr<T>(arg);
+	}
 }
