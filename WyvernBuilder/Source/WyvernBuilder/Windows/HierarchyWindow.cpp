@@ -25,7 +25,7 @@ namespace Wyvern
 		}
 
 		// Right click menu
-		if (ImGui::BeginPopupContextWindow(0))
+		if (ImGui::BeginPopupContextWindow("Empty", ImGuiPopupFlags_NoOpenOverItems | ImGuiPopupFlags_MouseButtonRight))
 		{
 			if (ImGui::MenuItem("Empty Entity"))
 				Scene::CreateEntity(Scene::GetActiveScene());
@@ -50,8 +50,10 @@ namespace Wyvern
 			BuilderLayer::SetSelectedContext(ent);
 		}
 
-		if (ImGui::BeginPopupContextItem())
+		if (ImGui::BeginPopupContextItem(0, ImGuiPopupFlags_NoOpenOverExistingPopup | ImGuiPopupFlags_MouseButtonRight))
 		{
+			BuilderLayer::SetSelectedContext(ent);
+
 			if (ImGui::MenuItem("Duplicate Entity"))
 				Scene::DuplicateEntity(ent);
 
