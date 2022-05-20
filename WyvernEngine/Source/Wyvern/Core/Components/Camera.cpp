@@ -7,14 +7,23 @@ namespace Wyvern
 {
 	Camera* Camera::GetActiveCamera()
 	{
+		Camera* cachedCamera = nullptr;
+
 		for (Entity* ent : EntityList<Camera>(Scene::GetActiveScene()))
 		{
 			Camera* camera = Scene::GetComponent<Camera>(ent);
+
+			if (!cachedCamera)
+				cachedCamera = camera;
+
 			if (camera->m_ActiveCamera)
 				return camera;
 		}
 
-		return nullptr;
+		if (cachedCamera) 
+			cachedCamera->m_ActiveCamera = true;
+
+		return cachedCamera;
 	}
 
 	void Camera::SetActiveCamera(Camera* camera)

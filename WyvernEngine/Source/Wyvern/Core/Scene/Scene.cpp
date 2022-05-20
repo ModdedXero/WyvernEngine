@@ -77,32 +77,11 @@ namespace Wyvern
 
 		// Update Renderer
 
-		Camera* mainCamera = nullptr;
-		Transform* cameraTransform = nullptr;
-		Entity* mainCameraCache = nullptr;
-
-		for (Entity* entity : EntityList<Camera>(shared_from_this()))
-		{
-			if (!mainCameraCache) mainCameraCache = entity;
-
-			if (Scene::GetComponent<Camera>(entity)->IsActive())
-			{
-				mainCamera = Scene::GetComponent<Camera>(entity);
-				cameraTransform = entity->GetTransform();
-				break;
-			}
-		}
-
-		if (!mainCamera && mainCameraCache)
-		{
-			mainCamera = Scene::GetComponent<Camera>(mainCameraCache);
-			cameraTransform = mainCameraCache->GetTransform();
-			mainCamera->SetActive();
-		}
+		Camera* mainCamera = Camera::GetActiveCamera();
 
 		if (mainCamera)
 		{
-			Renderer::Renderer2D::BeginScene(mainCamera->GetRenderer(), cameraTransform, mainCamera->clearColor);
+			Renderer::Renderer2D::BeginScene(mainCamera->GetRenderer(), mainCamera->GetTransform(), mainCamera->clearColor);
 
 			for (Entity* entity : EntityList<SpriteRenderer>(shared_from_this()))
 			{
