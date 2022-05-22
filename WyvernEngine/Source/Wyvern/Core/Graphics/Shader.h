@@ -1,7 +1,5 @@
 #pragma once
 
-#include <glad.h>
-
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
@@ -27,7 +25,7 @@ namespace Wyvern
 		void SetVector3f(const char* name, const glm::vec3& value);
 		void SetVector4f(const char* name, const glm::vec4& value);
 		void SetMatrix4(const char* name, const glm::mat4& matrix);
-		void SetIntArray(const char* name, const int count, const GLint* intArray);
+		void SetIntArray(const char* name, const int count, const int* intArray);
 
 		static void SetFloat(const char* name, unsigned int id, float value);
 		static void SetInteger(const char* name, unsigned int id, int value);
@@ -35,7 +33,7 @@ namespace Wyvern
 		static void SetVector3f(const char* name, unsigned int id, const glm::vec3& value);
 		static void SetVector4f(const char* name, unsigned int id, const glm::vec4& value);
 		static void SetMatrix4(const char* name, unsigned int id, const glm::mat4& matrix);
-		static void SetIntArray(const char* name, unsigned int id, const int count, const GLint* intArray);
+		static void SetIntArray(const char* name, unsigned int id, const int count, const int* intArray);
 	private:
 		void CheckCompileErrors(unsigned int object, std::string type);
 	};

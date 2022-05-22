@@ -1,6 +1,8 @@
 #include "wvpch.h"
 #include "Shader.h"
 
+#include <glad.h>
+
 namespace Wyvern
 {
 	Shader::Shader()

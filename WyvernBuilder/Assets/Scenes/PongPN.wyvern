@@ -8,6 +8,14 @@ Entities:
         position: [0, 0, 0]
         rotation: [0, 0, 0]
         scale: [1, 1, 1]
+      Transform:
+        position: [0, 0, 0]
+        rotation: [0, 0, 0]
+        scale: [1, 1, 1]
+      Tag:
+        name: Walls
+      ScoreKeeper:
+        Score: 5998727893487774253
   - Entity: 11497441565846073444
     Parent: 8229268687544618337
     Components:
@@ -17,6 +25,12 @@ Entities:
         position: [-5.5250001, 0, 0]
         rotation: [0, 0, 0]
         scale: [0.175675601, 4.3333354, 1]
+      Transform:
+        position: [-5.5250001, 0, 0]
+        rotation: [0, 0, 0]
+        scale: [0.175675601, 4.3333354, 1]
+      Tag:
+        name: Left
       SpriteRenderer:
         color: [1, 1, 1, 1]
       RigidBody2D:
@@ -35,6 +49,12 @@ Entities:
         position: [0, 4.1822505, 0]
         rotation: [0, 0, 0]
         scale: [5.50280046, 0.152778134, 1]
+      Transform:
+        position: [0, 4.1822505, 0]
+        rotation: [0, 0, 0]
+        scale: [5.50280046, 0.152778134, 1]
+      Tag:
+        name: Top
       SpriteRenderer:
         color: [1, 1, 1, 1]
       RigidBody2D:
@@ -53,6 +73,12 @@ Entities:
         position: [5.52532816, 0, 0]
         rotation: [0, 0, 0]
         scale: [0.175675601, 4.3333354, 1]
+      Transform:
+        position: [5.52532816, 0, 0]
+        rotation: [0, 0, 0]
+        scale: [0.175675601, 4.3333354, 1]
+      Tag:
+        name: Right
       SpriteRenderer:
         color: [1, 1, 1, 1]
       RigidBody2D:
@@ -71,6 +97,12 @@ Entities:
         position: [0, -4.18225241, 0]
         rotation: [0, 0, 0]
         scale: [5.50280046, 0.152778134, 1]
+      Transform:
+        position: [0, -4.18225241, 0]
+        rotation: [0, 0, 0]
+        scale: [5.50280046, 0.152778134, 1]
+      Tag:
+        name: Bottom
       SpriteRenderer:
         color: [1, 1, 1, 1]
       RigidBody2D:
@@ -88,6 +120,12 @@ Entities:
         position: [-5.19799995, 0, 0]
         rotation: [0, 0, 0]
         scale: [0.121621273, 0.560846627, 1]
+      Transform:
+        position: [-5.19799995, 0, 0]
+        rotation: [0, 0, 0]
+        scale: [0.121621273, 0.560846627, 1]
+      Tag:
+        name: Player1
       SpriteRenderer:
         color: [0.23607327, 0.822784781, 0.696530342, 1]
       RigidBody2D:
@@ -95,11 +133,11 @@ Entities:
         drag: 0.0500000007
         bounce: 1
         bodyType: 0
+      BoxCollider2D:
+        size: [0.122000001, 0.56099999]
       PlayerPaddleOne:
         paddleSpeed: 4
         altControls: 0
-      BoxCollider2D:
-        size: [0.122000001, 0.56099999]
   - Entity: 9055173500647991465
     Components:
       Tag:
@@ -108,6 +146,12 @@ Entities:
         position: [5.19768095, 0, 0]
         rotation: [0, 0, 0]
         scale: [0.121621273, 0.560846627, 1]
+      Transform:
+        position: [5.19768095, 0, 0]
+        rotation: [0, 0, 0]
+        scale: [0.121621273, 0.560846627, 1]
+      Tag:
+        name: Player2
       SpriteRenderer:
         color: [0.23607327, 0.822784781, 0.696530342, 1]
       RigidBody2D:
@@ -115,11 +159,11 @@ Entities:
         drag: 0.0500000007
         bounce: 1
         bodyType: 0
+      BoxCollider2D:
+        size: [0.122000001, 0.56099999]
       PlayerPaddleOne:
         paddleSpeed: 4
         altControls: 1
-      BoxCollider2D:
-        size: [0.122000001, 0.56099999]
   - Entity: 15079494407735380384
     Components:
       Tag:
@@ -128,6 +172,12 @@ Entities:
         position: [0, 0, 0]
         rotation: [0, 0, 0]
         scale: [0.300000012, 0.300000012, 0.430000007]
+      Transform:
+        position: [0, 0, 0]
+        rotation: [0, 0, 0]
+        scale: [0.300000012, 0.300000012, 0.430000007]
+      Tag:
+        name: Ball
       SpriteRenderer:
         sprite: [./assets\Sprites\Ball.png, [0, 0], [1, 0], [1, 1], [0, 1]]
         color: [1, 1, 1, 1]
@@ -148,7 +198,14 @@ Entities:
         position: [0, 0, 0.5]
         rotation: [0, 0, 0]
         scale: [1, 1, 1]
+      Transform:
+        position: [0, 0, 0.5]
+        rotation: [0, 0, 0]
+        scale: [1, 1, 1]
+      Tag:
+        name: Camera
       Camera:
+        clearColor: [0.100000001, 0.100000001, 0.200000003, 1]
         cameraMode: 1
         orthoSize: 5
         fieldOfView: 60

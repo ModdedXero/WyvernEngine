@@ -94,6 +94,9 @@
     <ClInclude Include="Wyvern\Core\Application\LayerStack.h">
       <Filter>Wyvern\Core\Application</Filter>
     </ClInclude>
+    <ClInclude Include="Wyvern\Core\Application\Project.h">
+      <Filter>Wyvern\Core\Application</Filter>
+    </ClInclude>
     <ClInclude Include="Wyvern\Core\AssetManager.h">
       <Filter>Wyvern\Core</Filter>
     </ClInclude>
@@ -163,6 +166,9 @@
     <ClInclude Include="Wyvern\Core\Math\Vector.h">
       <Filter>Wyvern\Core\Math</Filter>
     </ClInclude>
+    <ClInclude Include="Wyvern\Core\Math\VectorInt.h">
+      <Filter>Wyvern\Core\Math</Filter>
+    </ClInclude>
     <ClInclude Include="Wyvern\Core\Physics\Collision2D.h">
       <Filter>Wyvern\Core\Physics</Filter>
     </ClInclude>
@@ -196,7 +202,13 @@
     <ClInclude Include="Wyvern\Core\Scene\Entity.h">
       <Filter>Wyvern\Core\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="Wyvern\Core\Scene\EntityConstants.h">
+      <Filter>Wyvern\Core\Scene</Filter>
+    </ClInclude>
     <ClInclude Include="Wyvern\Core\Scene\EntityList.h">
+      <Filter>Wyvern\Core\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\Core\Scene\EntityRegister.h">
       <Filter>Wyvern\Core\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Wyvern\Core\Scene\Scene.h">
@@ -260,10 +272,6 @@
       <Filter>Wyvern\Utils</Filter>
     </ClInclude>
     <ClInclude Include="wvpch.h" />
-    <ClInclude Include="Wyvern\Core\Math\VectorInt.h" />
-    <ClInclude Include="Wyvern\Core\Application\Project.h" />
-    <ClInclude Include="Wyvern\Core\Scene\EntityRegister.h" />
-    <ClInclude Include="Wyvern\Core\Scene\EntityConstants.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Vendor\ImGuizmo\ImGuizmo.cpp">
@@ -293,8 +301,14 @@
     <ClCompile Include="Wyvern\Core\Application\LayerStack.cpp">
       <Filter>Wyvern\Core\Application</Filter>
     </ClCompile>
+    <ClCompile Include="Wyvern\Core\Application\Project.cpp">
+      <Filter>Wyvern\Core\Application</Filter>
+    </ClCompile>
     <ClCompile Include="Wyvern\Core\AssetManager.cpp">
       <Filter>Wyvern\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Wyvern\Core\Components\Camera.cpp">
+      <Filter>Wyvern\Core\Components</Filter>
     </ClCompile>
     <ClCompile Include="Wyvern\Core\Components\Transform.cpp">
       <Filter>Wyvern\Core\Components</Filter>
@@ -313,6 +327,12 @@
     </ClCompile>
     <ClCompile Include="Wyvern\Core\Input\Input.cpp">
       <Filter>Wyvern\Core\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Wyvern\Core\Math\Vector.cpp">
+      <Filter>Wyvern\Core\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Wyvern\Core\Math\VectorInt.cpp">
+      <Filter>Wyvern\Core\Math</Filter>
     </ClCompile>
     <ClCompile Include="Wyvern\Core\Physics\Impulse2D.cpp">
       <Filter>Wyvern\Core\Physics</Filter>
@@ -375,9 +395,5 @@
       <Filter>Wyvern\Utils</Filter>
     </ClCompile>
     <ClCompile Include="wvpch.cpp" />
-    <ClCompile Include="Wyvern\Core\Math\VectorInt.cpp" />
-    <ClCompile Include="Wyvern\Core\Math\Vector.cpp" />
-    <ClCompile Include="Wyvern\Core\Application\Project.cpp" />
-    <ClCompile Include="Wyvern\Core\Components\Camera.cpp" />
   </ItemGroup>
 </Project>

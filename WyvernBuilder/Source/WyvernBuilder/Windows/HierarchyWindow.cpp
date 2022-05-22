@@ -44,11 +44,7 @@ namespace Wyvern
 			BuilderLayer::SetSelectedContext(ent);
 		}
 
-		if (ImGui::BeginDragDropSource())
-		{
-			ImGui::SetDragDropPayload("ENTITY_LINK", &ent, sizeof(Entity), ImGuiCond_Once);
-			ImGui::EndDragDropSource();
-		}
+		EditorGUIInternal::DragDropSource(DragDropTypes::Entity, &ent, sizeof(Entity));
 
 		if (ImGui::BeginPopupContextItem(0, ImGuiPopupFlags_NoOpenOverExistingPopup | ImGuiPopupFlags_MouseButtonRight))
 		{

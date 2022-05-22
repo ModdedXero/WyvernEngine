@@ -48,8 +48,8 @@ namespace Wyvern
 	Ref<Scene> Project::LoadStartScene()
 	{
 		Ref<Scene> scene = CreateRef<Scene>();
-		Serializer::Deserialize(scene, s_StartScenePath);
 		Scene::SetActiveScene(scene);
+		Serializer::Deserialize(scene, s_StartScenePath);
 		return scene;
 	}
 }

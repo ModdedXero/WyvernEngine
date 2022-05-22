@@ -1,24 +1,23 @@
 #include "EditorGUIInternal.h"
 
+#include <Wyvern/Utils/FileSystem.h>
+#include <Wyvern/Core/Scene/Entity.h>
+
 #include <imgui.h>
 #include <iostream>
 
 namespace Wyvern::Editor
 {
-	Utils::FileSystem* EditorGUIInternal::DragDropTarget(const char* label, const char* id)
+	void EditorGUIInternal::DragDropSource(DragDropTypes returnType, const void* target, size_t size)
 	{
-		Utils::FileSystem* target = nullptr;
-		ImGui::Button(label);
-		if (ImGui::BeginDragDropTarget())
+		if (ImGui::BeginDragDropSource())
 		{
-			if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload(id))
-			{
-				target = (Utils::FileSystem*)payload->Data;
-			}
+			if (returnType == DragDropTypes::FileSystem)
+				ImGui::SetDragDropPayload("FILESYSTEM_TARGET", target, size, ImGuiCond_Once);
+			else if (returnType == DragDropTypes::Entity)
+				ImGui::SetDragDropPayload("ENTITY_TARGET", target, size, ImGuiCond_Once);
 
-			ImGui::EndDragDropTarget();
+			ImGui::EndDragDropSource();
 		}
-
-		return target ? target : nullptr;
 	}
 }

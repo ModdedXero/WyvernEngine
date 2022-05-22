@@ -52,7 +52,9 @@ namespace Wyvern
 	{
 		EditorGUI::Color4Control("Color", this->color);
 
-		if (const Utils::FileSystem* target = EditorGUIInternal::DragDropTarget(sprite ? sprite->GetTexture()->GetPath().Filename().c_str() : "None", "CONTENT_BROWSER_ITEM"))
+		Utils::FileSystem* target = nullptr;
+		EditorGUIInternal::DragDropTarget(sprite ? sprite->GetTexture()->GetPath().Filename().c_str() : "None", DragDropTypes::FileSystem, target);
+		if (target)
 		{
 			sprite = Sprite::CreateFromCoords(Texture2D::Create(*target), { 0,0 }, { 1,1 }, { 32,32 });
 		}

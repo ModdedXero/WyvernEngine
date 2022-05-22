@@ -27,6 +27,9 @@
     <ClInclude Include="Assets\Scripts\PongBall.h">
       <Filter>Assets\Scripts</Filter>
     </ClInclude>
+    <ClInclude Include="Assets\Scripts\ScoreKeeper.h">
+      <Filter>Assets\Scripts</Filter>
+    </ClInclude>
     <ClInclude Include="Source\WyvernBuilder\Core\BuilderLayer.h">
       <Filter>Source\WyvernBuilder\Core</Filter>
     </ClInclude>
@@ -45,13 +48,15 @@
     <ClInclude Include="Source\WyvernBuilder\Windows\ViewportWindow.h">
       <Filter>Source\WyvernBuilder\Windows</Filter>
     </ClInclude>
-    <ClInclude Include="Assets\Scripts\ScoreKeeper.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Assets\Scripts\PlayerPaddleOne.cpp">
       <Filter>Assets\Scripts</Filter>
     </ClCompile>
     <ClCompile Include="Assets\Scripts\PongBall.cpp">
+      <Filter>Assets\Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\Scripts\ScoreKeeper.cpp">
       <Filter>Assets\Scripts</Filter>
     </ClCompile>
     <ClCompile Include="Source\WyvernBuilder\Core\BuilderLayer.cpp">
@@ -78,6 +83,5 @@
     <ClCompile Include="Source\WyvernBuilder\Windows\ViewportWindow.cpp">
       <Filter>Source\WyvernBuilder\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="Assets\Scripts\ScoreKeeper.cpp" />
   </ItemGroup>
 </Project>
