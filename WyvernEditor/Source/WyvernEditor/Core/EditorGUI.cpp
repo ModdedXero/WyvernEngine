@@ -1,4 +1,11 @@
 #include "EditorGUI.h"
+#include "EditorGUIInternal.h"
+#include "EditorInfo.h"
+
+#include <Wyvern/Core/Math/Vector.h>
+#include <Wyvern/Core/Scene/Entity.h>
+#include <Wyvern/Core/Components/Tag.h>
+#include <Wyvern/Utils/FileSystem.h>
 
 #include <imgui.h>
 #include <imgui_internal.h>
@@ -20,7 +27,7 @@ namespace Wyvern::Editor
 		ImGui::PushMultiItemsWidths(2, ImGui::CalcItemWidth());
 		ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2{ 0, 0 });
 
-		float lineHeight = GImGui->Font->FontSize + GImGui->Style.FramePadding.y * 2.0f;
+		float lineHeight = EditorInfo::LineHeight();
 		ImVec2 buttonSize = { lineHeight + 3.0f, lineHeight };
 
 		ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0.8f, 0.1f, 0.15f, 1.0f));
@@ -189,8 +196,13 @@ namespace Wyvern::Editor
 		ImGui::PopID();
 	}
 
-	void EditorGUI::Color4Control(const std::string& label, Vector4& values)
+	void EditorGUI::Color4Control(const std::string& label, Vector4& values, float columnWidth)
 	{
+		ImGui::Columns(2, 0, false);
+		ImGui::SetColumnWidth(0, columnWidth);
+		ImGui::Text(label.c_str());
+		ImGui::NextColumn();
+
 		float* fValues[4] =
 		{
 			&values.x,
@@ -199,27 +211,60 @@ namespace Wyvern::Editor
 			&values.w
 		};
 
-		ImGui::ColorEdit4(label.c_str(), *fValues);
+		std::string id = "##" + label;
+		ImGui::ColorEdit4(id.c_str(), *fValues);
+
+		ImGui::Columns(1);
 	}
 
 	void EditorGUI::FloatControl(const std::string& label, float& value, float columnWidth)
 	{
-		ImGui::InputFloat(label.c_str(), &value);
+		ImGui::Columns(2, 0, false);
+		ImGui::SetColumnWidth(0, columnWidth);
+		ImGui::Text(label.c_str());
+		ImGui::NextColumn();
+
+		std::string id = "##" + label;
+		ImGui::DragFloat(id.c_str(), &value);
+
+		ImGui::Columns(1);
 	}
 
 	void EditorGUI::IntControl(const std::string& label, int& value, float columnWidth)
 	{
-		ImGui::InputInt(label.c_str(), &value);
+		ImGui::Columns(2, 0, false);
+		ImGui::SetColumnWidth(0, columnWidth);
+		ImGui::Text(label.c_str());
+		ImGui::NextColumn();
+
+		std::string id = "##" + label;
+		ImGui::DragInt(id.c_str(), &value);
+
+		ImGui::Columns(1);
 	}
 
 	void EditorGUI::BoolControl(const std::string& label, bool& value, float columnWidth)
 	{
-		ImGui::Checkbox(label.c_str(), &value);
+		ImGui::Columns(2, 0, false);
+		ImGui::SetColumnWidth(0, columnWidth);
+		ImGui::Text(label.c_str());
+		ImGui::NextColumn();
+
+		std::string id = "##" + label;
+		ImGui::Checkbox(id.c_str(), &value);
+
+		ImGui::Columns(1);
 	}
 
-	void EditorGUI::ComboControl(const std::string& label, const char* values[], int& valueIndex, int arraySize)
+	void EditorGUI::ComboControl(const std::string& label, const char* values[], int& valueIndex, int arraySize, float columnWidth)
 	{
-		if (ImGui::BeginCombo(label.c_str(), values[valueIndex]))
+		ImGui::Columns(2, 0, false);
+		ImGui::SetColumnWidth(0, columnWidth);
+		ImGui::Text(label.c_str());
+		ImGui::NextColumn();
+
+		std::string id = "##" + label;
+		if (ImGui::BeginCombo(id.c_str(), values[valueIndex]))
 		{
 			for (int i = 0; i < arraySize; i++)
 			{
@@ -232,5 +277,33 @@ namespace Wyvern::Editor
 
 			ImGui::EndCombo();
 		}
+
+		ImGui::Columns(1);
+	}
+
+	void EditorGUI::EntityControl(const std::string& label, Entity& entity, float columnWidth)
+	{
+		ImGui::Columns(2, 0, false);
+		ImGui::SetColumnWidth(0, columnWidth);
+		ImGui::Text(label.c_str());
+		ImGui::NextColumn();
+
+		std::string targetName = Scene::IsEntityValid(entity) ? entity.GetTag()->name : "None";
+		EditorGUIInternal::DragDropTarget(targetName.c_str(), DragDropTypes::Entity, entity);
+
+		ImGui::Columns(1);
+	}
+
+	void EditorGUI::FileSystemControl(const std::string& label, Utils::FileSystem& file, float columnWidth)
+	{
+		ImGui::Columns(2, 0, false);
+		ImGui::SetColumnWidth(0, columnWidth);
+		ImGui::Text(label.c_str());
+		ImGui::NextColumn();
+
+		std::string targetName = !file.Filename().empty() ? file.Filename() : "None";
+		EditorGUIInternal::DragDropTarget(targetName.c_str(), DragDropTypes::FileSystem, file);
+
+		ImGui::Columns(1);
 	}
 }

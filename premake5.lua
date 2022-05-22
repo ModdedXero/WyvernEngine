@@ -120,8 +120,14 @@ project "WyvernEditor"
 	{
 		"WyvernEditor/Source",
 		"WyvernEngine/Source",
-		"%{IncludeDir.ImGUI}",
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.GLAD}",
 		"%{IncludeDir.GLM}",
+		"%{IncludeDir.ImGUI}",
+		"%{IncludeDir.STB}",
+		"%{IncludeDir.FreeType}",
+		"%{IncludeDir.FreeTypeSub}",
+		"%{IncludeDir.YamlCPP}",
 		"%{IncludeDir.ImGUIzmo}"
 	}
 	

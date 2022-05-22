@@ -324,6 +324,7 @@ namespace Wyvern
 			if (entity.Components.test(pool->ComponentID))
 				components.push_back(static_cast<Component*>(entity.SceneRef->m_ComponentPools[pool->ComponentID]->Get(GetSceneIndex(entity.SceneID))));
 
+		DEBUG_CORE(components.size());
 		return components;
 	}
 

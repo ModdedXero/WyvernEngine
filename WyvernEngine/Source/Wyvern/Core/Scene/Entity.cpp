@@ -55,7 +55,7 @@ namespace Wyvern
 
 	std::vector<Component*> Entity::GetComponents()
 	{
-		return Scene::GetComponents(m_EntityRegister);
+		return Scene::GetComponents(Scene::GetEntity(m_EntityRegister.SceneRef, m_EntityRegister.UniqueID));
 	}
 
 	void Entity::AddChildEntity(EntityRegister& entity)

@@ -8,7 +8,7 @@ namespace Wyvern
 {
 	void HierarchyWindow::OnGUI()
 	{
-		if (ImGui::IsMouseClicked(ImGuiMouseButton_Left) && !ImGui::IsAnyItemHovered())
+		if (ImGui::IsMouseClicked(ImGuiMouseButton_Left) && IsHovered() && !ImGui::IsAnyItemHovered())
 		{
 			BuilderLayer::SetSelectedContext(Entity());
 		}

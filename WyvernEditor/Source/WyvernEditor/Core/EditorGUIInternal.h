@@ -1,5 +1,7 @@
 #pragma once
 
+#include "EditorInfo.h"
+
 namespace Wyvern::Editor
 {
 	enum class DragDropTypes
@@ -19,7 +21,8 @@ namespace Wyvern::Editor
 	template <typename Target>
 	inline void EditorGUIInternal::DragDropTarget(const char* label, DragDropTypes returnType, Target& target)
 	{
-		ImGui::Button(label);
+		float lineHeight = EditorInfo::LineHeight();
+		ImGui::Button(label, ImVec2{ ImGui::GetContentRegionAvail().x, lineHeight });
 		if (ImGui::BeginDragDropTarget())
 		{
 			if (returnType == DragDropTypes::FileSystem)

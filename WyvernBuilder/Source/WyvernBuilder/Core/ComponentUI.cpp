@@ -27,7 +27,7 @@ namespace Wyvern
 		float clipNear = GetClipNear();
 		float clipFar = GetClipFar();
 
-		EditorGUI::ComboControl("Camera Mode", values, cameraMode, 2);
+		EditorGUI::ComboControl("Mode", values, cameraMode, 2);
 		EditorGUI::BoolControl("Active Camera", isActive);
 		EditorGUI::Color4Control("Clear Color", clearColor);
 		if ((Renderer::CameraMode)cameraMode == Renderer::CameraMode::Orthographic) 
@@ -52,11 +52,12 @@ namespace Wyvern
 	{
 		EditorGUI::Color4Control("Color", this->color);
 
-		Utils::FileSystem* target = nullptr;
-		EditorGUIInternal::DragDropTarget(sprite ? sprite->GetTexture()->GetPath().Filename().c_str() : "None", DragDropTypes::FileSystem, target);
-		if (target)
+		Utils::FileSystem target = Utils::FileSystem();
+		EditorGUI::FileSystemControl("Sprite", target);
+
+		if (!target.Filename().empty())
 		{
-			sprite = Sprite::CreateFromCoords(Texture2D::Create(*target), { 0,0 }, { 1,1 }, { 32,32 });
+			sprite = Sprite::CreateFromCoords(Texture2D::Create(target), { 0,0 }, { 1,1 }, { 32,32 });
 		}
 
 		if (ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0))

@@ -76,7 +76,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WV_PLATFORM_WINDOWS;WV_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.;..\..\WyvernEngine\Source;..\..\WyvernEngine\Vendor\imgui;..\..\WyvernEngine\Vendor\glm;..\..\WyvernEngine\Vendor\ImGuizmo;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..\..\WyvernEngine\Source;..\..\WyvernEngine\Vendor\GLFW\include;..\..\WyvernEngine\Vendor\glad\include;..\..\WyvernEngine\Vendor\glm;..\..\WyvernEngine\Vendor\imgui;..\..\WyvernEngine\Vendor\stb_image;..\..\WyvernEngine\Vendor\freetype\include;..\..\WyvernEngine\Vendor\freetype\include\freetype;..\..\WyvernEngine\Vendor\yaml-cpp\include;..\..\WyvernEngine\Vendor\ImGuizmo;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -92,7 +92,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WV_PLATFORM_WINDOWS;WV_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.;..\..\WyvernEngine\Source;..\..\WyvernEngine\Vendor\imgui;..\..\WyvernEngine\Vendor\glm;..\..\WyvernEngine\Vendor\ImGuizmo;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..\..\WyvernEngine\Source;..\..\WyvernEngine\Vendor\GLFW\include;..\..\WyvernEngine\Vendor\glad\include;..\..\WyvernEngine\Vendor\glm;..\..\WyvernEngine\Vendor\imgui;..\..\WyvernEngine\Vendor\stb_image;..\..\WyvernEngine\Vendor\freetype\include;..\..\WyvernEngine\Vendor\freetype\include\freetype;..\..\WyvernEngine\Vendor\yaml-cpp\include;..\..\WyvernEngine\Vendor\ImGuizmo;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -112,7 +112,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WV_PLATFORM_WINDOWS;WV_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.;..\..\WyvernEngine\Source;..\..\WyvernEngine\Vendor\imgui;..\..\WyvernEngine\Vendor\glm;..\..\WyvernEngine\Vendor\ImGuizmo;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..\..\WyvernEngine\Source;..\..\WyvernEngine\Vendor\GLFW\include;..\..\WyvernEngine\Vendor\glad\include;..\..\WyvernEngine\Vendor\glm;..\..\WyvernEngine\Vendor\imgui;..\..\WyvernEngine\Vendor\stb_image;..\..\WyvernEngine\Vendor\freetype\include;..\..\WyvernEngine\Vendor\freetype\include\freetype;..\..\WyvernEngine\Vendor\yaml-cpp\include;..\..\WyvernEngine\Vendor\ImGuizmo;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -131,11 +131,13 @@
     <ClInclude Include="WyvernEditor.h" />
     <ClInclude Include="WyvernEditor\Core\EditorGUI.h" />
     <ClInclude Include="WyvernEditor\Core\EditorGUIInternal.h" />
+    <ClInclude Include="WyvernEditor\Core\EditorInfo.h" />
     <ClInclude Include="WyvernEditor\Core\EditorWindow.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WyvernEditor\Core\EditorGUI.cpp" />
     <ClCompile Include="WyvernEditor\Core\EditorGUIInternal.cpp" />
+    <ClCompile Include="WyvernEditor\Core\EditorInfo.cpp" />
     <ClCompile Include="WyvernEditor\Core\EditorWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
