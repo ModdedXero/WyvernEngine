@@ -1,20 +1,12 @@
 #pragma once
 
-#include "UUID.h"
-#include "EntityConstants.h"
-
-#include <Wyvern/Core/Base.h>
-#include <Wyvern/Core/Timestep.h>
-#include <Wyvern/Events/Event.h>
-
-#include <bitset>
+#include "EntityRegister.h"
 
 namespace Wyvern
 {
 	struct Tag;
 	struct Transform;
 	struct Component;
-	struct Collision2D;
 
 	class Entity
 	{
@@ -24,39 +16,42 @@ namespace Wyvern
 		friend class EntityList;
 
 	public:
-		Entity()
-			: m_SceneID(SceneIndex(-1)), m_Tag(nullptr), m_Transform(nullptr), m_Parent(nullptr), m_UUID(0)
-		{}
+		Entity();
+		Entity(EntityRegister& view);
 
-		UUID GetUUID() const { return m_UUID; }
-		SceneID GetSceneID() { return m_SceneID; }
+		UUID GetUUID() const;
+		SceneID GetSceneID() const;
+		Ref<Scene> GetScene() const;
+		Entity GetParent() const;
+		std::vector<UUID> GetChildren() const;
 
-		Transform* GetTransform() { return m_Transform; }
-		Tag* GetTag() { return m_Tag; }
+		Tag* GetTag();
+		Transform* GetTransform();
+		std::vector<Component*> GetComponents();
 
-		std::vector<Component*> GetAllComponents() { return m_ComponentPtrs; }
+		void AddChildEntity(EntityRegister& entity);
+		void RemoveChildEntity(EntityRegister& entity);
 
 		void DestroyEntity();
 
-		void AddChildEntity(Entity* entity);
-		void RemoveChildEntity(Entity* entity);
+		bool IsValid();
 
-		Entity* GetParent() { return m_Parent; }
-		std::vector<Entity*> GetChildren() { return m_Children; }
+		bool operator ==(const Entity& rhs)
+		{
+			return m_EntityRegister.UniqueID == rhs.m_EntityRegister.UniqueID;
+		}
 
-		virtual void OnCollision2D(Ref<Collision2D> collision) {}
+		operator EntityRegister&()
+		{
+			return m_EntityRegister;
+		}
+
+		operator UUID& ()
+		{
+			return m_EntityRegister.UniqueID;
+		}
 
 	private:
-		UUID m_UUID;
-		SceneID m_SceneID;
-		Ref<Scene> m_Scene;
-		ComponentMask m_Components;
-
-		Transform* m_Transform;
-		Tag* m_Tag;
-
-		Entity* m_Parent;
-		std::vector<Entity*> m_Children;
-		std::vector<Component*> m_ComponentPtrs;
+		EntityRegister m_EntityRegister;
  	};
 }

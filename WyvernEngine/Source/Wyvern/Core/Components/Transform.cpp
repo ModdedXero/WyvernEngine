@@ -10,9 +10,9 @@ namespace Wyvern
 {
 	Vector3 Transform::GlobalPosition()
 	{
-		if (GetEntity()->GetParent())
+		if (GetEntity().GetParent().IsValid())
 		{
-			return GetEntity()->GetParent()->GetTransform()->GlobalPosition() + position;
+			return GetEntity().GetParent().GetTransform()->GlobalPosition() + position;
 		}
 
 		return position;
@@ -20,9 +20,9 @@ namespace Wyvern
 
 	Vector3 Transform::GlobalRotation()
 	{
-		if (GetEntity()->GetParent())
+		if (GetEntity().GetParent().IsValid())
 		{
-			return GetEntity()->GetParent()->GetTransform()->GlobalRotation() + rotation;
+			return GetEntity().GetParent().GetTransform()->GlobalRotation() + rotation;
 		}
 
 		return rotation;
@@ -30,9 +30,9 @@ namespace Wyvern
 
 	Vector3 Transform::GlobalScale()
 	{
-		if (GetEntity()->GetParent())
+		if (GetEntity().GetParent().IsValid())
 		{
-			return GetEntity()->GetParent()->GetTransform()->GlobalScale() * scale;
+			return GetEntity().GetParent().GetTransform()->GlobalScale() * scale;
 		}
 
 		return scale;

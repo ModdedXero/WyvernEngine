@@ -33,27 +33,27 @@ namespace Wyvern
 
 	void Physics2DWizard::OnFixedUpdate()
 	{
-		for (Entity* entity : EntityList<RigidBody2D>(Scene::GetActiveScene()))
+		for (Entity entity : EntityList<RigidBody2D>(Scene::GetActiveScene()))
 		{
 			for (PhysicsSolver2D* solver : m_PhysicsSolvers)
-				solver->Solve(Scene::GetComponent<RigidBody2D>(entity), entity->GetTransform());
+				solver->Solve(Scene::GetComponent<RigidBody2D>(entity), entity.GetTransform());
 		}
 
 		std::vector<Ref<Collision2D>> collisions;
 
-		for (Entity* ent1 : EntityList<BoxCollider2D>(Scene::GetActiveScene()))
+		for (Entity ent1 : EntityList<BoxCollider2D>(Scene::GetActiveScene()))
 		{
 			BoxCollider2D* col1 = Scene::GetComponent<BoxCollider2D>(ent1);
 			RigidBody2D* rb1 = Scene::GetComponent<RigidBody2D>(ent1);
 
-			for (Entity* ent2 : EntityList<BoxCollider2D>(Scene::GetActiveScene()))
+			for (Entity ent2 : EntityList<BoxCollider2D>(Scene::GetActiveScene()))
 			{
 				BoxCollider2D* col2 = Scene::GetComponent<BoxCollider2D>(ent2);
 				RigidBody2D* rb2 = Scene::GetComponent<RigidBody2D>(ent2);
 
 				if (col1 == col2) continue;
 
-				if (CheckCollision(col1, ent1->GetTransform(), col2, ent2->GetTransform()))
+				if (CheckCollision(col1, ent1.GetTransform(), col2, ent2.GetTransform()))
 				{
 					if (Scene::IsEntityValid(ent1) && Scene::IsEntityValid(ent2) &&
 						rb1->bodyType != PhysicsBody::Kinematic &&
@@ -63,22 +63,21 @@ namespace Wyvern
 					{
 						Ref<Collision2D> collision = GetCollisionData(ent1, col1, ent2, col2);
 
-						ent1->OnCollision2D(collision);
 						collisions.push_back(collision);
 					}
 				}
 			}
 		}
 
-		for (Entity* ent1 : EntityList<BoxCollider2D>(Scene::GetActiveScene()))
+		for (Entity ent1 : EntityList<BoxCollider2D>(Scene::GetActiveScene()))
 		{
 			BoxCollider2D* col1 = Scene::GetComponent<BoxCollider2D>(ent1);
 
-			for (Entity* ent2 : EntityList<SphereCollider2D>(Scene::GetActiveScene()))
+			for (Entity ent2 : EntityList<SphereCollider2D>(Scene::GetActiveScene()))
 			{
 				SphereCollider2D* col2 = Scene::GetComponent<SphereCollider2D>(ent2);
 
-				if (CheckCollision(col1, ent1->GetTransform(), col2, ent2->GetTransform()))
+				if (CheckCollision(col1, ent1.GetTransform(), col2, ent2.GetTransform()))
 				{
 					if (Scene::IsEntityValid(ent1) && Scene::IsEntityValid(ent2) &&
 						Scene::GetComponent<RigidBody2D>(ent1)->bodyType != PhysicsBody::Kinematic &&
@@ -87,13 +86,11 @@ namespace Wyvern
 						// Box vs Sphere
 						Ref<Collision2D> collision = GetCollisionData(ent1, col1, ent2, col2);
 
-						ent1->OnCollision2D(collision);
 						collisions.push_back(collision);
 
 						// Sphere vs Box
 						Ref<Collision2D> collisionOther = GetCollisionData(ent2, col2, ent1, col1);
 
-						ent2->OnCollision2D(collisionOther);
 						collisions.push_back(collisionOther);
 					}
 				}
@@ -139,7 +136,7 @@ namespace Wyvern
 		return localPoint.Length() < otherCollider->radius;
 	}
 
-	Ref<Collision2D> Physics2DWizard::GetCollisionData(Entity* entity, BoxCollider2D* collider, Entity* otherEnt, BoxCollider2D* otherCollider)
+	Ref<Collision2D> Physics2DWizard::GetCollisionData(Entity entity, BoxCollider2D* collider, Entity otherEnt, BoxCollider2D* otherCollider)
 	{
 		static const Vector2 faces[4] =
 		{
@@ -149,11 +146,11 @@ namespace Wyvern
 			Vector2(0, 1)
 		};
 
-		Vector2 maxA = entity->GetTransform()->GlobalPosition() + collider->size;
-		Vector2 minA = entity->GetTransform()->GlobalPosition() - collider->size;
+		Vector2 maxA = entity.GetTransform()->GlobalPosition() + collider->size;
+		Vector2 minA = entity.GetTransform()->GlobalPosition() - collider->size;
 
-		Vector2 maxB = otherEnt->GetTransform()->GlobalPosition() + otherCollider->size;
-		Vector2 minB = otherEnt->GetTransform()->GlobalPosition() - otherCollider->size;
+		Vector2 maxB = otherEnt.GetTransform()->GlobalPosition() + otherCollider->size;
+		Vector2 minB = otherEnt.GetTransform()->GlobalPosition() - otherCollider->size;
 
 		float distances[4] =
 		{
@@ -178,9 +175,9 @@ namespace Wyvern
 		return CreateRef<Collision2D>(Collision2D(entity, otherEnt, bestAxis, penetration));
 	}
 
-	Ref<Collision2D> Physics2DWizard::GetCollisionData(Entity* entity, BoxCollider2D* collider, Entity* otherEnt, SphereCollider2D* otherCollider)
+	Ref<Collision2D> Physics2DWizard::GetCollisionData(Entity entity, BoxCollider2D* collider, Entity otherEnt, SphereCollider2D* otherCollider)
 	{
-		Vector2 delta = otherEnt->GetTransform()->GlobalPosition() - entity->GetTransform()->GlobalPosition();
+		Vector2 delta = otherEnt.GetTransform()->GlobalPosition() - entity.GetTransform()->GlobalPosition();
 		Vector2 closest = Mathf::Clamp(delta, -collider->size, collider->size);
 		Vector2 localPoint = delta - closest;
 
@@ -192,9 +189,9 @@ namespace Wyvern
 		return CreateRef<Collision2D>(entity, otherEnt, normal, penetration);
 	}
 
-	Ref<Collision2D> Physics2DWizard::GetCollisionData(Entity* entity, SphereCollider2D* collider, Entity* otherEnt, BoxCollider2D* otherCollider)
+	Ref<Collision2D> Physics2DWizard::GetCollisionData(Entity entity, SphereCollider2D* collider, Entity otherEnt, BoxCollider2D* otherCollider)
 	{
-		Vector2 delta = entity->GetTransform()->GlobalPosition() - otherEnt->GetTransform()->GlobalPosition();
+		Vector2 delta = entity.GetTransform()->GlobalPosition() - otherEnt.GetTransform()->GlobalPosition();
 		Vector2 closest = Mathf::Clamp(delta, -otherCollider->size, otherCollider->size);
 		Vector2 localPoint = delta - closest;
 

@@ -28,8 +28,8 @@ namespace Wyvern
 				(aMass + bMass) * percent :
 				collision->normal * fmax(collision->penetration - slop, 0.0f) / percent;
 
-			if (rbA->bodyType != PhysicsBody::Static) collision->entA->GetTransform()->position -= correction * aMass;
-			if (rbB->bodyType != PhysicsBody::Static) collision->entB->GetTransform()->position += correction * bMass;
+			if (rbA->bodyType != PhysicsBody::Static) collision->entA.GetTransform()->position -= correction * aMass;
+			if (rbB->bodyType != PhysicsBody::Static) collision->entB.GetTransform()->position += correction * bMass;
 		}
 	}
 }

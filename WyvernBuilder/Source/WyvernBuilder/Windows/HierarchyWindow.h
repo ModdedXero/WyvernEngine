@@ -14,7 +14,7 @@ namespace Wyvern
 
 		virtual void OnGUI() override;
 	private:
-		void DrawEntityNode(Entity* ent, bool isChild = false);
-		void DrawEntityChildren(Entity* ent);
+		void DrawEntityNode(Entity ent, bool isChild = false);
+		void DrawEntityChildren(Entity ent);
 	};
 }

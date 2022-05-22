@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Scene.h"
+#include "EntityConstants.h"
 
 namespace Wyvern
 {

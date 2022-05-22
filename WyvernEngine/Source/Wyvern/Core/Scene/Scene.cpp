@@ -1,8 +1,8 @@
 #include "wvpch.h"
 #include "Scene.h"
 
-#include "Entity.h"
 #include "EntityList.h"
+#include "EntityRegister.h"
 
 #include <Wyvern/Core/Components/Camera.h>
 #include <Wyvern/Core/Components/Tag.h>
@@ -13,8 +13,8 @@
 
 namespace Wyvern
 {
-	std::vector<Entity*> s_EntitiesToDelete;
-	std::unordered_map<Entity*, int> s_ComponentsToDelete;
+	std::vector<EntityRegister*> s_EntitiesToDelete;
+	std::unordered_map<EntityRegister*, int> s_ComponentsToDelete;
 
 	Ref<Scene> Scene::s_ActiveScene;
 
@@ -33,7 +33,7 @@ namespace Wyvern
 	{
 		if (m_SceneState == SceneState::Play)
 		{
-			for (Entity* entity : EntityList<NativeScriptComponent>(shared_from_this(), true))
+			for (EntityRegister& entity : EntityList<NativeScriptComponent>(shared_from_this(), true))
 			{
 				for (NativeScriptComponent* nsc : GetComponentsOfBase<NativeScriptComponent>(entity))
 				{
@@ -45,10 +45,10 @@ namespace Wyvern
 
 	void Scene::OnDestroy()
 	{
-		for (auto& entity : m_Entities)
-			entity->DestroyEntity();
+		for (EntityRegister* entity : m_Entities)
+			DestoryEntity(*entity);
 
-		for (auto& pool : m_ComponentPools)
+		for (ComponentPool* pool : m_ComponentPools)
 			delete pool;
 
 		FlushScene();
@@ -60,7 +60,7 @@ namespace Wyvern
 
 		// Update Native Scripts
 
-		for (Entity* entity : EntityList<NativeScriptComponent>(shared_from_this(), true))
+		for (EntityRegister& entity : EntityList<NativeScriptComponent>(shared_from_this(), true))
 		{
 			for (NativeScriptComponent* nsc : GetComponentsOfBase<NativeScriptComponent>(entity))
 			{
@@ -83,11 +83,11 @@ namespace Wyvern
 		{
 			Renderer::Renderer2D::BeginScene(mainCamera->GetRenderer(), mainCamera->GetTransform(), mainCamera->clearColor);
 
-			for (Entity* entity : EntityList<SpriteRenderer>(shared_from_this()))
+			for (EntityRegister& entity : EntityList<SpriteRenderer>(shared_from_this()))
 			{
 				SpriteRenderer* sRend = Scene::GetComponent<SpriteRenderer>(entity);
 
-				Renderer::Renderer2D::DrawQuad(entity->GetTransform(), sRend->material, sRend->sprite, sRend->color, GetSceneIndex(entity->m_SceneID));
+				Renderer::Renderer2D::DrawQuad(GetComponent<Transform>(entity), sRend->material, sRend->sprite, sRend->color, GetSceneIndex(entity.SceneID));
 			}
 
 			Renderer::Renderer2D::EndScene();
@@ -103,11 +103,11 @@ namespace Wyvern
 		else
 			Renderer::Renderer2D::BeginScene(camera, position);
 
-		for (Entity* entity : EntityList<SpriteRenderer>(shared_from_this()))
+		for (EntityRegister& entity : EntityList<SpriteRenderer>(shared_from_this()))
 		{
 			SpriteRenderer* sRend = Scene::GetComponent<SpriteRenderer>(entity);
 
-			Renderer::Renderer2D::DrawQuad(entity->GetTransform(), sRend->material, sRend->sprite, sRend->color, GetSceneIndex(entity->m_SceneID));
+			Renderer::Renderer2D::DrawQuad(GetComponent<Transform>(entity), sRend->material, sRend->sprite, sRend->color, GetSceneIndex(entity.SceneID));
 		}
 
 		Renderer::Renderer2D::EndScene();
@@ -117,7 +117,7 @@ namespace Wyvern
 	{
 		if (m_SceneState != SceneState::Play) return;
 
-		for (Entity* entity : EntityList<NativeScriptComponent>(shared_from_this(), true))
+		for (EntityRegister& entity : EntityList<NativeScriptComponent>(shared_from_this(), true))
 		{
 			for (NativeScriptComponent* nsc : GetComponentsOfBase<NativeScriptComponent>(entity))
 			{
@@ -146,11 +146,11 @@ namespace Wyvern
 
 	void Scene::FlushScene()
 	{
-		for (Entity* entity : s_EntitiesToDelete)
-			PurgeEntity(entity);
+		for (EntityRegister* entity : s_EntitiesToDelete)
+			PurgeEntity(*entity);
 
 		for (auto& comp : s_ComponentsToDelete)
-			PurgeComponent(comp.first, comp.second);
+			PurgeComponent(*comp.first, comp.second);
 
 		s_EntitiesToDelete.clear();
 		s_ComponentsToDelete.clear();
@@ -164,100 +164,121 @@ namespace Wyvern
 #endif
 	}
 
-	Entity* Scene::CreateEntity(Ref<Scene> scene, std::string name)
+	EntityRegister& Scene::CreateEntity(Ref<Scene> scene, std::string name)
 	{
 		if (scene->m_Entities.size() >= MaxEntities)
 		{
 			DEBUG_LOG_ERROR("Scene: MaxEntity count reached; ", MaxEntities);
 			throw std::invalid_argument("Scene: MaxEntity count reached");
-			return nullptr;
+			return EntityRegister(false);
 		}
 
 		if (!scene->m_FreeEntities.empty())
 		{
 			SceneIndex index = scene->m_FreeEntities.back();
 			scene->m_FreeEntities.pop_back();
-			SceneID id = CreateSceneID(index, GetSceneVersion(scene->m_Entities[index]->m_SceneID));
-			scene->m_Entities[index]->m_SceneID = id;
-			CreateEntityDefaults(scene, scene->m_Entities[index], name);
+			SceneID id = CreateSceneID(index, GetSceneVersion(scene->m_Entities[index]->SceneID));
+			scene->m_Entities[index]->SceneID = id;
+			CreateEntityDefaults(scene, *scene->m_Entities[index], name);
 
-			return scene->m_Entities[index];
+			return *scene->m_Entities[index];
 		}
 
-		Entity* entity = new Entity();
-		entity->m_SceneID = CreateSceneID((SceneIndex)scene->m_Entities.size(), 0);
-		entity->m_Components = ComponentMask();
+		EntityRegister* entity = new EntityRegister();
+		entity->SceneID = CreateSceneID((SceneIndex)scene->m_Entities.size(), 0);
+		entity->Components = ComponentMask();
 		scene->m_Entities.push_back(entity);
 
-		CreateEntityDefaults(scene, scene->m_Entities.back(), name);
+		CreateEntityDefaults(scene, *scene->m_Entities.back(), name);
 
-		return scene->m_Entities.back();
+		return *scene->m_Entities.back();
 	}
 
-	Entity* Scene::CreateEntity(Ref<Scene> scene, const UUID& uuid)
+	EntityRegister& Scene::CreateEntity(Ref<Scene> scene, const UUID& uuid)
 	{
-		if ((uint64_t)uuid == 0) return nullptr;
+		if ((uint64_t)uuid == 0) return EntityRegister(false);
 
-		Entity* ent = FindEntity(scene, uuid);
+		EntityRegister* ent = &GetEntity(scene, uuid);
 
-		if (!ent)
+		if (!IsEntityValid(*ent))
 		{
-			ent = CreateEntity(scene, "Entity");
-			ent->m_UUID = uuid;
+			ent = &CreateEntity(scene, "Entity");
+			ent->UniqueID = uuid;
 		}
 
-		return ent;
+		return *ent;
 	}
 
-	Entity* Scene::FindEntity(Ref<Scene> scene, const UUID& uuid)
+	EntityRegister& Scene::GetEntity(Ref<Scene> scene, const UUID& uuid)
 	{
-		if ((uint64_t)uuid == 0) return nullptr;
+		if ((uint64_t)uuid == 0 || !scene) return EntityRegister(false);
 
-		for (Entity* entity : scene->m_Entities)
+		for (EntityRegister* entity : scene->m_Entities)
 		{
-			if (entity->m_UUID == uuid)
-				return entity;
+			if (entity->UniqueID == uuid)
+				return *entity;
 		}
 
-		return nullptr;
+		return EntityRegister(false);
 	}
 
-	Entity* Scene::GetEntityAtIndex(Ref<Scene> scene, int index)
+	EntityRegister& Scene::GetEntity(Ref<Scene> scene, int index)
 	{
-		if (index >= 0 && index < scene->m_Entities.size() && IsEntityValid(scene->m_Entities[index]))
-			return scene->m_Entities[index];
+		if (index >= 0 && index < scene->m_Entities.size() && IsEntityValid(*scene->m_Entities[index]))
+			return *scene->m_Entities[index];
 
-		return nullptr;
+		return EntityRegister(false);
 	}
 
-	Entity* Scene::DuplicateEntity(Entity* entity, Entity* parent)
+	EntityRegister& Scene::DuplicateEntity(EntityRegister& entity, EntityRegister& parent)
 	{
-		Entity* newEnt = CreateEntity(entity->m_Scene, entity->m_Tag->name);
+		EntityRegister& newEnt = CreateEntity(entity.SceneRef, GetComponent<Tag>(entity)->name);
 
 		SerializeInfo& entData = Serializer::Serialize(entity);
 		Serializer::ConvertSerialToDeserial(entData);
 
-		if (parent)
+		if (IsEntityValid(parent))
 		{
 			if (entData.in["Parent"])
-				entData.in["Parent"] = (uint64_t)parent->m_UUID;
+				entData.in["Parent"] = (uint64_t)parent.UniqueID;
 		}
 
 		Serializer::Deserialize(newEnt, entData);
 
-		for (Entity* child : entity->m_Children)
+		for (UUID& child : entity.Children)
 		{
-			DuplicateEntity(child, newEnt);
+			DuplicateEntity(GetEntity(entity.SceneRef, child), newEnt);
 		}
 
 		return newEnt;
 	}
 
-	void Scene::DestoryEntity(Entity* entity)
+	void Scene::DestoryEntity(EntityRegister& entity)
 	{
-		s_EntitiesToDelete.push_back(entity);
-		for (Entity* child : entity->m_Children)
-			child->DestroyEntity();
+		s_EntitiesToDelete.push_back(&entity);
+		for (UUID& child : entity.Children)
+			DestoryEntity(GetEntity(entity.SceneRef, child));
+	}
+
+	void Scene::AddChildEntity(EntityRegister& parent, EntityRegister& child)
+	{
+		for (UUID& id : parent.Children)
+			if (id == child.UniqueID)
+				return;
+
+		parent.Children.push_back(child.UniqueID);
+	}
+
+	void Scene::RemoveChildEntity(EntityRegister& parent, EntityRegister& child)
+	{
+		for (int i = 0; i < parent.Children.size(); i++)
+		{
+			if (parent.Children[i] == child.UniqueID)
+			{
+				parent.Children.erase(parent.Children.begin() + i);
+				return;
+			}
+		}
 	}
 
 	SceneIndex Scene::GetSceneIndex(SceneID id)
@@ -270,77 +291,78 @@ namespace Wyvern
 		return (SceneVersion)id;
 	}
 
-	bool Scene::IsEntityValid(Ref<Scene> scene, SceneID id)
+	bool Scene::IsEntityValid(SceneID id)
 	{
 		return (id >> 32) != SceneIndex(-1);
 	}
 
-	bool Scene::IsEntityValid(Entity* entity)
+	bool Scene::IsEntityValid(EntityRegister& entity)
 	{
-		if (entity == nullptr) return false;
-		return IsEntityValid(entity->m_Scene, entity->m_SceneID);
+		return entity.UniqueID != 0 && IsEntityValid(entity.SceneID);
 	}
 
-	void Scene::RemoveComponent(Entity* entity, int component)
+	bool Scene::IsEntityValid(Ref<Scene> scene, UUID uuid)
 	{
-		s_ComponentsToDelete[entity] = component;
+		return uuid != 0 && IsEntityValid(GetEntity(scene, uuid));
+	}
+
+	void Scene::RemoveComponent(EntityRegister& entity, int component)
+	{
+		s_ComponentsToDelete[&entity] = component;
 	}
 
 	SceneID Scene::CreateSceneID(SceneIndex index, SceneVersion version)
 	{
-		return ((SceneID)index << 32) | ((SceneID)version);
+		return (static_cast<unsigned long long>((SceneIndex)index) << 32) | ((SceneID)version);
 	}
 
-	void Scene::CreateEntityDefaults(Ref<Scene> scene, Entity* entity, std::string name)
+	std::vector<Component*> Scene::GetComponents(EntityRegister& entity)
 	{
-		entity->m_Scene = scene;
-		entity->m_Components.reset();
-		entity->m_Transform = AddComponent<Transform>(entity);
-		entity->m_Tag = AddComponent<Tag>(entity);
-		entity->m_Tag->name = name;
-		entity->m_UUID = UUID();
+		std::vector<Component*> components;
+
+		for (ComponentPool* pool : entity.SceneRef->m_ComponentPools)
+			if (entity.Components.test(pool->ComponentID))
+				components.push_back(static_cast<Component*>(entity.SceneRef->m_ComponentPools[pool->ComponentID]->Get(GetSceneIndex(entity.SceneID))));
+
+		return components;
 	}
 
-	void Scene::PurgeEntity(Entity* entity)
+	void Scene::CreateEntityDefaults(Ref<Scene> scene, EntityRegister& entity, std::string name)
+	{
+		entity.SceneRef = scene;
+		entity.Components.reset();
+		AddComponent<Transform>(entity);
+		if (Tag* tag = AddComponent<Tag>(entity))
+			tag->name = name;
+		entity.UniqueID = UUID();
+	}
+
+	void Scene::PurgeEntity(EntityRegister& entity)
 	{
 		if (!IsEntityValid(entity)) return;
 
-		Ref<Scene> scene = entity->m_Scene;
+		Ref<Scene> scene = entity.SceneRef;
 
-		SceneIndex index = GetSceneIndex(entity->m_SceneID);
-		SceneID newID = CreateSceneID(SceneIndex(-1), GetSceneVersion(entity->m_SceneID) + 1);
+		SceneIndex index = GetSceneIndex(entity.SceneID);
+		SceneID newID = CreateSceneID(SceneIndex(-1), GetSceneVersion(entity.SceneID) + 1);
 
-		scene->m_Entities[index]->m_SceneID = newID;
-		scene->m_Entities[index]->m_Components.reset();
-		scene->m_Entities[index]->m_Children.clear();
-		scene->m_Entities[index]->m_ComponentPtrs.clear();
-		scene->m_Entities[index]->m_Scene = nullptr;
+		scene->m_Entities[index]->SceneID = newID;
+		scene->m_Entities[index]->Components.reset();
+		scene->m_Entities[index]->Children.clear();
+		scene->m_Entities[index]->SceneRef = nullptr;
 
-		if (scene->m_Entities[index]->m_Parent != nullptr)
-			scene->m_Entities[index]->m_Parent->RemoveChildEntity(scene->m_Entities[index]);
-		scene->m_Entities[index]->m_Parent = nullptr;
+		EntityRegister& parent = GetEntity(scene, scene->m_Entities[index]->Parent);
+		if (IsEntityValid(parent))
+			scene->RemoveChildEntity(parent, *scene->m_Entities[index]);
+		scene->m_Entities[index]->Parent = UUID(0);
 
 		scene->m_FreeEntities.push_back(index);
 	}
 
-	void Scene::PurgeComponent(Entity* entity, int component)
+	void Scene::PurgeComponent(EntityRegister& entity, int component)
 	{
 		if (!IsEntityValid(entity)) return;
 
-		for (auto& pool : entity->m_Scene->m_ComponentPools)
-		{
-			if (pool->ComponentID == component)
-			{
-				for (int i = 0; i < entity->m_ComponentPtrs.size(); i++)
-				{
-					if (entity->m_ComponentPtrs[i] == pool->Get(GetSceneIndex(entity->m_SceneID)))
-					{
-						entity->m_ComponentPtrs.erase(entity->m_ComponentPtrs.begin() + i);
-					}
-				}
-			}
-		}
-
-		entity->m_Components.reset(component);
+		entity.Components.reset(component);
 	}
 }

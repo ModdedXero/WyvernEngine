@@ -30,8 +30,8 @@ namespace Wyvern
 
 		static ViewportCamera* GetViewportCamera() { return s_ViewportCamera; }
 
-		static Entity* GetSelectedContext() { return s_SelectedContext; }
-		static void SetSelectedContext(Entity* ent) { s_SelectedContext = ent; }
+		static Entity GetSelectedContext() { return s_SelectedContext; }
+		static void SetSelectedContext(Entity ent) { s_SelectedContext = ent; }
 
 		static void SaveScene();
 		static void LoadScene(Utils::FileSystem filePath);
@@ -39,7 +39,7 @@ namespace Wyvern
 		static Ref<Scene> s_ActiveScene;
 		static Ref<Scene> s_CachedScene;
 		static ViewportCamera* s_ViewportCamera;
-		static Entity* s_SelectedContext;
+		static Entity s_SelectedContext;
 
 		static ViewportWindow* s_ViewportWindow;
 		static HierarchyWindow* s_HierarchyWindow;

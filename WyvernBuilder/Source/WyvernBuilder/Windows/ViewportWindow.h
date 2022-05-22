@@ -22,7 +22,7 @@ namespace Wyvern
 		Vector2 m_WindowSize;
 
 		Ref<Renderer::Framebuffer> m_Framebuffer;
-		Entity* m_HoverEntity;
+		Entity m_HoverEntity;
 
 		int m_GizmoSelection = -1;
 		float m_SnapValue = 0.5f;

@@ -6,20 +6,14 @@
 
 namespace Wyvern
 {
-	struct EntityNode
-	{
-		Entity* Ent;
-		ImGuiTreeNodeFlags Flags;
-	};
-
 	void HierarchyWindow::OnGUI()
 	{
 		if (Input::IsMouseButton(0) && IsHovered())
 		{
-			BuilderLayer::SetSelectedContext(nullptr);
+			BuilderLayer::SetSelectedContext(Entity());
 		}
 
-		for (Entity* ent : EntityList<>(Scene::GetActiveScene()))
+		for (Entity ent : EntityList(Scene::GetActiveScene()))
 		{
 			DrawEntityNode(ent);
 		}
@@ -34,18 +28,17 @@ namespace Wyvern
 		}
 	}
 
-	void HierarchyWindow::DrawEntityNode(Entity* ent, bool isChild)
+	void HierarchyWindow::DrawEntityNode(Entity ent, bool isChild)
 	{
-		if (!isChild && ent->GetParent() != nullptr) return;
+		if (!isChild && ent.GetParent().IsValid()) return;
 
-		Tag* tag = ent->GetTag();
+		Tag* tag = ent.GetTag();
 
 		ImGuiTreeNodeFlags flags = ((BuilderLayer::GetSelectedContext() == ent) ? ImGuiTreeNodeFlags_Selected : 0); 
-		flags |= ((ent->GetChildren().size() > 0) ? ImGuiTreeNodeFlags_OpenOnArrow : ImGuiTreeNodeFlags_Leaf);
+		flags |= ((ent.GetChildren().size() > 0) ? ImGuiTreeNodeFlags_OpenOnArrow : ImGuiTreeNodeFlags_Leaf);
 		flags |= ImGuiTreeNodeFlags_SpanAvailWidth;
 
-		std::string name = tag->name + std::to_string(Scene::GetSceneIndex(ent->GetSceneID()));
-		bool opened = ImGui::TreeNodeEx((void*)ent->GetSceneID(), flags, name.c_str());
+		bool opened = ImGui::TreeNodeEx((void*)tag->name.c_str(), flags, tag->name.c_str());
 		if (ImGui::IsItemClicked())
 		{
 			BuilderLayer::SetSelectedContext(ent);
@@ -56,13 +49,13 @@ namespace Wyvern
 			BuilderLayer::SetSelectedContext(ent);
 
 			if (ImGui::MenuItem("Duplicate Entity"))
-				Scene::DuplicateEntity(ent);
+				Scene::DuplicateEntity(ent, Entity());
 
 			if (ImGui::MenuItem("Create Child Entity"))
-				ent->AddChildEntity(Scene::CreateEntity(Scene::GetActiveScene()));
+				ent.AddChildEntity(Scene::CreateEntity(Scene::GetActiveScene()));
 
 			if (ImGui::MenuItem("Delete Entity"))
-				ent->DestroyEntity();
+				ent.DestroyEntity();
 
 			ImGui::EndPopup();
 		}
@@ -74,11 +67,11 @@ namespace Wyvern
 		}
 	}
 
-	void HierarchyWindow::DrawEntityChildren(Entity* ent)
+	void HierarchyWindow::DrawEntityChildren(Entity ent)
 	{
-		for (Entity* ent : ent->GetChildren())
+		for (UUID& uuid : ent.GetChildren())
 		{
-			DrawEntityNode(ent, true);
+			DrawEntityNode(Scene::GetEntity(ent.GetScene(), uuid), true);
 		}
 	}
 }

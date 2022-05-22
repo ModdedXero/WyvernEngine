@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Wyvern/Core/Scene/Entity.h>
 #include <Wyvern/Core/Math/Vector.h>
 
 namespace Wyvern
@@ -8,7 +9,7 @@ namespace Wyvern
 
 	struct Collision2D
 	{
-		Collision2D(Entity* a, Entity* b, Vector2 normal, float penetration)
+		Collision2D(Entity a, Entity b, Vector2 normal, float penetration)
 		{
 			this->entA = a;
 			this->entB = b;
@@ -16,8 +17,8 @@ namespace Wyvern
 			this->penetration = penetration;
 		}
 
-		Entity* entA;
-		Entity* entB;
+		Entity entA;
+		Entity entB;
 		Vector2 normal;
 		float penetration;
 	};

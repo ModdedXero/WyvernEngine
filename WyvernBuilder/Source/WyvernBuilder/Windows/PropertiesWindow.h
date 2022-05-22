@@ -14,9 +14,9 @@ namespace Wyvern
 
 		virtual void OnGUI() override;
 	private:
-		Entity* s_SelectedContext;
+		Entity s_SelectedContext;
 
 		void DrawComponents();
-		void DrawComponent(const std::string label, Component* component, Entity* ent, bool isDefault = false);
+		void DrawComponent(const std::string label, Component* component, Entity ent, bool isDefault = false);
 	};
 }

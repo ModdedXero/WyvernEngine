@@ -24,12 +24,12 @@ namespace Wyvern::UI
 
 	bool UIWizard::OnMouseMoveEvent(MouseMovedEvent& e)
 	{
-		for (Entity* entity : EntityList<Button>(Scene::GetActiveScene()))
+		for (Entity entity : EntityList<Button>(Scene::GetActiveScene()))
 		{
 			Button* button = Scene::GetComponent<Button>(entity);
 			Vector2 mousePos = Vector2(e.GetXPos(), e.GetYPos());
-			Vector2 buttonScale = entity->GetTransform()->scale;
-			Vector2 buttonPos = entity->GetTransform()->position;
+			Vector2 buttonScale = entity.GetTransform()->scale;
+			Vector2 buttonPos = entity.GetTransform()->position;
 
 			Vector2 buttonTopLeft = Renderer::CameraRenderer::WorldToScreenPoint(Vector3(buttonPos.x - buttonScale.x, buttonPos.y + buttonScale.y, 1.0f));
 			Vector2 buttonTopRight = Renderer::CameraRenderer::WorldToScreenPoint(Vector3(buttonPos.x + buttonScale.x, buttonPos.y + buttonScale.y, 1.0f));
@@ -61,7 +61,7 @@ namespace Wyvern::UI
 
 	bool UIWizard::OnMouseClickEvent(MouseButtonPressedEvent& e)
 	{
-		for (Entity* entity : EntityList<Button>(Scene::GetActiveScene()))
+		for (Entity entity : EntityList<Button>(Scene::GetActiveScene()))
 		{
 			Button* button = Scene::GetComponent<Button>(entity);
 

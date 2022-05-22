@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Entity.h"
+
 #include <Wyvern/Core/Math/Vector.h>
 #include <Wyvern/Core/Scene/Serializer.h>
 
@@ -7,37 +9,36 @@
 
 namespace Wyvern
 {
-	class Entity;
 	struct Transform;
 	struct Tag;
 	struct SerializeInfo;
 
 	struct Component
 	{
+	private:
+		friend class Scene;
+		friend class ApplicationDomain;
+
+	public:
 		Component()
-			: m_Entity(nullptr), m_Transform(nullptr), m_Tag(nullptr)
+			: m_Entity(Entity())
 		{}
 		virtual ~Component() = 0;
 
-		Entity* GetEntity() const { return m_Entity; }
-		Transform* GetTransform() const { return m_Transform; }
-		Tag* GetTag() const { return m_Tag; }
+		Entity GetEntity() const { return m_Entity; }
+		Tag* GetTag() { return m_Entity.GetTag(); }
+		Transform* GetTransform() { return m_Entity.GetTransform(); }
 		int GetSceneID() { return m_ComponentID; }
 
 		virtual void __Serialize(SerializeInfo& info) {}
 		virtual void Serialize(YAML::Emitter& out) {}
-		virtual void Deserialize(Entity* entity, YAML::Node& data) {}
-		virtual void AddToEntity(Entity* entity) {}
+		virtual void Deserialize(Entity entity, YAML::Node& data) {}
+		virtual void AddToEntity(Entity entity) {}
 		virtual void DrawEditor() {}
 	private:
-		Entity* m_Entity;
-		Transform* m_Transform;
-		Tag* m_Tag;
+		Entity m_Entity;
 
 		int m_ComponentID;
-
-		friend class Scene;
-		friend class ApplicationDomain;
 
 		typedef Component base;
 		typedef Component type;
@@ -45,6 +46,11 @@ namespace Wyvern
 
 	struct NativeScriptComponent : public Component
 	{
+	private:
+		friend class Scene;
+		friend class ApplicationDomain;
+
+	public:
 		NativeScriptComponent()
 			: Component()
 		{}
@@ -56,9 +62,6 @@ namespace Wyvern
 		virtual void OnFixedUpdate() {}
 
 	private:
-		friend class Scene;
-		friend class ApplicationDomain;
-
 		typedef NativeScriptComponent base;
 	};
 }

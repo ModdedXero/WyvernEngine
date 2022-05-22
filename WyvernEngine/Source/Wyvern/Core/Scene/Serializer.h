@@ -33,12 +33,12 @@ namespace Wyvern
 	{
 	public:
 		static SerializeInfo& Serialize(Ref<Scene> scene);
-		static SerializeInfo& Serialize(Entity* entity);
-		static void Serialize(Entity* entity, SerializeInfo& info);
+		static SerializeInfo& Serialize(EntityRegister& entity);
+		static void Serialize(EntityRegister& entity, SerializeInfo& info);
 		static void Serialize(SerializeInfo& info, const std::string& filepath);
 
 		static bool Deserialize(Ref<Scene> scene, SerializeInfo& info);
-		static bool Deserialize(Entity* entity, SerializeInfo& info);
+		static bool Deserialize(EntityRegister& entity, SerializeInfo& info);
 		static bool Deserialize(Ref<Scene> scene, const Utils::FileSystem& filepath);
 
 		static void ConvertSerialToDeserial(SerializeInfo& info);

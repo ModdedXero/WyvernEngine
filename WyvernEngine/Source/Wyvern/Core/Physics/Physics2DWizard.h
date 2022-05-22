@@ -36,8 +36,8 @@ namespace Wyvern
 			SphereCollider2D* otherCollider,
 			Transform* otherTransform);
 
-		static Ref<Collision2D> GetCollisionData(Entity* entity, BoxCollider2D* collider, Entity* otherEnt, BoxCollider2D* otherCollider);
-		static Ref<Collision2D> GetCollisionData(Entity* entity, BoxCollider2D* collider, Entity* otherEnt, SphereCollider2D* otherCollider);
-		static Ref<Collision2D> GetCollisionData(Entity* entity, SphereCollider2D* collider, Entity* otherEnt, BoxCollider2D* otherCollider);
+		static Ref<Collision2D> GetCollisionData(Entity entity, BoxCollider2D* collider, Entity otherEnt, BoxCollider2D* otherCollider);
+		static Ref<Collision2D> GetCollisionData(Entity entity, BoxCollider2D* collider, Entity otherEnt, SphereCollider2D* otherCollider);
+		static Ref<Collision2D> GetCollisionData(Entity entity, SphereCollider2D* collider, Entity otherEnt, BoxCollider2D* otherCollider);
 	};
 }

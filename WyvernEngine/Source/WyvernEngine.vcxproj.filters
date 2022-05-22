@@ -196,9 +196,6 @@
     <ClInclude Include="Wyvern\Core\Scene\Entity.h">
       <Filter>Wyvern\Core\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Wyvern\Core\Scene\EntityConstants.h">
-      <Filter>Wyvern\Core\Scene</Filter>
-    </ClInclude>
     <ClInclude Include="Wyvern\Core\Scene\EntityList.h">
       <Filter>Wyvern\Core\Scene</Filter>
     </ClInclude>
@@ -265,6 +262,8 @@
     <ClInclude Include="wvpch.h" />
     <ClInclude Include="Wyvern\Core\Math\VectorInt.h" />
     <ClInclude Include="Wyvern\Core\Application\Project.h" />
+    <ClInclude Include="Wyvern\Core\Scene\EntityRegister.h" />
+    <ClInclude Include="Wyvern\Core\Scene\EntityConstants.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Vendor\ImGuizmo\ImGuizmo.cpp">

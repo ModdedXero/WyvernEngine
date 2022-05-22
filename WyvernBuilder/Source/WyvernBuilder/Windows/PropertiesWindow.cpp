@@ -10,18 +10,17 @@ namespace Wyvern
 	void PropertiesWindow::OnGUI()
 	{
 		if (!Scene::IsEntityValid(BuilderLayer::GetSelectedContext())) 
-			BuilderLayer::SetSelectedContext(nullptr);
-		if (BuilderLayer::GetSelectedContext() == nullptr) return;
+			BuilderLayer::SetSelectedContext(Entity());
+		if (!BuilderLayer::GetSelectedContext().IsValid()) return;
 
-		if (BuilderLayer::GetSelectedContext() != s_SelectedContext)
-			s_SelectedContext = BuilderLayer::GetSelectedContext();
+		s_SelectedContext = BuilderLayer::GetSelectedContext();
 
 		DrawComponents();
 	}
 
 	void PropertiesWindow::DrawComponents()
 	{
-		Tag* tag = s_SelectedContext->GetTag();
+		Tag* tag = s_SelectedContext.GetTag();
 
 		char buffer[256];
 		memset(buffer, 0, sizeof(buffer));
@@ -47,7 +46,7 @@ namespace Wyvern
 
 				if (ImGui::MenuItem(component.first.c_str()))
 				{
-					auto newComp = component.second(Scene::GetActiveScene(), s_SelectedContext->GetSceneID());
+					auto newComp = component.second(Scene::GetActiveScene(), s_SelectedContext.GetSceneID());
 					newComp->AddToEntity(s_SelectedContext);
 					ImGui::CloseCurrentPopup();
 				}
@@ -59,15 +58,16 @@ namespace Wyvern
 		ImGui::PopItemWidth();
 		ImGui::Separator();
 
-		DrawComponent("Transform", s_SelectedContext->GetTransform(), s_SelectedContext, true);
-
-		for (Component* component : s_SelectedContext->GetAllComponents())
+		for (Component* component : s_SelectedContext.GetComponents())
 		{
+			if (typeid(*component).name() == std::string("struct Wyvern::Tag"))
+				continue;
+
 			DrawComponent(typeid(*component).name(), component, s_SelectedContext);
 		}
 	}
 
-	void PropertiesWindow::DrawComponent(const std::string label, Component* component, Entity* ent, bool isDefault)
+	void PropertiesWindow::DrawComponent(const std::string label, Component* component, Entity ent, bool isDefault)
 	{
 		if (component)
 		{

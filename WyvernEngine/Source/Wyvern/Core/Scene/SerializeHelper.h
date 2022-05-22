@@ -151,7 +151,7 @@ namespace YAML
 		{
 			if (node.as<uint64_t>() == 0) return true;
 
-			rhs = *Wyvern::Scene::CreateEntity(Wyvern::Scene::GetActiveScene(), Wyvern::UUID(node.as<uint64_t>()));
+			rhs = Wyvern::Scene::CreateEntity(Wyvern::Scene::GetActiveScene(), Wyvern::UUID(node.as<uint64_t>()));
 			return true;
 		}
 	};

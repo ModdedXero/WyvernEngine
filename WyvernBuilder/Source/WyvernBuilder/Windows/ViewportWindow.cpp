@@ -27,7 +27,7 @@ namespace Wyvern
 		if (IsHovered())
 		{
 			int index = m_Framebuffer->ReadPixel(1, GetCursorPosition().x, GetCursorPosition().y);
-			Entity* ent = Scene::GetEntityAtIndex(Scene::GetActiveScene(), index);
+			Entity ent = Scene::GetEntity(Scene::GetActiveScene(), index);
 			m_HoverEntity = ent;
 		}
 		m_Framebuffer->Unbind();
@@ -45,8 +45,8 @@ namespace Wyvern
 
 		// Gizmos
 
-		Entity* selectedContext = BuilderLayer::GetSelectedContext();
-		if (selectedContext && m_GizmoSelection != -1 && Scene::GetActiveScene()->GetSceneState() == SceneState::Edit)
+		Entity selectedContext = BuilderLayer::GetSelectedContext();
+		if (selectedContext.IsValid() && m_GizmoSelection != -1 && Scene::GetActiveScene()->GetSceneState() == SceneState::Edit)
 		{
 			ViewportCamera* camera = BuilderLayer::GetViewportCamera();
 
@@ -65,7 +65,7 @@ namespace Wyvern
 			glm::mat4 cameraView = Matrix4x4::Inverse(cameraTransform.GetTransform()).GetNativeMatrix();
 			glm::mat4 cameraProjection = camera->GetProjection();
 
-			Transform* transformComp = selectedContext->GetTransform();
+			Transform* transformComp = selectedContext.GetTransform();
 			glm::mat4 transform = transformComp->GetTransform().GetNativeMatrix();
 
 			float snapValues[3] = { m_SnapValue, m_SnapValue, m_SnapValue };

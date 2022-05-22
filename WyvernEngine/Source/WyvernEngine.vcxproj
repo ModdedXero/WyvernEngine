@@ -188,6 +188,7 @@
     <ClInclude Include="Wyvern\Core\Scene\Entity.h" />
     <ClInclude Include="Wyvern\Core\Scene\EntityConstants.h" />
     <ClInclude Include="Wyvern\Core\Scene\EntityList.h" />
+    <ClInclude Include="Wyvern\Core\Scene\EntityRegister.h" />
     <ClInclude Include="Wyvern\Core\Scene\Scene.h" />
     <ClInclude Include="Wyvern\Core\Scene\SerializeHelper.h" />
     <ClInclude Include="Wyvern\Core\Scene\Serializer.h" />
