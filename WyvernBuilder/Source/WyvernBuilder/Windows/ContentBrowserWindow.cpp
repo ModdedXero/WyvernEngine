@@ -86,7 +86,6 @@ namespace Wyvern
 			ImGui::ImageButton((ImTextureID)icon->GetID(), { thumbnailSize, thumbnailSize }, { 0, 1 }, { 1,0 });
 			ImGui::PopStyleColor();
 
-
 			if (ImGui::BeginDragDropSource())
 			{
 				const FileSystem* sourcePath = new FileSystem(dir);

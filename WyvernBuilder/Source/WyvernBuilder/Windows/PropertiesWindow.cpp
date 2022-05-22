@@ -60,7 +60,7 @@ namespace Wyvern
 
 		for (Component* component : s_SelectedContext.GetComponents())
 		{
-			if (typeid(*component).name() == std::string("struct Wyvern::Tag"))
+			if (typeid(*component).name() == std::string(typeid(Tag).name()))
 				continue;
 
 			DrawComponent(typeid(*component).name(), component, s_SelectedContext);

@@ -8,7 +8,7 @@ namespace Wyvern
 {
 	void HierarchyWindow::OnGUI()
 	{
-		if (Input::IsMouseButton(0) && IsHovered())
+		if (ImGui::IsMouseClicked(ImGuiMouseButton_Left) && !ImGui::IsAnyItemHovered())
 		{
 			BuilderLayer::SetSelectedContext(Entity());
 		}
@@ -39,9 +39,15 @@ namespace Wyvern
 		flags |= ImGuiTreeNodeFlags_SpanAvailWidth;
 
 		bool opened = ImGui::TreeNodeEx((void*)tag->name.c_str(), flags, tag->name.c_str());
-		if (ImGui::IsItemClicked())
+		if (ImGui::IsItemHovered() && ImGui::IsMouseReleased(ImGuiMouseButton_Left))
 		{
 			BuilderLayer::SetSelectedContext(ent);
+		}
+
+		if (ImGui::BeginDragDropSource())
+		{
+			ImGui::SetDragDropPayload("ENTITY_LINK", &ent, sizeof(Entity), ImGuiCond_Once);
+			ImGui::EndDragDropSource();
 		}
 
 		if (ImGui::BeginPopupContextItem(0, ImGuiPopupFlags_NoOpenOverExistingPopup | ImGuiPopupFlags_MouseButtonRight))
