@@ -29,7 +29,7 @@ Entities:
       Tag:
         name: Camera
       Camera:
-        clearColor: [0.100000001, 0.100000001, 0.200000003, 1]
+        clearColor: [0.147392273, 0.147392273, 0.147392273, 1]
         cameraMode: 1
         orthoSize: 5
         fieldOfView: 60
@@ -59,6 +59,61 @@ Entities:
         bodyType: 2
       BoxCollider2D:
         size: [0.175999999, 4.33300018]
+      ScoreKeeper:
+        Score1: 11161400017071874472
+        Score2: 13930857459460421319
+        Score3: 908342816586825499
+  - Entity: 11161400017071874472
+    Parent: 11585896250388531917
+    Components:
+      Tag:
+        name: Score1
+      Transform:
+        position: [-7.12911272, 3.54396534, 0]
+        rotation: [0, 0, 0]
+        scale: [0.118863232, 0.808823347, 1]
+      Transform:
+        position: [-7.12911272, 3.54396534, 0]
+        rotation: [0, 0, 0]
+        scale: [0.118863232, 0.808823347, 1]
+      Tag:
+        name: Score1
+      SpriteRenderer:
+        color: [0.809523821, 0.343267471, 0.343267471, 1]
+  - Entity: 13930857459460421319
+    Parent: 11585896250388531917
+    Components:
+      Tag:
+        name: Score2
+      Transform:
+        position: [-6.64449978, 3.54396629, 0]
+        rotation: [0, 0, 0]
+        scale: [0.118863232, 0.808823347, 1]
+      Transform:
+        position: [-6.64449978, 3.54396629, 0]
+        rotation: [0, 0, 0]
+        scale: [0.118863232, 0.808823347, 1]
+      Tag:
+        name: Score2
+      SpriteRenderer:
+        color: [0.807843149, 0.345098048, 0.345098048, 1]
+  - Entity: 908342816586825499
+    Parent: 11585896250388531917
+    Components:
+      Tag:
+        name: Score3
+      Transform:
+        position: [-6.17730761, 3.54396534, 0]
+        rotation: [0, 0, 0]
+        scale: [0.118863232, 0.808823347, 1]
+      Transform:
+        position: [-6.17730761, 3.54396534, 0]
+        rotation: [0, 0, 0]
+        scale: [0.118863232, 0.808823347, 1]
+      Tag:
+        name: Score3
+      SpriteRenderer:
+        color: [0.807843149, 0.345098048, 0.345098048, 1]
   - Entity: 16123636728951566063
     Parent: 8229268687544618337
     Components:
@@ -107,6 +162,61 @@ Entities:
         bodyType: 2
       BoxCollider2D:
         size: [0.175999999, 4.33300018]
+      ScoreKeeper:
+        Score1: 15504981372849386314
+        Score2: 11115953047978866172
+        Score3: 2427320013023209304
+  - Entity: 15504981372849386314
+    Parent: 17358548077433364261
+    Components:
+      Tag:
+        name: Score1
+      Transform:
+        position: [-6.16641665, 3.54396534, 0]
+        rotation: [0, 0, 0]
+        scale: [0.118863232, 0.808823347, 1]
+      Transform:
+        position: [-6.16641665, 3.54396534, 0]
+        rotation: [0, 0, 0]
+        scale: [0.118863232, 0.808823347, 1]
+      Tag:
+        name: Score1
+      SpriteRenderer:
+        color: [0.807843149, 0.345098048, 0.345098048, 1]
+  - Entity: 11115953047978866172
+    Parent: 17358548077433364261
+    Components:
+      Tag:
+        name: Score2
+      Transform:
+        position: [-6.64449978, 3.54396629, 0]
+        rotation: [0, 0, 0]
+        scale: [0.118863232, 0.808823347, 1]
+      Transform:
+        position: [-6.64449978, 3.54396629, 0]
+        rotation: [0, 0, 0]
+        scale: [0.118863232, 0.808823347, 1]
+      Tag:
+        name: Score2
+      SpriteRenderer:
+        color: [0.807843149, 0.345098048, 0.345098048, 1]
+  - Entity: 2427320013023209304
+    Parent: 17358548077433364261
+    Components:
+      Tag:
+        name: Score3
+      Transform:
+        position: [-7.12911272, 3.54396534, 0]
+        rotation: [0, 0, 0]
+        scale: [0.118863232, 0.808823347, 1]
+      Transform:
+        position: [-7.12911272, 3.54396534, 0]
+        rotation: [0, 0, 0]
+        scale: [0.118863232, 0.808823347, 1]
+      Tag:
+        name: Score3
+      SpriteRenderer:
+        color: [0.807843149, 0.345098048, 0.345098048, 1]
   - Entity: 13520612417187559922
     Parent: 8229268687544618337
     Components:
@@ -209,3 +319,31 @@ Entities:
         radius: 0.150000006
       PongBall:
         initialForce: [20, 24]
+  - Entity: 11585896250388531917
+    Components:
+      Tag:
+        name: Player1Score
+      Transform:
+        position: [0, 0, 0]
+        rotation: [0, 0, 0]
+        scale: [1, 1, 1]
+      Transform:
+        position: [0, 0, 0]
+        rotation: [0, 0, 0]
+        scale: [1, 1, 1]
+      Tag:
+        name: Player1Score
+  - Entity: 17358548077433364261
+    Components:
+      Tag:
+        name: Player2Score
+      Transform:
+        position: [13.2889986, 0, 0]
+        rotation: [0, 0, 0]
+        scale: [1, 1, 1]
+      Transform:
+        position: [13.2889986, 0, 0]
+        rotation: [0, 0, 0]
+        scale: [1, 1, 1]
+      Tag:
+        name: Player2Score

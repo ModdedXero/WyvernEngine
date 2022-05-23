@@ -25,8 +25,8 @@ namespace Wyvern
 		Entity GetParent() const { return Entity(Scene::GetEntity(GetScene(), m_EntityRegister->Parent)); }
 		std::vector<UUID> GetChildren() const { return m_EntityRegister->Children; }
 
-		Tag* GetTag();
-		Transform* GetTransform();
+		Tag* GetTag() const;
+		Transform* GetTransform() const;
 		std::vector<Component*> GetComponents();
 
 		void AddChildEntity(EntityRegister* entity);

@@ -18,12 +18,12 @@ namespace Wyvern
 		m_EntityRegister = view;
 	}
 
-	Tag* Entity::GetTag()
+	Tag* Entity::GetTag() const
 	{
 		return Scene::GetComponent<Tag>(m_EntityRegister);
 	}
 
-	Transform* Entity::GetTransform()
+	Transform* Entity::GetTransform() const
 	{
 		return Scene::GetComponent<Transform>(m_EntityRegister);
 	}
