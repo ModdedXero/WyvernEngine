@@ -128,12 +128,14 @@ namespace Wyvern
                         SetActiveScene(runtimeScene);
                         Serializer::Deserialize(runtimeScene, info);
                         runtimeScene->SetSceneState(SceneState::Play);
+                        runtimeScene->OnAttach();
                     }
                     else
                     {
                         s_ActiveScene->OnDestroy();
                         SetActiveScene(s_CachedScene);
                         s_ActiveScene->SetSceneState(SceneState::Edit);
+                        s_ActiveScene->OnAttach();
                     }
                 }
 

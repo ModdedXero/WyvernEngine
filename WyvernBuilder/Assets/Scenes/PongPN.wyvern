@@ -14,8 +14,27 @@ Entities:
         scale: [1, 1, 1]
       Tag:
         name: Walls
-      ScoreKeeper:
-        Score: 5998727893487774253
+  - Entity: 5998727893487774253
+    Components:
+      Tag:
+        name: Camera
+      Transform:
+        position: [0, 0, 0.5]
+        rotation: [0, 0, 0]
+        scale: [1, 1, 1]
+      Transform:
+        position: [0, 0, 0.5]
+        rotation: [0, 0, 0]
+        scale: [1, 1, 1]
+      Tag:
+        name: Camera
+      Camera:
+        clearColor: [0.100000001, 0.100000001, 0.200000003, 1]
+        cameraMode: 1
+        orthoSize: 5
+        fieldOfView: 60
+        clipNear: 0.300000012
+        clipFar: 100
   - Entity: 11497441565846073444
     Parent: 8229268687544618337
     Components:
@@ -190,24 +209,3 @@ Entities:
         radius: 0.150000006
       PongBall:
         initialForce: [20, 24]
-  - Entity: 5998727893487774253
-    Components:
-      Tag:
-        name: Camera
-      Transform:
-        position: [0, 0, 0.5]
-        rotation: [0, 0, 0]
-        scale: [1, 1, 1]
-      Transform:
-        position: [0, 0, 0.5]
-        rotation: [0, 0, 0]
-        scale: [1, 1, 1]
-      Tag:
-        name: Camera
-      Camera:
-        clearColor: [0.100000001, 0.100000001, 0.200000003, 1]
-        cameraMode: 1
-        orthoSize: 5
-        fieldOfView: 60
-        clipNear: 0.300000012
-        clipFar: 100

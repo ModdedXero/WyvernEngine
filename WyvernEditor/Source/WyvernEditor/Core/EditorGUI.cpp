@@ -291,6 +291,11 @@ namespace Wyvern::Editor
 		std::string targetName = Scene::IsEntityValid(entity) ? entity.GetTag()->name : "None";
 		EditorGUIInternal::DragDropTarget(targetName.c_str(), DragDropTypes::Entity, entity);
 
+		if (ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0))
+		{
+			entity = Entity();
+		}
+
 		ImGui::Columns(1);
 	}
 
