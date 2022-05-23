@@ -8,6 +8,6 @@ namespace Wyvern
 	class SmoothPosition2D : public CollisionSolver2D
 	{
 	public:
-		void Solve(const std::vector<Ref<Collision2D>> collisions) override;
+		void Solve(std::vector<Collision2D> collisions) override;
 	};
 }

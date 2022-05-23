@@ -7,12 +7,12 @@
 
 namespace Wyvern
 {
-	void SmoothPosition2D::Solve(const std::vector<Ref<Collision2D>> collisions)
+	void SmoothPosition2D::Solve(std::vector<Collision2D> collisions)
 	{
-		for (Ref<Collision2D> collision : collisions)
+		for (Collision2D& collision : collisions)
 		{
-			RigidBody2D* rbA = Scene::GetComponent<RigidBody2D>(collision->entA);
-			RigidBody2D* rbB = Scene::GetComponent<RigidBody2D>(collision->entB);
+			RigidBody2D* rbA = Scene::GetComponent<RigidBody2D>(collision.entA);
+			RigidBody2D* rbB = Scene::GetComponent<RigidBody2D>(collision.entB);
 
 			float aMass = rbA->GetInvMass();
 			float bMass = rbB->GetInvMass();
@@ -24,12 +24,12 @@ namespace Wyvern
 
 			Vector2 correction =
 				collectiveMass > 0 ?
-				collision->normal * fmax(collision->penetration - slop, 0.0f) /
+				collision.normal * fmax(collision.penetration - slop, 0.0f) /
 				(aMass + bMass) * percent :
-				collision->normal * fmax(collision->penetration - slop, 0.0f) / percent;
+				collision.normal * fmax(collision.penetration - slop, 0.0f) / percent;
 
-			if (rbA->bodyType != PhysicsBody::Static) collision->entA.GetTransform()->position -= correction * aMass;
-			if (rbB->bodyType != PhysicsBody::Static) collision->entB.GetTransform()->position += correction * bMass;
+			if (rbA->bodyType != PhysicsBody::Static) collision.entA.GetTransform()->position -= correction * aMass;
+			if (rbB->bodyType != PhysicsBody::Static) collision.entB.GetTransform()->position += correction * bMass;
 		}
 	}
 }

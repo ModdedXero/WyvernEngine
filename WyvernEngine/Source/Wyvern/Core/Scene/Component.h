@@ -4,6 +4,7 @@
 
 #include <Wyvern/Core/Math/Vector.h>
 #include <Wyvern/Core/Scene/Serializer.h>
+#include <Wyvern/Core/Physics/Collision2D.h>
 
 #include <yaml-cpp/yaml.h>
 
@@ -33,8 +34,8 @@ namespace Wyvern
 		virtual void __Serialize(SerializeInfo& info) {}
 		virtual void Serialize(YAML::Emitter& out) {}
 		virtual void Deserialize(Entity entity, YAML::Node& data) {}
-		virtual void AddToEntity(Entity entity) {}
 		virtual void DrawEditor() {}
+
 	private:
 		Entity m_Entity;
 
@@ -60,6 +61,8 @@ namespace Wyvern
 		virtual void OnDestroy() {}
 		virtual void OnUpdate() {}
 		virtual void OnFixedUpdate() {}
+
+		virtual void OnCollision2D(const Collision2D& collision) {}
 
 	private:
 		typedef NativeScriptComponent base;

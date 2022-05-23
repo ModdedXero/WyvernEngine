@@ -9,6 +9,6 @@ namespace Wyvern
 	class CollisionSolver2D
 	{
 	public:
-		virtual void Solve(const std::vector<Ref<Collision2D>> collisions) {}
+		virtual void Solve(std::vector<Collision2D> collisions) {}
 	};
 }

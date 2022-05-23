@@ -6,6 +6,6 @@ namespace Wyvern
 {
 	class Impulse2D : public CollisionSolver2D
 	{
-		void Solve(const std::vector<Ref<Collision2D>> collisions) override;
+		void Solve(std::vector<Collision2D> collisions) override;
 	};
 }

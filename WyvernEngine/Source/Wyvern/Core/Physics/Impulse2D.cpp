@@ -7,12 +7,12 @@
 
 namespace Wyvern
 {
-	void Impulse2D::Solve(const std::vector<Ref<Collision2D>> collisions)
+	void Impulse2D::Solve(std::vector<Collision2D> collisions)
 	{
-		for (Ref<Collision2D> collision : collisions)
+		for (Collision2D& collision : collisions)
 		{
-			RigidBody2D* rbA = Scene::GetComponent<RigidBody2D>(collision->entA);
-			RigidBody2D* rbB = Scene::GetComponent<RigidBody2D>(collision->entB);
+			RigidBody2D* rbA = Scene::GetComponent<RigidBody2D>(collision.entA);
+			RigidBody2D* rbB = Scene::GetComponent<RigidBody2D>(collision.entB);
 
 			float aInvMass = rbA->GetInvMass();
 			float bInvMass = rbB->GetInvMass();
@@ -21,7 +21,7 @@ namespace Wyvern
 
 			Vector2 rv = rbB->velocity - rbA->velocity;
 
-			float velN = Vector2::Dot(rv, collision->normal);
+			float velN = Vector2::Dot(rv, collision.normal);
 
 			if (velN > 0)
 				continue;
@@ -31,7 +31,7 @@ namespace Wyvern
 			float j = -(1 + e) * velN;
 			j /= aInvMass + bInvMass;
 
-			Vector2 impulse = collision->normal * j;
+			Vector2 impulse = collision.normal * j;
 			rbA->velocity -= impulse * aInvMass;
 			rbB->velocity += impulse * bInvMass;
 		}

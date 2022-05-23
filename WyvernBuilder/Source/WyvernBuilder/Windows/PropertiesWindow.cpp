@@ -47,7 +47,6 @@ namespace Wyvern
 				if (ImGui::MenuItem(component.first.c_str()))
 				{
 					auto newComp = component.second(Scene::GetActiveScene(), s_SelectedContext.GetSceneID());
-					newComp->AddToEntity(s_SelectedContext);
 					ImGui::CloseCurrentPopup();
 				}
 			}
