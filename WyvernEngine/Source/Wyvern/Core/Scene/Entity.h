@@ -17,20 +17,20 @@ namespace Wyvern
 
 	public:
 		Entity();
-		Entity(EntityRegister& view);
+		Entity(EntityRegister* view);
 
-		UUID GetUUID() const;
-		SceneID GetSceneID() const;
-		Ref<Scene> GetScene() const;
-		Entity GetParent() const;
-		std::vector<UUID> GetChildren() const;
+		UUID GetUUID() const { return m_EntityRegister->UniqueID; }
+		SceneID GetSceneID() const { return m_EntityRegister->SceneID; }
+		Ref<Scene> GetScene() const { return m_EntityRegister->SceneRef; }
+		Entity GetParent() const { return Entity(Scene::GetEntity(GetScene(), m_EntityRegister->Parent)); }
+		std::vector<UUID> GetChildren() const { return m_EntityRegister->Children; }
 
 		Tag* GetTag();
 		Transform* GetTransform();
 		std::vector<Component*> GetComponents();
 
-		void AddChildEntity(EntityRegister& entity);
-		void RemoveChildEntity(EntityRegister& entity);
+		void AddChildEntity(EntityRegister* entity);
+		void RemoveChildEntity(EntityRegister* entity);
 
 		void DestroyEntity();
 
@@ -38,20 +38,20 @@ namespace Wyvern
 
 		bool operator ==(const Entity& rhs)
 		{
-			return m_EntityRegister.UniqueID == rhs.m_EntityRegister.UniqueID;
+			return m_EntityRegister->UniqueID == rhs.m_EntityRegister->UniqueID;
 		}
 
-		operator EntityRegister&()
+		operator EntityRegister*()
 		{
 			return m_EntityRegister;
 		}
 
 		operator UUID& ()
 		{
-			return m_EntityRegister.UniqueID;
+			return m_EntityRegister->UniqueID;
 		}
 
 	private:
-		EntityRegister m_EntityRegister;
+		EntityRegister* m_EntityRegister;
  	};
 }

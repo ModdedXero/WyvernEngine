@@ -54,7 +54,7 @@ namespace Wyvern
 				Scene::DuplicateEntity(ent, Entity());
 
 			if (ImGui::MenuItem("Create Child Entity"))
-				ent.AddChildEntity(Scene::CreateEntity(Scene::GetActiveScene()));
+				ent.AddChildEntity(Scene::CreateEntity(ent.GetScene()));
 
 			if (ImGui::MenuItem("Delete Entity"))
 				ent.DestroyEntity();

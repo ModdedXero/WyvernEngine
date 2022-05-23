@@ -124,10 +124,10 @@ namespace Wyvern
                         Ref<Scene> runtimeScene = CreateRef<Scene>();
                         SerializeInfo& info = Serializer::Serialize(s_ActiveScene);
                         Serializer::ConvertSerialToDeserial(info);
-                        Serializer::Deserialize(runtimeScene, info);
                         s_CachedScene = s_ActiveScene;
-                        runtimeScene->SetSceneState(SceneState::Play);
                         SetActiveScene(runtimeScene);
+                        Serializer::Deserialize(runtimeScene, info);
+                        runtimeScene->SetSceneState(SceneState::Play);
                     }
                     else
                     {
@@ -246,6 +246,5 @@ namespace Wyvern
         s_SelectedContext = Entity();
         s_ActiveScene = scene;
         Scene::SetActiveScene(scene);
-        s_ActiveScene->OnAttach();
     }
 }

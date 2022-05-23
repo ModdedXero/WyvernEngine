@@ -63,35 +63,35 @@ namespace Wyvern
 		static void SetActiveScene(Ref<Scene> scene);
 
 	public:
-		static EntityRegister& CreateEntity(Ref<Scene> scene, std::string name = "Entity");
-		static EntityRegister& CreateEntity(Ref<Scene> scene, const UUID& uuid);
-		static EntityRegister& GetEntity(Ref<Scene> scene, const UUID& uuid);
-		static EntityRegister& GetEntity(Ref<Scene> scene, int index);
-		static EntityRegister& DuplicateEntity(EntityRegister& entity, EntityRegister& parent);
-		static void DestoryEntity(EntityRegister& entity);
+		static EntityRegister* CreateEntity(Ref<Scene> scene, std::string name = "Entity");
+		static EntityRegister* CreateEntity(Ref<Scene> scene, const UUID& uuid);
+		static EntityRegister* GetEntity(Ref<Scene> scene, const UUID& uuid);
+		static EntityRegister* GetEntity(Ref<Scene> scene, int index);
+		static EntityRegister* DuplicateEntity(EntityRegister* entity, EntityRegister* parent);
+		static void DestoryEntity(EntityRegister* entity);
 
-		static void AddChildEntity(EntityRegister& parent, EntityRegister& child);
-		static void RemoveChildEntity(EntityRegister& parent, EntityRegister& child);
+		static void AddChildEntity(EntityRegister* parent, EntityRegister* child);
+		static void RemoveChildEntity(EntityRegister* parent, EntityRegister* child);
 
 		static SceneIndex GetSceneIndex(SceneID id);
 		static SceneVersion GetSceneVersion(SceneID id);
 		static bool IsEntityValid(SceneID id);
-		static bool IsEntityValid(EntityRegister& entity);
+		static bool IsEntityValid(EntityRegister* entity);
 		static bool IsEntityValid(Ref<Scene> scene, UUID uuid);
 
 	public:
 		template <typename T>
-		static T* AddComponent(EntityRegister& entity);
+		static T* AddComponent(EntityRegister* entity);
 		template <typename T>
 		static T* AddComponent(Ref<Scene> scene, SceneID entID);
 		template <typename T>
-		static T* GetComponent(EntityRegister& entity);
-		static std::vector<Component*> GetComponents(EntityRegister& entity);
+		static T* GetComponent(EntityRegister* entity);
+		static std::vector<Component*> GetComponents(EntityRegister* entity);
 		template <typename T>
-		static std::vector<T*> GetComponentsOfBase(EntityRegister& entity);
+		static std::vector<T*> GetComponentsOfBase(EntityRegister* entity);
 		template <typename T>
-		static void RemoveComponent(EntityRegister& entity);
-		static void RemoveComponent(EntityRegister& entity, int component);
+		static void RemoveComponent(EntityRegister* entity);
+		static void RemoveComponent(EntityRegister* entity, int component);
 
 		template <typename T>
 		inline int GetComponentID();
@@ -119,16 +119,16 @@ namespace Wyvern
 		static inline std::vector<EntityRegister*> s_EntitiesToDelete;
 		static inline std::unordered_map<EntityRegister*, int> s_ComponentsToDelete;
 
-		static void CreateEntityDefaults(Ref<Scene> scene, EntityRegister& entity, std::string name = "Entity");
+		static void CreateEntityDefaults(Ref<Scene> scene, EntityRegister* entity, std::string name = "Entity");
 
-		static void PurgeEntity(EntityRegister& entity);
-		static void PurgeComponent(EntityRegister& entity, int component);
+		static void PurgeEntity(EntityRegister* entity);
+		static void PurgeComponent(EntityRegister* entity, int component);
 	};
 
 	template <typename T>
-	inline T* Scene::AddComponent(EntityRegister& entity)
+	inline T* Scene::AddComponent(EntityRegister* entity)
 	{
-		return AddComponent<T>(entity.SceneRef, entity.SceneID);
+		return AddComponent<T>(entity->SceneRef, entity->SceneID);
 	}
 
 	template<typename T>
@@ -161,7 +161,7 @@ namespace Wyvern
 		}
 
 		T* component = new (scene->m_ComponentPools[componentID]->Get(GetSceneIndex(entID))) T();
-		component->m_Entity = *scene->m_Entities[GetSceneIndex(entID)];
+		component->m_Entity = scene->m_Entities[GetSceneIndex(entID)];
 		component->m_ComponentID = componentID;
 
 		scene->m_Entities[GetSceneIndex(entID)]->Components.set(componentID);
@@ -170,38 +170,38 @@ namespace Wyvern
 	}
 
 	template <typename T>
-	inline T* Scene::GetComponent(EntityRegister& entity)
+	inline T* Scene::GetComponent(EntityRegister* entity)
 	{
 		if (!IsEntityValid(entity)) return nullptr;
 
-		int componentID = entity.SceneRef->FindComponentID<T>();
+		int componentID = entity->SceneRef->FindComponentID<T>();
 
-		if (componentID == -1 || !entity.Components.test(componentID))
+		if (componentID == -1 || !entity->Components.test(componentID))
 			return nullptr;
 
-		T* component = static_cast<T*>(entity.SceneRef->m_ComponentPools[componentID]->Get(GetSceneIndex(entity.SceneID)));
+		T* component = static_cast<T*>(entity->SceneRef->m_ComponentPools[componentID]->Get(GetSceneIndex(entity->SceneID)));
 		return component;
 	}
 
 	template<typename T>
-	inline std::vector<T*> Scene::GetComponentsOfBase(EntityRegister& entity)
+	inline std::vector<T*> Scene::GetComponentsOfBase(EntityRegister* entity)
 	{
 		std::vector<T*> components;
 
-		for (auto& pool : entity.SceneRef->m_ComponentPools)
+		for (auto& pool : entity->SceneRef->m_ComponentPools)
 		{
 			if (pool->ComponentBaseType == typeid(T::base).name())
-				if (entity.Components.test(pool->ComponentID))
-					components.push_back(static_cast<T*>(pool->Get(GetSceneIndex(entity.SceneID))));
+				if (entity->Components.test(pool->ComponentID))
+					components.push_back(static_cast<T*>(pool->Get(GetSceneIndex(entity->SceneID))));
 		}
 
 		return components;
 	}
 
 	template <typename T>
-	inline void Scene::RemoveComponent(EntityRegister& entity)
+	inline void Scene::RemoveComponent(EntityRegister* entity)
 	{
-		s_ComponentsToDelete[entity] = entity.Scene->FindComponentID<T>();
+		s_ComponentsToDelete[entity] = entity->Scene->FindComponentID<T>();
 	}
 
 	template<typename T>

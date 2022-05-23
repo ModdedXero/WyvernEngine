@@ -19,10 +19,10 @@ namespace Wyvern
 
 		for (EntityRegister* entity : scene->m_Entities)
 		{
-			if (!Scene::IsEntityValid(*entity))
+			if (!Scene::IsEntityValid(entity))
 				continue;
 
-			Serialize(*entity, *info);
+			Serialize(entity, *info);
 		}
 
 		info->out << YAML::EndSeq;
@@ -31,7 +31,7 @@ namespace Wyvern
 		return *info;
 	}
 
-	SerializeInfo& Serializer::Serialize(EntityRegister& entity)
+	SerializeInfo& Serializer::Serialize(EntityRegister* entity)
 	{
 		SerializeInfo* info = new SerializeInfo(true);
 
@@ -40,11 +40,11 @@ namespace Wyvern
 		return *info;
 	}
 
-	void Serializer::Serialize(EntityRegister& entity, SerializeInfo& info)
+	void Serializer::Serialize(EntityRegister* entity, SerializeInfo& info)
 	{
 		info.out << YAML::BeginMap;
-		info.out << YAML::Key << "Entity" << YAML::Value << (uint64_t)entity.UniqueID;
-		if (Scene::IsEntityValid(entity.SceneRef, entity.Parent)) info.out << YAML::Key << "Parent" << YAML::Value << (uint64_t)entity.Parent;
+		info.out << YAML::Key << "Entity" << YAML::Value << (uint64_t)entity->UniqueID;
+		if (Scene::IsEntityValid(entity->SceneRef, entity->Parent)) info.out << YAML::Key << "Parent" << YAML::Value << (uint64_t)entity->Parent;
 
 		info.out << YAML::Key << "Components" << YAML::Value << YAML::BeginMap;
 
@@ -78,12 +78,12 @@ namespace Wyvern
 				entInfo->in = (YAML::Node)ent;
 				UUID entUUID = entInfo->in["Entity"].as<UUID>();
 
-				EntityRegister& entity = Scene::CreateEntity(scene, entUUID);
+				EntityRegister* entity = Scene::CreateEntity(scene, entUUID);
 
 				if (entInfo->in["Parent"])
 				{
 					UUID parentUUID = entInfo->in["Parent"].as<UUID>();
-					EntityRegister& parent = Scene::CreateEntity(scene, parentUUID);
+					EntityRegister* parent = Scene::CreateEntity(scene, parentUUID);
 					
 				}
 
@@ -94,18 +94,18 @@ namespace Wyvern
 		return true;
 	}
 
-	bool Serializer::Deserialize(EntityRegister& entity, SerializeInfo& info)
+	bool Serializer::Deserialize(EntityRegister* entity, SerializeInfo& info)
 	{
 		if (!Scene::IsEntityValid(entity)) return false;
 
 		if (info.in["Parent"])
 		{
-			if (!Scene::IsEntityValid(entity.SceneRef, entity.Parent))
+			if (!Scene::IsEntityValid(entity->SceneRef, entity->Parent))
 			{
-				entity.Parent = Scene::CreateEntity(entity.SceneRef, info.in["Parent"].as<UUID>()).UniqueID;
+				entity->Parent = Scene::CreateEntity(entity->SceneRef, info.in["Parent"].as<UUID>())->UniqueID;
 			}
 
-			Scene::AddChildEntity(Scene::GetEntity(entity.SceneRef, entity.Parent), entity);
+			Scene::AddChildEntity(Scene::GetEntity(entity->SceneRef, entity->Parent), entity);
 		}
 
 		auto components = info.in["Components"];
@@ -115,7 +115,7 @@ namespace Wyvern
 			{
 				SerializeInfo compInfo(false);
 				compInfo.in = comp.second;
-				Component* compBase = ApplicationDomain::CreateComponent(comp.first.as<std::string>(), entity.SceneRef, entity.SceneID);
+				Component* compBase = ApplicationDomain::CreateComponent(comp.first.as<std::string>(), entity->SceneRef, entity->SceneID);
 				if (compBase) compBase->__Serialize(compInfo);
 			}
 		}

@@ -10,37 +10,12 @@ namespace Wyvern
 {
 	Entity::Entity()
 	{
-		m_EntityRegister = EntityRegister(false);
+		m_EntityRegister = new EntityRegister(false);
 	}
 
-	Entity::Entity(EntityRegister& view)
+	Entity::Entity(EntityRegister* view)
 	{
 		m_EntityRegister = view;
-	}
-	
-	UUID Entity::GetUUID() const
-	{
-		return m_EntityRegister.UniqueID;
-	}
-
-	SceneID Entity::GetSceneID() const
-	{
-		return m_EntityRegister.SceneID;
-	}
-
-	Ref<Scene> Entity::GetScene() const
-	{
-		return m_EntityRegister.SceneRef;
-	}
-
-	Entity Entity::GetParent() const
-	{
-		return Scene::GetEntity(m_EntityRegister.SceneRef, m_EntityRegister.Parent);
-	}
-
-	std::vector<UUID> Entity::GetChildren() const
-	{
-		return m_EntityRegister.Children;
 	}
 
 	Tag* Entity::GetTag()
@@ -55,15 +30,15 @@ namespace Wyvern
 
 	std::vector<Component*> Entity::GetComponents()
 	{
-		return Scene::GetComponents(Scene::GetEntity(m_EntityRegister.SceneRef, m_EntityRegister.UniqueID));
+		return Scene::GetComponents(Scene::GetEntity(m_EntityRegister->SceneRef, m_EntityRegister->UniqueID));
 	}
 
-	void Entity::AddChildEntity(EntityRegister& entity)
+	void Entity::AddChildEntity(EntityRegister* entity)
 	{
 		Scene::AddChildEntity(m_EntityRegister, entity);
 	}
 
-	void Entity::RemoveChildEntity(EntityRegister& entity)
+	void Entity::RemoveChildEntity(EntityRegister* entity)
 	{
 		Scene::RemoveChildEntity(m_EntityRegister, entity);
 	}

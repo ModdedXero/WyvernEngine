@@ -51,9 +51,9 @@ namespace Wyvern
 				: currentScene (scene), index(index), entSize(size), components(components), all(all), base(base), baseComponents(baseComponents)
 			{}
 
-			EntityRegister& operator*() const
+			EntityRegister* operator*() const
 			{
-				return *currentScene->m_Entities[index];
+				return currentScene->m_Entities[index];
 			}
 
 			bool operator==(const Iterator& other) const
@@ -79,7 +79,7 @@ namespace Wyvern
 			{
 				if (base)
 				{
-					if (!Scene::IsEntityValid(*currentScene->m_Entities[index])) return false;
+					if (!Scene::IsEntityValid(currentScene->m_Entities[index])) return false;
 
 					for (int id : baseComponents)
 					{
@@ -91,7 +91,7 @@ namespace Wyvern
 				}
 				else
 				{
-					return Scene::IsEntityValid(*currentScene->m_Entities[index]) &&
+					return Scene::IsEntityValid(currentScene->m_Entities[index]) &&
 						(all || components == (components & currentScene->m_Entities[index]->Components));
 				}
 			}
@@ -110,7 +110,7 @@ namespace Wyvern
 			SceneIndex firstIndex = Invalid ? EntitySize : 0;
 			while (firstIndex < EntitySize &&
 				(Components != (Components & CurrentScene->m_Entities[firstIndex]->Components)
-					|| !Scene::IsEntityValid(*CurrentScene->m_Entities[firstIndex])))
+					|| !Scene::IsEntityValid(CurrentScene->m_Entities[firstIndex])))
 			{
 				firstIndex++;
 			}
