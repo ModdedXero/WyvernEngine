@@ -22,7 +22,7 @@ namespace Wyvern
 		UUID GetUUID() const { return m_EntityRegister->UniqueID; }
 		SceneID GetSceneID() const { return m_EntityRegister->SceneID; }
 		Ref<Scene> GetScene() const { return m_EntityRegister->SceneRef; }
-		Entity GetParent() const { return Entity(Scene::GetEntity(GetScene(), m_EntityRegister->Parent)); }
+		UUID& GetParent() const { return m_EntityRegister->Parent; }
 		std::vector<UUID> GetChildren() const { return m_EntityRegister->Children; }
 
 		Tag* GetTag() const;

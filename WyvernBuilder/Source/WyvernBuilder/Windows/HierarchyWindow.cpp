@@ -30,7 +30,7 @@ namespace Wyvern
 
 	void HierarchyWindow::DrawEntityNode(Entity ent, bool isChild)
 	{
-		if (!isChild && ent.GetParent().IsValid()) return;
+		if (!isChild && Scene::IsEntityValid(ent.GetScene(), ent.GetParent())) return;
 
 		Tag* tag = ent.GetTag();
 

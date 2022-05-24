@@ -170,7 +170,7 @@ namespace Wyvern
 		{
 			DEBUG_LOG_ERROR("Scene: MaxEntity count reached; ", MaxEntities);
 			throw std::invalid_argument("Scene: MaxEntity count reached");
-			return new EntityRegister(false);
+			return nullptr;
 		}
 
 		if (!scene->m_FreeEntities.empty())
@@ -196,7 +196,7 @@ namespace Wyvern
 
 	EntityRegister* Scene::CreateEntity(Ref<Scene> scene, const UUID& uuid)
 	{
-		if ((uint64_t)uuid == 0) return new EntityRegister(false);
+		if ((uint64_t)uuid == 0) return nullptr;
 
 		EntityRegister* ent = GetEntity(scene, uuid);
 
@@ -211,7 +211,7 @@ namespace Wyvern
 
 	EntityRegister* Scene::GetEntity(Ref<Scene> scene, const UUID& uuid)
 	{
-		if ((uint64_t)uuid == 0 || !scene) return new EntityRegister(false);
+		if ((uint64_t)uuid == 0 || !scene) return nullptr;
 
 		for (EntityRegister* entity : scene->m_Entities)
 		{
@@ -219,7 +219,7 @@ namespace Wyvern
 				return entity;
 		}
 
-		return new EntityRegister(false);
+		return nullptr;
 	}
 
 	EntityRegister* Scene::GetEntity(Ref<Scene> scene, int index)
@@ -227,7 +227,7 @@ namespace Wyvern
 		if (index >= 0 && index < scene->m_Entities.size() && IsEntityValid(scene->m_Entities[index]))
 			return scene->m_Entities[index];
 
-		return new EntityRegister(false);
+		return nullptr;
 	}
 
 	EntityRegister* Scene::DuplicateEntity(EntityRegister* entity, EntityRegister* parent)
@@ -299,9 +299,7 @@ namespace Wyvern
 
 	bool Scene::IsEntityValid(EntityRegister* entity)
 	{
-		if (!entity->SceneRef ||
-			(SceneVersion)entity->SceneRef->m_Entities[GetSceneIndex(entity->SceneID)]->SceneID != (SceneVersion)entity->SceneID)
-			return false;
+		if (!entity) return false;
 
 		return entity->UniqueID != 0 && IsEntityValid(entity->SceneID);
 	}

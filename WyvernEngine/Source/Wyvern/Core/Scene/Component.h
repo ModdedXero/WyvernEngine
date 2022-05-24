@@ -26,7 +26,7 @@ namespace Wyvern
 		{}
 		virtual ~Component() = 0;
 
-		Entity GetEntity() const { return m_Entity; }
+		Entity& GetEntity() { return m_Entity; }
 		Tag* GetTag() { return m_Entity.GetTag(); }
 		Transform* GetTransform() { return m_Entity.GetTransform(); }
 		int GetSceneID() { return m_ComponentID; }
