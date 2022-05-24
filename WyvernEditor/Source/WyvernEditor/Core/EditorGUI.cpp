@@ -288,8 +288,11 @@ namespace Wyvern::Editor
 		ImGui::Text(label.c_str());
 		ImGui::NextColumn();
 
+		float lineHeight = EditorInfo::LineHeight();
+		ImGui::Button(label.c_str(), ImVec2{ImGui::GetContentRegionAvail().x, lineHeight});
+
 		std::string targetName = Scene::IsEntityValid(entity) ? entity.GetTag()->name : "None";
-		EditorGUIInternal::DragDropTarget(targetName.c_str(), DragDropTypes::Entity, entity);
+		EditorGUIInternal::DragDropTarget(DragDropTypes::Entity, entity);
 
 		if (ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0))
 		{
@@ -306,8 +309,11 @@ namespace Wyvern::Editor
 		ImGui::Text(label.c_str());
 		ImGui::NextColumn();
 
+		float lineHeight = EditorInfo::LineHeight();
+		ImGui::Button(label.c_str(), ImVec2{ImGui::GetContentRegionAvail().x, lineHeight});
+
 		std::string targetName = !file.Filename().empty() ? file.Filename() : "None";
-		EditorGUIInternal::DragDropTarget(targetName.c_str(), DragDropTypes::FileSystem, file);
+		EditorGUIInternal::DragDropTarget(DragDropTypes::FileSystem, file);
 
 		ImGui::Columns(1);
 	}

@@ -91,14 +91,14 @@ namespace Wyvern
         {
             if (ImGui::BeginMenu("File"))
             {
-                if (ImGui::MenuItem("New", "Ctrl+N"))
-                {
-                    SetActiveScene(CreateRef<Scene>());
-                }
-
                 if (ImGui::MenuItem("Open...", "Ctrl+O"))
                 {
                     LoadSceneDialog();
+                }
+
+                if (ImGui::MenuItem("Save"))
+                {
+                    Serializer::Serialize(Serializer::Serialize(s_ActiveScene), s_ActiveScene->GetScenePath());
                 }
 
                 if (ImGui::MenuItem("Save As...", "Ctrl+Shift+S"))

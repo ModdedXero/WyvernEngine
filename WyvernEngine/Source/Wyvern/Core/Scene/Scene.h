@@ -56,6 +56,7 @@ namespace Wyvern
 		void SetSceneState(SceneState state);
 
 		size_t GetEntityCount() { return m_Entities.size(); }
+		Utils::FileSystem GetScenePath() const { return m_ScenePath; }
 
 		static void FlushScene();
 

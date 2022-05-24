@@ -32,16 +32,9 @@ namespace Wyvern
 		}
 		m_Framebuffer->Unbind();
 
-		if (ImGui::BeginDragDropTarget())
-		{
-			if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("CONTENT_BROWSER_ITEM"))
-			{
-				Utils::FileSystem* pathPtr = (Utils::FileSystem*)payload->Data;
-				BuilderLayer::LoadScene(*pathPtr);
-			}
-
-			ImGui::EndDragDropTarget();
-		}
+		Utils::FileSystem pathPtr;
+		EditorGUIInternal::DragDropTarget(DragDropTypes::FileSystem, pathPtr);
+		if (pathPtr.IsExtension(".wyvern")) BuilderLayer::LoadScene(pathPtr);
 
 		// Gizmos
 
