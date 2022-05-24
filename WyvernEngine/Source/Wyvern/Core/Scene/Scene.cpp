@@ -9,6 +9,7 @@
 #include <Wyvern/Core/Components/Transform.h>
 #include <Wyvern/Core/Components/SpriteRenderer.h>
 #include <Wyvern/Renderer/Renderer2D.h>
+#include <Wyvern/Renderer/Renderer.h>
 #include <Wyvern/Core/Physics/Physics2DWizard.h>
 
 namespace Wyvern
@@ -103,6 +104,7 @@ namespace Wyvern
 		else
 			Renderer::Renderer2D::BeginScene(camera, position);
 
+		Renderer::Renderer::DrawCube();
 		for (EntityRegister* entity : EntityList<SpriteRenderer>(shared_from_this()))
 		{
 			SpriteRenderer* sRend = Scene::GetComponent<SpriteRenderer>(entity);

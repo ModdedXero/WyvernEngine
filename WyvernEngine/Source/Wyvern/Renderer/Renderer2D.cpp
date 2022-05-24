@@ -57,7 +57,7 @@ namespace Wyvern::Renderer
 	static std::unordered_map<GLchar, Character> Characters;
 	static RenderData s_Data;
 
-	void Renderer2D::OnAttach()
+	void Renderer2D::Intitialize()
 	{
 		// Framebuffer
 
@@ -81,7 +81,7 @@ namespace Wyvern::Renderer
 
 		glGenBuffers(1, &s_Data.VBO);
 		glBindBuffer(GL_ARRAY_BUFFER, s_Data.VBO);
-		glBufferData(GL_ARRAY_BUFFER, MaxVertexCount *  sizeof(Vertex), nullptr, GL_DYNAMIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, MaxVertexCount * sizeof(Vertex), nullptr, GL_DYNAMIC_DRAW);
 
 		glEnableVertexArrayAttrib(s_Data.VAO, 0);
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const void*)offsetof(Vertex, Position));
@@ -218,7 +218,7 @@ namespace Wyvern::Renderer
 		FT_Done_FreeType(ft);
 	}
 
-	void Renderer2D::OnDestroy()
+	void Renderer2D::Destruct()
 	{
 		glDeleteVertexArrays(1, &s_Data.VAO);
 		glDeleteBuffers(1, &s_Data.VBO);
@@ -289,7 +289,8 @@ namespace Wyvern::Renderer
 
 	void Renderer2D::BeginBatch()
 	{
-		glClear(GL_COLOR_BUFFER_BIT);
+		glEnable(GL_DEPTH_TEST);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		s_Data.QuadBufferPtr = s_Data.QuadBuffer;
 	}
 

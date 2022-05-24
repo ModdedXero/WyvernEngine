@@ -13,8 +13,8 @@ namespace Wyvern::Renderer
 	class Renderer2D
 	{
 	public:
-		static void OnAttach();
-		static void OnDestroy();
+		static void Intitialize();
+		static void Destruct();
 
 		static void BeginScene(CameraRenderer* cameraRenderer, Transform* cameraPosition, Vector4 clearColor = { 0.1f, 0.1f, 0.25f, 1.0f });
 		static void EndScene();

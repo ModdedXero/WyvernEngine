@@ -32,7 +32,7 @@ namespace Wyvern
 		m_StartTime = Time::now();
 		m_FixedLoop = Time::now();
 
-		Renderer2D::OnAttach();
+		Renderer2D::Intitialize();
 		Renderer2D::GetFramebuffer()->Resize(Vector2Int(specification.WindowWidth, specification.WindowHeight));
 
 		m_ImGuiLayer = new ImGuiLayer();

@@ -204,6 +204,7 @@
     <ClInclude Include="Wyvern\ImGui\ImGuiLayer.h" />
     <ClInclude Include="Wyvern\Renderer\CameraRenderer.h" />
     <ClInclude Include="Wyvern\Renderer\Framebuffer.h" />
+    <ClInclude Include="Wyvern\Renderer\Renderer.h" />
     <ClInclude Include="Wyvern\Renderer\Renderer2D.h" />
     <ClInclude Include="Wyvern\Renderer\VertexArray.h" />
     <ClInclude Include="Wyvern\UI\UIWizard.h" />
@@ -254,6 +255,7 @@
     <ClCompile Include="Wyvern\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="Wyvern\Renderer\CameraRenderer.cpp" />
     <ClCompile Include="Wyvern\Renderer\Framebuffer.cpp" />
+    <ClCompile Include="Wyvern\Renderer\Renderer.cpp" />
     <ClCompile Include="Wyvern\Renderer\Renderer2D.cpp" />
     <ClCompile Include="Wyvern\UI\UIWizard.cpp" />
     <ClCompile Include="Wyvern\Utils\FileSystem.cpp" />
