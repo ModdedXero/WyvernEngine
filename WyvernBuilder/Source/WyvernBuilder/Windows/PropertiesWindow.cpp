@@ -10,7 +10,7 @@ namespace Wyvern
 	void PropertiesWindow::OnGUI()
 	{
 		if (!Scene::IsEntityValid(BuilderLayer::GetSelectedContext())) 
-			BuilderLayer::SetSelectedContext(Entity());
+			BuilderLayer::SetSelectedContext(Entity(nullptr));
 		if (!BuilderLayer::GetSelectedContext().IsValid()) return;
 
 		s_SelectedContext = BuilderLayer::GetSelectedContext();

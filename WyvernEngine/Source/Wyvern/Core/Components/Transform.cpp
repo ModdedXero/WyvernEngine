@@ -80,4 +80,13 @@ namespace Wyvern
 	{
 		return (glm::vec3)glm::rotate(GetOrientation(rotation), glm::vec3(0.0f, -1.0f, 0.0f));
 	}
+
+	Matrix4x4 Transform::GetTransform(const Vector3& pos, const Vector3& rot, const Vector3& scale)
+	{
+		Matrix4x4 trans = Matrix4x4::Translate(pos)
+			* Matrix4x4::Rotate(rot)
+			* Matrix4x4::Scale(scale);
+
+		return trans;
+	}
 }

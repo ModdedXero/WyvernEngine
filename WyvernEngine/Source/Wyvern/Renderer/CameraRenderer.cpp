@@ -45,12 +45,7 @@ namespace Wyvern::Renderer
 		Vector3 pos = position->position;
 		pos.y = -pos.y;
 
-		Transform newTrans = Transform();
-		newTrans.position = pos;
-		newTrans.rotation = position->rotation;
-		newTrans.scale = position->scale;
-
-		m_View = Matrix4x4::Inverse(newTrans.GetTransform()).GetNativeMatrix();
+		m_View = Matrix4x4::Inverse(Transform::GetTransform(pos, position->rotation, position->scale)).GetNativeMatrix();
 
 		shader->SetMatrix4("projection", m_Projection);
 		shader->SetMatrix4("viewModel", m_View);

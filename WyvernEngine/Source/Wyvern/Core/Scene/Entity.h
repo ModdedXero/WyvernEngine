@@ -38,6 +38,7 @@ namespace Wyvern
 
 		bool operator ==(const Entity& rhs)
 		{
+			if (!m_EntityRegister || !rhs.m_EntityRegister) return false;
 			return m_EntityRegister->UniqueID == rhs.m_EntityRegister->UniqueID;
 		}
 

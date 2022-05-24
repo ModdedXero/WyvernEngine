@@ -27,6 +27,8 @@ namespace Wyvern
 		Vector3 Up();
 		Vector3 Down();
 
+		static Matrix4x4 GetTransform(const Vector3& pos, const Vector3& rot, const Vector3& scale);
+
 		WV_SERIALIZE_COMPONENT(Transform)
 		WV_SERIALIZE_VARIABLE(Vector3, position)
 		WV_SERIALIZE_VARIABLE(Vector3, rotation)
