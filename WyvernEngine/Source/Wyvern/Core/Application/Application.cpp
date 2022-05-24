@@ -79,6 +79,12 @@ namespace Wyvern
 #endif
 
 			m_Window->OnRender();
+
+			if (glfwWindowShouldClose(GetWindow().GetNativeWindow()))
+			{
+				Project::SaveProject();
+				Close();
+			}
 		}
 	}
 
