@@ -52,11 +52,13 @@ namespace Wyvern
 	{
 		EditorGUI::Color4Control("Color", this->color);
 
-		Utils::FileSystem target = Utils::FileSystem();
+		Utils::FileSystem target = (sprite && sprite->GetTexture()) ? sprite->GetTexture()->GetPath() : "";
 		EditorGUI::FileSystemControl("Sprite", target);
 
-		if (!target.Filename().empty())
+		if (!target.Filename().empty() && target.IsExtension(".png"))
 		{
+			if (sprite && sprite->GetTexture() && sprite->GetTexture()->GetPath() == target) return;
+
 			sprite = Sprite::CreateFromCoords(Texture2D::Create(target), { 0,0 }, { 1,1 }, { 32,32 });
 		}
 

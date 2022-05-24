@@ -19,6 +19,8 @@ namespace Wyvern::Utils
 		void WriteFile(std::string data);
 
 		std::string Filename() const { return m_CurrentPath.filename().string(); }
+		std::string Extension() const { return m_CurrentPath.extension().string(); }
+		bool IsExtension(const char* extension) const { return m_CurrentPath.extension() == extension; }
 		bool IsDirectory() const { return std::filesystem::is_directory(m_CurrentPath);; }
 		bool HasDirectoryChildren() const;
 
@@ -39,6 +41,11 @@ namespace Wyvern::Utils
 		void operator =(const std::filesystem::directory_entry& rhs)
 		{
 			m_CurrentPath = rhs;
+		}
+		
+		bool operator ==(const FileSystem& rhs) const
+		{
+			return m_CurrentPath == rhs.m_CurrentPath;
 		}
 
 		FileSystem operator /(const FileSystem& rhs) const

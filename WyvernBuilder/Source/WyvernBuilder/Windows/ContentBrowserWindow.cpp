@@ -86,12 +86,8 @@ namespace Wyvern
 			ImGui::ImageButton((ImTextureID)icon->GetID(), { thumbnailSize, thumbnailSize }, { 0, 1 }, { 1,0 });
 			ImGui::PopStyleColor();
 
-			if (ImGui::BeginDragDropSource())
-			{
-				const FileSystem* sourcePath = new FileSystem(dir);
-				ImGui::SetDragDropPayload("CONTENT_BROWSER_ITEM", sourcePath, sizeof(FileSystem), ImGuiCond_Once);
-				ImGui::EndDragDropSource();
-			}
+			const FileSystem* sourcePath = new FileSystem(dir);
+			EditorGUIInternal::DragDropSource(DragDropTypes::FileSystem, sourcePath, sizeof(FileSystem));
 
 			if (ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left))
 			{
