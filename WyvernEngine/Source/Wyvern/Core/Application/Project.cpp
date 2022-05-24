@@ -50,6 +50,7 @@ namespace Wyvern
 		Ref<Scene> scene = CreateRef<Scene>();
 		Scene::SetActiveScene(scene);
 		Serializer::Deserialize(scene, s_StartScenePath);
+		scene->OnAttach();
 		return scene;
 	}
 }

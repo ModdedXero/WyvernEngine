@@ -20,6 +20,9 @@ void ScoreKeeper::OnCollision2D(const Wyvern::Collision2D& collision)
 		else if (Score2.IsValid())
 			Score2.DestroyEntity();
 		else if (Score3.IsValid())
+		{
 			Score3.DestroyEntity();
+			Wyvern::Timestep::SetTimeScale(0.0f);
+		}
 	}
 }
