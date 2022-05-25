@@ -1,87 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Assets">
-      <UniqueIdentifier>{3824E0A7-24C6-0A7E-0D81-1ED2F9C191CE}</UniqueIdentifier>
+    <Filter Include="Core">
+      <UniqueIdentifier>{2EB4837C-1AEB-840D-C3D7-6A10AFED000F}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Assets\Scripts">
-      <UniqueIdentifier>{6FC36DC7-5B91-61CD-4425-D2F330923D32}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source">
-      <UniqueIdentifier>{56EB95D1-428D-C0A7-2B48-D4FB178947F8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\WyvernBuilder">
-      <UniqueIdentifier>{37CDE440-235C-6E0A-CC7A-8205B8E87EB0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\WyvernBuilder\Core">
-      <UniqueIdentifier>{EFCBB124-5B8E-E5AE-A43E-743B1040BE8C}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\WyvernBuilder\Windows">
-      <UniqueIdentifier>{71BE2B18-5D79-1BC4-0631-940EF2CA6554}</UniqueIdentifier>
+    <Filter Include="Windows">
+      <UniqueIdentifier>{5032B729-BC11-36C5-C529-C19B31889C26}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Assets\Scripts\PlayerPaddleOne.h">
-      <Filter>Assets\Scripts</Filter>
-    </ClInclude>
-    <ClInclude Include="Assets\Scripts\PongBall.h">
-      <Filter>Assets\Scripts</Filter>
-    </ClInclude>
-    <ClInclude Include="Assets\Scripts\ScoreKeeper.h">
-      <Filter>Assets\Scripts</Filter>
-    </ClInclude>
     <ClInclude Include="Source\WyvernBuilder\Core\BuilderLayer.h">
-      <Filter>Source\WyvernBuilder\Core</Filter>
+      <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="Source\WyvernBuilder\Core\ViewportCamera.h">
-      <Filter>Source\WyvernBuilder\Core</Filter>
+      <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="Source\WyvernBuilder\Windows\ContentBrowserWindow.h">
-      <Filter>Source\WyvernBuilder\Windows</Filter>
+      <Filter>Windows</Filter>
     </ClInclude>
     <ClInclude Include="Source\WyvernBuilder\Windows\HierarchyWindow.h">
-      <Filter>Source\WyvernBuilder\Windows</Filter>
+      <Filter>Windows</Filter>
     </ClInclude>
     <ClInclude Include="Source\WyvernBuilder\Windows\PropertiesWindow.h">
-      <Filter>Source\WyvernBuilder\Windows</Filter>
+      <Filter>Windows</Filter>
     </ClInclude>
     <ClInclude Include="Source\WyvernBuilder\Windows\ViewportWindow.h">
-      <Filter>Source\WyvernBuilder\Windows</Filter>
+      <Filter>Windows</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Assets\Scripts\PlayerPaddleOne.cpp">
-      <Filter>Assets\Scripts</Filter>
-    </ClCompile>
-    <ClCompile Include="Assets\Scripts\PongBall.cpp">
-      <Filter>Assets\Scripts</Filter>
-    </ClCompile>
-    <ClCompile Include="Assets\Scripts\ScoreKeeper.cpp">
-      <Filter>Assets\Scripts</Filter>
-    </ClCompile>
     <ClCompile Include="Source\WyvernBuilder\Core\BuilderLayer.cpp">
-      <Filter>Source\WyvernBuilder\Core</Filter>
+      <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="Source\WyvernBuilder\Core\ComponentUI.cpp">
-      <Filter>Source\WyvernBuilder\Core</Filter>
+      <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="Source\WyvernBuilder\Core\ViewportCamera.cpp">
-      <Filter>Source\WyvernBuilder\Core</Filter>
+      <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="Source\WyvernBuilder\Core\WyvernBuilder.cpp">
-      <Filter>Source\WyvernBuilder\Core</Filter>
+      <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="Source\WyvernBuilder\Windows\ContentBrowserWindow.cpp">
-      <Filter>Source\WyvernBuilder\Windows</Filter>
+      <Filter>Windows</Filter>
     </ClCompile>
     <ClCompile Include="Source\WyvernBuilder\Windows\HierarchyWindow.cpp">
-      <Filter>Source\WyvernBuilder\Windows</Filter>
+      <Filter>Windows</Filter>
     </ClCompile>
     <ClCompile Include="Source\WyvernBuilder\Windows\PropertiesWindow.cpp">
-      <Filter>Source\WyvernBuilder\Windows</Filter>
+      <Filter>Windows</Filter>
     </ClCompile>
     <ClCompile Include="Source\WyvernBuilder\Windows\ViewportWindow.cpp">
-      <Filter>Source\WyvernBuilder\Windows</Filter>
+      <Filter>Windows</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

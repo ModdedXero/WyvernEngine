@@ -20,6 +20,16 @@ namespace Wyvern
 
 	void PropertiesWindow::DrawComponents()
 	{
+		ImGui::BeginGroup();
+		ImGui::BeginChild("component view", ImVec2(0, -ImGui::GetFrameHeightWithSpacing()));
+
+		bool isActive = s_SelectedContext.IsActive();
+		EditorGUI::BoolControl("Active", isActive);
+		s_SelectedContext.SetActive(isActive);
+
+		ImGui::SameLine();
+		ImGui::PushItemWidth(-1);
+
 		Tag* tag = s_SelectedContext.GetTag();
 
 		char buffer[256];
@@ -31,10 +41,19 @@ namespace Wyvern
 			tag->name = std::string(buffer);
 		}
 
-		ImGui::SameLine();
-		ImGui::PushItemWidth(-1);
+		ImGui::PopItemWidth();
 
-		if (ImGui::Button("Add Component"))
+		for (Component* component : s_SelectedContext.GetComponents())
+		{
+			if (typeid(*component).name() == std::string(typeid(Tag).name()))
+				continue;
+
+			DrawComponent(typeid(*component).name(), component, s_SelectedContext);
+		}
+
+		ImGui::EndChild();
+
+		if (ImGui::Button("Add Component", ImVec2(ImGui::GetContentRegionAvail().x, EditorInfo::LineHeight())))
 			ImGui::OpenPopup("Add Component");
 
 		if (ImGui::BeginPopup("Add Component"))
@@ -54,16 +73,7 @@ namespace Wyvern
 			ImGui::EndPopup();
 		}
 
-		ImGui::PopItemWidth();
-		ImGui::Separator();
-
-		for (Component* component : s_SelectedContext.GetComponents())
-		{
-			if (typeid(*component).name() == std::string(typeid(Tag).name()))
-				continue;
-
-			DrawComponent(typeid(*component).name(), component, s_SelectedContext);
-		}
+		ImGui::EndGroup();
 	}
 
 	void PropertiesWindow::DrawComponent(const std::string label, Component* component, Entity ent, bool isDefault)
@@ -89,7 +99,7 @@ namespace Wyvern
 
 			ImGui::PopStyleVar();
 
-			ImGui::SameLine(contentRegionAvailable.x - lineHeight * 0.5f);
+			ImGui::SameLine(contentRegionAvailable.x - lineHeight);
 			if (ImGui::Button("-", ImVec2{ lineHeight, lineHeight }))
 				ImGui::OpenPopup("ComponentSettings");
 
@@ -106,7 +116,11 @@ namespace Wyvern
 
 			if (open)
 			{
+				ImGui::Unindent(10.0f);
+
 				component->DrawEditor();
+
+				ImGui::Indent(10.0f);
 				ImGui::TreePop();
 			}
 		}

@@ -28,5 +28,7 @@ namespace Wyvern
 
 		UUID Parent;
 		std::vector<UUID> Children;
+
+		bool IsActive = true;
 	};
 }

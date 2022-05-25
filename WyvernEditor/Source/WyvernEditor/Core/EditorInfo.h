@@ -6,5 +6,6 @@ namespace Wyvern::Editor
 	{
 	public:
 		static float LineHeight();
+		static float TextPadding();
 	};
 }
