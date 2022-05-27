@@ -21,11 +21,13 @@ IncludeDir["FreeType"] = "WyvernEngine/Vendor/freetype/include"
 IncludeDir["FreeTypeSub"] = "WyvernEngine/Vendor/freetype/include/freetype"
 IncludeDir["YamlCPP"] = "WyvernEngine/Vendor/yaml-cpp/include"
 IncludeDir["ImGUIzmo"] = "WyvernEngine/Vendor/ImGuizmo"
+IncludeDir["AssImp"] = "WyvernEngine/Vendor/Assimp/inlcude"
 
 include "WyvernEngine/Vendor/GLFW"
 include "WyvernEngine/Vendor/ImGui"
 include "WyvernEngine/Vendor/FreeType"
 include "WyvernEngine/Vendor/yaml-cpp"
+include "WyvernEngine/Vendor/Assimp"
 	
 project "WyvernEngine"
 	location "WyvernEngine/Source"
@@ -62,7 +64,8 @@ project "WyvernEngine"
 		"%{IncludeDir.FreeType}",
 		"%{IncludeDir.FreeTypeSub}",
 		"%{IncludeDir.YamlCPP}",
-		"%{IncludeDir.ImGUIzmo}"
+		"%{IncludeDir.ImGUIzmo}",
+		"%{IncludeDir.AssImp}"
 	}
 
 	links
@@ -128,7 +131,8 @@ project "WyvernEditor"
 		"%{IncludeDir.FreeType}",
 		"%{IncludeDir.FreeTypeSub}",
 		"%{IncludeDir.YamlCPP}",
-		"%{IncludeDir.ImGUIzmo}"
+		"%{IncludeDir.ImGUIzmo}",
+		"%{IncludeDir.AssImp}"
 	}
 	
 	links
@@ -183,7 +187,8 @@ project "WyvernBuilder"
 		"%{IncludeDir.FreeType}",
 		"%{IncludeDir.FreeTypeSub}",
 		"%{IncludeDir.YamlCPP}",
-		"%{IncludeDir.ImGUIzmo}"
+		"%{IncludeDir.ImGUIzmo}",
+		"%{IncludeDir.AssImp}"
 	}
 
 	links

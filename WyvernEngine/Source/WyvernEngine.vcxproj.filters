@@ -115,6 +115,9 @@
     <ClInclude Include="Wyvern\Core\Components\Components.h">
       <Filter>Wyvern\Core\Components</Filter>
     </ClInclude>
+    <ClInclude Include="Wyvern\Core\Components\MeshRenderer.h">
+      <Filter>Wyvern\Core\Components</Filter>
+    </ClInclude>
     <ClInclude Include="Wyvern\Core\Components\RigidBody2D.h">
       <Filter>Wyvern\Core\Components</Filter>
     </ClInclude>
@@ -134,6 +137,12 @@
       <Filter>Wyvern\Core</Filter>
     </ClInclude>
     <ClInclude Include="Wyvern\Core\Graphics\Material.h">
+      <Filter>Wyvern\Core\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\Core\Graphics\Mesh.h">
+      <Filter>Wyvern\Core\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\Core\Graphics\MeshFilter.h">
       <Filter>Wyvern\Core\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="Wyvern\Core\Graphics\Shader.h">
@@ -256,6 +265,9 @@
     <ClInclude Include="Wyvern\Renderer\Framebuffer.h">
       <Filter>Wyvern\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="Wyvern\Renderer\Renderer.h">
+      <Filter>Wyvern\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="Wyvern\Renderer\Renderer2D.h">
       <Filter>Wyvern\Renderer</Filter>
     </ClInclude>
@@ -272,10 +284,6 @@
       <Filter>Wyvern\Utils</Filter>
     </ClInclude>
     <ClInclude Include="wvpch.h" />
-    <ClInclude Include="Wyvern\Renderer\Renderer.h" />
-    <ClInclude Include="Wyvern\Core\Graphics\Mesh.h" />
-    <ClInclude Include="Wyvern\Core\Components\MeshRenderer.h" />
-    <ClInclude Include="Wyvern\Core\Graphics\MeshFilter.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Vendor\ImGuizmo\ImGuizmo.cpp">
@@ -386,6 +394,9 @@
     <ClCompile Include="Wyvern\Renderer\Framebuffer.cpp">
       <Filter>Wyvern\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="Wyvern\Renderer\Renderer.cpp">
+      <Filter>Wyvern\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="Wyvern\Renderer\Renderer2D.cpp">
       <Filter>Wyvern\Renderer</Filter>
     </ClCompile>
@@ -399,6 +410,5 @@
       <Filter>Wyvern\Utils</Filter>
     </ClCompile>
     <ClCompile Include="wvpch.cpp" />
-    <ClCompile Include="Wyvern\Renderer\Renderer.cpp" />
   </ItemGroup>
 </Project>

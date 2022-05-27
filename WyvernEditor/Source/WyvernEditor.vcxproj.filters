@@ -16,10 +16,12 @@
     <ClInclude Include="WyvernEditor\Core\EditorGUIInternal.h">
       <Filter>WyvernEditor\Core</Filter>
     </ClInclude>
+    <ClInclude Include="WyvernEditor\Core\EditorInfo.h">
+      <Filter>WyvernEditor\Core</Filter>
+    </ClInclude>
     <ClInclude Include="WyvernEditor\Core\EditorWindow.h">
       <Filter>WyvernEditor\Core</Filter>
     </ClInclude>
-    <ClInclude Include="WyvernEditor\Core\EditorInfo.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WyvernEditor\Core\EditorGUI.cpp">
@@ -28,9 +30,11 @@
     <ClCompile Include="WyvernEditor\Core\EditorGUIInternal.cpp">
       <Filter>WyvernEditor\Core</Filter>
     </ClCompile>
+    <ClCompile Include="WyvernEditor\Core\EditorInfo.cpp">
+      <Filter>WyvernEditor\Core</Filter>
+    </ClCompile>
     <ClCompile Include="WyvernEditor\Core\EditorWindow.cpp">
       <Filter>WyvernEditor\Core</Filter>
     </ClCompile>
-    <ClCompile Include="WyvernEditor\Core\EditorInfo.cpp" />
   </ItemGroup>
 </Project>

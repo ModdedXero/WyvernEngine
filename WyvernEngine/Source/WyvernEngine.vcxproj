@@ -77,7 +77,7 @@
       <PrecompiledHeaderFile>wvpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WV_PLATFORM_WINDOWS;WV_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.;..\Vendor\GLFW\include;..\Vendor\glad\include;..\Vendor\glm;..\Vendor\imgui;..\Vendor\stb_image;..\Vendor\freetype\include;..\Vendor\freetype\include\freetype;..\Vendor\yaml-cpp\include;..\Vendor\ImGuizmo;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..\Vendor\GLFW\include;..\Vendor\glad\include;..\Vendor\glm;..\Vendor\imgui;..\Vendor\stb_image;..\Vendor\freetype\include;..\Vendor\freetype\include\freetype;..\Vendor\yaml-cpp\include;..\Vendor\ImGuizmo;..\Vendor\Assimp\inlcude;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -97,7 +97,7 @@
       <PrecompiledHeaderFile>wvpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WV_PLATFORM_WINDOWS;WV_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.;..\Vendor\GLFW\include;..\Vendor\glad\include;..\Vendor\glm;..\Vendor\imgui;..\Vendor\stb_image;..\Vendor\freetype\include;..\Vendor\freetype\include\freetype;..\Vendor\yaml-cpp\include;..\Vendor\ImGuizmo;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..\Vendor\GLFW\include;..\Vendor\glad\include;..\Vendor\glm;..\Vendor\imgui;..\Vendor\stb_image;..\Vendor\freetype\include;..\Vendor\freetype\include\freetype;..\Vendor\yaml-cpp\include;..\Vendor\ImGuizmo;..\Vendor\Assimp\inlcude;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -121,7 +121,7 @@
       <PrecompiledHeaderFile>wvpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WV_PLATFORM_WINDOWS;WV_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.;..\Vendor\GLFW\include;..\Vendor\glad\include;..\Vendor\glm;..\Vendor\imgui;..\Vendor\stb_image;..\Vendor\freetype\include;..\Vendor\freetype\include\freetype;..\Vendor\yaml-cpp\include;..\Vendor\ImGuizmo;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..\Vendor\GLFW\include;..\Vendor\glad\include;..\Vendor\glm;..\Vendor\imgui;..\Vendor\stb_image;..\Vendor\freetype\include;..\Vendor\freetype\include\freetype;..\Vendor\yaml-cpp\include;..\Vendor\ImGuizmo;..\Vendor\Assimp\inlcude;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
