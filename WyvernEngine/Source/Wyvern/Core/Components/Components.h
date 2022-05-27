@@ -6,3 +6,4 @@
 #include "SpriteRenderer.h"
 #include "Tag.h"
 #include "Transform.h"
+#include "MeshRenderer.h"

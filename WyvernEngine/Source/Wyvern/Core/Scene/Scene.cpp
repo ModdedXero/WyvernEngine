@@ -8,6 +8,7 @@
 #include <Wyvern/Core/Components/Tag.h>
 #include <Wyvern/Core/Components/Transform.h>
 #include <Wyvern/Core/Components/SpriteRenderer.h>
+#include <Wyvern/Core/Components/MeshRenderer.h>
 #include <Wyvern/Renderer/Renderer2D.h>
 #include <Wyvern/Renderer/Renderer.h>
 #include <Wyvern/Core/Physics/Physics2DWizard.h>
@@ -108,92 +109,19 @@ namespace Wyvern
 			Render::Renderer::BeginScene(camera, position);
 		}
 
-		Transform* entTransform = nullptr;
-		Ref<Material> entMaterial;
-		Vector4 color;
-
 		for (EntityRegister* entity : EntityList<SpriteRenderer>(shared_from_this()))
 		{
 			SpriteRenderer* sRend = Scene::GetComponent<SpriteRenderer>(entity);
 
 			Render::Renderer2D::DrawQuad(GetComponent<Transform>(entity), sRend->material, sRend->sprite, sRend->color, GetSceneIndex(entity->SceneID));
-
-			entTransform = GetComponent<Transform>(entity);
-			entMaterial = sRend->material;
-			color = sRend->color;
 		}
 
-		std::vector<Vector3> vertices = {
-			{-0.5f, -0.5f, -0.5f },
-			{ 0.5f, -0.5f, -0.5f},
-			{ 0.5f,  0.5f, -0.5f},
-			{ 0.5f,  0.5f, -0.5f},
-			{-0.5f,  0.5f, -0.5f},
-			{-0.5f, -0.5f, -0.5f},
+		for (EntityRegister* entity : EntityList<MeshRenderer>(shared_from_this()))
+		{
+			MeshRenderer* sRend = Scene::GetComponent<MeshRenderer>(entity);
 
-			{-0.5f, -0.5f,  0.5f},
-			{ 0.5f, -0.5f,  0.5f},
-			{ 0.5f,  0.5f,  0.5f},
-			{ 0.5f,  0.5f,  0.5f},
-			{-0.5f,  0.5f,  0.5f},
-			{-0.5f, -0.5f,  0.5f},
-
-			{-0.5f,  0.5f,  0.5f},
-			{-0.5f,  0.5f, -0.5f},
-			{-0.5f, -0.5f, -0.5f},
-			{-0.5f, -0.5f, -0.5f},
-			{-0.5f, -0.5f,  0.5f},
-			{-0.5f,  0.5f,  0.5f},
-
-			{ 0.5f,  0.5f,  0.5f},
-			{ 0.5f,  0.5f, -0.5f},
-			{ 0.5f, -0.5f, -0.5f},
-			{ 0.5f, -0.5f, -0.5f},
-			{ 0.5f, -0.5f,  0.5f},
-			{ 0.5f,  0.5f,  0.5f},
-
-			{-0.5f, -0.5f, -0.5f},
-			{ 0.5f, -0.5f, -0.5f},
-			{ 0.5f, -0.5f,  0.5f},
-			{ 0.5f, -0.5f,  0.5f},
-			{-0.5f, -0.5f,  0.5f},
-			{-0.5f, -0.5f, -0.5f},
-
-			{-0.5f,  0.5f, -0.5f},
-			{ 0.5f,  0.5f, -0.5f},
-			{ 0.5f,  0.5f,  0.5f},
-			{ 0.5f,  0.5f,  0.5f},
-			{-0.5f,  0.5f,  0.5f},
-			{-0.5f,  0.5f, -0.5f},
-		};
-		std::vector<Vector2> uvs = {};
-		std::vector<int> indices = {
-			0, 1, 2,
-			2, 3, 0,
-			4, 5, 3,
-
-			6, 7, 8,
-			8, 9, 6,
-			10, 11, 9,
-
-			12, 13, 14,
-			14, 15, 12,
-			16, 17, 15,
-
-			18, 19, 20,
-			20, 21, 18,
-			22, 23, 21,
-
-			24, 25, 26,
-			26, 27, 24,
-			28, 29, 27,
-
-			30, 31, 32,
-			33, 34, 30,
-			35, 36, 34
-		};
-
-		Render::Renderer::DrawMesh(entTransform, entMaterial, vertices, uvs, indices, color, GetSceneIndex(entTransform->GetSceneID()));
+			Render::Renderer::DrawMesh(GetComponent<Transform>(entity), sRend->material, &sRend->mesh.mesh, Vector4( 1.0f, 1.0f, 1.0f, 1.0f ), GetSceneIndex(entity->SceneID));
+		}
 
 		Render::Renderer::EndScene();
 	}

@@ -207,6 +207,11 @@ namespace Wyvern::Render
 #endif
 	}
 
+	void Renderer::DrawMesh(Transform* transform, Ref<Material> material, Mesh* mesh, const Vector4& color, int entityID)
+	{
+		DrawMesh(transform, material, mesh->vertices, mesh->uvs, mesh->indices, color, entityID);
+	}
+
 	void Renderer::DrawMesh(Transform* transform, Ref<Material> material, std::vector<Vector3> vertices, std::vector<Vector2> uvs, std::vector<int> indices, const Vector4& color, int entityID)
 	{
 		if (s_Data.IndexBuffer.size() >= MaxVertexCount)
@@ -224,9 +229,13 @@ namespace Wyvern::Render
 		float textureIndex = 0.0f;
 		Vector2 textureCoords = Vector2(0.0f, 0.0f);
 
-		for (Vector3 position : vertices)
+		Matrix4x4 matrix = transform->GetTransform();
+
+		for (Vector3& position : vertices)
 		{
-			s_Data.VertexBufferPtr->Position = position;
+			Vector3 vertex = matrix * glm::vec4(position.x, position.y, position.z, 1.0f);
+
+			s_Data.VertexBufferPtr->Position = vertex;
 			s_Data.VertexBufferPtr->Color = color;
 			s_Data.VertexBufferPtr->TexCoords = textureCoords;
 			s_Data.VertexBufferPtr->TexID = textureIndex;

@@ -8,6 +8,7 @@
 #include <Wyvern/Renderer/CameraRenderer.h>
 #include <Wyvern/Utils/FileSystem.h>
 #include <Wyvern/Core/Graphics/Sprite.h>
+#include <Wyvern/Core/Graphics/MeshFilter.h>
 
 #include <yaml-cpp/yaml.h>
 #include <string>
@@ -191,6 +192,26 @@ namespace YAML
 	};
 
 	template<>
+	struct convert<Wyvern::MeshFilter>
+	{
+		static YAML::Node encode(const Wyvern::MeshFilter& rhs)
+		{
+			YAML::Node node;
+
+			node.push_back(rhs.GetMeshPath());
+
+			return node;
+		}
+
+		static bool decode(const YAML::Node& node, Wyvern::MeshFilter& rhs)
+		{
+			rhs.LoadMesh(node.as<std::string>());
+
+			return true;
+		}
+	};
+
+	template<>
 	struct convert<Wyvern::Utils::FileSystem>
 	{
 		static YAML::Node encode(const Wyvern::Utils::FileSystem& rhs)
@@ -218,4 +239,5 @@ namespace Wyvern
 	YAML::Emitter& operator <<(YAML::Emitter& out, const Render::CameraMode& cameraMode);
 	YAML::Emitter& operator <<(YAML::Emitter& out, const Sprite& sprite);
 	YAML::Emitter& operator <<(YAML::Emitter& out, const Entity& entity);
+	YAML::Emitter& operator <<(YAML::Emitter& out, const MeshFilter& filter);
 }

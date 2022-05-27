@@ -273,6 +273,9 @@
     </ClInclude>
     <ClInclude Include="wvpch.h" />
     <ClInclude Include="Wyvern\Renderer\Renderer.h" />
+    <ClInclude Include="Wyvern\Core\Graphics\Mesh.h" />
+    <ClInclude Include="Wyvern\Core\Components\MeshRenderer.h" />
+    <ClInclude Include="Wyvern\Core\Graphics\MeshFilter.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Vendor\ImGuizmo\ImGuizmo.cpp">

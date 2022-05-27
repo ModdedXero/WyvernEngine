@@ -68,6 +68,11 @@ namespace Wyvern
 		}
 	}
 
+	void MeshRenderer::DrawEditor()
+	{
+
+	}
+
 	void RigidBody2D::DrawEditor()
 	{
 		EditorGUI::FloatControl("Mass", this->mass);

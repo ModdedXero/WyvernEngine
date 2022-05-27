@@ -157,6 +157,7 @@
     <ClInclude Include="Wyvern\Core\Components\Camera.h" />
     <ClInclude Include="Wyvern\Core\Components\Collider2D.h" />
     <ClInclude Include="Wyvern\Core\Components\Components.h" />
+    <ClInclude Include="Wyvern\Core\Components\MeshRenderer.h" />
     <ClInclude Include="Wyvern\Core\Components\RigidBody2D.h" />
     <ClInclude Include="Wyvern\Core\Components\SpriteRenderer.h" />
     <ClInclude Include="Wyvern\Core\Components\Tag.h" />
@@ -164,6 +165,8 @@
     <ClInclude Include="Wyvern\Core\Constants.h" />
     <ClInclude Include="Wyvern\Core\Debug.h" />
     <ClInclude Include="Wyvern\Core\Graphics\Material.h" />
+    <ClInclude Include="Wyvern\Core\Graphics\Mesh.h" />
+    <ClInclude Include="Wyvern\Core\Graphics\MeshFilter.h" />
     <ClInclude Include="Wyvern\Core\Graphics\Shader.h" />
     <ClInclude Include="Wyvern\Core\Graphics\Sprite.h" />
     <ClInclude Include="Wyvern\Core\Graphics\Texture2D.h" />
