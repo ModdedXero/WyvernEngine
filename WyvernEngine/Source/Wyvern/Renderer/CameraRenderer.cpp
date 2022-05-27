@@ -8,7 +8,7 @@
 #include <glm/ext/matrix_clip_space.hpp>
 #include <glm/ext/matrix_transform.hpp>
 
-namespace Wyvern::Renderer
+namespace Wyvern::Render
 {
 	CameraRenderer::CameraRenderer()
 		: m_Projection(1.0f), m_View(1.0f), m_OrthoSize(5.0f), m_FieldOfView(60.0f), m_ClipNear(0.3f), m_ClipFar(100.0f), m_AspectRatio(1.0f)

@@ -43,7 +43,7 @@ namespace Wyvern
 		void OnAttach();
 		void OnDestroy();
 		void OnRuntimeUpdate();
-		void OnEditorUpdate(Renderer::CameraRenderer* camera, Transform* position);
+		void OnEditorUpdate(Render::CameraRenderer* camera, Transform* position);
 		void OnFixedUpdate();
 		void OnEvent(Events::Event& e);
 

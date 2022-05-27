@@ -30,14 +30,14 @@ namespace Wyvern
 		EditorGUI::ComboControl("Mode", values, cameraMode, 2);
 		EditorGUI::BoolControl("Active Camera", isActive);
 		EditorGUI::Color4Control("Clear Color", clearColor);
-		if ((Renderer::CameraMode)cameraMode == Renderer::CameraMode::Orthographic) 
+		if ((Render::CameraMode)cameraMode == Render::CameraMode::Orthographic) 
 			EditorGUI::FloatControl("Ortho Size", orthoSize);
-		if ((Renderer::CameraMode)cameraMode == Renderer::CameraMode::Perspective) 
+		if ((Render::CameraMode)cameraMode == Render::CameraMode::Perspective) 
 			EditorGUI::FloatControl("FOV", fov);
 		EditorGUI::FloatControl("Near Clip", clipNear);
 		EditorGUI::FloatControl("Far Clip", clipFar);
 
-		SetCameraMode((Renderer::CameraMode)cameraMode);
+		SetCameraMode((Render::CameraMode)cameraMode);
 		if (isActive) 
 			SetActive();
 		else 

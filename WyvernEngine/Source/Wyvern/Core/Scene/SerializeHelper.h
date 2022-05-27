@@ -104,18 +104,18 @@ namespace YAML
 	};
 
 	template<>
-	struct convert<Wyvern::Renderer::CameraMode>
+	struct convert<Wyvern::Render::CameraMode>
 	{
-		static YAML::Node encode(const Wyvern::Renderer::CameraMode& rhs)
+		static YAML::Node encode(const Wyvern::Render::CameraMode& rhs)
 		{
 			YAML::Node node;
 			node.push_back((int)rhs);
 			return node;
 		}
 
-		static bool decode(const YAML::Node& node, Wyvern::Renderer::CameraMode& rhs)
+		static bool decode(const YAML::Node& node, Wyvern::Render::CameraMode& rhs)
 		{
-			rhs = (Wyvern::Renderer::CameraMode)node.as<int>();
+			rhs = (Wyvern::Render::CameraMode)node.as<int>();
 			return true;
 		}
 	};
@@ -215,7 +215,7 @@ namespace Wyvern
 	YAML::Emitter& operator <<(YAML::Emitter& out, const Vector4& vec);
 
 	YAML::Emitter& operator <<(YAML::Emitter& out, const PhysicsBody& body);
-	YAML::Emitter& operator <<(YAML::Emitter& out, const Renderer::CameraMode& cameraMode);
+	YAML::Emitter& operator <<(YAML::Emitter& out, const Render::CameraMode& cameraMode);
 	YAML::Emitter& operator <<(YAML::Emitter& out, const Sprite& sprite);
 	YAML::Emitter& operator <<(YAML::Emitter& out, const Entity& entity);
 }

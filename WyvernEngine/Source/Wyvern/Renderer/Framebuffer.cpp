@@ -5,7 +5,7 @@
 
 #include "glad.h"
 
-namespace Wyvern::Renderer
+namespace Wyvern::Render
 {
 	static const unsigned int s_MaxFramebufferSize = 8192;
 
@@ -30,13 +30,13 @@ namespace Wyvern::Renderer
 		{
 			switch (format)
 			{
-			case Wyvern::Renderer::FramebufferTextureFormat::RGBA8:
+			case Wyvern::Render::FramebufferTextureFormat::RGBA8:
 				return GL_RGBA8;
 				break;
-			case Wyvern::Renderer::FramebufferTextureFormat::RED_INTEGER:
+			case Wyvern::Render::FramebufferTextureFormat::RED_INTEGER:
 				return GL_RED_INTEGER;
 				break;
-			case Wyvern::Renderer::FramebufferTextureFormat::DEPTH24STENCIL8:
+			case Wyvern::Render::FramebufferTextureFormat::DEPTH24STENCIL8:
 				return GL_DEPTH24_STENCIL8;
 				break;
 			}

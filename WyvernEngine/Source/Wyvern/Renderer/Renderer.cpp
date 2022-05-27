@@ -1,5 +1,6 @@
 #include "wvpch.h"
 #include "Renderer.h"
+#include "Renderer2D.h"
 
 #include "VertexArray.h"
 
@@ -7,78 +8,272 @@
 
 #include <glad.h>
 
-namespace Wyvern::Renderer
+namespace Wyvern::Render
 {
-	void Renderer::DrawCube()
+	Framebuffer* Renderer::s_Framebuffer;
+
+	static const size_t MaxTriangleCount = 1000;
+	static const size_t MaxVertexCount = MaxTriangleCount * 3;
+	static const size_t MaxTextureCount = 32;
+
+	struct RenderData
 	{
-        float vertices[] = {
-            -3.5f, -0.5f, -0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0,
-             3.5f, -0.5f, -0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f, 0,
-             3.5f,  0.5f, -0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0,
-             3.5f,  0.5f, -0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0,
-            -3.5f,  0.5f, -0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f, 0,
-            -3.5f, -0.5f, -0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0,
-            -3.5f, -0.5f,  0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0,
-             3.5f, -0.5f,  0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f, 0,
-             3.5f,  0.5f,  0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0,
-             3.5f,  0.5f,  0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0,
-            -3.5f,  0.5f,  0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f, 0,
-            -3.5f, -0.5f,  0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0,
-            -3.5f,  0.5f,  0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f, 0,
-            -3.5f,  0.5f, -0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0,
-            -3.5f, -0.5f, -0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f, 0,
-            -3.5f, -0.5f, -0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f, 0,
-            -3.5f, -0.5f,  0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0,
-            -3.5f,  0.5f,  0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f, 0,
-             3.5f,  0.5f,  0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f, 0,
-             3.5f,  0.5f, -0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0,
-             3.5f, -0.5f, -0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f, 0,
-             3.5f, -0.5f, -0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f, 0,
-             3.5f, -0.5f,  0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0,
-             3.5f,  0.5f,  0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f, 0,
-            -3.5f, -0.5f, -0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f, 0,
-             3.5f, -0.5f, -0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0,
-             3.5f, -0.5f,  0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f, 0,
-             3.5f, -0.5f,  0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f, 0,
-            -3.5f, -0.5f,  0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0,
-            -3.5f, -0.5f, -0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f, 0,
-            -3.5f,  0.5f, -0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f, 0,
-             3.5f,  0.5f, -0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0,
-             3.5f,  0.5f,  0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f, 0,
-             3.5f,  0.5f,  0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f, 0,
-            -3.5f,  0.5f,  0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0,
-            -3.5f,  0.5f, -0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f, 0
-        };
+		uint32_t VAO = 0;
+		uint32_t VBO = 0;
+		uint32_t IBO = 0;
 
-        AssetManager::GetDefaultMaterial()->shader->Use();
-        unsigned int VBO, VAO;
-        glGenVertexArrays(1, &VAO);
-        glGenBuffers(1, &VBO);
+		uint32_t SVAO = 0;
+		uint32_t SVBO = 0;
 
-        glBindVertexArray(VAO);
+		Vertex* VertexBuffer = nullptr;
+		Vertex* VertexBufferPtr = nullptr;
 
-        glBindBuffer(GL_ARRAY_BUFFER, VBO);
-        glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+		std::vector<int> IndexBuffer;
 
-        size_t size = (10 * sizeof(float)) + sizeof(int);
+		uint32_t IndexOffset = 0;
 
-        glEnableVertexArrayAttrib(VAO, 0);
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, size, (const void*)0);
+		std::array<uint32_t, MaxTextureCount> TextureSlots;
+		uint32_t TextureSlotIndex = 1;
+		uint32_t WhiteTexture = 0;
 
-        glEnableVertexArrayAttrib(VAO, 1);
-        glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, size, (const void*)(3 * sizeof(float)));
+		CameraRenderer* Camera = nullptr;
+		Transform* CameraPosition = nullptr;
+		Vector4 CameraClearColor = Vector4();
+	};
 
-        glEnableVertexArrayAttrib(VAO, 2);
-        glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, size, (const void*)(7 * sizeof(float)));
+	static RenderData s_Data;
 
-        glEnableVertexArrayAttrib(VAO, 3);
-        glVertexAttribPointer(3, 1, GL_FLOAT, GL_FALSE, size, (const void*)(9 * sizeof(float)));
+	void Renderer::Construct()
+	{
+		// Framebuffer
 
-        glEnableVertexArrayAttrib(VAO, 4);
-        glVertexAttribIPointer(4, 1, GL_INT, size, (const void*)(10 * sizeof(float)));
+		FramebufferSpecification fbSpec;
+		fbSpec.Attachments =
+		{
+			FramebufferTextureFormat::RGBA8,
+			FramebufferTextureFormat::RED_INTEGER,
+			FramebufferTextureFormat::Depth
+		};
+		fbSpec.Width = 1280;
+		fbSpec.Height = 720;
+		s_Framebuffer = new Framebuffer(fbSpec);
 
-        glDrawArrays(GL_TRIANGLES, 0, 36);
+		// Quad Renderer
 
-        glBindVertexArray(0);
+		s_Data.VertexBuffer = new Vertex[MaxVertexCount];
+
+		glGenVertexArrays(1, &s_Data.VAO);
+		glBindVertexArray(s_Data.VAO);
+
+		glGenBuffers(1, &s_Data.VBO);
+		glBindBuffer(GL_ARRAY_BUFFER, s_Data.VBO);
+		glBufferData(GL_ARRAY_BUFFER, MaxVertexCount * sizeof(Vertex), nullptr, GL_DYNAMIC_DRAW);
+
+		glEnableVertexArrayAttrib(s_Data.VAO, 0);
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const void*)offsetof(Vertex, Position));
+
+		glEnableVertexArrayAttrib(s_Data.VAO, 1);
+		glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const void*)offsetof(Vertex, Color));
+
+		glEnableVertexArrayAttrib(s_Data.VAO, 2);
+		glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const void*)offsetof(Vertex, TexCoords));
+
+		glEnableVertexArrayAttrib(s_Data.VAO, 3);
+		glVertexAttribPointer(3, 1, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const void*)offsetof(Vertex, TexID));
+
+		glEnableVertexArrayAttrib(s_Data.VAO, 4);
+		glVertexAttribIPointer(4, 1, GL_INT, sizeof(Vertex), (const void*)offsetof(Vertex, EntityID));
+
+		//uint32_t indices[MaxVertexCount];
+		//uint32_t offset = 0;
+		//for (size_t i = 0; i < MaxVertexCount; i += 6)
+		//{
+		//	indices[i + 0] = 0 + offset;
+		//	indices[i + 1] = 1 + offset;
+		//	indices[i + 2] = 2 + offset;
+
+		//	indices[i + 3] = 2 + offset;
+		//	indices[i + 4] = 3 + offset;
+		//	indices[i + 5] = 0 + offset;
+
+		//	offset += 4;
+		//}
+
+		//glGenBuffers(1, &s_Data.IBO);
+		//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, s_Data.IBO);
+		//glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+
+		glGenBuffers(1, &s_Data.IBO);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, s_Data.IBO);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(int) * MaxVertexCount, nullptr, GL_DYNAMIC_DRAW);
+
+		glBindVertexArray(0);
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
+		// Screen Renderer
+
+		float quadVertices[] = { // vertex attributes for a quad that fills the entire screen in Normalized Device Coordinates.
+	// positions   // texCoords
+	-1.0f,  1.0f,  0.0f, 1.0f,
+	-1.0f, -1.0f,  0.0f, 0.0f,
+	 1.0f, -1.0f,  1.0f, 0.0f,
+
+	-1.0f,  1.0f,  0.0f, 1.0f,
+	 1.0f, -1.0f,  1.0f, 0.0f,
+	 1.0f,  1.0f,  1.0f, 1.0f
+		};
+
+		glGenVertexArrays(1, &s_Data.SVAO);
+		glGenBuffers(1, &s_Data.SVBO);
+		glBindVertexArray(s_Data.SVAO);
+		glBindBuffer(GL_ARRAY_BUFFER, s_Data.SVBO);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(quadVertices), &quadVertices, GL_STATIC_DRAW);
+		glEnableVertexAttribArray(0);
+		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
+		glEnableVertexAttribArray(1);
+		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
+
+		glBindVertexArray(0);
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+		// Setup default texture
+
+		glCreateTextures(GL_TEXTURE_2D, 1, &s_Data.WhiteTexture);
+		glBindTexture(GL_TEXTURE_2D, s_Data.WhiteTexture);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+		uint32_t color = 0xffffffff;
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, 1, 1, 0, GL_RGBA, GL_UNSIGNED_BYTE, &color);
+
+		s_Data.TextureSlots[0] = s_Data.WhiteTexture;
+		for (size_t i = 1; i < MaxTextureCount; i++)
+			s_Data.TextureSlots[i] = 0;
+
+		// OpenGL Settings
+		glEnable(GL_DEPTH_TEST);
+	}
+
+	void Renderer::Destruct()
+	{
+		glDeleteVertexArrays(1, &s_Data.VAO);
+		glDeleteVertexArrays(1, &s_Data.SVAO);
+		glDeleteBuffers(1, &s_Data.SVBO);
+		glDeleteBuffers(1, &s_Data.VBO);
+		glDeleteBuffers(1, &s_Data.IBO);
+
+		delete[] s_Data.VertexBuffer;
+	}
+
+	void Renderer::BeginScene(CameraRenderer* cameraRenderer, Transform* cameraPosition, Vector4 clearColor)
+	{
+		s_Framebuffer->Invalidate();
+		s_Framebuffer->Bind();
+		s_Framebuffer->ClearColorAttachment(1, -1);
+		AssetManager::GetShader("ScreenShader")->SetInteger("screenTexture", 0);
+
+		s_Data.Camera = cameraRenderer;
+		s_Data.CameraPosition = cameraPosition;
+		s_Data.CameraClearColor = clearColor;
+		s_Data.Camera->Resize(s_Framebuffer->GetSpecification().Width, s_Framebuffer->GetSpecification().Height);
+
+		glClearColor(s_Data.CameraClearColor.x, s_Data.CameraClearColor.y, s_Data.CameraClearColor.z, s_Data.CameraClearColor.w);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+		Renderer2D::BeginScene(cameraRenderer, cameraPosition, clearColor);
+
+		BeginBatch();
+	}
+
+	void Renderer::EndScene()
+	{
+		EndBatch();
+		Flush();
+
+		Renderer2D::EndScene();
+
+		s_Framebuffer->Unbind();
+
+#ifndef WV_DEBUG
+		glDisable(GL_DEPTH_TEST);
+		glClear(GL_COLOR_BUFFER_BIT);
+		AssetManager::GetShader("ScreenShader")->Use();
+		glBindVertexArray(s_Data.SVAO);
+		s_Framebuffer->BindColorAttachmentTexture();
+		glDrawArrays(GL_TRIANGLES, 0, 6);
+		glBindVertexArray(0);
+#endif
+	}
+
+	void Renderer::DrawMesh(Transform* transform, Ref<Material> material, std::vector<Vector3> vertices, std::vector<Vector2> uvs, std::vector<int> indices, const Vector4& color, int entityID)
+	{
+		if (s_Data.IndexBuffer.size() >= MaxVertexCount)
+		{
+			EndBatch();
+			Flush();
+			BeginBatch();
+		}
+
+		if (!material) return;
+
+		material->shader->Use();
+		s_Data.Camera->SetShaderMatrices(material->shader, s_Data.CameraPosition);
+
+		float textureIndex = 0.0f;
+		Vector2 textureCoords = Vector2(0.0f, 0.0f);
+
+		for (Vector3 position : vertices)
+		{
+			s_Data.VertexBufferPtr->Position = position;
+			s_Data.VertexBufferPtr->Color = color;
+			s_Data.VertexBufferPtr->TexCoords = textureCoords;
+			s_Data.VertexBufferPtr->TexID = textureIndex;
+			s_Data.VertexBufferPtr->EntityID = entityID;
+			s_Data.VertexBufferPtr++;
+		}
+
+		for (int indice : indices)
+		{
+			s_Data.IndexBuffer.push_back(indice + s_Data.IndexOffset);
+		}
+
+		s_Data.IndexOffset += vertices.size();
+	}
+
+	void Renderer::BeginBatch()
+	{
+		s_Data.VertexBufferPtr = s_Data.VertexBuffer;
+		s_Data.IndexBuffer.clear();
+	}
+
+	void Renderer::EndBatch()
+	{
+		if (s_Data.IndexBuffer.size() <= 0) return;
+
+		GLsizeiptr size = (uint8_t*)s_Data.VertexBufferPtr - (uint8_t*)s_Data.VertexBuffer;
+		glBindBuffer(GL_ARRAY_BUFFER, s_Data.VBO);
+		glBufferSubData(GL_ARRAY_BUFFER, 0, size, s_Data.VertexBuffer);
+
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, s_Data.IBO);
+		glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, 0, sizeof(s_Data.IndexBuffer) * s_Data.IndexBuffer.size(), &s_Data.IndexBuffer.front());
+	}
+
+	void Renderer::Flush()
+	{
+		s_Data.IndexOffset = 0;
+
+		if (s_Data.IndexBuffer.size() <= 0) return;
+
+		for (uint32_t i = 0; i < s_Data.TextureSlotIndex; i++)
+			glBindTextureUnit(i, s_Data.TextureSlots[i]);
+
+		glBindVertexArray(s_Data.VAO);
+		glDrawElements(GL_TRIANGLES, s_Data.IndexBuffer.size(), GL_UNSIGNED_INT, nullptr);
+
+		glBindVertexArray(0);
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 	}
 }

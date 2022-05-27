@@ -9,7 +9,7 @@ namespace Wyvern
 {
 	void ViewportWindow::OnAttach()
 	{
-		m_Framebuffer = Renderer::Renderer2D::GetFramebuffer();
+		m_Framebuffer = Render::Renderer::GetFramebuffer();
 	}
 
 	void ViewportWindow::OnGUI()
@@ -50,7 +50,7 @@ namespace Wyvern
 		{
 			ViewportCamera* camera = BuilderLayer::GetViewportCamera();
 
-			if (camera->GetCameraMode() == Renderer::CameraMode::Orthographic)
+			if (camera->GetCameraMode() == Render::CameraMode::Orthographic)
 				ImGuizmo::SetOrthographic(true);
 			else
 				ImGuizmo::SetOrthographic(false);
@@ -87,7 +87,7 @@ namespace Wyvern
 
 				glm::vec3 deltaRotation = glm::degrees(rotation) - (glm::vec3)transformComp->rotation;
 
-				if (camera->GetCameraMode() == Renderer::CameraMode::Orthographic)
+				if (camera->GetCameraMode() == Render::CameraMode::Orthographic)
 				{
 					transformComp->position.x = position.x;
 					transformComp->position.y = position.y;

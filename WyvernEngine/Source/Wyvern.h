@@ -37,6 +37,7 @@
 #include <Wyvern/Core/Graphics/Sprite.h>
 
 // Renderer
+#include <Wyvern/Renderer/Renderer.h>
 #include <Wyvern/Renderer/Renderer2D.h>
 #include <Wyvern/Renderer/Framebuffer.h>
 #include <Wyvern/Renderer/CameraRenderer.h>

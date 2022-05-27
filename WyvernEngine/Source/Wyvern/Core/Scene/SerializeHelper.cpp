@@ -30,7 +30,7 @@ namespace Wyvern
 		return out;
 	}
 
-	YAML::Emitter& operator<<(YAML::Emitter& out, const Renderer::CameraMode& cameraMode)
+	YAML::Emitter& operator<<(YAML::Emitter& out, const Render::CameraMode& cameraMode)
 	{
 		out << (int)cameraMode;
 		return out;

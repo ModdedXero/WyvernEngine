@@ -4,6 +4,7 @@
 #include "Project.h"
 
 #include <Wyvern/Core/Timestep.h>
+#include <Wyvern/Renderer/Renderer.h>
 #include <Wyvern/Renderer/Renderer2D.h>
 
 #include <iostream>
@@ -11,7 +12,7 @@
 
 using namespace Wyvern::Events;
 using namespace Wyvern::Display;
-using namespace Wyvern::Renderer;
+using namespace Wyvern::Render;
 
 namespace Wyvern
 {
@@ -32,8 +33,10 @@ namespace Wyvern
 		m_StartTime = Time::now();
 		m_FixedLoop = Time::now();
 
-		Renderer2D::Intitialize();
-		Renderer2D::GetFramebuffer()->Resize(Vector2Int(specification.WindowWidth, specification.WindowHeight));
+		Renderer::Construct();
+		Renderer2D::Construct();
+		Renderer::GetFramebuffer()->Resize(Vector2Int(specification.WindowWidth, specification.WindowHeight));
+
 
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);
@@ -84,6 +87,9 @@ namespace Wyvern
 
 	void Application::Close()
 	{
+		Renderer::Destruct();
+		Renderer2D::Destruct();
+
 		m_Running = false;
 	}
 
@@ -112,7 +118,7 @@ namespace Wyvern
 		glfwSetWindowSize(m_Window->GetNativeWindow(), m_Window->GetWidth(), m_Window->GetHeight());
 
 #ifndef WV_DEBUG
-		Renderer2D::GetFramebuffer()->Resize(Vector2Int(m_Window->GetWidth(), m_Window->GetHeight()));
+		Renderer::GetFramebuffer()->Resize(Vector2Int(m_Window->GetWidth(), m_Window->GetHeight()));
 #endif
 
 		return true;

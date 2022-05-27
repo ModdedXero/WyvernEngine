@@ -82,37 +82,120 @@ namespace Wyvern
 
 		if (mainCamera)
 		{
-			Renderer::Renderer2D::BeginScene(mainCamera->GetRenderer(), mainCamera->GetTransform(), mainCamera->clearColor);
+			Render::Renderer::BeginScene(mainCamera->GetRenderer(), mainCamera->GetTransform(), mainCamera->clearColor);
 
 			for (EntityRegister* entity : EntityList<SpriteRenderer>(shared_from_this()))
 			{
 				SpriteRenderer* sRend = Scene::GetComponent<SpriteRenderer>(entity);
 
-				Renderer::Renderer2D::DrawQuad(GetComponent<Transform>(entity), sRend->material, sRend->sprite, sRend->color, GetSceneIndex(entity->SceneID));
+				Render::Renderer2D::DrawQuad(GetComponent<Transform>(entity), sRend->material, sRend->sprite, sRend->color, GetSceneIndex(entity->SceneID));
 			}
 
-			Renderer::Renderer2D::EndScene();
+			Render::Renderer::EndScene();
 		}
 	}
 
-	void Scene::OnEditorUpdate(Renderer::CameraRenderer* camera, Transform* position)
+	void Scene::OnEditorUpdate(Render::CameraRenderer* camera, Transform* position)
 	{
 		if (m_SceneState != SceneState::Edit) return;
 
 		if (Camera::GetActiveCamera())
-			Renderer::Renderer2D::BeginScene(camera, position, Camera::GetActiveCamera()->clearColor);
+		{
+			Render::Renderer::BeginScene(camera, position, Camera::GetActiveCamera()->clearColor);
+		}
 		else
-			Renderer::Renderer2D::BeginScene(camera, position);
+		{
+			Render::Renderer::BeginScene(camera, position);
+		}
 
-		Renderer::Renderer::DrawCube();
+		Transform* entTransform = nullptr;
+		Ref<Material> entMaterial;
+		Vector4 color;
+
 		for (EntityRegister* entity : EntityList<SpriteRenderer>(shared_from_this()))
 		{
 			SpriteRenderer* sRend = Scene::GetComponent<SpriteRenderer>(entity);
 
-			Renderer::Renderer2D::DrawQuad(GetComponent<Transform>(entity), sRend->material, sRend->sprite, sRend->color, GetSceneIndex(entity->SceneID));
+			Render::Renderer2D::DrawQuad(GetComponent<Transform>(entity), sRend->material, sRend->sprite, sRend->color, GetSceneIndex(entity->SceneID));
+
+			entTransform = GetComponent<Transform>(entity);
+			entMaterial = sRend->material;
+			color = sRend->color;
 		}
 
-		Renderer::Renderer2D::EndScene();
+		std::vector<Vector3> vertices = {
+			{-0.5f, -0.5f, -0.5f },
+			{ 0.5f, -0.5f, -0.5f},
+			{ 0.5f,  0.5f, -0.5f},
+			{ 0.5f,  0.5f, -0.5f},
+			{-0.5f,  0.5f, -0.5f},
+			{-0.5f, -0.5f, -0.5f},
+
+			{-0.5f, -0.5f,  0.5f},
+			{ 0.5f, -0.5f,  0.5f},
+			{ 0.5f,  0.5f,  0.5f},
+			{ 0.5f,  0.5f,  0.5f},
+			{-0.5f,  0.5f,  0.5f},
+			{-0.5f, -0.5f,  0.5f},
+
+			{-0.5f,  0.5f,  0.5f},
+			{-0.5f,  0.5f, -0.5f},
+			{-0.5f, -0.5f, -0.5f},
+			{-0.5f, -0.5f, -0.5f},
+			{-0.5f, -0.5f,  0.5f},
+			{-0.5f,  0.5f,  0.5f},
+
+			{ 0.5f,  0.5f,  0.5f},
+			{ 0.5f,  0.5f, -0.5f},
+			{ 0.5f, -0.5f, -0.5f},
+			{ 0.5f, -0.5f, -0.5f},
+			{ 0.5f, -0.5f,  0.5f},
+			{ 0.5f,  0.5f,  0.5f},
+
+			{-0.5f, -0.5f, -0.5f},
+			{ 0.5f, -0.5f, -0.5f},
+			{ 0.5f, -0.5f,  0.5f},
+			{ 0.5f, -0.5f,  0.5f},
+			{-0.5f, -0.5f,  0.5f},
+			{-0.5f, -0.5f, -0.5f},
+
+			{-0.5f,  0.5f, -0.5f},
+			{ 0.5f,  0.5f, -0.5f},
+			{ 0.5f,  0.5f,  0.5f},
+			{ 0.5f,  0.5f,  0.5f},
+			{-0.5f,  0.5f,  0.5f},
+			{-0.5f,  0.5f, -0.5f},
+		};
+		std::vector<Vector2> uvs = {};
+		std::vector<int> indices = {
+			0, 1, 2,
+			2, 3, 0,
+			4, 5, 3,
+
+			6, 7, 8,
+			8, 9, 6,
+			10, 11, 9,
+
+			12, 13, 14,
+			14, 15, 12,
+			16, 17, 15,
+
+			18, 19, 20,
+			20, 21, 18,
+			22, 23, 21,
+
+			24, 25, 26,
+			26, 27, 24,
+			28, 29, 27,
+
+			30, 31, 32,
+			33, 34, 30,
+			35, 36, 34
+		};
+
+		Render::Renderer::DrawMesh(entTransform, entMaterial, vertices, uvs, indices, color, GetSceneIndex(entTransform->GetSceneID()));
+
+		Render::Renderer::EndScene();
 	}
 
 	void Scene::OnFixedUpdate()

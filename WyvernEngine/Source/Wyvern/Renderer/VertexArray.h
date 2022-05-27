@@ -3,7 +3,7 @@
 #include <Wyvern/Core/Math/Vector.h>
 #include <Wyvern/Core/Graphics/Material.h>
 
-namespace Wyvern::Renderer
+namespace Wyvern::Render
 {
 	struct Vertex
 	{
@@ -33,6 +33,7 @@ namespace Wyvern::Renderer
 	struct VertexArray
 	{
 		std::vector<Vertex> vertices;
+		std::vector<int> indices;
 		Ref<Material> material;
 
 		VertexArray(Vertex vertices[4], Ref<Material> material)

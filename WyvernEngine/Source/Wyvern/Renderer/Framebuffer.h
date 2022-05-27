@@ -1,6 +1,6 @@
 #pragma once
 
-namespace Wyvern::Renderer
+namespace Wyvern::Render
 {
 	enum class FramebufferTextureFormat
 	{

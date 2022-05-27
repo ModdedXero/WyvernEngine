@@ -4,7 +4,7 @@
 
 namespace Wyvern
 {
-	class ViewportCamera : public Renderer::CameraRenderer
+	class ViewportCamera : public Render::CameraRenderer
 	{
 	public:
 		ViewportCamera();
