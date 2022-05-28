@@ -10,6 +10,3 @@
 [submodule "WyvernEngine/Vendor/ImGuizmo"]
 	path = WyvernEngine/Vendor/ImGuizmo
 	url = https://github.com/TheCherno/ImGuizmo.git
-[submodule "WyvernEngine/Vendor/Assimp"]
-	path = WyvernEngine/Vendor/Assimp
-	url = git@github.com:ModdedXero/assimp.git
