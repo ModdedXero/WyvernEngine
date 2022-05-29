@@ -21,7 +21,7 @@ IncludeDir["FreeType"] = "WyvernEngine/Vendor/freetype/include"
 IncludeDir["FreeTypeSub"] = "WyvernEngine/Vendor/freetype/include/freetype"
 IncludeDir["YamlCPP"] = "WyvernEngine/Vendor/yaml-cpp/include"
 IncludeDir["ImGUIzmo"] = "WyvernEngine/Vendor/ImGuizmo"
-IncludeDir["AssImp"] = "WyvernEngine/Vendor/Assimp/inlcude"
+IncludeDir["Assimp"] = "WyvernEngine/Vendor/Assimp/include"
 
 include "WyvernEngine/Vendor/GLFW"
 include "WyvernEngine/Vendor/ImGui"
@@ -65,7 +65,7 @@ project "WyvernEngine"
 		"%{IncludeDir.FreeTypeSub}",
 		"%{IncludeDir.YamlCPP}",
 		"%{IncludeDir.ImGUIzmo}",
-		"%{IncludeDir.AssImp}"
+		"%{IncludeDir.Assimp}"
 	}
 
 	links
@@ -74,6 +74,7 @@ project "WyvernEngine"
 		"ImGui",
 		"FreeType",
 		"yaml-cpp",
+		"assimp",
 		"opengl32.lib"
 	}
 	
@@ -132,7 +133,7 @@ project "WyvernEditor"
 		"%{IncludeDir.FreeTypeSub}",
 		"%{IncludeDir.YamlCPP}",
 		"%{IncludeDir.ImGUIzmo}",
-		"%{IncludeDir.AssImp}"
+		"%{IncludeDir.Assimp}"
 	}
 	
 	links
@@ -188,7 +189,7 @@ project "WyvernBuilder"
 		"%{IncludeDir.FreeTypeSub}",
 		"%{IncludeDir.YamlCPP}",
 		"%{IncludeDir.ImGUIzmo}",
-		"%{IncludeDir.AssImp}"
+		"%{IncludeDir.Assimp}"
 	}
 
 	links

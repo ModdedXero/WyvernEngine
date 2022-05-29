@@ -92,6 +92,13 @@ namespace Wyvern
 				Render::Renderer2D::DrawQuad(GetComponent<Transform>(entity), sRend->material, sRend->sprite, sRend->color, GetSceneIndex(entity->SceneID));
 			}
 
+			for (EntityRegister* entity : EntityList<MeshRenderer>(shared_from_this()))
+			{
+				MeshRenderer* sRend = Scene::GetComponent<MeshRenderer>(entity);
+
+				Render::Renderer::DrawMesh(GetComponent<Transform>(entity), sRend->material, &sRend->mesh.mesh, Vector4(1.0f, 1.0f, 1.0f, 1.0f), GetSceneIndex(entity->SceneID));
+			}
+
 			Render::Renderer::EndScene();
 		}
 	}

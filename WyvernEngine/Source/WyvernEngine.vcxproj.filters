@@ -265,6 +265,9 @@
     <ClInclude Include="Wyvern\Renderer\Framebuffer.h">
       <Filter>Wyvern\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="Wyvern\Renderer\MeshImporter.h">
+      <Filter>Wyvern\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="Wyvern\Renderer\Renderer.h">
       <Filter>Wyvern\Renderer</Filter>
     </ClInclude>
@@ -392,6 +395,9 @@
       <Filter>Wyvern\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="Wyvern\Renderer\Framebuffer.cpp">
+      <Filter>Wyvern\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Wyvern\Renderer\MeshImporter.cpp">
       <Filter>Wyvern\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="Wyvern\Renderer\Renderer.cpp">

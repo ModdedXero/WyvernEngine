@@ -77,7 +77,7 @@
       <PrecompiledHeaderFile>wvpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WV_PLATFORM_WINDOWS;WV_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.;..\Vendor\GLFW\include;..\Vendor\glad\include;..\Vendor\glm;..\Vendor\imgui;..\Vendor\stb_image;..\Vendor\freetype\include;..\Vendor\freetype\include\freetype;..\Vendor\yaml-cpp\include;..\Vendor\ImGuizmo;..\Vendor\Assimp\inlcude;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..\Vendor\GLFW\include;..\Vendor\glad\include;..\Vendor\glm;..\Vendor\imgui;..\Vendor\stb_image;..\Vendor\freetype\include;..\Vendor\freetype\include\freetype;..\Vendor\yaml-cpp\include;..\Vendor\ImGuizmo;..\Vendor\Assimp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -97,7 +97,7 @@
       <PrecompiledHeaderFile>wvpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WV_PLATFORM_WINDOWS;WV_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.;..\Vendor\GLFW\include;..\Vendor\glad\include;..\Vendor\glm;..\Vendor\imgui;..\Vendor\stb_image;..\Vendor\freetype\include;..\Vendor\freetype\include\freetype;..\Vendor\yaml-cpp\include;..\Vendor\ImGuizmo;..\Vendor\Assimp\inlcude;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..\Vendor\GLFW\include;..\Vendor\glad\include;..\Vendor\glm;..\Vendor\imgui;..\Vendor\stb_image;..\Vendor\freetype\include;..\Vendor\freetype\include\freetype;..\Vendor\yaml-cpp\include;..\Vendor\ImGuizmo;..\Vendor\Assimp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -121,7 +121,7 @@
       <PrecompiledHeaderFile>wvpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WV_PLATFORM_WINDOWS;WV_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.;..\Vendor\GLFW\include;..\Vendor\glad\include;..\Vendor\glm;..\Vendor\imgui;..\Vendor\stb_image;..\Vendor\freetype\include;..\Vendor\freetype\include\freetype;..\Vendor\yaml-cpp\include;..\Vendor\ImGuizmo;..\Vendor\Assimp\inlcude;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..\Vendor\GLFW\include;..\Vendor\glad\include;..\Vendor\glm;..\Vendor\imgui;..\Vendor\stb_image;..\Vendor\freetype\include;..\Vendor\freetype\include\freetype;..\Vendor\yaml-cpp\include;..\Vendor\ImGuizmo;..\Vendor\Assimp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -207,6 +207,7 @@
     <ClInclude Include="Wyvern\ImGui\ImGuiLayer.h" />
     <ClInclude Include="Wyvern\Renderer\CameraRenderer.h" />
     <ClInclude Include="Wyvern\Renderer\Framebuffer.h" />
+    <ClInclude Include="Wyvern\Renderer\MeshImporter.h" />
     <ClInclude Include="Wyvern\Renderer\Renderer.h" />
     <ClInclude Include="Wyvern\Renderer\Renderer2D.h" />
     <ClInclude Include="Wyvern\Renderer\VertexArray.h" />
@@ -258,6 +259,7 @@
     <ClCompile Include="Wyvern\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="Wyvern\Renderer\CameraRenderer.cpp" />
     <ClCompile Include="Wyvern\Renderer\Framebuffer.cpp" />
+    <ClCompile Include="Wyvern\Renderer\MeshImporter.cpp" />
     <ClCompile Include="Wyvern\Renderer\Renderer.cpp" />
     <ClCompile Include="Wyvern\Renderer\Renderer2D.cpp" />
     <ClCompile Include="Wyvern\UI\UIWizard.cpp" />
@@ -279,6 +281,9 @@
     </ProjectReference>
     <ProjectReference Include="..\Vendor\yaml-cpp\yaml-cpp.vcxproj">
       <Project>{88F1A057-74BE-FB62-9DD7-E90A890331F1}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Vendor\Assimp\assimp.vcxproj">
+      <Project>{724885F2-5EEA-AFC8-47A5-C31C33E63619}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
