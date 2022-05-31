@@ -14,7 +14,7 @@ namespace Wyvern
 
 	void Project::LoadProject()
 	{
-		Utils::FileSystem projectPath = Application::GetSpecification().AssetsPath / "/project.wproj";
+		Tools::FileSystem projectPath = Application::GetSpecification().AssetsPath / "/project.wproj";
 		YAML::Node in;
 
 		in = YAML::Load(projectPath.ReadFile());
@@ -27,7 +27,7 @@ namespace Wyvern
 
 	void Project::SaveProject()
 	{
-		Utils::FileSystem projectPath = Application::GetSpecification().AssetsPath / "/project.wproj";
+		Tools::FileSystem projectPath = Application::GetSpecification().AssetsPath / "/project.wproj";
 		YAML::Emitter out;
 
 		out << YAML::BeginMap;

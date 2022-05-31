@@ -3,7 +3,7 @@
 #include <filesystem>
 #include <iostream>
 
-namespace Wyvern::Utils
+namespace Wyvern::Tools
 {
 	class FileSystem
 	{
@@ -13,7 +13,6 @@ namespace Wyvern::Utils
 		FileSystem(std::string path);
 		FileSystem(const char* path);
 		FileSystem(std::filesystem::path path);
-		~FileSystem();
 
 		std::string ReadFile();
 		void WriteFile(std::string data);

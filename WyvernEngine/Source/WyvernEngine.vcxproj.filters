@@ -142,9 +142,6 @@
     <ClInclude Include="Wyvern\Core\Graphics\Mesh.h">
       <Filter>Wyvern\Core\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="Wyvern\Core\Graphics\MeshFilter.h">
-      <Filter>Wyvern\Core\Graphics</Filter>
-    </ClInclude>
     <ClInclude Include="Wyvern\Core\Graphics\Shader.h">
       <Filter>Wyvern\Core\Graphics</Filter>
     </ClInclude>
@@ -265,9 +262,6 @@
     <ClInclude Include="Wyvern\Renderer\Framebuffer.h">
       <Filter>Wyvern\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="Wyvern\Renderer\MeshImporter.h">
-      <Filter>Wyvern\Renderer</Filter>
-    </ClInclude>
     <ClInclude Include="Wyvern\Renderer\Renderer.h">
       <Filter>Wyvern\Renderer</Filter>
     </ClInclude>
@@ -280,13 +274,15 @@
     <ClInclude Include="Wyvern\UI\UIWizard.h">
       <Filter>Wyvern\UI</Filter>
     </ClInclude>
-    <ClInclude Include="Wyvern\Utils\FileSystem.h">
+    <ClInclude Include="Wyvern\Tools\FileSystem.h">
       <Filter>Wyvern\Utils</Filter>
     </ClInclude>
-    <ClInclude Include="Wyvern\Utils\PlatformUtils.h">
+    <ClInclude Include="Wyvern\Tools\PlatformUtils.h">
       <Filter>Wyvern\Utils</Filter>
     </ClInclude>
     <ClInclude Include="wvpch.h" />
+    <ClInclude Include="Wyvern\Core\Components\MeshFilter.h" />
+    <ClInclude Include="Wyvern\Renderer\Model3D.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Vendor\ImGuizmo\ImGuizmo.cpp">
@@ -397,9 +393,6 @@
     <ClCompile Include="Wyvern\Renderer\Framebuffer.cpp">
       <Filter>Wyvern\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="Wyvern\Renderer\MeshImporter.cpp">
-      <Filter>Wyvern\Renderer</Filter>
-    </ClCompile>
     <ClCompile Include="Wyvern\Renderer\Renderer.cpp">
       <Filter>Wyvern\Renderer</Filter>
     </ClCompile>
@@ -409,12 +402,13 @@
     <ClCompile Include="Wyvern\UI\UIWizard.cpp">
       <Filter>Wyvern\UI</Filter>
     </ClCompile>
-    <ClCompile Include="Wyvern\Utils\FileSystem.cpp">
+    <ClCompile Include="Wyvern\Tools\FileSystem.cpp">
       <Filter>Wyvern\Utils</Filter>
     </ClCompile>
-    <ClCompile Include="Wyvern\Utils\WindowsPlatformUtils.cpp">
+    <ClCompile Include="Wyvern\Tools\WindowsPlatformUtils.cpp">
       <Filter>Wyvern\Utils</Filter>
     </ClCompile>
     <ClCompile Include="wvpch.cpp" />
+    <ClCompile Include="Wyvern\Renderer\Model3D.cpp" />
   </ItemGroup>
 </Project>

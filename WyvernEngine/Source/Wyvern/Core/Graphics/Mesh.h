@@ -13,7 +13,7 @@ namespace Wyvern
 		std::vector<Vector2> uvs;
 		std::vector<int> indices;
 
-		Mesh(bool test = true)
+		Mesh()
 		{
 			std::vector<Vector3> vertices = {
 	{-0.5f, -0.5f, -0.5f },

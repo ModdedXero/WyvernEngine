@@ -39,7 +39,7 @@ namespace Wyvern
 
 		static bool Deserialize(Ref<Scene> scene, SerializeInfo& info);
 		static bool Deserialize(EntityRegister* entity, SerializeInfo& info);
-		static bool Deserialize(Ref<Scene> scene, const Utils::FileSystem& filepath);
+		static bool Deserialize(Ref<Scene> scene, const Tools::FileSystem& filepath);
 
 		static void ConvertSerialToDeserial(SerializeInfo& info);
 

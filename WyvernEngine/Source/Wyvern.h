@@ -34,7 +34,6 @@
 // Graphics
 #include <Wyvern/Core/Graphics/Shader.h>
 #include <Wyvern/Core/Graphics/Material.h>
-#include <Wyvern/Core/Graphics/MeshFilter.h>
 #include <Wyvern/Core/Graphics/Sprite.h>
 
 // Renderer

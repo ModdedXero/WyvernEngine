@@ -22,8 +22,8 @@ namespace Wyvern
 		bool StartMaximized = false;
 		bool VSync = false;
 
-		Utils::FileSystem AssetsPath = "./assets";
-		Utils::FileSystem ResourcesPath = "./resources";
+		Tools::FileSystem AssetsPath = "./assets";
+		Tools::FileSystem ResourcesPath = "./resources";
 	};
 
 	class Application
@@ -48,8 +48,8 @@ namespace Wyvern
 	public:
 		// Project Management
 		static ApplicationSpecification GetSpecification() { return s_Instance->m_Specification; }
-		static Utils::FileSystem GetAssetsPath() { return s_Instance->m_Specification.AssetsPath; }
-		static Utils::FileSystem GetResourcesPath() { return s_Instance->m_Specification.ResourcesPath; }
+		static Tools::FileSystem GetAssetsPath() { return s_Instance->m_Specification.AssetsPath; }
+		static Tools::FileSystem GetResourcesPath() { return s_Instance->m_Specification.ResourcesPath; }
 
 	private:
 		static Application* s_Instance;

@@ -8,7 +8,7 @@
 
 namespace Wyvern
 {
-	namespace Utils
+	namespace Tools
 	{
 		static GLenum TextureFormat(Texture2DFormat format)
 		{
@@ -48,7 +48,7 @@ namespace Wyvern
 		}
 	}
 
-	Texture2D::Texture2D(const Utils::FileSystem& file, const Texture2DSpecifications& specs)
+	Texture2D::Texture2D(const Tools::FileSystem& file, const Texture2DSpecifications& specs)
 		: m_Specs(specs), m_ID(0), m_Width(0), m_Height(0), m_Path(file)
 	{
 		glGenTextures(1, &m_ID);
@@ -59,13 +59,13 @@ namespace Wyvern
 		unsigned char* data = stbi_load(path.c_str(), &m_Width, &m_Height, &nrChannels, 0);
 
 		glBindTexture(GL_TEXTURE_2D, m_ID);
-		glTexImage2D(GL_TEXTURE_2D, 0, Utils::TextureFormat(specs.InternalFormat), m_Width, m_Height, 
-			0, Utils::TextureFormat(specs.ImageFormat), GL_UNSIGNED_BYTE, data);
+		glTexImage2D(GL_TEXTURE_2D, 0, Tools::TextureFormat(specs.InternalFormat), m_Width, m_Height, 
+			0, Tools::TextureFormat(specs.ImageFormat), GL_UNSIGNED_BYTE, data);
 
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, Utils::TextureWrap(specs.Wrap));
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, Utils::TextureWrap(specs.Wrap));
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, Utils::TextureFilter(specs.Filter));
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, Utils::TextureFilter(specs.Filter));
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, Tools::TextureWrap(specs.Wrap));
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, Tools::TextureWrap(specs.Wrap));
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, Tools::TextureFilter(specs.Filter));
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, Tools::TextureFilter(specs.Filter));
 
 		stbi_image_free(data);
 	}
@@ -75,7 +75,7 @@ namespace Wyvern
 		glBindTexture(GL_TEXTURE_2D, m_ID);
 	}
 
-	Ref<Texture2D> Texture2D::Create(const Utils::FileSystem& file, Texture2DSpecifications specs)
+	Ref<Texture2D> Texture2D::Create(const Tools::FileSystem& file, Texture2DSpecifications specs)
 	{
 		return CreateRef<Texture2D>(file, specs);
 	}

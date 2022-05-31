@@ -1,7 +1,7 @@
 #include "wvpch.h"
 #include "FileSystem.h"
 
-namespace Wyvern::Utils
+namespace Wyvern::Tools
 {
 	FileSystem::FileSystem()
 		: m_CurrentPath("")
@@ -21,10 +21,6 @@ namespace Wyvern::Utils
 
 	FileSystem::FileSystem(std::filesystem::path path)
 		: m_CurrentPath(path)
-	{
-	}
-
-	FileSystem::~FileSystem()
 	{
 	}
 
@@ -57,8 +53,8 @@ namespace Wyvern::Utils
 
 	bool FileSystem::HasDirectoryChildren() const
 	{
-		Utils::FileSystem temp = *this;
-		for (Utils::FileSystem child : temp)
+		Tools::FileSystem temp = *this;
+		for (Tools::FileSystem child : temp)
 		{
 			if (child.IsDirectory()) return true;
 		}

@@ -57,9 +57,8 @@ namespace Wyvern
 		return out;
 	}
 
-	YAML::Emitter& operator<<(YAML::Emitter& out, const MeshFilter& filter)
+	YAML::Emitter& operator<<(YAML::Emitter& out, const Mesh& filter)
 	{
-		out << (std::string)filter.GetMeshPath();
 		return out;
 	}
 }

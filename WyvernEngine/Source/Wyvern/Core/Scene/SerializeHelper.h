@@ -8,7 +8,7 @@
 #include <Wyvern/Renderer/CameraRenderer.h>
 #include <Wyvern/Utils/FileSystem.h>
 #include <Wyvern/Core/Graphics/Sprite.h>
-#include <Wyvern/Core/Graphics/MeshFilter.h>
+#include <Wyvern/Core/Graphics/Mesh.h>
 
 #include <yaml-cpp/yaml.h>
 #include <string>
@@ -192,38 +192,18 @@ namespace YAML
 	};
 
 	template<>
-	struct convert<Wyvern::MeshFilter>
+	struct convert<Wyvern::Tools::FileSystem>
 	{
-		static YAML::Node encode(const Wyvern::MeshFilter& rhs)
-		{
-			YAML::Node node;
-
-			node.push_back(rhs.GetMeshPath());
-
-			return node;
-		}
-
-		static bool decode(const YAML::Node& node, Wyvern::MeshFilter& rhs)
-		{
-			rhs.LoadMesh(node.as<std::string>());
-
-			return true;
-		}
-	};
-
-	template<>
-	struct convert<Wyvern::Utils::FileSystem>
-	{
-		static YAML::Node encode(const Wyvern::Utils::FileSystem& rhs)
+		static YAML::Node encode(const Wyvern::Tools::FileSystem& rhs)
 		{
 			YAML::Node node;
 			node.push_back(rhs);
 			return node;
 		}
 
-		static bool decode(const YAML::Node& node, Wyvern::Utils::FileSystem& rhs)
+		static bool decode(const YAML::Node& node, Wyvern::Tools::FileSystem& rhs)
 		{
-			rhs = Wyvern::Utils::FileSystem(node[0].as<std::string>());
+			rhs = Wyvern::Tools::FileSystem(node[0].as<std::string>());
 			return true;
 		}
 	};
@@ -239,5 +219,5 @@ namespace Wyvern
 	YAML::Emitter& operator <<(YAML::Emitter& out, const Render::CameraMode& cameraMode);
 	YAML::Emitter& operator <<(YAML::Emitter& out, const Sprite& sprite);
 	YAML::Emitter& operator <<(YAML::Emitter& out, const Entity& entity);
-	YAML::Emitter& operator <<(YAML::Emitter& out, const MeshFilter& filter);
+	YAML::Emitter& operator <<(YAML::Emitter& out, const Mesh& filter);
 }

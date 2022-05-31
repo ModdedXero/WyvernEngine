@@ -17,7 +17,7 @@ namespace Wyvern
 
 	public:
 		Entity();
-		Entity(EntityRegister* view = nullptr);
+		Entity(EntityRegister* view);
 
 		UUID GetUUID() const { return m_EntityRegister->UniqueID; }
 		SceneID GetSceneID() const { return m_EntityRegister->SceneID; }

@@ -102,7 +102,7 @@ namespace Wyvern
 
 		static SceneID CreateSceneID(SceneIndex index, SceneVersion version);
 	private:
-		Utils::FileSystem m_ScenePath;
+		Tools::FileSystem m_ScenePath;
 		SceneState m_SceneState = SceneState::Edit;
 
 		std::vector<EntityRegister*> m_Entities;

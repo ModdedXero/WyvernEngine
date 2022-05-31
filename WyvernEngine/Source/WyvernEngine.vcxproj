@@ -157,6 +157,7 @@
     <ClInclude Include="Wyvern\Core\Components\Camera.h" />
     <ClInclude Include="Wyvern\Core\Components\Collider2D.h" />
     <ClInclude Include="Wyvern\Core\Components\Components.h" />
+    <ClInclude Include="Wyvern\Core\Components\MeshFilter.h" />
     <ClInclude Include="Wyvern\Core\Components\MeshRenderer.h" />
     <ClInclude Include="Wyvern\Core\Components\RigidBody2D.h" />
     <ClInclude Include="Wyvern\Core\Components\SpriteRenderer.h" />
@@ -166,7 +167,7 @@
     <ClInclude Include="Wyvern\Core\Debug.h" />
     <ClInclude Include="Wyvern\Core\Graphics\Material.h" />
     <ClInclude Include="Wyvern\Core\Graphics\Mesh.h" />
-    <ClInclude Include="Wyvern\Core\Graphics\MeshFilter.h" />
+    <ClInclude Include="Wyvern\Renderer\Model3D.h" />
     <ClInclude Include="Wyvern\Core\Graphics\Shader.h" />
     <ClInclude Include="Wyvern\Core\Graphics\Sprite.h" />
     <ClInclude Include="Wyvern\Core\Graphics\Texture2D.h" />
@@ -207,13 +208,12 @@
     <ClInclude Include="Wyvern\ImGui\ImGuiLayer.h" />
     <ClInclude Include="Wyvern\Renderer\CameraRenderer.h" />
     <ClInclude Include="Wyvern\Renderer\Framebuffer.h" />
-    <ClInclude Include="Wyvern\Renderer\MeshImporter.h" />
     <ClInclude Include="Wyvern\Renderer\Renderer.h" />
     <ClInclude Include="Wyvern\Renderer\Renderer2D.h" />
     <ClInclude Include="Wyvern\Renderer\VertexArray.h" />
     <ClInclude Include="Wyvern\UI\UIWizard.h" />
-    <ClInclude Include="Wyvern\Utils\FileSystem.h" />
-    <ClInclude Include="Wyvern\Utils\PlatformUtils.h" />
+    <ClInclude Include="Wyvern\Tools\FileSystem.h" />
+    <ClInclude Include="Wyvern\Tools\PlatformUtils.h" />
     <ClInclude Include="wvpch.h" />
   </ItemGroup>
   <ItemGroup>
@@ -259,12 +259,12 @@
     <ClCompile Include="Wyvern\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="Wyvern\Renderer\CameraRenderer.cpp" />
     <ClCompile Include="Wyvern\Renderer\Framebuffer.cpp" />
-    <ClCompile Include="Wyvern\Renderer\MeshImporter.cpp" />
+    <ClCompile Include="Wyvern\Renderer\Model3D.cpp" />
     <ClCompile Include="Wyvern\Renderer\Renderer.cpp" />
     <ClCompile Include="Wyvern\Renderer\Renderer2D.cpp" />
     <ClCompile Include="Wyvern\UI\UIWizard.cpp" />
-    <ClCompile Include="Wyvern\Utils\FileSystem.cpp" />
-    <ClCompile Include="Wyvern\Utils\WindowsPlatformUtils.cpp" />
+    <ClCompile Include="Wyvern\Tools\FileSystem.cpp" />
+    <ClCompile Include="Wyvern\Tools\WindowsPlatformUtils.cpp" />
     <ClCompile Include="wvpch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
