@@ -22,8 +22,8 @@ namespace Wyvern
 		bool StartMaximized = false;
 		bool VSync = false;
 
-		Tools::FileSystem AssetsPath = "./assets";
-		Tools::FileSystem ResourcesPath = "./resources";
+		Tools::FileSystem AssetsPath = "./Assets";
+		Tools::FileSystem ResourcesPath = "./Resources";
 	};
 
 	class Application

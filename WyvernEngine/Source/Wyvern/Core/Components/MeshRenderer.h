@@ -3,6 +3,7 @@
 #include <Wyvern/Core/Scene/Component.h>
 #include <Wyvern/Core/Graphics/Material.h>
 #include <Wyvern/Core/Components/MeshFilter.h>
+#include <Wyvern/Core/AssetManager.h>
 
 namespace Wyvern
 {

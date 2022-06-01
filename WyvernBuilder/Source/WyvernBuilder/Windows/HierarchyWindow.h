@@ -13,6 +13,7 @@ namespace Wyvern
 		const char* GetWindowTitle() const { return "Hierarchy"; }
 
 		virtual void OnGUI() override;
+
 	private:
 		void DrawEntityNode(Entity ent, bool isChild = false);
 		void DrawEntityChildren(Entity ent);

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Wyvern/Core/Scene/Scene.h>
 #include <Wyvern/Core/Graphics/Mesh.h>
 #include <Wyvern/Tools/FileSystem.h>
 
@@ -19,6 +20,8 @@ namespace Wyvern::Render
 	{
 	public:
 		Model3D(Tools::FileSystem& path);
+
+		void GenerateEntity(Ref<Scene> scene);
 
 		MeshData meshes;
 	private:

@@ -15,10 +15,10 @@ namespace Wyvern
 		Tools::FileSystem target;
 		EditorGUIInternal::DragDropTarget(DragDropTypes::FileSystem, target);
 
-		if (target.IsExtension(".fbx"))
+		if (target.IsExtension(".dae"))
 		{
 			Render::Model3D model = Render::Model3D(target);
-			DEBUG_CORE(model.meshes.rootMesh.vertices.size());
+			model.GenerateEntity(Scene::GetActiveScene());
 		}
 
 		// Entities

@@ -1,22 +1,54 @@
 #include "wvpch.h"
 #include "Model3D.h"
 
+#include <Wyvern/Core/Scene/Entity.h>
+#include <Wyvern/Core/Components/MeshRenderer.h>
+#include <Wyvern/Core/Components/MeshFilter.h>
+
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
 
 namespace Wyvern::Render
 {
+	namespace Utils
+	{
+		static void CreateChildEntityFromMeshData(MeshData data, Entity& parent, Ref<Scene> scene)
+		{
+			Entity root = Scene::CreateEntity(scene);
+			root.AddComponent<MeshRenderer>();
+			root.AddComponent<MeshFilter>()->mesh = data.rootMesh;
+			parent.AddChildEntity(root);
+
+			for (auto& childMesh : data.childrenMeshes)
+			{
+				CreateChildEntityFromMeshData(childMesh, root, scene);
+			}
+		}
+	}
+
 	Model3D::Model3D(Tools::FileSystem& path)
 		: m_Path(path)
 	{
 		LoadModel();
 	}
 
+	void Model3D::GenerateEntity(Ref<Scene> scene)
+	{
+		Entity root = Scene::CreateEntity(scene);
+		root.AddComponent<MeshRenderer>();
+		root.AddComponent<MeshFilter>()->mesh = meshes.rootMesh;
+
+		for (auto& meshData : meshes.childrenMeshes)
+		{
+			Utils::CreateChildEntityFromMeshData(meshData, root, scene);
+		}
+	}
+
 	void Model3D::LoadModel()
 	{
 		Assimp::Importer importer;
-		const aiScene* scene = importer.ReadFile(m_Path.AbsolutePath(), aiProcess_Triangulate | aiProcess_FlipUVs);
+		const aiScene* scene = importer.ReadFile(m_Path, aiProcess_Triangulate | aiProcess_FlipUVs);
 
 		if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
 		{
@@ -31,8 +63,11 @@ namespace Wyvern::Render
 	{
 		MeshData meshData;
 
-		aiMesh* mesh = scene->mMeshes[node->mMeshes[0]];
-		meshData.rootMesh = ProcessMesh(mesh, scene);
+		if (node->mMeshes)
+		{
+			aiMesh* mesh = scene->mMeshes[node->mMeshes[0]];
+			meshData.rootMesh = ProcessMesh(mesh, scene);
+		}
 
 		for (uint32_t i = 0; i < node->mNumChildren; i++)
 		{
