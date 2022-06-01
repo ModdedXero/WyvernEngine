@@ -14,15 +14,13 @@ namespace Wyvern::Editor
 	{
 	public:
 		template <typename Target>
-		static void DragDropTarget(const char* label, DragDropTypes returnType, Target& target);
+		static void DragDropTarget(DragDropTypes returnType, Target& target);
 		static void DragDropSource(DragDropTypes returnType, const void* target, size_t size);
 	};
 
 	template <typename Target>
-	inline void EditorGUIInternal::DragDropTarget(const char* label, DragDropTypes returnType, Target& target)
+	inline void EditorGUIInternal::DragDropTarget(DragDropTypes returnType, Target& target)
 	{
-		float lineHeight = EditorInfo::LineHeight();
-		ImGui::Button(label, ImVec2{ ImGui::GetContentRegionAvail().x, lineHeight });
 		if (ImGui::BeginDragDropTarget())
 		{
 			if (returnType == DragDropTypes::FileSystem)

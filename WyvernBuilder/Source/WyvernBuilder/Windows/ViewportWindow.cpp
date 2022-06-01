@@ -36,7 +36,7 @@ namespace Wyvern
 		{
 			if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("CONTENT_BROWSER_ITEM"))
 			{
-				Utils::FileSystem* pathPtr = (Utils::FileSystem*)payload->Data;
+				Tools::FileSystem* pathPtr = (Tools::FileSystem*)payload->Data;
 				BuilderLayer::LoadScene(*pathPtr);
 			}
 

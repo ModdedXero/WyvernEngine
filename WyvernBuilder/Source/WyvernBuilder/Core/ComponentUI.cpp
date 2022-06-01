@@ -52,10 +52,10 @@ namespace Wyvern
 	{
 		EditorGUI::Color4Control("Color", this->color);
 
-		Utils::FileSystem target = (sprite && sprite->GetTexture()) ? sprite->GetTexture()->GetPath() : "";
+		Tools::FileSystem target = (sprite && sprite->GetTexture()) ? sprite->GetTexture()->GetPath() : "";
 		EditorGUI::FileSystemControl("Sprite", target);
 
-		if (!target.Filename().empty() && target.IsExtension(".png"))
+		if (target.IsExtension(".png"))
 		{
 			if (sprite && sprite->GetTexture() && sprite->GetTexture()->GetPath() == target) return;
 
@@ -69,6 +69,11 @@ namespace Wyvern
 	}
 
 	void MeshRenderer::DrawEditor()
+	{
+
+	}
+
+	void MeshFilter::DrawEditor()
 	{
 
 	}

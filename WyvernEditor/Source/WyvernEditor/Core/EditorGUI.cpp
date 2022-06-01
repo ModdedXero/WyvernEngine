@@ -5,7 +5,7 @@
 #include <Wyvern/Core/Math/Vector.h>
 #include <Wyvern/Core/Scene/Entity.h>
 #include <Wyvern/Core/Components/Tag.h>
-#include <Wyvern/Utils/FileSystem.h>
+#include <Wyvern/Tools/FileSystem.h>
 
 #include <imgui.h>
 #include <imgui_internal.h>
@@ -288,8 +288,10 @@ namespace Wyvern::Editor
 		ImGui::Text(label.c_str());
 		ImGui::NextColumn();
 
+		float lineHeight = EditorInfo::LineHeight();
+		ImGui::Button(label.c_str(), ImVec2{ ImGui::GetContentRegionAvail().x, lineHeight });
 		std::string targetName = Scene::IsEntityValid(entity) ? entity.GetTag()->name : "None";
-		EditorGUIInternal::DragDropTarget(targetName.c_str(), DragDropTypes::Entity, entity);
+		EditorGUIInternal::DragDropTarget(DragDropTypes::Entity, entity);
 
 		if (ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0))
 		{
@@ -299,15 +301,17 @@ namespace Wyvern::Editor
 		ImGui::Columns(1);
 	}
 
-	void EditorGUI::FileSystemControl(const std::string& label, Utils::FileSystem& file, float columnWidth)
+	void EditorGUI::FileSystemControl(const std::string& label, Tools::FileSystem& file, float columnWidth)
 	{
 		ImGui::Columns(2, 0, false);
 		ImGui::SetColumnWidth(0, columnWidth);
 		ImGui::Text(label.c_str());
 		ImGui::NextColumn();
 
+		float lineHeight = EditorInfo::LineHeight();
+		ImGui::Button(label.c_str(), ImVec2{ImGui::GetContentRegionAvail().x, lineHeight});
 		std::string targetName = !file.Filename().empty() ? file.Filename() : "None";
-		EditorGUIInternal::DragDropTarget(targetName.c_str(), DragDropTypes::FileSystem, file);
+		EditorGUIInternal::DragDropTarget(DragDropTypes::FileSystem, file);
 
 		ImGui::Columns(1);
 	}

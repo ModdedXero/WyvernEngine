@@ -3,7 +3,6 @@
 #include "BuilderLayer.h"
 
 using namespace Wyvern;
-using namespace Wyvern::Utils;
 
 class WyvernBuilder : public Application
 {

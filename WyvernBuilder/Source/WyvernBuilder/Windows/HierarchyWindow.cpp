@@ -8,6 +8,23 @@ namespace Wyvern
 {
 	void HierarchyWindow::OnGUI()
 	{
+		// Drag Drop Targets
+
+		ImGui::Dummy(ImGui::GetContentRegionAvail());
+
+		Tools::FileSystem target;
+		EditorGUIInternal::DragDropTarget(DragDropTypes::FileSystem, target);
+
+		if (target.IsExtension(".fbx"))
+		{
+			Render::Model3D model = Render::Model3D(target);
+			DEBUG_CORE(model.meshes.rootMesh.vertices.size());
+		}
+
+		// Entities
+
+		ImGui::SetCursorPos({ 0, EditorInfo::LineHeight() + 10 });
+
 		if (ImGui::IsMouseClicked(ImGuiMouseButton_Left) && IsHovered() && !ImGui::IsAnyItemHovered())
 		{
 			BuilderLayer::SetSelectedContext(Entity());
@@ -19,6 +36,7 @@ namespace Wyvern
 		}
 
 		// Right click menu
+
 		if (ImGui::BeginPopupContextWindow("Empty", ImGuiPopupFlags_NoOpenOverItems | ImGuiPopupFlags_MouseButtonRight))
 		{
 			if (ImGui::MenuItem("Empty Entity"))

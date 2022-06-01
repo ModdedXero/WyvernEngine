@@ -87,16 +87,17 @@ namespace Wyvern
 
 			for (EntityRegister* entity : EntityList<SpriteRenderer>(shared_from_this()))
 			{
-				SpriteRenderer* sRend = Scene::GetComponent<SpriteRenderer>(entity);
+				SpriteRenderer* sRend = GetComponent<SpriteRenderer>(entity);
 
 				Render::Renderer2D::DrawQuad(GetComponent<Transform>(entity), sRend->material, sRend->sprite, sRend->color, GetSceneIndex(entity->SceneID));
 			}
 
 			for (EntityRegister* entity : EntityList<MeshRenderer>(shared_from_this()))
 			{
-				MeshRenderer* sRend = Scene::GetComponent<MeshRenderer>(entity);
+				MeshRenderer* renderer = GetComponent<MeshRenderer>(entity);
+				MeshFilter* filter = GetComponent<MeshFilter>(entity);
 
-				Render::Renderer::DrawMesh(GetComponent<Transform>(entity), sRend->material, &sRend->mesh.mesh, Vector4(1.0f, 1.0f, 1.0f, 1.0f), GetSceneIndex(entity->SceneID));
+				Render::Renderer::DrawMesh(GetComponent<Transform>(entity), renderer->material, &filter->mesh, Vector4(1.0f, 1.0f, 1.0f, 1.0f), GetSceneIndex(entity->SceneID));
 			}
 
 			Render::Renderer::EndScene();
@@ -125,9 +126,10 @@ namespace Wyvern
 
 		for (EntityRegister* entity : EntityList<MeshRenderer>(shared_from_this()))
 		{
-			MeshRenderer* sRend = Scene::GetComponent<MeshRenderer>(entity);
+			MeshRenderer* renderer = GetComponent<MeshRenderer>(entity);
+			MeshFilter* filter = GetComponent<MeshFilter>(entity);
 
-			Render::Renderer::DrawMesh(GetComponent<Transform>(entity), sRend->material, &sRend->mesh.mesh, Vector4( 1.0f, 1.0f, 1.0f, 1.0f ), GetSceneIndex(entity->SceneID));
+			Render::Renderer::DrawMesh(GetComponent<Transform>(entity), renderer->material, &filter->mesh, Vector4( 1.0f, 1.0f, 1.0f, 1.0f ), GetSceneIndex(entity->SceneID));
 		}
 
 		Render::Renderer::EndScene();

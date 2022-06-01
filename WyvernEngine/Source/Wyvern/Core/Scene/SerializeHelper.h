@@ -6,7 +6,7 @@
 #include <Wyvern/Core/Scene/Scene.h>
 #include <Wyvern/Core/Physics/Physics.h>
 #include <Wyvern/Renderer/CameraRenderer.h>
-#include <Wyvern/Utils/FileSystem.h>
+#include <Wyvern/Tools/FileSystem.h>
 #include <Wyvern/Core/Graphics/Sprite.h>
 #include <Wyvern/Core/Graphics/Mesh.h>
 
@@ -187,6 +187,24 @@ namespace YAML
 			rhs.SetTexture(Wyvern::Texture2D::Create(node[0].as<std::string>()));
 			rhs.SetTexCoords(coords);
 
+			return true;
+		}
+	};
+
+	template<>
+	struct convert<Wyvern::Mesh>
+	{
+		static YAML::Node encode(const Wyvern::Mesh& rhs)
+		{
+			YAML::Node node;	
+
+			node.push_back("Mesh");
+
+			return node;
+		}
+
+		static bool decode(const YAML::Node& node, Wyvern::Mesh& rhs)
+		{
 			return true;
 		}
 	};

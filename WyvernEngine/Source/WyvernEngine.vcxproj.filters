@@ -58,11 +58,11 @@
     <Filter Include="Wyvern\Renderer">
       <UniqueIdentifier>{964BF793-02D7-6458-0BE8-E74C77F2C058}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Wyvern\Tools">
+      <UniqueIdentifier>{70D2C892-5C35-5837-05BB-90EDF1FC23BA}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Wyvern\UI">
       <UniqueIdentifier>{1DA7C1A2-8911-7619-D24F-27BF3EF9536E}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Wyvern\Utils">
-      <UniqueIdentifier>{508FDD92-3CF2-6C37-E577-A5EDD1B938BA}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -113,6 +113,9 @@
       <Filter>Wyvern\Core\Components</Filter>
     </ClInclude>
     <ClInclude Include="Wyvern\Core\Components\Components.h">
+      <Filter>Wyvern\Core\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\Core\Components\MeshFilter.h">
       <Filter>Wyvern\Core\Components</Filter>
     </ClInclude>
     <ClInclude Include="Wyvern\Core\Components\MeshRenderer.h">
@@ -262,6 +265,9 @@
     <ClInclude Include="Wyvern\Renderer\Framebuffer.h">
       <Filter>Wyvern\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="Wyvern\Renderer\Model3D.h">
+      <Filter>Wyvern\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="Wyvern\Renderer\Renderer.h">
       <Filter>Wyvern\Renderer</Filter>
     </ClInclude>
@@ -271,18 +277,16 @@
     <ClInclude Include="Wyvern\Renderer\VertexArray.h">
       <Filter>Wyvern\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="Wyvern\Tools\FileSystem.h">
+      <Filter>Wyvern\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\Tools\PlatformUtils.h">
+      <Filter>Wyvern\Tools</Filter>
+    </ClInclude>
     <ClInclude Include="Wyvern\UI\UIWizard.h">
       <Filter>Wyvern\UI</Filter>
     </ClInclude>
-    <ClInclude Include="Wyvern\Tools\FileSystem.h">
-      <Filter>Wyvern\Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Wyvern\Tools\PlatformUtils.h">
-      <Filter>Wyvern\Utils</Filter>
-    </ClInclude>
     <ClInclude Include="wvpch.h" />
-    <ClInclude Include="Wyvern\Core\Components\MeshFilter.h" />
-    <ClInclude Include="Wyvern\Renderer\Model3D.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Vendor\ImGuizmo\ImGuizmo.cpp">
@@ -393,22 +397,24 @@
     <ClCompile Include="Wyvern\Renderer\Framebuffer.cpp">
       <Filter>Wyvern\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="Wyvern\Renderer\Model3D.cpp">
+      <Filter>Wyvern\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="Wyvern\Renderer\Renderer.cpp">
       <Filter>Wyvern\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="Wyvern\Renderer\Renderer2D.cpp">
       <Filter>Wyvern\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="Wyvern\Tools\FileSystem.cpp">
+      <Filter>Wyvern\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="Wyvern\Tools\WindowsPlatformUtils.cpp">
+      <Filter>Wyvern\Tools</Filter>
+    </ClCompile>
     <ClCompile Include="Wyvern\UI\UIWizard.cpp">
       <Filter>Wyvern\UI</Filter>
     </ClCompile>
-    <ClCompile Include="Wyvern\Tools\FileSystem.cpp">
-      <Filter>Wyvern\Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="Wyvern\Tools\WindowsPlatformUtils.cpp">
-      <Filter>Wyvern\Utils</Filter>
-    </ClCompile>
     <ClCompile Include="wvpch.cpp" />
-    <ClCompile Include="Wyvern\Renderer\Model3D.cpp" />
   </ItemGroup>
 </Project>
