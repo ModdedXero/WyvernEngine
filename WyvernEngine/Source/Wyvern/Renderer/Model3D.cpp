@@ -80,8 +80,12 @@ namespace Wyvern::Render
 	Mesh Model3D::ProcessMesh(aiMesh* mesh, const aiScene* scene)
 	{
 		std::vector<Vector3> vertices;
+		std::vector<Vector3> normals;
 		std::vector<Vector2> uvs;
+		std::vector<uint32_t> textures;
 		std::vector<int> indices;
+
+		// Vertices and Normals
 
 		for (uint32_t i = 0; i < mesh->mNumVertices; i++)
 		{
@@ -92,6 +96,16 @@ namespace Wyvern::Render
 			position.z = mesh->mVertices[i].z;
 
 			vertices.push_back(position);
+
+			Vector3 normal;
+
+			normal.x = mesh->mNormals[i].x;
+			normal.y = mesh->mNormals[i].y;
+			normal.z = mesh->mNormals[i].z;
+
+			normals.push_back(normal);
+
+			// Texture Coords
 
 			if (mesh->mTextureCoords[0])
 			{
@@ -108,6 +122,8 @@ namespace Wyvern::Render
 			}
 		}
 
+		// Indices
+
 		for (uint32_t i = 0; i < mesh->mNumFaces; i++)
 		{
 			aiFace face = mesh->mFaces[i];
@@ -115,10 +131,19 @@ namespace Wyvern::Render
 				indices.push_back(face.mIndices[j]);
 		}
 
+		// Materials/Textures
+
+		if (mesh->mMaterialIndex >= 0)
+		{
+			aiMaterial* material = scene->mMaterials[mesh->mMaterialIndex];
+		}
+
 		Mesh wyvMesh;
 		wyvMesh.vertices = vertices;
-		wyvMesh.uvs = uvs;
+		wyvMesh.normals = normals;
 		wyvMesh.indices = indices;
+		wyvMesh.textures = textures;
+		wyvMesh.uvs = uvs;
 
 		return wyvMesh;
 	}

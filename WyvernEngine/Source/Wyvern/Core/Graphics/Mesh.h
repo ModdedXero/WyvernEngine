@@ -10,7 +10,9 @@ namespace Wyvern
 	{
 	public:
 		std::vector<Vector3> vertices;
-		std::vector<Vector2> uvs;
+		std::vector<Vector3> normals;
 		std::vector<int> indices;
+		std::vector<uint32_t> textures;
+		std::vector<Vector2> uvs;
 	};
 }
