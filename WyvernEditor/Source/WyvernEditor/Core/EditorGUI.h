@@ -27,6 +27,6 @@ namespace Wyvern::Editor
 		static void ComboControl(const std::string& label, const char* values[], int& valueIndex, int arraySize, float columnWidth = DefaultColumnWidth);
 
 		static void EntityControl(const std::string& label, Entity& entity, float columnWidth = DefaultColumnWidth);
-		static void FileSystemControl(const std::string& label, Utils::FileSystem& file, float columnWidth = DefaultColumnWidth);
+		static void FileSystemControl(const std::string& label, Tools::FileSystem& file, float columnWidth = DefaultColumnWidth);
 	};
 }
