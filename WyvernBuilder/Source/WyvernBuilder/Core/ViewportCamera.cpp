@@ -7,7 +7,7 @@ namespace Wyvern
 	ViewportCamera::ViewportCamera()
 	{
 		transform = new Transform();
-		SetCameraMode(Renderer::CameraMode::Perspective);
+		SetCameraMode(Render::CameraMode::Perspective);
 		transform->position.z = 10.0f;
 	}
 
@@ -31,18 +31,15 @@ namespace Wyvern
 				transform->position += transform->Forward() * 0.5f;
 			}
 
-
 			if (Input::IsKey(KeyCode::S))
 			{
 				transform->position += transform->Back() * 0.5f;
 			}
 
-
 			if (Input::IsKey(KeyCode::A))
 			{
 				transform->position += transform->Left() * 0.5f;
 			}
-
 
 			if (Input::IsKey(KeyCode::D))
 			{

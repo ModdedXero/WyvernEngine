@@ -1,14 +1,14 @@
 #include "ContentBrowserWindow.h"
 
-using namespace Wyvern::Utils;
+using namespace Wyvern::Tools;
 
 namespace Wyvern
 {
 	namespace Utils
 	{
-		static void DrawDirectoryTree(Utils::FileSystem& currentDir, Utils::FileSystem directory)
+		static void DrawDirectoryTree(Tools::FileSystem& currentDir, Tools::FileSystem directory)
 		{
-			for (Utils::FileSystem path : directory)
+			for (Tools::FileSystem path : directory)
 			{
 				if (!path.IsDirectory()) continue;
 				bool hasChildren = path.HasDirectoryChildren();

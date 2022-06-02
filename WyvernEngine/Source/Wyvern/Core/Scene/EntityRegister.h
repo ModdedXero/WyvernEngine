@@ -1,6 +1,6 @@
 #pragma once
 
-#include "UUID.h"
+#include <Wyvern/Core/UUID.h>
 #include "Scene.h"
 #include "EntityConstants.h"
 

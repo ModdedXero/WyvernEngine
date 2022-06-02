@@ -1,6 +1,6 @@
 #pragma once
 
-#include "UUID.h"
+#include <Wyvern/Core/UUID.h>
 #include "WizardStack.h"
 #include "ComponentPool.h"
 #include "EntityConstants.h"
@@ -8,7 +8,7 @@
 #include <Wyvern/Core/Debug.h>
 #include <Wyvern/Core/Base.h>
 #include <Wyvern/Events/Event.h>
-#include <Wyvern/Utils/FileSystem.h>
+#include <Wyvern/Tools/FileSystem.h>
 #include <Wyvern/Renderer/CameraRenderer.h>
 
 #include <bitset>
@@ -43,7 +43,7 @@ namespace Wyvern
 		void OnAttach();
 		void OnDestroy();
 		void OnRuntimeUpdate();
-		void OnEditorUpdate(Renderer::CameraRenderer* camera, Transform* position);
+		void OnEditorUpdate(Render::CameraRenderer* camera, Transform* position);
 		void OnFixedUpdate();
 		void OnEvent(Events::Event& e);
 
@@ -56,7 +56,7 @@ namespace Wyvern
 		void SetSceneState(SceneState state);
 
 		size_t GetEntityCount() { return m_Entities.size(); }
-		Utils::FileSystem GetScenePath() const { return m_ScenePath; }
+		Tools::FileSystem GetScenePath() const { return m_ScenePath; }
 
 		static void FlushScene();
 
@@ -103,7 +103,7 @@ namespace Wyvern
 
 		static SceneID CreateSceneID(SceneIndex index, SceneVersion version);
 	private:
-		Utils::FileSystem m_ScenePath;
+		Tools::FileSystem m_ScenePath;
 		SceneState m_SceneState = SceneState::Edit;
 
 		std::vector<EntityRegister*> m_Entities;

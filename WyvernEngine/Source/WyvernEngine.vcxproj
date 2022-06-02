@@ -77,7 +77,7 @@
       <PrecompiledHeaderFile>wvpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WV_PLATFORM_WINDOWS;WV_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.;..\Vendor\GLFW\include;..\Vendor\glad\include;..\Vendor\glm;..\Vendor\imgui;..\Vendor\stb_image;..\Vendor\freetype\include;..\Vendor\freetype\include\freetype;..\Vendor\yaml-cpp\include;..\Vendor\ImGuizmo;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..\Vendor\GLFW\include;..\Vendor\glad\include;..\Vendor\glm;..\Vendor\imgui;..\Vendor\stb_image;..\Vendor\freetype\include;..\Vendor\freetype\include\freetype;..\Vendor\yaml-cpp\include;..\Vendor\ImGuizmo;..\Vendor\Assimp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -97,7 +97,7 @@
       <PrecompiledHeaderFile>wvpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WV_PLATFORM_WINDOWS;WV_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.;..\Vendor\GLFW\include;..\Vendor\glad\include;..\Vendor\glm;..\Vendor\imgui;..\Vendor\stb_image;..\Vendor\freetype\include;..\Vendor\freetype\include\freetype;..\Vendor\yaml-cpp\include;..\Vendor\ImGuizmo;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..\Vendor\GLFW\include;..\Vendor\glad\include;..\Vendor\glm;..\Vendor\imgui;..\Vendor\stb_image;..\Vendor\freetype\include;..\Vendor\freetype\include\freetype;..\Vendor\yaml-cpp\include;..\Vendor\ImGuizmo;..\Vendor\Assimp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -121,7 +121,7 @@
       <PrecompiledHeaderFile>wvpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WV_PLATFORM_WINDOWS;WV_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.;..\Vendor\GLFW\include;..\Vendor\glad\include;..\Vendor\glm;..\Vendor\imgui;..\Vendor\stb_image;..\Vendor\freetype\include;..\Vendor\freetype\include\freetype;..\Vendor\yaml-cpp\include;..\Vendor\ImGuizmo;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..\Vendor\GLFW\include;..\Vendor\glad\include;..\Vendor\glm;..\Vendor\imgui;..\Vendor\stb_image;..\Vendor\freetype\include;..\Vendor\freetype\include\freetype;..\Vendor\yaml-cpp\include;..\Vendor\ImGuizmo;..\Vendor\Assimp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -157,6 +157,8 @@
     <ClInclude Include="Wyvern\Core\Components\Camera.h" />
     <ClInclude Include="Wyvern\Core\Components\Collider2D.h" />
     <ClInclude Include="Wyvern\Core\Components\Components.h" />
+    <ClInclude Include="Wyvern\Core\Components\MeshFilter.h" />
+    <ClInclude Include="Wyvern\Core\Components\MeshRenderer.h" />
     <ClInclude Include="Wyvern\Core\Components\RigidBody2D.h" />
     <ClInclude Include="Wyvern\Core\Components\SpriteRenderer.h" />
     <ClInclude Include="Wyvern\Core\Components\Tag.h" />
@@ -164,6 +166,7 @@
     <ClInclude Include="Wyvern\Core\Constants.h" />
     <ClInclude Include="Wyvern\Core\Debug.h" />
     <ClInclude Include="Wyvern\Core\Graphics\Material.h" />
+    <ClInclude Include="Wyvern\Core\Graphics\Mesh.h" />
     <ClInclude Include="Wyvern\Core\Graphics\Shader.h" />
     <ClInclude Include="Wyvern\Core\Graphics\Sprite.h" />
     <ClInclude Include="Wyvern\Core\Graphics\Texture2D.h" />
@@ -192,7 +195,7 @@
     <ClInclude Include="Wyvern\Core\Scene\Scene.h" />
     <ClInclude Include="Wyvern\Core\Scene\SerializeHelper.h" />
     <ClInclude Include="Wyvern\Core\Scene\Serializer.h" />
-    <ClInclude Include="Wyvern\Core\Scene\UUID.h" />
+    <ClInclude Include="Wyvern\Core\UUID.h" />
     <ClInclude Include="Wyvern\Core\Scene\Wizard.h" />
     <ClInclude Include="Wyvern\Core\Scene\WizardStack.h" />
     <ClInclude Include="Wyvern\Core\Timestep.h" />
@@ -204,11 +207,13 @@
     <ClInclude Include="Wyvern\ImGui\ImGuiLayer.h" />
     <ClInclude Include="Wyvern\Renderer\CameraRenderer.h" />
     <ClInclude Include="Wyvern\Renderer\Framebuffer.h" />
+    <ClInclude Include="Wyvern\Renderer\Model3D.h" />
+    <ClInclude Include="Wyvern\Renderer\Renderer.h" />
     <ClInclude Include="Wyvern\Renderer\Renderer2D.h" />
     <ClInclude Include="Wyvern\Renderer\VertexArray.h" />
+    <ClInclude Include="Wyvern\Tools\FileSystem.h" />
+    <ClInclude Include="Wyvern\Tools\PlatformUtils.h" />
     <ClInclude Include="Wyvern\UI\UIWizard.h" />
-    <ClInclude Include="Wyvern\Utils\FileSystem.h" />
-    <ClInclude Include="Wyvern\Utils\PlatformUtils.h" />
     <ClInclude Include="wvpch.h" />
   </ItemGroup>
   <ItemGroup>
@@ -247,17 +252,19 @@
     <ClCompile Include="Wyvern\Core\Scene\Scene.cpp" />
     <ClCompile Include="Wyvern\Core\Scene\SerializeHelper.cpp" />
     <ClCompile Include="Wyvern\Core\Scene\Serializer.cpp" />
-    <ClCompile Include="Wyvern\Core\Scene\UUID.cpp" />
+    <ClCompile Include="Wyvern\Core\UUID.cpp" />
     <ClCompile Include="Wyvern\Core\Scene\Wizard.cpp" />
     <ClCompile Include="Wyvern\Core\Scene\WizardStack.cpp" />
     <ClCompile Include="Wyvern\Display\Window.cpp" />
     <ClCompile Include="Wyvern\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="Wyvern\Renderer\CameraRenderer.cpp" />
     <ClCompile Include="Wyvern\Renderer\Framebuffer.cpp" />
+    <ClCompile Include="Wyvern\Renderer\Model3D.cpp" />
+    <ClCompile Include="Wyvern\Renderer\Renderer.cpp" />
     <ClCompile Include="Wyvern\Renderer\Renderer2D.cpp" />
+    <ClCompile Include="Wyvern\Tools\FileSystem.cpp" />
+    <ClCompile Include="Wyvern\Tools\WindowsPlatformUtils.cpp" />
     <ClCompile Include="Wyvern\UI\UIWizard.cpp" />
-    <ClCompile Include="Wyvern\Utils\FileSystem.cpp" />
-    <ClCompile Include="Wyvern\Utils\WindowsPlatformUtils.cpp" />
     <ClCompile Include="wvpch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
@@ -274,6 +281,9 @@
     </ProjectReference>
     <ProjectReference Include="..\Vendor\yaml-cpp\yaml-cpp.vcxproj">
       <Project>{88F1A057-74BE-FB62-9DD7-E90A890331F1}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Vendor\Assimp\assimp.vcxproj">
+      <Project>{724885F2-5EEA-AFC8-47A5-C31C33E63619}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

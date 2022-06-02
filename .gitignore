@@ -2,5 +2,5 @@
 /bin
 /bin-int
 
-/WyvernEngine/Vendor/freetype/bin
-/WyvernEngine/Vendor/freetype/bin-int
+WyvernEngine/Vendor/freetype/bin
+WyvernEngine/Vendor/freetype/bin-int

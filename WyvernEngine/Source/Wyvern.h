@@ -37,6 +37,8 @@
 #include <Wyvern/Core/Graphics/Sprite.h>
 
 // Renderer
+#include <Wyvern/Renderer/Model3D.h>
+#include <Wyvern/Renderer/Renderer.h>
 #include <Wyvern/Renderer/Renderer2D.h>
 #include <Wyvern/Renderer/Framebuffer.h>
 #include <Wyvern/Renderer/CameraRenderer.h>
@@ -51,5 +53,5 @@
 #include <Wyvern/Events/MouseEvent.h>
 
 // Utility
-#include <Wyvern/Utils/PlatformUtils.h>
-#include <Wyvern/Utils/FileSystem.h>
+#include <Wyvern/Tools/PlatformUtils.h>
+#include <Wyvern/Tools/FileSystem.h>

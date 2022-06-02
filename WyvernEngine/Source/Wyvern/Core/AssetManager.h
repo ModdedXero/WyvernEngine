@@ -8,7 +8,7 @@
 #include <Wyvern/Core/Graphics/Material.h>
 
 #include <Wyvern/Core/Math/Vector.h>
-#include <Wyvern/Utils/FileSystem.h>
+#include <Wyvern/Tools/FileSystem.h>
 
 #include <glad.h>
 
@@ -17,7 +17,7 @@ namespace Wyvern
 	class AssetManager
 	{
 	public:
-		static Ref<Shader> LoadShader(Utils::FileSystem vShaderFile, Utils::FileSystem fShaderFile, Utils::FileSystem gShaderFile, std::string name);
+		static Ref<Shader> LoadShader(Tools::FileSystem vShaderFile, Tools::FileSystem fShaderFile, Tools::FileSystem gShaderFile, std::string name);
 		static Ref<Shader> GetShader(std::string name);
 
 		static Ref<Texture2D> LoadTexture(Ref<Texture2D> texture, std::string name);

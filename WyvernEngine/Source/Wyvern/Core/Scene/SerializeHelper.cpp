@@ -30,7 +30,7 @@ namespace Wyvern
 		return out;
 	}
 
-	YAML::Emitter& operator<<(YAML::Emitter& out, const Renderer::CameraMode& cameraMode)
+	YAML::Emitter& operator<<(YAML::Emitter& out, const Render::CameraMode& cameraMode)
 	{
 		out << (int)cameraMode;
 		return out;
@@ -41,7 +41,7 @@ namespace Wyvern
 		out << YAML::Flow;
 		out << YAML::BeginSeq;
 
-		out << sprite.GetTexture()->GetPath();
+		out << (std::string)sprite.GetTexture()->GetPath();
 		out << sprite.GetTexCoords()[0];
 		out << sprite.GetTexCoords()[1];
 		out << sprite.GetTexCoords()[2];
@@ -54,6 +54,11 @@ namespace Wyvern
 	YAML::Emitter& operator<<(YAML::Emitter& out, const Entity& entity)
 	{
 		out << (uint64_t)entity.GetUUID();
+		return out;
+	}
+
+	YAML::Emitter& operator<<(YAML::Emitter& out, const Mesh& filter)
+	{
 		return out;
 	}
 }

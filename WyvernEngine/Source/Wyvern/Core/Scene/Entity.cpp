@@ -10,7 +10,7 @@ namespace Wyvern
 {
 	Entity::Entity()
 	{
-		m_EntityRegister = new EntityRegister(false);
+		m_EntityRegister = nullptr;
 	}
 
 	Entity::Entity(EntityRegister* view)

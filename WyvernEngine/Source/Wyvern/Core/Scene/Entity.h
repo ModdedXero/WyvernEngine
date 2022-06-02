@@ -29,6 +29,10 @@ namespace Wyvern
 		Transform* GetTransform() const;
 		std::vector<Component*> GetComponents();
 
+		template <typename T>
+		T* AddComponent() { return Scene::AddComponent<T>(m_EntityRegister); }
+
+	public:
 		void AddChildEntity(EntityRegister* entity);
 		void RemoveChildEntity(EntityRegister* entity);
 
@@ -38,6 +42,7 @@ namespace Wyvern
 		bool IsActive() const { return m_EntityRegister->IsActive; }
 		void SetActive(bool active) { m_EntityRegister->IsActive = active; }
 
+	public:
 		bool operator ==(const Entity& rhs)
 		{
 			if (!m_EntityRegister || !rhs.m_EntityRegister) return false;

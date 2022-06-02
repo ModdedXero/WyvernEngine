@@ -1,8 +1,9 @@
 #pragma once
 
 #include <Wyvern/Core/Math/Vector.h>
+#include <Wyvern/Core/Graphics/Material.h>
 
-namespace Wyvern::Renderer
+namespace Wyvern::Render
 {
 	struct Vertex
 	{
@@ -31,15 +32,16 @@ namespace Wyvern::Renderer
 
 	struct VertexArray
 	{
-		Vertex vertices[4];
+		std::vector<Vertex> vertices;
+		std::vector<int> indices;
 		Ref<Material> material;
 
 		VertexArray(Vertex vertices[4], Ref<Material> material)
 		{
-			this->vertices[0] = vertices[0];
-			this->vertices[1] = vertices[1];
-			this->vertices[2] = vertices[2];
-			this->vertices[3] = vertices[3];
+			this->vertices.push_back(vertices[0]);
+			this->vertices.push_back(vertices[1]);
+			this->vertices.push_back(vertices[2]);
+			this->vertices.push_back(vertices[3]);
 
 			this->material = material;
 		}

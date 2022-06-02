@@ -3,7 +3,7 @@
 #include "Scene.h"
 #include "SerializeHelper.h"
 
-#include <Wyvern/Utils/FileSystem.h>
+#include <Wyvern/Tools/FileSystem.h>
 #include <Wyvern/Core/Application/ApplicationDomain.h>
 
 #include <memory>
@@ -39,7 +39,7 @@ namespace Wyvern
 
 		static bool Deserialize(Ref<Scene> scene, SerializeInfo& info);
 		static bool Deserialize(EntityRegister* entity, SerializeInfo& info);
-		static bool Deserialize(Ref<Scene> scene, const Utils::FileSystem& filepath);
+		static bool Deserialize(Ref<Scene> scene, const Tools::FileSystem& filepath);
 
 		static void ConvertSerialToDeserial(SerializeInfo& info);
 

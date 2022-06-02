@@ -13,27 +13,22 @@
 #include <ft2build.h>
 #include FT_FREETYPE_H
 
-namespace Wyvern::Renderer
+namespace Wyvern::Render
 {
-	Ref<Framebuffer> Renderer2D::s_Framebuffer;
-
 	static const size_t MaxQuadCount = 1000;
 	static const size_t MaxVertexCount = MaxQuadCount * 4;
 	static const size_t MaxIndexCount = MaxQuadCount * 6;
 	static const size_t MaxTextures = 32;
 
-	struct RenderData
+	struct RenderData2D
 	{
 		GLuint VAO = 0;
 		GLuint VBO = 0;
 		GLuint IBO = 0;
 
-		GLuint SVAO = 0;
-		GLuint SVBO = 0;
-
 		Vertex* QuadBuffer = nullptr;
 		Vertex* QuadBufferPtr = nullptr;
-		std::multimap<float, Ref<VertexArray>> VertexData;
+		std::multimap<float, VertexArray*> VertexData;
 
 		uint32_t IndexCount = 0;
 
@@ -55,23 +50,10 @@ namespace Wyvern::Renderer
 	};
 
 	static std::unordered_map<GLchar, Character> Characters;
-	static RenderData s_Data;
+	static RenderData2D s_Data;
 
-	void Renderer2D::OnAttach()
+	void Renderer2D::Construct()
 	{
-		// Framebuffer
-
-		FramebufferSpecification fbSpec;
-		fbSpec.Attachments =
-		{
-			FramebufferTextureFormat::RGBA8,
-			FramebufferTextureFormat::RED_INTEGER,
-			FramebufferTextureFormat::Depth
-		};
-		fbSpec.Width = 1280;
-		fbSpec.Height = 720;
-		s_Framebuffer = CreateRef<Framebuffer>(fbSpec);
-
 		// Quad Renderer
 
 		s_Data.QuadBuffer = new Vertex[MaxVertexCount];
@@ -81,7 +63,7 @@ namespace Wyvern::Renderer
 
 		glGenBuffers(1, &s_Data.VBO);
 		glBindBuffer(GL_ARRAY_BUFFER, s_Data.VBO);
-		glBufferData(GL_ARRAY_BUFFER, MaxVertexCount *  sizeof(Vertex), nullptr, GL_DYNAMIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, MaxVertexCount * sizeof(Vertex), nullptr, GL_DYNAMIC_DRAW);
 
 		glEnableVertexArrayAttrib(s_Data.VAO, 0);
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const void*)offsetof(Vertex, Position));
@@ -120,32 +102,6 @@ namespace Wyvern::Renderer
 		glBindVertexArray(0);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-
-		// Screen Renderer
-
-		float quadVertices[] = { // vertex attributes for a quad that fills the entire screen in Normalized Device Coordinates.
-	// positions   // texCoords
-	-1.0f,  1.0f,  0.0f, 1.0f,
-	-1.0f, -1.0f,  0.0f, 0.0f,
-	 1.0f, -1.0f,  1.0f, 0.0f,
-
-	-1.0f,  1.0f,  0.0f, 1.0f,
-	 1.0f, -1.0f,  1.0f, 0.0f,
-	 1.0f,  1.0f,  1.0f, 1.0f
-		};
-
-		glGenVertexArrays(1, &s_Data.SVAO);
-		glGenBuffers(1, &s_Data.SVBO);
-		glBindVertexArray(s_Data.SVAO);
-		glBindBuffer(GL_ARRAY_BUFFER, s_Data.SVBO);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(quadVertices), &quadVertices, GL_STATIC_DRAW);
-		glEnableVertexAttribArray(0);
-		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
-		glEnableVertexAttribArray(1);
-		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
-
-		glBindVertexArray(0);
-		glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 		// Setup default texture
 
@@ -218,33 +174,36 @@ namespace Wyvern::Renderer
 		FT_Done_FreeType(ft);
 	}
 
-	void Renderer2D::OnDestroy()
+	void Renderer2D::Destruct()
 	{
 		glDeleteVertexArrays(1, &s_Data.VAO);
 		glDeleteBuffers(1, &s_Data.VBO);
 		glDeleteBuffers(1, &s_Data.IBO);
 
 		delete[] s_Data.QuadBuffer;
+
+		for (auto& iter : s_Data.VertexData)
+		{
+			delete iter.second;
+		}
+		s_Data.VertexData.clear();
 	}
 	void Renderer2D::BeginScene(CameraRenderer* cameraRenderer, Transform* cameraPosition, Vector4 clearColor)
 	{
-		s_Framebuffer->Invalidate();
-		s_Framebuffer->Bind();
-		s_Framebuffer->ClearColorAttachment(1, -1);
 		AssetManager::GetShader("ScreenShader")->SetInteger("screenTexture", 0);
 
 		s_Data.Camera = cameraRenderer;
 		s_Data.CameraPosition = cameraPosition;
 		s_Data.CameraClearColor = clearColor;
-		s_Data.Camera->Resize(s_Framebuffer->GetSpecification().Width, s_Framebuffer->GetSpecification().Height);
+
+		glClear(GL_COLOR_BUFFER_BIT);
+		glClearColor(s_Data.CameraClearColor.x, s_Data.CameraClearColor.y, s_Data.CameraClearColor.z, s_Data.CameraClearColor.w);
 
 		BeginBatch();
 	}
 
 	void Renderer2D::EndScene()
 	{
-		glClearColor(s_Data.CameraClearColor.x, s_Data.CameraClearColor.y, s_Data.CameraClearColor.z, s_Data.CameraClearColor.w);
-
 		for (auto& drawData : s_Data.VertexData)
 		{
 			drawData.second->material->shader->Use();
@@ -273,23 +232,16 @@ namespace Wyvern::Renderer
 		EndBatch();
 		Flush();
 
-		s_Data.VertexData.clear();
-		s_Framebuffer->Unbind();
+		for (auto& iter : s_Data.VertexData)
+		{
+			delete iter.second;
+		}
 
-#ifndef WV_DEBUG
-		glDisable(GL_DEPTH_TEST);
-		glClear(GL_COLOR_BUFFER_BIT);
-		AssetManager::GetShader("ScreenShader")->Use();
-		glBindVertexArray(s_Data.SVAO);
-		s_Framebuffer->BindColorAttachmentTexture();
-		glDrawArrays(GL_TRIANGLES, 0, 6);
-		glBindVertexArray(0);
-#endif
+		s_Data.VertexData.clear();
 	}
 
 	void Renderer2D::BeginBatch()
 	{
-		glClear(GL_COLOR_BUFFER_BIT);
 		s_Data.QuadBufferPtr = s_Data.QuadBuffer;
 	}
 
@@ -388,8 +340,8 @@ namespace Wyvern::Renderer
 			)
 		};
 		
-		Ref<VertexArray> vertexArray = CreateRef<VertexArray>(vertices, material);
-		s_Data.VertexData.insert(std::pair<float, Ref<VertexArray>>(transform->position.z, vertexArray));
+		VertexArray* vertexArray = new VertexArray(vertices, material);
+		s_Data.VertexData.insert(std::pair<float, VertexArray*>(transform->position.z, vertexArray));
 	}
 
 	void Renderer2D::DrawText(Vector3 pos, const Vector2& size, const std::string& text)
@@ -451,8 +403,8 @@ namespace Wyvern::Renderer
 				textureIndex
 			);
 
-			Ref<VertexArray> vertexArray = CreateRef<VertexArray>(vertices, fontMaterial);
-			s_Data.VertexData.insert(std::pair<float, Ref<VertexArray>>(pos.z, vertexArray));
+			VertexArray* vertexArray = new VertexArray(vertices, fontMaterial);
+			s_Data.VertexData.insert(std::pair<float, VertexArray*>(pos.z, vertexArray));
 
 			pos.x += (ch.Advance >> 6) * size.x;
 		}

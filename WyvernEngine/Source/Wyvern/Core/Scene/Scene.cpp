@@ -8,7 +8,9 @@
 #include <Wyvern/Core/Components/Tag.h>
 #include <Wyvern/Core/Components/Transform.h>
 #include <Wyvern/Core/Components/SpriteRenderer.h>
+#include <Wyvern/Core/Components/MeshRenderer.h>
 #include <Wyvern/Renderer/Renderer2D.h>
+#include <Wyvern/Renderer/Renderer.h>
 #include <Wyvern/Core/Physics/Physics2DWizard.h>
 
 namespace Wyvern
@@ -81,36 +83,56 @@ namespace Wyvern
 
 		if (mainCamera)
 		{
-			Renderer::Renderer2D::BeginScene(mainCamera->GetRenderer(), mainCamera->GetTransform(), mainCamera->clearColor);
+			Render::Renderer::BeginScene(mainCamera->GetRenderer(), mainCamera->GetTransform(), mainCamera->clearColor);
 
 			for (EntityRegister* entity : EntityList<SpriteRenderer>(shared_from_this()))
 			{
-				SpriteRenderer* sRend = Scene::GetComponent<SpriteRenderer>(entity);
+				SpriteRenderer* sRend = GetComponent<SpriteRenderer>(entity);
 
-				Renderer::Renderer2D::DrawQuad(GetComponent<Transform>(entity), sRend->material, sRend->sprite, sRend->color, GetSceneIndex(entity->SceneID));
+				Render::Renderer2D::DrawQuad(GetComponent<Transform>(entity), sRend->material, sRend->sprite, sRend->color, GetSceneIndex(entity->SceneID));
 			}
 
-			Renderer::Renderer2D::EndScene();
+			for (EntityRegister* entity : EntityList<MeshRenderer>(shared_from_this()))
+			{
+				MeshRenderer* renderer = GetComponent<MeshRenderer>(entity);
+				MeshFilter* filter = GetComponent<MeshFilter>(entity);
+
+				Render::Renderer::DrawMesh(GetComponent<Transform>(entity), renderer->material, &filter->mesh, Vector4(1.0f, 1.0f, 1.0f, 1.0f), GetSceneIndex(entity->SceneID));
+			}
+
+			Render::Renderer::EndScene();
 		}
 	}
 
-	void Scene::OnEditorUpdate(Renderer::CameraRenderer* camera, Transform* position)
+	void Scene::OnEditorUpdate(Render::CameraRenderer* camera, Transform* position)
 	{
 		if (m_SceneState != SceneState::Edit) return;
 
 		if (Camera::GetActiveCamera())
-			Renderer::Renderer2D::BeginScene(camera, position, Camera::GetActiveCamera()->clearColor);
+		{
+			Render::Renderer::BeginScene(camera, position, Camera::GetActiveCamera()->clearColor);
+		}
 		else
-			Renderer::Renderer2D::BeginScene(camera, position);
+		{
+			Render::Renderer::BeginScene(camera, position);
+		}
 
 		for (EntityRegister* entity : EntityList<SpriteRenderer>(shared_from_this()))
 		{
 			SpriteRenderer* sRend = Scene::GetComponent<SpriteRenderer>(entity);
 
-			Renderer::Renderer2D::DrawQuad(GetComponent<Transform>(entity), sRend->material, sRend->sprite, sRend->color, GetSceneIndex(entity->SceneID));
+			Render::Renderer2D::DrawQuad(GetComponent<Transform>(entity), sRend->material, sRend->sprite, sRend->color, GetSceneIndex(entity->SceneID));
 		}
 
-		Renderer::Renderer2D::EndScene();
+		for (EntityRegister* entity : EntityList<MeshRenderer>(shared_from_this()))
+		{
+			MeshRenderer* renderer = GetComponent<MeshRenderer>(entity);
+			MeshFilter* filter = GetComponent<MeshFilter>(entity);
+
+			Render::Renderer::DrawMesh(GetComponent<Transform>(entity), renderer->material, &filter->mesh, Vector4( 1.0f, 1.0f, 1.0f, 1.0f ), GetSceneIndex(entity->SceneID));
+		}
+
+		Render::Renderer::EndScene();
 	}
 
 	void Scene::OnFixedUpdate()

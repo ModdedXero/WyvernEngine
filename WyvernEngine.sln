@@ -11,6 +11,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WyvernEditor", "WyvernEdito
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WyvernEngine", "WyvernEngine\Source\WyvernEngine.vcxproj", "{0651ECC7-F2B3-7B6C-9B39-B422877B47EF}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "assimp", "WyvernEngine\Vendor\Assimp\assimp.vcxproj", "{724885F2-5EEA-AFC8-47A5-C31C33E63619}"
+EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "freetype", "WyvernEngine\Vendor\FreeType\freetype.vcxproj", "{89895BD8-7556-B6E3-9E6F-A48B8A9BEB71}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yaml-cpp", "WyvernEngine\Vendor\yaml-cpp\yaml-cpp.vcxproj", "{88F1A057-74BE-FB62-9DD7-E90A890331F1}"
@@ -52,6 +54,12 @@ Global
 		{0651ECC7-F2B3-7B6C-9B39-B422877B47EF}.Dist|x64.Build.0 = Dist|x64
 		{0651ECC7-F2B3-7B6C-9B39-B422877B47EF}.Release|x64.ActiveCfg = Release|x64
 		{0651ECC7-F2B3-7B6C-9B39-B422877B47EF}.Release|x64.Build.0 = Release|x64
+		{724885F2-5EEA-AFC8-47A5-C31C33E63619}.Debug|x64.ActiveCfg = Debug|x64
+		{724885F2-5EEA-AFC8-47A5-C31C33E63619}.Debug|x64.Build.0 = Debug|x64
+		{724885F2-5EEA-AFC8-47A5-C31C33E63619}.Dist|x64.ActiveCfg = Dist|x64
+		{724885F2-5EEA-AFC8-47A5-C31C33E63619}.Dist|x64.Build.0 = Dist|x64
+		{724885F2-5EEA-AFC8-47A5-C31C33E63619}.Release|x64.ActiveCfg = Release|x64
+		{724885F2-5EEA-AFC8-47A5-C31C33E63619}.Release|x64.Build.0 = Release|x64
 		{89895BD8-7556-B6E3-9E6F-A48B8A9BEB71}.Debug|x64.ActiveCfg = Debug|x64
 		{89895BD8-7556-B6E3-9E6F-A48B8A9BEB71}.Debug|x64.Build.0 = Debug|x64
 		{89895BD8-7556-B6E3-9E6F-A48B8A9BEB71}.Dist|x64.ActiveCfg = Dist|x64

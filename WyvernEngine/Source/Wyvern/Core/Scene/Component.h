@@ -21,9 +21,7 @@ namespace Wyvern
 		friend class ApplicationDomain;
 
 	public:
-		Component()
-			: m_Entity(Entity())
-		{}
+		Component() {}
 		virtual ~Component() = 0;
 
 		Entity& GetEntity() { return m_Entity; }
