@@ -229,7 +229,7 @@
     <ClInclude Include="Wyvern\Core\Scene\Serializer.h">
       <Filter>Wyvern\Core\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Wyvern\Core\Scene\UUID.h">
+    <ClInclude Include="Wyvern\Core\UUID.h">
       <Filter>Wyvern\Core\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Wyvern\Core\Scene\Wizard.h">
@@ -376,7 +376,7 @@
     <ClCompile Include="Wyvern\Core\Scene\Serializer.cpp">
       <Filter>Wyvern\Core\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Wyvern\Core\Scene\UUID.cpp">
+    <ClCompile Include="Wyvern\Core\UUID.cpp">
       <Filter>Wyvern\Core\Scene</Filter>
     </ClCompile>
     <ClCompile Include="Wyvern\Core\Scene\Wizard.cpp">

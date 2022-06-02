@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Wyvern/Core/Math/Math.h>
-#include <Wyvern/Core/Scene/UUID.h>
+#include <Wyvern/Core/UUID.h>
 #include <Wyvern/Core/Scene/Entity.h>
 #include <Wyvern/Core/Scene/Scene.h>
 #include <Wyvern/Core/Physics/Physics.h>
