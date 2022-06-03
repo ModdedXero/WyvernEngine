@@ -6,11 +6,13 @@
 namespace Wyvern
 {
 	Shader::Shader()
+		: ID(glCreateProgram())
 	{
 
 	}
 
 	Shader::Shader(const char* vertSource, const char* fragSource, const char* geoSource)
+		: ID(glCreateProgram())
 	{
 		unsigned int sVert, sFrag, sGeo;
 
@@ -31,8 +33,6 @@ namespace Wyvern
 			glCompileShader(sGeo);
 			CheckCompileErrors(sGeo, "GEOMETRY");
 		}
-
-		ID = glCreateProgram();
 
 		glAttachShader(ID, sVert);
 		glAttachShader(ID, sFrag);

@@ -416,5 +416,6 @@
       <Filter>Wyvern\UI</Filter>
     </ClCompile>
     <ClCompile Include="wvpch.cpp" />
+    <ClCompile Include="Wyvern\Core\Graphics\Material.cpp" />
   </ItemGroup>
 </Project>
