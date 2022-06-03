@@ -10,12 +10,18 @@ namespace Wyvern
 	struct Material
 	{
 	public:
-		Material(Tools::FileSystem& shaderPath);
+		Material(Tools::FileSystem& material);
 
-		const UUID uuid = UUID();
+	public:
+		UUID GetUUID() const { return m_UUID; }
+		Shader GetShader() const { return *m_Shader; }
 
-		Shader shader;
+	public:
+		void SetShader(Tools::FileSystem& shaderPath);
+
 	private:
+		UUID m_UUID;
 		Tools::FileSystem m_ShaderPath;
+		Shader* m_Shader;
 	};
 }

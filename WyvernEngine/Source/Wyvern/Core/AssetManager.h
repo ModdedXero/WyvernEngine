@@ -23,8 +23,8 @@ namespace Wyvern
 		static Ref<Sprite> LoadSprite(std::string name, std::string textureName, const Vector2& coords, const Vector2& tileSize, const Vector2& spriteSize);
 		static Ref<Sprite> GetSprite(std::string name);
 
-		static Ref<Material> LoadMaterial(Tools::FileSystem& material, std::string name);
-		static Ref<Material> GetMaterial(std::string name);
+		static Ref<Material> LoadMaterial(Tools::FileSystem& material);
+		static Ref<Material> GetMaterial(UUID& uuid);
 
 		static Ref<Material> GetDefaultMaterial();
 

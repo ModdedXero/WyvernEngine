@@ -6,8 +6,8 @@
 namespace Wyvern
 {
 	std::unordered_map<std::string, Ref<Texture2D>> s_Textures;
-	std::unordered_map<std::string, Ref<Sprite>> s_SubTextures;
-	std::unordered_map<std::string, Ref<Material>> s_Materials;
+	std::unordered_map<std::string, Ref<Sprite>> s_Sprites;
+	std::unordered_map<UUID, Ref<Material>> s_Materials;
 
 	Ref<Texture2D> AssetManager::LoadTexture(Ref<Texture2D> texture, std::string name)
 	{
@@ -22,26 +22,25 @@ namespace Wyvern
 
 	Ref<Sprite> AssetManager::LoadSprite(std::string name, std::string textureName, const Vector2& coords, const Vector2& tileSize, const Vector2& spriteSize)
 	{
-		s_SubTextures[name] = Sprite::CreateFromCoords(GetTexture(textureName), coords, tileSize, spriteSize);
-		return s_SubTextures[name];
+		s_Sprites[name] = Sprite::CreateFromCoords(GetTexture(textureName), coords, tileSize, spriteSize);
+		return s_Sprites[name];
 	}
 
 	Ref<Sprite> AssetManager::GetSprite(std::string name)
 	{
-		return s_SubTextures[name];
+		return s_Sprites[name];
 	}
 
-	Ref<Material> AssetManager::LoadMaterial(std::string shader, std::string name)
+	Ref<Material> AssetManager::LoadMaterial(Tools::FileSystem& material)
 	{
-		Ref<Material> mat = CreateRef<Material>();
-		mat->shader = GetShader(shader);
-		s_Materials[name] = mat;
-		return s_Materials[name];
+		Ref<Material> mat = CreateRef<Material>(material);
+		s_Materials[mat->GetUUID()] = mat;
+		return s_Materials[mat->GetUUID()];
 	}
 
-	Ref<Material> AssetManager::GetMaterial(std::string name)
+	Ref<Material> AssetManager::GetMaterial(UUID& uuid)
 	{
-		return s_Materials[name];
+		return s_Materials[uuid];
 	}
 
 	Ref<Material> AssetManager::GetDefaultMaterial()
@@ -51,10 +50,10 @@ namespace Wyvern
 
 	void AssetManager::Clear()
 	{
-		for (auto& iter : s_Shaders)
-			glDeleteProgram(iter.second->ID);
-
 		for (auto& iter : s_Textures)
 			glDeleteProgram(iter.second->GetID());
+
+		for (auto& iter : s_Materials)
+			glDeleteProgram(iter.second->GetShader().ID);
 	}
 }
