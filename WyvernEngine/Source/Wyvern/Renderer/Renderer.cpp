@@ -5,6 +5,7 @@
 #include "VertexArray.h"
 
 #include <Wyvern/Core/AssetManager.h>
+#include <Wyvern/Core/Application/Application.h>
 
 #include <glad.h>
 
@@ -24,6 +25,8 @@ namespace Wyvern::Render
 
 		uint32_t SVAO = 0;
 		uint32_t SVBO = 0;
+
+		Shader ScreenShader;
 
 		Vertex* VertexBuffer = nullptr;
 		Vertex* VertexBufferPtr = nullptr;
@@ -84,25 +87,6 @@ namespace Wyvern::Render
 		glEnableVertexArrayAttrib(s_Data.VAO, 4);
 		glVertexAttribIPointer(4, 1, GL_INT, sizeof(Vertex), (const void*)offsetof(Vertex, EntityID));
 
-		//uint32_t indices[MaxVertexCount];
-		//uint32_t offset = 0;
-		//for (size_t i = 0; i < MaxVertexCount; i += 6)
-		//{
-		//	indices[i + 0] = 0 + offset;
-		//	indices[i + 1] = 1 + offset;
-		//	indices[i + 2] = 2 + offset;
-
-		//	indices[i + 3] = 2 + offset;
-		//	indices[i + 4] = 3 + offset;
-		//	indices[i + 5] = 0 + offset;
-
-		//	offset += 4;
-		//}
-
-		//glGenBuffers(1, &s_Data.IBO);
-		//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, s_Data.IBO);
-		//glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
-
 		glGenBuffers(1, &s_Data.IBO);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, s_Data.IBO);
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(int) * MaxVertexCount, nullptr, GL_DYNAMIC_DRAW);
@@ -136,6 +120,9 @@ namespace Wyvern::Render
 
 		glBindVertexArray(0);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+		s_Data.ScreenShader = Shader(Application::GetResourcesPath() / "Shaders/ScreenShader.glsl");
+		s_Data.ScreenShader.SetInteger("screenTexture", 0);
 
 		// Setup default texture
 
@@ -172,7 +159,6 @@ namespace Wyvern::Render
 		s_Framebuffer->Invalidate();
 		s_Framebuffer->Bind();
 		s_Framebuffer->ClearColorAttachment(1, -1);
-		AssetManager::GetShader("ScreenShader")->SetInteger("screenTexture", 0);
 
 		s_Data.Camera = cameraRenderer;
 		s_Data.CameraPosition = cameraPosition;
@@ -223,8 +209,8 @@ namespace Wyvern::Render
 
 		if (!material) return;
 
-		material->shader->Use();
-		s_Data.Camera->SetShaderMatrices(material->shader, s_Data.CameraPosition);
+		material->GetShader().Use();
+		s_Data.Camera->SetShaderMatrices(material->GetShader(), s_Data.CameraPosition);
 
 		float textureIndex = 0.0f;
 		Vector2 textureCoords = Vector2(0.0f, 0.0f);

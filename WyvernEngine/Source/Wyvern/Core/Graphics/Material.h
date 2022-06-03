@@ -10,6 +10,7 @@ namespace Wyvern
 	struct Material
 	{
 	public:
+		Material();
 		Material(Tools::FileSystem& material);
 
 	public:

@@ -40,7 +40,7 @@ namespace Wyvern::Render
 		void SetClipFar(float far) { m_ClipFar = far; }
 
 		void Resize(float width, float height) { SetProjection(width, height); }
-		void SetShaderMatrices(Ref<Shader> shader, Transform* position);
+		void SetShaderMatrices(Shader shader, Transform* position);
 
 		static Vector2 WorldToScreenPoint(Vector3& pos);
 	private:

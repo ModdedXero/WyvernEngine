@@ -39,7 +39,7 @@ namespace Wyvern::Render
 		RecalculateProjection();
 	}
 
-	void CameraRenderer::SetShaderMatrices(Ref<Shader> shader, Transform* position)
+	void CameraRenderer::SetShaderMatrices(Shader shader, Transform* position)
 	{
 		RecalculateProjection();
 
@@ -48,8 +48,8 @@ namespace Wyvern::Render
 
 		m_View = Matrix4x4::Inverse(Transform::GetTransform(pos, position->rotation, position->scale)).GetNativeMatrix();
 
-		shader->SetMatrix4("projection", m_Projection);
-		shader->SetMatrix4("viewModel", m_View);
+		shader.SetMatrix4("projection", m_Projection);
+		shader.SetMatrix4("viewModel", m_View);
 	}
 
 	Vector2 CameraRenderer::WorldToScreenPoint(Vector3& pos)

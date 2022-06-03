@@ -1,5 +1,7 @@
 #pragma once
 
+#include <Wyvern/Tools/FileSystem.h>
+
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
@@ -12,6 +14,7 @@ namespace Wyvern
 	public:
 
 		Shader();
+		Shader(Tools::FileSystem& shaderPath);
 		Shader(const char* vertSource, const char* fragSource, const char* geoSource = nullptr);
 
 		unsigned int ID;
@@ -35,6 +38,7 @@ namespace Wyvern
 		static void SetMatrix4(const char* name, unsigned int id, const glm::mat4& matrix);
 		static void SetIntArray(const char* name, unsigned int id, const int count, const int* intArray);
 	private:
+		void LoadShader(const char* vertSource, const char* fragSource, const char* geoSource = nullptr);
 		void CheckCompileErrors(unsigned int object, std::string type);
 	};
 }

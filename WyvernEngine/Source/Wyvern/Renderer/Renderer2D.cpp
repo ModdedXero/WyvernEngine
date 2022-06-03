@@ -190,8 +190,6 @@ namespace Wyvern::Render
 	}
 	void Renderer2D::BeginScene(CameraRenderer* cameraRenderer, Transform* cameraPosition, Vector4 clearColor)
 	{
-		AssetManager::GetShader("ScreenShader")->SetInteger("screenTexture", 0);
-
 		s_Data.Camera = cameraRenderer;
 		s_Data.CameraPosition = cameraPosition;
 		s_Data.CameraClearColor = clearColor;
@@ -206,8 +204,8 @@ namespace Wyvern::Render
 	{
 		for (auto& drawData : s_Data.VertexData)
 		{
-			drawData.second->material->shader->Use();
-			s_Data.Camera->SetShaderMatrices(drawData.second->material->shader, s_Data.CameraPosition);
+			drawData.second->material->GetShader().Use();
+			s_Data.Camera->SetShaderMatrices(drawData.second->material->GetShader(), s_Data.CameraPosition);
 
 			if (s_Data.IndexCount >= MaxIndexCount || s_Data.TextureSlotIndex > (MaxTextures - 1))
 			{
@@ -346,7 +344,7 @@ namespace Wyvern::Render
 
 	void Renderer2D::DrawText(Vector3 pos, const Vector2& size, const std::string& text)
 	{
-		Ref<Material> fontMaterial = AssetManager::GetMaterial("StandardFontMaterial");
+		Ref<Material> fontMaterial = AssetManager::GetDefaultMaterial();
 		std::string::const_iterator c;
 
 		for (c = text.begin(); c != text.end(); c++)

@@ -229,9 +229,6 @@
     <ClInclude Include="Wyvern\Core\Scene\Serializer.h">
       <Filter>Wyvern\Core\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Wyvern\Core\UUID.h">
-      <Filter>Wyvern\Core\Scene</Filter>
-    </ClInclude>
     <ClInclude Include="Wyvern\Core\Scene\Wizard.h">
       <Filter>Wyvern\Core\Scene</Filter>
     </ClInclude>
@@ -239,6 +236,9 @@
       <Filter>Wyvern\Core\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Wyvern\Core\Timestep.h">
+      <Filter>Wyvern\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Wyvern\Core\UUID.h">
       <Filter>Wyvern\Core</Filter>
     </ClInclude>
     <ClInclude Include="Wyvern\Display\Window.h">
@@ -331,6 +331,9 @@
     <ClCompile Include="Wyvern\Core\Constants.cpp">
       <Filter>Wyvern\Core</Filter>
     </ClCompile>
+    <ClCompile Include="Wyvern\Core\Graphics\Material.cpp">
+      <Filter>Wyvern\Core\Graphics</Filter>
+    </ClCompile>
     <ClCompile Include="Wyvern\Core\Graphics\Shader.cpp">
       <Filter>Wyvern\Core\Graphics</Filter>
     </ClCompile>
@@ -376,14 +379,14 @@
     <ClCompile Include="Wyvern\Core\Scene\Serializer.cpp">
       <Filter>Wyvern\Core\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Wyvern\Core\UUID.cpp">
-      <Filter>Wyvern\Core\Scene</Filter>
-    </ClCompile>
     <ClCompile Include="Wyvern\Core\Scene\Wizard.cpp">
       <Filter>Wyvern\Core\Scene</Filter>
     </ClCompile>
     <ClCompile Include="Wyvern\Core\Scene\WizardStack.cpp">
       <Filter>Wyvern\Core\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Wyvern\Core\UUID.cpp">
+      <Filter>Wyvern\Core</Filter>
     </ClCompile>
     <ClCompile Include="Wyvern\Display\Window.cpp">
       <Filter>Wyvern\Display</Filter>
@@ -416,6 +419,5 @@
       <Filter>Wyvern\UI</Filter>
     </ClCompile>
     <ClCompile Include="wvpch.cpp" />
-    <ClCompile Include="Wyvern\Core\Graphics\Material.cpp" />
   </ItemGroup>
 </Project>
