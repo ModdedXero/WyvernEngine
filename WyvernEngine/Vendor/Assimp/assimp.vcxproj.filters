@@ -1,0 +1,2847 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="bin">
+      <UniqueIdentifier>{BE61880B-2A6B-887C-B3E6-9E7C1FEF937C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="bin\Debug-windows">
+      <UniqueIdentifier>{4C4F6330-B865-61C6-01DD-ECE76D32324E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="bin\Debug-windows\assimp">
+      <UniqueIdentifier>{E80CD703-D431-2684-FD7C-0B14E90025A2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="bin-int">
+      <UniqueIdentifier>{168B5978-826A-D813-8B82-63EAF7E03E75}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="bin-int\Debug-windows">
+      <UniqueIdentifier>{A4F215C8-105F-D1C2-D952-6920457EF32A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="bin-int\Debug-windows\assimp">
+      <UniqueIdentifier>{407D75E0-2C38-658C-D5EF-DDD6C189AF1C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="bin-int\Debug-windows\assimp\assimp.tlog">
+      <UniqueIdentifier>{20F71FD7-0C74-131A-35F1-132E21CDAFAD}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code">
+      <UniqueIdentifier>{803E957C-6C75-960D-1562-7C100178120F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\Importer">
+      <UniqueIdentifier>{81C4289E-ED84-A4D4-B6BF-ED51223FE9B0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\Importer\IFC">
+      <UniqueIdentifier>{A2222456-0E39-22EC-57B0-AD0DC305F373}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\res">
+      <UniqueIdentifier>{B9362C2A-A503-8735-CE1C-75DDBA48BCC3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="contrib">
+      <UniqueIdentifier>{16D079D3-82AF-F86E-8BC7-8345F7255FD0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="contrib\Open3DGC">
+      <UniqueIdentifier>{D8FE8CA6-C4F7-ABF8-ED29-917DD9818B04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="contrib\android-cmake">
+      <UniqueIdentifier>{3414BED0-A080-79CB-6974-1129D59F9B33}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="contrib\clipper">
+      <UniqueIdentifier>{349F6F83-A02A-DD47-A93B-603C15463948}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="contrib\irrXML">
+      <UniqueIdentifier>{03DA25FB-EFA7-1901-D83B-8A27C4A8F565}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="contrib\openddlparser">
+      <UniqueIdentifier>{38226264-A48E-1D5F-6D82-B5BCD9AD3FC7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="contrib\openddlparser\code">
+      <UniqueIdentifier>{E2F33247-CE03-DF17-37BD-433623ECCDB0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="contrib\openddlparser\include">
+      <UniqueIdentifier>{AB012AA3-171A-11CD-E0C6-A0664C9EA566}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="contrib\openddlparser\include\openddlparser">
+      <UniqueIdentifier>{8DF4A69C-F959-3A23-8232-DCFBEE962F92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="contrib\poly2tri">
+      <UniqueIdentifier>{8AA22ADF-769B-4931-9FCD-2EB68B25293D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="contrib\poly2tri\poly2tri">
+      <UniqueIdentifier>{7E77B190-EA39-E51A-33EA-73A79FEBBDF8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="contrib\poly2tri\poly2tri\common">
+      <UniqueIdentifier>{167FE2B2-02D0-CDF4-2B34-BCB617E4605E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="contrib\poly2tri\poly2tri\sweep">
+      <UniqueIdentifier>{B111DF3C-1DF5-ED7C-26F8-1BB9925AB4CD}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="contrib\rapidjson">
+      <UniqueIdentifier>{4FEDF7D3-BB03-F669-047B-818B70D0C6F1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="contrib\rapidjson\include">
+      <UniqueIdentifier>{C2F388FC-2EB6-BC86-7766-4B13E3679564}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="contrib\rapidjson\include\rapidjson">
+      <UniqueIdentifier>{FB97D822-6751-43CD-F0B0-5DA75C69F93C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="contrib\rapidjson\include\rapidjson\error">
+      <UniqueIdentifier>{94FF0D6D-001A-710E-493C-81A2B5959815}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="contrib\rapidjson\include\rapidjson\internal">
+      <UniqueIdentifier>{A764287B-9377-28D4-3C61-05C12853C521}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="contrib\rapidjson\include\rapidjson\msinttypes">
+      <UniqueIdentifier>{EACC88D0-D64A-D969-BF42-9701AB5F1B92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="contrib\unzip">
+      <UniqueIdentifier>{BB173D2F-27D8-B865-F012-02E35C92FD41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="contrib\utf8cpp">
+      <UniqueIdentifier>{2FF55BFF-9B80-C9C3-A491-4CB8109C25C4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="contrib\utf8cpp\doc">
+      <UniqueIdentifier>{9472BC89-00D4-9997-8941-E049F5A1D056}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="contrib\utf8cpp\source">
+      <UniqueIdentifier>{6F8C1962-5B86-42B4-44F3-D8C4308CA820}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="contrib\utf8cpp\source\utf8">
+      <UniqueIdentifier>{A54C7232-115A-A018-9A40-9C03064D6CCF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="contrib\zip">
+      <UniqueIdentifier>{D8C58B9D-447B-0493-CD6F-FE693924FB96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="contrib\zip\src">
+      <UniqueIdentifier>{EFAF4667-5B3B-B42B-644C-3720D056102C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="contrib\zip\test">
+      <UniqueIdentifier>{67051D50-53FE-3BA2-7C30-212768881BAE}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="contrib\zlib">
+      <UniqueIdentifier>{168D044F-02F0-93F3-AB75-CCA997B75F76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="contrib\zlib\contrib">
+      <UniqueIdentifier>{168BC3CF-021A-4D99-AB38-619497A65D3F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="contrib\zlib\contrib\ada">
+      <UniqueIdentifier>{CB953ACE-B7BA-894E-E005-6FDECC89886C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="contrib\zlib\contrib\amd64">
+      <UniqueIdentifier>{E1373C47-CD47-E817-3601-4D362230D7B0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="contrib\zlib\contrib\asm686">
+      <UniqueIdentifier>{2AB7342F-96C4-6215-1FAB-5E008BB72ECC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="contrib\zlib\contrib\blast">
+      <UniqueIdentifier>{5BBF4D47-47CF-F917-B088-5E369CB7E8B0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="contrib\zlib\contrib\delphi">
+      <UniqueIdentifier>{BB4A3735-2758-651B-B03E-61061C4B31D2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="contrib\zlib\contrib\dotzlib">
+      <UniqueIdentifier>{9D890AF4-8944-FA9F-32FC-72EA1E964430}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="contrib\zlib\contrib\dotzlib\DotZLib">
+      <UniqueIdentifier>{C472B544-B059-773C-59AA-DD594570F0A2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="contrib\zlib\contrib\gcc_gvmat64">
+      <UniqueIdentifier>{DA8010FA-C6D1-FB3B-EF35-EAFDDBE58EA5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="contrib\zlib\contrib\infback9">
+      <UniqueIdentifier>{AC034AA3-181C-31CD-E1C8-C0664DA0C566}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="contrib\zlib\contrib\inflate86">
+      <UniqueIdentifier>{7648E723-626E-B18A-4BB4-36563779D656}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="contrib\zlib\contrib\iostream">
+      <UniqueIdentifier>{8963E60F-F57B-CD39-BE28-5DD32A0062D3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="contrib\zlib\contrib\iostream2">
+      <UniqueIdentifier>{DBD4B20C-C7FA-7C73-B040-023F9C05A23F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="contrib\zlib\contrib\iostream3">
+      <UniqueIdentifier>{DCD4B20C-C8FA-7C73-B140-023F9D05A23F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="contrib\zlib\contrib\masmx64">
+      <UniqueIdentifier>{75661588-6121-0534-0AD9-7D7EF6724FC4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="contrib\zlib\contrib\masmx86">
+      <UniqueIdentifier>{B9661588-A521-0534-4ED9-7D7E3A734FC4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="contrib\zlib\contrib\minizip">
+      <UniqueIdentifier>{C50E629A-B1C9-5146-5A81-CA90461B9CD6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="contrib\zlib\contrib\pascal">
+      <UniqueIdentifier>{B96EF050-257C-1E37-AE62-1A221A6FEAED}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="contrib\zlib\contrib\puff">
+      <UniqueIdentifier>{36D29595-A294-C91F-EB44-58AC5746A2FD}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="contrib\zlib\contrib\testzlib">
+      <UniqueIdentifier>{76ABF834-E2C3-DF5E-AB70-6FF8174874F8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="contrib\zlib\contrib\untgz">
+      <UniqueIdentifier>{FDF8A648-E908-5319-52C2-B7373EF141B2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="contrib\zlib\contrib\vstudio">
+      <UniqueIdentifier>{D391F466-BF4C-E412-6804-5D5D549E2EA3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="contrib\zlib\contrib\vstudio\vc10">
+      <UniqueIdentifier>{BC8D3C0B-28FC-918A-71E5-4C8ADD928726}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="contrib\zlib\contrib\vstudio\vc11">
+      <UniqueIdentifier>{BD8D3C0B-29FC-918A-72E5-4C8ADE928726}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="contrib\zlib\contrib\vstudio\vc12">
+      <UniqueIdentifier>{BE8D3C0B-2AFC-918A-73E5-4C8ADF928726}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="contrib\zlib\contrib\vstudio\vc14">
+      <UniqueIdentifier>{C08D3C0B-2CFC-918A-75E5-4C8AE1928726}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="contrib\zlib\contrib\vstudio\vc9">
+      <UniqueIdentifier>{140CDB0F-005D-C651-29C1-B413157159BB}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="contrib\zlib\win32">
+      <UniqueIdentifier>{98CD4269-84B1-03BF-ED11-FE11D914EE40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{89AF369E-F58E-B539-FEA6-40106A051C9B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\assimp">
+      <UniqueIdentifier>{8526CE41-71F4-C147-5A88-326E46F59DAC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\assimp\Compiler">
+      <UniqueIdentifier>{8F8B9273-FBC2-DA0A-04CD-3E2E70830104}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\assimp\port">
+      <UniqueIdentifier>{19D36570-8534-437E-0EA2-89307A027A3D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\assimp\port\AndroidJNI">
+      <UniqueIdentifier>{CABBE3D0-B6E1-AD37-9F27-33038BECD203}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="code\3DSExporter.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\3DSHelper.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\3DSLoader.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\3MFXmlTags.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\ACLoader.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\AMFImporter.hpp">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\AMFImporter_Macro.hpp">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\AMFImporter_Node.hpp">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\ASELoader.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\ASEParser.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\AssbinExporter.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\AssbinLoader.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\AssxmlExporter.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\B3DImporter.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\BVHLoader.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\BaseImporter.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\BaseProcess.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\Bitmap.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\BlenderBMesh.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\BlenderCustomData.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\BlenderDNA.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\BlenderDNA.inl">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\BlenderIntermediate.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\BlenderLoader.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\BlenderModifier.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\BlenderScene.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\BlenderSceneGen.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\BlenderTessellator.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\BlobIOSystem.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\ByteSwapper.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\C4DImporter.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\CInterfaceIOWrapper.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\COBLoader.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\COBScene.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\CSMLoader.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\CalcTangentsProcess.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\ColladaExporter.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\ColladaHelper.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\ColladaLoader.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\ColladaParser.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\ComputeUVMappingProcess.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\ConvertToLHProcess.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\CreateAnimMesh.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\D3MFExporter.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\D3MFImporter.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\D3MFOpcPackage.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\DXFHelper.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\DXFLoader.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\DeboneProcess.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\DefaultIOStream.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\DefaultIOSystem.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\DefaultProgressHandler.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\Defines.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\EmbedTexturesProcess.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\Exceptional.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\FBXCommon.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\FBXCompileConfig.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\FBXConverter.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\FBXDocument.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\FBXDocumentUtil.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\FBXExportNode.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\FBXExportProperty.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\FBXExporter.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\FBXImportSettings.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\FBXImporter.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\FBXMeshGeometry.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\FBXParser.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\FBXProperties.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\FBXTokenizer.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\FBXUtil.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\FIReader.hpp">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\FileLogStream.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\FileSystemFilter.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\FindDegenerates.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\FindInstancesProcess.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\FindInvalidDataProcess.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\FixNormalsStep.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\GenFaceNormalsProcess.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\GenVertexNormalsProcess.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\GenericProperty.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\HMPFileData.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\HMPLoader.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\HalfLifeFileData.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\Hash.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\IFCLoader.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\IFCReaderGen.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\IFCUtil.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\IFF.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\IOStreamBuffer.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\IRRLoader.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\IRRMeshLoader.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\IRRShared.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\Importer.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\Importer\IFC\IFCLoader.h">
+      <Filter>code\Importer\IFC</Filter>
+    </ClInclude>
+    <ClInclude Include="code\Importer\IFC\IFCReaderGen_2x3.h">
+      <Filter>code\Importer\IFC</Filter>
+    </ClInclude>
+    <ClInclude Include="code\Importer\IFC\IFCReaderGen_4.h">
+      <Filter>code\Importer\IFC</Filter>
+    </ClInclude>
+    <ClInclude Include="code\Importer\IFC\IFCUtil.h">
+      <Filter>code\Importer\IFC</Filter>
+    </ClInclude>
+    <ClInclude Include="code\Importer\IFC\STEPFileEncoding.h">
+      <Filter>code\Importer\IFC</Filter>
+    </ClInclude>
+    <ClInclude Include="code\Importer\IFC\STEPFileReader.h">
+      <Filter>code\Importer\IFC</Filter>
+    </ClInclude>
+    <ClInclude Include="code\ImproveCacheLocality.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\JoinVerticesProcess.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\LWOAnimation.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\LWOFileData.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\LWOLoader.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\LWSLoader.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\LimitBoneWeightsProcess.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\LineSplitter.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\LogAux.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\MD2FileData.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\MD2Loader.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\MD2NormalTable.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\MD3FileData.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\MD3Loader.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\MD4FileData.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\MD5Loader.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\MD5Parser.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\MDCFileData.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\MDCLoader.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\MDCNormalTable.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\MDLDefaultColorMap.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\MDLFileData.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\MDLLoader.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\MMDCpp14.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\MMDImporter.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\MMDPmdParser.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\MMDPmxParser.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\MMDVmdParser.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\MS3DLoader.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\Macros.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\MakeVerboseFormat.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\MaterialSystem.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\MathFunctions.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\MemoryIOWrapper.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\NDOLoader.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\NFFLoader.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\OFFLoader.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\ObjExporter.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\ObjFileData.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\ObjFileImporter.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\ObjFileMtlImporter.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\ObjFileParser.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\ObjTools.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\OgreBinarySerializer.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\OgreImporter.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\OgreParsingUtils.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\OgreStructs.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\OgreXmlSerializer.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\OpenGEXExporter.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\OpenGEXImporter.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\OpenGEXStructs.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\OptimizeGraph.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\OptimizeMeshes.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\ParsingUtils.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\PlyExporter.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\PlyLoader.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\PlyParser.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\PolyTools.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\PretransformVertices.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\ProcessHelper.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\Profiler.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\Q3BSPFileData.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\Q3BSPFileImporter.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\Q3BSPFileParser.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\Q3BSPZipArchive.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\Q3DLoader.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\RawLoader.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\RemoveComments.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\RemoveRedundantMaterials.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\RemoveVCProcess.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\SGSpatialSort.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\SIBImporter.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\SMDLoader.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\STEPFile.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\STEPFileEncoding.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\STEPFileReader.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\STLExporter.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\STLLoader.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\ScaleProcess.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\SceneCombiner.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\ScenePreprocessor.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\ScenePrivate.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\SkeletonMeshBuilder.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\SmoothingGroups.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\SmoothingGroups.inl">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\SortByPTypeProcess.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\SpatialSort.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\SplitByBoneCountProcess.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\SplitLargeMeshes.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\StandardShapes.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\StdOStreamLogStream.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\StepExporter.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\StreamReader.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\StreamWriter.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\StringComparison.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\StringUtils.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\Subdivision.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\TargetAnimation.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\TerragenLoader.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\TextureTransform.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\TinyFormatter.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\TriangulateProcess.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\UnrealLoader.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\ValidateDataStructure.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\Vertex.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\VertexTriangleAdjacency.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\Win32DebugLogStream.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\X3DExporter.hpp">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\X3DImporter.hpp">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\X3DImporter_Macro.hpp">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\X3DImporter_Node.hpp">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\XFileExporter.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\XFileHelper.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\XFileImporter.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\XFileParser.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\XGLLoader.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\XMLTools.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\assbin_chunks.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\fast_atof.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\glTF2Asset.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\glTF2Asset.inl">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\glTF2AssetWriter.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\glTF2AssetWriter.inl">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\glTF2Exporter.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\glTF2Importer.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\glTFAsset.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\glTFAsset.inl">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\glTFAssetWriter.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\glTFAssetWriter.inl">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\glTFExporter.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\glTFImporter.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\irrXMLWrapper.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\qnan.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\res\resource.h">
+      <Filter>code\res</Filter>
+    </ClInclude>
+    <ClInclude Include="code\revision.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="code\simd.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\Open3DGC\o3dgcAdjacencyInfo.h">
+      <Filter>contrib\Open3DGC</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\Open3DGC\o3dgcArithmeticCodec.h">
+      <Filter>contrib\Open3DGC</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\Open3DGC\o3dgcBinaryStream.h">
+      <Filter>contrib\Open3DGC</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\Open3DGC\o3dgcCommon.h">
+      <Filter>contrib\Open3DGC</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\Open3DGC\o3dgcDVEncodeParams.h">
+      <Filter>contrib\Open3DGC</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\Open3DGC\o3dgcDynamicVector.h">
+      <Filter>contrib\Open3DGC</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\Open3DGC\o3dgcDynamicVectorDecoder.h">
+      <Filter>contrib\Open3DGC</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\Open3DGC\o3dgcDynamicVectorEncoder.h">
+      <Filter>contrib\Open3DGC</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\Open3DGC\o3dgcFIFO.h">
+      <Filter>contrib\Open3DGC</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\Open3DGC\o3dgcIndexedFaceSet.h">
+      <Filter>contrib\Open3DGC</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\Open3DGC\o3dgcIndexedFaceSet.inl">
+      <Filter>contrib\Open3DGC</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\Open3DGC\o3dgcSC3DMCDecoder.h">
+      <Filter>contrib\Open3DGC</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\Open3DGC\o3dgcSC3DMCDecoder.inl">
+      <Filter>contrib\Open3DGC</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\Open3DGC\o3dgcSC3DMCEncodeParams.h">
+      <Filter>contrib\Open3DGC</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\Open3DGC\o3dgcSC3DMCEncoder.h">
+      <Filter>contrib\Open3DGC</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\Open3DGC\o3dgcSC3DMCEncoder.inl">
+      <Filter>contrib\Open3DGC</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\Open3DGC\o3dgcTimer.h">
+      <Filter>contrib\Open3DGC</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\Open3DGC\o3dgcTriangleFans.h">
+      <Filter>contrib\Open3DGC</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\Open3DGC\o3dgcTriangleListDecoder.h">
+      <Filter>contrib\Open3DGC</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\Open3DGC\o3dgcTriangleListDecoder.inl">
+      <Filter>contrib\Open3DGC</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\Open3DGC\o3dgcTriangleListEncoder.h">
+      <Filter>contrib\Open3DGC</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\Open3DGC\o3dgcTriangleListEncoder.inl">
+      <Filter>contrib\Open3DGC</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\Open3DGC\o3dgcVector.h">
+      <Filter>contrib\Open3DGC</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\Open3DGC\o3dgcVector.inl">
+      <Filter>contrib\Open3DGC</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\clipper\clipper.hpp">
+      <Filter>contrib\clipper</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\irrXML\CXMLReaderImpl.h">
+      <Filter>contrib\irrXML</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\irrXML\heapsort.h">
+      <Filter>contrib\irrXML</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\irrXML\irrArray.h">
+      <Filter>contrib\irrXML</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\irrXML\irrString.h">
+      <Filter>contrib\irrXML</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\irrXML\irrTypes.h">
+      <Filter>contrib\irrXML</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\irrXML\irrXML.h">
+      <Filter>contrib\irrXML</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\openddlparser\include\openddlparser\DDLNode.h">
+      <Filter>contrib\openddlparser\include\openddlparser</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\openddlparser\include\openddlparser\OpenDDLCommon.h">
+      <Filter>contrib\openddlparser\include\openddlparser</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\openddlparser\include\openddlparser\OpenDDLExport.h">
+      <Filter>contrib\openddlparser\include\openddlparser</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\openddlparser\include\openddlparser\OpenDDLParser.h">
+      <Filter>contrib\openddlparser\include\openddlparser</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\openddlparser\include\openddlparser\OpenDDLParserUtils.h">
+      <Filter>contrib\openddlparser\include\openddlparser</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\openddlparser\include\openddlparser\OpenDDLStream.h">
+      <Filter>contrib\openddlparser\include\openddlparser</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\openddlparser\include\openddlparser\Value.h">
+      <Filter>contrib\openddlparser\include\openddlparser</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\poly2tri\poly2tri\common\shapes.h">
+      <Filter>contrib\poly2tri\poly2tri\common</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\poly2tri\poly2tri\common\utils.h">
+      <Filter>contrib\poly2tri\poly2tri\common</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\poly2tri\poly2tri\poly2tri.h">
+      <Filter>contrib\poly2tri\poly2tri</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\poly2tri\poly2tri\sweep\advancing_front.h">
+      <Filter>contrib\poly2tri\poly2tri\sweep</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\poly2tri\poly2tri\sweep\cdt.h">
+      <Filter>contrib\poly2tri\poly2tri\sweep</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\poly2tri\poly2tri\sweep\sweep.h">
+      <Filter>contrib\poly2tri\poly2tri\sweep</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\poly2tri\poly2tri\sweep\sweep_context.h">
+      <Filter>contrib\poly2tri\poly2tri\sweep</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\rapidjson\include\rapidjson\allocators.h">
+      <Filter>contrib\rapidjson\include\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\rapidjson\include\rapidjson\document.h">
+      <Filter>contrib\rapidjson\include\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\rapidjson\include\rapidjson\encodedstream.h">
+      <Filter>contrib\rapidjson\include\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\rapidjson\include\rapidjson\encodings.h">
+      <Filter>contrib\rapidjson\include\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\rapidjson\include\rapidjson\error\en.h">
+      <Filter>contrib\rapidjson\include\rapidjson\error</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\rapidjson\include\rapidjson\error\error.h">
+      <Filter>contrib\rapidjson\include\rapidjson\error</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\rapidjson\include\rapidjson\filereadstream.h">
+      <Filter>contrib\rapidjson\include\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\rapidjson\include\rapidjson\filewritestream.h">
+      <Filter>contrib\rapidjson\include\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\rapidjson\include\rapidjson\fwd.h">
+      <Filter>contrib\rapidjson\include\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\rapidjson\include\rapidjson\internal\biginteger.h">
+      <Filter>contrib\rapidjson\include\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\rapidjson\include\rapidjson\internal\diyfp.h">
+      <Filter>contrib\rapidjson\include\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\rapidjson\include\rapidjson\internal\dtoa.h">
+      <Filter>contrib\rapidjson\include\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\rapidjson\include\rapidjson\internal\ieee754.h">
+      <Filter>contrib\rapidjson\include\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\rapidjson\include\rapidjson\internal\itoa.h">
+      <Filter>contrib\rapidjson\include\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\rapidjson\include\rapidjson\internal\meta.h">
+      <Filter>contrib\rapidjson\include\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\rapidjson\include\rapidjson\internal\pow10.h">
+      <Filter>contrib\rapidjson\include\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\rapidjson\include\rapidjson\internal\regex.h">
+      <Filter>contrib\rapidjson\include\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\rapidjson\include\rapidjson\internal\stack.h">
+      <Filter>contrib\rapidjson\include\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\rapidjson\include\rapidjson\internal\strfunc.h">
+      <Filter>contrib\rapidjson\include\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\rapidjson\include\rapidjson\internal\strtod.h">
+      <Filter>contrib\rapidjson\include\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\rapidjson\include\rapidjson\internal\swap.h">
+      <Filter>contrib\rapidjson\include\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\rapidjson\include\rapidjson\istreamwrapper.h">
+      <Filter>contrib\rapidjson\include\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\rapidjson\include\rapidjson\memorybuffer.h">
+      <Filter>contrib\rapidjson\include\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\rapidjson\include\rapidjson\memorystream.h">
+      <Filter>contrib\rapidjson\include\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\rapidjson\include\rapidjson\msinttypes\inttypes.h">
+      <Filter>contrib\rapidjson\include\rapidjson\msinttypes</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\rapidjson\include\rapidjson\msinttypes\stdint.h">
+      <Filter>contrib\rapidjson\include\rapidjson\msinttypes</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\rapidjson\include\rapidjson\ostreamwrapper.h">
+      <Filter>contrib\rapidjson\include\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\rapidjson\include\rapidjson\pointer.h">
+      <Filter>contrib\rapidjson\include\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\rapidjson\include\rapidjson\prettywriter.h">
+      <Filter>contrib\rapidjson\include\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\rapidjson\include\rapidjson\rapidjson.h">
+      <Filter>contrib\rapidjson\include\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\rapidjson\include\rapidjson\reader.h">
+      <Filter>contrib\rapidjson\include\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\rapidjson\include\rapidjson\schema.h">
+      <Filter>contrib\rapidjson\include\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\rapidjson\include\rapidjson\stream.h">
+      <Filter>contrib\rapidjson\include\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\rapidjson\include\rapidjson\stringbuffer.h">
+      <Filter>contrib\rapidjson\include\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\rapidjson\include\rapidjson\writer.h">
+      <Filter>contrib\rapidjson\include\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\unzip\crypt.h">
+      <Filter>contrib\unzip</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\unzip\ioapi.h">
+      <Filter>contrib\unzip</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\unzip\unzip.h">
+      <Filter>contrib\unzip</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\utf8cpp\source\utf8.h">
+      <Filter>contrib\utf8cpp\source</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\utf8cpp\source\utf8\checked.h">
+      <Filter>contrib\utf8cpp\source\utf8</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\utf8cpp\source\utf8\core.h">
+      <Filter>contrib\utf8cpp\source\utf8</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\utf8cpp\source\utf8\unchecked.h">
+      <Filter>contrib\utf8cpp\source\utf8</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\zip\src\miniz.h">
+      <Filter>contrib\zip\src</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\zip\src\zip.h">
+      <Filter>contrib\zip\src</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\zlib\contrib\blast\blast.h">
+      <Filter>contrib\zlib\contrib\blast</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\zlib\contrib\infback9\infback9.h">
+      <Filter>contrib\zlib\contrib\infback9</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\zlib\contrib\infback9\inffix9.h">
+      <Filter>contrib\zlib\contrib\infback9</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\zlib\contrib\infback9\inflate9.h">
+      <Filter>contrib\zlib\contrib\infback9</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\zlib\contrib\infback9\inftree9.h">
+      <Filter>contrib\zlib\contrib\infback9</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\zlib\contrib\iostream\zfstream.h">
+      <Filter>contrib\zlib\contrib\iostream</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\zlib\contrib\iostream2\zstream.h">
+      <Filter>contrib\zlib\contrib\iostream2</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\zlib\contrib\iostream3\zfstream.h">
+      <Filter>contrib\zlib\contrib\iostream3</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\zlib\contrib\minizip\crypt.h">
+      <Filter>contrib\zlib\contrib\minizip</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\zlib\contrib\minizip\ioapi.h">
+      <Filter>contrib\zlib\contrib\minizip</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\zlib\contrib\minizip\iowin32.h">
+      <Filter>contrib\zlib\contrib\minizip</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\zlib\contrib\minizip\mztools.h">
+      <Filter>contrib\zlib\contrib\minizip</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\zlib\contrib\minizip\unzip.h">
+      <Filter>contrib\zlib\contrib\minizip</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\zlib\contrib\minizip\zip.h">
+      <Filter>contrib\zlib\contrib\minizip</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\zlib\contrib\puff\puff.h">
+      <Filter>contrib\zlib\contrib\puff</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\zlib\crc32.h">
+      <Filter>contrib\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\zlib\deflate.h">
+      <Filter>contrib\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\zlib\gzguts.h">
+      <Filter>contrib\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\zlib\inffast.h">
+      <Filter>contrib\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\zlib\inffixed.h">
+      <Filter>contrib\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\zlib\inflate.h">
+      <Filter>contrib\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\zlib\inftrees.h">
+      <Filter>contrib\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\zlib\trees.h">
+      <Filter>contrib\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\zlib\zconf.h">
+      <Filter>contrib\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\zlib\zconf.in.h">
+      <Filter>contrib\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\zlib\zlib.h">
+      <Filter>contrib\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="contrib\zlib\zutil.h">
+      <Filter>contrib\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\BaseImporter.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\Bitmap.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\BlobIOSystem.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\ByteSwapper.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\Compiler\poppack1.h">
+      <Filter>include\assimp\Compiler</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\Compiler\pstdint.h">
+      <Filter>include\assimp\Compiler</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\Compiler\pushpack1.h">
+      <Filter>include\assimp\Compiler</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\CreateAnimMesh.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\DefaultIOStream.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\DefaultIOSystem.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\DefaultLogger.hpp">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\Defines.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\Exceptional.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\Exporter.hpp">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\GenericProperty.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\Hash.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\IOStream.hpp">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\IOStreamBuffer.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\IOSystem.hpp">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\Importer.hpp">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\LineSplitter.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\LogAux.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\LogStream.hpp">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\Logger.hpp">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\Macros.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\MathFunctions.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\MemoryIOWrapper.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\NullLogger.hpp">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\ParsingUtils.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\Profiler.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\ProgressHandler.hpp">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\RemoveComments.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\SGSpatialSort.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\SceneCombiner.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\SkeletonMeshBuilder.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\SmoothingGroups.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\SmoothingGroups.inl">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\SpatialSort.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\StandardShapes.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\StreamReader.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\StreamWriter.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\StringComparison.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\StringUtils.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\Subdivision.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\TinyFormatter.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\Vertex.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\XMLTools.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\ai_assert.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\anim.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\camera.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\cexport.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\cfileio.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\cimport.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\color4.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\color4.inl">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\config.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\defs.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\fast_atof.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\importerdesc.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\irrXMLWrapper.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\light.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\material.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\material.inl">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\matrix3x3.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\matrix3x3.inl">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\matrix4x4.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\matrix4x4.inl">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\mesh.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\metadata.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\pbrmaterial.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\port\AndroidJNI\AndroidJNIIOSystem.h">
+      <Filter>include\assimp\port\AndroidJNI</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\postprocess.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\qnan.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\quaternion.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\quaternion.inl">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\scene.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\texture.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\types.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\vector2.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\vector2.inl">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\vector3.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\vector3.inl">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assimp\version.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="code\3DSConverter.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\3DSExporter.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\3DSLoader.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\ACLoader.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\AMFImporter.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\AMFImporter_Geometry.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\AMFImporter_Material.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\AMFImporter_Postprocess.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\ASELoader.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\ASEParser.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\AssbinExporter.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\AssbinLoader.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\Assimp.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\AssimpCExport.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\AssxmlExporter.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\B3DImporter.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\BVHLoader.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\BaseImporter.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\BaseProcess.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\Bitmap.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\BlenderBMesh.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\BlenderCustomData.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\BlenderDNA.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\BlenderLoader.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\BlenderModifier.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\BlenderScene.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\BlenderTessellator.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\C4DImporter.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\CInterfaceIOWrapper.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\COBLoader.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\CSMLoader.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\CalcTangentsProcess.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\ColladaExporter.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\ColladaLoader.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\ColladaParser.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\ComputeUVMappingProcess.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\ConvertToLHProcess.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\CreateAnimMesh.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\D3MFExporter.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\D3MFImporter.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\D3MFOpcPackage.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\DXFLoader.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\DeboneProcess.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\DefaultIOStream.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\DefaultIOSystem.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\DefaultLogger.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\EmbedTexturesProcess.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\Exporter.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\FBXAnimation.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\FBXBinaryTokenizer.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\FBXConverter.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\FBXDeformer.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\FBXDocument.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\FBXDocumentUtil.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\FBXExportNode.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\FBXExportProperty.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\FBXExporter.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\FBXImporter.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\FBXMaterial.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\FBXMeshGeometry.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\FBXModel.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\FBXNodeAttribute.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\FBXParser.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\FBXProperties.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\FBXTokenizer.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\FBXUtil.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\FIReader.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\FindDegenerates.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\FindInstancesProcess.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\FindInvalidDataProcess.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\FixNormalsStep.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\GenFaceNormalsProcess.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\GenVertexNormalsProcess.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\HMPLoader.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\IFCBoolean.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\IFCCurve.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\IFCGeometry.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\IFCLoader.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\IFCMaterial.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\IFCOpenings.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\IFCProfile.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\IFCReaderGen1.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\IFCReaderGen2.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\IFCUtil.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\IRRLoader.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\IRRMeshLoader.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\IRRShared.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\Importer.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\Importer\IFC\IFCBoolean.cpp">
+      <Filter>code\Importer\IFC</Filter>
+    </ClCompile>
+    <ClCompile Include="code\Importer\IFC\IFCCurve.cpp">
+      <Filter>code\Importer\IFC</Filter>
+    </ClCompile>
+    <ClCompile Include="code\Importer\IFC\IFCGeometry.cpp">
+      <Filter>code\Importer\IFC</Filter>
+    </ClCompile>
+    <ClCompile Include="code\Importer\IFC\IFCLoader.cpp">
+      <Filter>code\Importer\IFC</Filter>
+    </ClCompile>
+    <ClCompile Include="code\Importer\IFC\IFCMaterial.cpp">
+      <Filter>code\Importer\IFC</Filter>
+    </ClCompile>
+    <ClCompile Include="code\Importer\IFC\IFCOpenings.cpp">
+      <Filter>code\Importer\IFC</Filter>
+    </ClCompile>
+    <ClCompile Include="code\Importer\IFC\IFCProfile.cpp">
+      <Filter>code\Importer\IFC</Filter>
+    </ClCompile>
+    <ClCompile Include="code\Importer\IFC\IFCReaderGen1_2x3.cpp">
+      <Filter>code\Importer\IFC</Filter>
+    </ClCompile>
+    <ClCompile Include="code\Importer\IFC\IFCReaderGen2_2x3.cpp">
+      <Filter>code\Importer\IFC</Filter>
+    </ClCompile>
+    <ClCompile Include="code\Importer\IFC\IFCReaderGen_4.cpp">
+      <Filter>code\Importer\IFC</Filter>
+    </ClCompile>
+    <ClCompile Include="code\Importer\IFC\IFCUtil.cpp">
+      <Filter>code\Importer\IFC</Filter>
+    </ClCompile>
+    <ClCompile Include="code\Importer\IFC\STEPFileEncoding.cpp">
+      <Filter>code\Importer\IFC</Filter>
+    </ClCompile>
+    <ClCompile Include="code\Importer\IFC\STEPFileReader.cpp">
+      <Filter>code\Importer\IFC</Filter>
+    </ClCompile>
+    <ClCompile Include="code\ImporterRegistry.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\ImproveCacheLocality.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\JoinVerticesProcess.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\LWOAnimation.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\LWOBLoader.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\LWOLoader.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\LWOMaterial.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\LWSLoader.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\LimitBoneWeightsProcess.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\MD2Loader.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\MD3Loader.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\MD5Loader.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\MD5Parser.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\MDCLoader.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\MDLLoader.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\MDLMaterialLoader.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\MMDImporter.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\MMDPmxParser.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\MS3DLoader.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\MakeVerboseFormat.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\MaterialSystem.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\NDOLoader.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\NFFLoader.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\OFFLoader.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\ObjExporter.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\ObjFileImporter.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\ObjFileMtlImporter.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\ObjFileParser.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\OgreBinarySerializer.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\OgreImporter.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\OgreMaterial.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\OgreStructs.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\OgreXmlSerializer.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\OpenGEXExporter.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\OpenGEXImporter.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\OptimizeGraph.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\OptimizeMeshes.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\PlyExporter.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\PlyLoader.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\PlyParser.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\PostStepRegistry.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\PretransformVertices.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\ProcessHelper.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\Q3BSPFileImporter.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\Q3BSPFileParser.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\Q3BSPZipArchive.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\Q3DLoader.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\RawLoader.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\RemoveComments.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\RemoveRedundantMaterials.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\RemoveVCProcess.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\SGSpatialSort.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\SIBImporter.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\SMDLoader.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\STEPFileEncoding.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\STEPFileReader.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\STLExporter.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\STLLoader.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\ScaleProcess.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\SceneCombiner.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\ScenePreprocessor.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\SkeletonMeshBuilder.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\SortByPTypeProcess.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\SpatialSort.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\SplitByBoneCountProcess.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\SplitLargeMeshes.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\StandardShapes.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\StepExporter.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\Subdivision.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\TargetAnimation.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\TerragenLoader.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\TextureTransform.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\TriangulateProcess.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\UnrealLoader.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\ValidateDataStructure.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\Version.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\VertexTriangleAdjacency.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\X3DExporter.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\X3DImporter.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\X3DImporter_Geometry2D.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\X3DImporter_Geometry3D.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\X3DImporter_Group.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\X3DImporter_Light.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\X3DImporter_Metadata.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\X3DImporter_Networking.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\X3DImporter_Postprocess.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\X3DImporter_Rendering.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\X3DImporter_Shape.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\X3DImporter_Texturing.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\X3DVocabulary.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\XFileExporter.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\XFileImporter.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\XFileParser.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\XGLLoader.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\glTF2Exporter.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\glTF2Importer.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\glTFExporter.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\glTFImporter.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\scene.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\simd.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\Open3DGC\o3dgcArithmeticCodec.cpp">
+      <Filter>contrib\Open3DGC</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\Open3DGC\o3dgcDynamicVectorDecoder.cpp">
+      <Filter>contrib\Open3DGC</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\Open3DGC\o3dgcDynamicVectorEncoder.cpp">
+      <Filter>contrib\Open3DGC</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\Open3DGC\o3dgcTools.cpp">
+      <Filter>contrib\Open3DGC</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\Open3DGC\o3dgcTriangleFans.cpp">
+      <Filter>contrib\Open3DGC</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\clipper\clipper.cpp">
+      <Filter>contrib\clipper</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\irrXML\irrXML.cpp">
+      <Filter>contrib\irrXML</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\openddlparser\code\DDLNode.cpp">
+      <Filter>contrib\openddlparser\code</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\openddlparser\code\OpenDDLCommon.cpp">
+      <Filter>contrib\openddlparser\code</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\openddlparser\code\OpenDDLExport.cpp">
+      <Filter>contrib\openddlparser\code</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\openddlparser\code\OpenDDLParser.cpp">
+      <Filter>contrib\openddlparser\code</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\openddlparser\code\OpenDDLStream.cpp">
+      <Filter>contrib\openddlparser\code</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\openddlparser\code\Value.cpp">
+      <Filter>contrib\openddlparser\code</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\poly2tri\poly2tri\common\shapes.cc">
+      <Filter>contrib\poly2tri\poly2tri\common</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\poly2tri\poly2tri\sweep\advancing_front.cc">
+      <Filter>contrib\poly2tri\poly2tri\sweep</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\poly2tri\poly2tri\sweep\cdt.cc">
+      <Filter>contrib\poly2tri\poly2tri\sweep</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\poly2tri\poly2tri\sweep\sweep.cc">
+      <Filter>contrib\poly2tri\poly2tri\sweep</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\poly2tri\poly2tri\sweep\sweep_context.cc">
+      <Filter>contrib\poly2tri\poly2tri\sweep</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\unzip\ioapi.c">
+      <Filter>contrib\unzip</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\unzip\unzip.c">
+      <Filter>contrib\unzip</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\zip\src\zip.c">
+      <Filter>contrib\zip\src</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\zip\test\test.c">
+      <Filter>contrib\zip\test</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\zlib\adler32.c">
+      <Filter>contrib\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\zlib\compress.c">
+      <Filter>contrib\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\zlib\contrib\amd64\amd64-match.S">
+      <Filter>contrib\zlib\contrib\amd64</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\zlib\contrib\asm686\match.S">
+      <Filter>contrib\zlib\contrib\asm686</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\zlib\contrib\blast\blast.c">
+      <Filter>contrib\zlib\contrib\blast</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\zlib\contrib\gcc_gvmat64\gvmat64.S">
+      <Filter>contrib\zlib\contrib\gcc_gvmat64</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\zlib\contrib\infback9\infback9.c">
+      <Filter>contrib\zlib\contrib\infback9</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\zlib\contrib\infback9\inftree9.c">
+      <Filter>contrib\zlib\contrib\infback9</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\zlib\contrib\inflate86\inffas86.c">
+      <Filter>contrib\zlib\contrib\inflate86</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\zlib\contrib\inflate86\inffast.S">
+      <Filter>contrib\zlib\contrib\inflate86</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\zlib\contrib\iostream\test.cpp">
+      <Filter>contrib\zlib\contrib\iostream</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\zlib\contrib\iostream\zfstream.cpp">
+      <Filter>contrib\zlib\contrib\iostream</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\zlib\contrib\iostream2\zstream_test.cpp">
+      <Filter>contrib\zlib\contrib\iostream2</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\zlib\contrib\iostream3\test.cc">
+      <Filter>contrib\zlib\contrib\iostream3</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\zlib\contrib\iostream3\zfstream.cc">
+      <Filter>contrib\zlib\contrib\iostream3</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\zlib\contrib\masmx64\inffas8664.c">
+      <Filter>contrib\zlib\contrib\masmx64</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\zlib\contrib\minizip\ioapi.c">
+      <Filter>contrib\zlib\contrib\minizip</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\zlib\contrib\minizip\iowin32.c">
+      <Filter>contrib\zlib\contrib\minizip</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\zlib\contrib\minizip\miniunz.c">
+      <Filter>contrib\zlib\contrib\minizip</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\zlib\contrib\minizip\minizip.c">
+      <Filter>contrib\zlib\contrib\minizip</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\zlib\contrib\minizip\mztools.c">
+      <Filter>contrib\zlib\contrib\minizip</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\zlib\contrib\minizip\unzip.c">
+      <Filter>contrib\zlib\contrib\minizip</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\zlib\contrib\minizip\zip.c">
+      <Filter>contrib\zlib\contrib\minizip</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\zlib\contrib\puff\puff.c">
+      <Filter>contrib\zlib\contrib\puff</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\zlib\contrib\puff\pufftest.c">
+      <Filter>contrib\zlib\contrib\puff</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\zlib\contrib\testzlib\testzlib.c">
+      <Filter>contrib\zlib\contrib\testzlib</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\zlib\contrib\untgz\untgz.c">
+      <Filter>contrib\zlib\contrib\untgz</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\zlib\crc32.c">
+      <Filter>contrib\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\zlib\deflate.c">
+      <Filter>contrib\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\zlib\gzclose.c">
+      <Filter>contrib\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\zlib\gzlib.c">
+      <Filter>contrib\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\zlib\gzread.c">
+      <Filter>contrib\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\zlib\gzwrite.c">
+      <Filter>contrib\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\zlib\infback.c">
+      <Filter>contrib\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\zlib\inffast.c">
+      <Filter>contrib\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\zlib\inflate.c">
+      <Filter>contrib\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\zlib\inftrees.c">
+      <Filter>contrib\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\zlib\trees.c">
+      <Filter>contrib\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\zlib\uncompr.c">
+      <Filter>contrib\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="contrib\zlib\zutil.c">
+      <Filter>contrib\zlib</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".git" />
+    <None Include=".gitignore" />
+    <None Include="LICENSE" />
+    <None Include="Readme.md" />
+    <None Include="assimp.vcxproj" />
+    <None Include="assimp.vcxproj.filters" />
+    <None Include="bin-int\Debug-windows\assimp\Assimp.obj">
+      <Filter>bin-int\Debug-windows\assimp</Filter>
+    </None>
+    <None Include="bin-int\Debug-windows\assimp\BaseImporter.obj">
+      <Filter>bin-int\Debug-windows\assimp</Filter>
+    </None>
+    <None Include="bin-int\Debug-windows\assimp\BaseProcess.obj">
+      <Filter>bin-int\Debug-windows\assimp</Filter>
+    </None>
+    <None Include="bin-int\Debug-windows\assimp\CalcTangentsProcess.obj">
+      <Filter>bin-int\Debug-windows\assimp</Filter>
+    </None>
+    <None Include="bin-int\Debug-windows\assimp\ColladaLoader.obj">
+      <Filter>bin-int\Debug-windows\assimp</Filter>
+    </None>
+    <None Include="bin-int\Debug-windows\assimp\ColladaParser.obj">
+      <Filter>bin-int\Debug-windows\assimp</Filter>
+    </None>
+    <None Include="bin-int\Debug-windows\assimp\ConvertToLHProcess.obj">
+      <Filter>bin-int\Debug-windows\assimp</Filter>
+    </None>
+    <None Include="bin-int\Debug-windows\assimp\CreateAnimMesh.obj">
+      <Filter>bin-int\Debug-windows\assimp</Filter>
+    </None>
+    <None Include="bin-int\Debug-windows\assimp\DefaultIOStream.obj">
+      <Filter>bin-int\Debug-windows\assimp</Filter>
+    </None>
+    <None Include="bin-int\Debug-windows\assimp\DefaultIOSystem.obj">
+      <Filter>bin-int\Debug-windows\assimp</Filter>
+    </None>
+    <None Include="bin-int\Debug-windows\assimp\DefaultLogger.obj">
+      <Filter>bin-int\Debug-windows\assimp</Filter>
+    </None>
+    <None Include="bin-int\Debug-windows\assimp\EmbedTexturesProcess.obj">
+      <Filter>bin-int\Debug-windows\assimp</Filter>
+    </None>
+    <None Include="bin-int\Debug-windows\assimp\GenVertexNormalsProcess.obj">
+      <Filter>bin-int\Debug-windows\assimp</Filter>
+    </None>
+    <None Include="bin-int\Debug-windows\assimp\Importer.obj">
+      <Filter>bin-int\Debug-windows\assimp</Filter>
+    </None>
+    <None Include="bin-int\Debug-windows\assimp\ImporterRegistry.obj">
+      <Filter>bin-int\Debug-windows\assimp</Filter>
+    </None>
+    <None Include="bin-int\Debug-windows\assimp\MakeVerboseFormat.obj">
+      <Filter>bin-int\Debug-windows\assimp</Filter>
+    </None>
+    <None Include="bin-int\Debug-windows\assimp\MaterialSystem.obj">
+      <Filter>bin-int\Debug-windows\assimp</Filter>
+    </None>
+    <None Include="bin-int\Debug-windows\assimp\ObjFileImporter.obj">
+      <Filter>bin-int\Debug-windows\assimp</Filter>
+    </None>
+    <None Include="bin-int\Debug-windows\assimp\ObjFileMtlImporter.obj">
+      <Filter>bin-int\Debug-windows\assimp</Filter>
+    </None>
+    <None Include="bin-int\Debug-windows\assimp\ObjFileParser.obj">
+      <Filter>bin-int\Debug-windows\assimp</Filter>
+    </None>
+    <None Include="bin-int\Debug-windows\assimp\PlyLoader.obj">
+      <Filter>bin-int\Debug-windows\assimp</Filter>
+    </None>
+    <None Include="bin-int\Debug-windows\assimp\PlyParser.obj">
+      <Filter>bin-int\Debug-windows\assimp</Filter>
+    </None>
+    <None Include="bin-int\Debug-windows\assimp\PostStepRegistry.obj">
+      <Filter>bin-int\Debug-windows\assimp</Filter>
+    </None>
+    <None Include="bin-int\Debug-windows\assimp\ProcessHelper.obj">
+      <Filter>bin-int\Debug-windows\assimp</Filter>
+    </None>
+    <None Include="bin-int\Debug-windows\assimp\SGSpatialSort.obj">
+      <Filter>bin-int\Debug-windows\assimp</Filter>
+    </None>
+    <None Include="bin-int\Debug-windows\assimp\ScaleProcess.obj">
+      <Filter>bin-int\Debug-windows\assimp</Filter>
+    </None>
+    <None Include="bin-int\Debug-windows\assimp\ScenePreprocessor.obj">
+      <Filter>bin-int\Debug-windows\assimp</Filter>
+    </None>
+    <None Include="bin-int\Debug-windows\assimp\SkeletonMeshBuilder.obj">
+      <Filter>bin-int\Debug-windows\assimp</Filter>
+    </None>
+    <None Include="bin-int\Debug-windows\assimp\SpatialSort.obj">
+      <Filter>bin-int\Debug-windows\assimp</Filter>
+    </None>
+    <None Include="bin-int\Debug-windows\assimp\TriangulateProcess.obj">
+      <Filter>bin-int\Debug-windows\assimp</Filter>
+    </None>
+    <None Include="bin-int\Debug-windows\assimp\ValidateDataStructure.obj">
+      <Filter>bin-int\Debug-windows\assimp</Filter>
+    </None>
+    <None Include="bin-int\Debug-windows\assimp\Version.obj">
+      <Filter>bin-int\Debug-windows\assimp</Filter>
+    </None>
+    <None Include="bin-int\Debug-windows\assimp\VertexTriangleAdjacency.obj">
+      <Filter>bin-int\Debug-windows\assimp</Filter>
+    </None>
+    <None Include="bin-int\Debug-windows\assimp\assimp.lib.recipe">
+      <Filter>bin-int\Debug-windows\assimp</Filter>
+    </None>
+    <None Include="bin-int\Debug-windows\assimp\assimp.log">
+      <Filter>bin-int\Debug-windows\assimp</Filter>
+    </None>
+    <None Include="bin-int\Debug-windows\assimp\assimp.tlog\CL.command.1.tlog">
+      <Filter>bin-int\Debug-windows\assimp\assimp.tlog</Filter>
+    </None>
+    <None Include="bin-int\Debug-windows\assimp\assimp.tlog\CL.read.1.tlog">
+      <Filter>bin-int\Debug-windows\assimp\assimp.tlog</Filter>
+    </None>
+    <None Include="bin-int\Debug-windows\assimp\assimp.tlog\CL.write.1.tlog">
+      <Filter>bin-int\Debug-windows\assimp\assimp.tlog</Filter>
+    </None>
+    <None Include="bin-int\Debug-windows\assimp\assimp.tlog\Lib-link.read.1.tlog">
+      <Filter>bin-int\Debug-windows\assimp\assimp.tlog</Filter>
+    </None>
+    <None Include="bin-int\Debug-windows\assimp\assimp.tlog\Lib-link.write.1.tlog">
+      <Filter>bin-int\Debug-windows\assimp\assimp.tlog</Filter>
+    </None>
+    <None Include="bin-int\Debug-windows\assimp\assimp.tlog\Lib.command.1.tlog">
+      <Filter>bin-int\Debug-windows\assimp\assimp.tlog</Filter>
+    </None>
+    <None Include="bin-int\Debug-windows\assimp\assimp.tlog\assimp.lastbuildstate">
+      <Filter>bin-int\Debug-windows\assimp\assimp.tlog</Filter>
+    </None>
+    <None Include="bin-int\Debug-windows\assimp\glTF2Importer.obj">
+      <Filter>bin-int\Debug-windows\assimp</Filter>
+    </None>
+    <None Include="bin-int\Debug-windows\assimp\glTFImporter.obj">
+      <Filter>bin-int\Debug-windows\assimp</Filter>
+    </None>
+    <None Include="bin-int\Debug-windows\assimp\irrXML.obj">
+      <Filter>bin-int\Debug-windows\assimp</Filter>
+    </None>
+    <None Include="bin-int\Debug-windows\assimp\scene.obj">
+      <Filter>bin-int\Debug-windows\assimp</Filter>
+    </None>
+    <None Include="bin\Debug-windows\assimp\assimp.idb">
+      <Filter>bin\Debug-windows\assimp</Filter>
+    </None>
+    <None Include="bin\Debug-windows\assimp\assimp.lib">
+      <Filter>bin\Debug-windows\assimp</Filter>
+    </None>
+    <None Include="bin\Debug-windows\assimp\assimp.pdb">
+      <Filter>bin\Debug-windows\assimp</Filter>
+    </None>
+    <None Include="code\.editorconfig">
+      <Filter>code</Filter>
+    </None>
+    <None Include="code\CMakeLists.txt">
+      <Filter>code</Filter>
+    </None>
+    <None Include="code\makefile.mingw">
+      <Filter>code</Filter>
+    </None>
+    <None Include="contrib\CMakeLists.txt">
+      <Filter>contrib</Filter>
+    </None>
+    <None Include="contrib\android-cmake\AndroidNdkGdb.cmake">
+      <Filter>contrib\android-cmake</Filter>
+    </None>
+    <None Include="contrib\android-cmake\AndroidNdkModules.cmake">
+      <Filter>contrib\android-cmake</Filter>
+    </None>
+    <None Include="contrib\android-cmake\README.md">
+      <Filter>contrib\android-cmake</Filter>
+    </None>
+    <None Include="contrib\android-cmake\android.toolchain.cmake">
+      <Filter>contrib\android-cmake</Filter>
+    </None>
+    <None Include="contrib\android-cmake\ndk_links.md">
+      <Filter>contrib\android-cmake</Filter>
+    </None>
+    <None Include="contrib\clipper\License.txt">
+      <Filter>contrib\clipper</Filter>
+    </None>
+    <None Include="contrib\irrXML\CMakeLists.txt">
+      <Filter>contrib\irrXML</Filter>
+    </None>
+    <None Include="contrib\irrXML_note.txt">
+      <Filter>contrib</Filter>
+    </None>
+    <None Include="contrib\openddlparser\CMakeLists.txt">
+      <Filter>contrib\openddlparser</Filter>
+    </None>
+    <None Include="contrib\openddlparser\CREDITS">
+      <Filter>contrib\openddlparser</Filter>
+    </None>
+    <None Include="contrib\openddlparser\LICENSE">
+      <Filter>contrib\openddlparser</Filter>
+    </None>
+    <None Include="contrib\openddlparser\README.md">
+      <Filter>contrib\openddlparser</Filter>
+    </None>
+    <None Include="contrib\poly2tri\AUTHORS">
+      <Filter>contrib\poly2tri</Filter>
+    </None>
+    <None Include="contrib\poly2tri\LICENSE">
+      <Filter>contrib\poly2tri</Filter>
+    </None>
+    <None Include="contrib\poly2tri\README">
+      <Filter>contrib\poly2tri</Filter>
+    </None>
+    <None Include="contrib\poly2tri_patch.txt">
+      <Filter>contrib</Filter>
+    </None>
+    <None Include="contrib\rapidjson\license.txt">
+      <Filter>contrib\rapidjson</Filter>
+    </None>
+    <None Include="contrib\rapidjson\readme.md">
+      <Filter>contrib\rapidjson</Filter>
+    </None>
+    <None Include="contrib\utf8cpp\doc\ReleaseNotes">
+      <Filter>contrib\utf8cpp\doc</Filter>
+    </None>
+    <None Include="contrib\utf8cpp\doc\utf8cpp.html">
+      <Filter>contrib\utf8cpp\doc</Filter>
+    </None>
+    <None Include="contrib\zip\.gitignore">
+      <Filter>contrib\zip</Filter>
+    </None>
+    <None Include="contrib\zip\.travis.yml">
+      <Filter>contrib\zip</Filter>
+    </None>
+    <None Include="contrib\zip\CMakeLists.txt">
+      <Filter>contrib\zip</Filter>
+    </None>
+    <None Include="contrib\zip\README.md">
+      <Filter>contrib\zip</Filter>
+    </None>
+    <None Include="contrib\zip\UNLICENSE">
+      <Filter>contrib\zip</Filter>
+    </None>
+    <None Include="contrib\zip\appveyor.yml">
+      <Filter>contrib\zip</Filter>
+    </None>
+    <None Include="contrib\zip\test\CMakeLists.txt">
+      <Filter>contrib\zip\test</Filter>
+    </None>
+    <None Include="contrib\zlib\CMakeLists.txt">
+      <Filter>contrib\zlib</Filter>
+    </None>
+    <None Include="contrib\zlib\README">
+      <Filter>contrib\zlib</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\README.contrib">
+      <Filter>contrib\zlib\contrib</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\ada\buffer_demo.adb">
+      <Filter>contrib\zlib\contrib\ada</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\ada\mtest.adb">
+      <Filter>contrib\zlib\contrib\ada</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\ada\read.adb">
+      <Filter>contrib\zlib\contrib\ada</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\ada\readme.txt">
+      <Filter>contrib\zlib\contrib\ada</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\ada\test.adb">
+      <Filter>contrib\zlib\contrib\ada</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\ada\zlib-streams.adb">
+      <Filter>contrib\zlib\contrib\ada</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\ada\zlib-streams.ads">
+      <Filter>contrib\zlib\contrib\ada</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\ada\zlib-thin.adb">
+      <Filter>contrib\zlib\contrib\ada</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\ada\zlib-thin.ads">
+      <Filter>contrib\zlib\contrib\ada</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\ada\zlib.adb">
+      <Filter>contrib\zlib\contrib\ada</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\ada\zlib.ads">
+      <Filter>contrib\zlib\contrib\ada</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\ada\zlib.gpr">
+      <Filter>contrib\zlib\contrib\ada</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\asm686\README.686">
+      <Filter>contrib\zlib\contrib\asm686</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\blast\README">
+      <Filter>contrib\zlib\contrib\blast</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\blast\test.pk">
+      <Filter>contrib\zlib\contrib\blast</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\blast\test.txt">
+      <Filter>contrib\zlib\contrib\blast</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\delphi\ZLib.pas">
+      <Filter>contrib\zlib\contrib\delphi</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\delphi\ZLibConst.pas">
+      <Filter>contrib\zlib\contrib\delphi</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\delphi\readme.txt">
+      <Filter>contrib\zlib\contrib\delphi</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\delphi\zlibd32.mak">
+      <Filter>contrib\zlib\contrib\delphi</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\dotzlib\DotZLib.build">
+      <Filter>contrib\zlib\contrib\dotzlib</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\dotzlib\DotZLib.chm">
+      <Filter>contrib\zlib\contrib\dotzlib</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\dotzlib\DotZLib\AssemblyInfo.cs">
+      <Filter>contrib\zlib\contrib\dotzlib\DotZLib</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\dotzlib\DotZLib\ChecksumImpl.cs">
+      <Filter>contrib\zlib\contrib\dotzlib\DotZLib</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\dotzlib\DotZLib\CircularBuffer.cs">
+      <Filter>contrib\zlib\contrib\dotzlib\DotZLib</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\dotzlib\DotZLib\CodecBase.cs">
+      <Filter>contrib\zlib\contrib\dotzlib\DotZLib</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\dotzlib\DotZLib\Deflater.cs">
+      <Filter>contrib\zlib\contrib\dotzlib\DotZLib</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\dotzlib\DotZLib\DotZLib.cs">
+      <Filter>contrib\zlib\contrib\dotzlib\DotZLib</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\dotzlib\DotZLib\DotZLib.csproj">
+      <Filter>contrib\zlib\contrib\dotzlib\DotZLib</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\dotzlib\DotZLib\GZipStream.cs">
+      <Filter>contrib\zlib\contrib\dotzlib\DotZLib</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\dotzlib\DotZLib\Inflater.cs">
+      <Filter>contrib\zlib\contrib\dotzlib\DotZLib</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\dotzlib\DotZLib\UnitTests.cs">
+      <Filter>contrib\zlib\contrib\dotzlib\DotZLib</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\dotzlib\LICENSE_1_0.txt">
+      <Filter>contrib\zlib\contrib\dotzlib</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\dotzlib\readme.txt">
+      <Filter>contrib\zlib\contrib\dotzlib</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\infback9\README">
+      <Filter>contrib\zlib\contrib\infback9</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\iostream3\README">
+      <Filter>contrib\zlib\contrib\iostream3</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\iostream3\TODO">
+      <Filter>contrib\zlib\contrib\iostream3</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\masmx64\bld_ml64.bat">
+      <Filter>contrib\zlib\contrib\masmx64</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\masmx64\readme.txt">
+      <Filter>contrib\zlib\contrib\masmx64</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\masmx86\bld_ml32.bat">
+      <Filter>contrib\zlib\contrib\masmx86</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\masmx86\readme.txt">
+      <Filter>contrib\zlib\contrib\masmx86</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\minizip\Makefile.am">
+      <Filter>contrib\zlib\contrib\minizip</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\minizip\MiniZip64_Changes.txt">
+      <Filter>contrib\zlib\contrib\minizip</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\minizip\MiniZip64_info.txt">
+      <Filter>contrib\zlib\contrib\minizip</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\minizip\configure.ac">
+      <Filter>contrib\zlib\contrib\minizip</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\minizip\make_vms.com">
+      <Filter>contrib\zlib\contrib\minizip</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\minizip\miniunzip.1">
+      <Filter>contrib\zlib\contrib\minizip</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\minizip\minizip.1">
+      <Filter>contrib\zlib\contrib\minizip</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\minizip\minizip.pc.in">
+      <Filter>contrib\zlib\contrib\minizip</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\pascal\example.pas">
+      <Filter>contrib\zlib\contrib\pascal</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\pascal\readme.txt">
+      <Filter>contrib\zlib\contrib\pascal</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\pascal\zlibd32.mak">
+      <Filter>contrib\zlib\contrib\pascal</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\pascal\zlibpas.pas">
+      <Filter>contrib\zlib\contrib\pascal</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\puff\README">
+      <Filter>contrib\zlib\contrib\puff</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\puff\zeros.raw">
+      <Filter>contrib\zlib\contrib\puff</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\testzlib\testzlib.txt">
+      <Filter>contrib\zlib\contrib\testzlib</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\untgz\Makefile.msc">
+      <Filter>contrib\zlib\contrib\untgz</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\vstudio\readme.txt">
+      <Filter>contrib\zlib\contrib\vstudio</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\vstudio\vc10\zlibvc.def">
+      <Filter>contrib\zlib\contrib\vstudio\vc10</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\vstudio\vc11\zlibvc.def">
+      <Filter>contrib\zlib\contrib\vstudio\vc11</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\vstudio\vc12\zlibvc.def">
+      <Filter>contrib\zlib\contrib\vstudio\vc12</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\vstudio\vc14\zlibvc.def">
+      <Filter>contrib\zlib\contrib\vstudio\vc14</Filter>
+    </None>
+    <None Include="contrib\zlib\contrib\vstudio\vc9\zlibvc.def">
+      <Filter>contrib\zlib\contrib\vstudio\vc9</Filter>
+    </None>
+    <None Include="contrib\zlib\win32\DLL_FAQ.txt">
+      <Filter>contrib\zlib\win32</Filter>
+    </None>
+    <None Include="contrib\zlib\win32\Makefile.bor">
+      <Filter>contrib\zlib\win32</Filter>
+    </None>
+    <None Include="contrib\zlib\win32\Makefile.gcc">
+      <Filter>contrib\zlib\win32</Filter>
+    </None>
+    <None Include="contrib\zlib\win32\Makefile.msc">
+      <Filter>contrib\zlib\win32</Filter>
+    </None>
+    <None Include="contrib\zlib\win32\README-WIN32.txt">
+      <Filter>contrib\zlib\win32</Filter>
+    </None>
+    <None Include="contrib\zlib\win32\VisualC.txt">
+      <Filter>contrib\zlib\win32</Filter>
+    </None>
+    <None Include="contrib\zlib\win32\zlib.def">
+      <Filter>contrib\zlib\win32</Filter>
+    </None>
+    <None Include="contrib\zlib\zconf.h.cmakein">
+      <Filter>contrib\zlib</Filter>
+    </None>
+    <None Include="contrib\zlib\zconf.h.in">
+      <Filter>contrib\zlib</Filter>
+    </None>
+    <None Include="contrib\zlib\zconf.h.included">
+      <Filter>contrib\zlib</Filter>
+    </None>
+    <None Include="contrib\zlib\zlib.pc.cmakein">
+      <Filter>contrib\zlib</Filter>
+    </None>
+    <None Include="contrib\zlib_note.txt">
+      <Filter>contrib</Filter>
+    </None>
+    <None Include="include\assimp\.editorconfig">
+      <Filter>include\assimp</Filter>
+    </None>
+    <None Include="include\assimp\config.h.in">
+      <Filter>include\assimp</Filter>
+    </None>
+    <None Include="premake5.lua" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="code\res\assimp.rc">
+      <Filter>code\res</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="contrib\zlib\contrib\vstudio\vc10\zlib.rc">
+      <Filter>contrib\zlib\contrib\vstudio\vc10</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="contrib\zlib\contrib\vstudio\vc11\zlib.rc">
+      <Filter>contrib\zlib\contrib\vstudio\vc11</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="contrib\zlib\contrib\vstudio\vc12\zlib.rc">
+      <Filter>contrib\zlib\contrib\vstudio\vc12</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="contrib\zlib\contrib\vstudio\vc14\zlib.rc">
+      <Filter>contrib\zlib\contrib\vstudio\vc14</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="contrib\zlib\contrib\vstudio\vc9\zlib.rc">
+      <Filter>contrib\zlib\contrib\vstudio\vc9</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="contrib\zlib\win32\zlib1.rc">
+      <Filter>contrib\zlib\win32</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Masm Include="contrib\zlib\contrib\masmx64\gvmat64.asm">
+      <Filter>contrib\zlib\contrib\masmx64</Filter>
+    </Masm>
+    <Masm Include="contrib\zlib\contrib\masmx64\inffasx64.asm">
+      <Filter>contrib\zlib\contrib\masmx64</Filter>
+    </Masm>
+    <Masm Include="contrib\zlib\contrib\masmx86\inffas32.asm">
+      <Filter>contrib\zlib\contrib\masmx86</Filter>
+    </Masm>
+    <Masm Include="contrib\zlib\contrib\masmx86\match686.asm">
+      <Filter>contrib\zlib\contrib\masmx86</Filter>
+    </Masm>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="contrib\zip\zip.png">
+      <Filter>contrib\zip</Filter>
+    </Image>
+  </ItemGroup>
+</Project>

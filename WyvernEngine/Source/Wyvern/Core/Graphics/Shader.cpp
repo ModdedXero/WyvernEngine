@@ -6,13 +6,11 @@
 namespace Wyvern
 {
 	Shader::Shader()
-		: ID(glCreateProgram())
 	{
 
 	}
 
 	Shader::Shader(Tools::FileSystem& shaderPath)
-		: ID(glCreateProgram())
 	{
 		std::string shaderCode;
 		std::string vertCode, fragCode, geoCode;
@@ -33,25 +31,25 @@ namespace Wyvern
 
 			if (vertexIndex != std::string::npos && fragmentIndex != std::string::npos)
 			{
-				vertCode = shaderCode.substr(vertexIndex + sizeof("##VERTEX##\n"), fragmentIndex);
+				vertCode = shaderCode.substr(vertexIndex + sizeof("##VERTEX##"), fragmentIndex);
 			}
 			else if (vertexIndex != std::string::npos && geoIndex != std::string::npos)
 			{
-				vertCode = shaderCode.substr(vertexIndex + sizeof("##VERTEX##\n"), geoIndex);
+				vertCode = shaderCode.substr(vertexIndex + sizeof("##VERTEX##"), geoIndex);
 			}
 
 			if (fragmentIndex != std::string::npos && geoIndex != std::string::npos)
 			{
-				fragCode = shaderCode.substr(fragmentIndex + sizeof("##FRAGMENT##\n"), geoIndex);
+				fragCode = shaderCode.substr(fragmentIndex + sizeof("##FRAGMENT##"), geoIndex);
 			}
 			else
 			{
-				fragCode = shaderCode.substr(fragmentIndex + sizeof("##FRAGMENT##\n"));
+				fragCode = shaderCode.substr(fragmentIndex + sizeof("##FRAGMENT##"));
 			}
 
 			if (geoIndex != std::string::npos)
 			{
-				geoCode = shaderCode.substr(geoIndex + sizeof("##GEOMETRY##\n"));
+				geoCode = shaderCode.substr(geoIndex + sizeof("##GEOMETRY##"));
 			}
 
 		}
@@ -68,7 +66,6 @@ namespace Wyvern
 	}
 
 	Shader::Shader(const char* vertSource, const char* fragSource, const char* geoSource)
-		: ID(glCreateProgram())
 	{
 		LoadShader(vertSource, fragSource, geoSource);
 	}
@@ -156,6 +153,8 @@ namespace Wyvern
 
 	void Shader::LoadShader(const char* vertSource, const char* fragSource, const char* geoSource)
 	{
+		ID = glCreateProgram();
+
 		unsigned int sVert, sFrag, sGeo;
 
 		sVert = glCreateShader(GL_VERTEX_SHADER);

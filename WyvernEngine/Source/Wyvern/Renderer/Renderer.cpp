@@ -121,7 +121,7 @@ namespace Wyvern::Render
 		glBindVertexArray(0);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 
-		s_Data.ScreenShader = Shader(Application::GetResourcesPath() / "Shaders/ScreenShader.glsl");
+		s_Data.ScreenShader = Shader(Application::GetResourcesPath() / "/Shader/ScreenShader.glsl");
 		s_Data.ScreenShader.SetInteger("screenTexture", 0);
 
 		// Setup default texture
