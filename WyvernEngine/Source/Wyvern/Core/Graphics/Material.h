@@ -11,7 +11,7 @@ namespace Wyvern
 	{
 	public:
 		Material();
-		Material(Tools::FileSystem& material);
+		Material(Tools::FileSystem material);
 
 	public:
 		UUID GetUUID() const { return m_UUID; }

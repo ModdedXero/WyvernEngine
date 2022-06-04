@@ -67,6 +67,16 @@ namespace Wyvern
 		ImGui::NextColumn();
 		ImGui::BeginChild("Content");
 
+		if (ImGui::BeginPopupContextWindow("Empty", ImGuiPopupFlags_NoOpenOverItems | ImGuiPopupFlags_MouseButtonRight))
+		{
+			if (ImGui::MenuItem("New Material"))
+			{
+				Material mat = Material(m_CurrentDirectory);
+			}
+
+			ImGui::EndPopup();
+		}
+
 		float panelWidth = ImGui::GetContentRegionAvail().x;
 		int columnCount = (int)(panelWidth / cellSize);
 		if (columnCount < 1)
