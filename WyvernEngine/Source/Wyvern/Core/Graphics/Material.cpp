@@ -13,11 +13,11 @@ namespace Wyvern
 	}
 
 	Material::Material(Tools::FileSystem material)
-		: m_Shader(nullptr)
+		: m_Shader(nullptr), m_MaterialPath(material)
 	{
 		if (material.IsExtension(".material"))
 		{
-			// Load Material
+			LoadMaterial();
 		}
 		else
 		{
@@ -29,8 +29,8 @@ namespace Wyvern
 				out << YAML::Key << "Shader" << YAML::Value << "";
 				out << YAML::EndMap;
 
-				material /= "newMaterial.material";
-				material.WriteFile(out.c_str());
+				m_MaterialPath /= "newMaterial.material";
+				SaveMaterial();
 			}
 		}
 	}
@@ -42,5 +42,31 @@ namespace Wyvern
 		if (m_Shader) glDeleteProgram(m_Shader->ID);
 
 		m_Shader = new Shader(shaderPath);
+	}
+
+	void Material::LoadMaterial()
+	{
+		std::string material = m_MaterialPath.ReadFile();
+
+		YAML::Node in = YAML::Load(material);
+		m_ShaderPath = in["Shader"].as<std::string>();
+
+		DEBUG_CORE(m_MaterialPath);
+		DEBUG_CORE(in);
+		if (m_ShaderPath.IsExtension(".glsl"))
+		{
+			SetShader(m_ShaderPath);
+		}
+	}
+
+	void Material::SaveMaterial()
+	{
+		YAML::Emitter out;
+
+		out << YAML::BeginMap;
+		out << YAML::Key << "Shader" << YAML::Value << m_ShaderPath;
+		out << YAML::EndMap;
+
+		m_MaterialPath.WriteFile(out.c_str());
 	}
 }

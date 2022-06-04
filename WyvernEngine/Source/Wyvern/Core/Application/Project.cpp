@@ -4,13 +4,12 @@
 #include <Wyvern/Core/Scene/Scene.h>
 #include <Wyvern/Core/Scene/Serializer.h>
 #include <Wyvern/Core/Application/Application.h>
-#include <Wyvern/Tools/FileSystem.h>
 
 #include <yaml-cpp/yaml.h>
 
 namespace Wyvern
 {
-	std::string Project::s_StartScenePath;
+	Tools::FileSystem Project::s_StartScenePath;
 
 	void Project::LoadProject()
 	{

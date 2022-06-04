@@ -22,7 +22,12 @@ namespace Wyvern
 
 	private:
 		UUID m_UUID;
+		Tools::FileSystem m_MaterialPath;
 		Tools::FileSystem m_ShaderPath;
 		Shader* m_Shader;
+
+	private:
+		void LoadMaterial();
+		void SaveMaterial();
 	};
 }

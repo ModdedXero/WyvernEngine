@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Wyvern/Core/Base.h>
+#include <Wyvern/Tools/FileSystem.h>
 
 namespace Wyvern
 {
@@ -16,6 +17,6 @@ namespace Wyvern
 		static Ref<Scene> LoadStartScene();
 
 	private:
-		static std::string s_StartScenePath;
+		static Tools::FileSystem s_StartScenePath;
 	};
 }

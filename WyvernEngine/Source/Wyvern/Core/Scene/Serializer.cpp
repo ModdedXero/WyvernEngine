@@ -123,14 +123,14 @@ namespace Wyvern
 		return true;
 	}
 
-	bool Serializer::Deserialize(Ref<Scene> scene, const Tools::FileSystem& filepath)
+	bool Serializer::Deserialize(Ref<Scene> scene, Tools::FileSystem& filepath)
 	{
 		std::ifstream stream(filepath);
 		std::stringstream strStream;
 		strStream << stream.rdbuf();
 
 		SerializeInfo info(false);
-		info.in = YAML::Load(strStream.str());
+		info.in = YAML::Load(filepath.ReadFile());
 		if (!info.in["Scene"])
 			return false;
 

@@ -10,7 +10,7 @@ public:
 	WyvernBuilder(const ApplicationSpecification& specification)
 		: Application(specification)
 	{
-		AssetManager::LoadMaterial(specification.ResourcesPath / "/material/defaultmaterial.mat");
+		AssetManager::LoadMaterial(specification.ResourcesPath / "/material/defaultmaterial.material");
 
 		PushLayer(new BuilderLayer());
 	}
