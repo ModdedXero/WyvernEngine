@@ -23,7 +23,7 @@ namespace Wyvern
 
 		// Entities
 
-		ImGui::SetCursorPos({ 0, EditorInfo::LineHeight() + 10 });
+		ImGui::SetCursorPos({ 10, EditorInfo::LineHeight() + 10 });
 
 		if (ImGui::IsMouseClicked(ImGuiMouseButton_Left) && IsHovered() && !ImGui::IsAnyItemHovered())
 		{

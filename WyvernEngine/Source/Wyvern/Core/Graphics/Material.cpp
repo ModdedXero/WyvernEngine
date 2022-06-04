@@ -51,8 +51,6 @@ namespace Wyvern
 		YAML::Node in = YAML::Load(material);
 		m_ShaderPath = in["Shader"].as<std::string>();
 
-		DEBUG_CORE(m_MaterialPath);
-		DEBUG_CORE(in);
 		if (m_ShaderPath.IsExtension(".glsl"))
 		{
 			SetShader(m_ShaderPath);

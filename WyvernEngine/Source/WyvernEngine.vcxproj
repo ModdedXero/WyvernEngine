@@ -199,6 +199,7 @@
     <ClInclude Include="Wyvern\Core\Scene\WizardStack.h" />
     <ClInclude Include="Wyvern\Core\Timestep.h" />
     <ClInclude Include="Wyvern\Core\UUID.h" />
+    <ClInclude Include="Wyvern\Core\WyvernObject.h" />
     <ClInclude Include="Wyvern\Display\Window.h" />
     <ClInclude Include="Wyvern\Events\Event.h" />
     <ClInclude Include="Wyvern\Events\KeyEvent.h" />

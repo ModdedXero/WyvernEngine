@@ -92,7 +92,7 @@ namespace Wyvern
 				Render::Renderer2D::DrawQuad(GetComponent<Transform>(entity), sRend->material, sRend->sprite, sRend->color, GetSceneIndex(entity->SceneID));
 			}
 
-			for (EntityRegister* entity : EntityList<MeshRenderer>(shared_from_this()))
+			for (EntityRegister* entity : EntityList<MeshRenderer, MeshFilter>(shared_from_this()))
 			{
 				MeshRenderer* renderer = GetComponent<MeshRenderer>(entity);
 				MeshFilter* filter = GetComponent<MeshFilter>(entity);
@@ -124,7 +124,7 @@ namespace Wyvern
 			Render::Renderer2D::DrawQuad(GetComponent<Transform>(entity), sRend->material, sRend->sprite, sRend->color, GetSceneIndex(entity->SceneID));
 		}
 
-		for (EntityRegister* entity : EntityList<MeshRenderer>(shared_from_this()))
+		for (EntityRegister* entity : EntityList<MeshRenderer, MeshFilter>(shared_from_this()))
 		{
 			MeshRenderer* renderer = GetComponent<MeshRenderer>(entity);
 			MeshFilter* filter = GetComponent<MeshFilter>(entity);
