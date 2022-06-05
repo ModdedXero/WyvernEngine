@@ -2,6 +2,14 @@
 
 #include "EditorInfo.h"
 
+#include <string>
+
+namespace Wyvern
+{
+	struct Component;
+	class Entity;
+}
+
 namespace Wyvern::Editor
 {
 	enum class DragDropTypes
@@ -16,6 +24,8 @@ namespace Wyvern::Editor
 		template <typename Target>
 		static void DragDropTarget(DragDropTypes returnType, Target& target);
 		static void DragDropSource(DragDropTypes returnType, const void* target, size_t size);
+
+		static void DrawComponent(const std::string label, Component* component, Entity ent, bool isDefault = false);
 	};
 
 	template <typename Target>

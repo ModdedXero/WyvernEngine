@@ -7,7 +7,7 @@ namespace Wyvern
     Ref<Scene> BuilderLayer::s_ActiveScene;
     Ref<Scene> BuilderLayer::s_CachedScene;
     ViewportCamera* BuilderLayer::s_ViewportCamera = nullptr;
-    Entity BuilderLayer::s_SelectedContext = Entity();
+    WyvernObject* BuilderLayer::s_SelectedContext = nullptr;
 
     ViewportWindow* BuilderLayer::s_ViewportWindow = nullptr;
     HierarchyWindow* BuilderLayer::s_HierarchyWindow = nullptr;
@@ -245,7 +245,7 @@ namespace Wyvern
 
     void BuilderLayer::SetActiveScene(Ref<Scene> scene)
     {
-        s_SelectedContext = Entity();
+        SetSelectedContext(nullptr);
         s_ActiveScene = scene;
         Scene::SetActiveScene(scene);
     }

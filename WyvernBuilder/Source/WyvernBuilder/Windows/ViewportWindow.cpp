@@ -38,8 +38,8 @@ namespace Wyvern
 
 		// Gizmos
 
-		Entity selectedContext = BuilderLayer::GetSelectedContext();
-		if (selectedContext.IsValid() && m_GizmoSelection != -1 && Scene::GetActiveScene()->GetSceneState() == SceneState::Edit)
+		Entity* selectedContext = static_cast<Entity*>(BuilderLayer::GetSelectedContext());
+		if (selectedContext && selectedContext->_IsObjectType<Entity>() && selectedContext->IsValid() && m_GizmoSelection != -1 && Scene::GetActiveScene()->GetSceneState() == SceneState::Edit)
 		{
 			ViewportCamera* camera = BuilderLayer::GetViewportCamera();
 
@@ -58,7 +58,7 @@ namespace Wyvern
 			glm::mat4 cameraView = Matrix4x4::Inverse(cameraTransform.GetTransform()).GetNativeMatrix();
 			glm::mat4 cameraProjection = camera->GetProjection();
 
-			Transform* transformComp = selectedContext.GetTransform();
+			Transform* transformComp = selectedContext->GetTransform();
 			glm::mat4 transform = transformComp->GetTransform().GetNativeMatrix();
 
 			float snapValues[3] = { m_SnapValue, m_SnapValue, m_SnapValue };
@@ -148,7 +148,7 @@ namespace Wyvern
 		if (e.GetKey() == MouseCode::MOUSE_BUTTON_LEFT)
 		{
 			if (IsHovered() && !ImGuizmo::IsOver()) 
-				BuilderLayer::SetSelectedContext(m_HoverEntity);
+				BuilderLayer::SetSelectedContext(&m_HoverEntity);
 		}
 
 		return true;

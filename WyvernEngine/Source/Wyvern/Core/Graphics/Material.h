@@ -3,15 +3,19 @@
 #include "Shader.h"
 
 #include <Wyvern/Core/UUID.h>
+#include <Wyvern/Core/WyvernObject.h>
 #include <Wyvern/Tools/FileSystem.h>
 
 namespace Wyvern
 {
-	struct Material
+	struct Material : public WyvernObject
 	{
 	public:
 		Material();
 		Material(Tools::FileSystem material);
+
+		virtual std::string _ObjectType() const override { return typeid(Material).name(); }
+		virtual void _DrawProperties() override;
 
 	public:
 		UUID GetUUID() const { return m_UUID; }

@@ -262,6 +262,19 @@ namespace Wyvern::Editor
 		ImGui::Columns(1);
 	}
 
+	void EditorGUI::TextControl(const std::string& label, std::string& value, bool readOnly, float columnWidth)
+	{
+		ImGui::Columns(2, 0, false);
+		ImGui::SetColumnWidth(0, columnWidth);
+		EditorGUI::Label(label);
+		ImGui::NextColumn();
+
+		if (readOnly)
+			ImGui::Text(value.c_str());
+
+		ImGui::Columns(1);
+	}
+
 	void EditorGUI::ComboControl(const std::string& label, const char* values[], int& valueIndex, int arraySize, float columnWidth)
 	{
 		ImGui::Columns(2, 0, false);

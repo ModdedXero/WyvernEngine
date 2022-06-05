@@ -2,6 +2,7 @@
 #include "Material.h"
 
 #include <glad.h>
+#include <imgui.h>
 #include <yaml-cpp/yaml.h>
 
 namespace Wyvern

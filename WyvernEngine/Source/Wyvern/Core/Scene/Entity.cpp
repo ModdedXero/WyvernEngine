@@ -1,10 +1,12 @@
-	#include "wvpch.h"
+#include "wvpch.h"
 #include "Entity.h"
 
 #include "Scene.h"
 
 #include <Wyvern/Core/Components/Tag.h>
 #include <Wyvern/Core/Components/Transform.h>
+
+#include <imgui.h>
 
 namespace Wyvern
 {
@@ -16,6 +18,11 @@ namespace Wyvern
 	Entity::Entity(EntityRegister* view)
 	{
 		m_EntityRegister = view;
+	}
+
+	std::string Entity::_ObjectType() const
+	{
+		return typeid(Entity).name();
 	}
 
 	Tag* Entity::GetTag() const
@@ -50,6 +57,7 @@ namespace Wyvern
 
 	bool Entity::IsValid()
 	{
+		if (!m_EntityRegister) return false;
 		return Scene::IsEntityValid(m_EntityRegister);
 	}
 }

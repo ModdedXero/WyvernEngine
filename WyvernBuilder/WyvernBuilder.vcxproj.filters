@@ -53,5 +53,6 @@
     <ClCompile Include="Source\WyvernBuilder\Windows\ViewportWindow.cpp">
       <Filter>Windows</Filter>
     </ClCompile>
+    <ClCompile Include="Source\WyvernBuilder\Core\ObjectProperties.cpp" />
   </ItemGroup>
 </Project>

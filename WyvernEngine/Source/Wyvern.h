@@ -13,6 +13,7 @@
 #include <Wyvern/Core/Debug.h>
 #include <Wyvern/Core/Timestep.h>
 #include <Wyvern/Core/AssetManager.h>
+#include <Wyvern/Core/WyvernObject.h>
 
 // Scene
 #include <Wyvern/Core/Scene/Scene.h>

@@ -1,5 +1,7 @@
 #include "ContentBrowserWindow.h"
 
+#include <WyvernBuilder/Core/BuilderLayer.h>
+
 using namespace Wyvern::Tools;
 
 namespace Wyvern
@@ -99,6 +101,14 @@ namespace Wyvern
 			const FileSystem* sourcePath = new FileSystem(dir);
 			EditorGUIInternal::DragDropSource(DragDropTypes::FileSystem, sourcePath, sizeof(FileSystem));
 
+			if (ImGui::IsItemHovered() && ImGui::IsItemClicked())
+			{
+				if (!dir.IsDirectory())
+				{
+					SelectContext(dir);
+				}
+			}
+
 			if (ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left))
 			{
 				if (dir.IsDirectory())
@@ -118,5 +128,16 @@ namespace Wyvern
 
 		//ImGui::SliderFloat("Thumbnail Size", &thumbnailSize, 16, 512);
 		//ImGui::SliderFloat("Padding", &padding, 0, 32);
+	}
+
+	void ContentBrowserWindow::SelectContext(Tools::FileSystem& file)
+	{
+		if (file.IsExtension(".material"))
+		{
+			Material* object = new Material(file);
+			BuilderLayer::SetSelectedContext(object);
+		}
+
+		m_SelectedContext = file;
 	}
 }

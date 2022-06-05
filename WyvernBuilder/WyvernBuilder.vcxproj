@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClCompile Include="Source\WyvernBuilder\Core\BuilderLayer.cpp" />
     <ClCompile Include="Source\WyvernBuilder\Core\ComponentUI.cpp" />
+    <ClCompile Include="Source\WyvernBuilder\Core\ObjectProperties.cpp" />
     <ClCompile Include="Source\WyvernBuilder\Core\ViewportCamera.cpp" />
     <ClCompile Include="Source\WyvernBuilder\Core\WyvernBuilder.cpp" />
     <ClCompile Include="Source\WyvernBuilder\Windows\ContentBrowserWindow.cpp" />

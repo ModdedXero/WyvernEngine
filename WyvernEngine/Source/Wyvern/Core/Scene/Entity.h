@@ -2,13 +2,15 @@
 
 #include "EntityRegister.h"
 
+#include <Wyvern/Core/WyvernObject.h>
+
 namespace Wyvern
 {
 	struct Tag;
 	struct Transform;
 	struct Component;
 
-	class Entity
+	class Entity : public WyvernObject
 	{
 		friend class Scene;
 		friend class Serializer;
@@ -18,6 +20,9 @@ namespace Wyvern
 	public:
 		Entity();
 		Entity(EntityRegister* view);
+
+		virtual std::string _ObjectType() const override;
+		virtual void _DrawProperties() override;
 
 		UUID GetUUID() const { return m_EntityRegister->UniqueID; }
 		SceneID GetSceneID() const { return m_EntityRegister->SceneID; }
