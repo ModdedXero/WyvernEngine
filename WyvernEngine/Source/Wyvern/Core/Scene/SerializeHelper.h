@@ -6,6 +6,7 @@
 #include <Wyvern/Core/Scene/Scene.h>
 #include <Wyvern/Core/Physics/Physics.h>
 #include <Wyvern/Renderer/CameraRenderer.h>
+#include <Wyvern/Renderer/Model3D.h>
 #include <Wyvern/Tools/FileSystem.h>
 #include <Wyvern/Core/Graphics/Sprite.h>
 #include <Wyvern/Core/Graphics/Mesh.h>
@@ -198,13 +199,19 @@ namespace YAML
 		{
 			YAML::Node node;	
 
-			node.push_back("Mesh");
+			node.push_back(rhs.GetModelPath());
+			node.push_back(rhs.GetMeshIndex());
 
 			return node;
 		}
 
 		static bool decode(const YAML::Node& node, Wyvern::Mesh& rhs)
 		{
+			if (!node.IsSequence() || node.size() != 2)
+				return false;
+
+			Wyvern::Render::Model3D model = Wyvern::Render::Model3D(node[0].as<std::string>());
+			rhs = model.GetMesh(node[1].as<unsigned int>());
 			return true;
 		}
 	};
@@ -237,5 +244,5 @@ namespace Wyvern
 	YAML::Emitter& operator <<(YAML::Emitter& out, const Render::CameraMode& cameraMode);
 	YAML::Emitter& operator <<(YAML::Emitter& out, const Sprite& sprite);
 	YAML::Emitter& operator <<(YAML::Emitter& out, const Entity& entity);
-	YAML::Emitter& operator <<(YAML::Emitter& out, const Mesh& filter);
+	YAML::Emitter& operator <<(YAML::Emitter& out, const Mesh& mesh);
 }

@@ -1,3 +1,68 @@
 Scene: Scene name here
 Entities:
-  []
+  - Entity: 15070277630460786195
+    Components:
+      Tag:
+        name: Entity
+      Transform:
+        position: [0, 0, 0]
+        rotation: [0, 0, 0]
+        scale: [1, 1, 1]
+      Transform:
+        position: [0, 0, 0]
+        rotation: [0, 0, 0]
+        scale: [1, 1, 1]
+      Tag:
+        name: Entity
+  - Entity: 17496294803918521979
+    Parent: 15070277630460786195
+    Components:
+      Tag:
+        name: Entity
+      Transform:
+        position: [0, 0, 0]
+        rotation: [0, 0, 0]
+        scale: [1, 1, 1]
+      Transform:
+        position: [0, 0, 0]
+        rotation: [0, 0, 0]
+        scale: [1, 1, 1]
+      Tag:
+        name: Entity
+  - Entity: 8121038911841648778
+    Components:
+      Tag:
+        name: Entity
+      Transform:
+        position: [0, 0, 0]
+        rotation: [0, 0, 0]
+        scale: [1, 1, 1]
+      Transform:
+        position: [0, 0, 0]
+        rotation: [0, 0, 0]
+        scale: [1, 1, 1]
+      Tag:
+        name: Entity
+      MeshRenderer:
+        {}
+      MeshFilter:
+        mesh: [./Assets\Models\icosphere.dae, 4294967295]
+  - Entity: 9644839500120005283
+    Parent: 8121038911841648778
+    Components:
+      Tag:
+        name: Entity
+      Transform:
+        position: [0, 0, 0]
+        rotation: [0, 0, 0]
+        scale: [1, 1, 1]
+      Transform:
+        position: [0, 0, 0]
+        rotation: [0, 0, 0]
+        scale: [1, 1, 1]
+      Tag:
+        name: Entity
+      MeshRenderer:
+        {}
+      MeshFilter:
+        mesh: [./Assets\Models\icosphere.dae, 0]

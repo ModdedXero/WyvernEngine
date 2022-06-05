@@ -6,7 +6,6 @@
 #include <Wyvern/Core/Components/MeshFilter.h>
 
 #include <assimp/Importer.hpp>
-#include <assimp/scene.h>
 #include <assimp/postprocess.h>
 
 namespace Wyvern::Render
@@ -25,9 +24,25 @@ namespace Wyvern::Render
 				CreateChildEntityFromMeshData(childMesh, root, scene);
 			}
 		}
+
+		static Mesh FindChildMesh(MeshData data, unsigned int index)
+		{
+			if (data.rootMesh.GetMeshIndex() == index)
+				return data.rootMesh;
+
+			for (auto& mesh : data.childrenMeshes)
+			{
+				if (mesh.rootMesh.GetMeshIndex() == index)
+					return mesh.rootMesh;
+
+				return FindChildMesh(mesh, index);
+			}
+
+			return Mesh();
+		}
 	}
 
-	Model3D::Model3D(Tools::FileSystem& path)
+	Model3D::Model3D(Tools::FileSystem path)
 		: m_Path(path)
 	{
 		LoadModel();
@@ -42,6 +57,17 @@ namespace Wyvern::Render
 		for (auto& meshData : meshes.childrenMeshes)
 		{
 			Utils::CreateChildEntityFromMeshData(meshData, root, scene);
+		}
+	}
+
+	Mesh Model3D::GetMesh(unsigned int index)
+	{
+		if (meshes.rootMesh.m_Index == index)
+			return meshes.rootMesh;
+
+		for (auto& mesh : meshes.childrenMeshes)
+		{
+			return Utils::FindChildMesh(mesh, index);
 		}
 	}
 
@@ -66,7 +92,14 @@ namespace Wyvern::Render
 		if (node->mMeshes)
 		{
 			aiMesh* mesh = scene->mMeshes[node->mMeshes[0]];
-			meshData.rootMesh = ProcessMesh(mesh, scene);
+			meshData.rootMesh = ProcessMesh(mesh, scene, node->mMeshes[0]);
+		}
+		else
+		{
+			Mesh mesh = Mesh();
+			mesh.m_ModelPath = m_Path;
+			mesh.m_Index = UINT32_MAX;
+			meshData.rootMesh = mesh;
 		}
 
 		for (uint32_t i = 0; i < node->mNumChildren; i++)
@@ -77,8 +110,10 @@ namespace Wyvern::Render
 		return meshData;
 	}
 
-	Mesh Model3D::ProcessMesh(aiMesh* mesh, const aiScene* scene)
+	Mesh Model3D::ProcessMesh(aiMesh* mesh, const aiScene* scene, unsigned int index)
 	{
+		if (!mesh) return Mesh();
+
 		std::vector<Vector3> vertices;
 		std::vector<Vector3> normals;
 		std::vector<Vector2> uvs;
@@ -144,6 +179,8 @@ namespace Wyvern::Render
 		wyvMesh.indices = indices;
 		wyvMesh.textures = textures;
 		wyvMesh.uvs = uvs;
+		wyvMesh.m_ModelPath = m_Path;
+		wyvMesh.m_Index = index;
 
 		return wyvMesh;
 	}
