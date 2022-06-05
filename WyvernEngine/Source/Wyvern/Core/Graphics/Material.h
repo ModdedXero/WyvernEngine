@@ -14,7 +14,6 @@ namespace Wyvern
 		Material();
 		Material(Tools::FileSystem material);
 
-		virtual std::string _ObjectType() const override { return typeid(Material).name(); }
 		virtual void _DrawProperties() override;
 
 	public:

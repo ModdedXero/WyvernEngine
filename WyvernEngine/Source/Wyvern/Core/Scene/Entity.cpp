@@ -20,11 +20,6 @@ namespace Wyvern
 		m_EntityRegister = view;
 	}
 
-	std::string Entity::_ObjectType() const
-	{
-		return typeid(Entity).name();
-	}
-
 	Tag* Entity::GetTag() const
 	{
 		return Scene::GetComponent<Tag>(m_EntityRegister);

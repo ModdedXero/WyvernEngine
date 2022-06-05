@@ -21,7 +21,6 @@ namespace Wyvern
 		Entity();
 		Entity(EntityRegister* view);
 
-		virtual std::string _ObjectType() const override;
 		virtual void _DrawProperties() override;
 
 		UUID GetUUID() const { return m_EntityRegister->UniqueID; }
