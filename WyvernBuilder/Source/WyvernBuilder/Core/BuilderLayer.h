@@ -30,6 +30,8 @@ namespace Wyvern
 
 		static ViewportCamera* GetViewportCamera() { return s_ViewportCamera; }
 
+		template <typename T>
+		static T* GetSelectedContext() { return WyvernObject::Cast<T>(s_SelectedContext); }
 		static WyvernObject* GetSelectedContext() { return s_SelectedContext; }
 		static void SetSelectedContext(WyvernObject* ent) { if (s_SelectedContext) delete s_SelectedContext;  s_SelectedContext = ent; }
 

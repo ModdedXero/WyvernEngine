@@ -38,8 +38,8 @@ namespace Wyvern
 
 		// Gizmos
 
-		Entity* selectedContext = static_cast<Entity*>(BuilderLayer::GetSelectedContext());
-		if (selectedContext && selectedContext->_IsObjectType<Entity>() && selectedContext->IsValid() && m_GizmoSelection != -1 && Scene::GetActiveScene()->GetSceneState() == SceneState::Edit)
+		Entity* selectedContext = BuilderLayer::GetSelectedContext<Entity>();
+		if (selectedContext && selectedContext->IsValid() && m_GizmoSelection != -1 && Scene::GetActiveScene()->GetSceneState() == SceneState::Edit)
 		{
 			ViewportCamera* camera = BuilderLayer::GetViewportCamera();
 
