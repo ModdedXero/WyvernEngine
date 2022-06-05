@@ -52,7 +52,7 @@ namespace Wyvern
 
 		Tag* tag = ent.GetTag();
 
-		ImGuiTreeNodeFlags flags = ((BuilderLayer::GetSelectedContext<Entity>() == &ent) ? ImGuiTreeNodeFlags_Selected : 0); 
+		ImGuiTreeNodeFlags flags = ((BuilderLayer::GetSelectedContext<Entity>() && *BuilderLayer::GetSelectedContext<Entity>() == ent) ? ImGuiTreeNodeFlags_Selected : 0);
 		flags |= ((ent.GetChildren().size() > 0) ? ImGuiTreeNodeFlags_OpenOnArrow : ImGuiTreeNodeFlags_Leaf);
 		flags |= ImGuiTreeNodeFlags_SpanAvailWidth;
 

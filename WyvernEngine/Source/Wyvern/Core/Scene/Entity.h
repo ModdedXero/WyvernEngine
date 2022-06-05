@@ -43,8 +43,8 @@ namespace Wyvern
 		void DestroyEntity();
 
 		bool IsValid();
-		bool IsActive() const { return m_EntityRegister->IsActive; }
-		void SetActive(bool active) { m_EntityRegister->IsActive = active; }
+		bool IsActive() const { return m_EntityRegister && m_EntityRegister->IsActive; }
+		void SetActive(bool active) { if (m_EntityRegister) m_EntityRegister->IsActive = active; }
 
 	public:
 		bool operator ==(const Entity& rhs)

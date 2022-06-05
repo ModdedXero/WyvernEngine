@@ -147,8 +147,11 @@ namespace Wyvern
 	{
 		if (e.GetKey() == MouseCode::MOUSE_BUTTON_LEFT)
 		{
-			if (IsHovered() && !ImGuizmo::IsOver()) 
-				BuilderLayer::SetSelectedContext(&m_HoverEntity);
+			if (IsHovered() && !ImGuizmo::IsOver())
+			{
+				Entity* ent = new Entity(m_HoverEntity);
+				BuilderLayer::SetSelectedContext(ent);
+			}
 		}
 
 		return true;

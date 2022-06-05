@@ -17,6 +17,8 @@ namespace Wyvern
 
 	void Entity::_DrawProperties()
 	{
+		if (!IsValid()) return;
+
 		ImGui::BeginGroup();
 		ImGui::BeginChild("component view", ImVec2(0, -ImGui::GetFrameHeightWithSpacing()));
 
