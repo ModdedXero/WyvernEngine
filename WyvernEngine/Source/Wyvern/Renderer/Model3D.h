@@ -7,7 +7,6 @@
 #include <assimp/scene.h>
 
 struct aiNode;
-struct aiMesh;
 
 namespace Wyvern::Render
 {
@@ -34,6 +33,6 @@ namespace Wyvern::Render
 	private:
 		void LoadModel();
 		MeshData ProcessNode(aiNode* node, const aiScene* scene);
-		Mesh ProcessMesh(aiMesh* mesh, const aiScene* scene, unsigned int index);
+		Mesh ProcessMesh(aiNode* node, const aiScene* scene);
 	};
 }

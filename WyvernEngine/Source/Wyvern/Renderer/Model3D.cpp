@@ -89,18 +89,7 @@ namespace Wyvern::Render
 	{
 		MeshData meshData;
 
-		if (node->mMeshes)
-		{
-			aiMesh* mesh = scene->mMeshes[node->mMeshes[0]];
-			meshData.rootMesh = ProcessMesh(mesh, scene, node->mMeshes[0]);
-		}
-		else
-		{
-			Mesh mesh = Mesh();
-			mesh.m_ModelPath = m_Path;
-			mesh.m_Index = UINT32_MAX;
-			meshData.rootMesh = mesh;
-		}
+		meshData.rootMesh = ProcessMesh(node, scene);
 
 		for (uint32_t i = 0; i < node->mNumChildren; i++)
 		{
@@ -110,9 +99,9 @@ namespace Wyvern::Render
 		return meshData;
 	}
 
-	Mesh Model3D::ProcessMesh(aiMesh* mesh, const aiScene* scene, unsigned int index)
+	Mesh Model3D::ProcessMesh(aiNode* node, const aiScene* scene)
 	{
-		if (!mesh) return Mesh();
+		if (node->mNumMeshes == 0) return Mesh();
 
 		std::vector<Vector3> vertices;
 		std::vector<Vector3> normals;
@@ -122,57 +111,62 @@ namespace Wyvern::Render
 
 		// Vertices and Normals
 
-		for (uint32_t i = 0; i < mesh->mNumVertices; i++)
+		for (uint32_t x = 0; x < node->mNumMeshes; x++)
 		{
-			Vector3 position;
+			aiMesh* mesh = scene->mMeshes[node->mMeshes[x]];
 
-			position.x = mesh->mVertices[i].x;
-			position.y = mesh->mVertices[i].y;
-			position.z = mesh->mVertices[i].z;
-
-			vertices.push_back(position);
-
-			Vector3 normal;
-
-			normal.x = mesh->mNormals[i].x;
-			normal.y = mesh->mNormals[i].y;
-			normal.z = mesh->mNormals[i].z;
-
-			normals.push_back(normal);
-
-			// Texture Coords
-
-			if (mesh->mTextureCoords[0])
+			for (uint32_t i = 0; i < mesh->mNumVertices; i++)
 			{
-				Vector2 texCoords;
+				Vector3 position;
 
-				texCoords.x = mesh->mTextureCoords[0][i].x;
-				texCoords.y = mesh->mTextureCoords[0][i].y;
+				position.x = mesh->mVertices[i].x;
+				position.y = mesh->mVertices[i].y;
+				position.z = mesh->mVertices[i].z;
 
-				uvs.push_back(texCoords);
+				vertices.push_back(position);
+
+				Vector3 normal;
+
+				normal.x = mesh->mNormals[i].x;
+				normal.y = mesh->mNormals[i].y;
+				normal.z = mesh->mNormals[i].z;
+
+				normals.push_back(normal);
+
+				// Texture Coords
+
+				if (mesh->mTextureCoords[0])
+				{
+					Vector2 texCoords;
+
+					texCoords.x = mesh->mTextureCoords[0][i].x;
+					texCoords.y = mesh->mTextureCoords[0][i].y;
+
+					uvs.push_back(texCoords);
+				}
+				else
+				{
+					uvs.push_back({ 0, 0 });
+				}
 			}
-			else
+
+			// Indices
+
+			for (uint32_t i = 0; i < mesh->mNumFaces; i++)
 			{
-				uvs.push_back({ 0, 0 });
+				aiFace face = mesh->mFaces[i];
+				for (uint32_t j = 0; j < face.mNumIndices; j++)
+				{
+					indices.push_back(face.mIndices[j]);
+				}
 			}
-		}
 
-		// Indices
+			// Materials/Textures
 
-		for (uint32_t i = 0; i < mesh->mNumFaces; i++)
-		{
-			aiFace face = mesh->mFaces[i];
-			for (uint32_t j = 0; j < face.mNumIndices; j++)
+			if (mesh->mMaterialIndex >= 0)
 			{
-				indices.push_back(face.mIndices[j]);
+				aiMaterial* material = scene->mMaterials[mesh->mMaterialIndex];
 			}
-		}
-
-		// Materials/Textures
-
-		if (mesh->mMaterialIndex >= 0)
-		{
-			aiMaterial* material = scene->mMaterials[mesh->mMaterialIndex];
 		}
 
 		Mesh wyvMesh;
@@ -182,7 +176,7 @@ namespace Wyvern::Render
 		wyvMesh.textures = textures;
 		wyvMesh.uvs = uvs;
 		wyvMesh.m_ModelPath = m_Path;
-		wyvMesh.m_Index = index;
+		wyvMesh.m_Index = node->mMeshes[0];
 
 		return wyvMesh;
 	}
