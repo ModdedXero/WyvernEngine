@@ -1,6 +1,5 @@
 #include <Wyvern.h>
-
-#include "BuilderLayer.h"
+#include <WyvernBuilder/Core/BuilderLayer.h>
 
 using namespace Wyvern;
 

@@ -143,7 +143,7 @@
     <ClCompile Include="Source\WyvernBuilder\Core\ComponentUI.cpp" />
     <ClCompile Include="Source\WyvernBuilder\Core\ObjectProperties.cpp" />
     <ClCompile Include="Source\WyvernBuilder\Core\ViewportCamera.cpp" />
-    <ClCompile Include="Source\WyvernBuilder\Core\WyvernBuilder.cpp" />
+    <ClCompile Include="Source\WyvernBuilder\WyvernBuilder.cpp" />
     <ClCompile Include="Source\WyvernBuilder\Windows\ContentBrowserWindow.cpp" />
     <ClCompile Include="Source\WyvernBuilder\Windows\HierarchyWindow.cpp" />
     <ClCompile Include="Source\WyvernBuilder\Windows\PropertiesWindow.cpp" />

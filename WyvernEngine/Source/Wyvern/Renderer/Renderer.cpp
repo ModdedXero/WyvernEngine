@@ -30,10 +30,11 @@ namespace Wyvern::Render
 
 		Vertex* VertexBuffer = nullptr;
 		Vertex* VertexBufferPtr = nullptr;
+		unsigned int VertexCount = 0;
 
-		std::vector<int> IndexBuffer;
-
+		std::vector<uint32_t> IndexBuffer;
 		uint32_t IndexOffset = 0;
+
 
 		std::array<uint32_t, MaxTextureCount> TextureSlots;
 		uint32_t TextureSlotIndex = 1;
@@ -185,7 +186,7 @@ namespace Wyvern::Render
 #ifndef WV_DEBUG
 		glDisable(GL_DEPTH_TEST);
 		glClear(GL_COLOR_BUFFER_BIT);
-		AssetManager::GetShader("ScreenShader")->Use();
+		s_Data.ScreenShader.Use();
 		glBindVertexArray(s_Data.SVAO);
 		s_Framebuffer->BindColorAttachmentTexture();
 		glDrawArrays(GL_TRIANGLES, 0, 6);
@@ -200,7 +201,7 @@ namespace Wyvern::Render
 
 	void Renderer::DrawMesh(Transform* transform, Ref<Material> material, std::vector<Vector3> vertices, std::vector<Vector2> uvs, std::vector<int> indices, const Vector4& color, int entityID)
 	{
-		if (s_Data.IndexBuffer.size() >= MaxVertexCount)
+		if (s_Data.VertexCount >= MaxVertexCount)
 		{
 			EndBatch();
 			Flush();
@@ -229,20 +230,24 @@ namespace Wyvern::Render
 			s_Data.VertexBufferPtr->TexID = textureIndex;
 			s_Data.VertexBufferPtr->EntityID = entityID;
 			s_Data.VertexBufferPtr++;
+
+			s_Data.VertexCount++;
 		}
 
-		for (int indice : indices)
+		for (int& indice : indices)
 		{
 			s_Data.IndexBuffer.push_back(indice + s_Data.IndexOffset);
 		}
 
-		s_Data.IndexOffset += vertices.size();
+		s_Data.IndexOffset += indices.size();
 	}
 
 	void Renderer::BeginBatch()
 	{
 		s_Data.VertexBufferPtr = s_Data.VertexBuffer;
 		s_Data.IndexBuffer.clear();
+		s_Data.VertexCount = 0;
+		s_Data.IndexOffset = 0;
 	}
 
 	void Renderer::EndBatch()
@@ -254,20 +259,18 @@ namespace Wyvern::Render
 		glBufferSubData(GL_ARRAY_BUFFER, 0, size, s_Data.VertexBuffer);
 
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, s_Data.IBO);
-		glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, 0, sizeof(s_Data.IndexBuffer) * s_Data.IndexBuffer.size(), &s_Data.IndexBuffer.front());
+		glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, 0, sizeof(s_Data.IndexBuffer[0]) * s_Data.IndexBuffer.size(), s_Data.IndexBuffer.data());
 	}
 
 	void Renderer::Flush()
 	{
-		s_Data.IndexOffset = 0;
-
 		if (s_Data.IndexBuffer.size() <= 0) return;
 
 		for (uint32_t i = 0; i < s_Data.TextureSlotIndex; i++)
 			glBindTextureUnit(i, s_Data.TextureSlots[i]);
 
 		glBindVertexArray(s_Data.VAO);
-		glDrawElements(GL_TRIANGLES, s_Data.IndexBuffer.size(), GL_UNSIGNED_INT, nullptr);
+		glDrawArrays(GL_TRIANGLES, 0, (GLsizei)s_Data.IndexBuffer.size());
 
 		glBindVertexArray(0);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);

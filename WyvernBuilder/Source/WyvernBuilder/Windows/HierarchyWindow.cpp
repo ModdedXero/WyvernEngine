@@ -23,7 +23,7 @@ namespace Wyvern
 
 		// Entities
 
-		ImGui::SetCursorPos({ 10, EditorInfo::LineHeight() + 10 });
+		ImGui::SetCursorPos({ 8, EditorInfo::LineHeight() + 10 });
 
 		if (ImGui::IsMouseClicked(ImGuiMouseButton_Left) && IsHovered() && !ImGui::IsAnyItemHovered())
 		{
@@ -64,9 +64,11 @@ namespace Wyvern
 
 		EditorGUIInternal::DragDropSource(DragDropTypes::Entity, &ent, sizeof(Entity));
 
+		// Right Click Menu
+
 		if (ImGui::BeginPopupContextItem(0, ImGuiPopupFlags_NoOpenOverExistingPopup | ImGuiPopupFlags_MouseButtonRight))
 		{
-			BuilderLayer::SetSelectedContext(&ent);
+			BuilderLayer::SetSelectedContext(new Entity(ent));
 
 			if (ImGui::MenuItem("Duplicate Entity"))
 				Scene::DuplicateEntity(ent, Entity());

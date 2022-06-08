@@ -12,7 +12,6 @@ namespace Wyvern
 	class Shader
 	{
 	public:
-
 		Shader();
 		Shader(Tools::FileSystem& shaderPath);
 		Shader(const char* vertSource, const char* fragSource, const char* geoSource = nullptr);
@@ -37,6 +36,10 @@ namespace Wyvern
 		static void SetVector4f(const char* name, unsigned int id, const glm::vec4& value);
 		static void SetMatrix4(const char* name, unsigned int id, const glm::mat4& matrix);
 		static void SetIntArray(const char* name, unsigned int id, const int count, const int* intArray);
+
+	private:
+		Tools::FileSystem m_ShaderPath;
+
 	private:
 		void LoadShader(const char* vertSource, const char* fragSource, const char* geoSource = nullptr);
 		void CheckCompileErrors(unsigned int object, std::string type);

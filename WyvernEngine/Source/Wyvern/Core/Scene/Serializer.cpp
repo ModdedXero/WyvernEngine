@@ -131,10 +131,11 @@ namespace Wyvern
 
 		SerializeInfo info(false);
 		info.in = YAML::Load(filepath.ReadFile());
+
+		scene->m_ScenePath = filepath;
 		if (!info.in["Scene"])
 			return false;
 
-		scene->m_ScenePath = filepath;
 		return Deserialize(scene, info);
 	}
 

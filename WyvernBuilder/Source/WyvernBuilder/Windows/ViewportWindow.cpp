@@ -32,6 +32,8 @@ namespace Wyvern
 		}
 		m_Framebuffer->Unbind();
 
+		// Drag and Drop
+
 		Tools::FileSystem pathPtr;
 		EditorGUIInternal::DragDropTarget(DragDropTypes::FileSystem, pathPtr);
 		if (pathPtr.IsExtension(".wyvern")) BuilderLayer::LoadScene(pathPtr);

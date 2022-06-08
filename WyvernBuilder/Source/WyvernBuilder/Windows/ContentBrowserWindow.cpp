@@ -69,11 +69,24 @@ namespace Wyvern
 		ImGui::NextColumn();
 		ImGui::BeginChild("Content");
 
+		// Right Click Menu
+
 		if (ImGui::BeginPopupContextWindow("Empty", ImGuiPopupFlags_NoOpenOverItems | ImGuiPopupFlags_MouseButtonRight))
 		{
-			if (ImGui::MenuItem("New Material"))
+			if (ImGui::BeginMenu("Scene"))
 			{
-				Material mat = Material(m_CurrentDirectory);
+				if (ImGui::MenuItem("New Scene"))
+					Tools::FileSystem(m_CurrentDirectory / "/new_scene.wyvern").CreateFile();
+
+				ImGui::EndMenu();
+			}
+
+			if (ImGui::BeginMenu("Renderer"))
+			{
+				if (ImGui::MenuItem("New Material"))
+					Material mat = Material(m_CurrentDirectory);
+
+				ImGui::EndMenu();
 			}
 
 			ImGui::EndPopup();
@@ -123,11 +136,6 @@ namespace Wyvern
 		}
 
 		ImGui::EndChild();
-
-		//ImGui::Columns(1);
-
-		//ImGui::SliderFloat("Thumbnail Size", &thumbnailSize, 16, 512);
-		//ImGui::SliderFloat("Padding", &padding, 0, 32);
 	}
 
 	void ContentBrowserWindow::SelectContext(Tools::FileSystem& file)

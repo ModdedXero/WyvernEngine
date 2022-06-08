@@ -14,8 +14,9 @@ namespace Wyvern::Tools
 		FileSystem(const char* path);
 		FileSystem(std::filesystem::path path);
 
-		std::string ReadFile();
-		void WriteFile(std::string data);
+		std::string ReadFile() const;
+		void WriteFile(std::string data) const;
+		void CreateFile() const;
 
 		std::string Filename() const { return m_CurrentPath.filename().string(); }
 		std::string Extension() const { return m_CurrentPath.extension().string(); }
@@ -29,6 +30,7 @@ namespace Wyvern::Tools
 
 		static FileSystem RelativePath(const FileSystem& path, const FileSystem& base);
 		static void CreateDirectory(FileSystem path);
+		static void CreateFile(const FileSystem& path);
 		static void CopyFile(FileSystem original, FileSystem copy);
 
 		iterator begin() { return iterator(m_CurrentPath); }

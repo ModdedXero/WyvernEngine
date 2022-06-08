@@ -24,7 +24,7 @@ namespace Wyvern::Tools
 	{
 	}
 
-	std::string FileSystem::ReadFile()
+	std::string FileSystem::ReadFile() const
 	{
 		if (IsDirectory())
 			return std::string();
@@ -38,7 +38,7 @@ namespace Wyvern::Tools
 		return fileString.str();
 	}
 
-	void FileSystem::WriteFile(std::string data)
+	void FileSystem::WriteFile(std::string data) const
 	{
 		if (IsDirectory())
 		{
@@ -49,6 +49,11 @@ namespace Wyvern::Tools
 		std::ofstream out(m_CurrentPath);
 		out << data;
 		out.close();
+	}
+
+	void FileSystem::CreateFile() const
+	{
+		WriteFile("");
 	}
 
 	bool FileSystem::HasDirectoryChildren() const
@@ -71,6 +76,11 @@ namespace Wyvern::Tools
 	void FileSystem::CreateDirectory(FileSystem path)
 	{
 		std::filesystem::create_directory(path);
+	}
+
+	void FileSystem::CreateFile(const FileSystem& path)
+	{
+		path.CreateFile();
 	}
 
 	void FileSystem::CopyFile(FileSystem original, FileSystem copy)

@@ -50,34 +50,34 @@ namespace Wyvern::Render
 	};
 
 	static std::unordered_map<GLchar, Character> Characters;
-	static RenderData2D s_Data;
+	static RenderData2D s_Data2D;
 
 	void Renderer2D::Construct()
 	{
 		// Quad Renderer
 
-		s_Data.QuadBuffer = new Vertex[MaxVertexCount];
+		s_Data2D.QuadBuffer = new Vertex[MaxVertexCount];
 
-		glGenVertexArrays(1, &s_Data.VAO);
-		glBindVertexArray(s_Data.VAO);
+		glGenVertexArrays(1, &s_Data2D.VAO);
+		glBindVertexArray(s_Data2D.VAO);
 
-		glGenBuffers(1, &s_Data.VBO);
-		glBindBuffer(GL_ARRAY_BUFFER, s_Data.VBO);
+		glGenBuffers(1, &s_Data2D.VBO);
+		glBindBuffer(GL_ARRAY_BUFFER, s_Data2D.VBO);
 		glBufferData(GL_ARRAY_BUFFER, MaxVertexCount * sizeof(Vertex), nullptr, GL_DYNAMIC_DRAW);
 
-		glEnableVertexArrayAttrib(s_Data.VAO, 0);
+		glEnableVertexArrayAttrib(s_Data2D.VAO, 0);
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const void*)offsetof(Vertex, Position));
 
-		glEnableVertexArrayAttrib(s_Data.VAO, 1);
+		glEnableVertexArrayAttrib(s_Data2D.VAO, 1);
 		glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const void*)offsetof(Vertex, Color));
 
-		glEnableVertexArrayAttrib(s_Data.VAO, 2);
+		glEnableVertexArrayAttrib(s_Data2D.VAO, 2);
 		glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const void*)offsetof(Vertex, TexCoords));
 
-		glEnableVertexArrayAttrib(s_Data.VAO, 3);
+		glEnableVertexArrayAttrib(s_Data2D.VAO, 3);
 		glVertexAttribPointer(3, 1, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const void*)offsetof(Vertex, TexID));
 
-		glEnableVertexArrayAttrib(s_Data.VAO, 4);
+		glEnableVertexArrayAttrib(s_Data2D.VAO, 4);
 		glVertexAttribIPointer(4, 1, GL_INT, sizeof(Vertex), (const void*)offsetof(Vertex, EntityID));
 
 		uint32_t indices[MaxIndexCount];
@@ -95,8 +95,8 @@ namespace Wyvern::Render
 			offset += 4;
 		}
 
-		glGenBuffers(1, &s_Data.IBO);
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, s_Data.IBO);
+		glGenBuffers(1, &s_Data2D.IBO);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, s_Data2D.IBO);
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
 		glBindVertexArray(0);
@@ -105,8 +105,8 @@ namespace Wyvern::Render
 
 		// Setup default texture
 
-		glCreateTextures(GL_TEXTURE_2D, 1, &s_Data.WhiteTexture);
-		glBindTexture(GL_TEXTURE_2D, s_Data.WhiteTexture);
+		glCreateTextures(GL_TEXTURE_2D, 1, &s_Data2D.WhiteTexture);
+		glBindTexture(GL_TEXTURE_2D, s_Data2D.WhiteTexture);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
@@ -114,9 +114,9 @@ namespace Wyvern::Render
 		uint32_t color = 0xffffffff;
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, 1, 1, 0, GL_RGBA, GL_UNSIGNED_BYTE, &color);
 
-		s_Data.TextureSlots[0] = s_Data.WhiteTexture;
+		s_Data2D.TextureSlots[0] = s_Data2D.WhiteTexture;
 		for (size_t i = 1; i < MaxTextures; i++)
-			s_Data.TextureSlots[i] = 0;
+			s_Data2D.TextureSlots[i] = 0;
 
 		// FreeType Renderer
 
@@ -176,38 +176,38 @@ namespace Wyvern::Render
 
 	void Renderer2D::Destruct()
 	{
-		glDeleteVertexArrays(1, &s_Data.VAO);
-		glDeleteBuffers(1, &s_Data.VBO);
-		glDeleteBuffers(1, &s_Data.IBO);
+		glDeleteVertexArrays(1, &s_Data2D.VAO);
+		glDeleteBuffers(1, &s_Data2D.VBO);
+		glDeleteBuffers(1, &s_Data2D.IBO);
 
-		delete[] s_Data.QuadBuffer;
+		delete[] s_Data2D.QuadBuffer;
 
-		for (auto& iter : s_Data.VertexData)
+		for (auto& iter : s_Data2D.VertexData)
 		{
 			delete iter.second;
 		}
-		s_Data.VertexData.clear();
+		s_Data2D.VertexData.clear();
 	}
 	void Renderer2D::BeginScene(CameraRenderer* cameraRenderer, Transform* cameraPosition, Vector4 clearColor)
 	{
-		s_Data.Camera = cameraRenderer;
-		s_Data.CameraPosition = cameraPosition;
-		s_Data.CameraClearColor = clearColor;
+		s_Data2D.Camera = cameraRenderer;
+		s_Data2D.CameraPosition = cameraPosition;
+		s_Data2D.CameraClearColor = clearColor;
 
 		glClear(GL_COLOR_BUFFER_BIT);
-		glClearColor(s_Data.CameraClearColor.x, s_Data.CameraClearColor.y, s_Data.CameraClearColor.z, s_Data.CameraClearColor.w);
+		glClearColor(s_Data2D.CameraClearColor.x, s_Data2D.CameraClearColor.y, s_Data2D.CameraClearColor.z, s_Data2D.CameraClearColor.w);
 
 		BeginBatch();
 	}
 
 	void Renderer2D::EndScene()
 	{
-		for (auto& drawData : s_Data.VertexData)
+		for (auto& drawData : s_Data2D.VertexData)
 		{
 			drawData.second->material->GetShader().Use();
-			s_Data.Camera->SetShaderMatrices(drawData.second->material->GetShader(), s_Data.CameraPosition);
+			s_Data2D.Camera->SetShaderMatrices(drawData.second->material->GetShader(), s_Data2D.CameraPosition);
 
-			if (s_Data.IndexCount >= MaxIndexCount || s_Data.TextureSlotIndex > (MaxTextures - 1))
+			if (s_Data2D.IndexCount >= MaxIndexCount || s_Data2D.TextureSlotIndex > (MaxTextures - 1))
 			{
 				EndBatch();
 				Flush();
@@ -216,52 +216,52 @@ namespace Wyvern::Render
 
 			for (int i = 0; i < 4; i++)
 			{
-				s_Data.QuadBufferPtr->Position = drawData.second->vertices[i].Position;
-				s_Data.QuadBufferPtr->Color = drawData.second->vertices[i].Color;
-				s_Data.QuadBufferPtr->TexCoords = drawData.second->vertices[i].TexCoords;
-				s_Data.QuadBufferPtr->TexID = drawData.second->vertices[i].TexID;
-				s_Data.QuadBufferPtr->EntityID = drawData.second->vertices[i].EntityID;
-				s_Data.QuadBufferPtr++;
+				s_Data2D.QuadBufferPtr->Position = drawData.second->vertices[i].Position;
+				s_Data2D.QuadBufferPtr->Color = drawData.second->vertices[i].Color;
+				s_Data2D.QuadBufferPtr->TexCoords = drawData.second->vertices[i].TexCoords;
+				s_Data2D.QuadBufferPtr->TexID = drawData.second->vertices[i].TexID;
+				s_Data2D.QuadBufferPtr->EntityID = drawData.second->vertices[i].EntityID;
+				s_Data2D.QuadBufferPtr++;
 			}
 
-			s_Data.IndexCount += 6;
+			s_Data2D.IndexCount += 6;
 		}
 
 		EndBatch();
 		Flush();
 
-		for (auto& iter : s_Data.VertexData)
+		for (auto& iter : s_Data2D.VertexData)
 		{
 			delete iter.second;
 		}
 
-		s_Data.VertexData.clear();
+		s_Data2D.VertexData.clear();
 	}
 
 	void Renderer2D::BeginBatch()
 	{
-		s_Data.QuadBufferPtr = s_Data.QuadBuffer;
+		s_Data2D.QuadBufferPtr = s_Data2D.QuadBuffer;
 	}
 
 	void Renderer2D::EndBatch()
 	{
-		GLsizeiptr size = (uint8_t*)s_Data.QuadBufferPtr - (uint8_t*)s_Data.QuadBuffer;
-		glBindBuffer(GL_ARRAY_BUFFER, s_Data.VBO);
-		glBufferSubData(GL_ARRAY_BUFFER, 0, size, s_Data.QuadBuffer);
+		GLsizeiptr size = (uint8_t*)s_Data2D.QuadBufferPtr - (uint8_t*)s_Data2D.QuadBuffer;
+		glBindBuffer(GL_ARRAY_BUFFER, s_Data2D.VBO);
+		glBufferSubData(GL_ARRAY_BUFFER, 0, size, s_Data2D.QuadBuffer);
 	}
 
 	void Renderer2D::Flush()
 	{
-		for (uint32_t i = 0; i < s_Data.TextureSlotIndex; i++)
-			glBindTextureUnit(i, s_Data.TextureSlots[i]);
+		for (uint32_t i = 0; i < s_Data2D.TextureSlotIndex; i++)
+			glBindTextureUnit(i, s_Data2D.TextureSlots[i]);
 
-		glBindVertexArray(s_Data.VAO);
-		glDrawElements(GL_TRIANGLES, s_Data.IndexCount, GL_UNSIGNED_INT, nullptr);
+		glBindVertexArray(s_Data2D.VAO);
+		glDrawElements(GL_TRIANGLES, s_Data2D.IndexCount, GL_UNSIGNED_INT, nullptr);
 
 		glBindVertexArray(0);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 
-		s_Data.IndexCount = 0;
+		s_Data2D.IndexCount = 0;
 	}
 
 	void Renderer2D::DrawQuad(Transform* transform, Ref<Material> material, Ref<Sprite> sprite, const Vector4& color, int entityID)
@@ -278,9 +278,9 @@ namespace Wyvern::Render
 
 		if (sprite && sprite->GetTexture())
 		{
-			for (uint32_t i = 1; i < s_Data.TextureSlotIndex; i++)
+			for (uint32_t i = 1; i < s_Data2D.TextureSlotIndex; i++)
 			{
-				if (s_Data.TextureSlots[i] == sprite->GetTexture()->GetID())
+				if (s_Data2D.TextureSlots[i] == sprite->GetTexture()->GetID())
 				{
 					textureIndex = (float)i;
 					break;
@@ -289,9 +289,9 @@ namespace Wyvern::Render
 
 			if (textureIndex == 0.0f)
 			{
-				textureIndex = (float)s_Data.TextureSlotIndex;
-				s_Data.TextureSlots[s_Data.TextureSlotIndex] = sprite->GetTexture()->GetID();
-				s_Data.TextureSlotIndex++;
+				textureIndex = (float)s_Data2D.TextureSlotIndex;
+				s_Data2D.TextureSlots[s_Data2D.TextureSlotIndex] = sprite->GetTexture()->GetID();
+				s_Data2D.TextureSlotIndex++;
 			}
 
 			coords[0] = sprite->GetTexCoords()[0];
@@ -339,7 +339,7 @@ namespace Wyvern::Render
 		};
 		
 		VertexArray* vertexArray = new VertexArray(vertices, material);
-		s_Data.VertexData.insert(std::pair<float, VertexArray*>(transform->position.z, vertexArray));
+		s_Data2D.VertexData.insert(std::pair<float, VertexArray*>(transform->position.z, vertexArray));
 	}
 
 	void Renderer2D::DrawText(Vector3 pos, const Vector2& size, const std::string& text)
@@ -352,9 +352,9 @@ namespace Wyvern::Render
 			Character ch = Characters[*c];
 
 			float textureIndex = 0.0f;
-			for (uint32_t i = 1; i < s_Data.TextureSlotIndex; i++)
+			for (uint32_t i = 1; i < s_Data2D.TextureSlotIndex; i++)
 			{
-				if (s_Data.TextureSlots[i] == ch.TextureID)
+				if (s_Data2D.TextureSlots[i] == ch.TextureID)
 				{
 					textureIndex = (float)i;
 					break;
@@ -363,9 +363,9 @@ namespace Wyvern::Render
 
 			if (textureIndex == 0.0f)
 			{
-				textureIndex = (float)s_Data.TextureSlotIndex;
-				s_Data.TextureSlots[s_Data.TextureSlotIndex] = ch.TextureID;
-				s_Data.TextureSlotIndex++;
+				textureIndex = (float)s_Data2D.TextureSlotIndex;
+				s_Data2D.TextureSlots[s_Data2D.TextureSlotIndex] = ch.TextureID;
+				s_Data2D.TextureSlotIndex++;
 			}
 
 			float xpos = pos.x + ch.Bearing.x * size.x;
@@ -402,7 +402,7 @@ namespace Wyvern::Render
 			);
 
 			VertexArray* vertexArray = new VertexArray(vertices, fontMaterial);
-			s_Data.VertexData.insert(std::pair<float, VertexArray*>(pos.z, vertexArray));
+			s_Data2D.VertexData.insert(std::pair<float, VertexArray*>(pos.z, vertexArray));
 
 			pos.x += (ch.Advance >> 6) * size.x;
 		}

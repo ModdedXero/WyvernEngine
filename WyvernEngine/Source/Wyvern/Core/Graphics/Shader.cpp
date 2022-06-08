@@ -6,11 +6,13 @@
 namespace Wyvern
 {
 	Shader::Shader()
+		: ID(0)
 	{
 
 	}
 
 	Shader::Shader(Tools::FileSystem& shaderPath)
+		: m_ShaderPath(shaderPath)
 	{
 		std::string shaderCode;
 		std::string vertCode, fragCode, geoCode;
@@ -199,7 +201,8 @@ namespace Wyvern
 			if (!success)
 			{
 				glGetShaderInfoLog(object, 1024, NULL, infoLog);
-				DEBUG_LOG_ERROR("Shader: Compile-time error: Type: ", type, "\n", infoLog, "\n");
+				DEBUG_CORE_ERROR("Shader File: ", m_ShaderPath);
+				DEBUG_CORE_ERROR("Shader: Compile-time error: Type: ", type, "\n", infoLog, "\n");
 			}
 		}
 		else
@@ -208,7 +211,8 @@ namespace Wyvern
 			if (!success)
 			{
 				glGetProgramInfoLog(object, 1024, NULL, infoLog);
-				DEBUG_LOG_ERROR("Shader: Link-time error: Type: ", type, "\n", infoLog, "\n");
+				DEBUG_CORE_ERROR("Shader File: ", m_ShaderPath);
+				DEBUG_CORE_ERROR("Shader: Link-time error: Type: ", type, "\n", infoLog, "\n");
 			}
 		}
 	}
