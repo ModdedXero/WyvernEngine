@@ -194,12 +194,12 @@ namespace Wyvern::Render
 #endif
 	}
 
-	void Renderer::DrawMesh(Transform* transform, Ref<Material> material, Mesh* mesh, const Vector4& color, int entityID)
+	void Renderer::DrawMesh(Transform* transform, Ref<Material> material, Mesh* mesh, int entityID)
 	{
-		DrawMesh(transform, material, mesh->vertices, mesh->uvs, mesh->indices, color, entityID);
+		DrawMesh(transform, material, mesh->vertices, mesh->uvs, mesh->colors, mesh->indices, entityID);
 	}
 
-	void Renderer::DrawMesh(Transform* transform, Ref<Material> material, std::vector<Vector3> vertices, std::vector<Vector2> uvs, std::vector<int> indices, const Vector4& color, int entityID)
+	void Renderer::DrawMesh(Transform* transform, Ref<Material> material, std::vector<Vector3> vertices, std::vector<Vector2> uvs, std::vector<Vector4> colors, std::vector<int> indices, int entityID)
 	{
 		if (s_Data.VertexCount >= MaxVertexCount)
 		{
@@ -220,9 +220,10 @@ namespace Wyvern::Render
 			* Matrix4x4::Rotate(transform->GlobalRotation())
 			* Matrix4x4::Scale(transform->GlobalScale());
 
-		for (Vector3& position : vertices)
+		for (uint32_t i = 0; i < vertices.size(); i++)
 		{
-			Vector3 vertex = matrix * glm::vec4(position.x, position.y, position.z, 1.0f);
+			Vector3 vertex = matrix * glm::vec4(vertices[i].x, vertices[i].y, vertices[i].z, 1.0f);
+			Vector4 color = colors.size() > 0 ? colors[i] : Vector4(1.0f, 1.0f, 1.0f, 1.0f);
 
 			s_Data.VertexBufferPtr->Position = vertex;
 			s_Data.VertexBufferPtr->Color = color;

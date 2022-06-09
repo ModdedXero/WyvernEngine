@@ -2,6 +2,7 @@
 
 #include <Wyvern/Core/Scene/Scene.h>
 #include <Wyvern/Core/Graphics/Mesh.h>
+#include <Wyvern/Core/Graphics/Material.h>
 #include <Wyvern/Tools/FileSystem.h>
 
 #include <assimp/scene.h>
@@ -12,7 +13,8 @@ namespace Wyvern::Render
 {
 	struct MeshData
 	{
-		Mesh rootMesh;
+		Mesh mesh;
+		std::vector<Material> materials;
 		std::vector<MeshData> childrenMeshes;
 	};
 

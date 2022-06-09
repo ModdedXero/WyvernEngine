@@ -16,7 +16,7 @@ namespace Wyvern::Render
 		{
 			Entity root = Scene::CreateEntity(scene);
 			root.AddComponent<MeshRenderer>();
-			root.AddComponent<MeshFilter>()->mesh = data.rootMesh;
+			root.AddComponent<MeshFilter>()->mesh = data.mesh;
 			parent.AddChildEntity(root);
 
 			for (auto& childMesh : data.childrenMeshes)
@@ -27,13 +27,13 @@ namespace Wyvern::Render
 
 		static Mesh FindChildMesh(MeshData data, unsigned int index)
 		{
-			if (data.rootMesh.GetMeshIndex() == index)
-				return data.rootMesh;
+			if (data.mesh.GetMeshIndex() == index)
+				return data.mesh;
 
 			for (auto& mesh : data.childrenMeshes)
 			{
-				if (mesh.rootMesh.GetMeshIndex() == index)
-					return mesh.rootMesh;
+				if (mesh.mesh.GetMeshIndex() == index)
+					return mesh.mesh;
 
 				return FindChildMesh(mesh, index);
 			}
@@ -52,7 +52,7 @@ namespace Wyvern::Render
 	{
 		Entity root = Scene::CreateEntity(scene);
 		root.AddComponent<MeshRenderer>();
-		root.AddComponent<MeshFilter>()->mesh = meshes.rootMesh;
+		root.AddComponent<MeshFilter>()->mesh = meshes.mesh;
 
 		for (auto& meshData : meshes.childrenMeshes)
 		{
@@ -62,8 +62,8 @@ namespace Wyvern::Render
 
 	Mesh Model3D::GetMesh(unsigned int index)
 	{
-		if (meshes.rootMesh.m_Index == index)
-			return meshes.rootMesh;
+		if (meshes.mesh.m_Index == index)
+			return meshes.mesh;
 
 		for (auto& mesh : meshes.childrenMeshes)
 		{
@@ -89,7 +89,7 @@ namespace Wyvern::Render
 	{
 		MeshData meshData;
 
-		meshData.rootMesh = ProcessMesh(node, scene);
+		meshData.mesh = ProcessMesh(node, scene);
 
 		for (uint32_t i = 0; i < node->mNumChildren; i++)
 		{
@@ -103,16 +103,18 @@ namespace Wyvern::Render
 	{
 		if (node->mNumMeshes == 0) return Mesh();
 
+		Mesh wyvMesh;
 		std::vector<Vector3> vertices;
 		std::vector<Vector3> normals;
 		std::vector<Vector2> uvs;
-		std::vector<uint32_t> textures;
+		std::vector<Vector4> colors;
 		std::vector<int> indices;
 
 		// Vertices and Normals
 
 		for (uint32_t x = 0; x < node->mNumMeshes; x++)
 		{
+			size_t indiceStart = indices.size();
 			aiMesh* mesh = scene->mMeshes[node->mMeshes[x]];
 
 			for (uint32_t i = 0; i < mesh->mNumVertices; i++)
@@ -161,20 +163,37 @@ namespace Wyvern::Render
 				}
 			}
 
-			// Materials/Textures
+			wyvMesh.SetSubMesh(indiceStart, indiceStart - indices.size());
+
+			// Materials/Textures/Colors
 
 			if (mesh->mMaterialIndex >= 0)
 			{
 				aiMaterial* material = scene->mMaterials[mesh->mMaterialIndex];
+
+
+				for (uint32_t i = 0; i < material->mNumProperties; i++)
+				{
+					// Color Map
+					aiColor4D color;
+					material->Get(AI_MATKEY_COLOR_DIFFUSE, color);
+
+					Vector4 vColor;
+					vColor.x = color.r;
+					vColor.y = color.g;
+					vColor.z = color.b;
+					vColor.w = color.a;
+
+					colors.push_back(vColor);
+				}
 			}
 		}
 
-		Mesh wyvMesh;
 		wyvMesh.vertices = vertices;
 		wyvMesh.normals = normals;
-		wyvMesh.indices = indices;
-		wyvMesh.textures = textures;
 		wyvMesh.uvs = uvs;
+		wyvMesh.colors = colors;
+		wyvMesh.indices = indices;
 		wyvMesh.m_ModelPath = m_Path;
 		wyvMesh.m_Index = node->mMeshes[0];
 

@@ -20,7 +20,6 @@ namespace Wyvern
 		UUID GetUUID() const { return m_UUID; }
 		Shader GetShader() const { return *m_Shader; }
 
-	public:
 		void SetShader(Tools::FileSystem& shaderPath);
 
 	private:

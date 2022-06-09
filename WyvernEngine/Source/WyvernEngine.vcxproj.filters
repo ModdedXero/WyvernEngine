@@ -422,5 +422,6 @@
       <Filter>Wyvern\UI</Filter>
     </ClCompile>
     <ClCompile Include="wvpch.cpp" />
+    <ClCompile Include="Wyvern\Core\Graphics\Mesh.cpp" />
   </ItemGroup>
 </Project>
