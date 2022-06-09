@@ -17,7 +17,7 @@ namespace Wyvern
 
 		if (target.IsExtension(".dae"))
 		{
-			Render::Model3D model = Render::Model3D(target);
+			Render::ModelImporter model = Render::ModelImporter(target);
 			model.GenerateEntity(Scene::GetActiveScene());
 		}
 

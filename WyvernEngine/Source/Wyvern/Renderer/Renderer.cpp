@@ -220,19 +220,37 @@ namespace Wyvern::Render
 			* Matrix4x4::Rotate(transform->GlobalRotation())
 			* Matrix4x4::Scale(transform->GlobalScale());
 
-		for (uint32_t i = 0; i < vertices.size(); i++)
+		if (colors.size() == vertices.size())
 		{
-			Vector3 vertex = matrix * glm::vec4(vertices[i].x, vertices[i].y, vertices[i].z, 1.0f);
-			Vector4 color = colors.size() > 0 ? colors[i] : Vector4(1.0f, 1.0f, 1.0f, 1.0f);
+			for (uint32_t i = 0; i < vertices.size(); i++)
+			{
+				Vector3 vertex = matrix * glm::vec4(vertices[i].x, vertices[i].y, vertices[i].z, 1.0f);
 
-			s_Data.VertexBufferPtr->Position = vertex;
-			s_Data.VertexBufferPtr->Color = color;
-			s_Data.VertexBufferPtr->TexCoords = textureCoords;
-			s_Data.VertexBufferPtr->TexID = textureIndex;
-			s_Data.VertexBufferPtr->EntityID = entityID;
-			s_Data.VertexBufferPtr++;
+				s_Data.VertexBufferPtr->Position = vertex;
+				s_Data.VertexBufferPtr->Color = colors[i];
+				s_Data.VertexBufferPtr->TexCoords = textureCoords;
+				s_Data.VertexBufferPtr->TexID = textureIndex;
+				s_Data.VertexBufferPtr->EntityID = entityID;
+				s_Data.VertexBufferPtr++;
 
-			s_Data.VertexCount++;
+				s_Data.VertexCount++;
+			}
+		}
+		else
+		{
+			for (uint32_t i = 0; i < vertices.size(); i++)
+			{
+				Vector3 vertex = matrix * glm::vec4(vertices[i].x, vertices[i].y, vertices[i].z, 1.0f);
+
+				s_Data.VertexBufferPtr->Position = vertex;
+				s_Data.VertexBufferPtr->Color = material->BaseColor();
+				s_Data.VertexBufferPtr->TexCoords = textureCoords;
+				s_Data.VertexBufferPtr->TexID = textureIndex;
+				s_Data.VertexBufferPtr->EntityID = entityID;
+				s_Data.VertexBufferPtr++;
+
+				s_Data.VertexCount++;
+			}
 		}
 
 		for (int& indice : indices)

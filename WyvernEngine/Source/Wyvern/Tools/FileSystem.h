@@ -20,6 +20,7 @@ namespace Wyvern::Tools
 
 		std::string Filename() const { return m_CurrentPath.filename().string(); }
 		std::string Extension() const { return m_CurrentPath.extension().string(); }
+		std::string RootName() const { return m_CurrentPath.stem().string(); }
 		std::string AbsolutePath() const { return std::filesystem::absolute(m_CurrentPath).string(); }
 
 		bool IsExtension(const char* extension) const { return m_CurrentPath.extension() == extension; }

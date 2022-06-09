@@ -6,7 +6,7 @@
 #include <Wyvern/Core/Scene/Scene.h>
 #include <Wyvern/Core/Physics/Physics.h>
 #include <Wyvern/Renderer/CameraRenderer.h>
-#include <Wyvern/Renderer/Model3D.h>
+#include <Wyvern/Renderer/ModelImporter.h>
 #include <Wyvern/Tools/FileSystem.h>
 #include <Wyvern/Core/Graphics/Sprite.h>
 #include <Wyvern/Core/Graphics/Mesh.h>
@@ -210,7 +210,7 @@ namespace YAML
 			if (!node.IsSequence() || node.size() != 2)
 				return false;
 
-			Wyvern::Render::Model3D model = Wyvern::Render::Model3D(node[0].as<std::string>());
+			Wyvern::Render::ModelImporter model = Wyvern::Render::ModelImporter(node[0].as<std::string>());
 			rhs = model.GetMesh(node[1].as<unsigned int>());
 			return true;
 		}

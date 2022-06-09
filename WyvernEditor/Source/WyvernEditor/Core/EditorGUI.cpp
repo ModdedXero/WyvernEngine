@@ -12,12 +12,6 @@
 
 namespace Wyvern::Editor
 {
-	void EditorGUI::Label(const std::string& label)
-	{
-		ImGui::SetCursorPosY(EditorInfo::TextPadding());
-		ImGui::Text(label.c_str());
-	}
-
 	void EditorGUI::Vector2Control(const std::string& label, Vector2& values, float resetValue, float columnWidth)
 	{
 		ImGuiIO& io = ImGui::GetIO();
@@ -27,7 +21,7 @@ namespace Wyvern::Editor
 
 		ImGui::Columns(2, 0, false);
 		ImGui::SetColumnWidth(0, columnWidth);
-		EditorGUI::Label(label);
+		EditorGUI::_ControlLabel(label);
 		ImGui::NextColumn();
 
 		ImGui::PushMultiItemsWidths(2, ImGui::CalcItemWidth());
@@ -78,7 +72,7 @@ namespace Wyvern::Editor
 
 		ImGui::Columns(2, 0, false);
 		ImGui::SetColumnWidth(0, columnWidth);
-		EditorGUI::Label(label);
+		EditorGUI::_ControlLabel(label);
 		ImGui::NextColumn();
 
 		ImGui::PushMultiItemsWidths(3, ImGui::CalcItemWidth());
@@ -140,7 +134,7 @@ namespace Wyvern::Editor
 
 		ImGui::Columns(2, 0, false);
 		ImGui::SetColumnWidth(0, columnWidth);
-		EditorGUI::Label(label);
+		EditorGUI::_ControlLabel(label);
 		ImGui::NextColumn();
 
 		ImGui::PushMultiItemsWidths(4, ImGui::CalcItemWidth());
@@ -206,7 +200,7 @@ namespace Wyvern::Editor
 	{
 		ImGui::Columns(2, 0, false);
 		ImGui::SetColumnWidth(0, columnWidth);
-		EditorGUI::Label(label);
+		EditorGUI::_ControlLabel(label);
 		ImGui::NextColumn();
 
 		float* fValues[4] =
@@ -227,7 +221,7 @@ namespace Wyvern::Editor
 	{
 		ImGui::Columns(2, 0, false);
 		ImGui::SetColumnWidth(0, columnWidth);
-		EditorGUI::Label(label);
+		EditorGUI::_ControlLabel(label);
 		ImGui::NextColumn();
 
 		std::string id = "##" + label;
@@ -240,7 +234,7 @@ namespace Wyvern::Editor
 	{
 		ImGui::Columns(2, 0, false);
 		ImGui::SetColumnWidth(0, columnWidth);
-		EditorGUI::Label(label);
+		EditorGUI::_ControlLabel(label);
 		ImGui::NextColumn();
 
 		std::string id = "##" + label;
@@ -253,7 +247,7 @@ namespace Wyvern::Editor
 	{
 		ImGui::Columns(2, 0, false);
 		ImGui::SetColumnWidth(0, columnWidth);
-		EditorGUI::Label(label);
+		EditorGUI::_ControlLabel(label);
 		ImGui::NextColumn();
 
 		std::string id = "##" + label;
@@ -266,7 +260,7 @@ namespace Wyvern::Editor
 	{
 		ImGui::Columns(2, 0, false);
 		ImGui::SetColumnWidth(0, columnWidth);
-		EditorGUI::Label(label);
+		EditorGUI::_ControlLabel(label);
 		ImGui::NextColumn();
 
 		if (readOnly)
@@ -279,7 +273,7 @@ namespace Wyvern::Editor
 	{
 		ImGui::Columns(2, 0, false);
 		ImGui::SetColumnWidth(0, columnWidth);
-		EditorGUI::Label(label);
+		EditorGUI::_ControlLabel(label);
 		ImGui::NextColumn();
 
 		std::string id = "##" + label;
@@ -304,7 +298,7 @@ namespace Wyvern::Editor
 	{
 		ImGui::Columns(2, 0, false);
 		ImGui::SetColumnWidth(0, columnWidth);
-		EditorGUI::Label(label);
+		EditorGUI::_ControlLabel(label);
 		ImGui::NextColumn();
 
 		float lineHeight = EditorInfo::LineHeight();
@@ -325,7 +319,7 @@ namespace Wyvern::Editor
 	{
 		ImGui::Columns(2, 0, false);
 		ImGui::SetColumnWidth(0, columnWidth);
-		EditorGUI::Label(label);
+		EditorGUI::_ControlLabel(label);
 		ImGui::NextColumn();
 
 		float lineHeight = EditorInfo::LineHeight();
@@ -335,5 +329,11 @@ namespace Wyvern::Editor
 		EditorGUIInternal::DragDropTarget(DragDropTypes::FileSystem, file);
 
 		ImGui::Columns(1);
+	}
+
+	void EditorGUI::_ControlLabel(const std::string& label)
+	{
+		ImGui::SetCursorPosY(EditorInfo::TextPadding());
+		ImGui::Text(label.c_str());
 	}
 }

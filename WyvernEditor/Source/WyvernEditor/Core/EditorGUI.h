@@ -11,9 +11,6 @@ namespace Wyvern::Editor
 	class EditorGUI
 	{
 	public:
-		static void Label(const std::string& label);
-
-	public:
 		static void Vector2Control(const std::string& label, Vector2& values, float resetValue = DefaultResetValue, float columnWidth = DefaultColumnWidth);
 		static void Vector3Control(const std::string& label, Vector3& values, float resetValue = DefaultResetValue, float columnWidth = DefaultColumnWidth);
 		static void Vector4Control(const std::string& label, Vector4& values, float resetValue = DefaultResetValue, float columnWidth = DefaultColumnWidth);
@@ -29,5 +26,8 @@ namespace Wyvern::Editor
 
 		static void EntityControl(const std::string& label, Entity& entity, float columnWidth = DefaultColumnWidth);
 		static void FileSystemControl(const std::string& label, Tools::FileSystem& file, float columnWidth = DefaultColumnWidth);
+
+	private:
+		static void _ControlLabel(const std::string& label);
 	};
 }

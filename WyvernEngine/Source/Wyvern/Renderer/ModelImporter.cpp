@@ -1,5 +1,5 @@
 #include "wvpch.h"
-#include "Model3D.h"
+#include "ModelImporter.h"
 
 #include <Wyvern/Core/Scene/Entity.h>
 #include <Wyvern/Core/Components/MeshRenderer.h>
@@ -42,13 +42,13 @@ namespace Wyvern::Render
 		}
 	}
 
-	Model3D::Model3D(Tools::FileSystem path)
+	ModelImporter::ModelImporter(Tools::FileSystem path)
 		: m_Path(path)
 	{
 		LoadModel();
 	}
 
-	void Model3D::GenerateEntity(Ref<Scene> scene)
+	void ModelImporter::GenerateEntity(Ref<Scene> scene)
 	{
 		Entity root = Scene::CreateEntity(scene);
 		root.AddComponent<MeshRenderer>();
@@ -60,7 +60,7 @@ namespace Wyvern::Render
 		}
 	}
 
-	Mesh Model3D::GetMesh(unsigned int index)
+	Mesh ModelImporter::GetMesh(unsigned int index)
 	{
 		if (meshes.mesh.m_Index == index)
 			return meshes.mesh;
@@ -71,7 +71,7 @@ namespace Wyvern::Render
 		}
 	}
 
-	void Model3D::LoadModel()
+	void ModelImporter::LoadModel()
 	{
 		Assimp::Importer importer;
 		const aiScene* scene = importer.ReadFile(m_Path, aiProcess_Triangulate | aiProcess_FlipUVs);
@@ -85,7 +85,7 @@ namespace Wyvern::Render
 		meshes = ProcessNode(scene->mRootNode, scene);
 	}
 
-	MeshData Model3D::ProcessNode(aiNode* node, const aiScene* scene)
+	MeshData ModelImporter::ProcessNode(aiNode* node, const aiScene* scene)
 	{
 		MeshData meshData;
 
@@ -99,7 +99,7 @@ namespace Wyvern::Render
 		return meshData;
 	}
 
-	Mesh Model3D::ProcessMesh(aiNode* node, const aiScene* scene)
+	Mesh ModelImporter::ProcessMesh(aiNode* node, const aiScene* scene)
 	{
 		if (node->mNumMeshes == 0) return Mesh();
 
@@ -171,21 +171,9 @@ namespace Wyvern::Render
 			{
 				aiMaterial* material = scene->mMaterials[mesh->mMaterialIndex];
 
-
-				for (uint32_t i = 0; i < material->mNumProperties; i++)
-				{
-					// Color Map
-					aiColor4D color;
-					material->Get(AI_MATKEY_COLOR_DIFFUSE, color);
-
-					Vector4 vColor;
-					vColor.x = color.r;
-					vColor.y = color.g;
-					vColor.z = color.b;
-					vColor.w = color.a;
-
-					colors.push_back(vColor);
-				}
+				aiString str;
+				material->Get(AI_MATKEY_NAME, str);
+				DEBUG_CORE(str.C_Str());
 			}
 		}
 

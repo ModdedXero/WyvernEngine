@@ -102,7 +102,7 @@ namespace Wyvern
 		for (FileSystem dir : m_CurrentDirectory)
 		{
 			FileSystem relative = FileSystem::RelativePath(dir, m_CurrentDirectory);
-			std::string filename = relative.Filename();
+			std::string filename = relative.RootName();
 			
 			Ref<Texture2D> icon = dir.IsDirectory() ? m_DirectoryIcon : m_FileIcon;
 
@@ -129,6 +129,7 @@ namespace Wyvern
 					m_CurrentDirectory /= relative;
 				}
 			}
+
 			ImGui::TextWrapped(filename.c_str());
 			ImGui::PopID();
 

@@ -18,10 +18,10 @@ namespace Wyvern::Render
 		std::vector<MeshData> childrenMeshes;
 	};
 
-	class Model3D
+	class ModelImporter
 	{
 	public:
-		Model3D(Tools::FileSystem path);
+		ModelImporter(Tools::FileSystem path);
 
 		void GenerateEntity(Ref<Scene> scene);
 		Mesh GetMesh(unsigned int index);

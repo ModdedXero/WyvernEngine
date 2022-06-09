@@ -9,7 +9,7 @@ namespace Wyvern
 {
 	namespace Render
 	{
-		class Model3D;
+		class ModelImporter;
 	}
 
 	struct SubMesh
@@ -21,7 +21,7 @@ namespace Wyvern
 
 	struct Mesh
 	{
-		friend class Render::Model3D;
+		friend class Render::ModelImporter;
 	public:
 		std::vector<Vector3> vertices;
 		std::vector<Vector3> normals;

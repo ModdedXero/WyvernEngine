@@ -38,11 +38,11 @@
 #include <Wyvern/Core/Graphics/Sprite.h>
 
 // Renderer
-#include <Wyvern/Renderer/Model3D.h>
 #include <Wyvern/Renderer/Renderer.h>
 #include <Wyvern/Renderer/Renderer2D.h>
 #include <Wyvern/Renderer/Framebuffer.h>
 #include <Wyvern/Renderer/CameraRenderer.h>
+#include <Wyvern/Renderer/ModelImporter.h>
 
 // Input
 #include <Wyvern/Core/Input/Input.h>

@@ -268,7 +268,7 @@
     <ClInclude Include="Wyvern\Renderer\Framebuffer.h">
       <Filter>Wyvern\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="Wyvern\Renderer\Model3D.h">
+    <ClInclude Include="Wyvern\Renderer\ModelImporter.h">
       <Filter>Wyvern\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="Wyvern\Renderer\Renderer.h">
@@ -403,7 +403,7 @@
     <ClCompile Include="Wyvern\Renderer\Framebuffer.cpp">
       <Filter>Wyvern\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="Wyvern\Renderer\Model3D.cpp">
+    <ClCompile Include="Wyvern\Renderer\ModelImporter.cpp">
       <Filter>Wyvern\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="Wyvern\Renderer\Renderer.cpp">
