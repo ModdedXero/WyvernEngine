@@ -15,7 +15,7 @@ namespace Wyvern
 	struct SubMesh
 	{
 	public:
-		size_t index;
+		size_t start;
 		size_t count;
 	};
 

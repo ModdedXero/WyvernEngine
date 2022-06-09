@@ -36,5 +36,6 @@ namespace Wyvern::Render
 		void LoadModel();
 		MeshData ProcessNode(aiNode* node, const aiScene* scene);
 		Mesh ProcessMesh(aiNode* node, const aiScene* scene);
+		std::vector<Material> ProcessMaterials(aiNode* node, const aiScene* scene);
 	};
 }

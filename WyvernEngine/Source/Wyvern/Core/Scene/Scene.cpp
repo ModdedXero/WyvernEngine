@@ -97,7 +97,7 @@ namespace Wyvern
 				MeshRenderer* renderer = GetComponent<MeshRenderer>(entity);
 				MeshFilter* filter = GetComponent<MeshFilter>(entity);
 
-				Render::Renderer::DrawMesh(GetComponent<Transform>(entity), renderer->material, &filter->mesh, GetSceneIndex(entity->SceneID));
+				Render::Renderer::DrawMesh(GetComponent<Transform>(entity), renderer, &filter->mesh, GetSceneIndex(entity->SceneID));
 			}
 
 			Render::Renderer::EndScene();
@@ -129,7 +129,7 @@ namespace Wyvern
 			MeshRenderer* renderer = GetComponent<MeshRenderer>(entity);
 			MeshFilter* filter = GetComponent<MeshFilter>(entity);
 
-			Render::Renderer::DrawMesh(GetComponent<Transform>(entity), renderer->material, &filter->mesh, GetSceneIndex(entity->SceneID));
+			Render::Renderer::DrawMesh(GetComponent<Transform>(entity), renderer, &filter->mesh, GetSceneIndex(entity->SceneID));
 		}
 
 		Render::Renderer::EndScene();

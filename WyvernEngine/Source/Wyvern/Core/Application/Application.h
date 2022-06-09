@@ -24,6 +24,7 @@ namespace Wyvern
 
 		Tools::FileSystem AssetsPath = "./Project/Assets";
 		Tools::FileSystem ResourcesPath = "./Project/Resources";
+		Tools::FileSystem DefaultShader = ResourcesPath / "/Shader/StandardShader.glsl";
 	};
 
 	class Application

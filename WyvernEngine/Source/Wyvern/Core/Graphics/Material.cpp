@@ -1,6 +1,9 @@
 #include "wvpch.h"
 #include "Material.h"
 
+#include <Wyvern/Core/AssetManager.h>
+#include <Wyvern/Core/Application/Application.h>
+
 #include <glad.h>
 #include <imgui.h>
 #include <yaml-cpp/yaml.h>
@@ -10,7 +13,9 @@ namespace Wyvern
 	Material::Material()
 		: m_Shader(nullptr)
 	{
-		
+		m_Shader = new Shader();
+		m_Shader->ID = AssetManager::GetStandardShader();
+		m_ShaderPath = Application::GetSpecification().DefaultShader;
 	}
 
 	Material::Material(Tools::FileSystem material)

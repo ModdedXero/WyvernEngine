@@ -34,8 +34,15 @@ namespace Wyvern
 	Ref<Material> AssetManager::LoadMaterial(Tools::FileSystem& material)
 	{
 		Ref<Material> mat = CreateRef<Material>(material);
-		s_Materials[mat->GetUUID()] = mat;
-		return s_Materials[mat->GetUUID()];
+		s_Materials[mat->uuid] = mat;
+		return s_Materials[mat->uuid];
+	}
+
+	Ref<Material> AssetManager::LoadMaterial(Material material)
+	{
+		Ref<Material> mat = CreateRef<Material>(material);
+		s_Materials[mat->uuid] = mat;
+		return s_Materials[mat->uuid];
 	}
 
 	Ref<Material> AssetManager::GetMaterial(UUID& uuid)
@@ -46,6 +53,11 @@ namespace Wyvern
 	Ref<Material> AssetManager::GetDefaultMaterial()
 	{
 		return s_Materials.begin()->second;
+	}
+
+	uint32_t AssetManager::GetStandardShader()
+	{
+		return GetDefaultMaterial()->GetShader().ID;
 	}
 
 	void AssetManager::Clear()

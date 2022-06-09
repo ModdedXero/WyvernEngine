@@ -10,7 +10,7 @@ namespace Wyvern
 	struct MeshRenderer : public Component
 	{
 	public:
-		Ref<Material> material = AssetManager::GetDefaultMaterial();
+		std::vector<UUID> materials = std::vector<UUID>{ AssetManager::GetDefaultMaterial()->uuid };
 
 		WV_SERIALIZE_COMPONENT(MeshRenderer)
 		WV_SERIALIZE_COMPONENT_END

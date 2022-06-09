@@ -18,6 +18,7 @@ namespace Wyvern
 	Entity::Entity(EntityRegister* view)
 	{
 		m_EntityRegister = view;
+		if (view) uuid = view->UniqueID;
 	}
 
 	Tag* Entity::GetTag() const

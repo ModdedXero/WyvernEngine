@@ -15,9 +15,18 @@ namespace Wyvern::Render
 		static void CreateChildEntityFromMeshData(MeshData data, Entity& parent, Ref<Scene> scene)
 		{
 			Entity root = Scene::CreateEntity(scene);
-			root.AddComponent<MeshRenderer>();
+			MeshRenderer* meshRenderer = root.AddComponent<MeshRenderer>();
 			root.AddComponent<MeshFilter>()->mesh = data.mesh;
 			parent.AddChildEntity(root);
+
+			std::vector<UUID> materials;
+			for (auto& mat : data.materials)
+			{
+				AssetManager::LoadMaterial(mat);
+				materials.push_back(mat.uuid);
+			}
+
+			meshRenderer->materials = materials;
 
 			for (auto& childMesh : data.childrenMeshes)
 			{
@@ -51,8 +60,17 @@ namespace Wyvern::Render
 	void ModelImporter::GenerateEntity(Ref<Scene> scene)
 	{
 		Entity root = Scene::CreateEntity(scene);
-		root.AddComponent<MeshRenderer>();
+		MeshRenderer* meshRenderer = root.AddComponent<MeshRenderer>();
 		root.AddComponent<MeshFilter>()->mesh = meshes.mesh;
+
+		std::vector<UUID> materials;
+		for (auto& mat : meshes.materials)
+		{
+			AssetManager::LoadMaterial(mat);
+			materials.push_back(mat.uuid);
+		}
+
+		meshRenderer->materials = materials;
 
 		for (auto& meshData : meshes.childrenMeshes)
 		{
@@ -90,6 +108,7 @@ namespace Wyvern::Render
 		MeshData meshData;
 
 		meshData.mesh = ProcessMesh(node, scene);
+		meshData.materials = ProcessMaterials(node, scene);
 
 		for (uint32_t i = 0; i < node->mNumChildren; i++)
 		{
@@ -163,18 +182,7 @@ namespace Wyvern::Render
 				}
 			}
 
-			wyvMesh.SetSubMesh(indiceStart, indiceStart - indices.size());
-
-			// Materials/Textures/Colors
-
-			if (mesh->mMaterialIndex >= 0)
-			{
-				aiMaterial* material = scene->mMaterials[mesh->mMaterialIndex];
-
-				aiString str;
-				material->Get(AI_MATKEY_NAME, str);
-				DEBUG_CORE(str.C_Str());
-			}
+			wyvMesh.SetSubMesh(indiceStart, indices.size() - 1);
 		}
 
 		wyvMesh.vertices = vertices;
@@ -186,5 +194,33 @@ namespace Wyvern::Render
 		wyvMesh.m_Index = node->mMeshes[0];
 
 		return wyvMesh;
+	}
+
+	std::vector<Material> ModelImporter::ProcessMaterials(aiNode* node, const aiScene* scene)
+	{
+		std::vector<Material> materials;
+
+		for (uint32_t x = 0; x < node->mNumMeshes; x++)
+		{
+			aiMesh* mesh = scene->mMeshes[node->mMeshes[x]];
+
+			if (mesh->mMaterialIndex >= 0)
+			{
+				aiMaterial* material = scene->mMaterials[mesh->mMaterialIndex];
+				Material wyvMaterial;
+
+				aiColor4D color;
+				material->Get(AI_MATKEY_COLOR_DIFFUSE, color);
+
+				wyvMaterial.m_BaseColor.x = color.r;
+				wyvMaterial.m_BaseColor.y = color.g;
+				wyvMaterial.m_BaseColor.z = color.b;
+				wyvMaterial.m_BaseColor.w = color.a;
+
+				materials.push_back(wyvMaterial);
+			}
+		}
+
+		return materials;
 	}
 }

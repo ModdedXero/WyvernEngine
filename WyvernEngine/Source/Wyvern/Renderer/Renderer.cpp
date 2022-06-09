@@ -194,9 +194,22 @@ namespace Wyvern::Render
 #endif
 	}
 
-	void Renderer::DrawMesh(Transform* transform, Ref<Material> material, Mesh* mesh, int entityID)
+	void Renderer::DrawMesh(Transform* transform, MeshRenderer* renderer, Mesh* mesh, int entityID)
 	{
-		DrawMesh(transform, material, mesh->vertices, mesh->uvs, mesh->colors, mesh->indices, entityID);
+		if (!mesh->GetSubMeshCount())
+		{
+			Ref<Material> material = renderer->materials.size() > 0 ? AssetManager::GetMaterial(renderer->materials[0]) : AssetManager::GetDefaultMaterial();
+			DrawMesh(transform, material, mesh->vertices, mesh->uvs, mesh->colors, mesh->indices, entityID);
+			return;
+		}
+
+		for (uint32_t i = 0; i < mesh->GetSubMeshCount(); i++)
+		{
+			Mesh subMesh = mesh->GetSubMesh(i);
+			Ref<Material> material = i < renderer->materials.size() ? AssetManager::GetMaterial(renderer->materials[i]) : AssetManager::GetDefaultMaterial();
+		
+			DrawMesh(transform, material, subMesh.vertices, subMesh.uvs, subMesh.colors, subMesh.indices, entityID);
+		}
 	}
 
 	void Renderer::DrawMesh(Transform* transform, Ref<Material> material, std::vector<Vector3> vertices, std::vector<Vector2> uvs, std::vector<Vector4> colors, std::vector<int> indices, int entityID)

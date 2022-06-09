@@ -7,6 +7,9 @@ namespace Wyvern
 	class WyvernObject
 	{
 	public:
+		UUID uuid = UUID();
+
+	public:
 		virtual void _DrawProperties() {}
 
 		template <typename T>

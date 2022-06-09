@@ -24,9 +24,11 @@ namespace Wyvern
 		static Ref<Sprite> GetSprite(std::string name);
 
 		static Ref<Material> LoadMaterial(Tools::FileSystem& material);
+		static Ref<Material> LoadMaterial(Material material);
 		static Ref<Material> GetMaterial(UUID& uuid);
 
 		static Ref<Material> GetDefaultMaterial();
+		static uint32_t GetStandardShader();
 
 		static void Clear();
 	private:
