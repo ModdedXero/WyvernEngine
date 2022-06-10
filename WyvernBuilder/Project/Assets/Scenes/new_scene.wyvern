@@ -1,6 +1,6 @@
 Scene: Scene name here
 Entities:
-  - Entity: 8893808019438636637
+  - Entity: 7745970851195275650
     Components:
       Tag:
         name: Entity
@@ -15,6 +15,6 @@ Entities:
       Tag:
         name: Entity
       MeshRenderer:
-        {}
+        materials: [16171774780021956728, 8072345916905815889, 4087373855160827369]
       MeshFilter:
         mesh: [./Project/Assets\Models\cube_colored.dae, 0]

@@ -1,10 +1,12 @@
 #pragma once
 
+#include "UUID.h"
+
 #include <string>
 
 namespace Wyvern
 {
-	class WyvernObject
+	class Object
 	{
 	public:
 		UUID uuid = UUID();
@@ -20,7 +22,7 @@ namespace Wyvern
 
 	public:
 		template <typename T>
-		static T* Cast(WyvernObject* object)
+		static T* Cast(Object* object)
 		{
 			if (object && object->_IsObjectType<T>())
 				return static_cast<T*>(object);

@@ -40,7 +40,6 @@ namespace Wyvern
 		int m_ComponentID;
 
 		typedef Component base;
-		typedef Component type;
 	};
 
 	struct NativeScriptComponent : public Component

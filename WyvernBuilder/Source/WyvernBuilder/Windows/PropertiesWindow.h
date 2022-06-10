@@ -15,6 +15,6 @@ namespace Wyvern
 		virtual void OnGUI() override;
 
 	private:
-		WyvernObject* s_SelectedContext;
+		Object* s_SelectedContext;
 	};
 }

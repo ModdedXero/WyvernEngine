@@ -19,11 +19,10 @@ namespace Wyvern::Render
 			root.AddComponent<MeshFilter>()->mesh = data.mesh;
 			if (parent) parent.AddChildEntity(root);
 
-			std::vector<UUID> materials;
+			std::vector<Ref<Material>> materials;
 			for (auto& mat : data.materials)
 			{
-				AssetManager::LoadMaterial(mat);
-				materials.push_back(mat.uuid);
+				materials.push_back(AssetManager::LoadMaterial(mat));
 			}
 
 			meshRenderer->materials = materials;
@@ -65,11 +64,10 @@ namespace Wyvern::Render
 			MeshRenderer* meshRenderer = root.AddComponent<MeshRenderer>();
 			root.AddComponent<MeshFilter>()->mesh = meshes.mesh;
 
-			std::vector<UUID> materials;
+			std::vector<Ref<Material>> materials;
 			for (auto& mat : meshes.materials)
 			{
-				AssetManager::LoadMaterial(mat);
-				materials.push_back(mat.uuid);
+				materials.push_back(AssetManager::LoadMaterial(mat));
 			}
 
 			meshRenderer->materials = materials;

@@ -2,6 +2,7 @@
 
 #include <Wyvern/Core/Math/Math.h>
 #include <Wyvern/Core/UUID.h>
+#include <Wyvern/Core/AssetManager.h>
 #include <Wyvern/Core/Scene/Entity.h>
 #include <Wyvern/Core/Scene/Scene.h>
 #include <Wyvern/Core/Physics/Physics.h>
@@ -217,6 +218,35 @@ namespace YAML
 	};
 
 	template<>
+	struct convert<std::vector<Wyvern::Ref<Wyvern::Material>>>
+	{
+		static YAML::Node encode(const std::vector<Wyvern::Ref<Wyvern::Material>>& rhs)
+		{
+			YAML::Node node;
+
+			for (auto& mat : rhs)
+			{
+				node.push_back(mat->uuid);
+			}
+
+			return node;
+		}
+
+		static bool decode(const YAML::Node& node, std::vector<Wyvern::Ref<Wyvern::Material>>& rhs)
+		{
+			if (!node.IsSequence())
+				return false;
+
+			for (uint32_t i = 0; i < node.size(); i++)
+			{
+				rhs.push_back(Wyvern::AssetManager::GetMaterial(node[i].as<Wyvern::UUID>()));
+			}
+
+			return true;
+		}
+	};
+
+	template<>
 	struct convert<Wyvern::Tools::FileSystem>
 	{
 		static YAML::Node encode(const Wyvern::Tools::FileSystem& rhs)
@@ -245,4 +275,5 @@ namespace Wyvern
 	YAML::Emitter& operator <<(YAML::Emitter& out, const Sprite& sprite);
 	YAML::Emitter& operator <<(YAML::Emitter& out, const Entity& entity);
 	YAML::Emitter& operator <<(YAML::Emitter& out, const Mesh& mesh);
+	YAML::Emitter& operator <<(YAML::Emitter& out, const std::vector<Wyvern::Ref<Wyvern::Material>>& mesh);
 }

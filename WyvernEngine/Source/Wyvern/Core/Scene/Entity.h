@@ -2,7 +2,7 @@
 
 #include "EntityRegister.h"
 
-#include <Wyvern/Core/WyvernObject.h>
+#include <Wyvern/Core/Object.h>
 
 namespace Wyvern
 {
@@ -10,7 +10,7 @@ namespace Wyvern
 	struct Transform;
 	struct Component;
 
-	class Entity : public WyvernObject
+	class Entity : public Object
 	{
 		friend class Scene;
 		friend class Serializer;

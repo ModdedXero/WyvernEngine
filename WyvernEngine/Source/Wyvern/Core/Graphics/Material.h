@@ -3,7 +3,7 @@
 #include "Shader.h"
 
 #include <Wyvern/Core/UUID.h>
-#include <Wyvern/Core/WyvernObject.h>
+#include <Wyvern/Core/Object.h>
 #include <Wyvern/Tools/FileSystem.h>
 
 namespace Wyvern
@@ -13,7 +13,7 @@ namespace Wyvern
 		class ModelImporter;
 	}
 
-	struct Material : public WyvernObject
+	struct Material : public Object
 	{
 		friend class Render::ModelImporter;
 	public:

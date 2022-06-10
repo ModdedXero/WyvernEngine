@@ -241,7 +241,7 @@
     <ClInclude Include="Wyvern\Core\UUID.h">
       <Filter>Wyvern\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Wyvern\Core\WyvernObject.h">
+    <ClInclude Include="Wyvern\Core\Object.h">
       <Filter>Wyvern\Core</Filter>
     </ClInclude>
     <ClInclude Include="Wyvern\Display\Window.h">
@@ -290,6 +290,7 @@
       <Filter>Wyvern\UI</Filter>
     </ClInclude>
     <ClInclude Include="wvpch.h" />
+    <ClInclude Include="Wyvern\Core\SerialObject.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Vendor\ImGuizmo\ImGuizmo.cpp">

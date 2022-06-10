@@ -198,7 +198,7 @@ namespace Wyvern::Render
 	{
 		if (!mesh->GetSubMeshCount())
 		{
-			Ref<Material> material = renderer->materials.size() > 0 ? AssetManager::GetMaterial(renderer->materials[0]) : AssetManager::GetDefaultMaterial();
+			Ref<Material> material = renderer->materials.size() > 0 ? renderer->materials[0] : AssetManager::GetDefaultMaterial();
 			DrawMesh(transform, material, mesh->vertices, mesh->uvs, mesh->colors, mesh->indices, entityID);
 			return;
 		}
@@ -206,7 +206,7 @@ namespace Wyvern::Render
 		for (uint32_t i = 0; i < mesh->GetSubMeshCount(); i++)
 		{
 			Mesh subMesh = mesh->GetSubMesh(i);
-			Ref<Material> material = i < renderer->materials.size() ? AssetManager::GetMaterial(renderer->materials[i]) : AssetManager::GetDefaultMaterial();
+			Ref<Material> material = i < renderer->materials.size() ? renderer->materials[i] : AssetManager::GetDefaultMaterial();
 		
 			DrawMesh(transform, material, subMesh.vertices, subMesh.uvs, subMesh.colors, subMesh.indices, entityID);
 		}

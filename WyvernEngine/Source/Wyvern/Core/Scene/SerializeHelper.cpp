@@ -68,4 +68,18 @@ namespace Wyvern
 		out << YAML::EndSeq;
 		return out;
 	}
+
+	YAML::Emitter& operator<<(YAML::Emitter& out, const std::vector<Wyvern::Ref<Wyvern::Material>>& rhs)
+	{
+		out << YAML::Flow;
+		out << YAML::BeginSeq;
+
+		for (auto& mat : rhs)
+		{
+			out << (uint64_t)mat->uuid;
+		}
+
+		out << YAML::EndSeq;
+		return out;
+	}
 }

@@ -31,9 +31,9 @@ namespace Wyvern
 		static ViewportCamera* GetViewportCamera() { return s_ViewportCamera; }
 
 		template <typename T>
-		static T* GetSelectedContext() { return WyvernObject::Cast<T>(s_SelectedContext); }
-		static WyvernObject* GetSelectedContext() { return s_SelectedContext; }
-		static void SetSelectedContext(WyvernObject* ent) { if (s_SelectedContext) delete s_SelectedContext;  s_SelectedContext = ent; }
+		static T* GetSelectedContext() { return Object::Cast<T>(s_SelectedContext); }
+		static Object* GetSelectedContext() { return s_SelectedContext; }
+		static void SetSelectedContext(Object* ent) { if (s_SelectedContext) delete s_SelectedContext;  s_SelectedContext = ent; }
 
 		static void SaveScene();
 		static void LoadScene(Tools::FileSystem filePath);
@@ -41,7 +41,7 @@ namespace Wyvern
 		static Ref<Scene> s_ActiveScene;
 		static Ref<Scene> s_CachedScene;
 		static ViewportCamera* s_ViewportCamera;
-		static WyvernObject* s_SelectedContext;
+		static Object* s_SelectedContext;
 
 		static ViewportWindow* s_ViewportWindow;
 		static HierarchyWindow* s_HierarchyWindow;
