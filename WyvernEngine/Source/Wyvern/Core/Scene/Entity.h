@@ -42,7 +42,7 @@ namespace Wyvern
 
 		void DestroyEntity();
 
-		bool IsValid();
+		bool IsValid() const;
 		bool IsActive() const { return m_EntityRegister && m_EntityRegister->IsActive; }
 		void SetActive(bool active) { if (m_EntityRegister) m_EntityRegister->IsActive = active; }
 
@@ -51,6 +51,11 @@ namespace Wyvern
 		{
 			if (!m_EntityRegister || !rhs.m_EntityRegister) return false;
 			return m_EntityRegister->UniqueID == rhs.m_EntityRegister->UniqueID;
+		}
+
+		operator bool() const
+		{
+			return IsValid();
 		}
 
 		operator EntityRegister*()

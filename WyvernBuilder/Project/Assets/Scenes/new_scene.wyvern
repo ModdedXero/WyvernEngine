@@ -1,0 +1,20 @@
+Scene: Scene name here
+Entities:
+  - Entity: 8893808019438636637
+    Components:
+      Tag:
+        name: Entity
+      Transform:
+        position: [0, 0, 0]
+        rotation: [0, 0, 0]
+        scale: [1, 1, 1]
+      Transform:
+        position: [0, 0, 0]
+        rotation: [0, 0, 0]
+        scale: [1, 1, 1]
+      Tag:
+        name: Entity
+      MeshRenderer:
+        {}
+      MeshFilter:
+        mesh: [./Project/Assets\Models\cube_colored.dae, 0]

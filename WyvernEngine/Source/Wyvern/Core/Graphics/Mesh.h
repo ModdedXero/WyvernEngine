@@ -38,7 +38,7 @@ namespace Wyvern
 
 	private:
 		Tools::FileSystem m_ModelPath;
-		uint32_t m_Index;
+		int m_Index = -1;
 
 		std::vector<SubMesh> m_SubMeshes;
 	};

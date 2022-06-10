@@ -51,7 +51,7 @@ namespace Wyvern
 		Scene::DestoryEntity(m_EntityRegister);
 	}
 
-	bool Entity::IsValid()
+	bool Entity::IsValid() const
 	{
 		if (!m_EntityRegister) return false;
 		return Scene::IsEntityValid(m_EntityRegister);

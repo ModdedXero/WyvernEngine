@@ -17,7 +17,7 @@ namespace Wyvern::Render
 			Entity root = Scene::CreateEntity(scene);
 			MeshRenderer* meshRenderer = root.AddComponent<MeshRenderer>();
 			root.AddComponent<MeshFilter>()->mesh = data.mesh;
-			parent.AddChildEntity(root);
+			if (parent) parent.AddChildEntity(root);
 
 			std::vector<UUID> materials;
 			for (auto& mat : data.materials)
@@ -59,22 +59,25 @@ namespace Wyvern::Render
 
 	void ModelImporter::GenerateEntity(Ref<Scene> scene)
 	{
-		Entity root = Scene::CreateEntity(scene);
-		MeshRenderer* meshRenderer = root.AddComponent<MeshRenderer>();
-		root.AddComponent<MeshFilter>()->mesh = meshes.mesh;
-
-		std::vector<UUID> materials;
-		for (auto& mat : meshes.materials)
+		if (meshes.mesh.vertices.size())
 		{
-			AssetManager::LoadMaterial(mat);
-			materials.push_back(mat.uuid);
-		}
+			Entity root = Scene::CreateEntity(scene);
+			MeshRenderer* meshRenderer = root.AddComponent<MeshRenderer>();
+			root.AddComponent<MeshFilter>()->mesh = meshes.mesh;
 
-		meshRenderer->materials = materials;
+			std::vector<UUID> materials;
+			for (auto& mat : meshes.materials)
+			{
+				AssetManager::LoadMaterial(mat);
+				materials.push_back(mat.uuid);
+			}
+
+			meshRenderer->materials = materials;
+		}
 
 		for (auto& meshData : meshes.childrenMeshes)
 		{
-			Utils::CreateChildEntityFromMeshData(meshData, root, scene);
+			Utils::CreateChildEntityFromMeshData(meshData, Entity(), scene);
 		}
 	}
 
