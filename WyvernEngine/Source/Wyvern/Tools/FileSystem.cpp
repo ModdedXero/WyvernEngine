@@ -56,6 +56,14 @@ namespace Wyvern::Tools
 		WriteFile("");
 	}
 
+	void FileSystem::Rename(const std::string& name)
+	{
+		std::string path = m_CurrentPath.string();
+		size_t index = path.find_last_of("\\");
+		path = path.substr(0, path.size() - (path.size() - index));
+		std::filesystem::rename(m_CurrentPath, FileSystem(FileSystem(path) / name));
+	}
+
 	bool FileSystem::HasDirectoryChildren() const
 	{
 		Tools::FileSystem temp = *this;

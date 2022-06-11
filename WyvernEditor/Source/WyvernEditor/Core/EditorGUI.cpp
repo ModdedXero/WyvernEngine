@@ -264,7 +264,20 @@ namespace Wyvern::Editor
 		ImGui::NextColumn();
 
 		if (readOnly)
+		{
 			ImGui::Text(value.c_str());
+		}
+		else
+		{
+			char buffer[256];
+			memset(buffer, 0, sizeof(buffer));
+			strcpy_s(buffer, sizeof(buffer), value.c_str());
+
+			if (ImGui::InputText("##Tag", buffer, sizeof(buffer)))
+			{
+				value = std::string(buffer);
+			}
+		}
 
 		ImGui::Columns(1);
 	}

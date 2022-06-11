@@ -18,6 +18,7 @@ namespace Wyvern
 	private:
 		Tools::FileSystem m_CurrentDirectory;
 		Tools::FileSystem m_SelectedContext;
+		std::string m_SelectedFileName;
 
 		Ref<Texture2D> m_DirectoryIcon;
 		Ref<Texture2D> m_FileIcon;

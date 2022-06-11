@@ -18,6 +18,8 @@ namespace Wyvern::Tools
 		void WriteFile(std::string data) const;
 		void CreateFile() const;
 
+		void Rename(const std::string& name);
+
 		std::string Filename() const { return m_CurrentPath.filename().string(); }
 		std::string Extension() const { return m_CurrentPath.extension().string(); }
 		std::string RootName() const { return m_CurrentPath.stem().string(); }
@@ -39,7 +41,9 @@ namespace Wyvern::Tools
 
 		FileSystem operator /=(const FileSystem& rhs)
 		{
-			return m_CurrentPath /= rhs.m_CurrentPath.filename();
+			FileSystem path = m_CurrentPath /= "/";
+			path /= rhs.m_CurrentPath.filename();
+			return path;
 		}
 
 		void operator =(const std::filesystem::directory_entry& rhs)
@@ -54,7 +58,7 @@ namespace Wyvern::Tools
 
 		FileSystem operator /(const FileSystem& rhs) const
 		{
-			std::string path = m_CurrentPath.string() + rhs.m_CurrentPath.string();
+			std::string path = m_CurrentPath.string() + "/" + rhs.m_CurrentPath.string();
 			return FileSystem(path);
 		}
 

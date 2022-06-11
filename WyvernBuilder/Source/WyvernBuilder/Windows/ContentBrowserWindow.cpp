@@ -69,7 +69,7 @@ namespace Wyvern
 		ImGui::NextColumn();
 		ImGui::BeginChild("Content");
 
-		// Right Click Menu
+		// Right Click Menu (Browser Panel)
 
 		if (ImGui::BeginPopupContextWindow("Empty", ImGuiPopupFlags_NoOpenOverItems | ImGuiPopupFlags_MouseButtonRight))
 		{
@@ -99,6 +99,8 @@ namespace Wyvern
 
 		ImGui::Columns(columnCount, "1", false);
 
+		bool renameModal = false;
+
 		for (FileSystem dir : m_CurrentDirectory)
 		{
 			FileSystem relative = FileSystem::RelativePath(dir, m_CurrentDirectory);
@@ -111,10 +113,27 @@ namespace Wyvern
 			ImGui::ImageButton((ImTextureID)icon->GetID(), { thumbnailSize, thumbnailSize }, { 0, 1 }, { 1,0 });
 			ImGui::PopStyleColor();
 
+			// Right Click Menu (Files and Folders)
+
+			if (ImGui::IsItemHovered() && ImGui::IsItemClicked(ImGuiMouseButton_Right))
+			{
+				SelectContext(dir);
+			}
+
+			if (ImGui::BeginPopupContextWindow("Files", ImGuiPopupFlags_MouseButtonRight | ImGuiPopupFlags_NoOpenOverExistingPopup))
+			{
+				if (ImGui::MenuItem("Rename"))
+					renameModal = true;
+
+				ImGui::EndPopup();
+			}
+
+			// Drag and Drop FileSystem source
+
 			const FileSystem* sourcePath = new FileSystem(dir);
 			EditorGUIInternal::DragDropSource(DragDropTypes::FileSystem, sourcePath, sizeof(FileSystem));
 
-			if (ImGui::IsItemHovered() && ImGui::IsItemClicked())
+			if (ImGui::IsItemHovered() && ImGui::IsItemClicked(ImGuiMouseButton_Left))
 			{
 				if (!dir.IsDirectory())
 				{
@@ -136,6 +155,29 @@ namespace Wyvern
 			ImGui::NextColumn();
 		}
 
+		if (renameModal)
+			ImGui::OpenPopup("RENAME");
+
+		if (ImGui::BeginPopupModal("RENAME", NULL, ImGuiWindowFlags_AlwaysAutoResize))
+		{
+			std::string text("Rename file " + m_SelectedContext.Filename());
+			ImGui::Text(text.c_str());
+			ImGui::Separator();
+
+			EditorGUI::TextControl("Rename: ", m_SelectedFileName);
+
+			if (ImGui::Button("Rename", ImVec2(120, 0)))
+			{
+				m_SelectedContext.Rename(m_SelectedFileName);
+				ImGui::CloseCurrentPopup();
+			}
+
+			if (ImGui::Button("Cancel", ImVec2(120, 0)))
+				ImGui::CloseCurrentPopup();
+
+			ImGui::EndPopup();
+		}
+
 		ImGui::EndChild();
 	}
 
@@ -148,5 +190,6 @@ namespace Wyvern
 		}
 
 		m_SelectedContext = file;
+		m_SelectedFileName = file.Filename();
 	}
 }
