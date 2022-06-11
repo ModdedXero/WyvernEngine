@@ -207,7 +207,7 @@ namespace Wyvern::Render
 		{
 			Mesh subMesh = mesh->GetSubMesh(i);
 			Ref<Material> material = i < renderer->materials.size() ? renderer->materials[i] : AssetManager::GetDefaultMaterial();
-		
+
 			DrawMesh(transform, material, subMesh.vertices, subMesh.uvs, subMesh.colors, subMesh.indices, entityID);
 		}
 	}
@@ -229,7 +229,7 @@ namespace Wyvern::Render
 		float textureIndex = 0.0f;
 		Vector2 textureCoords = Vector2(0.0f, 0.0f);
 
-		Matrix4x4 matrix = Matrix4x4::Translate(transform->GlobalPosition()) 
+		Matrix4x4 matrix = Matrix4x4::Translate(transform->GlobalPosition())
 			* Matrix4x4::Rotate(transform->GlobalRotation())
 			* Matrix4x4::Scale(transform->GlobalScale());
 

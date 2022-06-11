@@ -1,7 +1,5 @@
 #pragma once
 
-#include <Wyvern/Core/Object.h>
-
 #include <glm/glm.hpp>
 
 #include <iostream>
@@ -15,7 +13,7 @@ namespace Wyvern
 	struct Vector3;
 	struct Vector4;
 
-	struct Vector2 : public Serializable<Vector2, float, float>
+	struct Vector2
 	{
 		float x = 0;
 		float y = 0;
@@ -216,7 +214,7 @@ namespace Wyvern
 		operator Vector4Int() const;
 	};
 
-	struct Vector3 : public Serializable<Vector3, float, float, float>
+	struct Vector3
 	{
 		float x = 0;
 		float y = 0;
@@ -461,7 +459,7 @@ namespace Wyvern
 		operator Vector4Int() const;
 	};
 
-	struct Vector4 : public Serializable<Vector4, float, float, float, float>
+	struct Vector4
 	{
 		float x = 0;
 		float y = 0;
