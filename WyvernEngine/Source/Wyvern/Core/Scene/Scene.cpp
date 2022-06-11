@@ -35,9 +35,9 @@ namespace Wyvern
 	{
 		if (m_SceneState == SceneState::Play)
 		{
-			for (EntityRegister* entity : EntityList<NativeScriptComponent>(shared_from_this(), true))
+			for (EntityRegister* entity : EntityList<NativeComponentBase>(shared_from_this(), true))
 			{
-				for (NativeScriptComponent* nsc : GetComponentsOfBase<NativeScriptComponent>(entity))
+				for (NativeComponentBase* nsc : GetComponentsOfBase<NativeComponentBase>(entity))
 				{
 					nsc->OnAttach();
 				}
@@ -62,9 +62,9 @@ namespace Wyvern
 
 		// Update Native Scripts
 
-		for (EntityRegister* entity : EntityList<NativeScriptComponent>(shared_from_this(), true))
+		for (EntityRegister* entity : EntityList<NativeComponentBase>(shared_from_this(), true))
 		{
-			for (NativeScriptComponent* nsc : GetComponentsOfBase<NativeScriptComponent>(entity))
+			for (NativeComponentBase* nsc : GetComponentsOfBase<NativeComponentBase>(entity))
 			{
 				nsc->OnUpdate();
 			}
@@ -139,9 +139,9 @@ namespace Wyvern
 	{
 		if (m_SceneState != SceneState::Play) return;
 
-		for (EntityRegister* entity : EntityList<NativeScriptComponent>(shared_from_this(), true))
+		for (EntityRegister* entity : EntityList<NativeComponentBase>(shared_from_this(), true))
 		{
-			for (NativeScriptComponent* nsc : GetComponentsOfBase<NativeScriptComponent>(entity))
+			for (NativeComponentBase* nsc : GetComponentsOfBase<NativeComponentBase>(entity))
 			{
 				nsc->OnFixedUpdate();
 			}
@@ -341,13 +341,13 @@ namespace Wyvern
 		return (static_cast<unsigned long long>((SceneIndex)index) << 32) | ((SceneID)version);
 	}
 
-	std::vector<Component*> Scene::GetComponents(EntityRegister* entity)
+	std::vector<ComponentBase*> Scene::GetComponents(EntityRegister* entity)
 	{
-		std::vector<Component*> components;
+		std::vector<ComponentBase*> components;
 
 		for (ComponentPool* pool : entity->SceneRef->m_ComponentPools)
 			if (entity->Components.test(pool->ComponentID))
-				components.push_back(static_cast<Component*>(entity->SceneRef->m_ComponentPools[pool->ComponentID]->Get(GetSceneIndex(entity->SceneID))));
+				components.push_back(static_cast<ComponentBase*>(entity->SceneRef->m_ComponentPools[pool->ComponentID]->Get(GetSceneIndex(entity->SceneID))));
 
 		return components;
 	}

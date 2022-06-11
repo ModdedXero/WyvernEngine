@@ -42,7 +42,7 @@ namespace Wyvern
 
 		ImGui::PopItemWidth();
 
-		for (Component* component : GetComponents())
+		for (ComponentBase* component : GetComponents())
 		{
 			if (typeid(*component).name() == std::string(typeid(Tag).name()))
 				continue;

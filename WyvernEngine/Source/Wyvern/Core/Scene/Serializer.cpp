@@ -48,10 +48,12 @@ namespace Wyvern
 
 		info.out << YAML::Key << "Components" << YAML::Value << YAML::BeginMap;
 
-		Scene::GetComponent<Tag>(entity)->__Serialize(info);
-		Scene::GetComponent<Transform>(entity)->__Serialize(info);
-		for (Component* comp : Scene::GetComponents(entity))
-			comp->__Serialize(info);
+		Scene::GetComponent<Tag>(entity)->_SerializeObject(info);
+		Scene::GetComponent<Transform>(entity)->_SerializeObject(info);
+		for (ComponentBase* comp : Scene::GetComponents(entity))
+		{
+			comp->_SerializeObject(info);
+		}
 
 		info.out << YAML::EndMap;
 
@@ -115,8 +117,8 @@ namespace Wyvern
 			{
 				SerializeInfo compInfo(false);
 				compInfo.in = comp.second;
-				Component* compBase = ApplicationDomain::CreateComponent(comp.first.as<std::string>(), entity->SceneRef, entity->SceneID);
-				if (compBase) compBase->__Serialize(compInfo);
+				ComponentBase* compBase = ApplicationDomain::CreateComponent(comp.first.as<std::string>(), entity->SceneRef, entity->SceneID);
+				if (compBase) compBase->_SerializeObject(compInfo);
 			}
 		}
 

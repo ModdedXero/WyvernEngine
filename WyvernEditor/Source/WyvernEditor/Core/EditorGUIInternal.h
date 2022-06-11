@@ -6,7 +6,7 @@
 
 namespace Wyvern
 {
-	struct Component;
+	struct ComponentBase;
 	class Entity;
 }
 
@@ -25,7 +25,7 @@ namespace Wyvern::Editor
 		static void DragDropTarget(DragDropTypes returnType, Target& target);
 		static void DragDropSource(DragDropTypes returnType, const void* target, size_t size);
 
-		static void DrawComponent(const std::string label, Component* component, Entity ent, bool isDefault = false);
+		static void DrawComponent(const std::string label, ComponentBase* component, Entity ent, bool isDefault = false);
 	};
 
 	template <typename Target>

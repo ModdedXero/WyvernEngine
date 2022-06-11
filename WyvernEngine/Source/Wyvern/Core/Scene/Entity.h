@@ -8,7 +8,7 @@ namespace Wyvern
 {
 	struct Tag;
 	struct Transform;
-	struct Component;
+	struct ComponentBase;
 
 	class Entity : public Object
 	{
@@ -31,7 +31,7 @@ namespace Wyvern
 
 		Tag* GetTag() const;
 		Transform* GetTransform() const;
-		std::vector<Component*> GetComponents();
+		std::vector<ComponentBase*> GetComponents();
 
 		template <typename T>
 		T* AddComponent() { return Scene::AddComponent<T>(m_EntityRegister); }

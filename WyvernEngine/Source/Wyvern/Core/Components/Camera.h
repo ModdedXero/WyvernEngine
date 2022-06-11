@@ -1,11 +1,11 @@
 #pragma once
 
-#include <Wyvern/Core/Scene/Component.h>
+#include <Wyvern/Core/Scene/NativeScriptComponent.h>
 #include <Wyvern/Renderer/CameraRenderer.h>
 
 namespace Wyvern
 {
-	struct Camera : public Component
+	struct Camera : public NativeScriptComponent<Camera>
 	{
 		Vector4 clearColor = { 0.1f, 0.1f, 0.2f, 1.0f };
 
@@ -16,15 +16,6 @@ namespace Wyvern
 
 		static Camera* GetActiveCamera();
 		static void SetActiveCamera(Camera* camera);
-
-		WV_SERIALIZE_COMPONENT(Camera)
-		WV_SERIALIZE_VARIABLE(Vector4, clearColor)
-		WV_SERIALIZE_PROPERTY(Render::CameraMode, "cameraMode", GetCameraMode, SetCameraMode)
-		WV_SERIALIZE_PROPERTY(float, "orthoSize", GetOrthoSize, SetOrthoSize)
-		WV_SERIALIZE_PROPERTY(float, "fieldOfView", GetFieldOfView, SetFieldOfView)
-		WV_SERIALIZE_PROPERTY(float, "clipNear", GetClipNear, SetClipNear)
-		WV_SERIALIZE_PROPERTY(float, "clipFar", GetClipFar, SetClipFar)
-		WV_SERIALIZE_COMPONENT_END
 
 	public:
 		Render::CameraMode GetCameraMode() { return m_Renderer->GetCameraMode(); }
@@ -42,6 +33,7 @@ namespace Wyvern
 		void SetClipNear(float near) { m_Renderer->SetClipNear(near); }
 		void SetClipFar(float far) { m_Renderer->SetClipFar(far); }
 
+		virtual void DrawEditor() override;
 	private:
 		Render::CameraRenderer* m_Renderer = new Render::CameraRenderer();
 		bool m_ActiveCamera;
