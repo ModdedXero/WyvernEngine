@@ -290,7 +290,8 @@
       <Filter>Wyvern\UI</Filter>
     </ClInclude>
     <ClInclude Include="wvpch.h" />
-    <ClInclude Include="Wyvern\Core\SerialObject.h" />
+    <ClInclude Include="Wyvern\Core\Scene\SerializeInfo.h" />
+    <ClInclude Include="Wyvern\Core\Scene\NativeScriptComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Vendor\ImGuizmo\ImGuizmo.cpp">

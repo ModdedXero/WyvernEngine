@@ -1,25 +1,21 @@
 #pragma once
 
 #include <Wyvern/Core/Math/Vector.h>
-#include <Wyvern/Core/Scene/Component.h>
+#include <Wyvern/Core/Scene/NativeScriptComponent.h>
 
 namespace Wyvern
 {
-	struct BoxCollider2D : public Component
+	struct BoxCollider2D : public NativeScriptComponent<BoxCollider2D, Vector2>
 	{
 		Vector2 size = Vector2(0, 0);
 
-		WV_SERIALIZE_COMPONENT(BoxCollider2D)
-		WV_SERIALIZE_VARIABLE(Vector2, size)
-		WV_SERIALIZE_COMPONENT_END
+		virtual void DrawEditor() override;
 	};
 
-	struct SphereCollider2D : public Component
+	struct SphereCollider2D : public NativeScriptComponent<BoxCollider2D, float>
 	{
 		float radius = 0.0f;
 
-		WV_SERIALIZE_COMPONENT(SphereCollider2D)
-		WV_SERIALIZE_VARIABLE(float, radius)
-		WV_SERIALIZE_COMPONENT_END
+		virtual void DrawEditor() override;
 	};
 }

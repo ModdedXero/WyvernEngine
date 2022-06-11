@@ -2,6 +2,8 @@
 
 #include "Entity.h"
 
+#include <Wyvern/Core/Object.h>
+
 #include <Wyvern/Core/Math/Vector.h>
 #include <Wyvern/Core/Scene/Serializer.h>
 #include <Wyvern/Core/Physics/Collision2D.h>
@@ -14,45 +16,41 @@ namespace Wyvern
 	struct Tag;
 	struct SerializeInfo;
 
-	struct Component
+	class ComponentBase : public Object
 	{
 	private:
 		friend class Scene;
 		friend class ApplicationDomain;
 
 	public:
-		Component() {}
-		virtual ~Component() = 0;
+		ComponentBase() {}
+		virtual ~ComponentBase() = 0;
 
 		Entity& GetEntity() { return m_Entity; }
 		Tag* GetTag() { return m_Entity.GetTag(); }
 		Transform* GetTransform() { return m_Entity.GetTransform(); }
 		int GetSceneID() { return m_ComponentID; }
 
-		virtual void __Serialize(SerializeInfo& info) {}
-		virtual void Serialize(YAML::Emitter& out) {}
-		virtual void Deserialize(Entity entity, YAML::Node& data) {}
 		virtual void DrawEditor() {}
 
 	private:
 		Entity m_Entity;
-
 		int m_ComponentID;
 
-		typedef Component base;
+		typedef ComponentBase base;
 	};
 
-	struct NativeScriptComponent : public Component
+	class NativeComponentBase : public ComponentBase
 	{
 	private:
 		friend class Scene;
 		friend class ApplicationDomain;
 
 	public:
-		NativeScriptComponent()
-			: Component()
+		NativeComponentBase()
+			: ComponentBase()
 		{}
-		virtual ~NativeScriptComponent() = 0;
+		virtual ~NativeComponentBase() = 0;
 
 		virtual void OnAttach() {}
 		virtual void OnDestroy() {}
@@ -62,6 +60,6 @@ namespace Wyvern
 		virtual void OnCollision2D(const Collision2D& collision) {}
 
 	private:
-		typedef NativeScriptComponent base;
+		typedef NativeComponentBase base;
 	};
 }

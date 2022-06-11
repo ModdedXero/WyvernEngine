@@ -1,11 +1,11 @@
 #pragma once
 
-#include <Wyvern/Core/Scene/Component.h>
+#include <Wyvern/Core/Scene/NativeScriptComponent.h>
 #include <Wyvern/Core/Math/Math.h>
 
 namespace Wyvern
 {
-	struct Transform : public Component
+	struct Transform : public NativeScriptComponent<Transform, Vector3, Vector3, Vector3>
 	{
 		Transform() {}
 		~Transform() {}
@@ -29,10 +29,6 @@ namespace Wyvern
 
 		static Matrix4x4 GetTransform(const Vector3& pos, const Vector3& rot, const Vector3& scale);
 
-		WV_SERIALIZE_COMPONENT(Transform)
-		WV_SERIALIZE_VARIABLE(Vector3, position)
-		WV_SERIALIZE_VARIABLE(Vector3, rotation)
-		WV_SERIALIZE_VARIABLE(Vector3, scale)
-		WV_SERIALIZE_COMPONENT_END
+		virtual void DrawEditor() override;
 	};
 }

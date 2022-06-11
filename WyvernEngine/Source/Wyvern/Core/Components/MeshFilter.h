@@ -1,16 +1,14 @@
 #pragma once
 
-#include <Wyvern/Core/Scene/Component.h>
+#include <Wyvern/Core/Scene/NativeScriptComponent.h>
 #include <Wyvern/Core/Graphics/Mesh.h>
 
 namespace Wyvern
 {
-	struct MeshFilter : public Component
+	struct MeshFilter : public NativeScriptComponent<MeshFilter>
 	{
 		Mesh mesh;
 
-		WV_SERIALIZE_COMPONENT(MeshFilter)
-		WV_SERIALIZE_VARIABLE(Mesh, mesh)
-		WV_SERIALIZE_COMPONENT_END
+		virtual void DrawEditor() override;
 	};
 }

@@ -1,0 +1,18 @@
+Scene: Scene name here
+Entities:
+  - Entity: 11687932147272353368
+    Components:
+      struct Wyvern::Tag:
+        class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >0: Entity
+      struct Wyvern::Transform:
+        struct Wyvern::Vector30: [0, 0, 0]
+        struct Wyvern::Vector31: [0, 0, 0]
+        struct Wyvern::Vector32: [1, 1, 1]
+      struct Wyvern::Transform:
+        struct Wyvern::Vector30: [0, 0, 0]
+        struct Wyvern::Vector31: [0, 0, 0]
+        struct Wyvern::Vector32: [1, 1, 1]
+      struct Wyvern::Tag:
+        class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >0: Entity
+      struct Wyvern::BoxCollider2D:
+        struct Wyvern::Vector20: [-3.20000005, 4.4000001]
