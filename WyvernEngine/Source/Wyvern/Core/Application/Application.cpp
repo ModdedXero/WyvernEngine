@@ -41,8 +41,6 @@ namespace Wyvern
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);
 
-		Project::LoadProject();
-
 		DEBUG_CORE("Wyvern Engine Started");
 	}
 

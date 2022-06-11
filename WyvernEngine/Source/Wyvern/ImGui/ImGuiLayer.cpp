@@ -1,6 +1,7 @@
 #include "wvpch.h"
 #include "ImGuiLayer.h"
 
+#include <Wyvern/Core/Application/Project.h>
 #include <Wyvern/Core/Application/Application.h>
 
 #include <ImGuizmo.h>
@@ -29,8 +30,8 @@ namespace Wyvern
 		io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 		io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
 
-		io.Fonts->AddFontFromFileTTF(((std::string)Application::GetResourcesPath() + "/fonts/dmsans/DMSans-Bold.TTF").c_str(), 14.5f);
-		io.FontDefault = io.Fonts->AddFontFromFileTTF(((std::string)Application::GetResourcesPath() + "/fonts/dmsans/DMSans-Regular.TTF").c_str(), 14.5f);
+		io.Fonts->AddFontFromFileTTF(((std::string)Project::GetResourcesPath() + "/fonts/dmsans/DMSans-Bold.TTF").c_str(), 14.5f);
+		io.FontDefault = io.Fonts->AddFontFromFileTTF(((std::string)Project::GetResourcesPath() + "/fonts/dmsans/DMSans-Regular.TTF").c_str(), 14.5f);
 
 		ImGui::StyleColorsDark();
 

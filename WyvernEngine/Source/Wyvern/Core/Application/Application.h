@@ -45,12 +45,7 @@ namespace Wyvern
 		ImGuiLayer* GetImGuiLayer() const { return m_ImGuiLayer; }
 
 		static Application& Get() { return *s_Instance; }
-
-	public:
-		// Project Management
 		static ApplicationSpecification GetSpecification() { return s_Instance->m_Specification; }
-		static Tools::FileSystem GetAssetsPath() { return s_Instance->m_Specification.AssetsPath; }
-		static Tools::FileSystem GetResourcesPath() { return s_Instance->m_Specification.ResourcesPath; }
 
 	private:
 		static Application* s_Instance;

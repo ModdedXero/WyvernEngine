@@ -11,12 +11,11 @@ namespace Wyvern
 {
 	Tools::FileSystem Project::s_StartScenePath;
 
-	void Project::LoadProject()
+	void Project::LoadProject(Tools::FileSystem& project)
 	{
-		Tools::FileSystem projectPath = Application::GetSpecification().AssetsPath / "/project.wproj";
 		YAML::Node in;
 
-		in = YAML::Load(projectPath.ReadFile());
+		in = YAML::Load(project.ReadFile());
 
 		if (!in["Project"])
 			return;
@@ -37,6 +36,16 @@ namespace Wyvern
 		out << YAML::EndMap;
 
 		projectPath.WriteFile(out.c_str());
+	}
+
+	Tools::FileSystem Project::GetAssetsPath()
+	{
+		return Application::GetSpecification().AssetsPath;
+	}
+
+	Tools::FileSystem Project::GetResourcesPath()
+	{
+		return Application::GetSpecification().ResourcesPath;
 	}
 
 	void Project::SetStartScene(Ref<Scene> scene)

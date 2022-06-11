@@ -5,7 +5,7 @@
 #include "VertexArray.h"
 
 #include <Wyvern/Core/AssetManager.h>
-#include <Wyvern/Core/Application/Application.h>
+#include <Wyvern/Core/Application/Project.h>
 
 #include <glad.h>
 
@@ -122,7 +122,7 @@ namespace Wyvern::Render
 		glBindVertexArray(0);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 
-		s_Data.ScreenShader = Shader(Application::GetResourcesPath() / "/Shader/ScreenShader.glsl");
+		s_Data.ScreenShader = Shader(Project::GetResourcesPath() / "/Shader/ScreenShader.glsl");
 		s_Data.ScreenShader.SetInteger("screenTexture", 0);
 
 		// Setup default texture

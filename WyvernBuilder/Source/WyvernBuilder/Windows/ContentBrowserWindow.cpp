@@ -37,9 +37,9 @@ namespace Wyvern
 
 	void ContentBrowserWindow::OnAttach()
 	{
-		m_CurrentDirectory = Application::GetAssetsPath();
-		m_DirectoryIcon = Texture2D::Create(Application::GetResourcesPath() / "/Icons/ContentBrowser/Directory.png");
-		m_FileIcon = Texture2D::Create(Application::GetResourcesPath() / "/Icons/ContentBrowser/File.png");
+		m_CurrentDirectory = Project::GetAssetsPath();
+		m_DirectoryIcon = Texture2D::Create(Project::GetResourcesPath() / "/Icons/ContentBrowser/Directory.png");
+		m_FileIcon = Texture2D::Create(Project::GetResourcesPath() / "/Icons/ContentBrowser/File.png");
 	}
 
 	void ContentBrowserWindow::OnGUI()
@@ -53,16 +53,16 @@ namespace Wyvern
 		static float initial_spacing = 150.0f; if (initial_spacing) ImGui::SetColumnWidth(0, initial_spacing), initial_spacing = 0;
 		
 		ImGuiTreeNodeFlags flags = ImGuiTreeNodeFlags_DefaultOpen | ImGuiTreeNodeFlags_OpenOnArrow;
-		bool open = ImGui::TreeNodeEx((void*)Application::GetAssetsPath().Filename().c_str(), flags, Application::GetAssetsPath().Filename().c_str());
+		bool open = ImGui::TreeNodeEx((void*)Project::GetAssetsPath().Filename().c_str(), flags, Project::GetAssetsPath().Filename().c_str());
 
 		if (ImGui::IsItemClicked())
 		{
-			m_CurrentDirectory = Application::GetAssetsPath();
+			m_CurrentDirectory = Project::GetAssetsPath();
 		}
 
 		if (open)
 		{
-			Utils::DrawDirectoryTree(m_CurrentDirectory, Application::GetAssetsPath());
+			Utils::DrawDirectoryTree(m_CurrentDirectory, Project::GetAssetsPath());
 			ImGui::TreePop();
 		}
 

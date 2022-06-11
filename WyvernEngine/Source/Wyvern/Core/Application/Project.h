@@ -10,8 +10,11 @@ namespace Wyvern
 	class Project
 	{
 	public:
-		static void LoadProject();
+		static void LoadProject(Tools::FileSystem& project);
 		static void SaveProject();
+
+		static Tools::FileSystem GetAssetsPath();
+		static Tools::FileSystem GetResourcesPath();
 
 		static void SetStartScene(Ref<Scene> scene);
 		static Ref<Scene> LoadStartScene();
