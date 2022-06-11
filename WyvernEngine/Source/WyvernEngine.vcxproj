@@ -192,12 +192,13 @@
     <ClInclude Include="Wyvern\Core\Scene\EntityConstants.h" />
     <ClInclude Include="Wyvern\Core\Scene\EntityList.h" />
     <ClInclude Include="Wyvern\Core\Scene\EntityRegister.h" />
+    <ClInclude Include="Wyvern\Core\Scene\NativeScriptComponent.h" />
     <ClInclude Include="Wyvern\Core\Scene\Scene.h" />
     <ClInclude Include="Wyvern\Core\Scene\SerializeHelper.h" />
+    <ClInclude Include="Wyvern\Core\Scene\SerializeInfo.h" />
     <ClInclude Include="Wyvern\Core\Scene\Serializer.h" />
     <ClInclude Include="Wyvern\Core\Scene\Wizard.h" />
     <ClInclude Include="Wyvern\Core\Scene\WizardStack.h" />
-    <ClInclude Include="Wyvern\Core\SerialObject.h" />
     <ClInclude Include="Wyvern\Core\Timestep.h" />
     <ClInclude Include="Wyvern\Core\UUID.h" />
     <ClInclude Include="Wyvern\Core\Object.h" />

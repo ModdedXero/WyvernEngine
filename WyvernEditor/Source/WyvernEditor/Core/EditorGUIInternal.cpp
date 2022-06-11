@@ -24,7 +24,7 @@ namespace Wyvern::Editor
 		}
 	}
 
-	void EditorGUIInternal::DrawComponent(const std::string label, Component* component, Entity ent, bool isDefault)
+	void EditorGUIInternal::DrawComponent(const std::string label, ComponentBase* component, Entity ent, bool isDefault)
 	{
 		if (component)
 		{

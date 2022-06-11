@@ -5,12 +5,12 @@
 
 namespace Wyvern
 {
-	Component::~Component()
+	ComponentBase::~ComponentBase()
 	{
 
 	}
 
-	NativeScriptComponent::~NativeScriptComponent()
+	NativeComponentBase::~NativeComponentBase()
 	{
 
 	}

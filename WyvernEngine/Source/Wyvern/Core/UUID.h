@@ -1,6 +1,7 @@
 #pragma once
 
 #include <xhash>
+#include <yaml-cpp/yaml.h>
 
 namespace Wyvern
 {
@@ -20,6 +21,11 @@ namespace Wyvern
 	private:
 		uint64_t m_UUID;
 	};
+
+	inline void operator >>(YAML::Node& node, UUID& rhs)
+	{
+		rhs = node.as<uint64_t>();
+	}
 }
 
 namespace std

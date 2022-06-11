@@ -4,7 +4,7 @@
 
 namespace Wyvern::UI
 {
-	struct Button : public Component
+	struct Button : public ComponentBase
 	{
 	private:
 		friend class UIWizard;

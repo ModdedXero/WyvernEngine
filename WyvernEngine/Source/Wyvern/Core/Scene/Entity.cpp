@@ -31,7 +31,7 @@ namespace Wyvern
 		return Scene::GetComponent<Transform>(m_EntityRegister);
 	}
 
-	std::vector<Component*> Entity::GetComponents()
+	std::vector<ComponentBase*> Entity::GetComponents()
 	{
 		return Scene::GetComponents(Scene::GetEntity(m_EntityRegister->SceneRef, m_EntityRegister->UniqueID));
 	}

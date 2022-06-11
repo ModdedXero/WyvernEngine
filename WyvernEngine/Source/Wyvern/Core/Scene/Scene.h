@@ -21,7 +21,7 @@ namespace Wyvern
 {
 	struct Transform;
 	struct Tag;
-	struct Component;
+	struct ComponentBase;
 	struct EntityRegister;
 
 	enum class SceneState
@@ -87,7 +87,7 @@ namespace Wyvern
 		static T* AddComponent(Ref<Scene> scene, SceneID entID);
 		template <typename T>
 		static T* GetComponent(EntityRegister* entity);
-		static std::vector<Component*> GetComponents(EntityRegister* entity);
+		static std::vector<ComponentBase*> GetComponents(EntityRegister* entity);
 		template <typename T>
 		static std::vector<T*> GetComponentsOfBase(EntityRegister* entity);
 		template <typename T>
@@ -137,7 +137,7 @@ namespace Wyvern
 	{
 		if (!IsEntityValid(entID)) return nullptr;
 
-		if (!std::is_base_of<Component, T>())
+		if (!std::is_base_of<ComponentBase, T>())
 		{
 			DEBUG_LOG_ERROR("Scene: Component or Inherited class required: ", typeid(T).name(), " was provided");
 			throw std::invalid_argument("Scene: Type provided was not Component");

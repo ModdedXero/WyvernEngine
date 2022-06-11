@@ -65,7 +65,7 @@ namespace Wyvern
 
 						collisions.push_back(collision);
 
-						for (NativeScriptComponent* nsc : Scene::GetComponentsOfBase<NativeScriptComponent>(ent1))
+						for (NativeComponentBase* nsc : Scene::GetComponentsOfBase<NativeComponentBase>(ent1))
 						{
 							nsc->OnCollision2D(collision);
 						}
@@ -93,7 +93,7 @@ namespace Wyvern
 
 						collisions.push_back(collision);
 
-						for (NativeScriptComponent* nsc : Scene::GetComponentsOfBase<NativeScriptComponent>(ent1))
+						for (NativeComponentBase* nsc : Scene::GetComponentsOfBase<NativeComponentBase>(ent1))
 						{
 							nsc->OnCollision2D(collision);
 						}
@@ -103,7 +103,7 @@ namespace Wyvern
 
 						collisions.push_back(collisionOther);
 
-						for (NativeScriptComponent* nsc : Scene::GetComponentsOfBase<NativeScriptComponent>(ent2))
+						for (NativeComponentBase* nsc : Scene::GetComponentsOfBase<NativeComponentBase>(ent2))
 						{
 							nsc->OnCollision2D(collisionOther);
 						}
