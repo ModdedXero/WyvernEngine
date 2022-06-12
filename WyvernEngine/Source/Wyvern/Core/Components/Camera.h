@@ -1,11 +1,11 @@
 #pragma once
 
-#include <Wyvern/Core/Scene/NativeScriptComponent.h>
+#include <Wyvern/Core/Scene/Component.h>
 #include <Wyvern/Renderer/CameraRenderer.h>
 
 namespace Wyvern
 {
-	struct Camera : public NativeScriptComponent<Camera>
+	struct Camera : public Component<Camera>
 	{
 		Vector4 clearColor = { 0.1f, 0.1f, 0.2f, 1.0f };
 

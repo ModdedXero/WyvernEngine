@@ -3,11 +3,11 @@
 #include <Wyvern/Core/Graphics/Material.h>
 #include <Wyvern/Core/Graphics/Sprite.h>
 #include <Wyvern/Core/AssetManager.h>
-#include <Wyvern/Core/Scene/NativeScriptComponent.h>
+#include <Wyvern/Core/Scene/Component.h>
 
 namespace Wyvern
 {
-	struct SpriteRenderer : public NativeScriptComponent<SpriteRenderer>
+	struct SpriteRenderer : public Component<SpriteRenderer>
 	{
 		SpriteRenderer() {}
 		~SpriteRenderer() {}

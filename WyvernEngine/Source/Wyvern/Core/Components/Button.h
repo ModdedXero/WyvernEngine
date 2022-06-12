@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Wyvern/Core/Scene/Component.h>
+#include <Wyvern/Core/Scene/ComponentBase.h>
 
 namespace Wyvern::UI
 {

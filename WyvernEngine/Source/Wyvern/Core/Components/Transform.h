@@ -1,11 +1,11 @@
 #pragma once
 
-#include <Wyvern/Core/Scene/NativeScriptComponent.h>
+#include <Wyvern/Core/Scene/Component.h>
 #include <Wyvern/Core/Math/Math.h>
 
 namespace Wyvern
 {
-	struct Transform : public NativeScriptComponent<Transform, Vector3, Vector3, Vector3>
+	struct Transform : public Component<Transform, Vector3, Vector3, Vector3>
 	{
 		Transform() {}
 		~Transform() {}

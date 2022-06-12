@@ -1,65 +1,47 @@
 #pragma once
 
-#include "Entity.h"
+#include "Scene.h"
+#include "ComponentBase.h"
 
-#include <Wyvern/Core/Object.h>
-
-#include <Wyvern/Core/Math/Vector.h>
-#include <Wyvern/Core/Scene/Serializer.h>
-#include <Wyvern/Core/Physics/Collision2D.h>
-
-#include <yaml-cpp/yaml.h>
+#include <Wyvern/Core/Application/ApplicationDomain.h>
 
 namespace Wyvern
 {
-	struct Transform;
-	struct Tag;
-	struct SerializeInfo;
-
-	class ComponentBase : public Object
+	template <typename T, typename ...Args>
+	class Component : public ComponentBase, public Serializable<T, Args...>
 	{
 	private:
 		friend class Scene;
-		friend class ApplicationDomain;
 
 	public:
-		ComponentBase() {}
-		virtual ~ComponentBase() = 0;
-
-		Entity& GetEntity() { return m_Entity; }
-		Tag* GetTag() { return m_Entity.GetTag(); }
-		Transform* GetTransform() { return m_Entity.GetTransform(); }
-		int GetSceneID() { return m_ComponentID; }
-
-		virtual void DrawEditor() {}
+		virtual void _SerializeObject(SerializeInfo& serial) override
+		{
+			_Serialize(serial);
+		}
 
 	private:
-		Entity m_Entity;
-		int m_ComponentID;
+		static inline ComponentBase* __RegisterComponent(Wyvern::Ref<Wyvern::Scene> scene, unsigned long long entity) { return Scene::AddComponent<T>(scene, entity); }
+		static inline bool __IsRegistered = ApplicationDomain::RegisterComponent<T>(__RegisterComponent);
 
 		typedef ComponentBase base;
 	};
 
-	class NativeComponentBase : public ComponentBase
+	template <typename T, typename ...Args>
+	class NativeScriptComponent : public NativeComponentBase, public Serializable<T, Args...>
 	{
 	private:
 		friend class Scene;
-		friend class ApplicationDomain;
 
 	public:
-		NativeComponentBase()
-			: ComponentBase()
-		{}
-		virtual ~NativeComponentBase() = 0;
-
-		virtual void OnAttach() {}
-		virtual void OnDestroy() {}
-		virtual void OnUpdate() {}
-		virtual void OnFixedUpdate() {}
-
-		virtual void OnCollision2D(const Collision2D& collision) {}
+		virtual void _SerializeObject(SerializeInfo& serial) override
+		{
+			_Serialize(serial);
+		}
 
 	private:
+		static inline ComponentBase* __RegisterComponent(Wyvern::Ref<Wyvern::Scene> scene, unsigned long long entity) { return Scene::AddComponent<T>(scene, entity); }
+		static inline bool __IsRegistered = ApplicationDomain::RegisterComponent<T>(__RegisterComponent);
+
 		typedef NativeComponentBase base;
 	};
 }
