@@ -187,12 +187,12 @@
     <ClInclude Include="Wyvern\Core\Physics\SmoothPosition2D.h" />
     <ClInclude Include="Wyvern\Core\Physics\VelocitySolver2D.h" />
     <ClInclude Include="Wyvern\Core\Scene\Component.h" />
+    <ClInclude Include="Wyvern\Core\Scene\ComponentBase.h" />
     <ClInclude Include="Wyvern\Core\Scene\ComponentPool.h" />
     <ClInclude Include="Wyvern\Core\Scene\Entity.h" />
     <ClInclude Include="Wyvern\Core\Scene\EntityConstants.h" />
     <ClInclude Include="Wyvern\Core\Scene\EntityList.h" />
     <ClInclude Include="Wyvern\Core\Scene\EntityRegister.h" />
-    <ClInclude Include="Wyvern\Core\Scene\NativeScriptComponent.h" />
     <ClInclude Include="Wyvern\Core\Scene\Scene.h" />
     <ClInclude Include="Wyvern\Core\Scene\SerializeHelper.h" />
     <ClInclude Include="Wyvern\Core\Scene\SerializeInfo.h" />
@@ -252,7 +252,6 @@
     <ClCompile Include="Wyvern\Core\Physics\Physics2DWizard.cpp" />
     <ClCompile Include="Wyvern\Core\Physics\SmoothPosition2D.cpp" />
     <ClCompile Include="Wyvern\Core\Physics\VelocitySolver2D.cpp" />
-    <ClCompile Include="Wyvern\Core\Scene\Component.cpp" />
     <ClCompile Include="Wyvern\Core\Scene\Entity.cpp" />
     <ClCompile Include="Wyvern\Core\Scene\Scene.cpp" />
     <ClCompile Include="Wyvern\Core\Scene\SerializeHelper.cpp" />

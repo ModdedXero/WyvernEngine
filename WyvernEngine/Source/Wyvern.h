@@ -27,6 +27,7 @@
 
 // Components
 #include <Wyvern/Core/Components/Components.h>
+#include <Wyvern/Core/Scene/ComponentBase.h>
 #include <Wyvern/Core/Scene/Component.h>
 
 // Math

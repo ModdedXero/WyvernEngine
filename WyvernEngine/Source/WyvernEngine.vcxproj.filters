@@ -202,7 +202,7 @@
     <ClInclude Include="Wyvern\Core\Physics\VelocitySolver2D.h">
       <Filter>Wyvern\Core\Physics</Filter>
     </ClInclude>
-    <ClInclude Include="Wyvern\Core\Scene\Component.h">
+    <ClInclude Include="Wyvern\Core\Scene\ComponentBase.h">
       <Filter>Wyvern\Core\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Wyvern\Core\Scene\ComponentPool.h">
@@ -291,7 +291,7 @@
     </ClInclude>
     <ClInclude Include="wvpch.h" />
     <ClInclude Include="Wyvern\Core\Scene\SerializeInfo.h" />
-    <ClInclude Include="Wyvern\Core\Scene\NativeScriptComponent.h" />
+    <ClInclude Include="Wyvern\Core\Scene\Component.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Vendor\ImGuizmo\ImGuizmo.cpp">
@@ -368,9 +368,6 @@
     </ClCompile>
     <ClCompile Include="Wyvern\Core\Physics\VelocitySolver2D.cpp">
       <Filter>Wyvern\Core\Physics</Filter>
-    </ClCompile>
-    <ClCompile Include="Wyvern\Core\Scene\Component.cpp">
-      <Filter>Wyvern\Core\Scene</Filter>
     </ClCompile>
     <ClCompile Include="Wyvern\Core\Scene\Entity.cpp">
       <Filter>Wyvern\Core\Scene</Filter>

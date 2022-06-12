@@ -1,12 +1,12 @@
 #pragma once
 
 #include <Wyvern/Core/Math/Vector.h>
-#include <Wyvern/Core/Scene/NativeScriptComponent.h>
+#include <Wyvern/Core/Scene/Component.h>
 #include <Wyvern/Core/Physics/Physics.h>
 
 namespace Wyvern
 {
-	struct RigidBody2D : public NativeScriptComponent<RigidBody2D, float, float, float, PhysicsBody>
+	struct RigidBody2D : public Component<RigidBody2D, float, float, float, PhysicsBody>
 	{
 		RigidBody2D() {}
 		~RigidBody2D() {}
