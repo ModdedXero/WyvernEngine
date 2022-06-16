@@ -11,14 +11,15 @@
 namespace Wyvern
 {
 	Entity::Entity()
+		: Object(this)
 	{
 		m_EntityRegister = nullptr;
 	}
 
 	Entity::Entity(EntityRegister* view)
+		: Object(view ? view->UniqueID : UUID(), this)
 	{
 		m_EntityRegister = view;
-		if (view) uuid = view->UniqueID;
 	}
 
 	Tag* Entity::GetTag() const

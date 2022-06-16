@@ -76,7 +76,7 @@ namespace Wyvern
 
 		for (auto& mat : rhs)
 		{
-			out << (uint64_t)mat->uuid;
+			out << (uint64_t)mat->GetUUID();
 		}
 
 		out << YAML::EndSeq;

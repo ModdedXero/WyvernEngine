@@ -6,7 +6,7 @@
 
 #include <Wyvern/Core/AssetManager.h>
 #include <Wyvern/Core/Math/Matrix4x4.h>
-#include <Wyvern/Core/Application/Project.h>
+#include <Wyvern/Core/Project.h>
 
 #include <glad.h>
 

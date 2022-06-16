@@ -5,7 +5,7 @@
 #include "VertexArray.h"
 
 #include <Wyvern/Core/AssetManager.h>
-#include <Wyvern/Core/Application/Project.h>
+#include <Wyvern/Core/Project.h>
 
 #include <glad.h>
 

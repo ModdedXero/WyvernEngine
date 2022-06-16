@@ -34,15 +34,15 @@ namespace Wyvern
 	Ref<Material> AssetManager::LoadMaterial(Tools::FileSystem& material)
 	{
 		Ref<Material> mat = CreateRef<Material>(material);
-		s_Materials[mat->uuid] = mat;
-		return s_Materials[mat->uuid];
+		s_Materials[mat->GetUUID()] = mat;
+		return s_Materials[mat->GetUUID()];
 	}
 
 	Ref<Material> AssetManager::LoadMaterial(Material material)
 	{
 		Ref<Material> mat = CreateRef<Material>(material);
-		s_Materials[mat->uuid] = mat;
-		return s_Materials[mat->uuid];
+		s_Materials[mat->GetUUID()] = mat;
+		return s_Materials[mat->GetUUID()];
 	}
 
 	Ref<Material> AssetManager::GetMaterial(UUID& uuid)

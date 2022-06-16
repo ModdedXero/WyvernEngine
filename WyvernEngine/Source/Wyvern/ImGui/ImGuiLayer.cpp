@@ -1,7 +1,7 @@
 #include "wvpch.h"
 #include "ImGuiLayer.h"
 
-#include <Wyvern/Core/Application/Project.h>
+#include <Wyvern/Core/Project.h>
 #include <Wyvern/Core/Application/Application.h>
 
 #include <ImGuizmo.h>

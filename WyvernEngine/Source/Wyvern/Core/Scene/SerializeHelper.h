@@ -226,7 +226,7 @@ namespace YAML
 
 			for (auto& mat : rhs)
 			{
-				node.push_back(mat->uuid);
+				node.push_back(mat->GetUUID());
 			}
 
 			return node;

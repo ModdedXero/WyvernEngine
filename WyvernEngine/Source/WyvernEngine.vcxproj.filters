@@ -94,7 +94,7 @@
     <ClInclude Include="Wyvern\Core\Application\LayerStack.h">
       <Filter>Wyvern\Core\Application</Filter>
     </ClInclude>
-    <ClInclude Include="Wyvern\Core\Application\Project.h">
+    <ClInclude Include="Wyvern\Core\Project.h">
       <Filter>Wyvern\Core\Application</Filter>
     </ClInclude>
     <ClInclude Include="Wyvern\Core\AssetManager.h">
@@ -292,6 +292,7 @@
     <ClInclude Include="wvpch.h" />
     <ClInclude Include="Wyvern\Core\Scene\SerializeInfo.h" />
     <ClInclude Include="Wyvern\Core\Scene\Component.h" />
+    <ClInclude Include="Wyvern\Core\Serializable.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Vendor\ImGuizmo\ImGuizmo.cpp">
@@ -321,7 +322,7 @@
     <ClCompile Include="Wyvern\Core\Application\LayerStack.cpp">
       <Filter>Wyvern\Core\Application</Filter>
     </ClCompile>
-    <ClCompile Include="Wyvern\Core\Application\Project.cpp">
+    <ClCompile Include="Wyvern\Core\Project.cpp">
       <Filter>Wyvern\Core\Application</Filter>
     </ClCompile>
     <ClCompile Include="Wyvern\Core\AssetManager.cpp">
@@ -422,5 +423,6 @@
     </ClCompile>
     <ClCompile Include="wvpch.cpp" />
     <ClCompile Include="Wyvern\Core\Graphics\Mesh.cpp" />
+    <ClCompile Include="Wyvern\Core\Object.cpp" />
   </ItemGroup>
 </Project>

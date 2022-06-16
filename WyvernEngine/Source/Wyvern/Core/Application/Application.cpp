@@ -1,8 +1,7 @@
 #include "wvpch.h"
 #include "Application.h"
 
-#include "Project.h"
-
+#include <Wyvern/Core/Project.h>
 #include <Wyvern/Core/Timestep.h>
 #include <Wyvern/Renderer/Renderer.h>
 #include <Wyvern/Renderer/Renderer2D.h>
